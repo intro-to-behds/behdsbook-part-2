@@ -1,6 +1,13 @@
 # Preface {.unnumbered}
 
-This is the website for the **Statistics and Prediction Algorithms Through Case Studies**, the second part of **Introduction to Data Science**. 
+::: {.callout-note}
+## About this adaptation
+This book is an adaptation of Rafael A. Irizarry's *Introduction to Data Science* (<https://rafalab.github.io/dsbook-part-2/>), created by Giorgio Arcara for the *Behavioural Data Science* course (PS0000002, University of Padua). Substantive changes — replaced datasets and case studies, new chapters, retitling — are documented in [CHANGELOG.md](https://github.com/intro-to-behds/behdsbook-part-2/blob/main/CHANGELOG.md).
+
+This work remains licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0), consistent with the original.
+:::
+
+This is the website for the **Statistics and Prediction Algorithms Through Case Studies**, the second part of **Introduction to Behavioural Data Science**, an adaptation of **Introduction to Data Science**.
 
 The website for the first part, **Data Wrangling and Visualization with R**, is [here](http://rafalab.dfci.harvard.edu/dsbook-part-1/).
 
@@ -26,6 +33,8 @@ This book was conceived during the teaching of several applied statistics course
 A special thanks goes to all those who edited the book via GitHub pull requests or made suggestions by creating an _issue_ or sending an email:  `hbmaclean` (Barry MacLean), `nickyfoto` (Huang Qiang), `desautm` (Marc-André Désautels), `michaschwab` (Michail Schwab), `alvarolarreategui` (Alvaro Larreategui), `jakevc` (Jake VanCampen), `omerta` (Guillermo Lengemann), `espinielli` (Enrico Spinielli), `asimumba`(Aaron Simumba), `braunschweig` (Maldewar), `gwierzchowski` (Grzegorz Wierzchowski), `technocrat` (Richard Careaga), `atzakas`, `defeit` (David Emerson Feit), `shiraamitchell` (Shira Mitchell),  `Nathalie-S`, `andreashandel` (Andreas Handel), `berkowitze` (Elias Berkowitz), `Dean-Webb` (Dean Webber), `mohayusuf`, `jimrothstein`, `mPloenzke` (Matthew Ploenzke), `NicholasDowand` (Nicholas Dow), `kant` (Darío Hereñú), `debbieyuster` (Debbie Yuster), `tuanchauict` (Tuan Chau), `phzeller`, `BTJ01` (BradJ), `glsnow` (Greg Snow), `mberlanda` (Mauro Berlanda), `wfan9`, `larswestvang` (Lars Westvang), `jj999` (Jan Andrejkovic), `Kriegslustig` (Luca Nils Schmid), `odahhani`, `aidanhorn` (Aidan Horn), `atraxler` (Adrienne Traxler), `alvegorova`,`wycheong` (Won Young Cheong), 
 `med-hat` (Medhat Khalil), `biscotty666` (Brian Carey), `kengustafson`, `Yowza63`, `ryan-heslin` (Ryan Heslin), `SydneyUni-Jim` (Jim Nicholls), `raffaem`, `BruciiZ` (Huiyuan (Bruce) Zhou), `tim8west`, `aosaf-e-c` (Aosaf Ershad Chowdhury), `annlia`, `jonkiparsky` (Jon Kiparsky), `ang101` (Angela), `Daniel-Yonkov` (Daniel Yonkov), `lilyclements` (Lily Clements),
 David D. Kane, El Mustapha El Abbassi, Vadim Zipunnikov, Anna Quaglieri, Chris Dong, Rick Schoenberg, Isabella Grabski, Doug Snyder, and JT Harton.
+
+This behavioural-science adaptation, *Introduction to Behavioural Data Science*, was created by Giorgio Arcara for the *Behavioural Data Science* course (PS0000002, University of Padua).
  
 
 
