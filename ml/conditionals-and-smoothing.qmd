@@ -687,14 +687,14 @@ dat <- MASS::mvrnorm(n = 10000, c(69, 69), Sigma) |>
 You can make a quick plot of the data using `plot(dat)`. Use an approach similar to the previous exercise to estimate the conditional expectations and make a plot.
 
 
-4\. The **behdslabs** package provides the following dataset with mortality counts for Puerto Rico for 2015-2018.
+4\. The **behdslabs** package provides the following dataset with daily active user counts for a mobile app, 2015-2018, spanning a period that included a major outage event.
 
 ```{r, eval=FALSE}
 library(behdslabs)
-head(pr_death_counts)
+head(app_outage_engagement_impact)
 ```
 
-Remove data from before May 2018, then use the `loess` function to obtain a smooth estimate of the expected number of deaths as a function of date. Plot this resulting smooth function. Make the span about two months long.
+Remove data from before May 2018, then use the `loess` function to obtain a smooth estimate of the expected number of daily active users as a function of date. Plot this resulting smooth function. Make the span about two months long.
 
 5\. Plot the smooth estimates against the day of the year, all on the same plot but with different colors.
 
