@@ -10,7 +10,7 @@ Before turning to the case study, we introduce the **caret** package, which prov
 
 We have already learned about several machine learning algorithms. Many of these algorithms are implemented in R. However, they are distributed via different packages, developed by different authors, and often use different syntax. The __caret__ package tries to consolidate these differences and provide consistency. It currently includes over 200 different methods, which are summarized in the __caret__ package manual^[[https://topepo.github.io/caret/available-models.html](https://topepo.github.io/caret/available-models.html)]. Keep in mind that __caret__ does not include the packages needed to run each possible algorithm. To apply a machine learning method through __caret__, you still need to install the library that implements the method. The required packages for each method are described in the package manual.
 
-To illustrate the __caret__ package and its key functions, we will first use the `mnist_27` dataset introduced in @sec-mnist that contains only images of 2s and 7s and two predictors. This smaller dataset allows us to run code quickly while focusing on learning the package. Once we are comfortable with the package, we will use the full MNIST dataset for realistic performance evaluation and demonstrate how the concepts scale to larger datasets.
+To illustrate the __caret__ package and its key functions, we will first use the `gesture_swipe_data` dataset introduced in @sec-mnist, a small two-class, two-predictor gesture-recognition dataset. This smaller dataset allows us to run code quickly while focusing on learning the package. Once we are comfortable with the package, we will use the full MNIST handwritten-digit dataset for realistic performance evaluation and demonstrate how the concepts scale to larger datasets.
 
 ### The `train` function 
 
@@ -24,9 +24,9 @@ The __caret__ `train` function lets us train different algorithms using similar 
 #| cache: false
 library(behdslabs)
 library(caret)
-train_glm <- train(y ~ ., method = "glm", data = mnist_27$train)
-train_qda <- train(y ~ ., method = "qda", data = mnist_27$train)
-train_knn <- train(y ~ ., method = "knn", data = mnist_27$train)
+train_glm <- train(y ~ ., method = "glm", data = gesture_swipe_data$train)
+train_qda <- train(y ~ ., method = "qda", data = gesture_swipe_data$train)
+train_knn <- train(y ~ ., method = "knn", data = gesture_swipe_data$train)
 ```
 
 As we explain in more detail in @sec-caret-cv, the `train` function selects parameters for you using a resampling method to estimate the MSE, with bootstrap as the default.
@@ -38,8 +38,8 @@ The predict function is one of the most useful tools in R for machine learning a
 Here is an example with logistic regression:
 
 ```{r}
-fit <- glm(y ~ ., family = "binomial", data = mnist_27$train)
-p_hat <- predict(fit, newdata = mnist_27$test, type = "response")
+fit <- glm(y ~ ., family = "binomial", data = gesture_swipe_data$train)
+p_hat <- predict(fit, newdata = gesture_swipe_data$test, type = "response")
 ```
 
 In this case, `predict` is simply computing 
@@ -48,7 +48,7 @@ $$
 \hat{p}(\mathbf{x}) = g^{-1}\left(\hat{\beta}_0 + \hat{\beta}_1 x_1 + \hat{\beta}_2 x_2 \right) \text{ with } g(p) = \log\frac{p}{1-p} \implies g^{-1}(\mu) = \frac{1}{1+e^{-\mu}}
 $$
 
-for the `x_1` and `x_2` in the test set `mnist_27$test`. With these estimates in place, we can make our predictions and compute our accuracy:
+for the `x_1` and `x_2` in the test set `gesture_swipe_data$test`. With these estimates in place, we can make our predictions and compute our accuracy:
 
 ```{r}
 y_hat <- factor(ifelse(p_hat > 0.5, 7, 2))
@@ -71,9 +71,9 @@ As with `train`, the **caret** package unifies the use of `predict` with the fun
 The code looks the same for all methods:
 
 ```{r}
-y_hat_glm <- predict(train_glm, mnist_27$test, type = "raw")
-y_hat_qda <- predict(train_qda, mnist_27$test, type = "raw")
-y_hat_knn <- predict(train_knn, mnist_27$test, type = "raw")
+y_hat_glm <- predict(train_glm, gesture_swipe_data$test, type = "raw")
+y_hat_qda <- predict(train_qda, gesture_swipe_data$test, type = "raw")
+y_hat_knn <- predict(train_knn, gesture_swipe_data$test, type = "raw")
 ```
 
 This permits us to quickly compare the algorithms. For example, we can compare the accuracy like this:
@@ -81,7 +81,7 @@ This permits us to quickly compare the algorithms. For example, we can compare t
 ```{r}
 fits <- list(glm = train_glm, qda = train_qda, knn = train_knn)
 sapply(fits, function(fit) {
-  mean(predict(fit, mnist_27$test) == mnist_27$test$y)
+  mean(predict(fit, gesture_swipe_data$test) == gesture_swipe_data$test$y)
 })
 ```
 
@@ -103,7 +103,7 @@ getModelInfo("knn")
 If we run it with default values: 
 
 ```{r}
-train_knn <- train(y ~ ., method = "knn", data = mnist_27$train)
+train_knn <- train(y ~ ., method = "knn", data = gesture_swipe_data$train)
 ```
 
 you can quickly see the estimated MSEs using the `ggplot` function. The argument `highlight` highlights the max:
@@ -139,7 +139,7 @@ Note that when running this code, we are fitting 75 versions of kNN to 20 cross 
 ```{r train-knn-plot}
 #| warning: false
 set.seed(2001)
-train_knn <- train(y ~ ., method = "knn", data = mnist_27$train,
+train_knn <- train(y ~ ., method = "knn", data = gesture_swipe_data$train,
   tuneGrid = data.frame(k = seq(1, 149, 2)),
   trControl = cv20_ctrl
 )
@@ -171,7 +171,7 @@ train_knn$finalModel
 The function `predict` will use this best-performing model. Here is the accuracy of the best model when applied to the test set, which we have not yet used because the cross-validation was done on the training set:
 
 ```{r}
-mean(predict(train_knn, mnist_27$test, type = "raw") == mnist_27$test$y)
+mean(predict(train_knn, gesture_swipe_data$test, type = "raw") == gesture_swipe_data$test$y)
 ```
 
 ## Case study: handwritten digit recognition
@@ -699,11 +699,11 @@ We can see the true conditional probability for the 2 or 7 example like this:
 
 ```{r}
 #| eval: false
-with(mnist_27$true_p, plot_cond_prob(x_1, x_2, p))
+with(gesture_swipe_data$true_p, plot_cond_prob(x_1, x_2, p))
 ```
 
 
-Fit a kNN model and make this plot for the estimated conditional probability. Hint: Use the argument `newdata = mnist_27$train` to obtain predictions for a grid of points.
+Fit a kNN model and make this plot for the estimated conditional probability. Hint: Use the argument `newdata = gesture_swipe_data$train` to obtain predictions for a grid of points.
 
 22\. Notice that, in the plot made in exercise 21, the boundary is somewhat wiggly. This is because kNN, like the basic bin smoother, does not use a kernel. To improve this, we could try loess. By reading through the available models part of the **caret** manual, we see that we can use the `gamLoess` method. We need to install the __gam__ package, if we have not done so already. We see that we have two parameters to optimize:
 
@@ -715,7 +715,7 @@ Use resampling to pick a span between 0.15 and 0.75. Keep `degree = 1`. What spa
 
 23\. Show an image plot of the estimate $\hat{p}(x,y)$ resulting from the model fit in exercise 22. How does the accuracy compare to that of kNN? Comment on the difference between the estimate obtained with kNN. 
 
-24\. Fit and compare several machine learning models using the `mnist_27` training set.  
+24\. Fit and compare several machine learning models using the `gesture_swipe_data` training set.  
 Rather than trying a large number of methods, select a small, diverse subset (for example: `knn`, `gbm`,  `Rborist`, `svmLinear`, `avNNet`).
 
 Fit each model using `train()` with default tuning parameters. Compute the accuracy of each model on the test set and compare their performance.
