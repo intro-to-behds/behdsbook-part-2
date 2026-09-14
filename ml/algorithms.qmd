@@ -545,61 +545,61 @@ Here, we look at a set of elegant and versatile methods that adapt to higher dim
 
 ### CART motivation
 
-To motivate this section, we will use a new dataset that includes the breakdown of the composition of different olive oils into 8 fatty acids:
+To motivate this section, we will use a new dataset that includes the breakdown of wearable-device signal quality into 8 signal-quality proportions:
 
 ```{r}
-names(olive)
+names(wearable_signal_profiles_by_cohort)
 ```
 
-For illustrative purposes, we will try to predict the region using the fatty acid composition values as predictors.
+For illustrative purposes, we will try to predict the device type using the signal-quality proportions as predictors.
 
 ```{r}
-table(olive$region)
+table(wearable_signal_profiles_by_cohort$device_type)
 ```
 
-We remove the `area` column because we won't use it as a predictor.
+We remove the `device_model` column because we won't use it as a predictor.
 
 ```{r}
-olive <- select(olive, -area)
+wearable_signal_profiles_by_cohort <- select(wearable_signal_profiles_by_cohort, -device_model)
 ```
 
 ```{r olive-knn, warning = FALSE, message = FALSE, echo=FALSE}
 library(caret)
-fit <- train(region ~ .,  method = "knn", 
+fit <- train(device_type ~ .,  method = "knn", 
              tuneGrid = data.frame(k = seq(1, 15, 2)), 
-             data = olive)
+             data = wearable_signal_profiles_by_cohort)
 ```
 
-Using kNN, we can achieve a test set accuracy of `r round(fit$results[1,2], 2)`. However, a bit of data exploration reveals that we should be able to do even better. For example, if we look at the distribution of each predictor stratified by region, we see that eicosenoic is only present in Southern Italy and that linoleic separates Northern Italy from Sardinia.
+Using kNN, we can achieve a test set accuracy of `r round(fit$results[1,2], 2)`. However, a bit of data exploration reveals that we should be able to do even better. For example, if we look at the distribution of each predictor stratified by device type, we see that `pct_other` is only present in `smart_ring` devices and that `pct_poor_contact` separates `smartwatch` from `chest_strap` devices.
 
 ```{r olive-eda, fig.height = 3, fig.width = 6, echo = FALSE}
-olive |> 
-  pivot_longer(cols = -region, names_to = "fatty_acid", values_to = "percentage") |> 
-  ggplot(aes(region, percentage, fill = region)) + 
+wearable_signal_profiles_by_cohort |> 
+  pivot_longer(cols = -device_type, names_to = "signal_metric", values_to = "percentage") |> 
+  ggplot(aes(device_type, percentage, fill = device_type)) + 
   geom_boxplot() + 
-  facet_wrap(~fatty_acid, scales = "free", ncol = 4) + 
+  facet_wrap(~signal_metric, scales = "free", ncol = 4) + 
   theme(axis.text.x = element_blank(), legend.position = "bottom")
 ```
 
-This implies that we should be able to build an algorithm that predicts perfectly! We can see this clearly by plotting the values for eicosenoic and linoleic.
+This implies that we should be able to build an algorithm that predicts perfectly! We can see this clearly by plotting the values for `pct_other` and `pct_poor_contact`.
 
 ```{r olive-two-predictors, echo = FALSE}
-olive |> 
-  ggplot(aes(eicosenoic, linoleic, color = region)) + 
+wearable_signal_profiles_by_cohort |> 
+  ggplot(aes(pct_other, pct_poor_contact, color = device_type)) + 
   geom_point() +
   geom_vline(xintercept = 0.065, lty = 2) + 
   geom_segment(x = -0.2, y = 10.54, xend = 0.065, yend = 10.54, 
                color = "black", lty = 2)
 ```
 
-In [@sec-predictor-space], we defined _predictor spaces_, which in this case consist of eight-dimensional points with values between 0 and 100. In the plot above, we show the space defined by the two predictors eicosenoic and linoleic, and, by eye, we can construct a prediction rule that partitions the predictor space so that each partition contains only outcomes of a single category. 
+In [@sec-predictor-space], we defined _predictor spaces_, which in this case consist of eight-dimensional points with values between 0 and 100. In the plot above, we show the space defined by the two predictors `pct_other` and `pct_poor_contact`, and, by eye, we can construct a prediction rule that partitions the predictor space so that each partition contains only outcomes of a single category. 
 
-This, in turn, can be used to define an algorithm with perfect accuracy. Specifically, we define the following decision rule: if eicosenoic is larger than 0.065, predict Southern Italy. If not, then if linoleic is larger than $10.535$, predict Sardinia, and if lower, predict Northern Italy. We can draw this decision tree as follows:
+This, in turn, can be used to define an algorithm with perfect accuracy. Specifically, we define the following decision rule: if `pct_other` is larger than 0.065, predict `smart_ring`. If not, then if `pct_poor_contact` is larger than $10.535$, predict `chest_strap`, and if lower, predict `smartwatch`. We can draw this decision tree as follows:
 
 ```{r olive-tree, echo = FALSE, warning = FALSE, message = FALSE, fig.height = 4.5}
 library(rpart)
 rafalib::mypar()
-train_rpart <- train(region ~ ., method = "rpart", data = olive)
+train_rpart <- train(device_type ~ ., method = "rpart", data = wearable_signal_profiles_by_cohort)
 
 plot(train_rpart$finalModel, margin = 0.1)
 text(train_rpart$finalModel, cex = 0.75)
