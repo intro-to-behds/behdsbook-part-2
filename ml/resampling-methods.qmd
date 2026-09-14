@@ -456,7 +456,7 @@ This means:
 
 You should now obtain an accuracy close to 0.5. Explain why.
 
-6\. Load the `tissue_gene_expression` dataset.
+6\. Load the `sensor_activity_features` dataset.
 
 Split the data:
 

@@ -587,53 +587,53 @@ In the exercises in @sec-example-algorithms, we saw that changing `maxnodes` or 
 
 2\. Make a scatterplot of `x` and `y` and add the prediction from the best-fitted model in exercise 1.
 
-3\. This **behdslabs** `tissue_gene_expression` dataset includes a matrix `x`:
+3\. This **behdslabs** `sensor_activity_features` dataset includes a matrix `x`:
 
 ```{r, eval = FALSE}
 library(behdslabs)
-dim(tissue_gene_expression$x)
+dim(sensor_activity_features$x)
 ```
 
-with the gene expression measured on 500 genes for 189 biological samples representing seven different tissues. The tissue type is stored in `y`:
+with 500 sensor-derived features measured for 189 recording sessions representing seven different activity contexts. The activity context is stored in `y`:
 
 ```{r, eval = FALSE}
-table(tissue_gene_expression$y)
+table(sensor_activity_features$y)
 ```
 
-Split the data into training and test sets, then use kNN to predict tissue type and see what accuracy you obtain. Try it for $k = 1, 3, \dots, 11$.
+Split the data into training and test sets, then use kNN to predict activity context and see what accuracy you obtain. Try it for $k = 1, 3, \dots, 11$.
 
-4\. We are going to apply LDA and QDA to the `tissue_gene_expression` dataset. We will start with simple examples based on this dataset and then develop a realistic example.
+4\. We are going to apply LDA and QDA to the `sensor_activity_features` dataset. We will start with simple examples based on this dataset and then develop a realistic example.
 
-Create a dataset with just the classes `cerebellum` and `hippocampus` (two parts of the brain) and a predictor matrix with 10 randomly selected columns. 
+Create a dataset with just the classes `walking` and `meditating` and a predictor matrix with 10 randomly selected columns. 
 
 
 ```{r, eval = FALSE}
 set.seed(1993)
-tissues <- c("cerebellum", "hippocampus")
-ind <- which(tissue_gene_expression$y %in% tissues)
-y <- droplevels(tissue_gene_expression$y[ind])
-x <- tissue_gene_expression$x[ind, ]
+activities <- c("walking", "meditating")
+ind <- which(sensor_activity_features$y %in% activities)
+y <- droplevels(sensor_activity_features$y[ind])
+x <- sensor_activity_features$x[ind, ]
 x <- x[, sample(ncol(x), 10)]
 ```
 
 Estimate the accuracy of LDA.
 
-5\. In this case, LDA fits two 10-dimensional normal distributions. Look at the fitted model by looking at the `finalModel` component of the result of train. Notice there is a component called `means` that includes the estimated `means` of both distributions. Plot the mean vectors against each other and determine which predictors (genes) appear to be driving the algorithm. 
+5\. In this case, LDA fits two 10-dimensional normal distributions. Look at the fitted model by looking at the `finalModel` component of the result of train. Notice there is a component called `means` that includes the estimated `means` of both distributions. Plot the mean vectors against each other and determine which predictors (features) appear to be driving the algorithm. 
 
 6\. Repeat exercises 4 with QDA. Does it have a higher accuracy than LDA?
 
-7\. Are the same predictors (genes) driving the algorithm? Make a plot as in exercise 5.
+7\. Are the same predictors (features) driving the algorithm? Make a plot as in exercise 5.
 
 8\. One thing we see in the previous plot is that predictors are correlated between groups: some predictors are low in both groups, while others are high in both groups. The mean value of each predictor, `colMeans(x)`, is not informative or useful for prediction, and often it is useful to center or scale each column for interpretation purposes. This can be achieved with the `preProcessing` argument in `train`. Re-run LDA with `preProcessing = "scale"`. Note that accuracy does not change, but see how it is easier to identify the predictors that differ more between groups than the plot made in exercise 5.
 
-9\. In the previous exercises, we saw that both approaches worked well. Plot the predictor values for the two genes with the largest differences between the two groups in a scatterplot to see how they appear to follow a bivariate distribution as assumed by the LDA and QDA approaches. Color the points by the outcome.
+9\. In the previous exercises, we saw that both approaches worked well. Plot the predictor values for the two features with the largest differences between the two groups in a scatterplot to see how they appear to follow a bivariate distribution as assumed by the LDA and QDA approaches. Color the points by the outcome.
 
-10\. Now we are going to increase the complexity of the challenge slightly: we will consider all the tissue types.
+10\. Now we are going to increase the complexity of the challenge slightly: we will consider all the activity contexts.
 
 ```{r, eval = FALSE}
 set.seed(1993)
-y <- tissue_gene_expression$y
-x <- tissue_gene_expression$x
+y <- sensor_activity_features$y
+x <- sensor_activity_features$x
 x <- x[, sample(ncol(x), 10)]
 ```
 
@@ -646,23 +646,23 @@ What accuracy do you get with LDA?
 12\. Plot an image of the centers of the seven 10-dimensional normal distributions used by the LDA model fit in exercise 10.
 
 
-13\. Use the `rpart` function to fit a classification tree to the `tissue_gene_expression` dataset with all genes. That is, redefine 
+13\. Use the `rpart` function to fit a classification tree to the `sensor_activity_features` dataset with all features. That is, redefine 
 
 ```{r}
 #| eval: false
-x <- tissue_gene_expression$x
+x <- sensor_activity_features$x
 ```
 
 Use the `train` function to estimate the accuracy. Try out `cp` values of `seq(0, 0.05, 0.01)`. Plot the accuracy to report the results of the best model.
 
 
-14\. Study the confusion matrix for the best-fitting classification tree. What do you observe happening for placenta samples?
+14\. Study the confusion matrix for the best-fitting classification tree. What do you observe happening for resting samples?
 
-15\. Notice that placentas are called endometrium more often than placenta. Note also that there are only six placenta samples, and that, by default, `rpart` requires 20 observations before splitting a node. Thus, it is not possible with these parameters to have a node in which placentas are the majority. Rerun the above analysis, but this time permit `rpart` to split any node by using the argument `control = rpart.control(minsplit = 0)`. Does the accuracy increase? Look at the confusion matrix again.
+15\. Notice that resting sessions are called reading more often than resting. Note also that there are only six resting samples, and that, by default, `rpart` requires 20 observations before splitting a node. Thus, it is not possible with these parameters to have a node in which resting sessions are the majority. Rerun the above analysis, but this time permit `rpart` to split any node by using the argument `control = rpart.control(minsplit = 0)`. Does the accuracy increase? Look at the confusion matrix again.
 
 16\. Plot the tree from the best-fitting model obtained in exercise 13.
 
-17\. We can see that with just the genes selected by CART, we are able to predict the tissue type. Now let's see if we can do even better with a random forest. Use the `train` function in the **caret** package and the `rf` method to train a random forest. Try out values of `mtry` ranging from, at least, `seq(50, 200, 25)`. What `mtry` value maximizes accuracy? To permit small `nodesize` to grow as we did with the classification trees, use the following argument: `nodesize = 1`.  This will take several seconds to run. If you want to test it out, try using smaller values with `ntree`. Set the seed to 1990.
+17\. We can see that with just the features selected by CART, we are able to predict the activity context. Now let's see if we can do even better with a random forest. Use the `train` function in the **caret** package and the `rf` method to train a random forest. Try out values of `mtry` ranging from, at least, `seq(50, 200, 25)`. What `mtry` value maximizes accuracy? To permit small `nodesize` to grow as we did with the classification trees, use the following argument: `nodesize = 1`.  This will take several seconds to run. If you want to test it out, try using smaller values with `ntree`. Set the seed to 1990.
 
 18\. Use the function `varImp` on the output of `train` and save it to an object called `imp`.
 
@@ -679,7 +679,7 @@ tree_terms
 
 What is the variable importance in the random forest call for these predictors? Where do they rank?
 
-20\. Extract the top 50 predictors based on importance, take a subset of `x` with just these predictors, and apply the function `heatmap` to see how these genes behave across the tissues. We will introduce the `heatmap` function in @sec-clustering.
+20\. Extract the top 50 predictors based on importance, take a subset of `x` with just these predictors, and apply the function `heatmap` to see how these features behave across the activity contexts. We will introduce the `heatmap` function in @sec-clustering.
 
 
 21\. In @sec-example-algorithms, for the 2 or 7 example, we compared the conditional probability $p(\mathbf{x})$ given two predictors $\mathbf{x} = (x_1, x_2)^\top$ to the fit $\hat{p}(\mathbf{x})$ obtained with a machine learning algorithm by making image plots. The following code can be used to make these images and include a curve at the values of $x_1$ and $x_2$ for which the predicted conditional probability is $0.5$:

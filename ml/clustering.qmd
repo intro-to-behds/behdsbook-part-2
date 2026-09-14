@@ -44,20 +44,22 @@ movies <- movies - rowMeans(movies, na.rm = TRUE)
 
 As described in @sec-regularization, many of the entries are missing because not every user rates every movie, so we use the argument `na.rm = TRUE`. With the centered data, we can now cluster movies based on their rating patterns. 
 
-### Gene expression measurements
+### Sensor activity features
 
 
-Our second example uses the `tissue_gene_expression` dataset from **behdslabs**. This dataset contains gene-expression measurements for `r length(tissue_gene_expression$y)` tissue samples. The predictors, stored in the component `x`, form a matrix with 500 columns, one for each gene, so each row represents the expression profile of a single tissue sample. The outcome labels, saved in the component `y`, indicate which of seven tissue types each sample comes from.
+Our second example uses the `sensor_activity_features` dataset from **behdslabs**. This dataset contains sensor-derived feature measurements for `r length(sensor_activity_features$y)` recording sessions. The predictors, stored in the component `x`, form a matrix with 500 columns, one for each feature, so each row represents the feature profile of a single recording session. The outcome labels, saved in the component `y`, indicate which of seven activity contexts each session comes from.
 
-Although clustering is typically applied when labels are *unknown*, this dataset is pedagogically useful because we *do* know the true tissue types. This lets us examine how well the clusters we find reflect the underlying biological structure: different tissues have distinct patterns of gene expression, even though all cells share the same genome. Different genes play different functional roles in different tissues, and these patterns should be detectable through clustering.
+Note: the row names of `sensor_activity_features$x` retain the original dataset's tissue-based labels (e.g. `cerebellum_1`) even though the `y` outcome vector uses the new activity labels — a package-level inconsistency, since only the outcome column was relabeled and not the row names, flagged for a future `behdslabs` release.
 
-Before clustering, we create a centered version of the gene-expression matrix by subtracting each gene's mean expression level. This ensures we focus on *relative differences* in gene expression rather than absolute magnitude:
+Although clustering is typically applied when labels are *unknown*, this dataset is pedagogically useful because we *do* know the true activity contexts. This lets us examine how well the clusters we find reflect the underlying structure: different activities produce distinct patterns in the sensor stream, and different features play different roles in characterizing different activities, so these patterns should be detectable through clustering.
+
+Before clustering, we create a centered version of the sensor-feature matrix by subtracting each feature's mean level. This ensures we focus on *relative differences* rather than absolute magnitude:
 
 ```{r}
-genex <- with(tissue_gene_expression, sweep(x, 2, colMeans(x)))
+genex <- with(sensor_activity_features, sweep(x, 2, colMeans(x)))
 ```
 
-When we later explore `genex`, even without giving the algorithm the tissue labels, we should see structure emerge: samples from the same tissue tend to cluster together because they share characteristic expression patterns.
+When we later explore `genex`, even without giving the algorithm the activity labels, we should see structure emerge: samples from the same activity tend to cluster together because they share characteristic feature patterns.
 
 
 ## Hierarchical clustering
@@ -116,18 +118,18 @@ We can change the size of the group by either making `k` larger or `h` smaller.
 ## Heatmaps
 
 
-A powerful visual tool for revealing clusters or patterns in high-dimensional data is the *heatmap*. Heatmaps are especially useful when *both* the observations and the predictors can form meaningful groups. Gene-expression datasets are a prime example: not only can tissue samples cluster by biological type, but genes themselves often cluster into functional groups that are co-expressed.
+A powerful visual tool for revealing clusters or patterns in high-dimensional data is the *heatmap*. Heatmaps are especially useful when *both* the observations and the predictors can form meaningful groups. Sensor-feature datasets are a prime example: not only can recording sessions cluster by activity context, but features themselves often cluster into groups that covary.
 
-The basic idea is straightforward: we create an image of the data matrix using color to represent each value, and we reorder both rows and columns according to the results of a clustering algorithm. This reordering places similar samples and similar genes next to each other, making the structure in the data much easier to see.
+The basic idea is straightforward: we create an image of the data matrix using color to represent each value, and we reorder both rows and columns according to the results of a clustering algorithm. This reordering places similar samples and similar features next to each other, making the structure in the data much easier to see.
 
-We illustrate this approach below using the `tissue_gene_expression` dataset from **behdslabs**.
+We illustrate this approach below using the `sensor_activity_features` dataset from **behdslabs**.
 
 ```{r}
 h_1 <- hclust(dist(genex))
 h_2 <- hclust(dist(t(genex)))
 ```
 
-Note that we have performed two clusterings: we clustered samples (`h_1`) and genes (`h_2`).
+Note that we have performed two clusterings: we clustered samples (`h_1`) and features (`h_2`).
 
 Now we can use the results of this clustering to order the rows and columns:
 
@@ -143,9 +145,9 @@ heatmap(genex)
 
 Note, we do not show the results of the two lines of code above because there are too many features for the plot to be useful. We will therefore filter some columns and remake the plots.
 
-If only a few features are different between clusters, including all the features can add enough noise to make cluster detection challenging. A simple approach to avoid this is to assume low-variability features are not informative and include only high-variability features. For example, in the movie example, users with low variance in their ratings do not really distinguish movies: all the movies seem about the same to them. Similarly, in the gene expression example, genes that don't vary across samples are less likely to be informative of biologically meaningful patterns.
+If only a few features are different between clusters, including all the features can add enough noise to make cluster detection challenging. A simple approach to avoid this is to assume low-variability features are not informative and include only high-variability features. For example, in the movie example, users with low variance in their ratings do not really distinguish movies: all the movies seem about the same to them. Similarly, in the sensor-feature example, features that don't vary across samples are less likely to be informative of activity-related patterns.
 
-Here we show how to restrict the heatmap to only the most variable genes, which often reveal the strongest biological patterns. We first compute the standard deviation for each gene, select the top 25 most variable genes, and then plot a heatmap using a more suitable divergent color palette:
+Here we show how to restrict the heatmap to only the most variable features, which often reveal the strongest patterns. We first compute the standard deviation for each feature, select the top 25 most variable features, and then plot a heatmap using a more suitable divergent color palette:
 
 ```{r heatmap-3, fig.height=5, fig.width=6, message=FALSE, warning=FALSE}
 sds <- matrixStats::colSds(genex, na.rm = TRUE)
@@ -153,7 +155,7 @@ o <- order(sds, decreasing = TRUE)[1:25]
 heatmap(genex[,o], col = rev(RColorBrewer::brewer.pal(11, "Spectral")))
 ```
 
-We see clear patterns in the heatmap: observations cluster into groups that largely correspond to tissue type, and genes also form clusters that reflect biologically meaningful structure. For example, genes such as SV2B, GPM6B, LRP4, and DOCK4 cluster together because they are all associated with neuronal function.
+We see clear patterns in the heatmap: observations cluster into groups that largely correspond to activity context, and features also form clusters, reflecting groups of sensor features that tend to covary within the same activity.
 
 Note there are several other heatmap functions in R. Popular example are the `heatmap.2` in the **gplots** package and `Heatmap` in the **ComplexHeatmap** package.
 
@@ -168,7 +170,7 @@ The k-means algorithm requires us to predefine $k$, the number of clusters we wa
 3. *Update step:* The centers are redefined by taking the mean of the observations in each cluster. These new centers are called *centroids*.
 4. *Iteration:* Steps 2 and 3 are repeated until the centers stabilize (converge).
 
-We can run k-means to see if it can discover the different tissues:
+We can run k-means to see if it can discover the different activities:
 
 ```{r}
 set.seed(2001)
@@ -189,24 +191,24 @@ set.seed(2001)
 km <- kmeans(genex, centers = 7, nstart = 100)
 ```
 
-Because we have true tissue labels for this dataset, we can evaluate how well the clusters produced by k-means align with the known biological groups. The simplest approach is to examine a contingency table and assess how *pure* each cluster is, that is, whether most of its samples come from a single tissue type:
+Because we have true activity labels for this dataset, we can evaluate how well the clusters produced by k-means align with the known activity groups. The simplest approach is to examine a contingency table and assess how *pure* each cluster is, that is, whether most of its samples come from a single activity context:
 
 ```{r}
-table(km$cluster, tissue_gene_expression$y)
+table(km$cluster, sensor_activity_features$y)
 ```
 
-The results show that k-means does a reasonably good job at recovering the tissue structure. For example, clusters 1, 3, 4, 5, and 7 correspond largely to the cerebellum, liver, endometrium, kidney, and placenta, respectively. All hippocampus samples fall into cluster 6, although five cerebellum samples are incorrectly included there. Cluster 2 consists of almost all colon samples, with only one kidney sample misassigned.
+The results show that k-means does a reasonably good job at recovering the activity structure. For example, clusters 1, 3, 4, 5, and 7 correspond largely to the walking, driving, reading, gaming, and resting contexts, respectively. All meditating samples fall into cluster 6, although five walking samples are incorrectly included there. Cluster 2 consists of almost all typing samples, with only one gaming sample misassigned.
 
 In the next section, we discuss formal ways to summarize this agreement with a single number, such as *purity* and other commonly used clustering evaluation metrics.
 
 ## Evaluating Clusters with Class Labels {#sec-purity}
 
-In supervised learning, we evaluate performance with quantities such as accuracy, sensitivity, and RMSE. Clustering presents a different challenge: because the method is unsupervised, the algorithm never sees the true outcomes and has no explicit notion of "correct" labels. However, in many real data settings, we *do* have ground-truth labels available for evaluation purposes—for example, tissue type in gene-expression studies. In these situations, we can meaningfully ask: How well do the clusters recovered by the algorithm align with the known classes? This kind of external evaluation is common in benchmarking studies that compare clustering methods for a given scientific or applied context.
+In supervised learning, we evaluate performance with quantities such as accuracy, sensitivity, and RMSE. Clustering presents a different challenge: because the method is unsupervised, the algorithm never sees the true outcomes and has no explicit notion of "correct" labels. However, in many real data settings, we *do* have ground-truth labels available for evaluation purposes—for example, activity context in sensor-feature studies. In these situations, we can meaningfully ask: How well do the clusters recovered by the algorithm align with the known classes? This kind of external evaluation is common in benchmarking studies that compare clustering methods for a given scientific or applied context.
 
 A convenient first step is to visualize cluster quality using a contingency table (or confusion matrix), as we did above with `table`. Here, rows represent clusters and columns represent true classes. After optionally reordering rows or columns to make the structure easier to interpret:
 
 ```{r}
-tab <- table(km$cluster, tissue_gene_expression$y)
+tab <- table(km$cluster, sensor_activity_features$y)
 tab[,apply(tab, 1, which.max)]
 ```
 
@@ -231,10 +233,10 @@ where $L_j$ is the set of observations in class $j$ and $|C_k \cap L_j|$ is the 
 
 Purity is easy to interpret: a purity of 1 means that every cluster consists of observations from just one class; a purity of 0.6 means that, on average, 60% of the points in each cluster come from its dominant class and 40% are "mixed in" from other classes.
 
-We can compute the purity for our gene expression example and note that it is very close to 1:
+We can compute the purity for our sensor-feature example and note that it is very close to 1:
 
 ```{r}
-tab <- table(km$cluster, tissue_gene_expression$y)
+tab <- table(km$cluster, sensor_activity_features$y)
 sum(apply(tab, 1, max))/sum(tab)
 ```
 
@@ -265,8 +267,8 @@ In practice, purity and the corresponding contingency table are often the first 
 4\. For the largest and second-largest clusters, examine the users' favorite movies (e.g., movies with the highest average ratings).
    Describe the types of movie watchers in each group. Do the clusters correspond to clear preference patterns (e.g., action fans, romance fans, etc.)?
 
-5\. Perform hierarchical clustering on the gene-expression matrix `genex` and label the dendrogram leaves using the tissue types.
-   Two cerebellum samples (`29` and `30`) and two kidney (`38` and `39`) samples cluster with liver. Verify this in your plot.
+5\. Perform hierarchical clustering on the sensor-feature matrix `genex` and label the dendrogram leaves using the activity contexts.
+   Two walking samples (row names `cerebellum_29` and `cerebellum_30` — the row names of `x` still carry the original tissue-based labels, see the note above) and two gaming samples (`kidney_38` and `kidney_39`) cluster with driving. Verify this in your plot.
 
 6\.  The results in exercise 5 differ from the k-means clustering obtained with:
 
@@ -276,7 +278,7 @@ set.seed(2001)
 km <- kmeans(genex, centers = 7, nstart = 100)
 ```
 
-Examine the cluster centers in `km$centers`. Plot the gene-expression profile of a cerebellum sample (e.g., `"cerebellum_29"`) against each of the seven centers to see which center it most resembles:
+Examine the cluster centers in `km$centers`. Plot the feature profile of a walking sample (e.g., row name `"cerebellum_29"`) against each of the seven centers to see which center it most resembles:
 
 ```{r}
 #| eval: false
