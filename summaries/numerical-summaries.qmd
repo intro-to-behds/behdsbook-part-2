@@ -4,7 +4,7 @@ Histograms and density plots provide excellent summaries of a distribution. But 
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
 library(tidyverse)
-library(dslabs)
+library(behdslabs)
 ```
 
 ## The Normal distribution {#sec-normal-distribution}
@@ -151,7 +151,7 @@ Throughout this book, we use $z$ and $Z$ in this way whenever we describe quanti
 
 ## Robust summaries
 
-Note that the heights we explored in the @sec-summaries-distributions are not the original heights reported by students. A second challenge involves exploring the _original_ reported heights, which are also included in the **dslabs** package in the `reported_heights` object. We will see that due to errors in reporting, using _robust summaries_ are necessary to produce useful summaries.
+Note that the heights we explored in the @sec-summaries-distributions are not the original heights reported by students. A second challenge involves exploring the _original_ reported heights, which are also included in the **behdslabs** package in the `reported_heights` object. We will see that due to errors in reporting, using _robust summaries_ are necessary to produce useful summaries.
 
 
 ### Outliers 
@@ -164,7 +164,7 @@ How do we distinguish an outlier from measurements that were too big or too smal
 Suppose a colleague is charged with collecting demography data for a group of males. The data report height in feet and are stored in the object:
 
 ```{r, message=FALSE, warning=FALSE, cache=FALSE}
-library(dslabs)
+library(behdslabs)
 str(outlier_example)
 ```
 
@@ -319,7 +319,7 @@ In the next chapter, we will use boxplots in exactly this way to compare distrib
 1\. Load the height dataset and create a vector `x` with just the male heights:
 
 ```{r, eval = FALSE}
-library(dslabs)
+library(behdslabs)
 x <- heights$height[heights$sex=="Male"]
 ```
 
@@ -380,11 +380,11 @@ d.  A scatterplot would show high levels of measurement error.
 16\. How much can the average accidentally grow with mistakes like this? Write a function called `error_avg` that takes in a value `k`. This function should replace the first entry of the vector `x` with the value `k`, then compute and return the average of this modified `x`. Show the results for `k=10000` and `k=-10000`.
 
 
-17\. Using the `murders` dataset in the __dslabs__ package. Compute the murder rate for each state. Make a boxplot comparing the murder rates for each region of the United States.
+17\. Using the `murders` dataset in the __behdslabs__ package. Compute the murder rate for each state. Make a boxplot comparing the murder rates for each region of the United States.
 
 18\. For the same dataset, compute the median and IQR murder rate for each region.
 
-19\. The heights we have been looking at in the `heights` data frame are not the original heights reported by students. The original reported heights are also included in the **dslabs** package in the object `reported_heights`. Note that the `height` column in this data frame is a character, and if we try to create a new column with the numeric version, we get a warnings about NAs.
+19\. The heights we have been looking at in the `heights` data frame are not the original heights reported by students. The original reported heights are also included in the **behdslabs** package in the object `reported_heights`. Note that the `height` column in this data frame is a character, and if we try to create a new column with the numeric version, we get a warnings about NAs.
 
 ```{r}
 #| eval = FALSE

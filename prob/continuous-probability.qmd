@@ -10,7 +10,7 @@ We return to our example using the heights of adult male students:
 
 ```{r, message=FALSE, warning=FALSE}
 library(tidyverse)
-library(dslabs)
+library(behdslabs)
 x <- heights |> filter(sex == "Male") |> pull(height)
 ```
 

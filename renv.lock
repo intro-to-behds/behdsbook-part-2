@@ -5,6 +5,26 @@
       {
         "Name": "CRAN",
         "URL": "https://packagemanager.posit.co/cran/latest"
+      },
+      {
+        "Name": "BioCsoft",
+        "URL": "https://bioconductor.org/packages/3.22/bioc"
+      },
+      {
+        "Name": "BioCann",
+        "URL": "https://bioconductor.org/packages/3.22/data/annotation"
+      },
+      {
+        "Name": "BioCexp",
+        "URL": "https://bioconductor.org/packages/3.22/data/experiment"
+      },
+      {
+        "Name": "BioCworkflows",
+        "URL": "https://bioconductor.org/packages/3.22/workflows"
+      },
+      {
+        "Name": "BioCbooks",
+        "URL": "https://bioconductor.org/packages/3.22/books"
       }
     ]
   },
@@ -599,6 +619,38 @@
       "BugReports": "https://github.com/s-u/base64enc/issues",
       "NeedsCompilation": "yes",
       "Repository": "CRAN"
+    },
+    "behdslabs": {
+      "Package": "behdslabs",
+      "Version": "0.9.0",
+      "Source": "GitHub",
+      "Title": "Data Science Labs",
+      "Description": "Datasets and functions that can be used for data analysis practice, homework and projects in data science courses and workshops. Forked as behdslabs for the Behavioural Data Science course (PS3140, Cognitive Science for Human-Centric Technologies, UniPD), with a set of datasets relabeled with a digital-technology / wearable / neurophysiological theme. NOTE: these relabeled datasets are not real behavioural, usage, or physiological data -- they are the original dslabs datasets (Irizarry & Gill), renamed and in some cases linearly rescaled for narrative fit. A synthetic or real, ethically-sourced replacement is planned for a future release.",
+      "Author": "Rafael A. Irizarry, Amy Gill",
+      "Maintainer": "Rafael A. Irizarry <rafael_irizarry@dfci.harvard.edu>",
+      "Depends": [
+        "R (>= 4.1.0)"
+      ],
+      "Imports": [
+        "ggplot2"
+      ],
+      "Suggests": [
+        "testthat (>= 3.0.0)",
+        "dplyr",
+        "tidyr"
+      ],
+      "Config/testthat/edition": "3",
+      "License": "Artistic-2.0",
+      "Encoding": "UTF-8",
+      "LazyData": "true",
+      "LazyDataCompression": "xz",
+      "RoxygenNote": "7.3.3",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "intro-to-behds",
+      "RemoteRepo": "behdslabs",
+      "RemoteRef": "master",
+      "RemoteSha": "a50aaf81d50fab45f248ccca01a4cc1e25344e2b"
     },
     "bestglm": {
       "Package": "bestglm",
@@ -1729,28 +1781,6 @@
       "NeedsCompilation": "yes",
       "Author": "Hadley Wickham [aut, cre] (ORCID: <https://orcid.org/0000-0003-4757-117X>), Romain François [aut] (ORCID: <https://orcid.org/0000-0002-2444-4226>), Lionel Henry [aut], Kirill Müller [aut] (ORCID: <https://orcid.org/0000-0002-1416-3412>), Davis Vaughan [aut] (ORCID: <https://orcid.org/0000-0003-4777-038X>), Posit Software, PBC [cph, fnd]",
       "Maintainer": "Hadley Wickham <hadley@posit.co>",
-      "Repository": "CRAN"
-    },
-    "dslabs": {
-      "Package": "dslabs",
-      "Version": "0.9.1",
-      "Source": "Repository",
-      "Title": "Data Science Labs",
-      "Description": "Datasets and functions that can be used for data analysis practice, homework and projects in data science courses and workshops. 26 datasets are available for case studies in data visualization, statistical inference, modeling, linear regression, data wrangling and machine learning.",
-      "Authors@R": "c(person(given = c(\"Rafael\", \"A.\"),  family = \"Irizarry\",  role = c(\"aut\", \"cre\"),  email = \"rafael_irizarry@dfci.harvard.edu\"), person(given = \"Amy\", family = \"Gill\", role = \"aut\"))",
-      "Depends": [
-        "R (>= 4.1.0)"
-      ],
-      "Imports": [
-        "ggplot2"
-      ],
-      "License": "Artistic-2.0",
-      "Encoding": "UTF-8",
-      "LazyData": "true",
-      "RoxygenNote": "7.3.3",
-      "NeedsCompilation": "no",
-      "Author": "Rafael A. Irizarry [aut, cre], Amy Gill [aut]",
-      "Maintainer": "Rafael A. Irizarry <rafael_irizarry@dfci.harvard.edu>",
       "Repository": "CRAN"
     },
     "dtplyr": {

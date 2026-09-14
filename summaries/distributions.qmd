@@ -7,16 +7,16 @@
 #| echo: false
 
 library(tidyverse)
-library(dslabs)
+library(behdslabs)
 library(scales)
 ```
 
 Before we begin, we clarify that this chapter will not cover distributions in the context of probability, which is the mathematical framework used to model uncertainty. We postpone that discussion until the next part of the book, where we will use it throughout. Here, we focus on _distributions_ as a way to describe and summarize data we've already collected. Our goal is to understand the variation and patterns present in a dataset, without yet making probabilistic claims or predictions. The concepts introduced in this chapter will later serve as the foundation for understanding probability distributions, where similar tools are used to describe the likely outcomes of random processes.
 
-To illustrate the concepts needed to understand distributions and how they relate to summary statistics, we will pretend that we have to describe the heights of our classmates to ET, an extraterrestrial that has never seen humans. As a first step, we need to collect data. To do this, we ask students to report their heights in inches. We ask them to provide sex information because we know that height has different distributions across sexes. We collect the data and save it in the `heights` data frame included in the **dslabs** package.
+To illustrate the concepts needed to understand distributions and how they relate to summary statistics, we will pretend that we have to describe the heights of our classmates to ET, an extraterrestrial that has never seen humans. As a first step, we need to collect data. To do this, we ask students to report their heights in inches. We ask them to provide sex information because we know that height has different distributions across sexes. We collect the data and save it in the `heights` data frame included in the **behdslabs** package.
 
 ```{r}
-library(dslabs)
+library(behdslabs)
 str(heights)
 ```
 
@@ -348,7 +348,7 @@ As we've seen, visual tools such as histograms and density plots help us underst
 1\. In the `murders` dataset, the region is a categorical variable and the following is its distribution:
 
 ```{r summaries-barplot-exercise, echo = FALSE}
-library(dslabs)
+library(behdslabs)
 ds_theme_set()
 murders |> group_by(region) |>
   summarize(n = n()) |>

@@ -7,7 +7,7 @@
 
 library(tidyverse)
 library(broom)
-library(dslabs)
+library(behdslabs)
 ```
 Up to now, we have worked with linear models to describe relationships between continuous variables. We motivated these models using the assumption of multivariate normality and showed how the conditional expectation takes a linear form. This covers many common applications of regression.
 
@@ -17,10 +17,10 @@ The key idea is that a treatment defines groups, and we use linear models to est
 
 ## Case study: high-fat diet and mouse weight
 
-In this chapter, we consider an experiment designed to test for the effects of a high-fat diet on mouse physiology. Mice were randomly selected and divided into two groups: one group receiving a high-fat diet, considered the _treatment_, while the other group served as the control and received the usual _chow_ diet. The data is included in the **dslabs** package:
+In this chapter, we consider an experiment designed to test for the effects of a high-fat diet on mouse physiology. Mice were randomly selected and divided into two groups: one group receiving a high-fat diet, considered the _treatment_, while the other group served as the control and received the usual _chow_ diet. The data is included in the **behdslabs** package:
 
 ```{r}
-library(dslabs)
+library(behdslabs)
 table(mice_weights$diet)
 ```
 
@@ -455,7 +455,7 @@ Compute the average and standard deviation of `body_weight` for groups with more
 7\. In @sec-models, we talked about pollster bias and used visualization to motivate the presence of such bias. Here we will give it a more rigorous treatment. We will consider two pollsters that conducted daily polls. We will look at national polls for the month before the election:
 
 ```{r, eval=FALSE}
-library(dslabs)
+library(behdslabs)
 polls <- polls_us_election_2016 |> 
   filter(pollster %in% c("Rasmussen Reports/Pulse Opinion Research",
                          "The Times-Picayune/Lucid") &

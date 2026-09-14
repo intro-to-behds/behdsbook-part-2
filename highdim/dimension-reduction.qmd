@@ -698,7 +698,7 @@ The written digits example has 784 features. Is there any room for data reductio
 If not already loaded, let's begin by loading the data:
 
 ```{r}
-library(dslabs)
+library(behdslabs)
 if (!exists("mnist")) mnist <- read_mnist()
 ```
 

@@ -28,7 +28,7 @@ We must also choose the number of neighbors $k$. The default is `k = 5`, which w
 
 ```{r}
 #| message: false
-library(dslabs)
+library(behdslabs)
 library(caret)
 knn_fit <- knn3(y ~ ., data = mnist_27$train, k = 5)
 ```

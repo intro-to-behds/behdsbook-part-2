@@ -3,7 +3,7 @@
 ```{r, message=FALSE, warning=FALSE, echo=FALSE, cache=FALSE}
 library(tidyverse)
 library(broom)
-library(dslabs)
+library(behdslabs)
 ```
 
 
@@ -31,7 +31,7 @@ The main evidence supporting this conclusion is based on a comparison of the per
 
 ```{r}
 library(tidyverse)
-library(dslabs)
+library(behdslabs)
 totals <- research_funding_rates |> select(-discipline) |> 
   summarize_all(sum) |>
   summarize(yes_men = awards_men, 
@@ -514,12 +514,12 @@ d.  Because the Chi-square test runs faster.
 
 7\. Divide the log odds ratio estimates by their respective standard errors and generate a qqplot comparing these to a standard normal. Do any of the disciplines clearly deviate from what is expected by chance? 
 
-8\. During the 2016 US presidential election, then-candidate Donald J. Trump used his Twitter account as a way to communicate with potential voters. Todd Vaziri hypothesized that "Every non-hyperbolic tweet is from iPhone (his staff). Every hyperbolic tweet is from Android (from him)." We will test this hypothesis using association tests. The **dslabs** object `sentiment_counts` provides a table with the counts for several sentiments from each source (Android or iPhone):
+8\. During the 2016 US presidential election, then-candidate Donald J. Trump used his Twitter account as a way to communicate with potential voters. Todd Vaziri hypothesized that "Every non-hyperbolic tweet is from iPhone (his staff). Every hyperbolic tweet is from Android (from him)." We will test this hypothesis using association tests. The **behdslabs** object `sentiment_counts` provides a table with the counts for several sentiments from each source (Android or iPhone):
 
 ```{r}
 #| eval: false
 library(tidyverse)
-library(dslabs)
+library(behdslabs)
 sentiment_counts
 ```
 

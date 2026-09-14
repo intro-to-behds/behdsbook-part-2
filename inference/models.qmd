@@ -21,7 +21,7 @@ We mimic sample sizes from actual polls, construct, and report 95% confidence in
 ```{r simulated-polls, message=FALSE, warning=FALSE, cache=FALSE, echo=FALSE}
 set.seed(2)
 library(tidyverse)
-library(dslabs)
+library(behdslabs)
 theta <- 0.039
 Ns <- c(1298, 533, 1342, 897, 774, 254, 812, 324, 1291, 1056, 2172, 516)
 p <- (theta + 1)/2
@@ -88,10 +88,10 @@ However, this example was just a simplified simulation to illustrate the basic i
 
 ### Real data from the 2016 presidential election
 
-The following subset of the `polls_us_election_2016` data in **dslabs** includes results for national polls as well as state polls taken during the year prior to the election and organized by FiveThirtyEight. In this first example, we will filter the data to include national polls conducted on likely voters (lv) within the last week leading up to the election and consider their estimate of the spread:
+The following subset of the `polls_us_election_2016` data in **behdslabs** includes results for national polls as well as state polls taken during the year prior to the election and organized by FiveThirtyEight. In this first example, we will filter the data to include national polls conducted on likely voters (lv) within the last week leading up to the election and consider their estimate of the spread:
 
 ```{r, cache=FALSE}
-library(dslabs)
+library(behdslabs)
 polls <- polls_us_election_2016 |> 
   filter(state == "U.S." & enddate >= "2016-11-02" & population == "lv") |>
   mutate(spread = rawpoll_clinton/100 - rawpoll_trump/100) 
@@ -324,7 +324,7 @@ We have been using urn models to motivate the use of probability models. Yet, mo
 To answer the following questions, define the males who replied to the height survey as the population:
 
 ```{r, eval=FALSE}
-library(dslabs)
+library(behdslabs)
 x <- heights |> filter(sex == "Male") |>
   pull(height)
 ```

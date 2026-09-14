@@ -6,7 +6,7 @@
 #| cache: false
 #| echo: false
 
-library(dslabs)
+library(behdslabs)
 ```
 
 So far, we have focused on summarizing the distribution of a single variable, describing its center, spread, and shape. In practice, however, one of the most common goals of data analysis is **comparison**: we want to know how one group differs from another, how a treatment compares to a control, or how outcomes vary across conditions. Comparing groups is often the first step toward uncovering relationships and understanding sources of variation.
@@ -57,7 +57,7 @@ A qqplot confirms this after shifting both distributions to have the same averag
 #| fig-asp: 1
 
 rafalib::mypar()
-library(dslabs)
+library(behdslabs)
 f <- with(heights, height[sex == "Female"])
 m <- with(heights, height[sex == "Male"])
 qqplot(f - mean(f), m - mean(m))
@@ -175,7 +175,7 @@ Boxplots are useful when we want to quickly compare two or more distributions. H
 #| warning: false
 
 library(tidyverse)
-library(dslabs)
+library(behdslabs)
 heights |> ggplot(aes(sex, height, fill = sex)) + geom_boxplot()
 ```
 
@@ -212,7 +212,7 @@ Because these are reported heights, a possibility is that the student meant to e
 
 ```{r summaries-boxplot-exercise, echo = FALSE, message = FALSE}
 library(tidyverse)
-library(dslabs)
+library(behdslabs)
 ds_theme_set()
 tab <- gapminder |> filter(year == 2010) |> group_by(continent) |> select(continent, population)  
 tab |> ggplot(aes(x = continent, y = population/10^6)) + 
@@ -238,7 +238,7 @@ d.  0.25
 6\. Define variables containing the heights of males and females as follows:
 
 ```{r, eval = FALSE}
-library(dslabs)
+library(behdslabs)
 male <- heights$height[heights$sex == "Male"]
 female <- heights$height[heights$sex == "Female"]
 ```

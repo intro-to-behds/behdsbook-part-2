@@ -24,7 +24,7 @@ Our first example is based on movie ratings. Here we quickly construct a matrix 
 
 
 ```{r, cache=FALSE, message=FALSE, warning=FALSE}
-library(dslabs)
+library(behdslabs)
 library(data.table)
 library(stringr)
 dt <- as.data.table(movielens)
@@ -47,7 +47,7 @@ As described in @sec-regularization, many of the entries are missing because not
 ### Gene expression measurements
 
 
-Our second example uses the `tissue_gene_expression` dataset from **dslabs**. This dataset contains gene-expression measurements for `r length(tissue_gene_expression$y)` tissue samples. The predictors, stored in the component `x`, form a matrix with 500 columns, one for each gene, so each row represents the expression profile of a single tissue sample. The outcome labels, saved in the component `y`, indicate which of seven tissue types each sample comes from.
+Our second example uses the `tissue_gene_expression` dataset from **behdslabs**. This dataset contains gene-expression measurements for `r length(tissue_gene_expression$y)` tissue samples. The predictors, stored in the component `x`, form a matrix with 500 columns, one for each gene, so each row represents the expression profile of a single tissue sample. The outcome labels, saved in the component `y`, indicate which of seven tissue types each sample comes from.
 
 Although clustering is typically applied when labels are *unknown*, this dataset is pedagogically useful because we *do* know the true tissue types. This lets us examine how well the clusters we find reflect the underlying biological structure: different tissues have distinct patterns of gene expression, even though all cells share the same genome. Different genes play different functional roles in different tissues, and these patterns should be detectable through clustering.
 
@@ -120,7 +120,7 @@ A powerful visual tool for revealing clusters or patterns in high-dimensional da
 
 The basic idea is straightforward: we create an image of the data matrix using color to represent each value, and we reorder both rows and columns according to the results of a clustering algorithm. This reordering places similar samples and similar genes next to each other, making the structure in the data much easier to see.
 
-We illustrate this approach below using the `tissue_gene_expression` dataset from **dslabs**.
+We illustrate this approach below using the `tissue_gene_expression` dataset from **behdslabs**.
 
 ```{r}
 h_1 <- hclust(dist(genex))

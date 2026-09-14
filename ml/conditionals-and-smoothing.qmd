@@ -113,7 +113,7 @@ To illustrate how to interpret $X_1$ and $X_2$, we include four example images. 
 
 
 ```{r two-or-seven-images-large-x1, echo=FALSE, fig.height=6, fig.width=11}
-library(dslabs)
+library(behdslabs)
 if (!exists("mnist")) mnist <- read_mnist()
 is <- mnist_27$index_train[c(which.min(mnist_27$train$x_1), which.max(mnist_27$train$x_1))]
 titles <- c("smallest","largest")
@@ -153,7 +153,7 @@ gridExtra::grid.arrange(p1, p2, ncol = 2)
 ```
 
 
-The **dslabs** package includes this example in the object `mnist_27`. In the training set, we have 800 observations, and in the test set, we have 200. Each observation has:
+The **behdslabs** package includes this example in the object `mnist_27`. In the training set, we have 800 observations, and in the test set, we have 200. Each observation has:
 
 * an outcome $y_i$, indicating whether the digit is a 2 or a 7, and
 * a feature vector $\mathbf{x}_i = (x_{i1}, x_{i2})^\top$, a point in two-dimensional space extracted from the image.
@@ -165,7 +165,7 @@ Here is a plot of the observed $X_2$ versus observed $X_1$ with color determinin
 
 ```{r two-or-seven-scatter, warning=FALSE, message=FALSE, cache=FALSE}
 library(caret)
-library(dslabs)
+library(behdslabs)
 mnist_27$train |> ggplot(aes(x_1, x_2, color = y)) + geom_point()
 ```
 
@@ -687,10 +687,10 @@ dat <- MASS::mvrnorm(n = 10000, c(69, 69), Sigma) |>
 You can make a quick plot of the data using `plot(dat)`. Use an approach similar to the previous exercise to estimate the conditional expectations and make a plot.
 
 
-4\. The **dslabs** package provides the following dataset with mortality counts for Puerto Rico for 2015-2018.
+4\. The **behdslabs** package provides the following dataset with mortality counts for Puerto Rico for 2015-2018.
 
 ```{r, eval=FALSE}
-library(dslabs)
+library(behdslabs)
 head(pr_death_counts)
 ```
 
@@ -701,7 +701,7 @@ Remove data from before May 2018, then use the `loess` function to obtain a smoo
 6\. Suppose we want to predict 2s and 7s in our `mnist_27` dataset with just the second covariate. Can we do this? On first inspection, it appears the data does not have much predictive power. In fact, if we fit a regular logistic regression, the coefficient for `x_2` is not significant!
 
 ```{r, eval = FALSE}
-library(dslabs)
+library(behdslabs)
 glm(y ~ x_2, family = "binomial", data = mnist_27) 
 ```
 
