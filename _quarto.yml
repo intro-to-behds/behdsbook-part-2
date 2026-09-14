@@ -14,10 +14,11 @@ book:
       Introduction to Behavioural Data Science, adapted from Rafael A. Irizarry's Introduction to Data Science
     right: |
       This book was built with <a href="https://quarto.org/">Quarto</a>.
-  site-url: http://rafalab.dfci.harvard.edu/dsbook-part-2
-  repo-url: https://github.com/rafalab/dsbook-part-2
+  site-url: https://intro-to-behds.github.io/behdsbook-part-2/
+  repo-url: https://github.com/intro-to-behds/behdsbook-part-2
   repo-branch: main
   repo-actions: [source, issue]
+  downloads: [pdf]
   sidebar:
     collapse-level: 1
   chapters:
