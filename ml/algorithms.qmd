@@ -105,7 +105,7 @@ The one-versus-rest approach is computationally simpler, especially when $K$ is 
 #| echo: false
 fit <- glm(y ~ x_1 + x_2, data = gesture_swipe_data$train, family = binomial)
 p_hat <- predict(fit, newdata = gesture_swipe_data$test, type = "response")
-y_hat <- factor(ifelse(p_hat > 0.5, 7, 2))
+y_hat <- factor(ifelse(p_hat > 0.5, "swipe_right", "swipe_left"))
 ```
 
 In @sec-ml-conditionals, we saw that logistic regression was not flexible enough to approximate $p(\mathbf{x})$ well for the two-gesture example: its accuracy was only `r confusionMatrix(y_hat, gesture_swipe_data$test$y)$overall[["Accuracy"]]`. In the next sections, we introduce algorithms that improve on this by providing the needed flexibility, each using a different approach to estimating the conditional class probabilities.

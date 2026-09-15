@@ -51,7 +51,7 @@ $$
 for the `x_1` and `x_2` in the test set `gesture_swipe_data$test`. With these estimates in place, we can make our predictions and compute our accuracy:
 
 ```{r}
-y_hat <- factor(ifelse(p_hat > 0.5, 7, 2))
+y_hat <- factor(ifelse(p_hat > 0.5, "swipe_right", "swipe_left"))
 ```
 
 However, note that `predict` does not always return objects of the same type; it depends on what type of object it is applied to. To learn about the specifics, you need to look at the help file specific to the type of fit object that is being used. 
