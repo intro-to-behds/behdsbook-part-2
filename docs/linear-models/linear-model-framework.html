@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.7.31">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="Rafael A. Irizarry">
-<title>16&nbsp; The Linear Model Framework – Introduction to Data Science</title>
+
+<meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
+
+<title>16&nbsp; The Linear Model Framework – Introduction to Behavioural Data Science</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -58,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -73,10 +74,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-416763588d27101c2483b91fe87266df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-8f18353b6674da201bf96e4b700cba6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -102,7 +104,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -113,7 +120,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -128,11 +135,15 @@ window.Quarto = {
   typesetMath
 };
 </script>
+
 </head>
+
 <body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -143,13 +154,18 @@ window.Quarto = {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Introduction to Data Science</a> 
-        <div class="sidebar-tools-main">
-    <a href="https://github.com/rafalab/dsbook-part-2" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+      <a href="../">Introduction to Behavioural Data Science</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/intro-to-behds/behdsbook-part-2" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../Introduction-to-Behavioural-Data-Science.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -165,7 +181,7 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -185,8 +201,8 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
@@ -211,7 +227,7 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
@@ -220,8 +236,8 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
@@ -258,7 +274,7 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
@@ -267,8 +283,8 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
@@ -311,7 +327,7 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
@@ -320,8 +336,8 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
@@ -364,7 +380,7 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../highdim/intro-highdim.html" class="sidebar-item-text sidebar-link">
@@ -373,8 +389,8 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/matrices-in-R.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
@@ -411,7 +427,7 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../ml/intro-ml.html" class="sidebar-item-text sidebar-link">
@@ -420,8 +436,8 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/notation-and-terminology.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
@@ -470,40 +486,40 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#the-linear-model-representation" id="toc-the-linear-model-representation" class="nav-link active" data-scroll-target="#the-linear-model-representation"><span class="header-section-number">16.1</span> The linear model representation</a></li>
+  <li><a href="#the-linear-model-representation" id="toc-the-linear-model-representation" class="nav-link active" data-scroll-target="#the-linear-model-representation"><span class="header-section-number">16.1</span> The linear model representation</a></li>
   <li><a href="#sec-lse" id="toc-sec-lse" class="nav-link" data-scroll-target="#sec-lse"><span class="header-section-number">16.2</span> Least Squares Estimates</a></li>
-  <li>
-<a href="#sec-lm-function" id="toc-sec-lm-function" class="nav-link" data-scroll-target="#sec-lm-function"><span class="header-section-number">16.3</span> The <code>lm</code> function</a>
+  <li><a href="#sec-lm-function" id="toc-sec-lm-function" class="nav-link" data-scroll-target="#sec-lm-function"><span class="header-section-number">16.3</span> The <code>lm</code> function</a>
   <ul class="collapse">
-<li><a href="#lse-are-random-variables" id="toc-lse-are-random-variables" class="nav-link" data-scroll-target="#lse-are-random-variables">LSE are random variables</a></li>
+  <li><a href="#lse-are-random-variables" id="toc-lse-are-random-variables" class="nav-link" data-scroll-target="#lse-are-random-variables">LSE are random variables</a></li>
   <li><a href="#predicted-values-are-random-variables" id="toc-predicted-values-are-random-variables" class="nav-link" data-scroll-target="#predicted-values-are-random-variables">Predicted values are random variables</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#sec-diagnostic-plots" id="toc-sec-diagnostic-plots" class="nav-link" data-scroll-target="#sec-diagnostic-plots"><span class="header-section-number">16.4</span> Model diagnostics</a></li>
-  <li>
-<a href="#measurement-error-models" id="toc-measurement-error-models" class="nav-link" data-scroll-target="#measurement-error-models"><span class="header-section-number">16.5</span> Measurement error models</a>
+  <li><a href="#measurement-error-models" id="toc-measurement-error-models" class="nav-link" data-scroll-target="#measurement-error-models"><span class="header-section-number">16.5</span> Measurement error models</a>
   <ul class="collapse">
-<li><a href="#example-modeling-a-falling-object" id="toc-example-modeling-a-falling-object" class="nav-link" data-scroll-target="#example-modeling-a-falling-object">Example: modeling a falling object</a></li>
+  <li><a href="#example-modeling-a-falling-object" id="toc-example-modeling-a-falling-object" class="nav-link" data-scroll-target="#example-modeling-a-falling-object">Example: modeling a falling object</a></li>
   <li><a href="#estimating-parameters-with-least-squares" id="toc-estimating-parameters-with-least-squares" class="nav-link" data-scroll-target="#estimating-parameters-with-least-squares">Estimating parameters with least squares</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">16.6</span> Exercises</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/rafalab/dsbook-part-2/blob/main/linear-models/linear-model-framework.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rafalab/dsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/linear-models/linear-model-framework.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../linear-models/intro-to-linear-models.html">Linear Models</a></li><li class="breadcrumb-item"><a href="../linear-models/linear-model-framework.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title">
-<span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span>
-</h1>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../linear-models/intro-to-linear-models.html">Linear Models</a></li><li class="breadcrumb-item"><a href="../linear-models/linear-model-framework.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></h1>
 </div>
 
 
@@ -517,11 +533,14 @@ window.Quarto = {
   
 
 
-</header><p>We are now ready to understand the title of this part of the book, and specifically the connection between regression and <em>linear models</em>. In the previous chapter, we showed that if two variables follow a bivariate normal distribution, then the conditional expectation of one given the other lies on a straight line, the <em>regression line</em>. In that setting, the linear relationship was not an assumption, but a mathematical consequence of the probability model.</p>
+</header>
+
+
+<p>We are now ready to understand the title of this part of the book, and specifically the connection between regression and <em>linear models</em>. In the previous chapter, we showed that if two variables follow a bivariate normal distribution, then the conditional expectation of one given the other lies on a straight line, the <em>regression line</em>. In that setting, the linear relationship was not an assumption, but a mathematical consequence of the probability model.</p>
 <p>In practice, however, we often adopt the linear relationship as a modeling strategy, even when the underlying distributions are not exactly bivariate normal. To work with such models, we need a general mathematical approach for estimating the unknown coefficients. In this chapter, we introduce the <em>least squares estimator</em> (LSE), the standard method used to estimate these parameters. The LSE provides a unified way to fit linear models across a wide range of applications.</p>
 <p>We end the chapter by presenting one example in which the linear model was historically motivated: <em>measurement error models</em>. This example is different from the height data we studied earlier, but the same linear model framework, the same least squares mathematics, and even the same R functions can be used to fit it. Later chapters will introduce additional examples in which linear models play a central role.</p>
-<section id="the-linear-model-representation" class="level2" data-number="16.1"><h2 data-number="16.1" class="anchored" data-anchor-id="the-linear-model-representation">
-<span class="header-section-number">16.1</span> The linear model representation</h2>
+<section id="the-linear-model-representation" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="the-linear-model-representation"><span class="header-section-number">16.1</span> The linear model representation</h2>
 <p>We note that <em>linear</em> here does not refer to lines exclusively, but rather to the fact that the conditional expectation is a linear combination of variables. In mathematics, when we multiply each variable by a constant and then add them together, we say we formed a <em>linear combination</em> of the variables. For example, <span class="math inline">\(3x - 4y + 5z\)</span> is a linear combination of <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, and <span class="math inline">\(z\)</span>. We can also add a constant so <span class="math inline">\(2 + 3x - 4y + 5z\)</span> is also a linear combination of <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, and <span class="math inline">\(z\)</span>.</p>
 <p>We previously described how if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are bivariate normal and we look at only the pairs with <span class="math inline">\(X=x\)</span>, then <span class="math inline">\(Y \mid X=x\)</span> follows a normal distribution with expected value <span class="math inline">\(\mu_Y +  \rho \frac{x-\mu_X}{\sigma_X}\sigma_Y\)</span>, which is a linear function of <span class="math inline">\(x\)</span>. Note also that the standard deviation <span class="math inline">\(\sigma_Y \sqrt{1-\rho^2}\)</span> does not depend on <span class="math inline">\(x\)</span>. This implies that we can write:</p>
 <p><span class="math display">\[
@@ -553,8 +572,9 @@ Y_i = \beta_0 + \beta_1 (x_i - \bar{x}) + \varepsilon_i, \, i=1,\dots,N
 \]</span></p>
 <p>with <span class="math inline">\(\bar{x} = \sum_{i=1}^N x_i / N\)</span> the average of <span class="math inline">\(x\)</span>. The slope <span class="math inline">\(\beta_1\)</span> is unchanged, but <span class="math inline">\(\beta_0\)</span> now represents the height when <span class="math inline">\(x_i = \bar{x}\)</span>, which is the height of the son of an average father.</p>
 <p>Later, specifically in Chapters <a href="treatment-effect-models.html" class="quarto-xref"><span>17</span></a> and <a href="multivariable-regression.html" class="quarto-xref"><span>20</span></a>, we will see how the linear model representation permits us to use the same mathematical frameworks in other contexts and to achieve more complicated goals than predicting one variable from another.</p>
-</section><section id="sec-lse" class="level2" data-number="16.2"><h2 data-number="16.2" class="anchored" data-anchor-id="sec-lse">
-<span class="header-section-number">16.2</span> Least Squares Estimates</h2>
+</section>
+<section id="sec-lse" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="sec-lse"><span class="header-section-number">16.2</span> Least Squares Estimates</h2>
 <p>For linear models to be useful, we have to estimate the unknown <span class="math inline">\(\beta\)</span>s. The standard approach is to find the values that minimize the distance of the fitted model to the data. Specifically, we find the <span class="math inline">\(\beta\)</span>s that minimize the least squares (LS) equation shown below. For Galton’s data, the LS equation looks like this:</p>
 <p><span class="math display">\[
 RSS = \sum_{i=1}^n \left\{  y_i - \left(\beta_0 + \beta_1 x_i \right)\right\}^2
@@ -563,85 +583,89 @@ RSS = \sum_{i=1}^n \left\{  y_i - \left(\beta_0 + \beta_1 x_i \right)\right\}^2
 <p>Once we find the values that minimize the RSS, we will call the values the least squares estimates (LSE) and denote them by placing a <em>hat</em> over the parameters. In our example we use <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span>.</p>
 <p>We will demonstrate how we find these values using the previously defined <code>galton</code> dataset:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://friendly.github.io/HistData/">HistData</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1983</span><span class="op">)</span></span>
-<span><span class="va">galton</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/as.data.table.html">as.data.table</a></span><span class="op">(</span><span class="va">GaltonFamilies</span><span class="op">)</span></span>
-<span><span class="va">galton</span> <span class="op">&lt;-</span> <span class="va">galton</span><span class="op">[</span><span class="va">gender</span> <span class="op">==</span> <span class="st">"male"</span>, <span class="va">.SD</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">.N</span>, <span class="fl">1</span><span class="op">)</span><span class="op">]</span>, by <span class="op">=</span> <span class="va">family</span><span class="op">]</span></span>
-<span><span class="va">galton</span> <span class="op">&lt;-</span> <span class="va">galton</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">father</span>, son <span class="op">=</span> <span class="va">childHeight</span><span class="op">)</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HistData)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1983</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>galton <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(GaltonFamilies)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>galton <span class="ot">&lt;-</span> galton[gender <span class="sc">==</span> <span class="st">"male"</span>, .SD[<span class="fu">sample</span>(.N, <span class="dv">1</span>)], by <span class="ot">=</span> family]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>galton <span class="ot">&lt;-</span> galton[, .(father, <span class="at">son =</span> childHeight)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s start by writing a function that computes the RSS for any pair of values <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rss</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">beta0</span>, <span class="va">beta1</span>, <span class="va">data</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">resid</span> <span class="op">&lt;-</span> <span class="va">galton</span><span class="op">$</span><span class="va">son</span> <span class="op">-</span> <span class="op">(</span><span class="va">beta0</span> <span class="op">+</span> <span class="va">beta1</span><span class="op">*</span><span class="va">galton</span><span class="op">$</span><span class="va">father</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">resid</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rss <span class="ot">&lt;-</span> <span class="cf">function</span>(beta0, beta1, data){</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  resid <span class="ot">&lt;-</span> galton<span class="sc">$</span>son <span class="sc">-</span> (beta0 <span class="sc">+</span> beta1<span class="sc">*</span>galton<span class="sc">$</span>father)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sum</span>(resid<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>So for any pair of values, we get an RSS. Here is a plot of the RSS as a function of <span class="math inline">\(\beta_1\)</span>, when we keep the <span class="math inline">\(\beta_0\)</span> fixed at 25.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">beta1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">galton</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>beta1 <span class="op">=</span> <span class="va">beta1</span>, rss <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">beta1</span>, <span class="va">rss</span>, beta0 <span class="op">=</span> <span class="fl">25</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">results</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">beta1</span>, <span class="va">rss</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">beta1</span>, <span class="va">rss</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>beta1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length =</span> <span class="fu">nrow</span>(galton))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">beta1 =</span> beta1, <span class="at">rss =</span> <span class="fu">sapply</span>(beta1, rss, <span class="at">beta0 =</span> <span class="dv">25</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>results <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(beta1, rss)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(beta1, rss))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="linear-model-framework_files/figure-html/rss-versus-estimate-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="linear-model-framework_files/figure-html/rss-versus-estimate-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>We can see a clear minimum for <span class="math inline">\(\beta_1\)</span> at around 0.65. However, this minimum for <span class="math inline">\(\beta_1\)</span> is for when <span class="math inline">\(\beta_0 = 25\)</span>, a value we arbitrarily picked. We don’t know if (25, 0.65) is the pair that minimizes the equation across all possible pairs.</p>
 <p>Trial and error is not going to work in this case. We could search for a minimum within a fine grid of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> values, but this is unnecessarily time-consuming since we can use calculus. Specifically, we take the partial derivatives of the LS equation, set them to 0, and solve for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>. Of course, if we have many parameters, these equations can get rather complex. But there are functions in R that do these calculations for us. We will study these next. To learn the mathematics behind this, you can consult one of the books on linear models in the Recommended Reading section.</p>
-</section><section id="sec-lm-function" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="sec-lm-function">
-<span class="header-section-number">16.3</span> The <code>lm</code> function</h2>
+</section>
+<section id="sec-lm-function" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="sec-lm-function"><span class="header-section-number">16.3</span> The <code>lm</code> function</h2>
 <p>In R, we can obtain the least squares estimates for a linear model using the <code>lm</code> function. To fit the model:</p>
 <p><span class="math display">\[
 Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i
 \]</span></p>
 <p>with <span class="math inline">\(Y_i\)</span> being the son’s height and <span class="math inline">\(x_i\)</span> being the father’s height, we can use this code:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">son</span> <span class="op">~</span> <span class="va">father</span>, data <span class="op">=</span> <span class="va">galton</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(son <span class="sc">~</span> father, <span class="at">data =</span> galton)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The most common way we use <code>lm</code> is by using the character <code>~</code> to let <code>lm</code> know which is the variable we are predicting (left of <code>~</code>) and which we are using to predict (right of <code>~</code>). The intercept is added automatically to the model that will be fit.</p>
 <p>The object <code>fit</code> includes information about the fit. We can use the function <code>summary</code> to extract a summary of this information:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Call:</span></span>
-<span><span class="co">#&gt; lm(formula = son ~ father, data = galton)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Residuals:</span></span>
-<span><span class="co">#&gt;    Min     1Q Median     3Q    Max </span></span>
-<span><span class="co">#&gt;  -9.38  -1.59   0.00   1.83   9.39 </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Coefficients:</span></span>
-<span><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">#&gt; (Intercept)  37.4658     5.0052    7.49  3.2e-12 ***</span></span>
-<span><span class="co">#&gt; father        0.4592     0.0724    6.34  1.8e-09 ***</span></span>
-<span><span class="co">#&gt; ---</span></span>
-<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Residual standard error: 2.46 on 177 degrees of freedom</span></span>
-<span><span class="co">#&gt; Multiple R-squared:  0.185,  Adjusted R-squared:  0.181 </span></span>
-<span><span class="co">#&gt; F-statistic: 40.2 on 1 and 177 DF,  p-value: 1.82e-09</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; lm(formula = son ~ father, data = galton)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals:</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min     1Q Median     3Q    Max </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -9.38  -1.59   0.00   1.83   9.39 </span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)  37.4658     5.0052    7.49  3.2e-12 ***</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; father        0.4592     0.0724    6.34  1.8e-09 ***</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 2.46 on 177 degrees of freedom</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.185,  Adjusted R-squared:  0.181 </span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; F-statistic: 40.2 on 1 and 177 DF,  p-value: 1.82e-09</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To understand some of the terms included in this summary, we need to remember that the LSEs are random variables. Mathematical statistics gives us some ideas of the distribution about these random variables.</p>
 <p>In <a href="multivariable-regression.html" class="quarto-xref"><span>Chapter 20</span></a>, after describing a more complex case study, we gain further insights into the application of regression in R.</p>
-<section id="lse-are-random-variables" class="level3"><h3 class="anchored" data-anchor-id="lse-are-random-variables">LSE are random variables</h3>
+<section id="lse-are-random-variables" class="level3">
+<h3 class="anchored" data-anchor-id="lse-are-random-variables">LSE are random variables</h3>
 <p>The LSE is derived from the data <span class="math inline">\(y_1,\dots,y_N\)</span>, which are a realization of random variables <span class="math inline">\(Y_1, \dots, Y_N\)</span>. This implies that our estimates are random variables. To see this, we can run a Monte Carlo simulation in which we assume the son and father height data define a population, take a random sample of size <span class="math inline">\(N=50\)</span>, and compute the regression slope coefficient for each one:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">25</span></span>
-<span><span class="va">lse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="op">{</span></span>
-<span>  <span class="va">smpl</span> <span class="op">&lt;-</span>  <span class="va">galton</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">.N</span>, <span class="va">N</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">]</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">son</span> <span class="op">~</span> <span class="va">father</span>, data <span class="op">=</span> <span class="va">smpl</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">}</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lse <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, {</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  smpl <span class="ot">&lt;-</span>  galton[<span class="fu">sample</span>(.N, N, <span class="at">replace =</span> <span class="cn">TRUE</span>)]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>(<span class="fu">lm</span>(son <span class="sc">~</span> father, <span class="at">data =</span> smpl))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can see the variability of the estimates by plotting their distributions:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="linear-model-framework_files/figure-html/lse-distributions-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure">
+<p><img src="linear-model-framework_files/figure-html/lse-distributions-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -649,51 +673,56 @@ Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i
 <p>These look normal because the central limit theorem applies here as well: for large enough <span class="math inline">\(N\)</span>, the least squares estimates will be approximately normal with expected value <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, respectively.</p>
 <p>The standard errors are a bit complicated to compute, but mathematical theory does allow us to compute them, and they are included in the summary provided by the <code>lm</code> function. The function <code>summary</code> shows us the standard error estimates:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">son</span> <span class="op">~</span> <span class="va">father</span>, data <span class="op">=</span> <span class="va">galton</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">.N</span>, <span class="va">N</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">$</span><span class="va">coef</span></span>
-<span><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span></span>
-<span><span class="co">#&gt; (Intercept)   26.574     17.383    1.53   0.1400</span></span>
-<span><span class="co">#&gt; father         0.627      0.249    2.52   0.0193</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(son <span class="sc">~</span> father, <span class="at">data =</span> galton[<span class="fu">sample</span>(.N, N, <span class="at">replace =</span> <span class="cn">TRUE</span>)])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)<span class="sc">$</span>coef</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)   26.574     17.383    1.53   0.1400</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; father         0.627      0.249    2.52   0.0193</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can see that the standard error estimates reported above are close to the standard errors from the simulation:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">lse</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>se_0 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">beta_0</span><span class="op">)</span>, se_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">beta_1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   se_0   se_1 </span></span>
-<span><span class="co">#&gt; 13.012  0.188</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(lse, <span class="fu">c</span>(<span class="at">se_0 =</span> <span class="fu">sd</span>(beta_0), <span class="at">se_1 =</span> <span class="fu">sd</span>(beta_1)))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   se_0   se_1 </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13.012  0.188</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>summary</code> function also reports t-statistics (<code>t value</code>) and p-values (<code>Pr(&gt;|t|)</code>). The t-statistic is not actually based on the central limit theorem, but rather on the assumption that the <span class="math inline">\(\varepsilon\)</span>s follow a normal distribution. Under this assumption, mathematical theory tells us that the LSE divided by their standard error, <span class="math inline">\(\hat{\beta}_0 / \widehat{\mathrm{SE}}[\hat{\beta}_0]\)</span> and <span class="math inline">\(\hat{\beta}_1 / \widehat{\mathrm{SE}}[\hat{\beta}_1]\)</span>, follow a t-distribution with <span class="math inline">\(N-p\)</span> degrees of freedom, with <span class="math inline">\(p\)</span> the number of parameters in our model. In our example <span class="math inline">\(p=2\)</span>, and the two p-values are obtained from testing the null hypothesis that <span class="math inline">\(\beta_0 = 0\)</span> and <span class="math inline">\(\beta_1=0\)</span>, respectively.</p>
 <p>Remember that, as we described in <a href="../inference/models.html#sec-t-dist" class="quarto-xref"><span>Section 10.2.3</span></a>, for large enough <span class="math inline">\(N\)</span>, the CLT works and the t-distribution becomes almost the same as the normal distribution. Also, notice that we can construct confidence intervals using the <code>confint</code> function:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">fit</span>, <span class="st">"father"</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
-<span><span class="co">#&gt;        2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; father 0.112   1.14</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fit, <span class="st">"father"</span>, <span class="at">level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        2.5 % 97.5 %</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; father 0.112   1.14</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Although we do not show examples in this book, hypothesis testing with regression models is commonly used in epidemiology and economics to make statements such as “the effect of A on B was statistically significant after adjusting for X, Y, and Z”. However, several assumptions have to hold for these statements to be useful.</p>
-</section><section id="predicted-values-are-random-variables" class="level3"><h3 class="anchored" data-anchor-id="predicted-values-are-random-variables">Predicted values are random variables</h3>
+</section>
+<section id="predicted-values-are-random-variables" class="level3">
+<h3 class="anchored" data-anchor-id="predicted-values-are-random-variables">Predicted values are random variables</h3>
 <p>Once we fit our model, we can obtain a prediction of <span class="math inline">\(Y\)</span> by plugging the estimates into the regression model. For example, if the father’s height is <span class="math inline">\(x\)</span>, then our prediction <span class="math inline">\(\hat{y}\)</span> for the son’s height will be:</p>
 <p><span class="math display">\[\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x\]</span></p>
 <p>When we plot <span class="math inline">\(\hat{y}\)</span> versus <span class="math inline">\(x\)</span>, we see the regression line.</p>
 <p>Keep in mind that the prediction <span class="math inline">\(\hat{y}\)</span> is also a random variable, and mathematical theory tells us what the standard errors are. If we assume the errors are normal or have a large enough sample size, we can use theory to construct confidence intervals as well.</p>
 <p>The R function <code>predict</code> takes an <code>lm</code> object as input and returns the prediction. If requested, the standard errors and other information from which we can construct confidence intervals are provided:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">son</span> <span class="op">~</span> <span class="va">father</span>, data <span class="op">=</span> <span class="va">galton</span><span class="op">)</span> </span>
-<span><span class="va">y_hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit</span>, se.fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">y_hat</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "fit"            "se.fit"         "df"             "residual.scale"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(son <span class="sc">~</span> father, <span class="at">data =</span> galton) </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(y_hat)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "fit"            "se.fit"         "df"             "residual.scale"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In fact, the <strong>ggplot2</strong> layer <code>geom_smooth(method = "lm")</code> surrounds the regression line using these confidence intervals:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">galton</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">son</span>, <span class="va">father</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>galton <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(son, father)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="linear-model-framework_files/figure-html/father-son-regression-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="linear-model-framework_files/figure-html/father-son-regression-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section></section><section id="sec-diagnostic-plots" class="level2" data-number="16.4"><h2 data-number="16.4" class="anchored" data-anchor-id="sec-diagnostic-plots">
-<span class="header-section-number">16.4</span> Model diagnostics</h2>
+</section>
+</section>
+<section id="sec-diagnostic-plots" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="sec-diagnostic-plots"><span class="header-section-number">16.4</span> Model diagnostics</h2>
 <p>When we assume a linear model, rather than derive it from theory, all interpretations depend on how well the model represents the data. The <code>lm</code> function will fit the model and produce coefficient estimates, standard errors, and p-values even if the model is misspecified. Interpreting such results without verifying assumptions can lead to misleading conclusions.</p>
 <p>For this reason, checking model assumptions is a <strong>critical requirement</strong> in statistical modeling. Diagnostic plots provide visual tools to assess whether the model captures the main structure in the data, whether residuals behave as expected, and whether potential outliers or influential points are distorting the fit. These checks are especially important when there is no strong theoretical justification for the assumed model, such as when the data-generating process is unknown or complex. In these cases, diagnostics are our main defense against drawing incorrect or overconfident conclusions.</p>
 <p>Visually inspecting residuals, defined as the difference between observed values and predicted values:</p>
@@ -710,32 +739,36 @@ r_i = y_i - \hat{y}_i = y_i - \left(\hat{\beta}_0 + \hat{\beta}_1 x_i\right), \m
 </ol>
 <p>We prefer plots rather than summaries based on, for example, correlation because, as noted in <a href="regression.html#sec-ascombe" class="quarto-xref"><span>Section 15.2.2</span></a>, correlation is not always the best summary of association. The function <code>plot</code> applied to an <code>lm</code> object automatically plots these.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">fit</span>, which <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit, <span class="at">which =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="linear-model-framework_files/figure-html/diagnostic-plots-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+<figure class="figure">
+<p><img src="linear-model-framework_files/figure-html/diagnostic-plots-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>This function can produce six different plots, and the argument <code>which</code> lets you specify which you want to see. You can learn more by reading the <code>plot.lm</code> help file. However, some of the plots are based on more advanced concepts beyond the scope of this book. To learn more, we recommend an advanced book on regression analysis included in the Recommended Reading section.</p>
 <p>In Chapters <a href="treatment-effect-models.html" class="quarto-xref"><span>17</span></a> and <a href="multivariable-regression.html" class="quarto-xref"><span>20</span></a>, we introduce data analysis challenges in which we may decide not to include certain variables in the model. In these cases, an important diagnostic test is to check if the residuals are related to variables not included in the model.</p>
-</section><section id="measurement-error-models" class="level2" data-number="16.5"><h2 data-number="16.5" class="anchored" data-anchor-id="measurement-error-models">
-<span class="header-section-number">16.5</span> Measurement error models</h2>
+</section>
+<section id="measurement-error-models" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="measurement-error-models"><span class="header-section-number">16.5</span> Measurement error models</h2>
 <p>Historically, writing linear models in the form <span class="math inline">\(Y = \beta_0 + \beta_1 x + \varepsilon\)</span> originated in contexts where the <span class="math inline">\(\varepsilon\)</span> term represented <em>measurement error</em>. Early scientists used least squares to estimate physical constants from repeated measurements affected by instrument noise. Later, Galton and Pearson extended this framework to study relationships between variables, such as the height example we examined earlier.</p>
 <p>In this section, we briefly present a setting where the measurement-error interpretation is appropriate and show that we can fit the corresponding model using the same mathematics and the same R function. This illustrates one of the key advantages of the linear model framework: a single set of tools applies across many seemingly different situations.</p>
-<section id="example-modeling-a-falling-object" class="level3"><h3 class="anchored" data-anchor-id="example-modeling-a-falling-object">Example: modeling a falling object</h3>
-<p>To understand these models, imagine you are Galileo in the 16th century, trying to describe the velocity of a falling object. An assistant climbs the Tower of Pisa and drops a ball, while several other assistants record the position at different times. Let’s simulate some data using the physics equations that are now known, and add some measurement error. The <strong>dslabs</strong> function <code>rfalling_object</code> generates these simulations:</p>
+<section id="example-modeling-a-falling-object" class="level3">
+<h3 class="anchored" data-anchor-id="example-modeling-a-falling-object">Example: modeling a falling object</h3>
+<p>To understand these models, imagine you are Galileo in the 16th century, trying to describe the velocity of a falling object. An assistant climbs the Tower of Pisa and drops a ball, while several other assistants record the position at different times. Let’s simulate some data using the physics equations that are now known, and add some measurement error. The <strong>behdslabs</strong> function <code>rfalling_object</code> generates these simulations:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
-<span><span class="va">falling_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dslabs/man/rfalling_object.html">rfalling_object</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(behdslabs)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>falling_object <span class="ot">&lt;-</span> <span class="fu">rfalling_object</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The assistants hand the data to Galileo, and this is what he sees:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="linear-model-framework_files/figure-html/gravity-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="linear-model-framework_files/figure-html/gravity-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -760,38 +793,42 @@ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \varepsilon_i,\,\, i=1,\dots,n
 </div>
 </div>
 </div>
-</section><section id="estimating-parameters-with-least-squares" class="level3"><h3 class="anchored" data-anchor-id="estimating-parameters-with-least-squares">Estimating parameters with least squares</h3>
+</section>
+<section id="estimating-parameters-with-least-squares" class="level3">
+<h3 class="anchored" data-anchor-id="estimating-parameters-with-least-squares">Estimating parameters with least squares</h3>
 <p>To pose a new physical theory and start making predictions about other falling objects, Galileo needs actual numbers, rather than unknown parameters. Using LSE seems like a reasonable approach. How do we find the LSE?</p>
 <p>LSE calculations do not require the errors to be approximately normal. The <code>lm</code> function will find the <span class="math inline">\(\beta\)</span>s that will minimize the residual sum of squares:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="va">falling_object</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>time_sq <span class="op">=</span> <span class="va">time</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">observed_distance</span><span class="op">~</span><span class="va">time</span><span class="op">+</span><span class="va">time_sq</span>, data <span class="op">=</span> <span class="va">_</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span></span>
-<span><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span></span>
-<span><span class="co">#&gt; (Intercept)   54.753      0.625  87.589 5.36e-17</span></span>
-<span><span class="co">#&gt; time           0.575      0.893   0.644 5.33e-01</span></span>
-<span><span class="co">#&gt; time_sq       -4.929      0.265 -18.603 1.16e-09</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> falling_object <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_sq =</span> time<span class="sc">^</span><span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(observed_distance<span class="sc">~</span>time<span class="sc">+</span>time_sq, <span class="at">data =</span> _)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)<span class="sc">$</span>coefficients</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)   54.753      0.625  87.589 5.36e-17</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; time           0.575      0.893   0.644 5.33e-01</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; time_sq       -4.929      0.265 -18.603 1.16e-09</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s check if the estimated parabola fits the data. The <strong>broom</strong> function <code>augment</code> allows us to do this easily:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">observed_distance</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">.fitted</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">augment</span>(fit) <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(time, observed_distance)) <span class="sc">+</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(time, .fitted), <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="linear-model-framework_files/figure-html/falling-object-fit-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="linear-model-framework_files/figure-html/falling-object-fit-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>The residuals confirm that the normal approximation for the errors is reasonable:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">fit</span>, which<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit, <span class="at">which=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="linear-model-framework_files/figure-html/falling-object-resids-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="linear-model-framework_files/figure-html/falling-object-resids-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -803,15 +840,17 @@ d(t) = h_0 + v_0 t -  0.5 \times 9.8 \, t^2
 <p>with <span class="math inline">\(t\)</span> as time in seconds and <span class="math inline">\(h_0\)</span> and <span class="math inline">\(v_0\)</span> the starting height and velocity, respectively. The data we simulated above followed this equation, adding measurement error to simulate <code>n</code> observations for dropping the ball <span class="math inline">\((v_0=0)\)</span> from the tower of Pisa <span class="math inline">\((h_0=55.86)\)</span>.</p>
 <p>These are consistent with the parameter estimates:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span>
-<span><span class="co">#&gt;             2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; (Intercept) 53.38  56.13</span></span>
-<span><span class="co">#&gt; time        -1.39   2.54</span></span>
-<span><span class="co">#&gt; time_sq     -5.51  -4.35</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fit)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             2.5 % 97.5 %</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) 53.38  56.13</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; time        -1.39   2.54</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; time_sq     -5.51  -4.35</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The Tower of Pisa height is within the confidence interval for <span class="math inline">\(\beta_0\)</span>, the initial velocity 0 is in the confidence interval for <span class="math inline">\(\beta_1\)</span> (note the p-value is larger than 0.05), and the acceleration constant is in a confidence interval for <span class="math inline">\(-2 \times \beta_2\)</span>.</p>
-</section></section><section id="exercises" class="level2" data-number="16.6"><h2 data-number="16.6" class="anchored" data-anchor-id="exercises">
-<span class="header-section-number">16.6</span> Exercises</h2>
+</section>
+</section>
+<section id="exercises" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">16.6</span> Exercises</h2>
 <p>1. The <code>co2</code> dataset is a time series object of 468 CO2 observations, monthly from 1959 to 1997. Plot CO2 levels for the first 12 months and notice it seems to follow a sine wave with a frequency of 1 cycle per year. This means that a measurement error model that might work is</p>
 <p><span class="math display">\[
 y_i = \mu + A \sin(2\pi \,t_i / 12 + \phi) + \varepsilon_i
@@ -827,19 +866,19 @@ y_i = \beta_0 + \beta_1 \sin(2\pi t_i/12) + \beta_2 \cos(2\pi t_i/12) + \varepsi
 <p>6. Fit a regression model to each of the datasets in the Anscombe quartet introduced in the previous chapter (<code>anscombe</code> dataset) and examine the diagnostic plots.</p>
 <p>10. In a previous chapter, we computed the correlation between heights of mothers and daughters, mothers and sons, fathers and daughters, and fathers and sons. We can compute these correlations using:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://friendly.github.io/HistData/">HistData</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
-<span><span class="va">galton</span> <span class="op">&lt;-</span> <span class="va">GaltonFamilies</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">family</span>, <span class="va">gender</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">cors</span> <span class="op">&lt;-</span> <span class="va">galton</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">father</span><span class="op">:</span><span class="va">mother</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>child <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">gender</span> <span class="op">==</span> <span class="st">"female"</span>, <span class="st">"daughter"</span>, <span class="st">"son"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span><span class="va">pair</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"name"</span>, <span class="st">"child"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">pair</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>cor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">value</span>, <span class="va">childHeight</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HistData)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>galton <span class="ot">&lt;-</span> GaltonFamilies <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(family, gender) <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>cors <span class="ot">&lt;-</span> galton <span class="sc">|&gt;</span> </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(father<span class="sc">:</span>mother) <span class="sc">|&gt;</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">child =</span> <span class="fu">ifelse</span>(gender <span class="sc">==</span> <span class="st">"female"</span>, <span class="st">"daughter"</span>, <span class="st">"son"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(pair, <span class="fu">c</span>(<span class="st">"name"</span>, <span class="st">"child"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pair) <span class="sc">|&gt;</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">cor =</span> <span class="fu">cor</span>(value, childHeight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We noticed differences. Are these differences statistically significant? To answer this, we will compute the slopes of the regression lines along with their standard errors. Start by using <code>lm</code> to compute the LSE of the slopes and the standard errors.</p>
 <p>11. Repeat exercise 10, but compute a confidence interval as well.</p>
@@ -847,7 +886,10 @@ y_i = \beta_0 + \beta_1 \sin(2\pi t_i/12) + \beta_2 \cos(2\pi t_i/12) + \varepsi
 <p>13. In the code above, we used <code>sample_n(1)</code> to randomly select a child of each sex from each family. Because this step introduces randomness, the correlations we compute will vary if we rerun this code chunk. Repeat the computation of correlations 100 times, taking a different sample each time. Examine how much the resulting correlations vary across these repetitions. Hint: Use an approach similar to what we have done for simulations.</p>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -898,14 +940,13 @@ y_i = \beta_0 + \beta_1 \sin(2\pi t_i/12) + \beta_2 \cos(2\pi t_i/12) + \varepsi
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -920,7 +961,7 @@ y_i = \beta_0 + \beta_1 \sin(2\pi t_i/12) + \beta_2 \cos(2\pi t_i/12) + \varepsi
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("http:\/\/rafalab\.dfci\.harvard\.edu\/dsbook-part-2");
+        var filterRegex = new RegExp("https:\/\/intro-to-behds\.github\.io\/behdsbook-part-2\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1246,7 +1287,9 @@ y_i = \beta_0 + \beta_1 \sin(2\pi t_i/12) + \beta_2 \cos(2\pi t_i/12) + \varepsi
       }
     }
   });
-  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
       <a href="../linear-models/regression.html" class="pagination-link" aria-label="Introduction to Regression">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span>
       </a>          
@@ -1258,18 +1301,21 @@ y_i = \beta_0 + \beta_1 \sin(2\pi t_i/12) + \beta_2 \cos(2\pi t_i/12) + \varepsi
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introduction to Data Science was written by Rafael A. Irizarry</p>
+<p>Introduction to Behavioural Data Science, adapted from Rafael A. Irizarry’s Introduction to Data Science</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/rafalab/dsbook-part-2/blob/main/linear-models/linear-model-framework.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rafalab/dsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/linear-models/linear-model-framework.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
   </div>
 </footer>
+
+
 
 
 </body></html>

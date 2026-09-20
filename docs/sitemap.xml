@@ -1,191 +1,191 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/index.html</loc>
-    <lastmod>2026-07-02T10:49:08.558Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/index.html</loc>
+    <lastmod>2026-09-14T10:05:58.282Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/intro.html</loc>
-    <lastmod>2026-05-05T21:08:31.347Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/intro.html</loc>
+    <lastmod>2026-09-14T10:06:02.372Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/summaries/intro-summaries.html</loc>
-    <lastmod>2026-03-18T19:16:02.047Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/intro-summaries.html</loc>
+    <lastmod>2026-07-11T14:58:04.101Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/summaries/distributions.html</loc>
-    <lastmod>2026-05-05T21:09:09.067Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/distributions.html</loc>
+    <lastmod>2026-09-14T13:46:06.795Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/summaries/numerical-summaries.html</loc>
-    <lastmod>2026-05-05T21:08:53.700Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/numerical-summaries.html</loc>
+    <lastmod>2026-09-14T13:46:06.792Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/summaries/comparing-groups.html</loc>
-    <lastmod>2026-05-18T14:05:14.291Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/comparing-groups.html</loc>
+    <lastmod>2026-09-14T13:46:06.797Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/summaries/reading-summaries.html</loc>
-    <lastmod>2026-03-25T18:13:52.002Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/reading-summaries.html</loc>
+    <lastmod>2026-07-11T14:58:04.101Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/prob/intro-to-prob.html</loc>
-    <lastmod>2026-05-18T13:11:06.845Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/intro-to-prob.html</loc>
+    <lastmod>2026-07-11T14:58:04.089Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/prob/connecting-data-and-probability.html</loc>
-    <lastmod>2026-05-06T00:29:09.817Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/connecting-data-and-probability.html</loc>
+    <lastmod>2026-07-11T14:58:04.089Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/prob/discrete-probability.html</loc>
-    <lastmod>2026-05-05T21:09:10.655Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/discrete-probability.html</loc>
+    <lastmod>2026-07-11T14:58:04.089Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/prob/continuous-probability.html</loc>
-    <lastmod>2026-05-05T21:08:56.934Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/continuous-probability.html</loc>
+    <lastmod>2026-09-14T13:46:06.746Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/prob/random-variables.html</loc>
-    <lastmod>2026-05-05T21:09:01.181Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/random-variables.html</loc>
+    <lastmod>2026-07-11T14:58:04.090Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/prob/sampling-models-and-clt.html</loc>
-    <lastmod>2026-05-04T13:01:40.046Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/sampling-models-and-clt.html</loc>
+    <lastmod>2026-07-11T14:58:04.090Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/prob/reading-prob.html</loc>
-    <lastmod>2026-05-03T18:46:47.701Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/reading-prob.html</loc>
+    <lastmod>2026-07-11T14:58:04.090Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/inference/intro-inference.html</loc>
-    <lastmod>2026-04-12T12:43:51.424Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/intro-inference.html</loc>
+    <lastmod>2026-07-11T14:58:03.903Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/inference/estimates-confidence-intervals.html</loc>
-    <lastmod>2026-05-06T00:30:13.223Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/estimates-confidence-intervals.html</loc>
+    <lastmod>2026-09-14T13:46:06.806Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/inference/models.html</loc>
-    <lastmod>2026-05-05T21:27:37.923Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/models.html</loc>
+    <lastmod>2026-09-14T13:46:06.799Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/inference/bayes.html</loc>
-    <lastmod>2026-05-05T23:10:17.536Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/bayes.html</loc>
+    <lastmod>2026-09-14T13:46:06.803Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/inference/hierarchical-models.html</loc>
-    <lastmod>2026-05-06T00:31:40.423Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/hierarchical-models.html</loc>
+    <lastmod>2026-09-14T13:46:06.802Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/inference/hypothesis-testing.html</loc>
-    <lastmod>2026-05-05T21:19:42.226Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/hypothesis-testing.html</loc>
+    <lastmod>2026-07-11T14:58:03.896Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/inference/bootstrap.html</loc>
-    <lastmod>2026-04-26T17:01:51.775Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/bootstrap.html</loc>
+    <lastmod>2026-07-11T14:58:03.894Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/inference/reading-inference.html</loc>
-    <lastmod>2026-04-26T17:04:13.210Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/reading-inference.html</loc>
+    <lastmod>2026-07-11T14:58:03.904Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/intro-to-linear-models.html</loc>
-    <lastmod>2026-04-12T12:43:51.425Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/intro-to-linear-models.html</loc>
+    <lastmod>2026-07-11T14:58:03.908Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/regression.html</loc>
-    <lastmod>2026-05-05T22:04:59.399Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/regression.html</loc>
+    <lastmod>2026-07-11T14:58:03.909Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/linear-model-framework.html</loc>
-    <lastmod>2026-05-05T21:28:38.581Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/linear-model-framework.html</loc>
+    <lastmod>2026-09-14T13:46:06.759Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/treatment-effect-models.html</loc>
-    <lastmod>2026-07-02T10:46:09.820Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/treatment-effect-models.html</loc>
+    <lastmod>2026-09-14T13:46:06.751Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/glm.html</loc>
-    <lastmod>2026-05-05T21:08:47.114Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/glm.html</loc>
+    <lastmod>2026-09-14T13:46:06.754Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/association-not-causation.html</loc>
-    <lastmod>2026-05-05T21:30:21.250Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/association-not-causation.html</loc>
+    <lastmod>2026-09-14T13:46:06.757Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/multivariable-regression.html</loc>
-    <lastmod>2026-05-05T21:31:49.635Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/multivariable-regression.html</loc>
+    <lastmod>2026-09-15T05:14:03.147Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/reading-lm.html</loc>
-    <lastmod>2026-04-12T12:43:51.426Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/reading-lm.html</loc>
+    <lastmod>2026-07-11T14:58:03.909Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/highdim/intro-highdim.html</loc>
-    <lastmod>2025-11-23T17:57:45.537Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/highdim/intro-highdim.html</loc>
+    <lastmod>2026-07-11T14:58:03.892Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/highdim/matrices-in-R.html</loc>
-    <lastmod>2026-04-29T13:19:13.410Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/highdim/matrices-in-R.html</loc>
+    <lastmod>2026-09-14T13:46:06.767Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/highdim/linear-algebra.html</loc>
-    <lastmod>2026-05-05T21:08:35.759Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/highdim/linear-algebra.html</loc>
+    <lastmod>2026-09-14T13:46:06.762Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/highdim/dimension-reduction.html</loc>
-    <lastmod>2026-05-03T21:20:31.595Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/highdim/dimension-reduction.html</loc>
+    <lastmod>2026-09-14T17:39:05.318Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/highdim/regularization.html</loc>
-    <lastmod>2026-05-06T00:38:12.249Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/highdim/regularization.html</loc>
+    <lastmod>2026-09-14T13:46:06.764Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/highdim/latent-factor-models.html</loc>
-    <lastmod>2026-07-02T10:46:09.819Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/highdim/latent-factor-models.html</loc>
+    <lastmod>2026-09-14T13:46:06.770Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/highdim/reading-highdim.html</loc>
-    <lastmod>2026-04-20T09:34:34.872Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/highdim/reading-highdim.html</loc>
+    <lastmod>2026-07-11T14:58:03.893Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/ml/intro-ml.html</loc>
-    <lastmod>2026-05-05T21:09:07.225Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/intro-ml.html</loc>
+    <lastmod>2026-07-11T14:58:04.088Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/ml/notation-and-terminology.html</loc>
-    <lastmod>2026-05-05T21:09:12.317Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/notation-and-terminology.html</loc>
+    <lastmod>2026-09-14T13:46:06.775Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/ml/evaluation-metrics.html</loc>
-    <lastmod>2026-07-02T10:46:09.821Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/evaluation-metrics.html</loc>
+    <lastmod>2026-09-14T13:46:06.780Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/ml/conditionals-and-smoothing.html</loc>
-    <lastmod>2026-05-05T22:04:55.822Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/conditionals-and-smoothing.html</loc>
+    <lastmod>2026-09-14T21:13:00.847Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/ml/resampling-methods.html</loc>
-    <lastmod>2026-05-05T21:08:59.964Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/resampling-methods.html</loc>
+    <lastmod>2026-09-14T17:38:48.925Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/ml/algorithms.html</loc>
-    <lastmod>2026-05-05T21:08:33.667Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/algorithms.html</loc>
+    <lastmod>2026-09-15T05:48:22.681Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/ml/ml-in-practice.html</loc>
-    <lastmod>2026-05-06T00:37:46.682Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/ml-in-practice.html</loc>
+    <lastmod>2026-09-15T05:48:27.507Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/ml/clustering.html</loc>
-    <lastmod>2026-05-05T21:26:23.401Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/clustering.html</loc>
+    <lastmod>2026-09-14T17:50:15.392Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/ml/reading-ml.html</loc>
-    <lastmod>2026-05-06T01:46:34.477Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/reading-ml.html</loc>
+    <lastmod>2026-07-11T14:58:04.089Z</lastmod>
   </url>
   <url>
-    <loc>http://rafalab.dfci.harvard.edu/dsbook-part-2/Introduction-to-Data-Science.pdf</loc>
-    <lastmod>2026-07-02T17:52:15.176Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/Introduction-to-Behavioural-Data-Science.pdf</loc>
+    <lastmod>2026-09-15T06:58:48.291Z</lastmod>
   </url>
 </urlset>
