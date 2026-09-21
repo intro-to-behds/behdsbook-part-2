@@ -25,6 +25,11 @@ book:
     - index.qmd
     - intro.qmd
 
+    - part: behav/intro-behav.qmd
+      chapters:
+        - behav/measurement.qmd
+        - behav/simulating-measurement.qmd
+
     - part: summaries/intro-summaries.qmd
       chapters:
         - summaries/distributions.qmd

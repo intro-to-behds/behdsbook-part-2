@@ -15,7 +15,11 @@ under which this adaptation is distributed.
 - Enabled a PDF download button in the book navbar (`book: downloads: [pdf]`).
 
 ### Added
-- (new chapters land here as they're written)
+- **New part, `behav/` — "Behavioural Measurement"** — original material with no equivalent in the upstream book, placed first in the chapter list (immediately after `intro.qmd`) because it is course Week 4 and precedes every other Part 2 topic. Three new files:
+  - `behav/intro-behav.qmd` — part introduction.
+  - `behav/measurement.qmd` — **"Measurement in Psychology"**, an original chapter by Giorgio Arcara covering constructs vs. proxies, Stevens' (1946) scales of measurement, Suppes & Zinnes' (1963) homomorphism definition, Classical Test Theory, the interval-scale assumption in Likert data, reaction time and signal detection theory as measurement problems, the five sources of validity evidence (AERA/APA/NCME, 2014), the four kinds of reliability, and attenuation/disattenuation. Adapted and translated from the author's Italian psychometrics book *Oltre i punteggi*, with all examples re-anchored from clinical neuropsychology to human–technology research. This file previously contained an unregistered verbatim copy of `inference/bootstrap.qmd`, now replaced.
+  - `behav/simulating-measurement.qmd` — **"Behind the Simulations"**, a companion chapter documenting the generative models behind the simulated data used in the measurement chapter.
+- The two chapters above depend on `behdslabs` ≥ 0.10.0, which adds the `simulate_likert()` and `simulate_sdt()` functions written for them.
 
 ### Replaced
 - (dataset/case-study swaps land here as they're made, chapter by chapter — see `PART2_PLAN_DIARY.md` for the concrete, file-scoped migration plan: package-source switch to `behdslabs`, then `mnist_27`/`mnist_127`, `tissue_gene_expression`, `movielens`, `pr_death_counts`, `olive`, `stars`, and the 2012/2016 election datasets, each mapped to their `behdslabs` behavioural equivalents)

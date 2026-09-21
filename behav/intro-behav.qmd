@@ -1,0 +1,7 @@
+# Behavioural Measurement {.unnumbered}
+
+Everything else in this book assumes the numbers you are working with mean something. We import them, reshape them, plot them, summarise them, and fit models to them, and at no point does the code ask where they came from or whether they deserve the interpretation we are about to put on them. For a great deal of data science that assumption is harmless: a timestamp is a timestamp, a count of clicks is a count of clicks.
+
+Behavioural data is different, and the difference is not a technicality. When we record how satisfied a user is with an interface, how much attention a task demanded, or how stressed somebody felt during a session, we are not recording the thing itself. We are recording something we can observe — an answer on a five-point scale, a response time, a button press — and treating it as a stand-in for something we cannot. The gap between the two is where most of the interesting mistakes in behavioural research live, and no amount of statistical sophistication further down the pipeline will close it.
+
+This part of the book is about that gap. It is deliberately placed before the statistics: the questions it raises — what is this number a number *of*, how precisely was it measured, what else could explain it — are ones you should be able to ask of any dataset before you start analysing it, and they do not require anything from the chapters that follow. The tools involved are mostly arithmetic. The hard part is knowing which question to ask.
