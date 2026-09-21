@@ -8,7 +8,7 @@
 
 <meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
 
-<title>30&nbsp; Supervised Learning Methods – Introduction to Behavioural Data Science</title>
+<title>32&nbsp; Supervised Learning Methods – Introduction to Behavioural Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ml/intro-ml.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../ml/algorithms.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ml/intro-ml.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../ml/algorithms.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -195,8 +195,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summary Statistics</span></a>
+            <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioural Measurement</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -204,20 +204,43 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../behav/measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/simulating-measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,39 +255,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -279,45 +302,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hierarchical-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -332,45 +355,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linear Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/linear-model-framework.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/treatment-effect-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/association-not-causation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/multivariable-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -385,39 +408,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../highdim/intro-highdim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">High Dimensional Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/matrices-in-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/linear-algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/dimension-reduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/regularization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/latent-factor-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -432,51 +455,51 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../ml/intro-ml.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/notation-and-terminology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/evaluation-metrics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/conditionals-and-smoothing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/resampling-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/algorithms.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/ml-in-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -497,13 +520,13 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#linear-and-logistic-regression" id="toc-linear-and-logistic-regression" class="nav-link active" data-scroll-target="#linear-and-logistic-regression"><span class="header-section-number">30.1</span> Linear and logistic regression</a>
+  <li><a href="#linear-and-logistic-regression" id="toc-linear-and-logistic-regression" class="nav-link active" data-scroll-target="#linear-and-logistic-regression"><span class="header-section-number">32.1</span> Linear and logistic regression</a>
   <ul class="collapse">
   <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression">Linear regression</a></li>
   <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression">Logistic regression</a></li>
   </ul></li>
-  <li><a href="#k-nearest-neighbors" id="toc-k-nearest-neighbors" class="nav-link" data-scroll-target="#k-nearest-neighbors"><span class="header-section-number">30.2</span> k-nearest neighbors</a></li>
-  <li><a href="#probabilistic-classification-models" id="toc-probabilistic-classification-models" class="nav-link" data-scroll-target="#probabilistic-classification-models"><span class="header-section-number">30.3</span> Probabilistic classification models</a>
+  <li><a href="#k-nearest-neighbors" id="toc-k-nearest-neighbors" class="nav-link" data-scroll-target="#k-nearest-neighbors"><span class="header-section-number">32.2</span> k-nearest neighbors</a></li>
+  <li><a href="#probabilistic-classification-models" id="toc-probabilistic-classification-models" class="nav-link" data-scroll-target="#probabilistic-classification-models"><span class="header-section-number">32.3</span> Probabilistic classification models</a>
   <ul class="collapse">
   <li><a href="#naive-bayes" id="toc-naive-bayes" class="nav-link" data-scroll-target="#naive-bayes">Naive Bayes</a></li>
   <li><a href="#controlling-prevalence" id="toc-controlling-prevalence" class="nav-link" data-scroll-target="#controlling-prevalence">Controlling prevalence</a></li>
@@ -512,27 +535,27 @@ window.Quarto = {
   <li><a href="#extension-to-multiple-classes" id="toc-extension-to-multiple-classes" class="nav-link" data-scroll-target="#extension-to-multiple-classes">Extension to multiple classes</a></li>
   <li><a href="#connection-to-distance" id="toc-connection-to-distance" class="nav-link" data-scroll-target="#connection-to-distance">Connection to distance</a></li>
   </ul></li>
-  <li><a href="#sec-trees" id="toc-sec-trees" class="nav-link" data-scroll-target="#sec-trees"><span class="header-section-number">30.4</span> Classification and regression trees (CART)</a>
+  <li><a href="#sec-trees" id="toc-sec-trees" class="nav-link" data-scroll-target="#sec-trees"><span class="header-section-number">32.4</span> Classification and regression trees (CART)</a>
   <ul class="collapse">
   <li><a href="#the-curse-of-dimensionality" id="toc-the-curse-of-dimensionality" class="nav-link" data-scroll-target="#the-curse-of-dimensionality">The curse of dimensionality</a></li>
   <li><a href="#cart-motivation" id="toc-cart-motivation" class="nav-link" data-scroll-target="#cart-motivation">CART motivation</a></li>
   <li><a href="#regression-trees" id="toc-regression-trees" class="nav-link" data-scroll-target="#regression-trees">Regression trees</a></li>
   <li><a href="#classification-decision-trees" id="toc-classification-decision-trees" class="nav-link" data-scroll-target="#classification-decision-trees">Classification (decision) trees</a></li>
   </ul></li>
-  <li><a href="#sec-random-forests" id="toc-sec-random-forests" class="nav-link" data-scroll-target="#sec-random-forests"><span class="header-section-number">30.5</span> Random forests</a>
+  <li><a href="#sec-random-forests" id="toc-sec-random-forests" class="nav-link" data-scroll-target="#sec-random-forests"><span class="header-section-number">32.5</span> Random forests</a>
   <ul class="collapse">
   <li><a href="#sec-variable-importance" id="toc-sec-variable-importance" class="nav-link" data-scroll-target="#sec-variable-importance">Variable importance</a></li>
   </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">30.6</span> Exercises</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">32.6</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/ml/algorithms.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ml/intro-ml.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../ml/algorithms.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ml/intro-ml.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../ml/algorithms.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-example-algorithms" class="quarto-section-identifier"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></h1>
+<h1 class="title"><span id="sec-example-algorithms" class="quarto-section-identifier"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></h1>
 </div>
 
 
@@ -550,13 +573,13 @@ window.Quarto = {
 
 
 <p>Machine learning includes a vast collection of algorithms, well over a hundred commonly used methods, each with its own strengths, assumptions, and tuning parameters. In this chapter, we introduce a small but representative set of algorithms that illustrate the major ideas behind supervised learning. Rather than aiming for exhaustive coverage, our goal is to build intuition for <em>how</em> different approaches learn from data and <em>why</em> they make different kinds of predictions.</p>
-<p>To keep the examples concrete and accessible, we use the two-predictor gesture dataset introduced in <a href="conditionals-and-smoothing.html#sec-two-or-seven" class="quarto-xref"><span>Section 28.3.1</span></a> as our running example. This dataset is small enough to visualize, yet rich enough to reveal the behavior of real algorithms. We use functions from the <strong>caret</strong> package for these examples; later, in <a href="ml-in-practice.html" class="quarto-xref"><span>Chapter 31</span></a>, we show how to implement these ideas more efficiently using the same package, which provides a unified interface for fitting and tuning many different machine learning methods.</p>
+<p>To keep the examples concrete and accessible, we use the two-predictor gesture dataset introduced in <a href="conditionals-and-smoothing.html#sec-two-or-seven" class="quarto-xref"><span>Section 30.3.1</span></a> as our running example. This dataset is small enough to visualize, yet rich enough to reveal the behavior of real algorithms. We use functions from the <strong>caret</strong> package for these examples; later, in <a href="ml-in-practice.html" class="quarto-xref"><span>Chapter 33</span></a>, we show how to implement these ideas more efficiently using the same package, which provides a unified interface for fitting and tuning many different machine learning methods.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(behdslabs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="linear-and-logistic-regression" class="level2" data-number="30.1">
-<h2 data-number="30.1" class="anchored" data-anchor-id="linear-and-logistic-regression"><span class="header-section-number">30.1</span> Linear and logistic regression</h2>
+<section id="linear-and-logistic-regression" class="level2" data-number="32.1">
+<h2 data-number="32.1" class="anchored" data-anchor-id="linear-and-logistic-regression"><span class="header-section-number">32.1</span> Linear and logistic regression</h2>
 <p>We introduced linear regression and logistic regression in the Linear Models part of the book as tools for quantifying associations between variables. However, these models can also be viewed as <em>prediction algorithms</em>. Once we estimate their parameters from training data, we can make predictions for any new predictor value <span class="math inline">\(\mathbf{x}\)</span> simply by evaluating the fitted model at that point. This predictive perspective places linear and logistic regression squarely within the family of supervised learning methods.</p>
 <section id="linear-regression" class="level3">
 <h3 class="anchored" data-anchor-id="linear-regression">Linear regression</h3>
@@ -564,11 +587,11 @@ window.Quarto = {
 <p><span class="math display">\[
 \mathrm{E}[Y \mid \mathbf{X} = \mathbf{x}] = \beta_0 + \sum_{j=1}^p \beta_j x_j,
 \]</span> a linear function of the predictors. Linear regression provides a simple, interpretable baseline, and many supervised learning algorithms can be viewed as extensions or modifications of this idea.</p>
-<p>However, linear regression is not appropriate when the outcome is categorical. In <a href="conditionals-and-smoothing.html#sec-two-or-seven" class="quarto-xref"><span>Section 28.3.1</span></a>, we introduced <em>logistic regression</em> as a method designed specifically for modeling class probabilities in binary classification problems.</p>
+<p>However, linear regression is not appropriate when the outcome is categorical. In <a href="conditionals-and-smoothing.html#sec-two-or-seven" class="quarto-xref"><span>Section 30.3.1</span></a>, we introduced <em>logistic regression</em> as a method designed specifically for modeling class probabilities in binary classification problems.</p>
 </section>
 <section id="logistic-regression" class="level3">
 <h3 class="anchored" data-anchor-id="logistic-regression">Logistic regression</h3>
-<p>For the two classes presented in <a href="conditionals-and-smoothing.html#sec-two-or-seven" class="quarto-xref"><span>Section 28.3.1</span></a>, we can model the probability of class 1 using the logistic function:</p>
+<p>For the two classes presented in <a href="conditionals-and-smoothing.html#sec-two-or-seven" class="quarto-xref"><span>Section 30.3.1</span></a>, we can model the probability of class 1 using the logistic function:</p>
 <p><span class="math display">\[
 \log\frac{p(\mathbf{x})}{1 - p(\mathbf{x})} = \beta_0 + \beta_1 x_1 + \beta_2 x_2, \,\, p(\mathbf{x}) = \Pr(Y = 1 \mid X_1 = x_1, X_2 = x_2),
 \]</span></p>
@@ -614,12 +637,12 @@ p_k(\mathbf{x}) =
 \hat{y}(\mathbf{x}) = \arg\max_k p_k(\mathbf{x}).
 \]</span></p>
 <p>Multinomial logistic regression is generally preferred because it produces coherent probabilities that sum to 1 and jointly models the relationships among classes. The one-versus-rest approach is computationally simpler, especially when <span class="math inline">\(K\)</span> is large, and often yields similar <em>class predictions</em>, even if the corresponding probability estimates differ.</p>
-<p>In <a href="conditionals-and-smoothing.html" class="quarto-xref"><span>Chapter 28</span></a>, we saw that logistic regression was not flexible enough to approximate <span class="math inline">\(p(\mathbf{x})\)</span> well for the two-gesture example: its accuracy was only 0.775. In the next sections, we introduce algorithms that improve on this by providing the needed flexibility, each using a different approach to estimating the conditional class probabilities.</p>
+<p>In <a href="conditionals-and-smoothing.html" class="quarto-xref"><span>Chapter 30</span></a>, we saw that logistic regression was not flexible enough to approximate <span class="math inline">\(p(\mathbf{x})\)</span> well for the two-gesture example: its accuracy was only 0.775. In the next sections, we introduce algorithms that improve on this by providing the needed flexibility, each using a different approach to estimating the conditional class probabilities.</p>
 </section>
 </section>
-<section id="k-nearest-neighbors" class="level2" data-number="30.2">
-<h2 data-number="30.2" class="anchored" data-anchor-id="k-nearest-neighbors"><span class="header-section-number">30.2</span> k-nearest neighbors</h2>
-<p>We introduced the kNN algorithm in <a href="resampling-methods.html#sec-knn-cv-intro" class="quarto-xref"><span>Section 29.1</span></a>. In <a href="resampling-methods.html#sec-mse-estimates" class="quarto-xref"><span>Section 29.8</span></a>, we noted that <span class="math inline">\(k=65\)</span> provided the highest estimated accuracy. Using <span class="math inline">\(k=65\)</span>, we obtain an accuracy 0.825, an improvement over regression. A plot of the estimated conditional probability shows that the kNN estimate is flexible enough and does indeed capture the shape of the true conditional probability.</p>
+<section id="k-nearest-neighbors" class="level2" data-number="32.2">
+<h2 data-number="32.2" class="anchored" data-anchor-id="k-nearest-neighbors"><span class="header-section-number">32.2</span> k-nearest neighbors</h2>
+<p>We introduced the kNN algorithm in <a href="resampling-methods.html#sec-knn-cv-intro" class="quarto-xref"><span>Section 31.1</span></a>. In <a href="resampling-methods.html#sec-mse-estimates" class="quarto-xref"><span>Section 31.8</span></a>, we noted that <span class="math inline">\(k=65\)</span> provided the highest estimated accuracy. Using <span class="math inline">\(k=65\)</span>, we obtain an accuracy 0.825, an improvement over regression. A plot of the estimated conditional probability shows that the kNN estimate is flexible enough and does indeed capture the shape of the true conditional probability.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -640,8 +663,8 @@ p_k(\mathbf{x}) =
 </div>
 </div>
 </section>
-<section id="probabilistic-classification-models" class="level2" data-number="30.3">
-<h2 data-number="30.3" class="anchored" data-anchor-id="probabilistic-classification-models"><span class="header-section-number">30.3</span> Probabilistic classification models</h2>
+<section id="probabilistic-classification-models" class="level2" data-number="32.3">
+<h2 data-number="32.3" class="anchored" data-anchor-id="probabilistic-classification-models"><span class="header-section-number">32.3</span> Probabilistic classification models</h2>
 <p>We have described how, when using squared loss, the conditional expectation provides the best approach to developing a decision rule. In a binary case, the smallest true error we can achieve is determined by Bayes’ rule, which is a decision rule based on the true conditional probability:</p>
 <p><span class="math display">\[
 p(\mathbf{x}) = \mathrm{Pr}(Y = 1 \mid \mathbf{X}=\mathbf{x})
@@ -886,8 +909,8 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left\{-\frac{1}{2}\left(\frac{x-\mu}{\si
 </div>
 </section>
 </section>
-<section id="sec-trees" class="level2" data-number="30.4">
-<h2 data-number="30.4" class="anchored" data-anchor-id="sec-trees"><span class="header-section-number">30.4</span> Classification and regression trees (CART)</h2>
+<section id="sec-trees" class="level2" data-number="32.4">
+<h2 data-number="32.4" class="anchored" data-anchor-id="sec-trees"><span class="header-section-number">32.4</span> Classification and regression trees (CART)</h2>
 <p>Classification and regression trees (CART) provide a flexible, intuitive approach to prediction by repeatedly splitting the predictor space into smaller and more homogeneous regions. Instead of fitting a single global model, CART builds a tree-shaped set of decision rules that adapt to complex patterns in the data. In this section, we motivate the idea and provide some details on how it is implemented.</p>
 <section id="the-curse-of-dimensionality" class="level3">
 <h3 class="anchored" data-anchor-id="the-curse-of-dimensionality">The curse of dimensionality</h3>
@@ -967,7 +990,7 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left\{-\frac{1}{2}\left(\frac{x-\mu}{\si
 </div>
 </div>
 </div>
-<p>In <a href="../highdim/linear-algebra.html#sec-predictor-space" class="quarto-xref"><span>Section 22.4</span></a>, we defined <em>predictor spaces</em>, which in this case consist of eight-dimensional points with values between 0 and 100. In the plot above, we show the space defined by the two predictors <code>pct_other</code> and <code>pct_poor_contact</code>, and, by eye, we can construct a prediction rule that partitions the predictor space so that each partition contains only outcomes of a single category.</p>
+<p>In <a href="../highdim/linear-algebra.html#sec-predictor-space" class="quarto-xref"><span>Section 24.4</span></a>, we defined <em>predictor spaces</em>, which in this case consist of eight-dimensional points with values between 0 and 100. In the plot above, we show the space defined by the two predictors <code>pct_other</code> and <code>pct_poor_contact</code>, and, by eye, we can construct a prediction rule that partitions the predictor space so that each partition contains only outcomes of a single category.</p>
 <p>This, in turn, can be used to define an algorithm with perfect accuracy. Specifically, we define the following decision rule: if <code>pct_other</code> is larger than 0.065, predict <code>smart_ring</code>. If not, then if <code>pct_poor_contact</code> is larger than <span class="math inline">\(10.535\)</span>, predict <code>chest_strap</code>, and if lower, predict <code>smartwatch</code>. We can draw this decision tree as follows:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -990,7 +1013,7 @@ f(x) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left\{-\frac{1}{2}\left(\frac{x-\mu}{\si
 </section>
 <section id="regression-trees" class="level3">
 <h3 class="anchored" data-anchor-id="regression-trees">Regression trees</h3>
-<p>When using trees, and the outcome is continuous, we call the approach a <em>regression</em> tree. To introduce regression trees, we will use the 2008 poll data used in <a href="conditionals-and-smoothing.html#sec-smoothing" class="quarto-xref"><span>Section 28.3</span></a> to describe the basic idea of how we build these algorithms. As with other machine learning algorithms, we will try to estimate the conditional expectation <span class="math inline">\(f(x) = \mathrm{E}(Y | X = x)\)</span> with <span class="math inline">\(Y\)</span> the poll margin and <span class="math inline">\(x\)</span> the day.</p>
+<p>When using trees, and the outcome is continuous, we call the approach a <em>regression</em> tree. To introduce regression trees, we will use the 2008 poll data used in <a href="conditionals-and-smoothing.html#sec-smoothing" class="quarto-xref"><span>Section 30.3</span></a> to describe the basic idea of how we build these algorithms. As with other machine learning algorithms, we will try to estimate the conditional expectation <span class="math inline">\(f(x) = \mathrm{E}(Y | X = x)\)</span> with <span class="math inline">\(Y\)</span> the poll margin and <span class="math inline">\(x\)</span> the day.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1108,8 +1131,8 @@ R_1(j,s) = \{\mathbf{x} \mid x_j &lt; s\} \mbox{  and  } R_2(j,s) = \{\mathbf{x}
 <p>Classification trees have certain advantages that make them very useful. They are highly interpretable, even more so than linear models. They are also easy to visualize (if small enough). Finally, they can model human decision processes and don’t require the use of dummy predictors for categorical variables. On the other hand, the approach via recursive partitioning can easily over-fit and is therefore a bit harder to train than, for example, linear regression or kNN. Furthermore, in terms of accuracy, it is rarely the best performing method since it is not very flexible and is highly unstable to changes in training data. Random forests, explained next, improve on several of these shortcomings.</p>
 </section>
 </section>
-<section id="sec-random-forests" class="level2" data-number="30.5">
-<h2 data-number="30.5" class="anchored" data-anchor-id="sec-random-forests"><span class="header-section-number">30.5</span> Random forests</h2>
+<section id="sec-random-forests" class="level2" data-number="32.5">
+<h2 data-number="32.5" class="anchored" data-anchor-id="sec-random-forests"><span class="header-section-number">32.5</span> Random forests</h2>
 <p>Random forests are a <strong>very popular</strong> machine learning approach that addresses the shortcomings of decision trees using a clever idea. The goal is to improve prediction performance and reduce instability by <em>averaging</em> multiple decision trees: a <em>forest</em> of trees constructed with <em>randomness</em>. It has two features that help accomplish this.</p>
 <p>The first step is <em>bootstrap aggregation</em> or <em>bagging</em>. The general idea is to generate many predictors, each using regression or classification trees, and then form a final prediction based on the average prediction of all these trees. To ensure that the individual trees are not the same, we use the bootstrap to induce randomness. These two features combined explain the name: the bootstrap makes the individual trees <strong>randomly</strong> different, and the combination of trees is the <strong>forest</strong>. The specific steps are as follows.</p>
 <p>1. Build <span class="math inline">\(B\)</span> decision trees using the training set. We refer to the fitted models as <span class="math inline">\(T_1, T_2, \dots, T_B\)</span>.</p>
@@ -1197,8 +1220,8 @@ R_1(j,s) = \{\mathbf{x} \mid x_j &lt; s\} \mbox{  and  } R_2(j,s) = \{\mathbf{x}
 </div>
 </section>
 </section>
-<section id="exercises" class="level2" data-number="30.6">
-<h2 data-number="30.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">30.6</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="32.6">
+<h2 data-number="32.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">32.6</span> Exercises</h2>
 <p>1. Create a dataset using the following code:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
@@ -1771,12 +1794,12 @@ R_1(j,s) = \{\mathbf{x} \mid x_j &lt; s\} \mbox{  and  } R_2(j,s) = \{\mathbf{x}
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../ml/resampling-methods.html" class="pagination-link" aria-label="Resampling and Model Assessment">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../ml/ml-in-practice.html" class="pagination-link" aria-label="Building Machine Learning Models">
-        <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
 
-<title>6&nbsp; Continuous Probability – Introduction to Behavioural Data Science</title>
+<title>8&nbsp; Continuous Probability – Introduction to Behavioural Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/continuous-probability.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/continuous-probability.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -195,8 +195,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summary Statistics</span></a>
+            <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioural Measurement</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -204,20 +204,43 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../behav/measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/simulating-measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,39 +255,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -279,45 +302,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hierarchical-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -332,45 +355,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linear Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/linear-model-framework.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/treatment-effect-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/association-not-causation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/multivariable-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -385,39 +408,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../highdim/intro-highdim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">High Dimensional Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/matrices-in-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/linear-algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/dimension-reduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/regularization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/latent-factor-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -432,51 +455,51 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../ml/intro-ml.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/notation-and-terminology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/evaluation-metrics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/conditionals-and-smoothing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/resampling-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/ml-in-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -497,26 +520,26 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-cdf-intro" id="toc-sec-cdf-intro" class="nav-link active" data-scroll-target="#sec-cdf-intro"><span class="header-section-number">6.1</span> Cumulative distribution functions</a></li>
-  <li><a href="#probability-density-function" id="toc-probability-density-function" class="nav-link" data-scroll-target="#probability-density-function"><span class="header-section-number">6.2</span> Probability density function</a></li>
-  <li><a href="#theoretical-distributions-as-practical-models" id="toc-theoretical-distributions-as-practical-models" class="nav-link" data-scroll-target="#theoretical-distributions-as-practical-models"><span class="header-section-number">6.3</span> Theoretical distributions as practical models</a></li>
-  <li><a href="#monte-carlo-simulations" id="toc-monte-carlo-simulations" class="nav-link" data-scroll-target="#monte-carlo-simulations"><span class="header-section-number">6.4</span> Monte Carlo simulations</a>
+  <li><a href="#sec-cdf-intro" id="toc-sec-cdf-intro" class="nav-link active" data-scroll-target="#sec-cdf-intro"><span class="header-section-number">8.1</span> Cumulative distribution functions</a></li>
+  <li><a href="#probability-density-function" id="toc-probability-density-function" class="nav-link" data-scroll-target="#probability-density-function"><span class="header-section-number">8.2</span> Probability density function</a></li>
+  <li><a href="#theoretical-distributions-as-practical-models" id="toc-theoretical-distributions-as-practical-models" class="nav-link" data-scroll-target="#theoretical-distributions-as-practical-models"><span class="header-section-number">8.3</span> Theoretical distributions as practical models</a></li>
+  <li><a href="#monte-carlo-simulations" id="toc-monte-carlo-simulations" class="nav-link" data-scroll-target="#monte-carlo-simulations"><span class="header-section-number">8.4</span> Monte Carlo simulations</a>
   <ul class="collapse">
   <li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link" data-scroll-target="#normal-distribution">Normal distribution</a></li>
   <li><a href="#example-extreme-values" id="toc-example-extreme-values" class="nav-link" data-scroll-target="#example-extreme-values">Example: extreme values</a></li>
   </ul></li>
-  <li><a href="#calculating-densities-probabilities-quantiles-and-other-continuous-distributions" id="toc-calculating-densities-probabilities-quantiles-and-other-continuous-distributions" class="nav-link" data-scroll-target="#calculating-densities-probabilities-quantiles-and-other-continuous-distributions"><span class="header-section-number">6.5</span> Calculating densities, probabilities, quantiles, and other continuous distributions</a></li>
-  <li><a href="#beyond-one-variable" id="toc-beyond-one-variable" class="nav-link" data-scroll-target="#beyond-one-variable"><span class="header-section-number">6.6</span> Beyond one variable</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">6.7</span> Exercises</a></li>
+  <li><a href="#calculating-densities-probabilities-quantiles-and-other-continuous-distributions" id="toc-calculating-densities-probabilities-quantiles-and-other-continuous-distributions" class="nav-link" data-scroll-target="#calculating-densities-probabilities-quantiles-and-other-continuous-distributions"><span class="header-section-number">8.5</span> Calculating densities, probabilities, quantiles, and other continuous distributions</a></li>
+  <li><a href="#beyond-one-variable" id="toc-beyond-one-variable" class="nav-link" data-scroll-target="#beyond-one-variable"><span class="header-section-number">8.6</span> Beyond one variable</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">8.7</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/prob/continuous-probability.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/continuous-probability.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/continuous-probability.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-continuous-probability" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></h1>
+<h1 class="title"><span id="sec-continuous-probability" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></h1>
 </div>
 
 
@@ -533,38 +556,38 @@ window.Quarto = {
 </header>
 
 
-<p>In <a href="../summaries/distributions.html#sec-ecdf-intro" class="quarto-xref"><span>Section 1.3</span></a>, we discussed why it is not practical to assign a frequency to every possible continuous outcome, such as an exact height, since there are infinitely many possible values. The same idea extends to random outcomes that take values on a continuous scale: each individual value has probability zero. Instead, we describe their behavior through probability density functions, which let us compute probabilities for intervals of values rather than single points.</p>
+<p>In <a href="../summaries/distributions.html#sec-ecdf-intro" class="quarto-xref"><span>Section 3.3</span></a>, we discussed why it is not practical to assign a frequency to every possible continuous outcome, such as an exact reaction time, since there are infinitely many possible values. The same idea extends to random outcomes that take values on a continuous scale: each individual value has probability zero. Instead, we describe their behavior through probability density functions, which let us compute probabilities for intervals of values rather than single points.</p>
 <p>In this chapter, we introduce the mathematical framework for continuous probability distributions and present several useful approximations that frequently appear in data analysis.</p>
-<section id="sec-cdf-intro" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="sec-cdf-intro"><span class="header-section-number">6.1</span> Cumulative distribution functions</h2>
-<p>We return to our example using the heights of adult male students:</p>
+<section id="sec-cdf-intro" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="sec-cdf-intro"><span class="header-section-number">8.1</span> Cumulative distribution functions</h2>
+<p>We return to our example using the reaction times of male participants:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(behdslabs)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> heights <span class="sc">|&gt;</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Male"</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(height)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> reaction_times <span class="sc">|&gt;</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Male"</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(rt_ms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We previously defined the empirical cumulative distribution function (eCDF) as</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>F <span class="ot">&lt;-</span> <span class="cf">function</span>(a) <span class="fu">mean</span>(x <span class="sc">&lt;=</span> a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>which, for any value <code>a</code>, gives the proportion of values in the list <code>x</code> that are less than or equal to <code>a</code>.</p>
-<p>To connect the eCDF to probability, imagine randomly selecting one of the male students. What is the chance that he is taller than 70.5 inches? Because each student is equally likely to be chosen, this probability is simply the proportion of students taller than 70.5 inches. Using the eCDF, we can compute it as:</p>
+<p>To connect the eCDF to probability, imagine randomly selecting one of the male participants. What is the chance that their reaction time is slower than 390 milliseconds? Because each participant is equally likely to be chosen, this probability is simply the proportion of participants slower than 390 milliseconds. Using the eCDF, we can compute it as:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">F</span>(<span class="fl">70.5</span>)</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">F</span>(<span class="dv">390</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.363</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The cumulative distribution function (CDF) is the theoretical counterpart of the eCDF. Rather than relying on observed data to compute proportions, it directly assigns probabilities to ranges of values for a random outcome <span class="math inline">\(X\)</span>. Specifically, the CDF gives, for any number <span class="math inline">\(a\)</span>, the probability that <span class="math inline">\(X\)</span> is less than or equal to <span class="math inline">\(a\)</span>:</p>
 <p><span class="math display">\[
 F(a) = \Pr(X \leq a)
 \]</span></p>
-<p>Once the CDF is defined, we can compute the probability that <span class="math inline">\(X\)</span> falls within any interval. For example, the probability that a student’s height is between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> is:</p>
+<p>Once the CDF is defined, we can compute the probability that <span class="math inline">\(X\)</span> falls within any interval. For example, the probability that a participant’s reaction time is between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> is:</p>
 <p><span class="math display">\[
 \Pr(a &lt; X \leq b) = F(b) - F(a)
 \]</span></p>
 <p>Because we can determine the probability of any event from the CDF, it fully defines the probability distribution of a continuous outcome.</p>
 </section>
-<section id="probability-density-function" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="probability-density-function"><span class="header-section-number">6.2</span> Probability density function</h2>
+<section id="probability-density-function" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="probability-density-function"><span class="header-section-number">8.2</span> Probability density function</h2>
 <p>For most continuous distributions, we can describe the cumulative distribution function (CDF) in terms of another function, <span class="math inline">\(f(x)\)</span>, such that</p>
 <p><span class="math display">\[
 F(b) - F(a) = \int_a^b f(x)\,dx.
@@ -587,7 +610,7 @@ F(b) - F(a) = \int_a^b f(x)\,dx.
 \int_{-\infty}^{\infty} f(x) \, dx = 1
 \]</span></p>
 <p>This ensures that <span class="math inline">\(f(x)\)</span> represents a valid PDF.</p>
-<p>An important example of a PDF is the normal distribution, introduced in <a href="../summaries/numerical-summaries.html#sec-normal-distribution" class="quarto-xref"><span>Section 2.1</span></a>. Its probability density function is</p>
+<p>An important example of a PDF is the normal distribution, introduced in <a href="../summaries/numerical-summaries.html#sec-normal-distribution" class="quarto-xref"><span>Section 4.1</span></a>. Its probability density function is</p>
 <p><span class="math display">\[
 f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2\right)
 \]</span></p>
@@ -606,40 +629,40 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">F</span>(a) <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(a, <span class="at">mean =</span> m, <span class="at">sd =</span> s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This is useful in many data applications. If we are willing to assume that a variable, such as height, follows a normal distribution, we can answer probability questions without needing the full dataset. For example, to find the probability that a randomly selected student is taller than 70.5 inches, we only need the sample mean and standard deviation:</p>
+<p>This is useful in many data applications. If we are willing to assume that a variable, such as reaction time, follows a normal distribution, we can answer probability questions without needing the full dataset. For example, to find the probability that a randomly selected participant is slower than 390 milliseconds, we only need the sample mean and standard deviation:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">70.5</span>, m, s)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.371</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">390</span>, m, s)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.351</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="theoretical-distributions-as-practical-models" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="theoretical-distributions-as-practical-models"><span class="header-section-number">6.3</span> Theoretical distributions as practical models</h2>
-<p>Theoretical distributions, such as the normal distribution, are defined mathematically rather than derived directly from data. In practice, we use them to <em>approximate</em> the behavior of real data that arise from complex or unknown processes. Almost all datasets we analyze consist of discrete observations, yet many of these quantities, such as height, weight, or blood pressure, are better understood as measurements of underlying continuous variables.</p>
-<p>For example, our height data appear discrete because values are typically rounded to the nearest inch. A few individuals report more precise metric measurements, while most round to whole inches. Therefore, it is more realistic to think of height as a continuous variable whose apparent discreteness comes from rounding.</p>
-<p>When using a continuous distribution such as the normal, we no longer assign probabilities to individual points—each exact value has probability zero—but rather to <em>intervals</em>. In <a href="../summaries/numerical-summaries.html" class="quarto-xref"><span>Chapter 2</span></a>, we showed how theoretical normal distributions can approximate the distribution of height data.</p>
+<section id="theoretical-distributions-as-practical-models" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="theoretical-distributions-as-practical-models"><span class="header-section-number">8.3</span> Theoretical distributions as practical models</h2>
+<p>Theoretical distributions, such as the normal distribution, are defined mathematically rather than derived directly from data. In practice, we use them to <em>approximate</em> the behavior of real data that arise from complex or unknown processes. Almost all datasets we analyze consist of discrete observations, yet many of these quantities, such as reaction time, weight, or blood pressure, are better understood as measurements of underlying continuous variables.</p>
+<p>For example, reaction times are recorded by a computer clock with finite resolution, so they always appear discrete: a timer that records to the nearest millisecond can only return whole numbers. Therefore, it is more realistic to think of reaction time as a continuous variable whose apparent discreteness comes from the recording resolution.</p>
+<p>When using a continuous distribution such as the normal, we no longer assign probabilities to individual points—each exact value has probability zero—but rather to <em>intervals</em>. In <a href="../summaries/numerical-summaries.html" class="quarto-xref"><span>Chapter 4</span></a>, we showed how theoretical normal distributions can approximate the distribution of our reaction-time data. (This works well here because our data are simulated to be close to normal; real reaction times are usually right-skewed and cannot fall below a physiological minimum, so the normal is only a rough approximation for them.)</p>
 <p>The key idea is that theoretical distributions serve as <em>useful approximations</em>. They provide smooth mathematical descriptions that let us compute probabilities and reason about uncertainty. Even though real measurements are discrete, the continuous approximations that apply, such as the normal distribution, allow us to work with data analytically and build models that generalize well beyond a specific dataset.</p>
 </section>
-<section id="monte-carlo-simulations" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="monte-carlo-simulations"><span class="header-section-number">6.4</span> Monte Carlo simulations</h2>
+<section id="monte-carlo-simulations" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="monte-carlo-simulations"><span class="header-section-number">8.4</span> Monte Carlo simulations</h2>
 <p>Simulation is a powerful way to understand randomness, approximate probabilities, and explore how theoretical models behave in practice. Many of the probability models used in data analysis are continuous distributions, which describe outcomes that can take any value within a range. In R, all random-number–generating functions that produce simulated data from a distribution begin with the letter <code>r</code>. These functions form part of a consistent family that allows us to simulate from nearly any probability distribution. In this section, we illustrate Monte Carlo techniques using continuous distributions, starting with the normal distribution and extending to other commonly used models.</p>
 <section id="normal-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="normal-distribution">Normal distribution</h3>
 <p>R provides the <code>rnorm</code> function to generate normally distributed outcomes. It takes three arguments—sample size, mean (default 0), and standard deviation (default 1)—and produces random numbers that follow a normal distribution.</p>
-<p>Here is an example of how we could generate data that resemble our reported heights:</p>
+<p>Here is an example of how we could generate data that resemble our reaction times:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>simulated_heights <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, m, s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>simulated_rt <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, m, s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Not surprisingly, the distribution of the simulated heights looks normal:</p>
+<p>Not surprisingly, the distribution of the simulated reaction times looks normal:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="continuous-probability_files/figure-html/simulated-heights-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="continuous-probability_files/figure-html/simulated-rt-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -648,21 +671,21 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
 </section>
 <section id="example-extreme-values" class="level3">
 <h3 class="anchored" data-anchor-id="example-extreme-values">Example: extreme values</h3>
-<p>How rare is it to find a seven-footer among 800 men? Suppose we repeatedly sample 800 male students at random and record the tallest in each group. What does the distribution of these tallest heights look like? The following Monte Carlo simulation helps us find out:</p>
+<p>How rare is it to find a lapse of 510 milliseconds or more among 800 male participants? Suppose we repeatedly sample 800 male participants at random and record the slowest reaction time in each group. What does the distribution of these slowest reaction times look like? The following Monte Carlo simulation helps us find out:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tallest <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, <span class="fu">max</span>(<span class="fu">rnorm</span>(<span class="dv">800</span>, m, s)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>slowest <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, <span class="fu">max</span>(<span class="fu">rnorm</span>(<span class="dv">800</span>, m, s)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Having a seven-footer is quite rare:</p>
+<p>Having a lapse that long is quite rare:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(tallest <span class="sc">&gt;=</span> <span class="dv">7</span><span class="sc">*</span><span class="dv">12</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.0176</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(slowest <span class="sc">&gt;=</span> <span class="dv">510</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.0242</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here is the resulting distribution of the tallest person’s height:</p>
+<p>Here is the resulting distribution of the slowest reaction time:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="continuous-probability_files/figure-html/simulated-tallest-height-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="continuous-probability_files/figure-html/simulated-slowest-rt-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -670,8 +693,8 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
 <p>Although deriving this distribution analytically is possible, it is not straightforward. Once derived, it provides a faster way to evaluate probabilities than simulation. However, when analytic derivations are too complex or infeasible, Monte Carlo simulation offers a practical alternative. By repeatedly generating random samples, we can approximate the distribution of almost any statistic and obtain reliable estimates even when theoretical results are unavailable.</p>
 </section>
 </section>
-<section id="calculating-densities-probabilities-quantiles-and-other-continuous-distributions" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="calculating-densities-probabilities-quantiles-and-other-continuous-distributions"><span class="header-section-number">6.5</span> Calculating densities, probabilities, quantiles, and other continuous distributions</h2>
+<section id="calculating-densities-probabilities-quantiles-and-other-continuous-distributions" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="calculating-densities-probabilities-quantiles-and-other-continuous-distributions"><span class="header-section-number">8.5</span> Calculating densities, probabilities, quantiles, and other continuous distributions</h2>
 <p>Beyond simulation, R provides companion functions to evaluate and summarize continuous distributions. Each distribution in base R follows a simple naming convention:</p>
 <ul>
 <li><code>d</code> - density function</li>
@@ -681,25 +704,25 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
 </ul>
 <p>For example, the Student’s <em>t</em> distribution uses <code>dt</code>, <code>pt</code>, <code>qt</code>, and <code>rt</code>. Base R includes the most common continuous distributions, normal, <em>t</em>, chi-square, exponential, gamma, and beta (corresponding shorthand names in R are <code>t</code>, <code>chisq</code>, <code>exp</code>, <code>gamma</code>, and <code>beta</code>), but many additional distributions are available in specialized packages such as <strong>extraDistr</strong> and <strong>actuar</strong>. While there are dozens of continuous distributions in use, the ones provided by base R cover the majority of applications encountered in practice.</p>
 </section>
-<section id="beyond-one-variable" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="beyond-one-variable"><span class="header-section-number">6.6</span> Beyond one variable</h2>
+<section id="beyond-one-variable" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="beyond-one-variable"><span class="header-section-number">8.6</span> Beyond one variable</h2>
 <p>So far, we have focused on random variables representing just one outcome. In many applications, however, we are interested in several quantities at once. In these cases, we work with <em>multivariate</em> random variables, written as <span class="math inline">\((X_1, X_2, \ldots, X_k)\)</span>, where each <span class="math inline">\(X_i\)</span> is a random variable.</p>
 <p>Just as in the univariate case, we can describe the <em>joint</em> distribution of these variables using a probability density function. The <em>joint probability density function</em> <span class="math inline">\(f(x_1, x_2, \ldots, x_k)\)</span> characterizes how probability is distributed across combinations of values. For continuous variables, probabilities are obtained by integrating this function over a region of the <span class="math inline">\(k\)</span>-dimensional space.</p>
-<p>Once a joint density is defined, we can recover familiar quantities such as <em>marginal</em> and <em>conditional</em> distributions. Intuitively, a <em>marginal distribution</em> describes the behavior of one variable on its own, ignoring the others. We obtain it by <em>averaging out</em> or integrating over the remaining variables. A <em>conditional distribution</em>, on the other hand, describes the behavior of one variable given that we know the value of another. This extends the idea of conditional probability introduced in <a href="discrete-probability.html#sec-conditional-probability" class="quarto-xref"><span>Section 5.5</span></a> to the continuous setting.</p>
+<p>Once a joint density is defined, we can recover familiar quantities such as <em>marginal</em> and <em>conditional</em> distributions. Intuitively, a <em>marginal distribution</em> describes the behavior of one variable on its own, ignoring the others. We obtain it by <em>averaging out</em> or integrating over the remaining variables. A <em>conditional distribution</em>, on the other hand, describes the behavior of one variable given that we know the value of another. This extends the idea of conditional probability introduced in <a href="discrete-probability.html#sec-conditional-probability" class="quarto-xref"><span>Section 7.5</span></a> to the continuous setting.</p>
 <p>These quantities can be derived from the joint density: marginals by integrating out variables, and conditionals by combining the joint density with the appropriate marginal. Carrying out these calculations requires tools from multivariate calculus, including integration over higher-dimensional regions.</p>
-<p>These ideas extend naturally from the one-dimensional case and allow us to study relationships between variables, such as dependence and correlation. We will revisit these concepts later, in <a href="../linear-models/regression.html#sec-conditional-expectation" class="quarto-xref"><span>Section 15.3</span></a>, particularly in the context of regression, where we use conditional distributions to describe how an outcome variable behaves given one or more predictors. We do not cover multivariate distributions in detail here, but we provide references for further reading in the recommended reading section.</p>
+<p>These ideas extend naturally from the one-dimensional case and allow us to study relationships between variables, such as dependence and correlation. We will revisit these concepts later, in <a href="../linear-models/regression.html#sec-conditional-expectation" class="quarto-xref"><span>Section 17.3</span></a>, particularly in the context of regression, where we use conditional distributions to describe how an outcome variable behaves given one or more predictors. We do not cover multivariate distributions in detail here, but we provide references for further reading in the recommended reading section.</p>
 </section>
-<section id="exercises" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6.7</span> Exercises</h2>
-<p>1. Assume the distribution of female heights is approximated by a normal distribution with a mean of 64 inches and a standard deviation of 3 inches. If we pick a female at random, what is the probability that she is 5 feet or shorter?</p>
-<p>2. Assume the same distribution as the previous exercise. If we pick a female at random, what is the probability that she is 6 feet or taller?</p>
-<p>3. Assume the same distribution as the previous exercise. If we pick a female at random, what is the probability that she is between 61 and 67 inches?</p>
-<p>4. Repeat the exercise above, but convert everything to centimeters. That is, multiply every height, including the standard deviation, by 2.54. What is the answer now?</p>
-<p>5. Notice that the answers to the previous two exercises are identical even when you change units. This makes sense since the standard deviations from the average for an entry in a list are not affected by what units we use. In fact, if you look closely, you notice that 61 and 67 are both 1 SD away from the average. Compute the probability that a randomly picked, normally distributed random outcome is within 1 SD of the average.</p>
+<section id="exercises" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">8.7</span> Exercises</h2>
+<p>1. Assume the distribution of female reaction times is approximated by a normal distribution with a mean of 340 milliseconds and a standard deviation of 35 milliseconds. If we pick a female participant at random, what is the probability that her reaction time is 300 milliseconds or faster?</p>
+<p>2. Assume the same distribution as the previous exercise. If we pick a female participant at random, what is the probability that her reaction time is 400 milliseconds or slower?</p>
+<p>3. Assume the same distribution as the previous exercise. If we pick a female participant at random, what is the probability that her reaction time is between 305 and 375 milliseconds?</p>
+<p>4. Repeat the exercise above, but convert everything to seconds. That is, divide every reaction time, including the standard deviation, by 1000. What is the answer now?</p>
+<p>5. Notice that the answers to the previous two exercises are identical even when you change units. This makes sense since the standard deviations from the average for an entry in a list are not affected by what units we use. In fact, if you look closely, you notice that 305 and 375 are both 1 SD away from the average. Compute the probability that a randomly picked, normally distributed random outcome is within 1 SD of the average.</p>
 <p>6. To understand the mathematical rationale that explains why the answers to exercises 3, 4, and 5 are the same, suppose we have a random outcome <span class="math inline">\(X\)</span> with average <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> and that we ask what the probability of <span class="math inline">\(X\)</span> being smaller than or equal to <span class="math inline">\(a\)</span> is. The probability is:</p>
 <p><span class="math display">\[
 \mathrm{Pr}(X \leq a)
-\]</span> Remember from <a href="../summaries/numerical-summaries.html" class="quarto-xref"><span>Chapter 2</span></a>’s discussion of standardized units that <span class="math inline">\(a\)</span> is <span class="math inline">\((a - \mu)/\sigma\)</span> standard deviations <span class="math inline">\(s\)</span> away from the average <span class="math inline">\(\mu\)</span>. In our probability statement, we can subtract <span class="math inline">\(\mu\)</span> from both sides and then divide both sides by <span class="math inline">\(\sigma\)</span>:</p>
+\]</span> Remember from <a href="../summaries/numerical-summaries.html" class="quarto-xref"><span>Chapter 4</span></a>’s discussion of standardized units that <span class="math inline">\(a\)</span> is <span class="math inline">\((a - \mu)/\sigma\)</span> standard deviations <span class="math inline">\(s\)</span> away from the average <span class="math inline">\(\mu\)</span>. In our probability statement, we can subtract <span class="math inline">\(\mu\)</span> from both sides and then divide both sides by <span class="math inline">\(\sigma\)</span>:</p>
 <p><span class="math display">\[
 \mathrm{Pr}\left(\frac{X-\mu}{\sigma} \leq \frac{a-\mu}{\sigma} \right)
 \]</span></p>
@@ -715,7 +738,7 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
 <li><code>pnorm((a - m)/s, m, s)</code></li>
 <li><code>pnorm(a)</code></li>
 </ol>
-<p>7. Imagine the distribution of male adults is approximately normal with a mean of 69 and a standard deviation of 3. How tall is the male in the 99th percentile? Hint: use <code>qnorm</code>.</p>
+<p>7. Imagine the distribution of male reaction times is approximately normal with a mean of 375 milliseconds and a standard deviation of 30 milliseconds. How slow is the participant at the 99th percentile? Hint: use <code>qnorm</code>.</p>
 <p>8. IQ scores are approximately normally distributed, with a mean of 100 and a standard deviation of 15. Suppose we want to know what the distribution of the highest IQ would look like across all high school graduating classes if 10,000 people are born each year in a school district. Run a Monte Carlo simulation with <code>B = 1000</code>, where each iteration generates 10,000 IQ scores and records the highest value. Then, create a histogram to visualize the distribution of the maximum IQ in the district.</p>
 
 
@@ -1124,12 +1147,12 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../prob/discrete-probability.html" class="pagination-link" aria-label="Discrete Probability">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../prob/random-variables.html" class="pagination-link" aria-label="Random Variables">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

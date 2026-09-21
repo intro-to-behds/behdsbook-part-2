@@ -8,7 +8,7 @@
 
 <meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
 
-<title>25&nbsp; Latent Factor Models – Introduction to Behavioural Data Science</title>
+<title>27&nbsp; Latent Factor Models – Introduction to Behavioural Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../highdim/intro-highdim.html">High Dimensional Data</a></li><li class="breadcrumb-item"><a href="../highdim/latent-factor-models.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../highdim/intro-highdim.html">High Dimensional Data</a></li><li class="breadcrumb-item"><a href="../highdim/latent-factor-models.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -195,8 +195,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summary Statistics</span></a>
+            <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioural Measurement</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -204,20 +204,43 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../behav/measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/simulating-measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,39 +255,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -279,45 +302,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hierarchical-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -332,45 +355,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linear Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/linear-model-framework.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/treatment-effect-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/association-not-causation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/multivariable-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -385,39 +408,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../highdim/intro-highdim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">High Dimensional Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/matrices-in-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/linear-algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/dimension-reduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/regularization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/latent-factor-models.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -432,51 +455,51 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../ml/intro-ml.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/notation-and-terminology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/evaluation-metrics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/conditionals-and-smoothing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/resampling-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/ml-in-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -497,26 +520,26 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-factor-analysis" id="toc-sec-factor-analysis" class="nav-link active" data-scroll-target="#sec-factor-analysis"><span class="header-section-number">25.1</span> Factor analysis</a></li>
-  <li><a href="#connection-to-pca" id="toc-connection-to-pca" class="nav-link" data-scroll-target="#connection-to-pca"><span class="header-section-number">25.2</span> Connection to PCA</a></li>
-  <li><a href="#case-study-recommendation-systems" id="toc-case-study-recommendation-systems" class="nav-link" data-scroll-target="#case-study-recommendation-systems"><span class="header-section-number">25.3</span> Case study: recommendation systems</a>
+  <li><a href="#sec-factor-analysis" id="toc-sec-factor-analysis" class="nav-link active" data-scroll-target="#sec-factor-analysis"><span class="header-section-number">27.1</span> Factor analysis</a></li>
+  <li><a href="#connection-to-pca" id="toc-connection-to-pca" class="nav-link" data-scroll-target="#connection-to-pca"><span class="header-section-number">27.2</span> Connection to PCA</a></li>
+  <li><a href="#case-study-recommendation-systems" id="toc-case-study-recommendation-systems" class="nav-link" data-scroll-target="#case-study-recommendation-systems"><span class="header-section-number">27.3</span> Case study: recommendation systems</a>
   <ul class="collapse">
   <li><a href="#a-latent-factor-model-for-movie-ratings" id="toc-a-latent-factor-model-for-movie-ratings" class="nav-link" data-scroll-target="#a-latent-factor-model-for-movie-ratings">A latent factor model for movie ratings</a></li>
   <li><a href="#regularization" id="toc-regularization" class="nav-link" data-scroll-target="#regularization">Regularization</a></li>
   <li><a href="#visualizing-factors" id="toc-visualizing-factors" class="nav-link" data-scroll-target="#visualizing-factors">Visualizing factors</a></li>
   <li><a href="#practical-considerations" id="toc-practical-considerations" class="nav-link" data-scroll-target="#practical-considerations">Practical considerations</a></li>
   </ul></li>
-  <li><a href="#singular-value-decomposition" id="toc-singular-value-decomposition" class="nav-link" data-scroll-target="#singular-value-decomposition"><span class="header-section-number">25.4</span> Singular Value Decomposition</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">25.5</span> Exercises</a></li>
+  <li><a href="#singular-value-decomposition" id="toc-singular-value-decomposition" class="nav-link" data-scroll-target="#singular-value-decomposition"><span class="header-section-number">27.4</span> Singular Value Decomposition</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">27.5</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/highdim/latent-factor-models.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../highdim/intro-highdim.html">High Dimensional Data</a></li><li class="breadcrumb-item"><a href="../highdim/latent-factor-models.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../highdim/intro-highdim.html">High Dimensional Data</a></li><li class="breadcrumb-item"><a href="../highdim/latent-factor-models.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-latent-factor-models" class="quarto-section-identifier"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></h1>
+<h1 class="title"><span id="sec-latent-factor-models" class="quarto-section-identifier"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></h1>
 </div>
 
 
@@ -562,9 +585,9 @@ r_{ij} = y_{ij} - (\hat{\mu} + \hat{\alpha}_i + \hat{\beta}_j)
 <p>Latent factor models are designed to capture exactly this type of structure. Instead of estimating thousands of separate parameters, they represent users and movies in a lower-dimensional space defined by a small number of latent features. The winning team of the Netflix Prize competition relied heavily on this idea, using latent factor models to achieve an improvement in predictive accuracy.</p>
 <p>Although recommendation systems are one of the most famous applications, latent factor models are widely used in other fields, such as genomics (to model hidden biological structure), text analysis (topics in documents), marketing (customer segmentation), and finance (risk factors underlying asset returns).</p>
 <p>In this chapter, we introduce latent factor models in the context of recommendation systems, connect them to principal component analysis (PCA), and show how the singular value decomposition (SVD) provides a unifying mathematical foundation. We will build models that capture hidden structure in rating data and show how these models further improve prediction accuracy.</p>
-<section id="sec-factor-analysis" class="level2" data-number="25.1">
-<h2 data-number="25.1" class="anchored" data-anchor-id="sec-factor-analysis"><span class="header-section-number">25.1</span> Factor analysis</h2>
-<p>We start with a simple simulated example of ratings <span class="math inline">\(Y_{ij}\)</span> for six movies and 120 users. To illustrate how factor analysis uncovers hidden structure, we don’t show the data-generating code. For simplicity, we assume ratings have been adjusted for movie and user effects (as described in <a href="regularization.html" class="quarto-xref"><span>Chapter 24</span></a>), and we store the residuals in the object <code>y</code>:</p>
+<section id="sec-factor-analysis" class="level2" data-number="27.1">
+<h2 data-number="27.1" class="anchored" data-anchor-id="sec-factor-analysis"><span class="header-section-number">27.1</span> Factor analysis</h2>
+<p>We start with a simple simulated example of ratings <span class="math inline">\(Y_{ij}\)</span> for six movies and 120 users. To illustrate how factor analysis uncovers hidden structure, we don’t show the data-generating code. For simplicity, we assume ratings have been adjusted for movie and user effects (as described in <a href="regularization.html" class="quarto-xref"><span>Chapter 26</span></a>), and we store the residuals in the object <code>y</code>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(y)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 120   6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -705,9 +728,9 @@ Y_{ij} \approx p_{i1}q_{j1} + p_{i2}q_{j2}, i = 1 \dots, I \mbox{ and } j = 1, \
 </div>
 </div>
 </section>
-<section id="connection-to-pca" class="level2" data-number="25.2">
-<h2 data-number="25.2" class="anchored" data-anchor-id="connection-to-pca"><span class="header-section-number">25.2</span> Connection to PCA</h2>
-<p>Notice that in <a href="dimension-reduction.html#sec-pca" class="quarto-xref"><span>Section 23.5</span></a> we learned that if we perform PCA on a matrix <span class="math inline">\(\mathbf{Y}\)</span>, we obtain a transformation <span class="math inline">\(\mathbf{V}\)</span> that permits us to rewrite:</p>
+<section id="connection-to-pca" class="level2" data-number="27.2">
+<h2 data-number="27.2" class="anchored" data-anchor-id="connection-to-pca"><span class="header-section-number">27.2</span> Connection to PCA</h2>
+<p>Notice that in <a href="dimension-reduction.html#sec-pca" class="quarto-xref"><span>Section 25.5</span></a> we learned that if we perform PCA on a matrix <span class="math inline">\(\mathbf{Y}\)</span>, we obtain a transformation <span class="math inline">\(\mathbf{V}\)</span> that permits us to rewrite:</p>
 <p><span class="math display">\[
 \mathbf{Y} = \mathbf{Z} \mathbf{V}^\top
 \]</span></p>
@@ -769,16 +792,16 @@ Y_{ij} &amp;= \sum_{k=1}^K p_{ik}q_{jk} + \varepsilon_{ij}, \quad i=1,\dots,I,\;
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Even with the orthogonality constraint, the PCA solution is not completely unique. As pointed out in <a href="dimension-reduction.html" class="quarto-xref"><span>Chapter 23</span></a>, there remains a <em>sign indeterminacy</em>: we can flip the sign of any column in <span class="math inline">\(\mathbf{P}\)</span> and the corresponding column in <span class="math inline">\(\mathbf{Q}\)</span> (multiply one by <span class="math inline">\(-1\)</span> and the other by <span class="math inline">\(-1\)</span>) without changing the product <span class="math inline">\(\mathbf{P}\mathbf{Q}^\top\)</span>.<br>
+<p>Even with the orthogonality constraint, the PCA solution is not completely unique. As pointed out in <a href="dimension-reduction.html" class="quarto-xref"><span>Chapter 25</span></a>, there remains a <em>sign indeterminacy</em>: we can flip the sign of any column in <span class="math inline">\(\mathbf{P}\)</span> and the corresponding column in <span class="math inline">\(\mathbf{Q}\)</span> (multiply one by <span class="math inline">\(-1\)</span> and the other by <span class="math inline">\(-1\)</span>) without changing the product <span class="math inline">\(\mathbf{P}\mathbf{Q}^\top\)</span>.<br>
 Thus, the factorization is identifiable only up to these sign changes.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="case-study-recommendation-systems" class="level2" data-number="25.3">
-<h2 data-number="25.3" class="anchored" data-anchor-id="case-study-recommendation-systems"><span class="header-section-number">25.3</span> Case study: recommendation systems</h2>
+<section id="case-study-recommendation-systems" class="level2" data-number="27.3">
+<h2 data-number="27.3" class="anchored" data-anchor-id="case-study-recommendation-systems"><span class="header-section-number">27.3</span> Case study: recommendation systems</h2>
 <p>We now move back from the small simulated example to the real Movielens dataset. In the previous section, we used a toy setting to illustrate how latent factors can capture patterns such as “mob vs.&nbsp;romance” or “Al Pacino vs.&nbsp;not Al Pacino”. Here, we show that a similar latent structure is present in the real movie ratings and that we can exploit it to further improve predictions.</p>
-<p>Starting from the residuals of our regularized user + movie model (introduced in <a href="regularization.html" class="quarto-xref"><span>Chapter 24</span></a>), we can examine how movie ratings correlate after accounting for overall averages and user and movie effects. Focusing on a small set of well-known titles, we compute the correlation matrix of these residuals:</p>
+<p>Starting from the residuals of our regularized user + movie model (introduced in <a href="regularization.html" class="quarto-xref"><span>Chapter 26</span></a>), we can examine how movie ratings correlate after accounting for overall averages and user and movie effects. Focusing on a small set of well-known titles, we compute the correlation matrix of these residuals:</p>
 <div class="small-code">
 <div class="cell" data-layout-align="center">
 <pre><code>#&gt;                      Godfather Godfather II Goodfellas Scent of a Woman You've Got Mail Sleepless in Seattle
@@ -793,8 +816,8 @@ Thus, the factorization is identifiable only up to these sign changes.</p>
 <p>As in the simulated example, we see clear correlation patterns. For instance, <em>The Godfather</em>, <em>The Godfather Part II</em>, and <em>Goodfellas</em> share similar residuals, while romantic comedies show different behavior. This suggests that ratings are influenced by <em>latent characteristics</em> that group movies and users in meaningful ways.</p>
 <section id="a-latent-factor-model-for-movie-ratings" class="level3">
 <h3 class="anchored" data-anchor-id="a-latent-factor-model-for-movie-ratings">A latent factor model for movie ratings</h3>
-<p>This motivates extending our earlier model with latent factors that capture similarities between movies and users. This approach is a simplified version used by the Netflix Prize winners, who combined latent factor models with the regularization methods from <a href="regularization.html" class="quarto-xref"><span>Chapter 24</span></a>.</p>
-<p>We use a latent factor model that extends the model from <a href="regularization.html" class="quarto-xref"><span>Chapter 24</span></a> to include factors capturing similarities between movies: <span class="math display">\[
+<p>This motivates extending our earlier model with latent factors that capture similarities between movies and users. This approach is a simplified version used by the Netflix Prize winners, who combined latent factor models with the regularization methods from <a href="regularization.html" class="quarto-xref"><span>Chapter 26</span></a>.</p>
+<p>We use a latent factor model that extends the model from <a href="regularization.html" class="quarto-xref"><span>Chapter 26</span></a> to include factors capturing similarities between movies: <span class="math display">\[
 Y_{ij} = \mu + \alpha_i + \beta_j + \sum_{k=1}^K p_{ik}q_{jk} + \varepsilon_{ij}
 \]</span></p>
 <p>Recall that, as explained in the previous chapter, we do not observe all <span class="math inline">\((i,j)\)</span> combinations. Writing the data as an <span class="math inline">\(I \times J\)</span> matrix <span class="math inline">\(\mathbf{Y}\)</span>, with <span class="math inline">\(I\)</span> users and <span class="math inline">\(J\)</span> movies, would produce many missing values.</p>
@@ -823,7 +846,7 @@ Y_{ij} = \mu + \alpha_i + \beta_j + \sum_{k=1}^K p_{ik}q_{jk} + \varepsilon_{ij}
 <p>We use two penalties: <span class="math inline">\(\lambda_1\)</span> for the linear effects (the <span class="math inline">\(\alpha\)</span>s and <span class="math inline">\(\beta\)</span>s), and <span class="math inline">\(\lambda_2\)</span> for the latent factors. This lets us regularize the two components differently, reflecting their distinct roles in the model.</p>
 <p>How do we estimate the parameters in this model? The challenge comes from the fact that both the <span class="math inline">\(p\)</span>s and <span class="math inline">\(q\)</span>s are unknown and appear multiplied together, making the model nonlinear in its parameters. In earlier sections, we highlighted the connection between factor analysis and principal component analysis (PCA), and showed that in settings with complete data, PCA can be used to estimate the latent factors of a factor analysis model.</p>
 <p>However, recommendation systems present a critical complication: the rating matrix is extremely sparse. Most users only rate a small subset of movies, so the data matrix has many missing entries. PCA and related approaches require a fully observed matrix, so they cannot be applied directly in this context. In addition, while PCA provides least squares estimates, here we want to use <em>penalized least squares</em>, which allows us to regularize the parameters and avoid overfitting when the data for some users or movies are limited.</p>
-<p>To address these challenges, we again turn to the <em>Alternating Least Squares (ALS)</em> algorithm described in <a href="regularization.html#sec-movie-effects" class="quarto-xref"><span>Section 24.1.7</span></a>. The key idea is to alternately estimate each column of <span class="math inline">\(\mathbf{P}\)</span> and <span class="math inline">\(\mathbf{Q}\)</span>: fix all columns except one, and solve for that one column using penalized least squares, then switch across all columns. This alternating approach also extends naturally to penalized versions of the model, where user and movie effects and latent factors are regularized separately. For these reasons, ALS has become one of the standard approaches for fitting latent factor models in recommendation systems, where sparsity makes direct application of PCA infeasible.</p>
+<p>To address these challenges, we again turn to the <em>Alternating Least Squares (ALS)</em> algorithm described in <a href="regularization.html#sec-movie-effects" class="quarto-xref"><span>Section 26.1.7</span></a>. The key idea is to alternately estimate each column of <span class="math inline">\(\mathbf{P}\)</span> and <span class="math inline">\(\mathbf{Q}\)</span>: fix all columns except one, and solve for that one column using penalized least squares, then switch across all columns. This alternating approach also extends naturally to penalized versions of the model, where user and movie effects and latent factors are regularized separately. For these reasons, ALS has become one of the standard approaches for fitting latent factor models in recommendation systems, where sparsity makes direct application of PCA infeasible.</p>
 <p>The <strong>behdslabs</strong> package provides the <code>fit_recommender_model</code> function, which implements a latent factor model with regularization:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">with</span>(train_set, </span>
@@ -838,7 +861,7 @@ Y_{ij} = \mu + \alpha_i + \beta_j + \sum_{k=1}^K p_{ik}q_{jk} + \varepsilon_{ij}
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse</span>(res)</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.859</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This improves accuracy beyond the regularized user + movie effects model from <a href="regularization.html" class="quarto-xref"><span>Chapter 24</span></a>. It illustrates, in simplified form, how the Netflix Prize winners improved prediction: by combining regularization with a latent factor model that learns hidden structure in user–movie interactions.</p>
+<p>This improves accuracy beyond the regularized user + movie effects model from <a href="regularization.html" class="quarto-xref"><span>Chapter 26</span></a>. It illustrates, in simplified form, how the Netflix Prize winners improved prediction: by combining regularization with a latent factor model that learns hidden structure in user–movie interactions.</p>
 <p>Importantly, this improvement is achieved without tuning the penalty terms <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span>, the number of latent factors <span class="math inline">\(K\)</span>, or other model settings discussed next.</p>
 </section>
 <section id="visualizing-factors" class="level3">
@@ -905,7 +928,7 @@ Y_{ij} = \mu + \alpha_i + \beta_j + \sum_{k=1}^K p_{ik}q_{jk} + \varepsilon_{ij}
 <h3 class="anchored" data-anchor-id="practical-considerations">Practical considerations</h3>
 <p>The <code>fit_recommender_model</code> function includes several adjustable parameters:</p>
 <ul>
-<li><p>Penalty terms: by default, <span class="math inline">\(\lambda_1 = 0.00005\)</span> and <span class="math inline">\(\lambda_2 = 0.0001\)</span>. A grid search, as in <a href="regularization.html#sec-selecting-penalty-term" class="quarto-xref"><span>Section 24.3</span></a>, can identify better choices.</p></li>
+<li><p>Penalty terms: by default, <span class="math inline">\(\lambda_1 = 0.00005\)</span> and <span class="math inline">\(\lambda_2 = 0.0001\)</span>. A grid search, as in <a href="regularization.html#sec-selecting-penalty-term" class="quarto-xref"><span>Section 26.3</span></a>, can identify better choices.</p></li>
 <li><p>Number of latent factors: the default is <span class="math inline">\(K = 8\)</span>, but this may not be optimal. If <span class="math inline">\(K\)</span> is too small, the model may miss structure. If <span class="math inline">\(K\)</span> is too large, the model risks overfitting and instability.</p></li>
 <li><p>Minimum ratings per movie: the function only estimates latent factors for movies with at least 20 ratings. This helps avoid unstable estimates of the <span class="math inline">\(q\)</span> vectors. However, 20 may be too high, or too low, depending on the dataset.</p></li>
 <li><p>Convergence tolerance: the default stopping rule requires model improvement below <code>reltol</code>. Decreasing the tolerance will make results better, but increasing the tolerance often speeds up computation with little loss in accuracy.</p></li>
@@ -914,8 +937,8 @@ Y_{ij} = \mu + \alpha_i + \beta_j + \sum_{k=1}^K p_{ik}q_{jk} + \varepsilon_{ij}
 <p>Finally, the winning team’s breakthrough came from recognizing that missing ratings are informative. Users tend to avoid movies they expect to dislike, meaning that the absence of a rating is not random. By modeling this structure, they achieved state-of-the-art performance that ultimately led to victory.</p>
 </section>
 </section>
-<section id="singular-value-decomposition" class="level2" data-number="25.4">
-<h2 data-number="25.4" class="anchored" data-anchor-id="singular-value-decomposition"><span class="header-section-number">25.4</span> Singular Value Decomposition</h2>
+<section id="singular-value-decomposition" class="level2" data-number="27.4">
+<h2 data-number="27.4" class="anchored" data-anchor-id="singular-value-decomposition"><span class="header-section-number">27.4</span> Singular Value Decomposition</h2>
 <p>A related technique often used in latent factor analysis is the Singular Value Decomposition (SVD). It states any <span class="math inline">\(N \times p\)</span> matrix can be written:</p>
 <p><span class="math display">\[
 \mathbf{Y} = \mathbf{U}\mathbf{D}\mathbf{V}^\top
@@ -943,8 +966,8 @@ Y_{ij} = \mu + \alpha_i + \beta_j + \sum_{k=1}^K p_{ik}q_{jk} + \varepsilon_{ij}
 </div>
 <p>The Singular Value Decomposition is one of the most widely used tools in modern data analysis, appearing in fields as diverse as signal processing, genomics, image compression, natural language processing, collaborative filtering, and numerical optimization. Any time we want to reduce dimensionality, uncover hidden structure, or work with large, noisy matrices, the SVD provides a principled foundation. In fact, many of the most successful machine learning algorithms, including the latent factor methods used in the Netflix Prize, are built directly on top of it.</p>
 </section>
-<section id="exercises" class="level2" data-number="25.5">
-<h2 data-number="25.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">25.5</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="27.5">
+<h2 data-number="27.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">27.5</span> Exercises</h2>
 <p>1. Examine the movie names in the extreme values of factors 3, 4, 5, 6, 7, and 8. Describe any interesting patterns you observe.</p>
 <p>2. Fit the recommender model with several values of</p>
 <div class="cell" data-layout-align="center">
@@ -1494,7 +1517,7 @@ Y_{ij} = \mu_{ij} + \varepsilon_{ij}
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../highdim/regularization.html" class="pagination-link" aria-label="Regularization">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
 
-<title>5&nbsp; Discrete Probability – Introduction to Behavioural Data Science</title>
+<title>7&nbsp; Discrete Probability – Introduction to Behavioural Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/discrete-probability.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/discrete-probability.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -195,8 +195,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summary Statistics</span></a>
+            <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioural Measurement</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -204,20 +204,43 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../behav/measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/simulating-measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,39 +255,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -279,45 +302,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hierarchical-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -332,45 +355,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linear Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/linear-model-framework.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/treatment-effect-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/association-not-causation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/multivariable-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -385,39 +408,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../highdim/intro-highdim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">High Dimensional Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/matrices-in-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/linear-algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/dimension-reduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/regularization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/latent-factor-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -432,51 +455,51 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../ml/intro-ml.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/notation-and-terminology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/evaluation-metrics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/conditionals-and-smoothing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/resampling-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/ml-in-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -497,34 +520,34 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#relative-frequency" id="toc-relative-frequency" class="nav-link active" data-scroll-target="#relative-frequency"><span class="header-section-number">5.1</span> Relative frequency</a></li>
-  <li><a href="#probability-distributions" id="toc-probability-distributions" class="nav-link" data-scroll-target="#probability-distributions"><span class="header-section-number">5.2</span> Probability distributions</a></li>
-  <li><a href="#sec-monte-carlo" id="toc-sec-monte-carlo" class="nav-link" data-scroll-target="#sec-monte-carlo"><span class="header-section-number">5.3</span> Monte Carlo</a>
+  <li><a href="#relative-frequency" id="toc-relative-frequency" class="nav-link active" data-scroll-target="#relative-frequency"><span class="header-section-number">7.1</span> Relative frequency</a></li>
+  <li><a href="#probability-distributions" id="toc-probability-distributions" class="nav-link" data-scroll-target="#probability-distributions"><span class="header-section-number">7.2</span> Probability distributions</a></li>
+  <li><a href="#sec-monte-carlo" id="toc-sec-monte-carlo" class="nav-link" data-scroll-target="#sec-monte-carlo"><span class="header-section-number">7.3</span> Monte Carlo</a>
   <ul class="collapse">
   <li><a href="#setting-the-random-seed" id="toc-setting-the-random-seed" class="nav-link" data-scroll-target="#setting-the-random-seed">Setting the random seed</a></li>
   <li><a href="#with-and-without-replacement" id="toc-with-and-without-replacement" class="nav-link" data-scroll-target="#with-and-without-replacement">With and without replacement</a></li>
   </ul></li>
-  <li><a href="#combinations-and-permutations" id="toc-combinations-and-permutations" class="nav-link" data-scroll-target="#combinations-and-permutations"><span class="header-section-number">5.4</span> Combinations and permutations</a>
+  <li><a href="#combinations-and-permutations" id="toc-combinations-and-permutations" class="nav-link" data-scroll-target="#combinations-and-permutations"><span class="header-section-number">7.4</span> Combinations and permutations</a>
   <ul class="collapse">
   <li><a href="#monte-carlo-approach" id="toc-monte-carlo-approach" class="nav-link" data-scroll-target="#monte-carlo-approach">Monte Carlo approach</a></li>
   </ul></li>
-  <li><a href="#sec-conditional-probability" id="toc-sec-conditional-probability" class="nav-link" data-scroll-target="#sec-conditional-probability"><span class="header-section-number">5.5</span> Conditional probability</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">5.6</span> Examples</a>
+  <li><a href="#sec-conditional-probability" id="toc-sec-conditional-probability" class="nav-link" data-scroll-target="#sec-conditional-probability"><span class="header-section-number">7.5</span> Conditional probability</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">7.6</span> Examples</a>
   <ul class="collapse">
   <li><a href="#monty-hall-problem" id="toc-monty-hall-problem" class="nav-link" data-scroll-target="#monty-hall-problem">Monty Hall problem</a></li>
   <li><a href="#birthday-problem" id="toc-birthday-problem" class="nav-link" data-scroll-target="#birthday-problem">Birthday problem</a></li>
   </ul></li>
-  <li><a href="#infinity-in-practice" id="toc-infinity-in-practice" class="nav-link" data-scroll-target="#infinity-in-practice"><span class="header-section-number">5.7</span> Infinity in practice</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">5.8</span> Exercises</a></li>
+  <li><a href="#infinity-in-practice" id="toc-infinity-in-practice" class="nav-link" data-scroll-target="#infinity-in-practice"><span class="header-section-number">7.7</span> Infinity in practice</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">7.8</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/prob/discrete-probability.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/discrete-probability.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/discrete-probability.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-discrete-probability" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></h1>
+<h1 class="title"><span id="sec-discrete-probability" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></h1>
 </div>
 
 
@@ -542,20 +565,20 @@ window.Quarto = {
 
 
 <p>We begin by covering some basic principles related to categorical data. The specific area of probability that deals with categorical data is referred to as <em>discrete probability</em>. Understanding this topic will help us comprehend the probability theory we will later introduce for numeric and continuous data, which is much more common in data analysis. Since discrete probability is invaluable in card games, we will use these as illustrative examples.</p>
-<section id="relative-frequency" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="relative-frequency"><span class="header-section-number">5.1</span> Relative frequency</h2>
+<section id="relative-frequency" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="relative-frequency"><span class="header-section-number">7.1</span> Relative frequency</h2>
 <p>The term <em>probability</em> is used in everyday language. Yet answering questions about probability is often hard, if not impossible. In this section, we discuss a mathematical definition of <em>probability</em> that allows us to give precise answers to certain questions.</p>
 <p>For example, if I have 2 red beads and 3 blue beads inside an urn<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (most probability books use this archaic term, so we do too) and I pick one at random, what is the probability of picking a red one? Our intuition tells us that the answer is 2/5 or 40%—this is the proportion of beads in the urn that are red, referred to as the <em>relative frequency</em> of that category. A precise definition can be given by noting that there are five possible outcomes, of which two satisfy the condition necessary for the event <em>pick a red bead</em>. Since each of the five outcomes has an equal chance of occurring, we conclude that the probability is 0.4 for red and 0.6 for blue.</p>
 <p>A more intuitive way to think about the probability of an event is as the long-run proportion of times the event occurs when an experiment is repeated independently and under identical conditions, an infinite number of times. This interpretation naturally leads to one of the most powerful techniques in data science, Monte Carlo simulations, which we will explore later in this chapter.</p>
 </section>
-<section id="probability-distributions" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="probability-distributions"><span class="header-section-number">5.2</span> Probability distributions</h2>
+<section id="probability-distributions" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="probability-distributions"><span class="header-section-number">7.2</span> Probability distributions</h2>
 <p>Probability distributions are the foundation of most statistical models. They describe how likely different outcomes are, providing a mathematical summary of uncertainty. Every model we use in data analysis, from simple polling examples to complex multivariate models, is built on assumptions about underlying probability distributions. As we move to continuous and multidimensional settings, these distributions become more complex and abstract. For discrete cases, however, the idea is quite intuitive: each possible outcome, or category, is assigned a probability based on its relative frequency.</p>
 <p>If we know the true relative frequencies of the different categories—that is, the actual proportions in the population, not the proportions observed in a particular sample—then defining a distribution for categorical outcomes is relatively straightforward. We simply assign each relative frequency as the probability of its respective category. In cases analogous to beads in an urn, for each bead type, its proportion defines the distribution.</p>
 <p>For example, if we are randomly calling likely voters from a population that is 44% Democrat, 44% Republican, 10% Undecided, and 2% Green Party, these proportions define the probability for each group in any given call. The probability distribution for each call is defined by four numbers: Pr(calling a Republican) = 0.44, Pr(calling a Democrat) = 0.44, Pr(calling an Undecided) = 10%, and Pr(calling a Green) = 0.02.</p>
 </section>
-<section id="sec-monte-carlo" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="sec-monte-carlo"><span class="header-section-number">5.3</span> Monte Carlo</h2>
+<section id="sec-monte-carlo" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="sec-monte-carlo"><span class="header-section-number">7.3</span> Monte Carlo</h2>
 <p>Computers provide a way to actually perform the simple random long-run experiment described earlier: for many independent and identical trials, pick a bead at random from an urn that contains three blue beads and two red ones. Random number generators permit us to mimic the process of picking at random.</p>
 <p>An example is the <code>sample</code> function in R. We demonstrate its use in the code below. First, we use the function <code>rep</code> to generate the urn:</p>
 <div class="cell" data-layout-align="center">
@@ -625,8 +648,8 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="combinations-and-permutations" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="combinations-and-permutations"><span class="header-section-number">5.4</span> Combinations and permutations</h2>
+<section id="combinations-and-permutations" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="combinations-and-permutations"><span class="header-section-number">7.4</span> Combinations and permutations</h2>
 <p>Most university-level statistics courses begin with combinatorics, which provides the foundation for many probability calculations. These techniques let us count the number of outcomes that satisfy a condition, typically by computing the number of <em>permutations</em> (when order matters) or <em>combinations</em> (when order does not matter).</p>
 <p>To make these ideas concrete, let’s consider a familiar setting: card games. Suppose we want to understand the probability of drawing specific hands from a deck. This example helps demonstrate how combinatorics works and how we can use R to perform these calculations.</p>
 <p>First, let’s build a deck of cards:</p>
@@ -690,8 +713,8 @@ window.Quarto = {
 <p>Both approaches yield nearly the same result. The combinatoric functions give the exact probability, while the Monte Carlo simulation provides an approximation that converges to the same value as the number of repetitions increases.</p>
 </section>
 </section>
-<section id="sec-conditional-probability" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="sec-conditional-probability"><span class="header-section-number">5.5</span> Conditional probability</h2>
+<section id="sec-conditional-probability" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="sec-conditional-probability"><span class="header-section-number">7.5</span> Conditional probability</h2>
 <p>So far, we have discussed the probability of events without taking into account any additional information from other events. In many applications, however, we want to update probabilities after learning that some other event has occurred. This leads to the idea of <em>conditional probability</em>, a concept that is fundamental to probability theory and statistics.</p>
 <p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are events and <span class="math inline">\(\Pr(B) &gt; 0\)</span>, the conditional probability of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span> is defined as</p>
 <p><span class="math display">\[
@@ -705,8 +728,8 @@ window.Quarto = {
 \]</span></p>
 <p>For a rigorous treatment, consult the probability textbooks listed in the Recommended Reading section.</p>
 </section>
-<section id="examples" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="examples"><span class="header-section-number">5.6</span> Examples</h2>
+<section id="examples" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="examples"><span class="header-section-number">7.6</span> Examples</h2>
 <p>In this section, we describe two discrete probability popular examples: the Monty Hall problem and the birthday problem. We use R to help illustrate the mathematical concepts.</p>
 <section id="monty-hall-problem" class="level3">
 <h3 class="anchored" data-anchor-id="monty-hall-problem">Monty Hall problem</h3>
@@ -790,8 +813,8 @@ window.Quarto = {
 <p>This plot shows that the Monte Carlo simulation provided a very good estimate of the exact probability. Had we not been able to compute the exact probabilities, we could still accurately estimate them.</p>
 </section>
 </section>
-<section id="infinity-in-practice" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="infinity-in-practice"><span class="header-section-number">5.7</span> Infinity in practice</h2>
+<section id="infinity-in-practice" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="infinity-in-practice"><span class="header-section-number">7.7</span> Infinity in practice</h2>
 <p>Theoretically, obtaining a Monte Carlo estimate that equals the exact probability requires repeating experiments over and over indefinitely. In practice, we can’t do this. In the examples above, we used 10,000 Monte Carlo experiments, yielding accurate estimates. The larger this number, the more accurate the estimate becomes, until the approximation is so good that your computer can’t tell the difference. However, in more complex calculations, 10,000 may not be nearly enough. Horeover, for some calculations, 10,000 experiments might not be computationally feasible.</p>
 <p>We know that the larger the number of replicates, the better the approximation. But how large do we need it to be? This is actually a challenging question, and answering it often requires advanced theoretical statistics training. One practical approach that does not requiere theory is to check the stability of the estimate as the number of experiments increases. The following example illustrates the birthday problem for a group of 25 people.</p>
 <div class="cell" data-layout-align="center">
@@ -810,8 +833,8 @@ window.Quarto = {
 </div>
 <p>Although in this case we know the exact probability is 0.5686997, in practical scenarios, we won’t know what the answer is beforehand, so we won’t know if our Monte Carlo estimate is accurate. However, we can explore when it starts stabilizing. In this plot, we can see that the values start to stabilize at around <span class="math inline">\(10^{3.5} \approx 3000\)</span>.</p>
 </section>
-<section id="exercises" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5.8</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">7.8</span> Exercises</h2>
 <p>1. A box contains 3 cyan balls, 5 magenta balls, and 7 yellow balls. One ball is drawn at random. Write a Monte Carlo simulation to estimate the probability that the ball drawn is cyan. Confirm this by computing the exact probability.</p>
 <p>2. Do the same for the probability that the ball will not be cyan.</p>
 <p>3. Instead of taking just one draw, consider taking two draws. You take the second draw without returning the first draw to the box. We call this sampling <strong>without</strong> replacement. Write a Monte Carlo simulation to estimate the probability of the first draw being cyan and the second draw not being cyan. Confirm this by computing the exact probability.</p>
@@ -1262,12 +1285,12 @@ window.Quarto = {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../prob/connecting-data-and-probability.html" class="pagination-link" aria-label="Connecting Data and Probability">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../prob/continuous-probability.html" class="pagination-link" aria-label="Continuous Probability">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

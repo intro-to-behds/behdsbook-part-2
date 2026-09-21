@@ -8,7 +8,7 @@
 
 <meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
 
-<title>7&nbsp; Random Variables – Introduction to Behavioural Data Science</title>
+<title>9&nbsp; Random Variables – Introduction to Behavioural Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/random-variables.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/random-variables.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -195,8 +195,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summary Statistics</span></a>
+            <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioural Measurement</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -204,20 +204,43 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../behav/measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/simulating-measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,39 +255,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -279,45 +302,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hierarchical-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -332,45 +355,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linear Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/linear-model-framework.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/treatment-effect-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/association-not-causation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/multivariable-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -385,39 +408,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../highdim/intro-highdim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">High Dimensional Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/matrices-in-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/linear-algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/dimension-reduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/regularization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/latent-factor-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -432,51 +455,51 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../ml/intro-ml.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/notation-and-terminology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/evaluation-metrics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/conditionals-and-smoothing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/resampling-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/ml-in-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -497,23 +520,23 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#definition" id="toc-definition" class="nav-link active" data-scroll-target="#definition"><span class="header-section-number">7.1</span> Definition</a></li>
-  <li><a href="#notation-for-random-variables" id="toc-notation-for-random-variables" class="nav-link" data-scroll-target="#notation-for-random-variables"><span class="header-section-number">7.2</span> Notation for random variables</a></li>
-  <li><a href="#the-probability-distribution-of-a-random-variable" id="toc-the-probability-distribution-of-a-random-variable" class="nav-link" data-scroll-target="#the-probability-distribution-of-a-random-variable"><span class="header-section-number">7.3</span> The probability distribution of a random variable</a></li>
-  <li><a href="#sec-mean-var-eqs" id="toc-sec-mean-var-eqs" class="nav-link" data-scroll-target="#sec-mean-var-eqs"><span class="header-section-number">7.4</span> The expected value and standard deviation</a></li>
-  <li><a href="#sec-key-properties" id="toc-sec-key-properties" class="nav-link" data-scroll-target="#sec-key-properties"><span class="header-section-number">7.5</span> Key properties of expectations and standard deviations</a></li>
-  <li><a href="#law-of-large-numbers" id="toc-law-of-large-numbers" class="nav-link" data-scroll-target="#law-of-large-numbers"><span class="header-section-number">7.6</span> Law of Large Numbers</a></li>
-  <li><a href="#data-distributions-versus-probability-distributions" id="toc-data-distributions-versus-probability-distributions" class="nav-link" data-scroll-target="#data-distributions-versus-probability-distributions"><span class="header-section-number">7.7</span> Data distributions versus probability distributions</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">7.8</span> Exercises</a></li>
+  <li><a href="#definition" id="toc-definition" class="nav-link active" data-scroll-target="#definition"><span class="header-section-number">9.1</span> Definition</a></li>
+  <li><a href="#notation-for-random-variables" id="toc-notation-for-random-variables" class="nav-link" data-scroll-target="#notation-for-random-variables"><span class="header-section-number">9.2</span> Notation for random variables</a></li>
+  <li><a href="#the-probability-distribution-of-a-random-variable" id="toc-the-probability-distribution-of-a-random-variable" class="nav-link" data-scroll-target="#the-probability-distribution-of-a-random-variable"><span class="header-section-number">9.3</span> The probability distribution of a random variable</a></li>
+  <li><a href="#sec-mean-var-eqs" id="toc-sec-mean-var-eqs" class="nav-link" data-scroll-target="#sec-mean-var-eqs"><span class="header-section-number">9.4</span> The expected value and standard deviation</a></li>
+  <li><a href="#sec-key-properties" id="toc-sec-key-properties" class="nav-link" data-scroll-target="#sec-key-properties"><span class="header-section-number">9.5</span> Key properties of expectations and standard deviations</a></li>
+  <li><a href="#law-of-large-numbers" id="toc-law-of-large-numbers" class="nav-link" data-scroll-target="#law-of-large-numbers"><span class="header-section-number">9.6</span> Law of Large Numbers</a></li>
+  <li><a href="#data-distributions-versus-probability-distributions" id="toc-data-distributions-versus-probability-distributions" class="nav-link" data-scroll-target="#data-distributions-versus-probability-distributions"><span class="header-section-number">9.7</span> Data distributions versus probability distributions</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">9.8</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/prob/random-variables.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/random-variables.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/random-variables.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-random-variables" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></span></h1>
+<h1 class="title"><span id="sec-random-variables" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span></h1>
 </div>
 
 
@@ -531,8 +554,8 @@ window.Quarto = {
 
 
 <p>To study uncertainty rigorously, we need mathematical tools that describe how data behave under randomness. <em>Statistical inference</em>, the topic of the next part of this book, builds on these tools to quantify uncertainty and make predictions. In this chapter, we introduce the concept of <em>random variables</em> and explore their main properties through simple examples.</p>
-<section id="definition" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="definition"><span class="header-section-number">7.1</span> Definition</h2>
+<section id="definition" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="definition"><span class="header-section-number">9.1</span> Definition</h2>
 <p>Statistical inference begins with the concept of a <em>random variable</em>, a numerical quantity whose value depends on the outcome of a random process. Random variables connect probability theory to data analysis by giving us a way to describe uncertainty mathematically. Once we define a random variable, we can study its distribution, compute its expected value and variability, and use it to make probability-based statements about future or unseen outcomes.</p>
 <p>In this chapter, we focus on cases in which the probability distribution of the random variable is completely known. These are idealized settings, such as games of chance, where probabilities are determined by the rules of the game. Working with these simple, controlled examples allows us to understand the mathematical foundations of probability, expected values, standard deviations, and sampling distributions.</p>
 <p>In later chapters, we will turn to real-world data problems, where the underlying distributions are not known. In those cases, we use <strong>statistical inference</strong> to estimate or approximate these distributions from data. The probability concepts introduced here provide the theoretical foundation for those inferential methods.</p>
@@ -544,7 +567,7 @@ X =
 0 &amp; \text{if the bead is red.}
 \end{cases}
 \]</span></p>
-<p>In R, we can simulate this process using the code we introduced in <a href="discrete-probability.html#sec-monte-carlo" class="quarto-xref"><span>Section 5.3</span></a>:</p>
+<p>In R, we can simulate this process using the code we introduced in <a href="discrete-probability.html#sec-monte-carlo" class="quarto-xref"><span>Section 7.3</span></a>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>beads <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">sample</span>(beads, <span class="dv">1</span>) <span class="sc">==</span> <span class="st">"blue"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -555,23 +578,23 @@ X =
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will use this example in later sections.</p>
-<p>Not all random variables are discrete. Some can take on a continuum of values, as in <a href="continuous-probability.html" class="quarto-xref"><span>Chapter 6</span></a>. For example, the height of a randomly selected person or the result of a physical measurement can be viewed as a <em>continuous random variable</em>. As an example, we simulate such a variable using the normal distribution:</p>
+<p>Not all random variables are discrete. Some can take on a continuum of values, as in <a href="continuous-probability.html" class="quarto-xref"><span>Chapter 8</span></a>. For example, the height of a randomly selected person or the result of a physical measurement can be viewed as a <em>continuous random variable</em>. As an example, we simulate such a variable using the normal distribution:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">70</span>, <span class="at">sd =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here, each value of <code>x</code> represents one realization of a random variable drawn from a normal distribution with mean 70 and standard deviation 3. Repeating the simulation produces slightly different numbers each time, reflecting the inherent randomness of the process.</p>
 <p>These examples—a discrete Bernoulli variable and a continuous normal variable—illustrate the main types of random variables we will study in this chapter. Understanding their behavior and summarizing their distributions are the key steps that lead us toward the ideas of expected value, variability, and, ultimately, statistical inference.</p>
 </section>
-<section id="notation-for-random-variables" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="notation-for-random-variables"><span class="header-section-number">7.2</span> Notation for random variables</h2>
+<section id="notation-for-random-variables" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="notation-for-random-variables"><span class="header-section-number">9.2</span> Notation for random variables</h2>
 <p>In statistical notation, uppercase letters denote random variables, while lowercase letters represent observed values. Sometimes both appear together, as in <span class="math inline">\(X = x\)</span>, where <span class="math inline">\(X\)</span> is random and <span class="math inline">\(x\)</span> is a fixed value. For example, <span class="math inline">\(X\)</span> might represent the number shown on a die roll, and <span class="math inline">\(x\)</span> an observed outcome, 1, 2, 3, 4, 5, or 6:</p>
 <p><span class="math display">\[
 \mathrm{Pr}(X = x) = 1/6 \quad \text{for } x = 1, \dots, 6.
 \]</span></p>
 <p>This notation is convenient because it lets us express probability statements compactly. It may seem odd at first: since <span class="math inline">\(X\)</span> represents an outcome not yet observed, we can discuss the likelihood of its possible values but not of its realized value. Once data are collected, we observe a realization of <span class="math inline">\(X\)</span>. From that point on, statistical inference uses the observed value to reason about the underlying random process and the other outcomes that could have occurred.</p>
 </section>
-<section id="the-probability-distribution-of-a-random-variable" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="the-probability-distribution-of-a-random-variable"><span class="header-section-number">7.3</span> The probability distribution of a random variable</h2>
+<section id="the-probability-distribution-of-a-random-variable" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="the-probability-distribution-of-a-random-variable"><span class="header-section-number">9.3</span> The probability distribution of a random variable</h2>
 <p>The <em>probability distribution</em> of a random variable tells us how likely each possible outcome is. For example, if we toss <span class="math inline">\(n\)</span> fair coins, we might ask for the probability of observing 40 or fewer heads. Using the notation from above, this is equivalent to asking for <span class="math inline">\(\mathrm{Pr}(S_n \leq 40)\)</span>.</p>
 <p>If we can define a cumulative distribution function (CDF) <span class="math inline">\(F(a) = \mathrm{Pr}(S_n \leq a)\)</span>, we can answer any probability question involving <span class="math inline">\(S_n\)</span>, such as the probability of falling within an interval <span class="math inline">\((a, b]\)</span>. We call <span class="math inline">\(F\)</span> the <em>distribution function</em> of the random variable.</p>
 <p>We can approximate this distribution function by Monte Carlo simulation. For example, the following code simulates tossing 100 fair coins 100,000 times:</p>
@@ -598,7 +621,7 @@ X =
 </div>
 </div>
 </div>
-<p>We see that the distribution is approximately normal. A qqplot will confirm that the normal approximation provides an excellent fit. In the next chapter (<a href="sampling-models-and-clt.html#sec-clt-prob" class="quarto-xref"><span>Section 8.3</span></a>), we will learn the theory that explains why this approximation works so well. In fact, normal approximations extend far beyond coin flips—they apply broadly to averages and sums of many kinds of random variables.</p>
+<p>We see that the distribution is approximately normal. A qqplot will confirm that the normal approximation provides an excellent fit. In the next chapter (<a href="sampling-models-and-clt.html#sec-clt-prob" class="quarto-xref"><span>Section 10.3</span></a>), we will learn the theory that explains why this approximation works so well. In fact, normal approximations extend far beyond coin flips—they apply broadly to averages and sums of many kinds of random variables.</p>
 <p>If the distribution is normal, it is fully characterized by its average and standard deviation. In probability theory, these are called the <em>expected value</em> and the <em>standard deviation</em> of the random variable. We discuss these next.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
@@ -620,8 +643,8 @@ X =
 </div>
 </div>
 </section>
-<section id="sec-mean-var-eqs" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="sec-mean-var-eqs"><span class="header-section-number">7.4</span> The expected value and standard deviation</h2>
+<section id="sec-mean-var-eqs" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="sec-mean-var-eqs"><span class="header-section-number">9.4</span> The expected value and standard deviation</h2>
 <p>In statistics textbooks, the expected value of a random variable <span class="math inline">\(X\)</span> is commonly denoted as <span class="math inline">\(\mu_X\)</span> or <span class="math inline">\(\mathrm{E}[X]\)</span>, both meaning “the expected value of <span class="math inline">\(X\)</span>.”</p>
 <p>Intuitively, the expected value represents the long-run average outcome if the random process were repeated many times. The more repetitions, the closer the average of the observed values will be to <span class="math inline">\(\mathrm{E}[X]\)</span>.</p>
 <p>For a discrete random variable with possible outcomes <span class="math inline">\(x_1,\dots,x_n\)</span>, the expected value is defined as:</p>
@@ -669,7 +692,7 @@ X =
 </div>
 </div>
 </div>
-<p>When all possible outcomes <span class="math inline">\(x_i\)</span> are equally likely, the standard deviation reduces to the formula we introduced in <a href="../summaries/numerical-summaries.html" class="quarto-xref"><span>Chapter 2</span></a> for the standard deviation of a one variable dataset:</p>
+<p>When all possible outcomes <span class="math inline">\(x_i\)</span> are equally likely, the standard deviation reduces to the formula we introduced in <a href="../summaries/numerical-summaries.html" class="quarto-xref"><span>Chapter 4</span></a> for the standard deviation of a one variable dataset:</p>
 <p><span class="math display">\[
 \mathrm{SD}[X] = \sqrt{\frac{1}{n}\sum_{i=1}^n (x_i - \mathrm{E}[X])^2}, \quad \mathrm{E}[X] = \frac{1}{n}\sum_{i=1}^n x_i.
 \]</span></p>
@@ -689,8 +712,8 @@ X =
 </div>
 </div>
 </section>
-<section id="sec-key-properties" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="sec-key-properties"><span class="header-section-number">7.5</span> Key properties of expectations and standard deviations</h2>
+<section id="sec-key-properties" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="sec-key-properties"><span class="header-section-number">9.5</span> Key properties of expectations and standard deviations</h2>
 <p>There are several mathematical properties of expectations and standard deviations that we will use frequently when working with data.</p>
 <p>1. The expected value of the sum of random variables is the sum of each random variable’s expected value. We can write it like this:</p>
 <p><span class="math display">\[
@@ -745,7 +768,7 @@ The assumption of independence is important
 </div>
 <div class="callout-body-container callout-body">
 <p>The given equation reveals crucial insights for practical scenarios. Specifically, it suggests that the standard deviation of the average of independent draws can be minimized by increasing the number of observations, <span class="math inline">\(n\)</span>, and we can quantify this reduction. However, this principle holds true only when the variables <span class="math inline">\(X_1, X_2, ... X_n\)</span> are independent. If they are not, the estimated standard deviation can be significantly off.</p>
-<p>In <a href="../linear-models/regression.html#sec-corr-coef" class="quarto-xref"><span>Section 15.2</span></a>, we introduce the concept of correlation, which quantifies the degree to which variables are interdependent. If the correlation coefficient between each pair of variables <span class="math inline">\(X_i,X_j\)</span> is <span class="math inline">\(\rho\)</span>, the standard deviation of their average is:</p>
+<p>In <a href="../linear-models/regression.html#sec-corr-coef" class="quarto-xref"><span>Section 17.2</span></a>, we introduce the concept of correlation, which quantifies the degree to which variables are interdependent. If the correlation coefficient between each pair of variables <span class="math inline">\(X_i,X_j\)</span> is <span class="math inline">\(\rho\)</span>, the standard deviation of their average is:</p>
 <p><span class="math display">\[
 \mathrm{SD}\left[\bar{X}\right] = \sigma_X \sqrt{\frac{1 + (n-1) \rho}{n}}
 \]</span></p>
@@ -756,8 +779,8 @@ The assumption of independence is important
 <p>Specifically, properties 2 and 4 tell us that if <span class="math inline">\(X\)</span> is normally distributed with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, then <span class="math inline">\(aX + b\)</span> is normally distributed with mean <span class="math inline">\(a\mu + b\)</span> and standard deviation <span class="math inline">\(|a|\sigma\)</span>.</p>
 <p>While multiplication and addition always have this effect on the expected value and standard deviation, they do not in general preserve the form of the distribution. Property 5 is specific to the normal distribution.</p>
 </section>
-<section id="law-of-large-numbers" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="law-of-large-numbers"><span class="header-section-number">7.6</span> Law of Large Numbers</h2>
+<section id="law-of-large-numbers" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="law-of-large-numbers"><span class="header-section-number">9.6</span> Law of Large Numbers</h2>
 <p>An important implication of result 4 above is that the standard deviation of the average becomes smaller and smaller as <span class="math inline">\(n\)</span> grows larger. When <span class="math inline">\(n\)</span> is very large, then the standard deviation is practically 0, and the average of the draws converges to the average of the urn. This is known in statistical textbooks as the law of large numbers or the law of averages.</p>
 <div class="callout callout-style-simple callout-warning callout-titled" title="Misinterpretation of the law of averages">
 <div class="callout-header d-flex align-content-center">
@@ -773,10 +796,10 @@ Misinterpretation of the law of averages
 </div>
 </div>
 </section>
-<section id="data-distributions-versus-probability-distributions" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="data-distributions-versus-probability-distributions"><span class="header-section-number">7.7</span> Data distributions versus probability distributions</h2>
+<section id="data-distributions-versus-probability-distributions" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="data-distributions-versus-probability-distributions"><span class="header-section-number">9.7</span> Data distributions versus probability distributions</h2>
 <p>Before moving on, it is important to reiterate the distinction between the <strong>distribution of a dataset</strong> and a <strong>probability distribution</strong>.</p>
-<p>Any list of numbers <span class="math inline">\(x_1, \dots, x_n\)</span>, or any dataset, has a distribution that describes how the observed values are spread out. This was the topic of <a href="../summaries/numerical-summaries.html" class="quarto-xref"><span>Chapter 2</span></a>. For example, we can summarize the data with simple statistics such as the mean and standard deviation:</p>
+<p>Any list of numbers <span class="math inline">\(x_1, \dots, x_n\)</span>, or any dataset, has a distribution that describes how the observed values are spread out. This was the topic of <a href="../summaries/numerical-summaries.html" class="quarto-xref"><span>Chapter 4</span></a>. For example, we can summarize the data with simple statistics such as the mean and standard deviation:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -785,8 +808,8 @@ Misinterpretation of the law of averages
 <p>When <span class="math inline">\(X\)</span> represents drawing a number at random from an urn, the list of numbers in the urn defines the possible outcomes, and their relative frequencies define the probability distribution of <span class="math inline">\(X\)</span>. The average and standard deviation of the numbers in the urn correspond to the <strong>expected value</strong> <span class="math inline">\(\mathrm{E}[X] = \mu\)</span> and <strong>standard deviation</strong> <span class="math inline">\(\mathrm{SD}[X] = \sigma\)</span> of the random variable.</p>
 <p>This connection can cause confusion: every list of numbers has a standard deviation, and every random variable has a standard deviation, but the standard deviation of a random variable is the <em>standard deviation of its probability distribution</em>, not of a particular observed dataset.</p>
 </section>
-<section id="exercises" class="level2" data-number="7.8">
-<h2 data-number="7.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">7.8</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">9.8</span> Exercises</h2>
 <p>1. In American Roulette, you can bet on black or red. There are 18 reds, 18 blacks, and 2 greens (0 and 00). What are the chances that black comes out?</p>
 <p>2. A bet on black is an even-money bet. This means that if you bet a dollar and it lands on black, your bet is returned and you win an additional $1, otherwise you lose your bet of $1. Use the <code>sample</code> function to simulate the random variable <span class="math inline">\(X\)</span> for your winnings when you bet $1 on black.</p>
 <p>3. Compute the expected value of <span class="math inline">\(X\)</span>.</p>
@@ -1210,12 +1233,12 @@ Misinterpretation of the law of averages
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../prob/continuous-probability.html" class="pagination-link" aria-label="Continuous Probability">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../prob/sampling-models-and-clt.html" class="pagination-link" aria-label="Sampling Models and the Central Limit Theorem">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

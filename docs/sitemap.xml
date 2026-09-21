@@ -6,7 +6,19 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/intro.html</loc>
-    <lastmod>2026-09-14T10:06:02.372Z</lastmod>
+    <lastmod>2026-09-21T08:46:04.990Z</lastmod>
+  </url>
+  <url>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/intro-behav.html</loc>
+    <lastmod>2026-09-20T16:53:30.243Z</lastmod>
+  </url>
+  <url>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/measurement.html</loc>
+    <lastmod>2026-09-20T16:58:05.913Z</lastmod>
+  </url>
+  <url>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/simulating-measurement.html</loc>
+    <lastmod>2026-09-21T12:29:35.285Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/intro-summaries.html</loc>
@@ -14,15 +26,15 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/distributions.html</loc>
-    <lastmod>2026-09-14T13:46:06.795Z</lastmod>
+    <lastmod>2026-09-21T05:20:34.940Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/numerical-summaries.html</loc>
-    <lastmod>2026-09-14T13:46:06.792Z</lastmod>
+    <lastmod>2026-09-21T07:45:58.796Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/comparing-groups.html</loc>
-    <lastmod>2026-09-14T13:46:06.797Z</lastmod>
+    <lastmod>2026-09-21T08:11:20.114Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/reading-summaries.html</loc>
@@ -42,7 +54,7 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/continuous-probability.html</loc>
-    <lastmod>2026-09-14T13:46:06.746Z</lastmod>
+    <lastmod>2026-09-21T08:24:29.181Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/random-variables.html</loc>
@@ -114,7 +126,7 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/multivariable-regression.html</loc>
-    <lastmod>2026-09-15T05:14:03.147Z</lastmod>
+    <lastmod>2026-09-21T11:13:09.384Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/reading-lm.html</loc>
@@ -183,9 +195,5 @@
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/reading-ml.html</loc>
     <lastmod>2026-07-11T14:58:04.089Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/Introduction-to-Behavioural-Data-Science.pdf</loc>
-    <lastmod>2026-09-15T06:58:48.291Z</lastmod>
   </url>
 </urlset>

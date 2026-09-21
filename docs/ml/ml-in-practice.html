@@ -8,7 +8,7 @@
 
 <meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
 
-<title>31&nbsp; Building Machine Learning Models – Introduction to Behavioural Data Science</title>
+<title>33&nbsp; Building Machine Learning Models – Introduction to Behavioural Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ml/intro-ml.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../ml/ml-in-practice.html"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ml/intro-ml.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../ml/ml-in-practice.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -195,8 +195,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summary Statistics</span></a>
+            <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioural Measurement</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -204,20 +204,43 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../behav/measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/simulating-measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,39 +255,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -279,45 +302,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hierarchical-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -332,45 +355,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linear Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/linear-model-framework.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/treatment-effect-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/association-not-causation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/multivariable-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -385,39 +408,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../highdim/intro-highdim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">High Dimensional Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/matrices-in-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/linear-algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/dimension-reduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/regularization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/latent-factor-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -432,51 +455,51 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../ml/intro-ml.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/notation-and-terminology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/evaluation-metrics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/conditionals-and-smoothing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/resampling-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/ml-in-practice.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -497,36 +520,36 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-caret" id="toc-sec-caret" class="nav-link active" data-scroll-target="#sec-caret"><span class="header-section-number">31.1</span> The caret package</a>
+  <li><a href="#sec-caret" id="toc-sec-caret" class="nav-link active" data-scroll-target="#sec-caret"><span class="header-section-number">33.1</span> The caret package</a>
   <ul class="collapse">
   <li><a href="#the-train-function" id="toc-the-train-function" class="nav-link" data-scroll-target="#the-train-function">The <code>train</code> function</a></li>
   <li><a href="#the-predict-function" id="toc-the-predict-function" class="nav-link" data-scroll-target="#the-predict-function">The <code>predict</code> function</a></li>
   <li><a href="#sec-caret-cv" id="toc-sec-caret-cv" class="nav-link" data-scroll-target="#sec-caret-cv">Resampling</a></li>
   </ul></li>
-  <li><a href="#case-study-handwritten-digit-recognition" id="toc-case-study-handwritten-digit-recognition" class="nav-link" data-scroll-target="#case-study-handwritten-digit-recognition"><span class="header-section-number">31.2</span> Case study: handwritten digit recognition</a></li>
-  <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing"><span class="header-section-number">31.3</span> Preprocessing</a>
+  <li><a href="#case-study-handwritten-digit-recognition" id="toc-case-study-handwritten-digit-recognition" class="nav-link" data-scroll-target="#case-study-handwritten-digit-recognition"><span class="header-section-number">33.2</span> Case study: handwritten digit recognition</a></li>
+  <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing"><span class="header-section-number">33.3</span> Preprocessing</a>
   <ul class="collapse">
   <li><a href="#feature-filtering" id="toc-feature-filtering" class="nav-link" data-scroll-target="#feature-filtering">Feature Filtering</a></li>
   <li><a href="#dimension-reduction-with-pca" id="toc-dimension-reduction-with-pca" class="nav-link" data-scroll-target="#dimension-reduction-with-pca">Dimension reduction with PCA</a></li>
   </ul></li>
-  <li><a href="#parallelization" id="toc-parallelization" class="nav-link" data-scroll-target="#parallelization"><span class="header-section-number">31.4</span> Parallelization</a></li>
-  <li><a href="#sec-knn-in-practice" id="toc-sec-knn-in-practice" class="nav-link" data-scroll-target="#sec-knn-in-practice"><span class="header-section-number">31.5</span> Model tuning and diagnostics</a>
+  <li><a href="#parallelization" id="toc-parallelization" class="nav-link" data-scroll-target="#parallelization"><span class="header-section-number">33.4</span> Parallelization</a></li>
+  <li><a href="#sec-knn-in-practice" id="toc-sec-knn-in-practice" class="nav-link" data-scroll-target="#sec-knn-in-practice"><span class="header-section-number">33.5</span> Model tuning and diagnostics</a>
   <ul class="collapse">
   <li><a href="#optimizing-tuning-parameters" id="toc-optimizing-tuning-parameters" class="nav-link" data-scroll-target="#optimizing-tuning-parameters">Optimizing tuning parameters</a></li>
   </ul></li>
-  <li><a href="#improving-computational-efficiency" id="toc-improving-computational-efficiency" class="nav-link" data-scroll-target="#improving-computational-efficiency"><span class="header-section-number">31.6</span> Improving computational efficiency</a></li>
-  <li><a href="#diagnostics" id="toc-diagnostics" class="nav-link" data-scroll-target="#diagnostics"><span class="header-section-number">31.7</span> Diagnostics</a></li>
-  <li><a href="#ensembles" id="toc-ensembles" class="nav-link" data-scroll-target="#ensembles"><span class="header-section-number">31.8</span> Ensembles</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">31.9</span> Exercises</a></li>
+  <li><a href="#improving-computational-efficiency" id="toc-improving-computational-efficiency" class="nav-link" data-scroll-target="#improving-computational-efficiency"><span class="header-section-number">33.6</span> Improving computational efficiency</a></li>
+  <li><a href="#diagnostics" id="toc-diagnostics" class="nav-link" data-scroll-target="#diagnostics"><span class="header-section-number">33.7</span> Diagnostics</a></li>
+  <li><a href="#ensembles" id="toc-ensembles" class="nav-link" data-scroll-target="#ensembles"><span class="header-section-number">33.8</span> Ensembles</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">33.9</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/ml/ml-in-practice.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ml/intro-ml.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../ml/ml-in-practice.html"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ml/intro-ml.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../ml/ml-in-practice.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-ml-in-practice" class="quarto-section-identifier"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></h1>
+<h1 class="title"><span id="sec-ml-in-practice" class="quarto-section-identifier"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></h1>
 </div>
 
 
@@ -546,10 +569,10 @@ window.Quarto = {
 <p>Building machine learning models requires more than understanding the underlying mathematics. While theory helps avoid conceptual mistakes and guides the choice of methods, translating these ideas into effective, real-world models involves a series of practical decisions. These include how to preprocess and transform features, incorporate domain knowledge to select relevant predictors, manage computational constraints, and systematically tune and compare algorithms. In many cases, we also combine models through ensembling to improve predictive performance.</p>
 <p>In this chapter, we bring these elements together through a case study based on the MNIST handwritten-digit dataset. Using this example, we illustrate how the concepts developed in earlier chapters, particularly model evaluation, selection, and tuning, fit into a coherent machine learning workflow.</p>
 <p>Before turning to the case study, we introduce the <strong>caret</strong> package, which provides a unified interface to a wide range of machine learning algorithms. By standardizing syntax and workflow, <strong>caret</strong> makes code more consistent, readable, and easier to maintain. Although we use <strong>caret</strong> throughout this chapter, similar frameworks exist in both R and Python, including <strong>tidymodels</strong> and <strong>mlr3</strong> in R, and <strong>scikit-learn</strong> and <strong>PyTorch</strong> in Python. Our goal is not to cover any one framework exhaustively, but to illustrate how such tools structure the modeling process so that you can readily adapt to others.</p>
-<section id="sec-caret" class="level2" data-number="31.1">
-<h2 data-number="31.1" class="anchored" data-anchor-id="sec-caret"><span class="header-section-number">31.1</span> The caret package</h2>
+<section id="sec-caret" class="level2" data-number="33.1">
+<h2 data-number="33.1" class="anchored" data-anchor-id="sec-caret"><span class="header-section-number">33.1</span> The caret package</h2>
 <p>We have already learned about several machine learning algorithms. Many of these algorithms are implemented in R. However, they are distributed via different packages, developed by different authors, and often use different syntax. The <strong>caret</strong> package tries to consolidate these differences and provide consistency. It currently includes over 200 different methods, which are summarized in the <strong>caret</strong> package manual<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Keep in mind that <strong>caret</strong> does not include the packages needed to run each possible algorithm. To apply a machine learning method through <strong>caret</strong>, you still need to install the library that implements the method. The required packages for each method are described in the package manual.</p>
-<p>To illustrate the <strong>caret</strong> package and its key functions, we will first use the <code>gesture_swipe_data</code> dataset introduced in <a href="../highdim/matrices-in-R.html#sec-mnist" class="quarto-xref"><span>Section 21.2</span></a>, a small two-class, two-predictor gesture-recognition dataset. This smaller dataset allows us to run code quickly while focusing on learning the package. Once we are comfortable with the package, we will use the full MNIST handwritten-digit dataset for realistic performance evaluation and demonstrate how the concepts scale to larger datasets.</p>
+<p>To illustrate the <strong>caret</strong> package and its key functions, we will first use the <code>gesture_swipe_data</code> dataset introduced in <a href="../highdim/matrices-in-R.html#sec-mnist" class="quarto-xref"><span>Section 23.2</span></a>, a small two-class, two-predictor gesture-recognition dataset. This smaller dataset allows us to run code quickly while focusing on learning the package. Once we are comfortable with the package, we will use the full MNIST handwritten-digit dataset for realistic performance evaluation and demonstrate how the concepts scale to larger datasets.</p>
 <section id="the-train-function" class="level3">
 <h3 class="anchored" data-anchor-id="the-train-function">The <code>train</code> function</h3>
 <p>The R functions that fit machine learning algorithms are all slightly different. Functions such as <code>lm</code>, <code>glm</code>, <code>qda</code>, <code>lda</code>, <code>knn3</code>, <code>rpart</code>, and <code>randomForest</code> use different syntax, have different argument names, and produce objects of different types.</p>
@@ -561,7 +584,7 @@ window.Quarto = {
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>train_qda <span class="ot">&lt;-</span> <span class="fu">train</span>(y <span class="sc">~</span> ., <span class="at">method =</span> <span class="st">"qda"</span>, <span class="at">data =</span> gesture_swipe_data<span class="sc">$</span>train)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>train_knn <span class="ot">&lt;-</span> <span class="fu">train</span>(y <span class="sc">~</span> ., <span class="at">method =</span> <span class="st">"knn"</span>, <span class="at">data =</span> gesture_swipe_data<span class="sc">$</span>train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>As we explain in more detail in <a href="#sec-caret-cv" class="quarto-xref"><span>Section 31.1.3</span></a>, the <code>train</code> function selects parameters for you using a resampling method to estimate the MSE, with bootstrap as the default.</p>
+<p>As we explain in more detail in <a href="#sec-caret-cv" class="quarto-xref"><span>Section 33.1.3</span></a>, the <code>train</code> function selects parameters for you using a resampling method to estimate the MSE, with bootstrap as the default.</p>
 </section>
 <section id="the-predict-function" class="level3">
 <h3 class="anchored" data-anchor-id="the-predict-function">The <code>predict</code> function</h3>
@@ -690,9 +713,9 @@ Limitations of Bootstrapping for kNN
 </div>
 </section>
 </section>
-<section id="case-study-handwritten-digit-recognition" class="level2" data-number="31.2">
-<h2 data-number="31.2" class="anchored" data-anchor-id="case-study-handwritten-digit-recognition"><span class="header-section-number">31.2</span> Case study: handwritten digit recognition</h2>
-<p>We are now ready to apply these ideas to a real-world example. Throughout this section, we use the MNIST dataset, introduced in <a href="../highdim/matrices-in-R.html#sec-mnist" class="quarto-xref"><span>Section 21.2</span></a>, as a case study to illustrate the full modeling workflow.</p>
+<section id="case-study-handwritten-digit-recognition" class="level2" data-number="33.2">
+<h2 data-number="33.2" class="anchored" data-anchor-id="case-study-handwritten-digit-recognition"><span class="header-section-number">33.2</span> Case study: handwritten digit recognition</h2>
+<p>We are now ready to apply these ideas to a real-world example. Throughout this section, we use the MNIST dataset, introduced in <a href="../highdim/matrices-in-R.html#sec-mnist" class="quarto-xref"><span>Section 23.2</span></a>, as a case study to illustrate the full modeling workflow.</p>
 <p>We load the data using the following function from the <strong>behdslabs</strong> package:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(behdslabs)</span>
@@ -734,8 +757,8 @@ Limitations of Bootstrapping for kNN
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(x_test) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="preprocessing" class="level2" data-number="31.3">
-<h2 data-number="31.3" class="anchored" data-anchor-id="preprocessing"><span class="header-section-number">31.3</span> Preprocessing</h2>
+<section id="preprocessing" class="level2" data-number="33.3">
+<h2 data-number="33.3" class="anchored" data-anchor-id="preprocessing"><span class="header-section-number">33.3</span> Preprocessing</h2>
 <p>We often transform predictors before running machine learning algorithms. We also remove predictors that are clearly not useful. We call these steps <em>preprocessing</em>.</p>
 <p>Examples of preprocessing steps include standardizing predictors, applying transformations such as the logarithm, reducing the dimensionality of the feature space, removing highly correlated predictors, and excluding predictors with little variability, for example, those with near-zero variance.</p>
 <section id="feature-filtering" class="level3">
@@ -781,7 +804,7 @@ Limitations of Bootstrapping for kNN
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">&lt;-</span> <span class="fu">preProcess</span>(x, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">"nzv"</span>, <span class="st">"center"</span>))</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>centered_subsetted_x_test <span class="ot">&lt;-</span> <span class="fu">predict</span>(pp, <span class="at">newdata =</span> x_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Additionally, the <code>train</code> function in caret includes a <code>preProcess</code> argument that allows users to specify which preprocessing steps to apply automatically during model training. Here is an example of how to use it to remove near-zero variance predictors. Because this is an illustrative example, we consider only one <span class="math inline">\(k\)</span> and use five-fold cross-validation to estimate the MSE to reduce runtime. As we see in <a href="#sec-knn-in-practice" class="quarto-xref"><span>Section 31.5</span></a>, in practice you would want to optimize <span class="math inline">\(k\)</span> and use more thorough resampling:</p>
+<p>Additionally, the <code>train</code> function in caret includes a <code>preProcess</code> argument that allows users to specify which preprocessing steps to apply automatically during model training. Here is an example of how to use it to remove near-zero variance predictors. Because this is an illustrative example, we consider only one <span class="math inline">\(k\)</span> and use five-fold cross-validation to estimate the MSE to reduce runtime. As we see in <a href="#sec-knn-in-practice" class="quarto-xref"><span>Section 33.5</span></a>, in practice you would want to optimize <span class="math inline">\(k\)</span> and use more thorough resampling:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>knn_nzv <span class="ot">&lt;-</span> <span class="fu">train</span>(x, y, <span class="at">method =</span> <span class="st">"knn"</span>, <span class="at">preProcess =</span> <span class="st">"nzv"</span>, </span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">trControl =</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">"cv"</span>, <span class="at">number =</span> <span class="dv">5</span>),</span>
@@ -826,8 +849,8 @@ Limitations of Bootstrapping for kNN
 <p>One limitation of this approach using <strong>caret</strong> is that we do not automatically optimize the number of PCs. To tune this quantity directly, just like we tune parameters such as <span class="math inline">\(k\)</span>, we would need to define our own model interface. The caret manual<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> describes how to build custom models that allow full optimization of the PCA dimension.</p>
 </section>
 </section>
-<section id="parallelization" class="level2" data-number="31.4">
-<h2 data-number="31.4" class="anchored" data-anchor-id="parallelization"><span class="header-section-number">31.4</span> Parallelization</h2>
+<section id="parallelization" class="level2" data-number="33.4">
+<h2 data-number="33.4" class="anchored" data-anchor-id="parallelization"><span class="header-section-number">33.4</span> Parallelization</h2>
 <p>By default, the <code>train</code> function estimates model accuracy using 25 bootstrap resamples. This can be computationally expensive. For example, evaluating 75 values of a tuning parameter requires 25 × 75 = 1,875 model fits, which can take hours for slower algorithms.</p>
 <p>A simple way to approximate runtime is to time a single fit and multiply by the total number of fits. For example, with kNN:</p>
 <div class="cell" data-layout-align="center">
@@ -848,9 +871,9 @@ Limitations of Bootstrapping for kNN
 </div>
 </div>
 </section>
-<section id="sec-knn-in-practice" class="level2" data-number="31.5">
-<h2 data-number="31.5" class="anchored" data-anchor-id="sec-knn-in-practice"><span class="header-section-number">31.5</span> Model tuning and diagnostics</h2>
-<p>In Sections <a href="resampling-methods.html#sec-knn-cv-intro" class="quarto-xref"><span>29.1</span></a> and <a href="algorithms.html#sec-random-forests" class="quarto-xref"><span>30.5</span></a>, we introduced the k-nearest neighbors (kNN) and random forest algorithms, along with their intuition and formulation. In this section, we use these two methods as working examples to illustrate the process of model selection and tuning. Specifically, we demonstrate how to train and evaluate models in R, choose appropriate hyperparameters, such as <span class="math inline">\(k\)</span> for kNN and tree-related parameters for random forests, and assess performance using cross-validation.</p>
+<section id="sec-knn-in-practice" class="level2" data-number="33.5">
+<h2 data-number="33.5" class="anchored" data-anchor-id="sec-knn-in-practice"><span class="header-section-number">33.5</span> Model tuning and diagnostics</h2>
+<p>In Sections <a href="resampling-methods.html#sec-knn-cv-intro" class="quarto-xref"><span>31.1</span></a> and <a href="algorithms.html#sec-random-forests" class="quarto-xref"><span>32.5</span></a>, we introduced the k-nearest neighbors (kNN) and random forest algorithms, along with their intuition and formulation. In this section, we use these two methods as working examples to illustrate the process of model selection and tuning. Specifically, we demonstrate how to train and evaluate models in R, choose appropriate hyperparameters, such as <span class="math inline">\(k\)</span> for kNN and tree-related parameters for random forests, and assess performance using cross-validation.</p>
 <section id="optimizing-tuning-parameters" class="level3">
 <h3 class="anchored" data-anchor-id="optimizing-tuning-parameters">Optimizing tuning parameters</h3>
 <p>We start by demonstrating how we select the tuning parameter <span class="math inline">\(k\)</span> in the kNN algorithm. In <strong>caret</strong>, this is done using the <code>tuneGrid</code> argument in the <code>train</code> function. The grid of candidate values must be provided as a data frame, with column names matching those returned by <code>modelLookup</code>. For kNN, this means a column named <code>k</code>. The default values are 5, 7, and 9, which is a very limited range.</p>
@@ -913,8 +936,8 @@ Limitations of Bootstrapping for kNN
 </div>
 </section>
 </section>
-<section id="improving-computational-efficiency" class="level2" data-number="31.6">
-<h2 data-number="31.6" class="anchored" data-anchor-id="improving-computational-efficiency"><span class="header-section-number">31.6</span> Improving computational efficiency</h2>
+<section id="improving-computational-efficiency" class="level2" data-number="33.6">
+<h2 data-number="33.6" class="anchored" data-anchor-id="improving-computational-efficiency"><span class="header-section-number">33.6</span> Improving computational efficiency</h2>
 <p>With the random forest algorithm, several parameters can be optimized, but the main one is <code>mtry</code>, the number of predictors that are randomly selected for each tree. This is also the only tuning parameter that the <strong>caret</strong> function <code>train</code> permits when using the default implementation from the <strong>randomForest</strong> package.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomForest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -984,10 +1007,10 @@ Limitations of Bootstrapping for kNN
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopImplicitCluster</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="diagnostics" class="level2" data-number="31.7">
-<h2 data-number="31.7" class="anchored" data-anchor-id="diagnostics"><span class="header-section-number">31.7</span> Diagnostics</h2>
+<section id="diagnostics" class="level2" data-number="33.7">
+<h2 data-number="33.7" class="anchored" data-anchor-id="diagnostics"><span class="header-section-number">33.7</span> Diagnostics</h2>
 <p>An important part of data analysis is visualizing results to better understand our model fit and also determine why we are failing. How we do this depends on the application but below we provide some examples for the example of handwritten digit recognition.</p>
-<p>The black box nature of many machine learning algorithms can make it difficult to understand how they are making predictions. However, there are tools available to help us interpret these models and gain insights into their behavior. For example, with random forests we can examine whether variable importance, described in <a href="algorithms.html#sec-variable-importance" class="quarto-xref"><span>Section 30.5.1</span></a>, is consistent with our expectations given the context. The following function computes the importance of each feature:</p>
+<p>The black box nature of many machine learning algorithms can make it difficult to understand how they are making predictions. However, there are tools available to help us interpret these models and gain insights into their behavior. For example, with random forests we can examine whether variable importance, described in <a href="algorithms.html#sec-variable-importance" class="quarto-xref"><span>Section 32.5.1</span></a>, is consistent with our expectations given the context. The following function computes the importance of each feature:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>imp <span class="ot">&lt;-</span> <span class="fu">varImp</span>(rf)<span class="sc">$</span>importance[,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1016,8 +1039,8 @@ Limitations of Bootstrapping for kNN
 </div>
 <p>By examining errors like this, we often find specific weaknesses in algorithms or parameter choices and can try to correct them.</p>
 </section>
-<section id="ensembles" class="level2" data-number="31.8">
-<h2 data-number="31.8" class="anchored" data-anchor-id="ensembles"><span class="header-section-number">31.8</span> Ensembles</h2>
+<section id="ensembles" class="level2" data-number="33.8">
+<h2 data-number="33.8" class="anchored" data-anchor-id="ensembles"><span class="header-section-number">33.8</span> Ensembles</h2>
 <p>The idea of an ensemble is similar to the idea of combining data from different pollsters to obtain a better estimate of the true support for each candidate.</p>
 <p>In machine learning, one can usually greatly improve the final results by combining the results of different algorithms.</p>
 <p>Here is a simple example where we compute new class probabilities by taking the average of the previously fitted random forest (saved in <code>rf</code>) and kNN (saved in <code>knn</code>). We can see that the accuracy improves:</p>
@@ -1032,8 +1055,8 @@ Limitations of Bootstrapping for kNN
 </div>
 <p>We have just built an ensemble with just two algorithms. By combining more similarly performing but uncorrelated algorithms, we can improve accuracy further.</p>
 </section>
-<section id="exercises" class="level2" data-number="31.9">
-<h2 data-number="31.9" class="anchored" data-anchor-id="exercises"><span class="header-section-number">31.9</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="33.9">
+<h2 data-number="33.9" class="anchored" data-anchor-id="exercises"><span class="header-section-number">33.9</span> Exercises</h2>
 <p>1. Create a simple dataset where the outcome grows 0.75 units on average for every increase in a predictor:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
@@ -1042,7 +1065,7 @@ Limitations of Bootstrapping for kNN
 <span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fl">0.75</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, sigma)</span>
 <span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In the exercises in <a href="algorithms.html" class="quarto-xref"><span>Chapter 30</span></a>, we saw that changing <code>maxnodes</code> or <code>nodesize</code> in the <code>randomForest</code> function improved our estimate in this dataset. Let’s use the <code>train</code> function to help us pick these values. From the <strong>caret</strong> manual, we see that we can’t tune the <code>maxnodes</code> parameter or the <code>nodesize</code> argument with <code>randomForest</code>, so we will use the <strong>Rborist</strong> package and tune the <code>minNode</code> argument. Use the <code>train</code> function to try values <code>minNode &lt;- seq(5, 250, 25)</code>. See which value minimizes the estimated RMSE.</p>
+<p>In the exercises in <a href="algorithms.html" class="quarto-xref"><span>Chapter 32</span></a>, we saw that changing <code>maxnodes</code> or <code>nodesize</code> in the <code>randomForest</code> function improved our estimate in this dataset. Let’s use the <code>train</code> function to help us pick these values. From the <strong>caret</strong> manual, we see that we can’t tune the <code>maxnodes</code> parameter or the <code>nodesize</code> argument with <code>randomForest</code>, so we will use the <strong>Rborist</strong> package and tune the <code>minNode</code> argument. Use the <code>train</code> function to try values <code>minNode &lt;- seq(5, 250, 25)</code>. See which value minimizes the estimated RMSE.</p>
 <p>2. Make a scatterplot of <code>x</code> and <code>y</code> and add the prediction from the best-fitted model in exercise 1.</p>
 <p>3. This <strong>behdslabs</strong> <code>sensor_activity_features</code> dataset includes a matrix <code>x</code>:</p>
 <div class="cell" data-layout-align="center">
@@ -1100,8 +1123,8 @@ Limitations of Bootstrapping for kNN
 <span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>tree_terms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What is the variable importance in the random forest call for these predictors? Where do they rank?</p>
-<p>20. Extract the top 50 predictors based on importance, take a subset of <code>x</code> with just these predictors, and apply the function <code>heatmap</code> to see how these features behave across the activity contexts. We will introduce the <code>heatmap</code> function in <a href="clustering.html" class="quarto-xref"><span>Chapter 32</span></a>.</p>
-<p>21. In <a href="algorithms.html" class="quarto-xref"><span>Chapter 30</span></a>, for the 2 or 7 example, we compared the conditional probability <span class="math inline">\(p(\mathbf{x})\)</span> given two predictors <span class="math inline">\(\mathbf{x} = (x_1, x_2)^\top\)</span> to the fit <span class="math inline">\(\hat{p}(\mathbf{x})\)</span> obtained with a machine learning algorithm by making image plots. The following code can be used to make these images and include a curve at the values of <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> for which the predicted conditional probability is <span class="math inline">\(0.5\)</span>:</p>
+<p>20. Extract the top 50 predictors based on importance, take a subset of <code>x</code> with just these predictors, and apply the function <code>heatmap</code> to see how these features behave across the activity contexts. We will introduce the <code>heatmap</code> function in <a href="clustering.html" class="quarto-xref"><span>Chapter 34</span></a>.</p>
+<p>21. In <a href="algorithms.html" class="quarto-xref"><span>Chapter 32</span></a>, for the 2 or 7 example, we compared the conditional probability <span class="math inline">\(p(\mathbf{x})\)</span> given two predictors <span class="math inline">\(\mathbf{x} = (x_1, x_2)^\top\)</span> to the fit <span class="math inline">\(\hat{p}(\mathbf{x})\)</span> obtained with a machine learning algorithm by making image plots. The following code can be used to make these images and include a curve at the values of <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> for which the predicted conditional probability is <span class="math inline">\(0.5\)</span>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>plot_cond_prob <span class="ot">&lt;-</span> <span class="cf">function</span>(x_1, x_2, p) {</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">x_1 =</span> x_1, <span class="at">x_2 =</span> x_2, <span class="at">p =</span> p) <span class="sc">|&gt;</span></span>
@@ -1548,12 +1571,12 @@ Compare this approach to majority voting. Which performs better?</p>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../ml/algorithms.html" class="pagination-link" aria-label="Supervised Learning Methods">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../ml/clustering.html" class="pagination-link" aria-label="Unsupervised Learning: Clustering">
-        <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
 
-<title>9&nbsp; Estimates and Confidence Intervals – Introduction to Behavioural Data Science</title>
+<title>11&nbsp; Estimates and Confidence Intervals – Introduction to Behavioural Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -149,7 +149,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../inference/intro-inference.html">Statistical Inference</a></li><li class="breadcrumb-item"><a href="../inference/estimates-confidence-intervals.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../inference/intro-inference.html">Statistical Inference</a></li><li class="breadcrumb-item"><a href="../inference/estimates-confidence-intervals.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -197,8 +197,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summary Statistics</span></a>
+            <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioural Measurement</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -206,20 +206,43 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../behav/measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/simulating-measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -234,39 +257,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -281,45 +304,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hierarchical-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -334,45 +357,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linear Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/linear-model-framework.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/treatment-effect-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/association-not-causation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/multivariable-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -387,39 +410,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../highdim/intro-highdim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">High Dimensional Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/matrices-in-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/linear-algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/dimension-reduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/regularization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/latent-factor-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -434,51 +457,51 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../ml/intro-ml.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/notation-and-terminology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/evaluation-metrics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/conditionals-and-smoothing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/resampling-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/ml-in-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -499,17 +522,17 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-poll-sampling-models" id="toc-sec-poll-sampling-models" class="nav-link active" data-scroll-target="#sec-poll-sampling-models"><span class="header-section-number">9.1</span> The sampling model for polls</a>
+  <li><a href="#sec-poll-sampling-models" id="toc-sec-poll-sampling-models" class="nav-link active" data-scroll-target="#sec-poll-sampling-models"><span class="header-section-number">11.1</span> The sampling model for polls</a>
   <ul class="collapse">
   <li><a href="#a-motivating-example-the-polling-competition" id="toc-a-motivating-example-the-polling-competition" class="nav-link" data-scroll-target="#a-motivating-example-the-polling-competition">A Motivating Example: The Polling Competition</a></li>
   </ul></li>
-  <li><a href="#sec-parameters-and-estimates" id="toc-sec-parameters-and-estimates" class="nav-link" data-scroll-target="#sec-parameters-and-estimates"><span class="header-section-number">9.2</span> Populations, samples, parameters, and estimates</a>
+  <li><a href="#sec-parameters-and-estimates" id="toc-sec-parameters-and-estimates" class="nav-link" data-scroll-target="#sec-parameters-and-estimates"><span class="header-section-number">11.2</span> Populations, samples, parameters, and estimates</a>
   <ul class="collapse">
   <li><a href="#the-sample-average-as-an-estimate" id="toc-the-sample-average-as-an-estimate" class="nav-link" data-scroll-target="#the-sample-average-as-an-estimate">The sample average as an estimate</a></li>
   <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters">Parameters</a></li>
   </ul></li>
-  <li><a href="#estimate-properties-expected-value-and-standard-error" id="toc-estimate-properties-expected-value-and-standard-error" class="nav-link" data-scroll-target="#estimate-properties-expected-value-and-standard-error"><span class="header-section-number">9.3</span> Estimate properties: expected value and standard error</a></li>
-  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals"><span class="header-section-number">9.4</span> Confidence Intervals</a>
+  <li><a href="#estimate-properties-expected-value-and-standard-error" id="toc-estimate-properties-expected-value-and-standard-error" class="nav-link" data-scroll-target="#estimate-properties-expected-value-and-standard-error"><span class="header-section-number">11.3</span> Estimate properties: expected value and standard error</a></li>
+  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals"><span class="header-section-number">11.4</span> Confidence Intervals</a>
   <ul class="collapse">
   <li><a href="#sec-clt" id="toc-sec-clt" class="nav-link" data-scroll-target="#sec-clt">The Central Limit Theorem</a></li>
   <li><a href="#constructing-confidence-intervals" id="toc-constructing-confidence-intervals" class="nav-link" data-scroll-target="#constructing-confidence-intervals">Constructing Confidence Intervals</a></li>
@@ -517,16 +540,16 @@ window.Quarto = {
   <li><a href="#sec-moe" id="toc-sec-moe" class="nav-link" data-scroll-target="#sec-moe">Margin of Error</a></li>
   <li><a href="#why-not-just-run-a-huge-poll" id="toc-why-not-just-run-a-huge-poll" class="nav-link" data-scroll-target="#why-not-just-run-a-huge-poll">Why Not Just Run a Huge Poll?</a></li>
   </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">9.5</span> Exercises</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">11.5</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/inference/estimates-confidence-intervals.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../inference/intro-inference.html">Statistical Inference</a></li><li class="breadcrumb-item"><a href="../inference/estimates-confidence-intervals.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../inference/intro-inference.html">Statistical Inference</a></li><li class="breadcrumb-item"><a href="../inference/estimates-confidence-intervals.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-estimates-and-ci" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></h1>
+<h1 class="title"><span id="sec-estimates-and-ci" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></h1>
 </div>
 
 
@@ -547,8 +570,8 @@ window.Quarto = {
 <p>Statistical theory, known as inference, provides the framework that justifies this process. In this part of the book, we describe the foundations of statistical inference and show how they are applied in opinion polling. In particular, we explain how pollsters use confidence intervals and the margin of error to quantify the uncertainty in their estimates and to report results that reflect the limits of what the data can reveal.</p>
 <p>Perhaps the best-known opinion polls are those conducted to determine which candidate is preferred by voters in a given election. Political strategists extensively use such polls to decide where to allocate resources, such as determining which regions to target in their efforts to mobilize voters.</p>
 <p>Elections are especially interesting examples of opinion polls because the true opinions of the entire population are revealed on election day. Of course, it costs millions of dollars to conduct a real election, which makes polling a cost-effective alternative for those seeking to forecast results. News organizations are also deeply invested in these forecasts, given the public’s appetite for early insights into election outcomes.</p>
-<section id="sec-poll-sampling-models" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="sec-poll-sampling-models"><span class="header-section-number">9.1</span> The sampling model for polls</h2>
+<section id="sec-poll-sampling-models" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="sec-poll-sampling-models"><span class="header-section-number">11.1</span> The sampling model for polls</h2>
 <p>We start by connecting probability theory to the task of using polls to learn about a population.</p>
 <p>Although typically the results of polls run by political candidates are kept private, polls are also conducted and made public by news organizations because results tend to be of interest to the general public. We will eventually be looking at these public datasets.</p>
 <p>Real Clear Politics<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is an example of a news aggregator that organizes and publishes poll results. For example, they present the following poll results, reporting estimates of the popular vote for the 2016 presidential election<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p>
@@ -728,8 +751,8 @@ window.Quarto = {
 <p>We have just described a simple sampling model for opinion polls. In this model, the beads inside the urn represent individuals who will vote on election day. The red beads represent those voting for the Republican candidate, while the blue beads represent the Democrats. For simplicity, let’s assume there are no other colors; that is, that there are just two parties: Republican and Democratic.</p>
 </section>
 </section>
-<section id="sec-parameters-and-estimates" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="sec-parameters-and-estimates"><span class="header-section-number">9.2</span> Populations, samples, parameters, and estimates</h2>
+<section id="sec-parameters-and-estimates" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="sec-parameters-and-estimates"><span class="header-section-number">11.2</span> Populations, samples, parameters, and estimates</h2>
 <p>We want to predict the proportion of blue beads in the urn. Let’s call this quantity <span class="math inline">\(p\)</span>, which then tells us the proportion of red beads <span class="math inline">\(1-p\)</span>, and the spread <span class="math inline">\(p - (1-p)\)</span>, which simplifies to <span class="math inline">\(2p - 1\)</span>.</p>
 <p>In statistical textbooks, the beads in the urn are called the <em>population</em>. The proportion of blue beads in the population <span class="math inline">\(p\)</span> is called a <em>parameter</em>. The 25 beads we see in the previous plot are called a <em>sample</em>. The goal of statistical inference is to predict the parameter <span class="math inline">\(p\)</span> based on the observed data in the sample.</p>
 <p>Can we do this with the 25 observations above? It is certainly informative. For example, given that we see 13 red and 12 blue beads, it seems unlikely that <span class="math inline">\(p\)</span> &gt; 0.9 or <span class="math inline">\(p\)</span> &lt; 0.1. But are we ready to predict with certainty that there are more red beads than blue in the jar?</p>
@@ -772,9 +795,9 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="estimate-properties-expected-value-and-standard-error" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="estimate-properties-expected-value-and-standard-error"><span class="header-section-number">9.3</span> Estimate properties: expected value and standard error</h2>
-<p>To understand how good our estimate is, we will describe the statistical properties of the estimate defined above, the sample proportion <span class="math inline">\(\bar{X}\)</span>. Remember that <span class="math inline">\(\bar{X}\)</span> is a random variable. As the sum of independent draws divided by a non-random constant, the rules we covered in <a href="../prob/random-variables.html#sec-mean-var-eqs" class="quarto-xref"><span>Section 7.4</span></a> apply.</p>
+<section id="estimate-properties-expected-value-and-standard-error" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="estimate-properties-expected-value-and-standard-error"><span class="header-section-number">11.3</span> Estimate properties: expected value and standard error</h2>
+<p>To understand how good our estimate is, we will describe the statistical properties of the estimate defined above, the sample proportion <span class="math inline">\(\bar{X}\)</span>. Remember that <span class="math inline">\(\bar{X}\)</span> is a random variable. As the sum of independent draws divided by a non-random constant, the rules we covered in <a href="../prob/random-variables.html#sec-mean-var-eqs" class="quarto-xref"><span>Section 9.4</span></a> apply.</p>
 <p>Applying the concepts we have learned, we can show that:</p>
 <p><span class="math display">\[
 \mathrm{E}[\bar{X}] = p
@@ -801,7 +824,7 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(p<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> p))<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">1000</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.0158</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>or 1.5 percentage points. So even with large polls, for close elections, <span class="math inline">\(\bar{X}\)</span> can lead us astray if we don’t realize it is a random variable. Nonetheless, we can actually say more about how close we get to <span class="math inline">\(p\)</span>, and we do that in <a href="#sec-clt" class="quarto-xref"><span>Section 9.4.1</span></a>.</p>
+<p>or 1.5 percentage points. So even with large polls, for close elections, <span class="math inline">\(\bar{X}\)</span> can lead us astray if we don’t realize it is a random variable. Nonetheless, we can actually say more about how close we get to <span class="math inline">\(p\)</span>, and we do that in <a href="#sec-clt" class="quarto-xref"><span>Section 11.4.1</span></a>.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -812,20 +835,20 @@ Polling versus forecasting
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Before we continue, it’s important to clarify a practical issue related to forecasting an election. If a poll is conducted four months before the election, it is estimating the <span class="math inline">\(p\)</span> for that moment, and not for election day. The <span class="math inline">\(p\)</span> for election night might be different, as people’s opinions tend to fluctuate through time. Generally, the polls conducted the night before the election tend to be the most accurate, since opinions do not change significantly in a day. However, forecasters try to develop tools that model how opinions vary over time and aim to predict the election night results by taking into consideration these fluctuations. We will explore some approaches for doing this in <a href="hierarchical-models.html" class="quarto-xref"><span>Chapter 12</span></a>.</p>
+<p>Before we continue, it’s important to clarify a practical issue related to forecasting an election. If a poll is conducted four months before the election, it is estimating the <span class="math inline">\(p\)</span> for that moment, and not for election day. The <span class="math inline">\(p\)</span> for election night might be different, as people’s opinions tend to fluctuate through time. Generally, the polls conducted the night before the election tend to be the most accurate, since opinions do not change significantly in a day. However, forecasters try to develop tools that model how opinions vary over time and aim to predict the election night results by taking into consideration these fluctuations. We will explore some approaches for doing this in <a href="hierarchical-models.html" class="quarto-xref"><span>Chapter 14</span></a>.</p>
 </div>
 </div>
 </section>
-<section id="confidence-intervals" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="confidence-intervals"><span class="header-section-number">9.4</span> Confidence Intervals</h2>
+<section id="confidence-intervals" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="confidence-intervals"><span class="header-section-number">11.4</span> Confidence Intervals</h2>
 <p>Pollsters summarize uncertainty using a single, easy-to-interpret number called the <em>margin of error</em>. The margin of error, together with the estimate of the parameter, defines an interval that they are <em>confident</em> contains the true value. But what does <em>confident</em> actually mean?</p>
-<p>To connect this idea to a familiar challenge, recall the competition described in <a href="#sec-poll-sampling-models" class="quarto-xref"><span>Section 9.1</span></a>, where you were asked to report an interval for the true proportion <span class="math inline">\(p\)</span>. If your interval included the actual <span class="math inline">\(p\)</span>, you recovered half the cost of your poll and advanced to the next round. A guaranteed way to move on would be to report a very wide interval, say <span class="math inline">\([0,1]\)</span>, which is certain to contain <span class="math inline">\(p\)</span>. But such an interval is useless because it conveys no information, and you would lose to someone submitting a narrower one. Similarly, an election forecaster who predicts that the spread will be between −100% and 100% would not be taken seriously. Even an interval between −10% and 10% would be too vague to be meaningful.</p>
+<p>To connect this idea to a familiar challenge, recall the competition described in <a href="#sec-poll-sampling-models" class="quarto-xref"><span>Section 11.1</span></a>, where you were asked to report an interval for the true proportion <span class="math inline">\(p\)</span>. If your interval included the actual <span class="math inline">\(p\)</span>, you recovered half the cost of your poll and advanced to the next round. A guaranteed way to move on would be to report a very wide interval, say <span class="math inline">\([0,1]\)</span>, which is certain to contain <span class="math inline">\(p\)</span>. But such an interval is useless because it conveys no information, and you would lose to someone submitting a narrower one. Similarly, an election forecaster who predicts that the spread will be between −100% and 100% would not be taken seriously. Even an interval between −10% and 10% would be too vague to be meaningful.</p>
 <p>On the other hand, a very narrow interval is risky. A pollster who reports extremely tight intervals but frequently misses the true value will quickly lose credibility. The goal is to find a balance: intervals that are narrow enough to be informative, but wide enough to be reliable.</p>
 <p>Statistical theory provides a way to quantify precisely what we mean by <em>confidence</em>, using the probability framework developed earlier. Specifically, we can construct intervals for which we can compute the probability of containing the true parameter <span class="math inline">\(p\)</span>. When a pollster reports an estimate along with a <em>margin of error</em>, they are effectively reporting an interval with a 95% probability of containing the true parameter, known as a <strong>95% confidence interval</strong>.</p>
 <section id="sec-clt" class="level3">
 <h3 class="anchored" data-anchor-id="sec-clt">The Central Limit Theorem</h3>
-<p>In <a href="#sec-parameters-and-estimates" class="quarto-xref"><span>Section 9.2</span></a>, we introduced the sample average <span class="math inline">\(\bar{X}\)</span> as an estimate of the parameter <span class="math inline">\(p\)</span>, and we showed how to compute its standard error. However, to calculate probabilities, we need the <em>distribution</em> of <span class="math inline">\(\bar{X}\)</span>.</p>
-<p>In the <em>Probability</em> part of the book (<a href="../prob/sampling-models-and-clt.html#sec-clt-prob" class="quarto-xref"><span>Section 8.3</span></a>), we learned that when the sample size is large, the average of independent draws from a population is approximately normally distributed, regardless of the shape of the population. This is the <strong>Central Limit Theorem (CLT)</strong>. Because <span class="math inline">\(\bar{X}\)</span> is the average of independent draws, the CLT applies directly here, and it is the main tool used to construct confidence intervals.</p>
+<p>In <a href="#sec-parameters-and-estimates" class="quarto-xref"><span>Section 11.2</span></a>, we introduced the sample average <span class="math inline">\(\bar{X}\)</span> as an estimate of the parameter <span class="math inline">\(p\)</span>, and we showed how to compute its standard error. However, to calculate probabilities, we need the <em>distribution</em> of <span class="math inline">\(\bar{X}\)</span>.</p>
+<p>In the <em>Probability</em> part of the book (<a href="../prob/sampling-models-and-clt.html#sec-clt-prob" class="quarto-xref"><span>Section 10.3</span></a>), we learned that when the sample size is large, the average of independent draws from a population is approximately normally distributed, regardless of the shape of the population. This is the <strong>Central Limit Theorem (CLT)</strong>. Because <span class="math inline">\(\bar{X}\)</span> is the average of independent draws, the CLT applies directly here, and it is the main tool used to construct confidence intervals.</p>
 <p>Let’s use it to answer a concrete question:</p>
 <blockquote class="blockquote">
 <p>How likely is it that our sample estimate <span class="math inline">\(\bar{X}\)</span> is within 2% of the true population proportion <span class="math inline">\(p\)</span>?</p>
@@ -978,11 +1001,11 @@ z \times \sqrt{\bar{X}(1-\bar{X}) / N}.
 <h3 class="anchored" data-anchor-id="why-not-just-run-a-huge-poll">Why Not Just Run a Huge Poll?</h3>
 <p>If we surveyed 100,000 people, the margin of error would shrink to less than 0.3%. In principle, we can make the margin of error as small as we want by increasing <span class="math inline">\(N\)</span>.</p>
 <p>In practice, however, polling is limited not only by cost but also by <em>bias</em>. Real-world polls are rarely simple random samples. Some people do not respond, others misreport their preferences, and defining the population (for example, registered voters versus likely voters) is not straightforward.</p>
-<p>These imperfections introduce systematic errors that the margin of error does not capture. Historically, U.S. popular-vote polls have shown biases of about 2–3%. Understanding and modeling these biases is an essential part of modern election forecasting, a topic we return to in <a href="models.html" class="quarto-xref"><span>Chapter 10</span></a>.</p>
+<p>These imperfections introduce systematic errors that the margin of error does not capture. Historically, U.S. popular-vote polls have shown biases of about 2–3%. Understanding and modeling these biases is an essential part of modern election forecasting, a topic we return to in <a href="models.html" class="quarto-xref"><span>Chapter 12</span></a>.</p>
 </section>
 </section>
-<section id="exercises" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">9.5</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">11.5</span> Exercises</h2>
 <p>1. Suppose you poll a population in which a proportion <span class="math inline">\(p\)</span> of voters are Democrats and <span class="math inline">\(1-p\)</span> are Republicans. Your sample size is <span class="math inline">\(N=25\)</span>. Consider the random variable <span class="math inline">\(S\)</span>, which is the total number of Democrats in your sample. What is the expected value of this random variable? Hint: It’s a function of <span class="math inline">\(p\)</span>.</p>
 <p>2. What is the standard error of <span class="math inline">\(S\)</span>? Hint: It’s a function of <span class="math inline">\(p\)</span>.</p>
 <p>3. Consider the random variable <span class="math inline">\(S/N\)</span>. This is equivalent to the sample average, which we have been denoting as <span class="math inline">\(\bar{X}\)</span>. What is the expected value of the <span class="math inline">\(\bar{X}\)</span>? Hint: It’s a function of <span class="math inline">\(p\)</span>.</p>
@@ -1487,7 +1510,7 @@ z \times \sqrt{\bar{X}(1-\bar{X}) / N}.
   </div>
   <div class="nav-page nav-page-next">
       <a href="../inference/models.html" class="pagination-link" aria-label="Data-Driven Models">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

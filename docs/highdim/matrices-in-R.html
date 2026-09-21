@@ -8,7 +8,7 @@
 
 <meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
 
-<title>21&nbsp; Working with Matrices in R – Introduction to Behavioural Data Science</title>
+<title>23&nbsp; Working with Matrices in R – Introduction to Behavioural Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../highdim/intro-highdim.html">High Dimensional Data</a></li><li class="breadcrumb-item"><a href="../highdim/matrices-in-R.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../highdim/intro-highdim.html">High Dimensional Data</a></li><li class="breadcrumb-item"><a href="../highdim/matrices-in-R.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -195,8 +195,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summary Statistics</span></a>
+            <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioural Measurement</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -204,20 +204,43 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../behav/measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/simulating-measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,39 +255,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -279,45 +302,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hierarchical-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -332,45 +355,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linear Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/linear-model-framework.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/treatment-effect-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/association-not-causation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/multivariable-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -385,39 +408,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../highdim/intro-highdim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">High Dimensional Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/matrices-in-R.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/linear-algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/dimension-reduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/regularization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/latent-factor-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -432,51 +455,51 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../ml/intro-ml.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/notation-and-terminology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/evaluation-metrics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/conditionals-and-smoothing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/resampling-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/ml-in-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -497,9 +520,9 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-matrix-notation" id="toc-sec-matrix-notation" class="nav-link active" data-scroll-target="#sec-matrix-notation"><span class="header-section-number">21.1</span> Notation</a></li>
-  <li><a href="#sec-mnist" id="toc-sec-mnist" class="nav-link" data-scroll-target="#sec-mnist"><span class="header-section-number">21.2</span> Case study: MNIST</a></li>
-  <li><a href="#matrix-operations-in-r" id="toc-matrix-operations-in-r" class="nav-link" data-scroll-target="#matrix-operations-in-r"><span class="header-section-number">21.3</span> Matrix Operations in R</a>
+  <li><a href="#sec-matrix-notation" id="toc-sec-matrix-notation" class="nav-link active" data-scroll-target="#sec-matrix-notation"><span class="header-section-number">23.1</span> Notation</a></li>
+  <li><a href="#sec-mnist" id="toc-sec-mnist" class="nav-link" data-scroll-target="#sec-mnist"><span class="header-section-number">23.2</span> Case study: MNIST</a></li>
+  <li><a href="#matrix-operations-in-r" id="toc-matrix-operations-in-r" class="nav-link" data-scroll-target="#matrix-operations-in-r"><span class="header-section-number">23.3</span> Matrix Operations in R</a>
   <ul class="collapse">
   <li><a href="#sec-creating-a-matrix" id="toc-sec-creating-a-matrix" class="nav-link" data-scroll-target="#sec-creating-a-matrix">Creating a matrix</a></li>
   <li><a href="#dimensions-of-a-matrix" id="toc-dimensions-of-a-matrix" class="nav-link" data-scroll-target="#dimensions-of-a-matrix">Dimensions of a matrix</a></li>
@@ -509,13 +532,13 @@ window.Quarto = {
   <li><a href="#sec-conditional-filtering" id="toc-sec-conditional-filtering" class="nav-link" data-scroll-target="#sec-conditional-filtering">Conditional filtering</a></li>
   <li><a href="#sec-indexing-matrices" id="toc-sec-indexing-matrices" class="nav-link" data-scroll-target="#sec-indexing-matrices">Indexing with matrices</a></li>
   </ul></li>
-  <li><a href="#sec-vectorization-for-matrices" id="toc-sec-vectorization-for-matrices" class="nav-link" data-scroll-target="#sec-vectorization-for-matrices"><span class="header-section-number">21.4</span> Vectorization for matrices</a>
+  <li><a href="#sec-vectorization-for-matrices" id="toc-sec-vectorization-for-matrices" class="nav-link" data-scroll-target="#sec-vectorization-for-matrices"><span class="header-section-number">23.4</span> Vectorization for matrices</a>
   <ul class="collapse">
   <li><a href="#matrixvector-operations" id="toc-matrixvector-operations" class="nav-link" data-scroll-target="#matrixvector-operations">Matrix–vector operations</a></li>
   <li><a href="#the-sweep-function" id="toc-the-sweep-function" class="nav-link" data-scroll-target="#the-sweep-function">The <code>sweep</code> function</a></li>
   <li><a href="#matrix-matrix-operations" id="toc-matrix-matrix-operations" class="nav-link" data-scroll-target="#matrix-matrix-operations">Matrix-matrix operations</a></li>
   </ul></li>
-  <li><a href="#sec-motivating-tasks" id="toc-sec-motivating-tasks" class="nav-link" data-scroll-target="#sec-motivating-tasks"><span class="header-section-number">21.5</span> Motivating tasks</a>
+  <li><a href="#sec-motivating-tasks" id="toc-sec-motivating-tasks" class="nav-link" data-scroll-target="#sec-motivating-tasks"><span class="header-section-number">23.5</span> Motivating tasks</a>
   <ul class="collapse">
   <li><a href="#visualize-the-original-image" id="toc-visualize-the-original-image" class="nav-link" data-scroll-target="#visualize-the-original-image">Visualize the original image</a></li>
   <li><a href="#do-some-digits-require-more-ink-to-write-than-others" id="toc-do-some-digits-require-more-ink-to-write-than-others" class="nav-link" data-scroll-target="#do-some-digits-require-more-ink-to-write-than-others">Do some digits require more ink to write than others?</a></li>
@@ -524,16 +547,16 @@ window.Quarto = {
   <li><a href="#binarize-the-data" id="toc-binarize-the-data" class="nav-link" data-scroll-target="#binarize-the-data">Binarize the data</a></li>
   <li><a href="#standardize-the-digits" id="toc-standardize-the-digits" class="nav-link" data-scroll-target="#standardize-the-digits">Standardize the digits</a></li>
   </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">21.6</span> Exercises</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">23.6</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/highdim/matrices-in-R.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../highdim/intro-highdim.html">High Dimensional Data</a></li><li class="breadcrumb-item"><a href="../highdim/matrices-in-R.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../highdim/intro-highdim.html">High Dimensional Data</a></li><li class="breadcrumb-item"><a href="../highdim/matrices-in-R.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></h1>
+<h1 class="title"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></h1>
 </div>
 
 
@@ -553,9 +576,9 @@ window.Quarto = {
 <p>When the number of variables associated with each observation is large, and they can all be represented as numbers, it is often more convenient to store the data in a matrix and perform the analysis using linear algebra, rather than storing the data in a data frame and using <strong>tidyverse</strong> or <strong>data.table</strong> functions. Matrix operations form the computational foundation for many applications of linear algebra in data analysis.</p>
 <p>In fact, many of the most widely used machine learning algorithms, including linear regression, principal component analysis, neural networks, and deep learning, are built around linear algebra concepts, and their implementations rely heavily on efficient matrix operations. Becoming fluent in creating, manipulating, and interpreting matrices in R will make it easier to understand and implement these methods in practice.</p>
 <p>Although we introduce the mathematical framework of linear algebra in the next chapter, the examples we use there rely on being able to work with matrices in R. Therefore, before diving into the mathematical concepts, we begin here with the tools needed to create and operate on matrices in R.</p>
-<p>In <a href="#sec-motivating-tasks" class="quarto-xref"><span>Section 21.5</span></a>, at the end of the chapter, we present motivating examples and specific practical tasks that commonly arise in machine learning workflows, such as centering and scaling variables, computing distances, and applying linear transformations. These tasks can be completed efficiently using matrix operations, and the skills you develop in the earlier sections of the chapter will help you solve them. If you would like to understand the motivation for learning the matrix operations introduced in the previous sections, you may find it helpful to read <a href="#sec-motivating-tasks" class="quarto-xref"><span>Section 21.5</span></a> first.</p>
-<section id="sec-matrix-notation" class="level2" data-number="21.1">
-<h2 data-number="21.1" class="anchored" data-anchor-id="sec-matrix-notation"><span class="header-section-number">21.1</span> Notation</h2>
+<p>In <a href="#sec-motivating-tasks" class="quarto-xref"><span>Section 23.5</span></a>, at the end of the chapter, we present motivating examples and specific practical tasks that commonly arise in machine learning workflows, such as centering and scaling variables, computing distances, and applying linear transformations. These tasks can be completed efficiently using matrix operations, and the skills you develop in the earlier sections of the chapter will help you solve them. If you would like to understand the motivation for learning the matrix operations introduced in the previous sections, you may find it helpful to read <a href="#sec-motivating-tasks" class="quarto-xref"><span>Section 23.5</span></a> first.</p>
+<section id="sec-matrix-notation" class="level2" data-number="23.1">
+<h2 data-number="23.1" class="anchored" data-anchor-id="sec-matrix-notation"><span class="header-section-number">23.1</span> Notation</h2>
 <p>A matrix is a two-dimensional object defined by its number of rows and columns. In data analysis, it is common to organize data so that each row represents an observation and each column represents a variable measured on those observations. This structure allows us to perform computations across observations or variables using matrix operations, which are both efficient and conceptually aligned with the linear algebra techniques introduced in the next chapters.</p>
 <p>Note that matrices are a special case of <code>array</code>s, which can have more than two dimensions. For the concepts and applications covered in this book, matrices are sufficient. However, arrays are useful in more advanced settings, such as tensor-based computations, where data often have three or more dimensions.</p>
 <div class="callout callout-style-simple callout-note">
@@ -611,8 +634,8 @@ x_{ip}
 </div>
 </div>
 </section>
-<section id="sec-mnist" class="level2" data-number="21.2">
-<h2 data-number="21.2" class="anchored" data-anchor-id="sec-mnist"><span class="header-section-number">21.2</span> Case study: MNIST</h2>
+<section id="sec-mnist" class="level2" data-number="23.2">
+<h2 data-number="23.2" class="anchored" data-anchor-id="sec-mnist"><span class="header-section-number">23.2</span> Case study: MNIST</h2>
 <p>The first step in handling mail received in the post office is to sort letters by zip code:</p>
 <p><img src="../ml/img/how-to-write-a-address-on-an-envelope-how-to-write-the-address-on-an-envelope-write-address-on-envelope-india-finishedenvelope-x69070.png" class="img-fluid" style="display:block; margin:auto;;width:40.0%"></p>
 <p>In the Machine Learning part of this book, we will describe how we can build computer algorithms to read handwritten digits, which robots then use to sort the letters. To do this, we first need to collect data, which in this case is a high-dimensional dataset and best stored in a matrix.</p>
@@ -661,8 +684,8 @@ x_{ip}
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> mnist<span class="sc">$</span>train<span class="sc">$</span>labels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="matrix-operations-in-r" class="level2" data-number="21.3">
-<h2 data-number="21.3" class="anchored" data-anchor-id="matrix-operations-in-r"><span class="header-section-number">21.3</span> Matrix Operations in R</h2>
+<section id="matrix-operations-in-r" class="level2" data-number="23.3">
+<h2 data-number="23.3" class="anchored" data-anchor-id="matrix-operations-in-r"><span class="header-section-number">23.3</span> Matrix Operations in R</h2>
 <p>Before we define and work through the tasks designed to teach matrix operations, we begin by reviewing some basic matrix functionality in R.</p>
 <section id="sec-creating-a-matrix" class="level3">
 <h3 class="anchored" data-anchor-id="sec-creating-a-matrix">Creating a matrix</h3>
@@ -882,8 +905,8 @@ x_{ip}
 </div>
 </section>
 </section>
-<section id="sec-vectorization-for-matrices" class="level2" data-number="21.4">
-<h2 data-number="21.4" class="anchored" data-anchor-id="sec-vectorization-for-matrices"><span class="header-section-number">21.4</span> Vectorization for matrices</h2>
+<section id="sec-vectorization-for-matrices" class="level2" data-number="23.4">
+<h2 data-number="23.4" class="anchored" data-anchor-id="sec-vectorization-for-matrices"><span class="header-section-number">23.4</span> Vectorization for matrices</h2>
 <p>Vectorization is one of the main reasons R is so efficient for numerical computation with data. Many operations that would otherwise require explicit loops can instead be applied directly to entire matrices or vectors, making the code both faster and easier to read.</p>
 <section id="matrixvector-operations" class="level3">
 <h3 class="anchored" data-anchor-id="matrixvector-operations">Matrix–vector operations</h3>
@@ -962,15 +985,15 @@ X_{n1}-a_n&amp;\dots &amp; X_{np}-a_n
 </section>
 <section id="matrix-matrix-operations" class="level3">
 <h3 class="anchored" data-anchor-id="matrix-matrix-operations">Matrix-matrix operations</h3>
-<p>In R, if you add, subtract, multiply, or divide two matrices, the operation is done element-wise. For example, if two matrices are stored in <code>x</code> and <code>y</code>, then <code>x*y</code> does not result in matrix multiplication as defined in <a href="linear-algebra.html#sec-matrix-mult" class="quarto-xref"><span>Section 22.1</span></a>. Instead, the entry in row <span class="math inline">\(i\)</span> and column <span class="math inline">\(j\)</span> of this product is the product of the entry in row <span class="math inline">\(i\)</span> and column <span class="math inline">\(j\)</span> of <code>x</code> and <code>y</code>, respectively.</p>
+<p>In R, if you add, subtract, multiply, or divide two matrices, the operation is done element-wise. For example, if two matrices are stored in <code>x</code> and <code>y</code>, then <code>x*y</code> does not result in matrix multiplication as defined in <a href="linear-algebra.html#sec-matrix-mult" class="quarto-xref"><span>Section 24.1</span></a>. Instead, the entry in row <span class="math inline">\(i\)</span> and column <span class="math inline">\(j\)</span> of this product is the product of the entry in row <span class="math inline">\(i\)</span> and column <span class="math inline">\(j\)</span> of <code>x</code> and <code>y</code>, respectively.</p>
 </section>
 </section>
-<section id="sec-motivating-tasks" class="level2" data-number="21.5">
-<h2 data-number="21.5" class="anchored" data-anchor-id="sec-motivating-tasks"><span class="header-section-number">21.5</span> Motivating tasks</h2>
+<section id="sec-motivating-tasks" class="level2" data-number="23.5">
+<h2 data-number="23.5" class="anchored" data-anchor-id="sec-motivating-tasks"><span class="header-section-number">23.5</span> Motivating tasks</h2>
 <p>To motivate the use of matrices in R, we will pose six tasks that illustrate how matrix operations can help with data exploration of the handwritten digits dataset. Each task highlights a basic matrix operation that is commonly used in R. By seeing how these operations can be implemented with fast and simple code, you will gain hands-on experience with the kinds of computations that arise frequently in high-dimensional data analysis. The primary goal of these tasks is to help you learn how matrix operations work in practice.</p>
 <section id="visualize-the-original-image" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="visualize-the-original-image">Visualize the original image</h3>
-<p>The pixel intensities are provided as rows in a matrix. Using what we learned in <a href="#sec-creating-a-matrix" class="quarto-xref"><span>Section 21.3.1</span></a>, we can convert each row into a <span class="math inline">\(28 \times 28\)</span> matrix that we can visualize as an image. As an example, we will use the third observation. From the label, we know this is a 4:</p>
+<p>The pixel intensities are provided as rows in a matrix. Using what we learned in <a href="#sec-creating-a-matrix" class="quarto-xref"><span>Section 23.3.1</span></a>, we can convert each row into a <span class="math inline">\(28 \times 28\)</span> matrix that we can visualize as an image. As an example, we will use the third observation. From the label, we know this is a 4:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">3</span>]</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -998,7 +1021,7 @@ X_{n1}-a_n&amp;\dots &amp; X_{np}-a_n
 <section id="do-some-digits-require-more-ink-to-write-than-others" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="do-some-digits-require-more-ink-to-write-than-others">Do some digits require more ink to write than others?</h3>
 <p>Let’s study the distribution of the total pixel darkness and how it varies by digits.</p>
-<p>We can use what we learned in <a href="#sec-row-col-summaries" class="quarto-xref"><span>Section 21.3.5</span></a> to compute this average for each observation and stratify the values by digit using a boxplot:</p>
+<p>We can use what we learned in <a href="#sec-row-col-summaries" class="quarto-xref"><span>Section 23.3.5</span></a> to compute this average for each observation and stratify the values by digit using a boxplot:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>avg <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(x)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(avg <span class="sc">~</span> y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1015,7 +1038,7 @@ X_{n1}-a_n&amp;\dots &amp; X_{np}-a_n
 <section id="are-some-pixels-uninformative" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="are-some-pixels-uninformative">Are some pixels uninformative?</h3>
 <p>We now examine the variation of each pixel across digits to identify and remove those that provide little information for classification. Pixels that show little variation across images do not help distinguish between digits and can safely be excluded. In many cases, removing uninformative features not only simplifies the analysis but also reduces the dataset’s size substantially, improving computational speed.</p>
-<p>Using what we learned in Sections <a href="#sec-row-col-summaries" class="quarto-xref"><span>21.3.5</span></a> and <a href="#sec-conditional-filtering" class="quarto-xref"><span>21.3.6</span></a>, we can efficiently compute and filter out such columns. To quantify each pixel’s variability, we calculate its standard deviation across all images using the <code>colSds</code> function from the <strong>matrixStats</strong> package:</p>
+<p>Using what we learned in Sections <a href="#sec-row-col-summaries" class="quarto-xref"><span>23.3.5</span></a> and <a href="#sec-conditional-filtering" class="quarto-xref"><span>23.3.6</span></a>, we can efficiently compute and filter out such columns. To quantify each pixel’s variability, we calculate its standard deviation across all images using the <code>colSds</code> function from the <strong>matrixStats</strong> package:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>sds <span class="ot">&lt;-</span> <span class="fu">colSds</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1030,7 +1053,7 @@ X_{n1}-a_n&amp;\dots &amp; X_{np}-a_n
 </div>
 </div>
 </div>
-<p>This makes sense since we don’t write in some parts of the box. Here is the variance plotted by location after using what we learned in <a href="#sec-creating-a-matrix" class="quarto-xref"><span>Section 21.3.1</span></a> to create a <span class="math inline">\(28 \times 28\)</span> matrix:</p>
+<p>This makes sense since we don’t write in some parts of the box. Here is the variance plotted by location after using what we learned in <a href="#sec-creating-a-matrix" class="quarto-xref"><span>Section 23.3.1</span></a> to create a <span class="math inline">\(28 \times 28\)</span> matrix:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">28</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">28</span>, <span class="fu">matrix</span>(sds, <span class="dv">28</span>, <span class="dv">28</span>)[, <span class="dv">28</span><span class="sc">:</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1064,7 +1087,7 @@ X_{n1}-a_n&amp;\dots &amp; X_{np}-a_n
 </div>
 </div>
 </div>
-<p>This shows a clear dichotomy, which is explained as parts of the image with ink and parts without. If we think that values below, say, 50 are smudges, we can quickly make them zero using what we learned in <a href="#sec-indexing-matrices" class="quarto-xref"><span>Section 21.3.7</span></a>:</p>
+<p>This shows a clear dichotomy, which is explained as parts of the image with ink and parts without. If we think that values below, say, 50 are smudges, we can quickly make them zero using what we learned in <a href="#sec-indexing-matrices" class="quarto-xref"><span>Section 23.3.7</span></a>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>new_x <span class="ot">&lt;-</span> x</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>new_x[new_x <span class="sc">&lt;</span> <span class="dv">50</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1072,13 +1095,13 @@ X_{n1}-a_n&amp;\dots &amp; X_{np}-a_n
 </section>
 <section id="binarize-the-data" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="binarize-the-data">Binarize the data</h3>
-<p>The histogram above seems to suggest that this data is mostly binary. A pixel either has ink or does not. Applying what we learned in <a href="#sec-indexing-matrices" class="quarto-xref"><span>Section 21.3.7</span></a>, we can binarize the data using just matrix operations:</p>
+<p>The histogram above seems to suggest that this data is mostly binary. A pixel either has ink or does not. Applying what we learned in <a href="#sec-indexing-matrices" class="quarto-xref"><span>Section 23.3.7</span></a>, we can binarize the data using just matrix operations:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>bin_x <span class="ot">&lt;-</span> x</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>bin_x[bin_x <span class="sc">&lt;</span> <span class="dv">255</span><span class="sc">/</span><span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>bin_x[bin_x <span class="sc">&gt;</span> <span class="dv">255</span><span class="sc">/</span><span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can also convert to a matrix of logicals and then coerce to numbers using what we learned in <a href="#sec-vectorization-for-matrices" class="quarto-xref"><span>Section 21.4</span></a>:</p>
+<p>We can also convert to a matrix of logicals and then coerce to numbers using what we learned in <a href="#sec-vectorization-for-matrices" class="quarto-xref"><span>Section 23.4</span></a>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>bin_x <span class="ot">&lt;-</span> (x <span class="sc">&gt;</span> <span class="dv">255</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1086,7 +1109,7 @@ X_{n1}-a_n&amp;\dots &amp; X_{np}-a_n
 <section id="standardize-the-digits" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="standardize-the-digits">Standardize the digits</h3>
 <p>Finally, we will scale each column to have the same average and standard deviation.</p>
-<p>Using what we learned in <a href="#sec-vectorization-for-matrices" class="quarto-xref"><span>Section 21.4</span></a> implies that we can scale each row of a matrix as follows:</p>
+<p>Using what we learned in <a href="#sec-vectorization-for-matrices" class="quarto-xref"><span>Section 23.4</span></a> implies that we can scale each row of a matrix as follows:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>(x <span class="sc">-</span> <span class="fu">rowMeans</span>(x))<span class="sc">/</span><span class="fu">rowSds</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1102,8 +1125,8 @@ X_{n1}-a_n&amp;\dots &amp; X_{np}-a_n
 <p>This version can be faster for large matrices, though it’s less explicit about what’s happening.</p>
 </section>
 </section>
-<section id="exercises" class="level2" data-number="21.6">
-<h2 data-number="21.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">21.6</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="23.6">
+<h2 data-number="23.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">23.6</span> Exercises</h2>
 <p>1. Create a 100 by 10 matrix of randomly generated normal numbers. Put the result in <code>x</code>.</p>
 <p>2. Apply the three R functions that give you the dimension of <code>x</code>, the number of rows of <code>x</code>, and the number of columns of <code>x</code>, respectively.</p>
 <p>3. Add the scalar 1 to row 1, the scalar 2 to row 2, and so on, to the matrix <code>x</code>.</p>
@@ -1529,7 +1552,7 @@ X_{n1}-a_n&amp;\dots &amp; X_{np}-a_n
   </div>
   <div class="nav-page nav-page-next">
       <a href="../highdim/linear-algebra.html" class="pagination-link" aria-label="Applied Linear Algebra">
-        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

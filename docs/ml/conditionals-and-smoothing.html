@@ -8,7 +8,7 @@
 
 <meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
 
-<title>28&nbsp; Conditional Expectations and Smoothing – Introduction to Behavioural Data Science</title>
+<title>30&nbsp; Conditional Expectations and Smoothing – Introduction to Behavioural Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ml/intro-ml.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../ml/conditionals-and-smoothing.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ml/intro-ml.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../ml/conditionals-and-smoothing.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -195,8 +195,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summary Statistics</span></a>
+            <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioural Measurement</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -204,20 +204,43 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../behav/measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/simulating-measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,39 +255,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -279,45 +302,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hierarchical-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -332,45 +355,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linear Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/linear-model-framework.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/treatment-effect-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/association-not-causation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/multivariable-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -385,39 +408,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../highdim/intro-highdim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">High Dimensional Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/matrices-in-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/linear-algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/dimension-reduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/regularization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/latent-factor-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -432,51 +455,51 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../ml/intro-ml.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/notation-and-terminology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/evaluation-metrics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/conditionals-and-smoothing.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/resampling-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/ml-in-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -497,30 +520,30 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#conditional-probabilities-and-expectations" id="toc-conditional-probabilities-and-expectations" class="nav-link active" data-scroll-target="#conditional-probabilities-and-expectations"><span class="header-section-number">28.1</span> Conditional probabilities and expectations</a></li>
-  <li><a href="#conditional-expectations-minimize-the-squared-loss-function" id="toc-conditional-expectations-minimize-the-squared-loss-function" class="nav-link" data-scroll-target="#conditional-expectations-minimize-the-squared-loss-function"><span class="header-section-number">28.2</span> Conditional expectations minimize the squared loss function</a></li>
-  <li><a href="#sec-smoothing" id="toc-sec-smoothing" class="nav-link" data-scroll-target="#sec-smoothing"><span class="header-section-number">28.3</span> Smoothing</a>
+  <li><a href="#conditional-probabilities-and-expectations" id="toc-conditional-probabilities-and-expectations" class="nav-link active" data-scroll-target="#conditional-probabilities-and-expectations"><span class="header-section-number">30.1</span> Conditional probabilities and expectations</a></li>
+  <li><a href="#conditional-expectations-minimize-the-squared-loss-function" id="toc-conditional-expectations-minimize-the-squared-loss-function" class="nav-link" data-scroll-target="#conditional-expectations-minimize-the-squared-loss-function"><span class="header-section-number">30.2</span> Conditional expectations minimize the squared loss function</a></li>
+  <li><a href="#sec-smoothing" id="toc-sec-smoothing" class="nav-link" data-scroll-target="#sec-smoothing"><span class="header-section-number">30.3</span> Smoothing</a>
   <ul class="collapse">
   <li><a href="#sec-two-or-seven" id="toc-sec-two-or-seven" class="nav-link" data-scroll-target="#sec-two-or-seven">Example: Swipe left or swipe right?</a></li>
   </ul></li>
-  <li><a href="#local-smoothing-methods" id="toc-local-smoothing-methods" class="nav-link" data-scroll-target="#local-smoothing-methods"><span class="header-section-number">28.4</span> Local Smoothing Methods</a>
+  <li><a href="#local-smoothing-methods" id="toc-local-smoothing-methods" class="nav-link" data-scroll-target="#local-smoothing-methods"><span class="header-section-number">30.4</span> Local Smoothing Methods</a>
   <ul class="collapse">
   <li><a href="#bin-smoothing" id="toc-bin-smoothing" class="nav-link" data-scroll-target="#bin-smoothing">Bin smoothing</a></li>
   <li><a href="#kernel-smoothers" id="toc-kernel-smoothers" class="nav-link" data-scroll-target="#kernel-smoothers">Kernel smoothers</a></li>
   <li><a href="#local-weighted-regression-loess" id="toc-local-weighted-regression-loess" class="nav-link" data-scroll-target="#local-weighted-regression-loess">Local weighted regression (loess)</a></li>
   <li><a href="#beware-of-default-smoothing-parameters" id="toc-beware-of-default-smoothing-parameters" class="nav-link" data-scroll-target="#beware-of-default-smoothing-parameters">Beware of default smoothing parameters</a></li>
   </ul></li>
-  <li><a href="#sec-smoothing-ml-connection" id="toc-sec-smoothing-ml-connection" class="nav-link" data-scroll-target="#sec-smoothing-ml-connection"><span class="header-section-number">28.5</span> Connecting smoothing to machine learning</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">28.6</span> Exercises</a></li>
+  <li><a href="#sec-smoothing-ml-connection" id="toc-sec-smoothing-ml-connection" class="nav-link" data-scroll-target="#sec-smoothing-ml-connection"><span class="header-section-number">30.5</span> Connecting smoothing to machine learning</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">30.6</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/ml/conditionals-and-smoothing.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ml/intro-ml.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../ml/conditionals-and-smoothing.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ml/intro-ml.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../ml/conditionals-and-smoothing.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-ml-conditionals" class="quarto-section-identifier"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></h1>
+<h1 class="title"><span id="sec-ml-conditionals" class="quarto-section-identifier"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></h1>
 </div>
 
 
@@ -538,14 +561,14 @@ window.Quarto = {
 
 
 <p>In machine learning applications, we can rarely predict outcomes perfectly. Spam filters miss obvious junk mail, Siri mishears words, and sometimes your bank incorrectly flags a legitimate purchase as fraud. The main reason these mistakes occur is that <em>perfect prediction is often impossible</em>. In most real datasets, we find groups of observations that share identical predictor values but have different outcomes. Because a prediction rule is a function, identical inputs must produce identical outputs. So whenever the same predictor values occur with different outcomes, as in the previous chapter, where both males and females can be exactly the same height, no algorithm can be correct for all such cases.</p>
-<p>But this does not mean we can’t build useful algorithms, ones far better than guessing and often better than human experts. To do this optimally, we use the probabilistic framework introduced in <a href="../linear-models/regression.html#sec-conditional-expectation" class="quarto-xref"><span>Section 15.3</span></a>. Even if individual outcomes differ, we assume that observations with the same predictor values share the <em>same underlying probability</em> of belonging to each class. For categorical outcomes, this leads naturally to modeling quantities such as</p>
+<p>But this does not mean we can’t build useful algorithms, ones far better than guessing and often better than human experts. To do this optimally, we use the probabilistic framework introduced in <a href="../linear-models/regression.html#sec-conditional-expectation" class="quarto-xref"><span>Section 17.3</span></a>. Even if individual outcomes differ, we assume that observations with the same predictor values share the <em>same underlying probability</em> of belonging to each class. For categorical outcomes, this leads naturally to modeling quantities such as</p>
 <p><span class="math display">\[
 \Pr(Y=1 \mid X=x),
 \]</span></p>
 <p>which summarizes the best possible predictions we can hope to make.</p>
 <p>This brings us to the concept of <em>smoothing</em>. In practice, these conditional probabilities are unknown and must be estimated from noisy data. Smoothing, also known as <em>curve fitting</em> or <em>low-pass filtering</em>, is a general technique for uncovering underlying trends when the exact shape of the trend is not known. The idea is that while the true relationship between predictors and outcomes varies smoothly, the data themselves include random fluctuations. Smoothing methods exploit this smoothness to estimate the underlying pattern, providing stable and interpretable approximations to quantities like <span class="math inline">\(\Pr(Y=1 \mid X=x)\)</span> that we rely on for machine learning algorithms. In fact, many of the most widely used machine learning algorithms can be viewed, either directly or indirectly, as smoothing procedures, which is why smoothing is a foundational concept in this field.</p>
-<section id="conditional-probabilities-and-expectations" class="level2" data-number="28.1">
-<h2 data-number="28.1" class="anchored" data-anchor-id="conditional-probabilities-and-expectations"><span class="header-section-number">28.1</span> Conditional probabilities and expectations</h2>
+<section id="conditional-probabilities-and-expectations" class="level2" data-number="30.1">
+<h2 data-number="30.1" class="anchored" data-anchor-id="conditional-probabilities-and-expectations"><span class="header-section-number">30.1</span> Conditional probabilities and expectations</h2>
 <p>We use the notation <span class="math inline">\((X_1 = x_1,\dots,X_p=x_p)\)</span> to represent the fact that we have observed values <span class="math inline">\(x_1,\dots,x_p\)</span> for covariates <span class="math inline">\(X_1, \dots, X_p\)</span>. This does not imply that the outcome <span class="math inline">\(Y\)</span> will take a specific value. Instead, it implies a specific probability. In particular, we denote the <em>conditional probabilities</em> for each class <span class="math inline">\(k\)</span> with:</p>
 <p><span class="math display">\[
 \mathrm{Pr}(Y=k \mid X_1 = x_1,\dots,X_p=x_p), \, \mbox{for}\,k=1,\dots,K.
@@ -570,7 +593,7 @@ p_k(\mathbf{x}) = \mathrm{Pr}(Y=k \mid \mathbf{X}=\mathbf{x}), \, \mbox{for}\, k
 <p>In machine learning, we refer to this as <em>Bayes’ Rule</em>. But this is a theoretical rule since, in practice, we don’t know <span class="math inline">\(p_k(\mathbf{x}), k=1,\dots,K\)</span>. In fact, estimating these conditional probabilities can be thought of as the main challenge of machine learning. The better our probability estimates <span class="math inline">\(\hat{p}_k(\mathbf{x})\)</span>, the better our predictor.</p>
 <p>So how well we predict depends on two things: 1) how close are the <span class="math inline">\(\max_k p_k(\mathbf{x})\)</span> to 1 or 0 (perfect certainty) and 2) how close our estimates <span class="math inline">\(\hat{p}_k(\mathbf{x})\)</span> are to <span class="math inline">\(p_k(\mathbf{x})\)</span>. We can’t do anything about the first restriction, as it is determined by the nature of the problem, so our energy goes into finding ways to best estimate conditional probabilities.</p>
 <p>The first restriction does imply that we have limits as to how well even the best possible algorithm can perform. You should get used to the idea that while in some challenges we will be able to achieve almost perfect accuracy—with digit readers, for example—in others, our success is restricted by the randomness of the process, such as medical diagnosis from biometric data.</p>
-<p>Keep in mind that defining our prediction by maximizing the probability is not always optimal in practice and depends on the context. As discussed in <a href="evaluation-metrics.html" class="quarto-xref"><span>Chapter 27</span></a>, sensitivity and specificity may differ in importance. But even in these cases, having a good estimate of the <span class="math inline">\(p_k(x), k=1,\dots,K\)</span> will suffice for us to build optimal prediction models, since we can control the balance between specificity and sensitivity however we wish. For instance, we can simply change the cutoffs used to predict one outcome or the other. In the plane example, we may ground the plane anytime the probability of malfunction is lower than 1 in a million, as opposed to the default 1/2 used when error types are equally undesired.</p>
+<p>Keep in mind that defining our prediction by maximizing the probability is not always optimal in practice and depends on the context. As discussed in <a href="evaluation-metrics.html" class="quarto-xref"><span>Chapter 29</span></a>, sensitivity and specificity may differ in importance. But even in these cases, having a good estimate of the <span class="math inline">\(p_k(x), k=1,\dots,K\)</span> will suffice for us to build optimal prediction models, since we can control the balance between specificity and sensitivity however we wish. For instance, we can simply change the cutoffs used to predict one outcome or the other. In the plane example, we may ground the plane anytime the probability of malfunction is lower than 1 in a million, as opposed to the default 1/2 used when error types are equally undesired.</p>
 <p>For binary data, you can think of the probability <span class="math inline">\(\mathrm{Pr}(Y=1 \mid \mathbf{X}=\mathbf{x})\)</span> as the proportion of 1s in the stratum of the population for which <span class="math inline">\(\mathbf{X}=\mathbf{x}\)</span>. Many of the algorithms we will learn can be applied to both categorical and continuous data due to the connection between <em>conditional probabilities</em> and <em>conditional expectations</em>.</p>
 <p>Because the expectation is the average of values <span class="math inline">\(y_1,\dots,y_n\)</span> in the population, in the case in which the <span class="math inline">\(y\)</span>s are 0 or 1, the expectation is equivalent to the probability of randomly picking a one since the average is simply the proportion of ones:</p>
 <p><span class="math display">\[
@@ -579,8 +602,8 @@ p_k(\mathbf{x}) = \mathrm{Pr}(Y=k \mid \mathbf{X}=\mathbf{x}), \, \mbox{for}\, k
 <p>This implies that the conditional probability is a conditional expectation. As a result, we often only use the expectation to denote both the conditional probability and the conditional expectation.</p>
 <p>Just like with categorical outcomes, in most applications, the same observed predictors do not guarantee the same continuous outcomes. Instead, we assume that the outcome follows the same conditional distribution. We will now explain why we use the conditional expectation to define our predictors.</p>
 </section>
-<section id="conditional-expectations-minimize-the-squared-loss-function" class="level2" data-number="28.2">
-<h2 data-number="28.2" class="anchored" data-anchor-id="conditional-expectations-minimize-the-squared-loss-function"><span class="header-section-number">28.2</span> Conditional expectations minimize the squared loss function</h2>
+<section id="conditional-expectations-minimize-the-squared-loss-function" class="level2" data-number="30.2">
+<h2 data-number="30.2" class="anchored" data-anchor-id="conditional-expectations-minimize-the-squared-loss-function"><span class="header-section-number">30.2</span> Conditional expectations minimize the squared loss function</h2>
 <p>The expected value has an attractive mathematical property: it minimizes the MSE. Specifically, of all possible predictions <span class="math inline">\(\hat{Y}\)</span>,</p>
 <p><span class="math display">\[
 \hat{Y} = \mathrm{E}[Y \mid \mathbf{X}=\mathbf{x}] \, \mbox{ minimizes } \, \mathrm{E}[ (\hat{Y} - Y)^2  \mid  \mathbf{X}=\mathbf{x}]
@@ -593,8 +616,8 @@ f(\mathbf{x}) \equiv \mathrm{E}[Y  \mid  \mathbf{X}=\mathbf{x} ]
 <p>This is easier said than done, since this function can take any shape and <span class="math inline">\(p\)</span> can be very large. Consider a case in which we only have one predictor <span class="math inline">\(x\)</span>. The expectation <span class="math inline">\(\mathrm{E}[Y  \mid  X=x]\)</span> can be any function of <span class="math inline">\(x\)</span>: a line, a parabola, a sine wave, a step function, anything. It gets even more complicated when we consider instances with large <span class="math inline">\(p\)</span>, in which case <span class="math inline">\(f(\mathbf{x})\)</span> is a function of a multidimensional vector <span class="math inline">\(\mathbf{x}\)</span>. For example, in our digits data, <span class="math inline">\(p = 784\)</span>!</p>
 <p>The main way in which competing machine learning algorithms differ is in their approach to estimating this conditional expectation. Because we must estimate such a flexible and potentially high-dimensional function from noisy, finite data, we need strategies that extract the underlying signal without being overwhelmed by randomness. A common and powerful idea is to assume that although the data themselves may look scattered, the <em>true</em> function <span class="math inline">\(f(\mathbf{x})\)</span> varies smoothly as <span class="math inline">\(\mathbf{x}\)</span> changes. This assumption allows us to borrow strength from nearby points and produce stable estimates even when exact predictor values are rarely repeated. This brings us to the concept of <em>smoothing</em>, one of the most fundamental tools in machine learning, underpinning many of the algorithms we will study next.</p>
 </section>
-<section id="sec-smoothing" class="level2" data-number="28.3">
-<h2 data-number="28.3" class="anchored" data-anchor-id="sec-smoothing"><span class="header-section-number">28.3</span> Smoothing</h2>
+<section id="sec-smoothing" class="level2" data-number="30.3">
+<h2 data-number="30.3" class="anchored" data-anchor-id="sec-smoothing"><span class="header-section-number">30.3</span> Smoothing</h2>
 <p>Smoothing is a core idea in machine learning and statistical modeling: when data are noisy, we often assume that the underlying trend changes gradually rather than jumping erratically from point to point. The goal of smoothing is to recover this hidden structure from the data.</p>
 <p>To motivate the idea, consider the plot below: the noise obscures the trend, but it does not destroy it. Our task is to uncover the trend from the noisy data.</p>
 <div class="cell" data-layout-align="center">
@@ -677,8 +700,8 @@ x_2 = -\hat{\beta}_0/\hat{\beta}_2  -\hat{\beta}_1/\hat{\beta}_2 x_1
 <p>We need something more flexible: a method that permits estimates with shapes other than a plane. Smoothing techniques permit this flexibility. We will start by describing nearest neighbor and kernel approaches. To understand why we cover this topic, remember that the concepts behind smoothing techniques are extremely useful in machine learning because conditional expectations/probabilities can be thought of as <em>trends</em> of unknown shapes that we need to estimate in the presence of uncertainty.</p>
 </section>
 </section>
-<section id="local-smoothing-methods" class="level2" data-number="28.4">
-<h2 data-number="28.4" class="anchored" data-anchor-id="local-smoothing-methods"><span class="header-section-number">28.4</span> Local Smoothing Methods</h2>
+<section id="local-smoothing-methods" class="level2" data-number="30.4">
+<h2 data-number="30.4" class="anchored" data-anchor-id="local-smoothing-methods"><span class="header-section-number">30.4</span> Local Smoothing Methods</h2>
 <p>To explain the main ideas behind smoothing concepts, we will focus first on a problem with just one predictor. We pick an example with a clear trend that is not linear:the 2008 US popular vote poll margin between Barack Obama and John McCain.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>polls_2008 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(day, margin)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -945,16 +968,16 @@ E[Y_i | X_i = x_i ] = \beta_0 + \beta_1 (x_i-x_0) + \beta_2 (x_i-x_0)^2 \mbox{  
 </div>
 </section>
 </section>
-<section id="sec-smoothing-ml-connection" class="level2" data-number="28.5">
-<h2 data-number="28.5" class="anchored" data-anchor-id="sec-smoothing-ml-connection"><span class="header-section-number">28.5</span> Connecting smoothing to machine learning</h2>
-<p>To see how smoothing relates to machine learning with a concrete example, consider again the example from <a href="#sec-two-or-seven" class="quarto-xref"><span>Section 28.3.1</span></a>. If we define the outcome <span class="math inline">\(Y = 1\)</span> for gestures that are right-swipes and <span class="math inline">\(Y=0\)</span> for gestures that are left-swipes, then we are interested in estimating the conditional probability:</p>
+<section id="sec-smoothing-ml-connection" class="level2" data-number="30.5">
+<h2 data-number="30.5" class="anchored" data-anchor-id="sec-smoothing-ml-connection"><span class="header-section-number">30.5</span> Connecting smoothing to machine learning</h2>
+<p>To see how smoothing relates to machine learning with a concrete example, consider again the example from <a href="#sec-two-or-seven" class="quarto-xref"><span>Section 30.3.1</span></a>. If we define the outcome <span class="math inline">\(Y = 1\)</span> for gestures that are right-swipes and <span class="math inline">\(Y=0\)</span> for gestures that are left-swipes, then we are interested in estimating the conditional probability:</p>
 <p><span class="math display">\[
 p(\mathbf{x}) = \mathrm{Pr}(Y=1 \mid X_1=x_1 , X_2 = x_2).
 \]</span></p>
-<p>with <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> the two predictors defined in <a href="#sec-two-or-seven" class="quarto-xref"><span>Section 28.3.1</span></a>. In this example, the 0s and 1s we observe are “noisy” because for some regions the probabilities <span class="math inline">\(p(\mathbf{x})\)</span> are not that close to 0 or 1. We therefore need to estimate <span class="math inline">\(p(\mathbf{x})\)</span>. Smoothing is an alternative to accomplishing this. In <a href="#sec-two-or-seven" class="quarto-xref"><span>Section 28.3.1</span></a>, we saw that logistic regression was not flexible enough to capture the non-linear nature of <span class="math inline">\(p(\mathbf{x})\)</span>, thus smoothing approaches provide an improvement. In <a href="resampling-methods.html#sec-knn-cv-intro" class="quarto-xref"><span>Section 29.1</span></a>, we describe a popular machine learning algorithm, k-nearest neighbors, which is based on the concept of smoothing.</p>
+<p>with <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> the two predictors defined in <a href="#sec-two-or-seven" class="quarto-xref"><span>Section 30.3.1</span></a>. In this example, the 0s and 1s we observe are “noisy” because for some regions the probabilities <span class="math inline">\(p(\mathbf{x})\)</span> are not that close to 0 or 1. We therefore need to estimate <span class="math inline">\(p(\mathbf{x})\)</span>. Smoothing is an alternative to accomplishing this. In <a href="#sec-two-or-seven" class="quarto-xref"><span>Section 30.3.1</span></a>, we saw that logistic regression was not flexible enough to capture the non-linear nature of <span class="math inline">\(p(\mathbf{x})\)</span>, thus smoothing approaches provide an improvement. In <a href="resampling-methods.html#sec-knn-cv-intro" class="quarto-xref"><span>Section 31.1</span></a>, we describe a popular machine learning algorithm, k-nearest neighbors, which is based on the concept of smoothing.</p>
 </section>
-<section id="exercises" class="level2" data-number="28.6">
-<h2 data-number="28.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">28.6</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="30.6">
+<h2 data-number="30.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">30.6</span> Exercises</h2>
 <p>1. Compute conditional probabilities for being Male for the <code>heights</code> dataset. Round the heights to the closest inch. Plot the estimated conditional probability <span class="math inline">\(P(x) = \mathrm{Pr}(\mbox{Male} | \mbox{height}=x)\)</span> for each <span class="math inline">\(x\)</span>.</p>
 <p>2. In the plot we just made, we see high variability for low values of height. This is because we have few data points in these strata. This time use the <code>quantile</code> function for quantiles <span class="math inline">\(0.1,0.2,\dots,0.9\)</span> and the <code>cut</code> function to ensure that each group has the same number of points. Hint: For any numeric vector <code>x</code>, you can create groups based on quantiles as we demonstrate below.</p>
 <div class="cell" data-layout-align="center">
@@ -1399,12 +1422,12 @@ p(\mathbf{x}) = \mathrm{Pr}(Y=1 \mid X_1=x_1 , X_2 = x_2).
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../ml/evaluation-metrics.html" class="pagination-link" aria-label="Performance Metrics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../ml/resampling-methods.html" class="pagination-link" aria-label="Resampling and Model Assessment">
-        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

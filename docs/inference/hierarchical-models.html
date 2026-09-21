@@ -8,7 +8,7 @@
 
 <meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
 
-<title>12&nbsp; Hierarchical Models – Introduction to Behavioural Data Science</title>
+<title>14&nbsp; Hierarchical Models – Introduction to Behavioural Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -149,7 +149,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../inference/intro-inference.html">Statistical Inference</a></li><li class="breadcrumb-item"><a href="../inference/hierarchical-models.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../inference/intro-inference.html">Statistical Inference</a></li><li class="breadcrumb-item"><a href="../inference/hierarchical-models.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -197,8 +197,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summary Statistics</span></a>
+            <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioural Measurement</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -206,20 +206,43 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../behav/measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/simulating-measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -234,39 +257,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -281,45 +304,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hierarchical-models.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -334,45 +357,45 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linear Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/linear-model-framework.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/treatment-effect-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/association-not-causation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/multivariable-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -387,39 +410,39 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../highdim/intro-highdim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">High Dimensional Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/matrices-in-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/linear-algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/dimension-reduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/regularization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/latent-factor-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -434,51 +457,51 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../ml/intro-ml.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/notation-and-terminology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/evaluation-metrics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/conditionals-and-smoothing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/resampling-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/ml-in-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -499,11 +522,11 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#case-study-election-forecasting" id="toc-case-study-election-forecasting" class="nav-link active" data-scroll-target="#case-study-election-forecasting"><span class="header-section-number">12.1</span> Case study: election forecasting</a></li>
-  <li><a href="#sec-general-bias" id="toc-sec-general-bias" class="nav-link" data-scroll-target="#sec-general-bias"><span class="header-section-number">12.2</span> Systematic polling error</a></li>
-  <li><a href="#mathematical-representations-of-the-hierarchical-model" id="toc-mathematical-representations-of-the-hierarchical-model" class="nav-link" data-scroll-target="#mathematical-representations-of-the-hierarchical-model"><span class="header-section-number">12.3</span> Mathematical representations of the hierarchical model</a></li>
-  <li><a href="#computing-a-posterior-probability" id="toc-computing-a-posterior-probability" class="nav-link" data-scroll-target="#computing-a-posterior-probability"><span class="header-section-number">12.4</span> Computing a posterior probability</a></li>
-  <li><a href="#predicting-the-electoral-college" id="toc-predicting-the-electoral-college" class="nav-link" data-scroll-target="#predicting-the-electoral-college"><span class="header-section-number">12.5</span> Predicting the electoral college</a>
+  <li><a href="#case-study-election-forecasting" id="toc-case-study-election-forecasting" class="nav-link active" data-scroll-target="#case-study-election-forecasting"><span class="header-section-number">14.1</span> Case study: election forecasting</a></li>
+  <li><a href="#sec-general-bias" id="toc-sec-general-bias" class="nav-link" data-scroll-target="#sec-general-bias"><span class="header-section-number">14.2</span> Systematic polling error</a></li>
+  <li><a href="#mathematical-representations-of-the-hierarchical-model" id="toc-mathematical-representations-of-the-hierarchical-model" class="nav-link" data-scroll-target="#mathematical-representations-of-the-hierarchical-model"><span class="header-section-number">14.3</span> Mathematical representations of the hierarchical model</a></li>
+  <li><a href="#computing-a-posterior-probability" id="toc-computing-a-posterior-probability" class="nav-link" data-scroll-target="#computing-a-posterior-probability"><span class="header-section-number">14.4</span> Computing a posterior probability</a></li>
+  <li><a href="#predicting-the-electoral-college" id="toc-predicting-the-electoral-college" class="nav-link" data-scroll-target="#predicting-the-electoral-college"><span class="header-section-number">14.5</span> Predicting the electoral college</a>
   <ul class="collapse">
   <li><a href="#organizing-the-data" id="toc-organizing-the-data" class="nav-link" data-scroll-target="#organizing-the-data">Organizing the data</a></li>
   <li><a href="#weighted-averages" id="toc-weighted-averages" class="nav-link" data-scroll-target="#weighted-averages">Weighted averages</a></li>
@@ -513,17 +536,17 @@ window.Quarto = {
   <li><a href="#regional-correlation" id="toc-regional-correlation" class="nav-link" data-scroll-target="#regional-correlation">Regional correlation</a></li>
   <li><a href="#final-results" id="toc-final-results" class="nav-link" data-scroll-target="#final-results">Final results</a></li>
   </ul></li>
-  <li><a href="#forecasting" id="toc-forecasting" class="nav-link" data-scroll-target="#forecasting"><span class="header-section-number">12.6</span> Forecasting</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">12.7</span> Exercises</a></li>
+  <li><a href="#forecasting" id="toc-forecasting" class="nav-link" data-scroll-target="#forecasting"><span class="header-section-number">14.6</span> Forecasting</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">14.7</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/inference/hierarchical-models.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../inference/intro-inference.html">Statistical Inference</a></li><li class="breadcrumb-item"><a href="../inference/hierarchical-models.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../inference/intro-inference.html">Statistical Inference</a></li><li class="breadcrumb-item"><a href="../inference/hierarchical-models.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-election-forecasting" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></h1>
+<h1 class="title"><span id="sec-election-forecasting" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></h1>
 </div>
 
 
@@ -541,8 +564,8 @@ window.Quarto = {
 
 
 <p>Hierarchical models are useful for quantifying different levels of variability or uncertainty. One can use them using a Bayesian or frequentist framework. However, in the frequentist framework, hierarchical models often extend a model with fixed parameters by treating those parameters as random, leading to a formulation with two distributions that resemble a prior and a sampling distribution in the Bayesian framework. This makes the resulting summaries very similar or even equal to what is obtained with a Bayesian context. A key difference between the Bayesian and the frequentist hierarchical model approach is that, in the latter, we use data to construct priors rather than treat priors as a quantification of prior expert knowledge. In this section, we illustrate the use of hierarchical models by describing a simplified version of the approach used by FiveThirtyEight to forecast the 2016 election.</p>
-<section id="case-study-election-forecasting" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="case-study-election-forecasting"><span class="header-section-number">12.1</span> Case study: election forecasting</h2>
+<section id="case-study-election-forecasting" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="case-study-election-forecasting"><span class="header-section-number">14.1</span> Case study: election forecasting</h2>
 <p>After the 2008 elections, several organizations besides FiveThirtyEight launched their own election forecasting teams that aggregated polling data and used statistical models to make predictions. However, in 2016, many forecasters greatly underestimated Trump’s chances of winning. The day before the election, the <em>New York Times</em> reported<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> the following probabilities for Hillary Clinton winning the electoral college, and thus the presidency:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -579,14 +602,14 @@ window.Quarto = {
 <p>Note that the Princeton Election Consortium (PEC) gave Trump less than 1% chance of winning, while the Huffington Post gave him a 2% chance. In contrast, FiveThirtyEight had Trump’s probability of winning at 29%, substantially higher than the others. In fact, four days before the election, FiveThirtyEight published an article titled <em>Trump Is Just A Normal Polling Error Behind Clinton</em><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
 <p>So why did FiveThirtyEight’s model perform so much better than others? How could PEC and Huffington Post get it so wrong if they were using the same data? In this chapter, we describe how FiveThirtyEight used a hierarchical model to correctly account for key sources of variability and outperform all other forecasters. For illustrative purposes, we will continue examining our popular vote example. In the final section, we will describe the more complex approach used to forecast the electoral college result.</p>
 </section>
-<section id="sec-general-bias" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="sec-general-bias"><span class="header-section-number">12.2</span> Systematic polling error</h2>
+<section id="sec-general-bias" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="sec-general-bias"><span class="header-section-number">14.2</span> Systematic polling error</h2>
 <p>In the previous chapter, we computed the posterior probability of Hillary Clinton winning the popular vote with a standard Bayesian analysis and found it to be very close to 100%. However, FiveThirtyEight gave her a 81.4% chance<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. What explains this difference? Below, we describe the <em>systematic polling error</em>, another source of variability, included in the FiveThirtyEight model, that accounts for the difference.</p>
 <p>After elections are over, one can look at the difference between the polling averages and the actual results. An important observation that our initial models did not take into account is that it is common to see a systematic polling error that affects most pollsters in the same way. Statisticians refer to this as a <em>bias</em>. The cause of this bias is unclear, but historical data show it fluctuates. In one election, polls may favor Democrats by 2%, the next Republicans by 1%, then show no bias, and later favor Republicans by 3%. In 2016, polls favored Democrats by 1-2%.</p>
 <p>Although we know this systematic polling error affects our polls, we have no way of knowing what this bias is until election night. So we can’t correct our polls accordingly. What we can do is include a term in our model that accounts for the variability.</p>
 </section>
-<section id="mathematical-representations-of-the-hierarchical-model" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="mathematical-representations-of-the-hierarchical-model"><span class="header-section-number">12.3</span> Mathematical representations of the hierarchical model</h2>
+<section id="mathematical-representations-of-the-hierarchical-model" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="mathematical-representations-of-the-hierarchical-model"><span class="header-section-number">14.3</span> Mathematical representations of the hierarchical model</h2>
 <p>Suppose we are collecting data from one pollster, and we assume there is no systematic error. The pollster collects several polls with a sample size of <span class="math inline">\(N\)</span>, so we observe several measurements of the spread <span class="math inline">\(Y_1, \dots, Y_J\)</span>. Suppose the real proportion for Hillary is <span class="math inline">\(p\)</span> and the spread is <span class="math inline">\(\theta\)</span>. The urn model theory tells us that these random variables are approximately normally distributed, with expected value <span class="math inline">\(\theta\)</span> and standard error <span class="math inline">\(2 \sqrt{p(1-p)/N}\)</span>:</p>
 <p><span class="math display">\[
 Y_j \sim \mbox{N}\left(\theta, \, 2\sqrt{p(1-p)/N}\right)
@@ -656,9 +679,9 @@ Y_{ij} | \, h_j, b &amp;\sim \mbox{N}\left(\theta + h_j, \, 2\sqrt{p(1-p)/N}\rig
 </ol>
 <p>Failing to include a term like <span class="math inline">\(b\)</span>, the election-level bias, led many forecasters to be overly confident in their predictions. The key point is that <span class="math inline">\(b\)</span> changes from one election to another but remains constant across all pollsters and polls <em>within</em> a single election. Because <span class="math inline">\(b\)</span> has no index, we cannot estimate <span class="math inline">\(\sigma_b\)</span> using data from only one election. Furthermore, this shared <span class="math inline">\(b\)</span> implies that all random variables <span class="math inline">\(Y_{ij}\)</span> within the same election are correlated, since they are influenced by the same underlying election-level bias.</p>
 </section>
-<section id="computing-a-posterior-probability" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="computing-a-posterior-probability"><span class="header-section-number">12.4</span> Computing a posterior probability</h2>
-<p>Now, let’s fit a model like the above to data. We will use <code>one_poll_per_pollster</code> data defined in <a href="models.html" class="quarto-xref"><span>Chapter 10</span></a>:</p>
+<section id="computing-a-posterior-probability" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="computing-a-posterior-probability"><span class="header-section-number">14.4</span> Computing a posterior probability</h2>
+<p>Now, let’s fit a model like the above to data. We will use <code>one_poll_per_pollster</code> data defined in <a href="models.html" class="quarto-xref"><span>Chapter 12</span></a>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>one_poll_per_pollster <span class="ot">&lt;-</span> polls <span class="sc">|&gt;</span> <span class="fu">group_by</span>(pollster) <span class="sc">|&gt;</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(enddate, <span class="at">n =</span> <span class="dv">1</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
@@ -687,8 +710,8 @@ Y_{ij} | \, h_j, b &amp;\sim \mbox{N}\left(\theta + h_j, \, 2\sqrt{p(1-p)/N}\rig
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.803</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="predicting-the-electoral-college" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="predicting-the-electoral-college"><span class="header-section-number">12.5</span> Predicting the electoral college</h2>
+<section id="predicting-the-electoral-college" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="predicting-the-electoral-college"><span class="header-section-number">14.5</span> Predicting the electoral college</h2>
 <p>Up to now, we have focused on the popular vote. However, in the United States, elections are not decided by the popular vote but rather by what is known as the <em>electoral college</em>. Each state gets a number of electoral votes that depends, in a somewhat complex way, on the population size of the state. In 2016, California, the largest state, had 55 electoral votes, while the smallest seven states and the District of Columbia had 3.</p>
 <p>With the exception of two states, Maine and Nebraska, electoral votes in U.S. presidential elections are awarded on a winner-takes-all basis. This means that if a candidate wins the popular vote in a state by even a single vote, they receive all of that state’s electoral votes. For example, winning California in 2016 by just one vote would secure all 55 of its electoral votes.</p>
 <p>This system can lead to scenarios where a candidate wins the national popular vote but loses the electoral college, as was the case in 1876, 1888, 2000, and 2016.</p>
@@ -750,7 +773,7 @@ Y_{ij} | \, h_j, b &amp;\sim \mbox{N}\left(\theta + h_j, \, 2\sqrt{p(1-p)/N}\rig
 <p><span class="math display">\[
 s_w = \sqrt{\frac{\sum_{i=1}^N w_i (Y_i - \bar{Y}_w)^2}{\frac{N-1}{N}\sum_{i=1}^N w_i}}
 \]</span></p>
-<p>We can use the formula learned in <a href="../prob/random-variables.html#sec-mean-var-eqs" class="quarto-xref"><span>Section 7.4</span></a> to derive the standard error for our weighted estimate:</p>
+<p>We can use the formula learned in <a href="../prob/random-variables.html#sec-mean-var-eqs" class="quarto-xref"><span>Section 9.4</span></a> to derive the standard error for our weighted estimate:</p>
 <p><span class="math display">\[
 \mathrm{SE}[\bar{Y}_w] = \frac{\sigma_h}{\sqrt{N_{\mbox{eff}}}} \mbox{ with } N_{\mbox{eff}} = \frac{\left(\sum_{i=1}^N w_i\right)^2}{\sum_{i=1}^N w_i^2}
 \]</span></p>
@@ -890,8 +913,8 @@ s_w = \sqrt{\frac{\sum_{i=1}^N w_i (Y_i - \bar{Y}_w)^2}{\frac{N-1}{N}\sum_{i=1}^
 </div>
 </section>
 </section>
-<section id="forecasting" class="level2" data-number="12.6">
-<h2 data-number="12.6" class="anchored" data-anchor-id="forecasting"><span class="header-section-number">12.6</span> Forecasting</h2>
+<section id="forecasting" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="forecasting"><span class="header-section-number">14.6</span> Forecasting</h2>
 <p>Forecasters aim to predict election outcomes well before election day, updating their projections as new polls are released. However, a key question remains: How informative are polls conducted weeks before the election about the final outcome? To address this, we examine how poll results vary over time and how this variability affects forecasting accuracy.</p>
 <p>To make sure the variability we observe is not due to pollster effects, let’s study data from just a single pollster:</p>
 <div class="cell" data-layout-align="center">
@@ -928,10 +951,10 @@ s_w = \sqrt{\frac{\sum_{i=1}^N w_i (Y_i - \bar{Y}_w)^2}{\frac{N-1}{N}\sum_{i=1}^
 </div>
 </div>
 <p>Some of the peaks and valleys in the data align with major events such as party conventions, which typically give candidates a temporary boost. If we generate the same plot for other pollsters, we find that these patterns are consistent across several of them. This suggests that any forecasting model should include a term to account for time effects. The variability of this term would itself depend on time, since as election day approaches, its standard deviation should decrease and approach zero.</p>
-<p>Pollsters try to estimate trends from these data and incorporate them into their predictions. We can model the time trend with a <em>smooth function</em> and then use this to improve predictions. There is a variety of methods for estimating trends, which we discuss in <a href="../ml/conditionals-and-smoothing.html#sec-smoothing" class="quarto-xref"><span>Section 28.3</span></a> in the Machine Learning part of the book.</p>
+<p>Pollsters try to estimate trends from these data and incorporate them into their predictions. We can model the time trend with a <em>smooth function</em> and then use this to improve predictions. There is a variety of methods for estimating trends, which we discuss in <a href="../ml/conditionals-and-smoothing.html#sec-smoothing" class="quarto-xref"><span>Section 30.3</span></a> in the Machine Learning part of the book.</p>
 </section>
-<section id="exercises" class="level2" data-number="12.7">
-<h2 data-number="12.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">12.7</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="14.7">
+<h2 data-number="14.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">14.7</span> Exercises</h2>
 <p>1. Create this table:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -957,7 +980,7 @@ s_w = \sqrt{\frac{\sum_{i=1}^N w_i (Y_i - \bar{Y}_w)^2}{\frac{N-1}{N}\sum_{i=1}^
 <p>6. Add two columns to the <code>cis</code> table by computing, for each poll, the difference between the predicted spread and the actual spread, and define a column <code>hit</code> that is true if the signs are the same. Call the object <code>resids</code>. Hint: Use the function <code>sign</code>.</p>
 <p>7. Create a plot like in exercise 5, but for the proportion of times the sign of the spread agreed with the election night result.</p>
 <p>8. In exercise 7, we see that for most states, the polls had it right 100% of the time. In only 9 states did the polls miss by more than 25% of the time. In particular, notice that in Wisconsin, every single poll got it wrong. In Pennsylvania and Michigan, more than 90% of the polls had the signs wrong. Make a histogram of the errors. What is the median of these errors?</p>
-<p>9. We see that at the state level, the median error was 3% in favor of Clinton. The distribution is not centered at 0, but at 0.03. This is related to the <em>general bias</em> described in <a href="#sec-general-bias" class="quarto-xref"><span>Section 12.2</span></a>. Create a boxplot to see if the bias was general to all states or if it affected some states differently. Use <code>filter(grade %in% c("A+","A","A-","B+") | is.na(grade))</code> to only include pollsters with high or unknown grades.</p>
+<p>9. We see that at the state level, the median error was 3% in favor of Clinton. The distribution is not centered at 0, but at 0.03. This is related to the <em>general bias</em> described in <a href="#sec-general-bias" class="quarto-xref"><span>Section 14.2</span></a>. Create a boxplot to see if the bias was general to all states or if it affected some states differently. Use <code>filter(grade %in% c("A+","A","A-","B+") | is.na(grade))</code> to only include pollsters with high or unknown grades.</p>
 <p>10. In April 2013, José Iglesias, a professional baseball player, was starting his career. He was performing exceptionally well, with an excellent <em>batting average</em> (AVG) of .450. The batting average statistic is one way of measuring success. Roughly speaking, it tells us the success rate when batting. José had 9 successes out of 20 tries. An AVG of .450 means José has been successful 45% of the times he has batted, which is rather high, historically speaking. In fact, no one has finished a season with an <code>AVG</code> of .400 or more since Ted Williams did it in 1941! We want to predict José’s batting average at the end of the season after players have had about 500 tries or <em>at-bats</em>. With the frequentist techniques, we have no choice but to predict that his AVG will be .450 at the end of the season. Compute a confidence interval for the success rate.</p>
 <p>11. Despite the frequentist prediction of .450, not a single baseball enthusiast would make this prediction. Why is this? One reason is that they know the estimate has much uncertainty. However, the main reason is that they are implicitly using a hierarchical model that factors in information from years of following baseball. Use the following code to explore the distribution of batting averages in the three seasons prior to 2013, and describe what this tells us.</p>
 <div class="cell" data-layout-align="center">
@@ -1446,12 +1469,12 @@ s_w = \sqrt{\frac{\sum_{i=1}^N w_i (Y_i - \bar{Y}_w)^2}{\frac{N-1}{N}\sum_{i=1}^
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../inference/bayes.html" class="pagination-link" aria-label="Bayesian Statistics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../inference/hypothesis-testing.html" class="pagination-link" aria-label="Hypothesis Testing">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

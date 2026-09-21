@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
+
+<title>1&nbsp; Measurement in Psychology – Introduction to Behavioural Data Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../behav/simulating-measurement.html" rel="next">
+<link href="../behav/intro-behav.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8f18353b6674da201bf96e4b700cba6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../behav/intro-behav.html">Behavioural Measurement</a></li><li class="breadcrumb-item"><a href="../behav/measurement.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introduction to Behavioural Data Science</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/intro-to-behds/behdsbook-part-2" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../Introduction-to-Behavioural-Data-Science.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioural Measurement</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/measurement.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/simulating-measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../summaries/reading-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recommended Reading</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/reading-prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recommended Reading</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Inference</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../inference/models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../inference/bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../inference/hierarchical-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../inference/bootstrap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../inference/reading-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recommended Reading</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linear-models/linear-model-framework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linear-models/treatment-effect-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linear-models/association-not-causation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linear-models/multivariable-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linear-models/reading-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recommended Reading</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../highdim/intro-highdim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">High Dimensional Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../highdim/matrices-in-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../highdim/linear-algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../highdim/dimension-reduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../highdim/regularization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../highdim/latent-factor-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../highdim/reading-highdim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recommended reading</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../ml/intro-ml.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ml/notation-and-terminology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ml/evaluation-metrics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ml/conditionals-and-smoothing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ml/resampling-methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ml/algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ml/ml-in-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ml/clustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ml/reading-ml.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recommended reading</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction-to-the-problem" id="toc-introduction-to-the-problem" class="nav-link active" data-scroll-target="#introduction-to-the-problem"><span class="header-section-number">1.1</span> Introduction to the problem</a></li>
+  <li><a href="#constructs-and-proxies" id="toc-constructs-and-proxies" class="nav-link" data-scroll-target="#constructs-and-proxies"><span class="header-section-number">1.2</span> Constructs and proxies</a></li>
+  <li><a href="#measurement-in-psychology" id="toc-measurement-in-psychology" class="nav-link" data-scroll-target="#measurement-in-psychology"><span class="header-section-number">1.3</span> Measurement in psychology</a>
+  <ul class="collapse">
+  <li><a href="#stevens-and-the-four-scales" id="toc-stevens-and-the-four-scales" class="nav-link" data-scroll-target="#stevens-and-the-four-scales">Stevens, and the four scales</a></li>
+  <li><a href="#suppes-and-zinnes-and-a-stricter-bargain" id="toc-suppes-and-zinnes-and-a-stricter-bargain" class="nav-link" data-scroll-target="#suppes-and-zinnes-and-a-stricter-bargain">Suppes and Zinnes, and a stricter bargain</a></li>
+  <li><a href="#classical-test-theory" id="toc-classical-test-theory" class="nav-link" data-scroll-target="#classical-test-theory">Classical Test Theory</a></li>
+  </ul></li>
+  <li><a href="#interval-scales-as-an-assumption-not-a-demonstration" id="toc-interval-scales-as-an-assumption-not-a-demonstration" class="nav-link" data-scroll-target="#interval-scales-as-an-assumption-not-a-demonstration"><span class="header-section-number">1.4</span> Interval scales as an assumption, not a demonstration</a>
+  <ul class="collapse">
+  <li><a href="#what-the-assumption-actually-costs" id="toc-what-the-assumption-actually-costs" class="nav-link" data-scroll-target="#what-the-assumption-actually-costs">What the assumption actually costs</a></li>
+  <li><a href="#a-running-example" id="toc-a-running-example" class="nav-link" data-scroll-target="#a-running-example">A running example</a></li>
+  </ul></li>
+  <li><a href="#reaction-time-as-a-measurement-problem" id="toc-reaction-time-as-a-measurement-problem" class="nav-link" data-scroll-target="#reaction-time-as-a-measurement-problem"><span class="header-section-number">1.5</span> Reaction time as a measurement problem</a></li>
+  <li><a href="#signal-detection-theory" id="toc-signal-detection-theory" class="nav-link" data-scroll-target="#signal-detection-theory"><span class="header-section-number">1.6</span> Signal detection theory</a></li>
+  <li><a href="#validity-and-reliability" id="toc-validity-and-reliability" class="nav-link" data-scroll-target="#validity-and-reliability"><span class="header-section-number">1.7</span> Validity and reliability</a>
+  <ul class="collapse">
+  <li><a href="#validity" id="toc-validity" class="nav-link" data-scroll-target="#validity">Validity</a></li>
+  <li><a href="#reliability" id="toc-reliability" class="nav-link" data-scroll-target="#reliability">Reliability</a></li>
+  <li><a href="#computing-reliability" id="toc-computing-reliability" class="nav-link" data-scroll-target="#computing-reliability">Computing reliability</a></li>
+  </ul></li>
+  <li><a href="#measurement-error-and-its-consequences" id="toc-measurement-error-and-its-consequences" class="nav-link" data-scroll-target="#measurement-error-and-its-consequences"><span class="header-section-number">1.8</span> Measurement error and its consequences</a>
+  <ul class="collapse">
+  <li><a href="#correcting-for-attenuation" id="toc-correcting-for-attenuation" class="nav-link" data-scroll-target="#correcting-for-attenuation">Correcting for attenuation</a></li>
+  </ul></li>
+  <li><a href="#what-not-to-forget" id="toc-what-not-to-forget" class="nav-link" data-scroll-target="#what-not-to-forget"><span class="header-section-number">1.9</span> What not to forget</a></li>
+  <li><a href="#a-checklist-before-you-measure-anything" id="toc-a-checklist-before-you-measure-anything" class="nav-link" data-scroll-target="#a-checklist-before-you-measure-anything"><span class="header-section-number">1.10</span> A checklist before you measure anything</a></li>
+  <li><a href="#other-analyses" id="toc-other-analyses" class="nav-link" data-scroll-target="#other-analyses"><span class="header-section-number">1.11</span> Other analyses</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">1.12</span> Exercises</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/behav/measurement.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../behav/intro-behav.html">Behavioural Measurement</a></li><li class="breadcrumb-item"><a href="../behav/measurement.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-measurement" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>by Giorgio Arcara</em></p>
+<section id="introduction-to-the-problem" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="introduction-to-the-problem"><span class="header-section-number">1.1</span> Introduction to the problem</h2>
+<p>Imagine you are evaluating a wellbeing app, and you have two numbers for each user. The first is how many times they opened the app last month. The second is how much their stress went down over the same period, measured with a short questionnaire they filled in every week.</p>
+<p>Both are numbers. Both will sit in the same data frame, in adjacent columns, and every function in this book will treat them identically. But they are not the same kind of thing at all.</p>
+<p>The first one you could, in principle, verify. If you doubted it, you could go to the server logs and count. “Number of app opens” is a description of something that happened, and the number is the thing itself.</p>
+<p>The second is not. Notice that I did not write “the score on the stress questionnaire” — I wrote “stress reduction”. The score is a number you obtained; stress is a <em>psychological concept</em>, and nobody has ever observed one directly. You cannot go and check. The number is standing in for something, and how well it stands in for it is a question the number itself cannot answer.</p>
+<p>This distinction is the subject of an entire discipline, <strong>psychometrics</strong>: the study of how psychological attributes can be measured, and of how well a given instrument manages it.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Psychometrics exists because measurement in psychology is a peculiar business. It does not deal with physical properties of physical objects, but with <strong>constructs</strong> — psychological concepts that are not directly observable.</p>
+<p>Let me make the point concretely, with data.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>app_engagement_experiment <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(error_rate_pct, engagement_score) <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   error_rate_pct engagement_score</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1           9.43             55.2</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2           6.44             46.1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3           7.83             57.4</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4          12.40             65.1</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5           9.08             57.2</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6           8.80             56.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>error_rate_pct</code> is the percentage of sessions in which the user made an error. Errors were logged; they were counted; the percentage was computed. <code>engagement_score</code> is an index meant to capture how engaged the user is — engagement being a psychological concept, not an event in a log file.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>app_engagement_experiment <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(error_rate_pct, engagement_score) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  error_rate_pct  engagement_score</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Min.   : 3.32   Min.   : 36.3   </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1st Qu.: 7.24   1st Qu.: 56.2   </span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Median :10.76   Median : 66.0   </span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Mean   :11.17   Mean   : 68.2   </span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3rd Qu.:14.20   3rd Qu.: 78.7   </span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Max.   :28.80   Max.   :130.3   </span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  NA's   :4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Look at that output and try to tell which column is which kind. You cannot. Both are <code>numeric</code>, both have a mean and a median and quartiles, and R will happily correlate them, plot them, or feed them to a regression. Nothing in the data, and nothing in your software, will ever warn you that one of these columns is a direct record and the other is a stand-in.</p>
+<p>That is what this chapter is about.</p>
+</section>
+<section id="constructs-and-proxies" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="constructs-and-proxies"><span class="header-section-number">1.2</span> Constructs and proxies</h2>
+<p>We need two terms.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definitions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Construct</strong> — a psychological concept that is not directly observable (satisfaction, attention, trust, cognitive load). To be measured at all, it has to be tied to one or more <em>indicators</em>.</p>
+<p><strong>Indicator</strong> (or <strong>proxy</strong>) — an observable behaviour which, alone or together with others, we assume is a manifestation of the construct. Answers to the items of a questionnaire are the typical case.</p>
+</div>
+</div>
+<p>The fact that constructs are unobservable is not, by itself, a catastrophe, and it is not unique to psychology. Temperature is not directly observable either. What we observe in an old-fashioned thermometer is a column of liquid metal getting longer, and we convert that length into a number we call degrees. Nobody objects, because the physical relationship between temperature and the expansion of the metal is tight, well understood, and does not depend on what kind of day the thermometer is having.</p>
+<p>Psychological measurement has the same shape — an observable indicator standing in for an unobservable property — and this is where the resemblance ends. The link between a construct and the behaviour we use to indicate it is far looser than the link between temperature and expansion, for two reasons.</p>
+<p>The first is that <strong>there is no one-to-one correspondence between a behaviour and a single underlying process.</strong> Almost by definition, any behaviour can be produced by more than one route. A user who fails a task may not lack the ability the task was designed to probe: they may have misread an ambiguous label, been distracted by a notification, misunderstood the instructions, or simply been fighting an unfamiliar device. The failure is real; what it indicates is not settled by the fact that it happened.</p>
+<p>The second is that a great many variables that we do not care about can push the observed behaviour around. Motivation, mood, fatigue, time pressure, the device being used, how clearly the instructions were phrased — all of these can move the indicator without moving the construct at all.</p>
+<p><a href="#fig-construct-score" class="quarto-xref">Figure&nbsp;<span>1.1</span></a> draws the basic situation, and <a href="#fig-other-variables" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> adds the complication.</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; Warning in geom_curve(aes(x = 1, xend = 6.4, y = h + 0.05, yend = h + 0.05), : All aesthetics have length 1, but the data has 3 rows.
+#&gt; ℹ Please consider using `annotate()` or provide this layer with data
+#&gt;   containing a single row.</code></pre>
+<div class="cell-output-display">
+<div id="fig-construct-score" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-construct-score-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="measurement_files/figure-html/fig-construct-score-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-construct-score-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: The relationship between a construct, an observable behaviour, and a test score. The construct is not observable; what we see is a behaviour, which determines the score. The dashed arc marks the relationship we actually care about — and it is indirect.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; Warning in geom_curve(aes(x = 1, xend = 6.4, y = h + 0.05, yend = h + 0.05), : All aesthetics have length 1, but the data has 3 rows.
+#&gt; ℹ Please consider using `annotate()` or provide this layer with data
+#&gt;   containing a single row.</code></pre>
+<div class="cell-output-display">
+<div id="fig-other-variables" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-other-variables-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="measurement_files/figure-html/fig-other-variables-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-other-variables-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: The same three elements, with the variables nobody asked for. Motivation, mood, fatigue, the device, time pressure — all of these influence the observed behaviour, and therefore the score, without touching the construct we set out to measure. An ideal instrument would be one where the arrow from the construct is the one that matters most.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="measurement-in-psychology" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="measurement-in-psychology"><span class="header-section-number">1.3</span> Measurement in psychology</h2>
+<p>If measuring a construct is this awkward, it is worth asking what we even mean by “measurement”. There is more than one answer, and the differences are not academic.</p>
+<section id="stevens-and-the-four-scales" class="level3">
+<h3 class="anchored" data-anchor-id="stevens-and-the-four-scales">Stevens, and the four scales</h3>
+<p>The most influential definition in the history of psychology is S. S. Stevens’, from a 1946 paper in <em>Science</em>:<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Measurement (Stevens, 1946)</strong> — “the assignment of numerals to objects or events according to rules.”</p>
+</div>
+</div>
+<p>It is worth knowing why that definition is so permissive. In the years before the paper, a commission of physicists and psychologists had been convened to settle whether psychological attributes could be measured at all — and, by implication, whether psychology was a science. Working from a strict definition of measurement borrowed from physics, they concluded that it could not. Stevens’ response was that the problem lay in the definition, not in psychology. He widened it, and psychology was readmitted.</p>
+<p>He did not leave it at that, though. Having allowed almost any rule to count as measurement, he added the part that does the real work: what you are <em>permitted to do</em> with the resulting numbers depends on the <strong>scale of measurement</strong>.</p>
+<div id="tbl-scales" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-scales-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1.1: The four scales of measurement in Stevens’ classification, with the operations each one licenses. Each scale also permits everything the scales above it permit.
+</figcaption>
+<div aria-describedby="tbl-scales-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Scale</th>
+<th>Description</th>
+<th>Example</th>
+<th>Operations that make sense</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Nominal</strong></td>
+<td>Categories with no order</td>
+<td>Device platform (iOS/Android)</td>
+<td>Counting, mode</td>
+</tr>
+<tr class="even">
+<td><strong>Ordinal</strong></td>
+<td>Ordered, but the gaps between categories are not comparable</td>
+<td>Satisfaction rating, app-store rank</td>
+<td>Ordering, median, percentiles</td>
+</tr>
+<tr class="odd">
+<td><strong>Interval</strong></td>
+<td>Ordered, with equal intervals, but no meaningful zero</td>
+<td>A standardised UX score, temperature in °C</td>
+<td>Addition, subtraction, mean, SD, z-scores</td>
+</tr>
+<tr class="even">
+<td><strong>Ratio</strong></td>
+<td>Ordered, equal intervals, and a meaningful zero</td>
+<td>Reaction time, session duration, number of taps</td>
+<td>All arithmetic, including ratios</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Recording whether a user is on iOS or Android is, on this definition, measurement. It is just measurement on a nominal scale, where about the only sensible thing to do is count how many fall in each category. Nobody would try to compute the average operating system, and the reason we all find that obviously absurd is precisely what <a href="#tbl-scales" class="quarto-xref">Table&nbsp;<span>1.1</span></a> is about. The trouble is that the equivalent absurdities further down the table are not obvious at all.</p>
+</section>
+<section id="suppes-and-zinnes-and-a-stricter-bargain" class="level3">
+<h3 class="anchored" data-anchor-id="suppes-and-zinnes-and-a-stricter-bargain">Suppes and Zinnes, and a stricter bargain</h3>
+<p>The other definition worth knowing is Suppes and Zinnes’ (1963).<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> It is more rigorous, less intuitive, and needs two pieces of vocabulary. An <em>empirical relational system</em> is the set of things in the world that have the property you want to measure, together with the relations that hold among them. A <em>numerical relational system</em> is a set of numbers, together with the relations among them.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Measurement (Suppes &amp; Zinnes, 1963)</strong> — a <em>homomorphism</em> between an empirical relational system and a numerical relational system: a correspondence that preserves the relations between elements.</p>
+</div>
+</div>
+<p>An example makes this concrete. Take a table with a side 120 cm long, and another with a side 60 cm long. Three separate claims follow from those numbers, and all three are true of the tables:</p>
+<ol type="1">
+<li>The first table’s side is <strong>longer</strong> than the second’s.</li>
+<li>The first table’s side is <strong>60 cm longer</strong> than the second’s.</li>
+<li>The first table’s side is <strong>twice as long</strong> as the second’s — put two of the small tables side by side and they occupy the same span.</li>
+</ol>
+<p>Every relation among the numbers corresponds to a relation among the tables. That is the homomorphism.</p>
+<p>Now try the same three claims with a satisfaction score, where one user scores 20 and another 10.</p>
+<ol type="1">
+<li>The first user is <strong>more satisfied</strong> than the second. Plausible.</li>
+<li>The first user is <strong>10 units more satisfied</strong>. Ten units of what?</li>
+<li>The first user is <strong>twice as satisfied</strong> as the second. Is that a sentence that means anything?</li>
+</ol>
+<p>Only the first claim survives comfortably. And Suppes and Zinnes’ point is precisely that you do not get to assume the other two just because you have numbers that permit the arithmetic. Whether the numerical system really represents the structure of the empirical one is something to be <em>demonstrated</em>, not taken for granted.</p>
+</section>
+<section id="classical-test-theory" class="level3">
+<h3 class="anchored" data-anchor-id="classical-test-theory">Classical Test Theory</h3>
+<p>Most instruments you will meet, in psychology and in UX research, were built under a third framework, which comes at the problem from a different angle: instead of asking what measurement <em>is</em>, it asks what a score <em>contains</em>. This is <strong>Classical Test Theory</strong> (CTT), and it rests on one equation.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[X = T + E\]</span></p>
+<p><span class="math inline">\(X\)</span>: the <strong>observed score</strong> — what you actually get. <span class="math inline">\(T\)</span>: the <strong>true score</strong> — what the person would score with no measurement error. <span class="math inline">\(E\)</span>: the <strong>measurement error</strong> — a random component, positive or negative, averaging zero.</p>
+</div>
+</div>
+<p>Every time you administer an instrument you get an imperfect estimate. Someone whose true score is 20 might score 17 on a day when they are tired and distracted, or 22 on a day when they are rested and paying attention. The true score <span class="math inline">\(T\)</span> is formally defined as the average of the observed scores you would get over infinitely many administrations under identical conditions: if the error really is random and centred on zero, the positive and negative departures cancel out in the long run.</p>
+<p>CTT also assumes <span class="math inline">\(T\)</span> and <span class="math inline">\(E\)</span> are <strong>independent</strong> — that the size of the error does not depend on how high or low the person’s true score is.</p>
+<p><a href="#fig-ctt" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> shows what this looks like: thirty administrations of the same instrument to the same person.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-ctt" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ctt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="measurement_files/figure-html/fig-ctt-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ctt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: Thirty simulated administrations of the same instrument to the same person, whose true score is 20 (the horizontal line). Each circle is one observed score. None of them lands exactly on the true score, but they scatter around it. In practice you will see exactly one of these circles, and you will never know which one you got.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This picture has a consequence worth stating plainly, because it is easy to nod at and then forget: <strong>in practice you always see a single observed score.</strong> One circle. You never see the line. Everything you conclude about the person rests on one draw from a distribution whose centre you are trying to guess.</p>
+<p>Two priorities follow. Make <span class="math inline">\(E\)</span> as small as possible, so that the circle lands near the line. And <em>estimate how big <span class="math inline">\(E\)</span> is</em>, so you know how much to trust the circle you got. The second half of this chapter is mostly about those two jobs.</p>
+<p>CTT has real limitations. The most relevant one here is that the independence of <span class="math inline">\(T\)</span> and <span class="math inline">\(E\)</span> breaks down at the ends of the scale. If someone’s true score is at the maximum, error cannot push their observed score any higher — it can only pull it down. The error stops being symmetric, and stops being independent of <span class="math inline">\(T\)</span>. On bounded scales, which is to say on most UX instruments, this matters.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Other measurement models exist
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>CTT is the dominant framework and the one this chapter uses, but it is not the only one, and its limitations have known answers. <strong>Item Response Theory</strong> (IRT) — a family of models descending from the Rasch model — represents item difficulty and person ability as separate parameters rather than bundling them into a single total score, and can provide the justification for an interval scale that CTT simply assumes. Other approaches drop the assumption that a construct is best described by a number at all: <strong>Knowledge Space Theory</strong>, for instance, describes a person as occupying one of a set of <em>states</em> organised in a network, rather than a position on a line. None of these are covered here, but it is worth knowing they exist, and that “this is how it has always been done” is not an argument that CTT is right.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="interval-scales-as-an-assumption-not-a-demonstration" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="interval-scales-as-an-assumption-not-a-demonstration"><span class="header-section-number">1.4</span> Interval scales as an assumption, not a demonstration</h2>
+<p>Here is the uncomfortable part. The great majority of psychological instruments — and effectively all the UX scales you will meet in practice — are analysed as though their scores were on an <strong>interval</strong> scale. Means are computed, standard deviations are reported, difference scores are taken, regressions are fitted. Every one of those operations requires interval-level measurement.</p>
+<p>Almost none of those instruments ever demonstrated that they have it.</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>In most psychological and UX instruments, interval-level measurement is <strong>assumed</strong>, not shown. It is the starting point, not a finding.</p>
+</div>
+</div>
+</div>
+<p>Apply the interval assumption to a five-point satisfaction item and see whether you believe it. The assumption says the distance from 1 to 2 is the same as the distance from 4 to 5. But moving a user from “very dissatisfied” to “dissatisfied” and moving one from “satisfied” to “very satisfied” are not obviously the same amount of anything. Or take a 0–100 usability score: is a gain of 2 points at 96 — where you are running out of scale — really the same as a gain of 2 points at 60?</p>
+<p>This is why, on the standard view, <strong>Likert responses should be treated as ordinal data</strong>. They are ordered categories. The numbers 1 to 5 are labels that happen to sort correctly; they are not measurements of a quantity.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>Let me state my own position, because this is a place where it is easy to take the argument too far. I do not think any of this means you should throw out your satisfaction scale. An instrument with questionable assumptions is very often better than no instrument, and a purist who refuses to measure anything until the measurement theory is airtight will simply not measure anything. What I do think is that you should know which assumption you are relying on, and be able to say what would happen if it were wrong. Sometimes nothing happens. Sometimes quite a lot does.</p>
+<section id="what-the-assumption-actually-costs" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-assumption-actually-costs">What the assumption actually costs</h3>
+<p>Start with real data. <code>daily_mood_ratings</code> records daily mood on a 1–7 scale.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(daily_mood_ratings, <span class="at">useNA =</span> <span class="st">"always"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; daily_mood_ratings</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1    2    3    4    5    6    7 &lt;NA&gt; </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  266  270  175   98   33   11    2  145</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(daily_mood_ratings, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.3</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(daily_mood_ratings, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The mean is about 2.3. Now ask what that number denotes. It is not a response anybody could have given — there is no such thing as a mood of 2.3 on this scale. It is the centre of gravity of a set of category labels, and it only means something if the gaps between those labels are equal, which is exactly what we have no evidence for. The median, 2, makes a weaker claim and needs a weaker assumption.</p>
+<p>(Notice also the 145 missing days. We will come back to those.)</p>
+<p>Now the more serious question: can this assumption change what you <em>conclude</em>? It can, and the rest of this chapter runs on a simulated example that shows how.</p>
+</section>
+<section id="a-running-example" class="level3">
+<h3 class="anchored" data-anchor-id="a-running-example">A running example</h3>
+<p>We will use a simulated 5-item app-satisfaction scale, administered to users of two versions of an interface. Simulation is the right tool here for one specific reason: it hands us the true score <span class="math inline">\(T\)</span>, which no real dataset ever will. The generating machinery is explained in <a href="simulating-measurement.html" class="quarto-xref"><span>Chapter 2</span></a>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>satisfaction <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">200</span>,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">group =</span> <span class="fu">c</span>(<span class="st">"standard"</span>, <span class="st">"redesigned"</span>),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">seed =</span> <span class="dv">2026</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(satisfaction)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   respondent      group item_1 item_2 item_3 item_4 item_5 total</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       R001   standard      4      5      5      3      5    22</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       R002 redesigned      4      4      3      3      5    19</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       R003   standard      4      3      4      3      5    19</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       R004 redesigned      2      4      5      3      4    18</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       R005   standard      3      2      3      4      5    17</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       R006 redesigned      4      1      1      1      1     8</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   true_score</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1      0.521</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     -0.580</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3      0.139</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4      0.415</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5     -0.667</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6     -2.016</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Each row is a user: five item responses, their total, and — the luxury of simulation — the true satisfaction that generated them.</p>
+<p>Now for the demonstration. Consider a <em>different</em> pair of groups, constructed so that the two groups have <strong>exactly the same average satisfaction</strong> and differ only in how spread out they are. Some populations are more homogeneous than others; that is not a difference in satisfaction.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ceiling_effect <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">300</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group =</span> <span class="fu">c</span>(<span class="st">"standard"</span>, <span class="st">"redesigned"</span>),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group_effect =</span> <span class="dv">0</span>,     <span class="co"># same mean</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group_sd =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">2.5</span>), <span class="co"># different spread</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">seed =</span> <span class="dv">41</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The truth, which only simulation lets us check:</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(ceiling_effect<span class="sc">$</span>true_score, ceiling_effect<span class="sc">$</span>group, mean)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   standard redesigned </span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      0.110     -0.032</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The two groups are, as designed, equally satisfied. Let us now analyse their scores the two ways.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Treating the total as an interval-scale measurement:</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(total <span class="sc">~</span> group, <span class="at">data =</span> ceiling_effect)<span class="sc">$</span>p.value</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.00417</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Treating it as ordinal:</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(total <span class="sc">~</span> group, <span class="at">data =</span> ceiling_effect)<span class="sc">$</span>p.value</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.445</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <span class="math inline">\(t\)</span>-test reports a difference, convincingly. The rank-based test does not. And we know, because we built the data, that <strong>there is no difference in satisfaction to find</strong>.</p>
+<p>What went wrong? The scale has a ceiling: most responses pile up at the top, which is what satisfaction scales actually do.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ceiling_effect<span class="sc">$</span>item_1)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1   2   3   4   5 </span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  45  37  29  44 145</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>With a ceiling, the wider group loses more of its distribution off the top of the scale than the narrower group does, and that asymmetry shows up as a difference in mean total. The arithmetic is not wrong — those group means really do differ. The <em>interpretation</em> is wrong: “the redesigned group is less satisfied” does not follow, and it happens not to be true.</p>
+<p>The clinching test is to change nothing except the response process. Keep the same people and the same true scores, but make the response categories evenly spaced, so the item behaves like an interval measure:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>even <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">300</span>, <span class="at">group =</span> <span class="fu">c</span>(<span class="st">"standard"</span>, <span class="st">"redesigned"</span>),</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">group_effect =</span> <span class="dv">0</span>, <span class="at">group_sd =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">2.5</span>),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">equal_spacing =</span> <span class="cn">TRUE</span>, <span class="at">seed =</span> <span class="dv">41</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(total <span class="sc">~</span> group, <span class="at">data =</span> even)<span class="sc">$</span>p.value</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.502</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(total <span class="sc">~</span> group, <span class="at">data =</span> even)<span class="sc">$</span>p.value</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.615</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Both tests now agree that there is nothing there. The data did not change. The people did not change. The construct did not change. Only the assumption about what the numbers mean did.</p>
+</section>
+</section>
+<section id="reaction-time-as-a-measurement-problem" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="reaction-time-as-a-measurement-problem"><span class="header-section-number">1.5</span> Reaction time as a measurement problem</h2>
+<p>Satisfaction scales are the hard case. It is worth looking at the easy one, because it turns out not to be that easy either.</p>
+<p>Reaction time is genuinely ratio-scaled: it has a meaningful zero, the intervals are equal, and 400 ms really is twice 200 ms. On the scale question, RT is above reproach — which makes it a good illustration that a well-behaved scale does not hand you a well-behaved measure.</p>
+<p>Consider <code>reported_daily_screen_time</code>, self-reported hours of daily screen use:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reported_daily_screen_time)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    10.0    11.2    11.5    12.2    11.8   360.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>One value is 360 — somebody entered minutes into a field expecting hours. Watch what a single bad entry does:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(reported_daily_screen_time)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 12.2</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(reported_daily_screen_time)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>clean <span class="ot">&lt;-</span> reported_daily_screen_time[reported_daily_screen_time <span class="sc">&lt;</span> <span class="dv">50</span>]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(clean)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11.5</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(clean)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The mean moves by about 0.7 hours because of one observation out of 500. The median barely notices. This is the standard reason to prefer the median for duration and latency measures, and it is a <em>measurement</em> decision, made before any model is fitted.</p>
+<p>Real reaction-time data adds a further complication that is worth naming even though the package data does not show it.</p>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A caveat about this dataset
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>reaction_times</code> in <code>behdslabs</code> is a linear rescaling of the <code>heights</code> data, so its distribution is symmetric:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(reaction_times, <span class="fu">c</span>(<span class="at">mean =</span> <span class="fu">mean</span>(rt_ms), <span class="at">median =</span> <span class="fu">median</span>(rt_ms)))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   mean median </span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    368    370</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Real reaction times are not like this. They are strongly <strong>right-skewed</strong>: a long tail of slow responses, and a hard floor below which nobody can respond. That skew is itself a measurement issue, because it means the mean RT is pulled around by the slowest trials, which are often the least informative ones — lapses of attention rather than slow processing. Use this dataset to practise the mechanics, not to form intuitions about what RT distributions look like.</p>
+</div>
+</div>
+<p>Three more decisions hide inside any RT analysis, and none of them are statistical:</p>
+<ul>
+<li><strong>Trimming.</strong> Responses under ~150 ms are usually anticipations, not responses. Responses over some cut-off are usually lapses. Where you put the cut-offs changes your results, and there is no universally correct answer.</li>
+<li><strong>Mean or median.</strong> Given the skew, these answer different questions.</li>
+<li><strong>The speed–accuracy trade-off.</strong> A participant can always go faster by being less careful. An RT difference between two interfaces may be a difference in speed, a difference in caution, or both — and RT alone cannot tell you which.</li>
+</ul>
+<p>That last point is the same problem as the satisfaction scale, in a different costume: the proxy is contaminated by something that is not the construct.</p>
+</section>
+<section id="signal-detection-theory" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="signal-detection-theory"><span class="header-section-number">1.6</span> Signal detection theory</h2>
+<p>There is one classical technique that addresses that contamination head-on, and it is worth a short section because it shows what a solution looks like.</p>
+<p>Suppose you are testing whether users can spot a phishing message. You show them a series of messages, some fraudulent and some not, and they say “fraudulent” or “not”. The obvious summary is the proportion they got right.</p>
+<p>The obvious summary is contaminated. Proportion correct mixes together two entirely different things: how good the person is at <em>telling the difference</em> (which is what you want to know), and how <em>willing they are to say “fraudulent”</em> (which you do not). Someone who flags everything as fraudulent catches every phishing message and is not thereby a good detector.</p>
+<p>Signal detection theory separates the two.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> <strong>Sensitivity</strong>, written <span class="math inline">\(d'\)</span>, is the construct: how far apart the evidence is, on average, for real and fake messages. The <strong>criterion</strong> is the response tendency: how much evidence someone needs before they will commit to “fraudulent”.</p>
+<p>Here are two participants, simulated so you can see both parameters:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>detection <span class="ot">&lt;-</span> <span class="fu">simulate_sdt</span>(<span class="at">n =</span> <span class="dv">2</span>, <span class="at">n_trials =</span> <span class="dv">2000</span>,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">d_prime =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">2.0</span>),</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">criterion =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="sc">-</span><span class="fl">0.475</span>),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">seed =</span> <span class="dv">2026</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>detection</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   participant hits misses false_alarms correct_rejections prop_correct</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1         P01  658    342          331                669        0.663</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2         P02  993      7          670                330        0.661</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   d_prime criterion</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     0.8     0.400</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     2.0    -0.475</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Both are right about 66% of the time. On proportion correct they are indistinguishable. But look at the counts: the second participant caught 993 of the 1000 real threats, against the first participant’s 658 — and raised 670 false alarms against 331. The second is a much better detector with a wildly trigger-happy criterion, and the summary statistic hides this completely.</p>
+<p>Recovering the construct takes one line. Compute the hit rate and the false-alarm rate, convert both to the <span class="math inline">\(z\)</span> scale, and take the difference:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>hit_rate <span class="ot">&lt;-</span> detection<span class="sc">$</span>hits <span class="sc">/</span> (detection<span class="sc">$</span>hits <span class="sc">+</span> detection<span class="sc">$</span>misses)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fa_rate <span class="ot">&lt;-</span> detection<span class="sc">$</span>false_alarms <span class="sc">/</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  (detection<span class="sc">$</span>false_alarms <span class="sc">+</span> detection<span class="sc">$</span>correct_rejections)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(hit_rate) <span class="sc">-</span> <span class="fu">qnorm</span>(fa_rate)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.844 2.017</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Those are, to within sampling error, the <code>d_prime</code> values the data were generated from — 0.8 and 2.0. One participant is more than twice as sensitive as the other, and no amount of staring at “66% correct” would have told you.</p>
+<p>This is the whole chapter in miniature: a raw proxy conflated a construct with something irrelevant to it, and a measurement model pulled them apart.</p>
+</section>
+<section id="validity-and-reliability" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="validity-and-reliability"><span class="header-section-number">1.7</span> Validity and reliability</h2>
+<p>We now have the vocabulary to ask the question that matters about any instrument: is it any good? Under CTT the answer has two halves, and they are not the same question.</p>
+<p><strong>Validity</strong> asks <em>what are we measuring?</em> — whether the true score <span class="math inline">\(T\)</span> really reflects the construct we claim. <strong>Reliability</strong> asks <em>how precisely are we measuring it?</em> — how small <span class="math inline">\(E\)</span> is.</p>
+<p>The standard picture is <a href="#fig-bullseye" class="quarto-xref">Figure&nbsp;<span>1.4</span></a>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-bullseye" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bullseye-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="measurement_files/figure-html/fig-bullseye-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bullseye-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.4: Validity and reliability. The centre of the target is the construct the instrument is meant to measure; each shot is one measurement. How tightly the shots cluster is <em>reliability</em>; whether they cluster on the centre is <em>validity</em>. Panel C is a theoretical curiosity rather than a real case: in practice an unreliable instrument is treated as invalid, because being right on average is no use when every individual measurement is wrong. Readers who go on to machine learning will recognise this picture — reliability is variance, validity is bias.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The relationship between the two is asymmetric, and it is worth being precise about it. An instrument can be <strong>reliable without being valid</strong>: it can measure something with great precision, and that something can be the wrong thing (panel B). The reverse is not really available. A valid instrument has to be reliable, because you cannot measure a construct well with a tool that gives you a different answer every time. <strong>Reliability is necessary for validity, but not sufficient.</strong></p>
+<section id="validity" class="level3">
+<h3 class="anchored" data-anchor-id="validity">Validity</h3>
+<p>Two things about validity need saying before anything else, because they are the errors people actually make.</p>
+<p>The first is that <strong>“this test is valid” is not a meaningful statement.</strong> Validity is not a property of an instrument. It is a property of a <em>specific interpretation of its scores, for a specific purpose, in a specific population</em>. The same satisfaction scale can have excellent evidence supporting its use for comparing two versions of an interface, and no evidence whatsoever supporting its use for predicting whether someone will still be a customer in a year.</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Do not say “the scale is valid”. Say “there is evidence supporting this interpretation of the scale’s scores, for this use, in this population” — or admit that there isn’t any.</p>
+</div>
+</div>
+</div>
+<p>The second is that validity is not a yes/no property but a <strong>continuum</strong>. Evidence accumulates across studies, and your confidence should track it.</p>
+<p>Modern practice, following the <em>Standards for Educational and Psychological Testing</em>,<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> treats validity as a single unified concept supported by five <strong>sources of evidence</strong>. The older labels (construct validity, criterion validity, and so on) are still what you will meet in most papers and manuals, so <a href="#tbl-validity" class="quarto-xref">Table&nbsp;<span>1.2</span></a> gives both.</p>
+<div id="tbl-validity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-validity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1.2: The five sources of validity evidence, with the classical labels they correspond to.
+</figcaption>
+<div aria-describedby="tbl-validity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source of evidence</th>
+<th>Classical label</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Content</strong></td>
+<td>Content validity</td>
+<td>A “digital literacy” scale whose items are all about smartphones, with nothing on desktops, under-represents what it claims to measure</td>
+</tr>
+<tr class="even">
+<td><strong>Response processes</strong></td>
+<td>—</td>
+<td>Users who reach “task success” by guessing which icon looks clickable are not demonstrating the understanding the task was built to probe</td>
+</tr>
+<tr class="odd">
+<td><strong>Internal structure</strong></td>
+<td>Factor structure</td>
+<td>Do the five satisfaction items behave as one construct, or do they split into “ease of use” and “visual appeal”?</td>
+</tr>
+<tr class="even">
+<td><strong>Relations with other variables</strong></td>
+<td>Construct, convergent/ divergent, criterion, ecological</td>
+<td>A satisfaction score should correlate with retention (convergent) but not with typing speed (divergent); predicting 30-day churn is criterion evidence; predicting real out-of-lab use is ecological evidence</td>
+</tr>
+<tr class="odd">
+<td><strong>Consequences of testing</strong></td>
+<td>—</td>
+<td>A usability threshold used to gate access to a feature, which systematically excludes older users, has consequences that need examining</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Two specific failure modes cut across all five, and they are the two you should be able to name:</p>
+<ul>
+<li><strong>Construct under-representation</strong> — the instrument leaves out parts of the construct it claims to cover. The digital-literacy scale above is a case.</li>
+<li><strong>Construct-irrelevant variance</strong> — the scores are systematically pushed around by something that is not the construct. A “reasoning” task whose items are so wordy that it partly measures reading ability is a case. So, for that matter, is the response bias in the phishing example.</li>
+</ul>
+<p>Both are in <a href="#fig-other-variables" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>, which is what that figure was for.</p>
+<p>A brief historical note. You will occasionally meet <strong>face validity</strong>: whether an instrument <em>looks like</em> it measures what it claims. It is worth knowing the term mainly so you can recognise that it is not evidence. The phrase does not appear once in the 230-odd pages of the <em>Standards</em>. An instrument can look entirely convincing and be measuring something else, which is precisely why we need the other five kinds of evidence. (Face validity is not always even desirable: an instrument designed to detect people faking their responses works better when its purpose is <em>not</em> obvious.)</p>
+<p>And a related error, which is extremely common and costs nothing to avoid:</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>The name of an instrument does not tell you what it measures.</strong> A scale called “Perceived Cognitive Load” reflects what its authors <em>hoped</em> it would measure. Whether the scores can be interpreted that way is an empirical question about how it was built and what evidence exists for it. This applies with particular force to commercial UX metrics, which tend to have confident names and thin documentation.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="reliability" class="level3">
+<h3 class="anchored" data-anchor-id="reliability">Reliability</h3>
+<p>Reliability is the easier half, because it is a question about consistency and you can compute it. Under <span class="math inline">\(X = T + E\)</span>, reliability is a statement about how small <span class="math inline">\(E\)</span> is relative to the variation in <span class="math inline">\(X\)</span>.</p>
+<p>There are four common ways to estimate it, and they differ in <em>which source of error</em> they capture.</p>
+<p><strong>Split-half</strong> — split the items in two (typically odd and even), score each half, and correlate the halves. Cheap, because it needs only one administration. Its weakness is that the result depends on how you split.</p>
+<p><strong>Internal consistency</strong> — essentially the average of all possible split-halves, usually reported as Cronbach’s <span class="math inline">\(\alpha\)</span> (or the more modern and generally better-behaved McDonald’s <span class="math inline">\(\omega\)</span>). It asks whether the items hang together, i.e.&nbsp;whether they seem to be measuring the same thing.</p>
+<p><strong>Test–retest</strong> — administer twice, correlate the two occasions. This is often the most important one, and it has two wrinkles worth knowing. It depends heavily on the <em>interval</em> between administrations, so a test–retest coefficient without a stated interval is not interpretable. And it is vulnerable to <strong>practice effects</strong>: on a performance task, people are often simply better the second time, and a plain correlation will not notice a systematic improvement at all — everyone can improve by the same amount and the correlation stays high.</p>
+<p><strong>Inter-rater agreement</strong> — when scoring involves human judgement, how much do different scorers agree? Highly relevant for anything involving coding of open-ended responses or observed behaviour, irrelevant for a self-administered questionnaire.</p>
+<p>As a rough guide to magnitudes:<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<div id="tbl-reliability" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-reliability-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1.3: Conventional interpretation of reliability coefficients. For decisions about <em>individuals</em> rather than groups, considerably more stringent values are usually recommended — 0.80 as a minimum, and 0.90 or above where the decision carries real consequences.
+</figcaption>
+<div aria-describedby="tbl-reliability-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Coefficient</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>≥ 0.90</td>
+<td>Very high</td>
+</tr>
+<tr class="even">
+<td>0.80–0.89</td>
+<td>High</td>
+</tr>
+<tr class="odd">
+<td>0.70–0.79</td>
+<td>Adequate</td>
+</tr>
+<tr class="even">
+<td>0.60–0.69</td>
+<td>Marginal</td>
+</tr>
+<tr class="odd">
+<td>&lt; 0.60</td>
+<td>Low</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>I would rather you did not treat those thresholds as a gate. Published, widely used instruments circulate with reliabilities well below what is recommended, and refusing to use any of them is not a practical stance. My advice is <strong>comparative</strong>: prefer the instrument with better evidence, and when you are stuck with a marginal one, interpret its scores more cautiously and say so. A threshold you can recite is less useful than knowing which of your two candidate scales is the better-measured one.</p>
+</section>
+<section id="computing-reliability" class="level3">
+<h3 class="anchored" data-anchor-id="computing-reliability">Computing reliability</h3>
+<p>None of these require a specialised package. Here is split-half on our running example:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>items <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(satisfaction[, <span class="fu">paste0</span>(<span class="st">"item_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)])</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>odd <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(items[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)])</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>even <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(items[, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)])</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>r_half <span class="ot">&lt;-</span> <span class="fu">cor</span>(odd, even)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>r_half</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.627</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Each half is shorter than the whole instrument, and shorter instruments are less reliable, so this <em>underestimates</em> the reliability of the full scale. The Spearman–Brown correction adjusts for that:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> r_half <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> r_half)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.771</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And Cronbach’s <span class="math inline">\(\alpha\)</span>, written out from its definition rather than called from a package, so you can see there is nothing mysterious in it — it compares the variance of the individual items to the variance of the total:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>cronbach_alpha <span class="ot">&lt;-</span> <span class="cf">function</span>(items) {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="fu">ncol</span>(items)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  k <span class="sc">/</span> (k <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">apply</span>(items, <span class="dv">2</span>, var)) <span class="sc">/</span> <span class="fu">var</span>(<span class="fu">rowSums</span>(items)))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cronbach_alpha</span>(items)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.798</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>About 0.8 — “adequate”, by <a href="#tbl-reliability" class="quarto-xref">Table&nbsp;<span>1.3</span></a>.</p>
+<p>Test–retest is where simulation earns its keep. We administer the scale a second time to the <em>same people</em>, with the <em>same true scores</em>, and fresh measurement error — which is exactly what <span class="math inline">\(X = T + E\)</span> says a retest is:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>retest <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">200</span>, <span class="at">true_score =</span> satisfaction<span class="sc">$</span>true_score,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> satisfaction<span class="sc">$</span>group, <span class="at">seed =</span> <span class="dv">99</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(satisfaction<span class="sc">$</span>total, retest<span class="sc">$</span>total)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.777</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now watch what happens when the instrument is noisier. Nothing about the people changes — only the size of <span class="math inline">\(E\)</span>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>t1_noisy <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">200</span>, <span class="at">error_sd =</span> <span class="dv">3</span>, <span class="at">seed =</span> <span class="dv">11</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>t2_noisy <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">200</span>, <span class="at">true_score =</span> t1_noisy<span class="sc">$</span>true_score,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">error_sd =</span> <span class="dv">3</span>, <span class="at">seed =</span> <span class="dv">12</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(t1_noisy<span class="sc">$</span>total, t2_noisy<span class="sc">$</span>total)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.249</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The same people, measured twice, barely agree with themselves. That is what a low-reliability instrument does, and it is why reliability matters even when you only ever administer something once: a single score from an instrument like this tells you very little about the person’s standing on the construct.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Measurement invariance
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A question that sits between validity and reliability: does the instrument measure <em>the same thing</em> in different groups? Not “do the groups score differently” — do the scores mean the same thing?</p>
+<p><code>ui_redesign_surveys</code> contains a real example. The same question was asked by unmoderated remote survey and in moderated lab sessions:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ui_redesign_surveys <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(method) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_margin =</span> <span class="fu">mean</span>(margin), <span class="at">n =</span> <span class="fu">n</span>())</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 3</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   method mean_margin     n</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;        &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 remote    -0.00459    85</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 lab        0.07       42</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The two methods give systematically different answers. Is that a genuine difference between the people who take part remotely and those who come to a lab? Or is it the same construct, measured differently — people being more reluctant to criticise a design to a researcher’s face? The data cannot settle it, and the question is called <strong>measurement invariance</strong>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="measurement-error-and-its-consequences" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="measurement-error-and-its-consequences"><span class="header-section-number">1.8</span> Measurement error and its consequences</h2>
+<p>So far reliability has looked like bookkeeping — a number you report in a methods section. It is not. Unreliability actively destroys your results, and this section shows how much.</p>
+<p>The effect is called <strong>attenuation</strong>: measurement error in a variable shrinks the correlations you can observe involving it. Spearman worked this out in 1904, in the paper that also gave the correction.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+<p>Watch it happen. Here is how well the observed total tracks the true score, as the instrument gets noisier:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (e <span class="cf">in</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)) {</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">400</span>, <span class="at">error_sd =</span> e, <span class="at">seed =</span> <span class="dv">7</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"error_sd = %.1f   alpha = %.2f   cor(total, true) = %.2f</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>              e, <span class="fu">cronbach_alpha</span>(<span class="fu">as.matrix</span>(d[, <span class="fu">paste0</span>(<span class="st">"item_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)])),</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">cor</span>(d<span class="sc">$</span>total, d<span class="sc">$</span>true_score)))</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 0.5   alpha = 0.93   cor(total, true) = 0.92</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 1.0   alpha = 0.80   cor(total, true) = 0.86</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 2.0   alpha = 0.48   cor(total, true) = 0.70</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 3.0   alpha = 0.30   cor(total, true) = 0.55</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The construct is identical in all four rows. The people are identical. Only the quality of the instrument changes, and the relationship you could detect falls from 0.92 to 0.55.</p>
+<p>The practical moral is worth stating baldly: <strong>before concluding that there is no effect, ask how reliably you measured things.</strong> A null result from a pair of noisy instruments is not evidence of absence; it may only be evidence that you were measuring badly.</p>
+<section id="correcting-for-attenuation" class="level3">
+<h3 class="anchored" data-anchor-id="correcting-for-attenuation">Correcting for attenuation</h3>
+<p>Because attenuation is systematic, it can be partly undone. If two variables are each measured with error, the correlation you observe is the true correlation shrunk by the square root of the two reliabilities:</p>
+<p><span class="math display">\[r_{x_t y_t} = \frac{r_{xy}}{\sqrt{r_{xx} \, r_{yy}}}\]</span></p>
+<p>Here <span class="math inline">\(r_{xy}\)</span> is what you observe, <span class="math inline">\(r_{xx}\)</span> and <span class="math inline">\(r_{yy}\)</span> are the reliabilities of the two instruments, and <span class="math inline">\(r_{x_ty_t}\)</span> is the estimated correlation between the underlying <em>constructs</em>.</p>
+<p>Let us test it. We build a second construct — call it perceived ease of use — correlated with satisfaction at a known value, and measure both with imperfect scales:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4242</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.6</span>   <span class="co"># the true correlation between the two constructs</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>satisfaction2 <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">400</span>, <span class="at">seed =</span> <span class="dv">100</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>ease_true <span class="ot">&lt;-</span> rho <span class="sc">*</span> satisfaction2<span class="sc">$</span>true_score <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(<span class="dv">400</span>)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>ease <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">400</span>, <span class="at">true_score =</span> ease_true, <span class="at">seed =</span> <span class="dv">101</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The constructs really are related at about <code>rho</code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(satisfaction2<span class="sc">$</span>true_score, ease_true)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.567</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>But that is not what our instruments report:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>r_observed <span class="ot">&lt;-</span> <span class="fu">cor</span>(satisfaction2<span class="sc">$</span>total, ease<span class="sc">$</span>total)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>r_observed</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.453</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The observed correlation is substantially smaller. Now estimate each scale’s reliability and apply the correction:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>alpha_x <span class="ot">&lt;-</span> <span class="fu">cronbach_alpha</span>(<span class="fu">as.matrix</span>(satisfaction2[, <span class="fu">paste0</span>(<span class="st">"item_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)]))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>alpha_y <span class="ot">&lt;-</span> <span class="fu">cronbach_alpha</span>(<span class="fu">as.matrix</span>(ease[, <span class="fu">paste0</span>(<span class="st">"item_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)]))</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">alpha_x =</span> alpha_x, <span class="at">alpha_y =</span> alpha_y)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alpha_x alpha_y </span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   0.759   0.791</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>r_corrected <span class="ot">&lt;-</span> r_observed <span class="sc">/</span> <span class="fu">sqrt</span>(alpha_x <span class="sc">*</span> alpha_y)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>r_corrected</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.585</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The corrected value lands close to the true construct-level correlation, recovering most of what the measurement error had hidden. That is the payoff of the whole chapter: reliability is not an administrative number. It is the quantity that tells you how much of your result your instrument ate.</p>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Four cautions about the correction
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The correction is easy to abuse, and the cautions matter more than the formula.</p>
+<ol type="1">
+<li>A disattenuated correlation is an estimate about <strong>constructs</strong>, not a claim about what your instrument can do. If you are going to make predictions using the actual scale, the attenuated value is the honest one.</li>
+<li>It can exceed 1, which is a standard sign that it has been pushed past what the data support — usually because a reliability estimate was low or badly estimated.</li>
+<li>It inherits the sampling error of <em>three</em> estimated quantities rather than one, so it is less precise than its tidy appearance suggests.</li>
+<li>Reporting it <strong>instead of</strong> the observed correlation, rather than alongside it, is a questionable measurement practice.</li>
+</ol>
+</div>
+</div>
+<p>A final connection: the same logic explains why measurement error in a <em>predictor</em> biases regression coefficients toward zero. That is worth remembering when you reach the chapters on linear models — a predictor measured badly will look less important than it is.</p>
+</section>
+</section>
+<section id="what-not-to-forget" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="what-not-to-forget"><span class="header-section-number">1.9</span> What not to forget</h2>
+<p>If you remember one thing from this chapter, make it this.</p>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>A result on a proxy does not license a claim about the construct.</strong></p>
+<p>You measured a score. You found an effect on the score. Whether that effect is an effect <em>on the construct</em> is a separate question, and it requires a separate argument.</p>
+</div>
+</div>
+</div>
+<p>Go back to the wellbeing app from the opening. Stress scores dropped over the month of app use. The conclusion offers itself: the app reduced stress. But consider what else could produce exactly that pattern.</p>
+<ul>
+<li>Users’ general enthusiasm for the technology grew, and they responded more positively to everything, stress questionnaires included — a change in the proxy with no change in the construct.</li>
+<li>Users worked out what the questionnaire was for and what a good outcome would look like. Reporting less stress is not the same as having less stress.</li>
+<li>The most stressed users quietly stopped using the app, and therefore stopped filling in questionnaires. The average improved because the sample changed. Recall the 145 missing days in <code>daily_mood_ratings</code>: if the missing days are disproportionately the bad ones, every summary computed on the remaining days is optimistic, and nothing in the data will tell you.</li>
+<li>The month happened to be a calm one.</li>
+</ul>
+<p>Every one of these is an arrow in <a href="#fig-other-variables" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> — something that moves the observable behaviour without moving the construct. None of them is exotic, and none of them is ruled out by a small p-value.</p>
+<p>This family of problems is exactly what Flake and Fried set out to document under the heading of <em>questionable measurement practices</em>: not fraud, but the ordinary, widespread habit of not asking what a measure measures.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
+</section>
+<section id="a-checklist-before-you-measure-anything" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="a-checklist-before-you-measure-anything"><span class="header-section-number">1.10</span> A checklist before you measure anything</h2>
+<p>Flake and Fried’s contribution is a set of questions that are almost embarrassingly simple, and very frequently unanswered. Answer them <em>before</em> you collect data, and write the answers down.</p>
+<ol type="1">
+<li><strong>What is your construct?</strong> Define it. “Engagement” is not a definition.</li>
+<li><strong>Why this measure?</strong> Why this instrument rather than another, or rather than one you build yourself?</li>
+<li><strong>What are its psychometric properties — in your population?</strong> Validity and reliability evidence from undergraduates in 2004 may not transfer to your users.</li>
+<li><strong>Did you modify it?</strong> Dropped items, reworded items, changed the number of response options, translated it? Then its existing evidence no longer straightforwardly applies to what you administered.</li>
+<li><strong>How did you quantify it?</strong> Sum, mean, factor score, single item? Was that decided before or after you saw the results?</li>
+<li><strong>Are you reporting all of this?</strong> If a reader cannot reconstruct what you measured and how, they cannot evaluate what you found.</li>
+</ol>
+<p>This is the same instinct as the disclosure norms for AI-assisted work discussed in Part 1: the cost of writing down what you did is trivial, and it is what makes the work possible to evaluate fairly.</p>
+</section>
+<section id="other-analyses" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="other-analyses"><span class="header-section-number">1.11</span> Other analyses</h2>
+<p>The distinction this chapter is built on — between a construct and the indicators we use for it — is not just a conceptual caution. There is a family of statistical methods built directly on it: <strong>exploratory and confirmatory factor analysis</strong>, and more generally <strong>structural equation modelling</strong>. These model the latent construct and the observed indicators as separate objects, which is what makes them the natural tools for asking whether your five items really are measuring one thing, and whether they measure the same thing in different groups.</p>
+<p>You will meet the underlying mathematics in <a href="../highdim/latent-factor-models.html" class="quarto-xref"><span>Chapter 27</span></a> and <a href="../highdim/dimension-reduction.html" class="quarto-xref"><span>Chapter 25</span></a>. Be aware of a difference in emphasis, though. Those chapters use latent factors to <em>predict better</em> — to improve recommendations by discovering structure in ratings. That is a different goal from using them to <em>justify an interpretation</em>, which is what a psychometrician wants. The machinery overlaps substantially; the questions do not.</p>
+<p>That difference in emphasis is worth generalising, because it is largely what separates this chapter from the rest of the book. Data science is usually aimed at predicting the operationalisation — the recorded number, the logged outcome, the observed label. Psychometrics is aimed at establishing what the operationalisation is entitled to be called. You will spend most of this book doing the former. It is worth occasionally remembering to ask the latter.</p>
+</section>
+<section id="exercises" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.12</span> Exercises</h2>
+<p>1. Load <code>app_engagement_experiment</code> and <code>cognitive_task_metrics</code>. For each column, state which of Stevens’ four scales it is on, and justify your answer in one sentence. Which columns are genuinely ratio-scaled? For any column you judge to be interval, say what evidence would be needed to support that.</p>
+<p>2. Using <code>daily_mood_ratings</code>, compute the mean, median, standard deviation and interquartile range. Which pair would you report in a paper, and why? Then consider the missing days: if participants were more likely to skip a check-in on a bad day, in which direction is your estimate wrong, and by how much could it plausibly be wrong?</p>
+<p>3. Compute the mode effect in <code>ui_redesign_surveys</code> (the difference in <code>margin</code> between <code>remote</code> and <code>lab</code>). Give <strong>two</strong> substantively different interpretations of that difference. Which of the five sources of validity evidence in <a href="#tbl-validity" class="quarto-xref">Table&nbsp;<span>1.2</span></a> would help you decide between them, and what study would you run?</p>
+<p>4. Re-run the running example with <code>error_sd = 2</code> instead of the default. What happens to Cronbach’s <span class="math inline">\(\alpha\)</span>? What happens to <code>cor(total, true_score)</code>? Now compute both for <code>error_sd = 0.5</code>. Write one sentence stating the relationship between the two quantities.</p>
+<p>5. Using <code>simulate_sdt()</code>, construct two participants with the same <code>prop_correct</code> but clearly different <code>d_prime</code>. (Hint: for a given <span class="math inline">\(d'\)</span>, proportion correct is highest when the criterion sits at <span class="math inline">\(d'/2\)</span> — so the better detector has to be given a badly chosen criterion.) Which participant would you rather have screening your email?</p>
+<p>6. Repeat the disattenuation example with a much noisier second scale (<code>error_sd = 3</code>). What happens to the observed correlation, to <span class="math inline">\(\alpha\)</span>, and to the corrected value? Now push <code>error_sd</code> higher until the corrected correlation exceeds 1. Explain what that result tells you — about the constructs, and about the correction.</p>
+<p>7. Design an instrument. Propose four items for a construct of your choice in human–technology interaction. For each item, say which aspect of the construct it is meant to cover. Then name one piece of validity evidence and one reliability estimate you would collect before using it, and say what result would make you abandon the instrument.</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Going further with R
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This chapter deliberately computed everything from first principles, so that nothing was hidden behind a function call. In practice you would use a package. The <a href="https://cran.r-project.org/package=psych"><code>psych</code></a> package provides <code>psych::alpha()</code> for internal consistency, <code>psych::omega()</code> for McDonald’s <span class="math inline">\(\omega\)</span>, and <code>psych::ICC()</code> for intraclass correlations (used for test–retest and inter-rater agreement). For factor analysis and structural equation models, <a href="https://lavaan.ugent.be/"><code>lavaan</code></a> is the standard choice. Check your hand-computed <span class="math inline">\(\alpha\)</span> against <code>psych::alpha()</code> — they should agree.</p>
+</div>
+</div>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>This chapter draws heavily on my own book on psychometrics in clinical neuropsychology, G. Arcara, <em>Oltre i punteggi</em> (in Italian), where several of these topics are treated at much greater length. The examples here have been re-anchored from clinical assessment to human–technology research, but the underlying problems are the same ones.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>S. S. Stevens (1946), <em>On the Theory of Scales of Measurement</em>, <strong>Science</strong>, 103, 677–680.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>P. Suppes &amp; J. L. Zinnes (1963), <em>Basic measurement theory</em>, in R. D. Luce, R. R. Bush &amp; E. Galanter (eds.), <strong>Handbook of Mathematical Psychology</strong>, Vol. 1, 1–76. New York: Wiley.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>T. M. Liddell &amp; J. K. Kruschke (2018), <em>Analyzing ordinal data with metric models: What could possibly go wrong?</em>, <strong>Journal of Experimental Social Psychology</strong>, 79, 328–348, <a href="https://doi.org/10.1016/j.jesp.2018.08.009" class="uri">https://doi.org/10.1016/j.jesp.2018.08.009</a>. Their answer to the title’s question is: quite a lot, including inferring effects that are not there and missing ones that are.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>D. M. Green &amp; J. A. Swets (1966), <strong>Signal Detection Theory and Psychophysics</strong>. New York: Wiley. The framework comes originally from radar engineering, which is where the vocabulary of “signal”, “noise” and “false alarm” is from.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>American Educational Research Association, American Psychological Association &amp; National Council on Measurement in Education (2014), <strong>Standards for Educational and Psychological Testing</strong>. Washington, DC: AERA. Freely available at <a href="https://www.testingstandards.net/uploads/7/6/6/4/76643089/standards_2014edition.pdf" class="uri">https://www.testingstandards.net/uploads/7/6/6/4/76643089/standards_2014edition.pdf</a>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>D. J. Slick (2006), <em>Psychometrics in neuropsychological assessment</em>, ch.&nbsp;1 in E. Strauss, E. M. S. Sherman &amp; O. Spreen (eds.), <strong>A Compendium of Neuropsychological Tests</strong>, 3rd ed.&nbsp;New York: Oxford University Press. The more stringent thresholds for individual-level decisions are from J. M. Sattler (2001) and J. C. Nunnally &amp; I. H. Bernstein (1994), <strong>Psychometric Theory</strong>, 3rd ed.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>C. Spearman (1904), <em>The Proof and Measurement of Association between Two Things</em>, <strong>American Journal of Psychology</strong>, 15(1), 72–101, <a href="https://doi.org/10.2307/1412159" class="uri">https://doi.org/10.2307/1412159</a>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>J. K. Flake &amp; E. I. Fried (2020), <em>Measurement Schmeasurement: Questionable Measurement Practices and How to Avoid Them</em>, <strong>Advances in Methods and Practices in Psychological Science</strong>, 3(4), 456–465, <a href="https://doi.org/10.1177/2515245920952393" class="uri">https://doi.org/10.1177/2515245920952393</a>.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/intro-to-behds\.github\.io\/behdsbook-part-2\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../behav/intro-behav.html" class="pagination-link" aria-label="Behavioural Measurement">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Behavioural Measurement</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../behav/simulating-measurement.html" class="pagination-link" aria-label="Behind the Simulations">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Introduction to Behavioural Data Science, adapted from Rafael A. Irizarry’s Introduction to Data Science</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/behav/measurement.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
