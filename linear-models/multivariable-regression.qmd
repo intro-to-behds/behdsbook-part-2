@@ -26,7 +26,7 @@ From 1989 to 1991, the A's had one of the highest payrolls in baseball. They wer
 
 
 <!--
-```{r mlb-2002-payroll, echo=FALSE, message=FALSE, warning=FALSE, fig.height = 4.5}
+```{r mlb-2002-payroll, echo=FALSE, eval=FALSE, message=FALSE, warning=FALSE, fig.height = 4.5}
 library(tidyverse)
 library(rvest)
 url <- "http://www.stevetheump.com/Payrolls.htm"

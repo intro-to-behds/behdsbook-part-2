@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.7.31">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="Rafael A. Irizarry">
-<title>2&nbsp; Numerical Summaries – Introduction to Data Science</title>
+
+<meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
+
+<title>4&nbsp; Numerical Summaries – Introduction to Behavioural Data Science</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -58,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -73,10 +74,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-416763588d27101c2483b91fe87266df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-8f18353b6674da201bf96e4b700cba6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -102,7 +104,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -113,7 +120,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -128,28 +135,37 @@ window.Quarto = {
   typesetMath
 };
 </script>
+
 </head>
+
 <body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../summaries/intro-summaries.html">Summary Statistics</a></li><li class="breadcrumb-item"><a href="../summaries/numerical-summaries.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../summaries/intro-summaries.html">Summary Statistics</a></li><li class="breadcrumb-item"><a href="../summaries/numerical-summaries.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Introduction to Data Science</a> 
-        <div class="sidebar-tools-main">
-    <a href="https://github.com/rafalab/dsbook-part-2" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+      <a href="../">Introduction to Behavioural Data Science</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/intro-to-behds/behdsbook-part-2" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../Introduction-to-Behavioural-Data-Science.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -165,7 +181,7 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -179,29 +195,52 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summary Statistics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioural Measurement</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/simulating-measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -211,44 +250,44 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -258,50 +297,50 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hierarchical-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -311,50 +350,50 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linear Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/linear-model-framework.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/treatment-effect-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/association-not-causation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/multivariable-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -364,44 +403,44 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../highdim/intro-highdim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">High Dimensional Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/matrices-in-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/linear-algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/dimension-reduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/regularization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/latent-factor-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -411,56 +450,56 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../ml/intro-ml.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/notation-and-terminology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/evaluation-metrics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/conditionals-and-smoothing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/resampling-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/ml-in-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -470,35 +509,39 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#sec-normal-distribution" id="toc-sec-normal-distribution" class="nav-link active" data-scroll-target="#sec-normal-distribution"><span class="header-section-number">2.1</span> The Normal distribution</a></li>
-  <li><a href="#sec-average-and-sd-def" id="toc-sec-average-and-sd-def" class="nav-link" data-scroll-target="#sec-average-and-sd-def"><span class="header-section-number">2.2</span> The mean and standard deviation</a></li>
-  <li><a href="#standard-units" id="toc-standard-units" class="nav-link" data-scroll-target="#standard-units"><span class="header-section-number">2.3</span> Standard units</a></li>
-  <li>
-<a href="#robust-summaries" id="toc-robust-summaries" class="nav-link" data-scroll-target="#robust-summaries"><span class="header-section-number">2.4</span> Robust summaries</a>
+  <li><a href="#sec-normal-distribution" id="toc-sec-normal-distribution" class="nav-link active" data-scroll-target="#sec-normal-distribution"><span class="header-section-number">4.1</span> The Normal distribution</a></li>
+  <li><a href="#sec-average-and-sd-def" id="toc-sec-average-and-sd-def" class="nav-link" data-scroll-target="#sec-average-and-sd-def"><span class="header-section-number">4.2</span> The mean and standard deviation</a></li>
+  <li><a href="#standard-units" id="toc-standard-units" class="nav-link" data-scroll-target="#standard-units"><span class="header-section-number">4.3</span> Standard units</a></li>
+  <li><a href="#robust-summaries" id="toc-robust-summaries" class="nav-link" data-scroll-target="#robust-summaries"><span class="header-section-number">4.4</span> Robust summaries</a>
   <ul class="collapse">
-<li><a href="#outliers" id="toc-outliers" class="nav-link" data-scroll-target="#outliers">Outliers</a></li>
+  <li><a href="#outliers" id="toc-outliers" class="nav-link" data-scroll-target="#outliers">Outliers</a></li>
   <li><a href="#the-median" id="toc-the-median" class="nav-link" data-scroll-target="#the-median">The Median</a></li>
   <li><a href="#median-absolute-deviation" id="toc-median-absolute-deviation" class="nav-link" data-scroll-target="#median-absolute-deviation">Median Absolute Deviation</a></li>
   <li><a href="#the-interquartile-range-iqr" id="toc-the-interquartile-range-iqr" class="nav-link" data-scroll-target="#the-interquartile-range-iqr">The Interquartile Range (IQR)</a></li>
   <li><a href="#a-data-driven-definition-of-outliers" id="toc-a-data-driven-definition-of-outliers" class="nav-link" data-scroll-target="#a-data-driven-definition-of-outliers">A Data-Driven Definition of Outliers</a></li>
+  </ul></li>
+  <li><a href="#sec-boxplots" id="toc-sec-boxplots" class="nav-link" data-scroll-target="#sec-boxplots"><span class="header-section-number">4.5</span> Boxplots</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">4.6</span> Exercises</a></li>
   </ul>
-</li>
-  <li><a href="#sec-boxplots" id="toc-sec-boxplots" class="nav-link" data-scroll-target="#sec-boxplots"><span class="header-section-number">2.5</span> Boxplots</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">2.6</span> Exercises</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/rafalab/dsbook-part-2/blob/main/summaries/numerical-summaries.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rafalab/dsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/summaries/numerical-summaries.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../summaries/intro-summaries.html">Summary Statistics</a></li><li class="breadcrumb-item"><a href="../summaries/numerical-summaries.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-numeric-summaries" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></h1>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../summaries/intro-summaries.html">Summary Statistics</a></li><li class="breadcrumb-item"><a href="../summaries/numerical-summaries.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-numeric-summaries" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></h1>
 </div>
 
 
@@ -512,29 +555,34 @@ window.Quarto = {
   
 
 
-</header><p>Histograms and density plots provide excellent summaries of a distribution. But can we summarize even further? We often see the average and standard deviation used as summary statistics: a two-number summary! To see why these summaries are especially useful, we introduce the normal distribution.</p>
-<section id="sec-normal-distribution" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="sec-normal-distribution">
-<span class="header-section-number">2.1</span> The Normal distribution</h2>
+</header>
+
+
+<p>Histograms and density plots provide excellent summaries of a distribution. But can we summarize even further? We often see the average and standard deviation used as summary statistics: a two-number summary! To see why these summaries are especially useful, we introduce the normal distribution.</p>
+<section id="sec-normal-distribution" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="sec-normal-distribution"><span class="header-section-number">4.1</span> The Normal distribution</h2>
 <p>The normal distribution, also known as the bell curve and as the Gaussian distribution, is one of the most famous mathematical concepts in history. One reason for this is that approximately normal distributions occur in many situations, including gambling winnings, heights, weights, blood pressure, standardized test scores, and experimental measurement errors. There are explanations for these occurrences, which we will describe later. Here we focus on how the normal distribution helps us summarize data.</p>
-<p>Rather than using data, the normal distribution is defined with a mathematical formula—unlike the empirical distributions in the previous chapter, the normal distribution is a <em>theoretical</em> distribution (theoretical distributions will be discussed more in <a href="../prob/random-variables.html" class="quarto-xref"><span>Chapter 7</span></a>). For any interval <span class="math inline">\((a,b)\)</span>, the proportion of values in that interval can be computed using this formula:</p>
+<p>Rather than using data, the normal distribution is defined with a mathematical formula—unlike the empirical distributions in the previous chapter, the normal distribution is a <em>theoretical</em> distribution (theoretical distributions will be discussed more in <a href="../prob/random-variables.html" class="quarto-xref"><span>Chapter 9</span></a>). For any interval <span class="math inline">\((a,b)\)</span>, the proportion of values in that interval can be computed using this formula:</p>
 <p><span class="math display">\[\mathrm{Pr}(a &lt; x \leq b) = \int_a^b \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{1}{2}\left( \frac{x-\mu}{\sigma} \right)^2} \, dx\]</span></p>
 <p>But you don’t need to memorize the formula to use the normal distribution in practice. The most important characteristic is that it is completely defined by just two parameters: <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. The rest of the symbols in the formula represent the interval ends, <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, and known mathematical constants <span class="math inline">\(\pi\)</span> and <span class="math inline">\(e\)</span>. These two parameters, <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, are referred to as the <em>mean</em> and the <em>standard deviation</em> (SD) of the distribution, respectively (<span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> are the Greek letters for <span class="math inline">\(m\)</span> and <span class="math inline">\(s\)</span>). In R the function <code>pnorm</code> lets us compute the <span class="math inline">\(\mathrm{Pr}(x \leq a)\)</span> for any <span class="math inline">\(a,\mu,\)</span> and <span class="math inline">\(\sigma\)</span>:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">mu</span>, <span class="va">sigma</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(a, mu, sigma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The distribution is symmetric, centered at <span class="math inline">\(\mu\)</span>, and most values (about 95%) are within <span class="math inline">\(2\sigma\)</span> from <span class="math inline">\(\mu\)</span>. Here is what the normal distribution looks like when the <span class="math inline">\(\mu = 0\)</span> and <span class="math inline">\(\sigma = 1\)</span>:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="numerical-summaries_files/figure-html/summaries-normal-distribution-density-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="numerical-summaries_files/figure-html/summaries-normal-distribution-density-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>The fact that the distribution is defined by just two parameters implies that if a dataset’s distribution is approximated by the normal distribution, all the information needed to describe the distribution can be encoded in just two numbers: the mean and the standard deviation.</p>
-<p>Although introduced in the context of the normal distribution, the mean and standard deviation apply to any list of numbers. We will revisit these summaries for discrete distributions in <a href="../prob/random-variables.html" class="quarto-xref"><span>Chapter 7</span></a>; for now, we focus on computing them from data.</p>
-</section><section id="sec-average-and-sd-def" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="sec-average-and-sd-def">
-<span class="header-section-number">2.2</span> The mean and standard deviation</h2>
+<p>Although introduced in the context of the normal distribution, the mean and standard deviation apply to any list of numbers. We will revisit these summaries for discrete distributions in <a href="../prob/random-variables.html" class="quarto-xref"><span>Chapter 9</span></a>; for now, we focus on computing them from data.</p>
+</section>
+<section id="sec-average-and-sd-def" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="sec-average-and-sd-def"><span class="header-section-number">4.2</span> The mean and standard deviation</h2>
 <p>For a list of values <span class="math inline">\(x_1, \dots, x_n\)</span> we define the <em>mean</em> and <em>standard deviation</em>. The mean, denoted <span class="math inline">\(\mu_x\)</span>, is defined by</p>
 <p><span class="math display">\[
 \mu_x = \frac{1}{n}\sum_{i=1}^n x_i
@@ -543,16 +591,16 @@ window.Quarto = {
 <p><span class="math display">\[
 \sigma_x = \sqrt{\frac{1}{n}\sum_{i=1}^n (x_i - \mu_x)^2}
 \]</span> which can be thought of as the average distance of the points <span class="math inline">\(x_i\)</span> to the mean <span class="math inline">\(\mu_x\)</span>.</p>
-<p>Let’s compute the mean and standard deviations for the height of males:</p>
+<p>Let’s compute the mean and standard deviation of the reaction times of males:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">rafalib</span><span class="op">)</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">heights</span>, <span class="va">height</span><span class="op">[</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"Male"</span><span class="op">]</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rafalib)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">with</span>(reaction_times, rt_ms[sex <span class="sc">==</span> <span class="st">"Male"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The pre-built functions <code>mean</code> and <code>sd</code> can be used here:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-warning">
 <div class="callout-body d-flex">
@@ -560,11 +608,11 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>For reasons explained in <a href="../inference/models.html#sec-population-sd" class="quarto-xref"><span>Section 10.2.1</span></a>, <code>sd(x)</code> divides by <span class="math inline">\(n-1\)</span> rather than <span class="math inline">\(n\)</span>. When <span class="math inline">\(n\)</span> is large, however, the difference is negligible:</p>
+<p>For reasons explained in <a href="../inference/models.html#sec-population-sd" class="quarto-xref"><span>Section 12.2.1</span></a>, <code>sd(x)</code> divides by <span class="math inline">\(n-1\)</span> rather than <span class="math inline">\(n\)</span>. When <span class="math inline">\(n\)</span> is large, however, the difference is negligible:</p>
 <p><span class="math display">\[
 \frac{1}{n}\sum_{i=1}^n (x_i - \mu_x)^2 \approx \frac{1}{n-1}\sum_{i=1}^n (x_i - \mu_x)^2.
 \]</span></p>
-<p>We will explain why <span class="math inline">\(n-1\)</span> is often preferred in <a href="../inference/models.html#sec-population-sd" class="quarto-xref"><span>Section 10.2.1</span></a>. For now, we will use <code>sd(x)</code> to compute the standard deviation of the values in <code>x</code>.</p>
+<p>We will explain why <span class="math inline">\(n-1\)</span> is often preferred in <a href="../inference/models.html#sec-population-sd" class="quarto-xref"><span>Section 12.2.1</span></a>. For now, we will use <code>sd(x)</code> to compute the standard deviation of the values in <code>x</code>.</p>
 </div>
 </div>
 </div>
@@ -573,7 +621,8 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="numerical-summaries_files/figure-html/summaries-data-and-normal-densities-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="numerical-summaries_files/figure-html/summaries-data-and-normal-densities-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -581,23 +630,23 @@ window.Quarto = {
 <p>The normal distribution appears to be a good approximation. To check this, we can see if the probabilities computed using <code>pnorm</code> closely match those estimated directly from the data.</p>
 <p>For example, we can compare the proportion of observations falling within a given interval, say <span class="math inline">\((a, b]\)</span>, as predicted by the normal model to the actual proportion observed in the data. The proportion of values in the interval <span class="math inline">\([a, b]\)</span> can be computed with:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="va">a</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;=</span> <span class="va">b</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x <span class="sc">&gt;</span> a <span class="sc">&amp;</span> x <span class="sc">&lt;=</span> b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here, the logical expression <code>x &gt; a &amp; x &lt;= b</code> returns <code>TRUE</code> for all values of <code>x</code> in the interval and <code>FALSE</code> otherwise. Because the <code>mean</code> function automatically converts <code>TRUE</code> to 1 and <code>FALSE</code> to 0, the average of this logical vector is simply the proportion of observations that fall within the interval. We will use this convenient approach throughout the book.</p>
 <p>The following examples illustrate how closely the observed proportions match the theoretical probabilities from the normal distribution.</p>
-<p>The probability of being shorter than the average student:</p>
+<p>The probability of responding faster than the average participant:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">m</span>, <span class="va">s</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.5</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="va">m</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.515</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(m, m, s)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.5</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x <span class="sc">&lt;=</span> m)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.515</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The probability of being within two standard deviations of the mean:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">76.5</span>, <span class="va">m</span>, <span class="va">s</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">62.1</span>, <span class="va">m</span>, <span class="va">s</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.954</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">62.1</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">76.5</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.95</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">443.6</span>, m, s) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">311</span>, m, s)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x <span class="sc">&gt;</span> <span class="dv">311</span> <span class="sc">&amp;</span> x <span class="sc">&lt;=</span> <span class="fl">443.6</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.95</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
@@ -605,22 +654,23 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>When using the normal approximation with discrete data (for example, when heights are rounded to the nearest inch), note that <code>mean(x &lt; a)</code> and <code>mean(x &lt;= a)</code> may differ. In such cases, it’s common to apply a <em>continuity correction</em>, using <code>pnorm(a + delta/2, m, s)</code> to approximate <code>mean(x &lt;= a)</code>, where <code>delta</code> is the bin width (in our example, 1 inch). In our dataset, however, some students reported more precise measurements, so the degree of discretization varies. As a result, the normal approximation should be applied with care.</p>
+<p>When using the normal approximation with discrete data (for example, when reaction times are recorded to the nearest 10 milliseconds), note that <code>mean(x &lt; a)</code> and <code>mean(x &lt;= a)</code> may differ. In such cases, it’s common to apply a <em>continuity correction</em>, using <code>pnorm(a + delta/2, m, s)</code> to approximate <code>mean(x &lt;= a)</code>, where <code>delta</code> is the bin width (in that example, 10 milliseconds). In our dataset, however, reaction times were recorded with sub-millisecond precision, so the data are effectively continuous and no correction is needed.</p>
 </div>
 </div>
 </div>
-</section><section id="standard-units" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="standard-units">
-<span class="header-section-number">2.3</span> Standard units</h2>
+</section>
+<section id="standard-units" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="standard-units"><span class="header-section-number">4.3</span> Standard units</h2>
 <p>For data that is approximately normally distributed, it is convenient to think in terms of <em>standard units</em>. The standard unit of a value tells us how many standard deviations away from the average it is. Specifically, for a value <span class="math inline">\(x_i\)</span> from a list <span class="math inline">\((x_1, \dots, x_n)\)</span>, we define the value of <span class="math inline">\(x_i\)</span> in standard units as <span class="math inline">\(z_i = (x_i - \mu_x)/\sigma_x\)</span> with <span class="math inline">\(\mu_x\)</span> and <span class="math inline">\(\sigma_x\)</span> the average and standard deviation of the list, respectively.</p>
-<p>Why is this convenient? First, revisit the formula for the normal distribution and observe that what is being exponentiated is <span class="math inline">\(-z^2/2\)</span> with <span class="math inline">\(z\)</span> equivalent to <span class="math inline">\(x\)</span> in standard units. Because the maximum of <span class="math inline">\(e^{-z^2/2}\)</span> is at <span class="math inline">\(z = 0\)</span>, this explains why the maximum of the distribution occurs at the mean. It also explains the symmetry since <span class="math inline">\(- z^2/2\)</span> is symmetric around 0. Second, note that by converting the normally distributed data to standard units, we can quickly ascertain whether, for example, a person is about average (<span class="math inline">\(z = 0\)</span>), one of the tallest (<span class="math inline">\(z \approx 2\)</span>), one of the shortest (<span class="math inline">\(z \approx -2\)</span>), or an extremely rare occurrence (<span class="math inline">\(z &gt; 3\)</span> or <span class="math inline">\(z &lt; -3\)</span>). Remember that it does not matter what the original units are, these rules apply to any data that is approximately normal.</p>
+<p>Why is this convenient? First, revisit the formula for the normal distribution and observe that what is being exponentiated is <span class="math inline">\(-z^2/2\)</span> with <span class="math inline">\(z\)</span> equivalent to <span class="math inline">\(x\)</span> in standard units. Because the maximum of <span class="math inline">\(e^{-z^2/2}\)</span> is at <span class="math inline">\(z = 0\)</span>, this explains why the maximum of the distribution occurs at the mean. It also explains the symmetry since <span class="math inline">\(- z^2/2\)</span> is symmetric around 0. Second, note that by converting the normally distributed data to standard units, we can quickly ascertain whether, for example, a participant is about average (<span class="math inline">\(z = 0\)</span>), one of the slowest (<span class="math inline">\(z \approx 2\)</span>), one of the fastest (<span class="math inline">\(z \approx -2\)</span>), or an extremely rare occurrence (<span class="math inline">\(z &gt; 3\)</span> or <span class="math inline">\(z &lt; -3\)</span>). Remember that it does not matter what the original units are, these rules apply to any data that is approximately normal.</p>
 <p>In R, we can transform to standard units using the function <code>scale</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">scale</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To see how many males are within 2 SDs from the average, we simply type:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.95</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(z) <span class="sc">&lt;</span> <span class="dv">2</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.95</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The proportion is about 95%, which is what the normal distribution predicts!</p>
 <div class="callout callout-style-simple callout-note">
@@ -634,67 +684,78 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section><section id="robust-summaries" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="robust-summaries">
-<span class="header-section-number">2.4</span> Robust summaries</h2>
-<p>Note that the heights we explored in the <a href="distributions.html" class="quarto-xref"><span>Chapter 1</span></a> are not the original heights reported by students. A second challenge involves exploring the <em>original</em> reported heights, which are also included in the <strong>dslabs</strong> package in the <code>reported_heights</code> object. We will see that due to errors in reporting, using <em>robust summaries</em> are necessary to produce useful summaries.</p>
-<section id="outliers" class="level3"><h3 class="anchored" data-anchor-id="outliers">Outliers</h3>
-<p>Outliers are very common in real-world data analysis. Data recording can be complex and it is common to observe data points generated in error. For example, an old monitoring device may read out nonsensical measurements before completely failing. Human error is also a source of outliers, in particular when data entry is done manually. For example, an individual may mistakenly enter their height in centimeters instead of inches or put the decimal in the wrong place.</p>
+</section>
+<section id="robust-summaries" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="robust-summaries"><span class="header-section-number">4.4</span> Robust summaries</h2>
+<p>Note that the reaction times we explored in <a href="distributions.html" class="quarto-xref"><span>Chapter 3</span></a> were recorded cleanly by an experimental task. A second challenge involves exploring self-reported data that people typed in by hand. The <strong>behdslabs</strong> package includes two such datasets: <code>reported_daily_screen_time</code>, a vector of self-reported daily screen-time hours, and <code>wearable_onboarding_height</code>, heights typed in by users while setting up a fitness-wearable app. We will see that due to errors in reporting, using <em>robust summaries</em> is necessary to produce useful summaries.</p>
+<section id="outliers" class="level3">
+<h3 class="anchored" data-anchor-id="outliers">Outliers</h3>
+<p>Outliers are very common in real-world data analysis. Data recording can be complex and it is common to observe data points generated in error. For example, an old monitoring device may read out nonsensical measurements before completely failing. Human error is also a source of outliers, in particular when data entry is done manually. For example, a user may mistakenly enter their daily screen time in minutes instead of hours, or put the decimal in the wrong place.</p>
 <p>How do we distinguish an outlier from measurements that were too big or too small simply due to expected variability? This is not always an easy question to answer, but we try to provide some guidance. Let’s begin with a simple case.</p>
-<p>Suppose a colleague is charged with collecting demography data for a group of males. The data report height in feet and are stored in the object:</p>
+<p>Suppose a colleague is charged with collecting daily screen-time data for a group of app users. The data report screen time in hours and are stored in the object:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">outlier_example</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  num [1:500] 5.59 5.8 5.54 6.15 5.83 5.54 5.87 5.93 5.89 5.67 ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(behdslabs)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(reported_daily_screen_time)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  num [1:500] 11.2 11.6 11.1 12.3 11.7 ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Our colleague uses the fact that heights are usually well approximated by a normal distribution and summarizes the data with average and standard deviation:</p>
+<p>Our colleague uses the fact that daily screen times are often well approximated by a normal distribution and summarizes the data with average and standard deviation:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">outlier_example</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 6.1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(reported_daily_screen_time)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 12.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Our colleage writes a report on the interesting fact that this group of males is much taller than usual. The average height is over six feet tall! However, using your data analysis skills you notice something else that is unexpected: the standard deviation is over 7 feet.</p>
+<p>Our colleague writes a report on the interesting fact that this group of users spends much more time on screens than usual. The average is over 12 hours a day! However, using your data analysis skills you notice something else that is unexpected: the standard deviation is over 15 hours.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">outlier_example</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 7.8</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(reported_daily_screen_time)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 15.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Adding and subtracting two standard deviations, you note that 95% of this population will have heights between -9.5, 21.7 feet, which does not make sense. A histogram reveals the problem:</p>
+<p>Adding and subtracting two standard deviations, you note that 95% of this population will have daily screen times between -19, 43.4 hours, which does not make sense. A histogram reveals the problem:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="numerical-summaries_files/figure-html/boxplot-reveals-outliers-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="numerical-summaries_files/figure-html/boxplot-reveals-outliers-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>There appears to be at least one value that is nonsensical, since we know that a height of 180 feet is impossible.</p>
-</section><section id="the-median" class="level3"><h3 class="anchored" data-anchor-id="the-median">The Median</h3>
+<p>There appears to be at least one value that is nonsensical, since we know that a daily screen time of 360 hours is impossible: a day has only 24 hours.</p>
+</section>
+<section id="the-median" class="level3">
+<h3 class="anchored" data-anchor-id="the-median">The Median</h3>
 <p>Outliers can make the average arbitrarily large. With 500 data points, increasing a single observation by <span class="math inline">\(\Delta \times\)</span> 500 raises the average by <span class="math inline">\(\Delta\)</span>. In contrast, the <em>median</em> is <em>robust</em> to outliers: no matter how extreme one value becomes, the median remains unchanged as long as it does not cross the middle of the data.</p>
 <p>The median of our example data is:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">outlier_example</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 5.74</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(reported_daily_screen_time)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>which corresponds to about 5 feet and 9 inches. The median is often a better measure of <em>typical</em> value when the data contain outliers.</p>
-</section><section id="median-absolute-deviation" class="level3"><h3 class="anchored" data-anchor-id="median-absolute-deviation">Median Absolute Deviation</h3>
+<p>which corresponds to about 11 hours and 29 minutes. The median is often a better measure of <em>typical</em> value when the data contain outliers.</p>
+</section>
+<section id="median-absolute-deviation" class="level3">
+<h3 class="anchored" data-anchor-id="median-absolute-deviation">Median Absolute Deviation</h3>
 <p>Just as outliers can distort the average, they can also make the standard deviation misleadingly large. A more <em>robust</em> measure of spread is the <em>median absolute deviation (MAD)</em>.</p>
 <p>To compute the MAD, we first find the median, then calculate the absolute deviation of each value from the median, and finally take the median of those deviations. To make it comparable to the standard deviation when data are normally distributed, we need to multiply this value by 1.4826. (The <code>mad</code> function in R applies this correction automatically.)</p>
-<p>For our height data, the MAD is:</p>
+<p>For our screen-time data, the MAD is:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/mad.html">mad</a></span><span class="op">(</span><span class="va">outlier_example</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.237</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mad</span>(reported_daily_screen_time)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.474</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>which corresponds to about 3 inches.</p>
+<p>which corresponds to about 28 minutes.</p>
 <p>The MAD provides a more stable estimate of variability when data include outliers. In such cases, it offers a truer sense of the dataset’s <em>typical</em> spread.</p>
-</section><section id="the-interquartile-range-iqr" class="level3"><h3 class="anchored" data-anchor-id="the-interquartile-range-iqr">The Interquartile Range (IQR)</h3>
+</section>
+<section id="the-interquartile-range-iqr" class="level3">
+<h3 class="anchored" data-anchor-id="the-interquartile-range-iqr">The Interquartile Range (IQR)</h3>
 <p>When data contain outliers or do not follow a normal distribution, the <em>interquartile range (IQR)</em> provides another way to summarize spread that is more robust than the standard deviation. The IQR represents the range that contains the <em>middle 50%</em> of the data, spanning from the 25th percentile (first quartile) to the 75th percentile (third quartile), and always includes the median.</p>
 <p>Like the median and MAD, the IQR is resistant to extreme values: no matter how large or small an outlier becomes, the IQR remains largely unaffected. For normally distributed data, dividing the IQR by 1.349 gives an estimate of the standard deviation we would expect if no outliers were present.</p>
 <p>In our example, this approximation works well. The IQR-based estimate of the standard deviation is:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">outlier_example</span><span class="op">)</span><span class="op">/</span><span class="fl">1.349</span></span>
-<span><span class="co">#&gt; [1] 0.245</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(reported_daily_screen_time)<span class="sc">/</span><span class="fl">1.349</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.489</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>which corresponds to about 3 inches.</p>
+<p>which corresponds to about 29 minutes.</p>
 <p>In addition to summarizing spread, the IQR allows us to formally define what we mean by an <em>outlier</em>, a concept we will introduce in the next section.</p>
-</section><section id="a-data-driven-definition-of-outliers" class="level3"><h3 class="anchored" data-anchor-id="a-data-driven-definition-of-outliers">A Data-Driven Definition of Outliers</h3>
+</section>
+<section id="a-data-driven-definition-of-outliers" class="level3">
+<h3 class="anchored" data-anchor-id="a-data-driven-definition-of-outliers">A Data-Driven Definition of Outliers</h3>
 <p>A precise, data-driven definition of an <em>outlier</em> was introduced by John Tukey, who also developed the boxplot, a visualization we will introduce in the next section. To construct a boxplot, we first need a formal way to identify which data points count as outliers.</p>
 <p>Let the first and third quartiles be denoted as <span class="math inline">\(Q_1\)</span> and <span class="math inline">\(Q_3\)</span>, respectively. Tukey defined an observation as an <em>outlier</em> if it falls outside the following range:</p>
 <p><span class="math display">\[
@@ -702,93 +763,99 @@ window.Quarto = {
 \]</span></p>
 <p>When the data follow a <strong>standard normal distribution</strong>, this range is:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">q3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.75</span><span class="op">)</span>; <span class="va">q1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.25</span><span class="op">)</span>; <span class="va">iqr</span> <span class="op">&lt;-</span> <span class="va">q3</span> <span class="op">-</span> <span class="va">q1</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">q1</span> <span class="op">-</span> <span class="fl">1.5</span><span class="op">*</span><span class="va">iqr</span>, <span class="va">q3</span> <span class="op">+</span> <span class="fl">1.5</span><span class="op">*</span><span class="va">iqr</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] -2.7  2.7</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>q3 <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.75</span>); q1 <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.25</span>); iqr <span class="ot">&lt;-</span> q3 <span class="sc">-</span> q1</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(q1 <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span>iqr, q3 <span class="sc">+</span> <span class="fl">1.5</span><span class="sc">*</span>iqr)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -2.7  2.7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Using <code>pnorm</code>, we can compute the proportion of data expected to fall within this range:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">q1</span> <span class="op">-</span> <span class="fl">1.5</span><span class="op">*</span><span class="va">iqr</span>, <span class="va">q3</span> <span class="op">+</span> <span class="fl">1.5</span><span class="op">*</span><span class="va">iqr</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="va">r</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="va">r</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">*</span><span class="fl">100</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 99.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">c</span>(q1 <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span>iqr, q3 <span class="sc">+</span> <span class="fl">1.5</span><span class="sc">*</span>iqr)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>((<span class="fu">pnorm</span>(r[<span class="dv">2</span>]) <span class="sc">-</span> <span class="fu">pnorm</span>(r[<span class="dv">1</span>]))<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 99.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Thus, about 99.3% of the data lie inside this interval for a normal distribution. In other words, we expect roughly 7 out of every 1,000 observations from a perfectly normal dataset to fall outside this range, not because they are erroneous, but simply due to random variation.</p>
-<p>To identify <em>far-out outliers</em> more strictly, Tukey proposed using a wider multiplier, such as 3 instead of 1.5, to define the outlier boundaries. For normally distributed data, using a multiplier of 3 means the range <code>c(q1 - 3*iqr, q3 + 3*iqr)</code> contains approximately 99.9998% of all values. This means only about 2 in a million observations would be flagged as outliers. Any function that flags outliers must choose a multiplier; in <strong>ggplot2</strong>’s <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>, this is controlled via the <code>coef</code> argument, which defaults to 1.5.</p>
-<p>Let’s apply Tukey’s rule to our height data. The extreme 180-foot measurement is well beyond the upper bound of this range defined by <span class="math inline">\(Q_3 + 3 \times \text{IQR}\)</span>:</p>
+<p>To identify <em>far-out outliers</em> more strictly, Tukey proposed using a wider multiplier, such as 3 instead of 1.5, to define the outlier boundaries. For normally distributed data, using a multiplier of 3 means the range <code>c(q1 - 3*iqr, q3 + 3*iqr)</code> contains approximately 99.9998% of all values. This means only about 2 in a million observations would be flagged as outliers. Any function that flags outliers must choose a multiplier; in <strong>ggplot2</strong>’s <code>geom_boxplot()</code>, this is controlled via the <code>coef</code> argument, which defaults to 1.5.</p>
+<p>Let’s apply Tukey’s rule to our screen-time data. The extreme 360-hour measurement is well beyond the upper bound of this range defined by <span class="math inline">\(Q_3 + 3 \times \text{IQR}\)</span>:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">max_height</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">outlier_example</span>, <span class="fl">0.75</span><span class="op">)</span> <span class="op">+</span> <span class="fl">3</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">outlier_example</span><span class="op">)</span></span>
-<span><span class="va">max_height</span></span>
-<span><span class="co">#&gt;  75% </span></span>
-<span><span class="co">#&gt; 6.91</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>max_hours <span class="ot">&lt;-</span> <span class="fu">quantile</span>(reported_daily_screen_time, <span class="fl">0.75</span>) <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span><span class="fu">IQR</span>(reported_daily_screen_time)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>max_hours</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  75% </span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13.8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If we remove this value, the remaining data follow an approximately normal distribution, as expected:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">outlier_example</span><span class="op">[</span><span class="va">outlier_example</span> <span class="op">&lt;</span> <span class="va">max_height</span><span class="op">]</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">x</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">7</span>, <span class="fl">2</span><span class="op">/</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> reported_daily_screen_time[reported_daily_screen_time <span class="sc">&lt;</span> max_hours]</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="numerical-summaries_files/figure-html/outlier-qqnorm-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="numerical-summaries_files/figure-html/outlier-qqnorm-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>This demonstrates the usefulness of Tukey’s approach: it provides an objective, reproducible way to detect unusual observations—one that adapts to the spread of the data itself.</p>
-</section></section><section id="sec-boxplots" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="sec-boxplots">
-<span class="header-section-number">2.5</span> Boxplots</h2>
-<p>To introduce boxplots, we will use a dataset of U.S. murders by state. Suppose we want to summarize the distribution of murder rates. A histogram quickly reveals that the data are right-skewed, indicating that the normal approximation does not apply:</p>
+</section>
+</section>
+<section id="sec-boxplots" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="sec-boxplots"><span class="header-section-number">4.5</span> Boxplots</h2>
+<p>To introduce boxplots, we will use a dataset of reported data-breach incidents by U.S. state. Suppose we want to summarize the distribution of incident rates (incidents per 100,000 people). A histogram quickly reveals that the data are right-skewed, indicating that the normal approximation does not apply:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="numerical-summaries_files/figure-html/summaries-hist-qqplot-non-normal-data-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="numerical-summaries_files/figure-html/summaries-hist-qqplot-non-normal-data-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>While a histogram provides valuable detail, people often prefer a more concise numerical summary, one that highlights the main features of the distribution without showing every data point.</p>
 <p>The <em>boxplot</em> offers such a summary. It condenses a dataset into five numbers: the minimum, first quartile (<span class="math inline">\(Q_1\)</span>), median (<span class="math inline">\(Q_2\)</span>), third quartile (<span class="math inline">\(Q_3\)</span>), and maximum. Outliers, values that fall outside Tukey’s range, defined in the previous section, are not included in the computation of the range, but are instead plotted as individual points.</p>
-<p>Here’s the boxplot for the murder rate data:</p>
+<p>Here’s the boxplot for the incident rate data:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="numerical-summaries_files/figure-html/summaries-first-boxplot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="numerical-summaries_files/figure-html/summaries-first-boxplot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>The box spans from <span class="math inline">\(Q_1\)</span> to <span class="math inline">\(Q_3\)</span>, with a horizontal line marking the median. The whiskers extend to the smallest and largest observations that are not outliers, while outliers are shown as separate points. The height of the box corresponds to the IQR, representing the middle 50% of the data.</p>
-<p>Boxplots are especially useful when comparing distributions across groups, for example, comparing murder rates across regions or height distributions between males and females. They provide a quick visual summary of differences in center, spread, and the presence of outliers. In the next chapter, we will use boxplots in exactly this way to compare distributions between groups.</p>
-</section><section id="exercises" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="exercises">
-<span class="header-section-number">2.6</span> Exercises</h2>
-<p>1. Load the height dataset and create a vector <code>x</code> with just the male heights:</p>
+<p>Boxplots are especially useful when comparing distributions across groups, for example, comparing incident rates across regions or reaction-time distributions between males and females. They provide a quick visual summary of differences in center, spread, and the presence of outliers. In the next chapter, we will use boxplots in exactly this way to compare distributions between groups.</p>
+</section>
+<section id="exercises" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">4.6</span> Exercises</h2>
+<p>1. Load the reaction-time dataset and create a vector <code>x</code> with just the male reaction times:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">heights</span><span class="op">$</span><span class="va">height</span><span class="op">[</span><span class="va">heights</span><span class="op">$</span><span class="va">sex</span><span class="op">==</span><span class="st">"Male"</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(behdslabs)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> reaction_times<span class="sc">$</span>rt_ms[reaction_times<span class="sc">$</span>sex<span class="sc">==</span><span class="st">"Male"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>What proportion of the data is between 69 and 72 inches (taller than 69, but shorter or equal to 72)? Hint: use a logical operator and <code>mean</code>.</p>
+<p>What proportion of the data is between 370 and 390 milliseconds (slower than 370, but faster than or equal to 390)? Hint: use a logical operator and <code>mean</code>.</p>
 <p>2. Suppose all you know about the data is the average and the standard deviation. Use the normal approximation to estimate the proportion you just calculated. Hint: start by computing the average and standard deviation. Then use the <code>pnorm</code> function to predict the proportions.</p>
-<p>3. Notice that the approximation calculated in question 1 is very close to the exact calculation in question 2. Now perform the same task for more extreme values. Compare the exact calculation and the normal approximation for the interval (79,81]. How many times larger is the actual proportion than the approximation?</p>
-<p>4. Approximate the distribution of adult men in the world as normally distributed with an average of 69 inches and a standard deviation of 3 inches. Using this approximation, estimate the proportion of adult men that are 7 feet tall or taller, referred to as <em>seven-footers</em>. Hint: use the <code>pnorm</code> function.</p>
-<p>5. There are about 1 billion men between the ages of 18 and 40 in the world. Use your answer to the previous question to estimate how many of these men (18-40 year olds) are seven feet tall or taller in the world?</p>
-<p>6. There are about 10 National Basketball Association (NBA) players that are 7 feet tall or higher. Using the answer to the previous two questions, what proportion of the world’s 18-to-40-year-old <em>seven-footers</em> are in the NBA?</p>
-<p>7. Repeat the calculations performed in the previous question for Lebron James’ height: 6 feet 8 inches. There are about 150 players that are at least that tall.</p>
-<p>8. In answering the previous questions, we found that it is not uncommon for a seven-footer to become an NBA player. What would be a fair critique of our calculations:</p>
+<p>3. Notice that the approximation calculated in question 2 is very close to the exact calculation in question 1. Now perform the same task for more extreme values. Compare the exact calculation and the normal approximation for the interval (270,290]. How many times larger is the actual proportion than the approximation?</p>
+<p>4. Approximate the distribution of simple reaction times of adults in the world as normally distributed with an average of 375 milliseconds and a standard deviation of 30 milliseconds. Using this approximation, estimate the proportion of adults who respond in under 225 milliseconds, referred to as <em>ultra-fast responders</em>. Hint: use the <code>pnorm</code> function.</p>
+<p>5. There are about 1 billion adults between the ages of 18 and 40 in the world. Use your answer to the previous question to estimate how many of these adults (18-40 year olds) are ultra-fast responders in the world?</p>
+<p>6. Suppose there are about 10 professional esports players whose reaction time is under 225 milliseconds. (This number is hypothetical.) Using the answer to the previous two questions, what proportion of the world’s 18-to-40-year-old <em>ultra-fast responders</em> are professional esports players?</p>
+<p>7. Repeat the calculations performed in the previous question for a reaction time of 265 milliseconds. Suppose there are about 150 professional players who respond at least that fast.</p>
+<p>8. In answering the previous questions, we found that it is not uncommon for an ultra-fast responder to become a professional player. What would be a fair critique of our calculations (hint: can a reaction time be arbitrarily small?):</p>
 <ol type="a">
-<li>Practice and talent are what make a great basketball player, not height.</li>
-<li>The normal approximation is not appropriate for heights.</li>
-<li>The normal approximation tends to underestimate the extreme values. It’s possible that there are more seven-footers than we predicted.</li>
-<li>The normal approximation tends to overestimate the extreme values. It’s possible that there are fewer seven-footers than we predicted.</li>
+<li>Practice and talent are what make a great esports player, not reaction time.</li>
+<li>The normal approximation is not appropriate for reaction times.</li>
+<li>The normal approximation tends to underestimate the extreme values. It’s possible that there are more ultra-fast responders than we predicted.</li>
+<li>The normal approximation tends to overestimate the extreme values. It’s possible that there are fewer ultra-fast responders than we predicted.</li>
 </ol>
 <p>For the next few exercises, we are going to use the <strong>HistData</strong> package. Load the <code>Galton</code> data and create a vector <code>x</code>, consisting solely of the child heights:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://friendly.github.io/HistData/">HistData</a></span><span class="op">)</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">Galton</span><span class="op">$</span><span class="va">child</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HistData)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> Galton<span class="sc">$</span>child</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>9. Compute the average and SD of these data.</p>
 <p>10. Compute the median and median absolute deviation of these data.</p>
 <p>11. Now suppose Galton made a mistake when entering the first value and forgot to use the decimal point. You can imitate this error by typing:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x_with_error</span> <span class="op">&lt;-</span> <span class="va">x</span></span>
-<span><span class="va">x_with_error</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x_with_error</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="fl">10</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x_with_error <span class="ot">&lt;-</span> x</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>x_with_error[<span class="dv">1</span>] <span class="ot">&lt;-</span> x_with_error[<span class="dv">1</span>]<span class="sc">*</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>How many inches does the average grow after this mistake?</p>
 <p>12. How many inches does the SD grow after this mistake?</p>
@@ -802,23 +869,26 @@ window.Quarto = {
 <li>A scatterplot would show high levels of measurement error.</li>
 </ol>
 <p>16. How much can the average accidentally grow with mistakes like this? Write a function called <code>error_avg</code> that takes in a value <code>k</code>. This function should replace the first entry of the vector <code>x</code> with the value <code>k</code>, then compute and return the average of this modified <code>x</code>. Show the results for <code>k=10000</code> and <code>k=-10000</code>.</p>
-<p>17. Using the <code>murders</code> dataset in the <strong>dslabs</strong> package. Compute the murder rate for each state. Make a boxplot comparing the murder rates for each region of the United States.</p>
-<p>18. For the same dataset, compute the median and IQR murder rate for each region.</p>
-<p>19. The heights we have been looking at in the <code>heights</code> data frame are not the original heights reported by students. The original reported heights are also included in the <strong>dslabs</strong> package in the object <code>reported_heights</code>. Note that the <code>height</code> column in this data frame is a character, and if we try to create a new column with the numeric version, we get a warnings about NAs.</p>
+<p>17. Using the <code>app_data_breaches</code> dataset in the <strong>behdslabs</strong> package. Compute the incident rate (incidents per 100,000 people) for each state. Make a boxplot comparing the incident rates for each region of the United States.</p>
+<p>18. For the same dataset, compute the median and IQR incident rate for each region.</p>
+<p>19. Heights typed in by users while setting up a fitness-wearable app are included in the <strong>behdslabs</strong> package in the object <code>wearable_onboarding_height</code>. Note that the <code>reported_height_raw</code> column in this data frame is a character, and if we try to create a new column with the numeric version, we get a warning about NAs.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>  </span>
-<span><span class="va">reported_heights</span> <span class="op">&lt;-</span> <span class="va">reported_heights</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>original_heights <span class="op">=</span> <span class="va">height</span>, height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>wearable_onboarding_height <span class="ot">&lt;-</span> wearable_onboarding_height <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">original_heights =</span> reported_height_raw, <span class="at">height =</span> <span class="fu">as.numeric</span>(reported_height_raw))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Examine the rows that result in NAs and describe why this is happening.</p>
-<p>20. Add a column to the <code>reported_heights</code> with the year the height was entered. You can use the <code>year</code> function in the <strong>lubridate</strong> package to extract the year from <code>reported_heights$time_stamp</code>. Change the <code>height</code> column from characters to numbers using <code>as.numeric</code>. Some of the heights will be converted to <code>NA</code> because they were incorrectly entered and include characters, for example <code>165cm</code>. These heights were supposed to be reported in inches, but many clearly did not. Convert any entry with highly unlikely heights, below 54 or above 72, to <code>NA</code> using the <code>na_if</code> function from <strong>dplyr</strong>. Once you do this, stratify by sex and year and report the percentage of incorrectly entered heights, represented by the <code>NA</code>.</p>
+<p>20. Add a column to <code>wearable_onboarding_height</code> with the year the height was entered. You can use the <code>year</code> function in the <strong>lubridate</strong> package to extract the year from <code>wearable_onboarding_height$onboarding_timestamp</code>. Change the <code>reported_height_raw</code> column from characters to numbers using <code>as.numeric</code>. Some of the heights will be converted to <code>NA</code> because they were incorrectly entered and include characters, for example <code>165cm</code>. These heights were supposed to be reported in inches, but many clearly did not. Convert any entry with highly unlikely heights, below 54 or above 72, to <code>NA</code> using the <code>na_if</code> function from <strong>dplyr</strong>. Once you do this, stratify by sex and year and report the percentage of incorrectly entered heights, represented by the <code>NA</code>.</p>
 <p>21. Remove the entries that result in NAs when attempting to convert heights to numbers. Compute the mean, standard deviation, median, and MAD by sex. What do you notice?</p>
 <p>22. Generate boxplots summarizing the heights for males and females and describe what you see.</p>
 <p>23. Look at the largest 10 heights and provide a hypothesis for what you think is happening.</p>
 <p>24. Review all the nonsensical answers by looking at the data considered to be <em>far out</em> by Tukey and comment on the type of errors you see.</p>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -869,14 +939,13 @@ window.Quarto = {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -891,7 +960,7 @@ window.Quarto = {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("http:\/\/rafalab\.dfci\.harvard\.edu\/dsbook-part-2");
+        var filterRegex = new RegExp("https:\/\/intro-to-behds\.github\.io\/behdsbook-part-2\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1217,30 +1286,35 @@ window.Quarto = {
       }
     }
   });
-  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
       <a href="../summaries/distributions.html" class="pagination-link" aria-label="Distributions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distributions</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../summaries/comparing-groups.html" class="pagination-link" aria-label="Comparing Groups">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introduction to Data Science was written by Rafael A. Irizarry</p>
+<p>Introduction to Behavioural Data Science, adapted from Rafael A. Irizarry’s Introduction to Data Science</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/rafalab/dsbook-part-2/blob/main/summaries/numerical-summaries.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rafalab/dsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/summaries/numerical-summaries.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
   </div>
 </footer>
+
+
 
 
 </body></html>

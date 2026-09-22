@@ -2,7 +2,7 @@
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-library(dslabs)
+library(behdslabs)
 if (!exists("mnist")) mnist <- read_mnist()
 x <- mnist$train$images 
 y <- mnist$train$labels

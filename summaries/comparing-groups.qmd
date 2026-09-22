@@ -6,7 +6,7 @@
 #| cache: false
 #| echo: false
 
-library(dslabs)
+library(behdslabs)
 ```
 
 So far, we have focused on summarizing the distribution of a single variable, describing its center, spread, and shape. In practice, however, one of the most common goals of data analysis is **comparison**: we want to know how one group differs from another, how a treatment compares to a control, or how outcomes vary across conditions. Comparing groups is often the first step toward uncovering relationships and understanding sources of variation.
@@ -49,17 +49,17 @@ The most common use of qqplots is to assess whether two distributions, $F_1(x)$ 
 
 ### Example
 
-Up to now we have only examined the distribution of heights for males. We expect that the distribution for females to be similar except for 2-3 inch shift due to males being taller than females, on average. 
-A qqplot confirms this after shifting both distributions to have the same average height:
+Up to now we have only examined the distribution of reaction times for males. We expect the distribution for females to be similar except for a shift of about 40 milliseconds, since in these data males are slower than females, on average. 
+A qqplot confirms this after shifting both distributions to have the same average reaction time:
 
 ```{r male-vs-female-qqplot, echo =-1}
 #| out-width: "50%"
 #| fig-asp: 1
 
 rafalib::mypar()
-library(dslabs)
-f <- with(heights, height[sex == "Female"])
-m <- with(heights, height[sex == "Male"])
+library(behdslabs)
+f <- with(reaction_times, rt_ms[sex == "Female"])
+m <- with(reaction_times, rt_ms[sex == "Male"])
 qqplot(f - mean(f), m - mean(m))
 abline(0,1)
 ```
@@ -92,13 +92,13 @@ qnorm(0.975)
 By default, `pnorm` and `qnorm` assume the **standard normal** distribution (mean 0, SD 1). You can specify different parameters with the `mean` and `sd` arguments:
 
 ```{r}
-qnorm(0.975, mean = 69, sd = 3)
+qnorm(0.975, mean = 375, sd = 30)
 ```
 
-For observed data, we can compute sample quantiles using the `quantile` function. For example, here are the quartiles of male heights:
+For observed data, we can compute sample quantiles using the `quantile` function. For example, here are the quartiles of male reaction times:
 
 ```{r}
-x <- with(heights, height[sex == "Male"])
+x <- with(reaction_times, rt_ms[sex == "Male"])
 quantile(x, c(0.25, 0.50, 0.75))
 ```
 
@@ -127,6 +127,10 @@ Recall that the qqplot in @sec-def-qqplots compared quantiles from two sets of o
 
 Because the points fall close to the identity line, we conclude that the normal distribution provides a good approximation for this dataset.
 
+:::{.callout-note}
+The `reaction_times` data are simulated and very close to normal, which makes them a clean first example. Real reaction times are typically right-skewed, and a qqplot of real data would curve away from the line, with the slowest responses lying well above it. Do not treat the good normal fit here as a general property of reaction-time data.
+:::
+
 The code becomes simpler if we standardize the data first:
 
 ```{r summaries-qqplot-standardized, eval = FALSE}
@@ -138,8 +142,8 @@ And similarly with **ggplot2**, which uses a different vector of probabilities t
 
 ```{r geom_qq-example, eval = FALSE}
 library(ggplot2)
-heights |> filter(sex == "Male") |>
-  ggplot(aes(sample = scale(height))) + 
+reaction_times |> filter(sex == "Male") |>
+  ggplot(aes(sample = scale(rt_ms))) + 
   geom_qq() +
   geom_abline()
 ```
@@ -162,71 +166,71 @@ Because of this default behavior, large datasets can produce thousands of overla
 
 ## Stratification {#sec-stratification}
 
-In data analysis, we often divide observations into groups based on the values of one or more variables associated with those observations. For example, we can divide the height values into groups based on a sex variable: females and males. We call this procedure *stratification* and refer to the resulting groups as *strata*.
+In data analysis, we often divide observations into groups based on the values of one or more variables associated with those observations. For example, we can divide the reaction-time values into groups based on a sex variable: females and males. We call this procedure *stratification* and refer to the resulting groups as *strata*.
 
 Stratification is common in data visualization because we are often interested in how the distribution of variables differs across different subgroups. 
 
-Using the histogram, density plots, and qqplots, we have become convinced that the male height data is well approximated with a normal distribution. In this case, we report back to ET a very succinct summary: male heights follow a normal distribution with an average of `r m <- with(heights, mean(height[sex == "Male"])); round(m, 1)` inches and a SD of `r s <- with(heights, sd(height[sex == "Male"])); round(s,1)` inches. With this information, ET will have a good idea of what to expect when he meets our male students. However, to provide a complete picture we need to also provide a summary of the female heights.
+Using the histogram, density plots, and qqplots, we have become convinced that the male reaction-time data is well approximated with a normal distribution. In this case, we report back to ET a very succinct summary: male reaction times follow a normal distribution with an average of `r m <- with(reaction_times, mean(rt_ms[sex == "Male"])); round(m, 1)` milliseconds and a SD of `r s <- with(reaction_times, sd(rt_ms[sex == "Male"])); round(s,1)` milliseconds. With this information, ET will have a good idea of what to expect when they test our male participants. However, to provide a complete picture we need to also provide a summary of the female reaction times.
 
-Boxplots are useful when we want to quickly compare two or more distributions. Here are the heights for females and males:
+Boxplots are useful when we want to quickly compare two or more distributions. Here are the reaction times for females and males:
 
 ```{r summaries-female-male-boxplots}
 #| message: false
 #| warning: false
 
 library(tidyverse)
-library(dslabs)
-heights |> ggplot(aes(sex, height, fill = sex)) + geom_boxplot()
+library(behdslabs)
+reaction_times |> ggplot(aes(sex, rt_ms, fill = sex)) + geom_boxplot()
 ```
 
-The plot immediately reveals that males are, on average, taller than females. The standard deviations appear to be similar. But does the normal approximation also work for the female height data collected by the survey? We expect that they will follow a normal distribution, just like males. However, exploratory plots reveal that the approximation is not as useful:
+The plot immediately reveals that males are, on average, slower to respond than females. The standard deviations appear to be similar. But does the normal approximation also work for the female reaction-time data collected by the study? We expect that they will follow a normal distribution, just like males. However, exploratory plots reveal that the approximation is not as useful:
 
-```{r summaries-histogram-qqplot-female-heights, echo=FALSE}
-p1 <- heights |> filter(sex == "Female") |>
-  ggplot(aes(height)) +
+```{r summaries-histogram-qqplot-female-rt, echo=FALSE}
+p1 <- reaction_times |> filter(sex == "Female") |>
+  ggplot(aes(rt_ms)) +
   geom_density(fill = "#F8766D") 
-p2 <- heights |> filter(sex == "Female") |> 
-  ggplot(aes(sample = scale(height))) +
+p2 <- reaction_times |> filter(sex == "Female") |> 
+  ggplot(aes(sample = scale(rt_ms))) +
   geom_qq() + geom_abline() + ylab("standard units")
 gridExtra::grid.arrange(p1, p2, ncol = 2)
 ```
 
-We see something we did not see for the males: the density plot has a second *bump* near a height of 52 inches. This is reflected in the qqplot with five points that suggest shorter than expected heights for a normal distribution. The qqplot also shows that the highest points tend to be taller than expected by the normal distribution. When reporting back to ET, we might need to provide a histogram rather than just the average and standard deviation for the female heights.
+We see something we did not see for the males: the density plot has a second *bump* near a reaction time of 220 milliseconds. This is reflected in the qqplot with five points that suggest faster than expected reaction times for a normal distribution. The qqplot also shows that the highest points tend to be slower than expected by the normal distribution. When reporting back to ET, we might need to provide a histogram rather than just the average and standard deviation for the female reaction times.
 
-This is unexpected---studies of other female height distributions find they are well approximated by a normal distribution. What explains the five unusually short heights and the excess of very tall students? One possibility is that some males entered their heights without changing the default sex selection of Female in the form. Whatever the cause, data visualization has uncovered a potential flaw in the data.
+This is unexpected---we would expect the female distribution to be well approximated by a normal distribution, just as the male one is. What explains the five unusually fast reaction times and the excess of very slow ones? One possibility is that some male participants entered their data without changing the default sex selection of Female in the form. Whatever the cause, data visualization has uncovered a potential flaw in the data.
 
 
 Regarding the five smallest values, note that these are:
 
 ```{r}
-filter(heights, sex == "Female") |> slice_min(height, n = 5) |> pull(height)
+filter(reaction_times, sex == "Female") |> slice_min(rt_ms, n = 5) |> pull(rt_ms)
 ```
 
-Because these are reported heights, a possibility is that the student meant to enter `5'1"`, `5'2"`, `5'3"` or `5'5"`.
+Because genuine visual reaction times rarely drop below about 200 milliseconds, a possibility is that these were anticipatory presses: participants responding before the stimulus appeared, rather than truly reacting to it.
 
 
 
 ## Exercises
 
-1\. Study the following boxplots showing population sizes by country:
+1\. Study the following boxplots showing active user bases by country:
 
 ```{r summaries-boxplot-exercise, echo = FALSE, message = FALSE}
 library(tidyverse)
-library(dslabs)
+library(behdslabs)
 ds_theme_set()
-tab <- gapminder |> filter(year == 2010) |> group_by(continent) |> select(continent, population)  
-tab |> ggplot(aes(x = continent, y = population/10^6)) + 
+tab <- global_tech_adoption |> filter(year == 2010) |> group_by(continent) |> select(continent, active_user_base)  
+tab |> ggplot(aes(x = continent, y = active_user_base/10^6)) + 
   geom_boxplot() + 
-  scale_y_continuous(trans = "log10", breaks = c(1,10,100,1000)) + ylab("Population in millions")
+  scale_y_continuous(trans = "log10", breaks = c(1,10,100,1000)) + ylab("Active user base in millions")
 ```
 
-Which continent has the country with the biggest population size?
+Which continent has the country with the biggest active user base?
 
-2\. Which continent has the largest median population size?
+2\. Which continent has the largest median active user base?
 
-3\. What is median population size for Africa to the nearest million?
+3\. What is the median active user base for Africa to the nearest million?
 
-4\. What proportion of countries in Europe have populations below 14 million?
+4\. What proportion of countries in Europe have an active user base below 14 million?
 
 a.  0.99
 b.  0.75
@@ -235,23 +239,23 @@ d.  0.25
 
 5\. On the displayed log scale, which continent has the largest interquartile range (IQR)? Hint: IQR was defined in @sec-boxplots.
 
-6\. Define variables containing the heights of males and females as follows:
+6\. Define variables containing the reaction times of males and females as follows:
 
 ```{r, eval = FALSE}
-library(dslabs)
-male <- heights$height[heights$sex == "Male"]
-female <- heights$height[heights$sex == "Female"]
+library(behdslabs)
+male <- reaction_times$rt_ms[reaction_times$sex == "Male"]
+female <- reaction_times$rt_ms[reaction_times$sex == "Female"]
 ```
 
 How many measurements do we have for each?
 
 7\. Suppose we can't make a plot and want to compare the distributions side by side. We can't just list all the numbers. Instead, we will look at the percentiles. Create a table for each sex with 10th, 30th, 50th, 70th, & 90th percentiles. Then create a data frame with a column for each sex, and 5 rows as these percentiles.
 
-8\. Use a qqplot to demonstrate that murder rates do not follow a normal distribution.
+8\. Use the `app_data_breaches` dataset to compute each state's incident rate (incidents per 100,000 people). Use a qqplot to demonstrate that these incident rates do not follow a normal distribution.
 
-9\. Remove the data for the District of Columbia (DC), then strarify the data into the four regions and generate a qqplot for each to see if the murder rates follow a normal distribution within each of the four regions.
+9\. Remove the data for the District of Columbia (DC), then strarify the data into the four regions and generate a qqplot for each to see if the incident rates follow a normal distribution within each of the four regions.
 
-10\. Calculate the mean and standard deviation of murder rates for each region. Perform the analysis twice: once including all observations and once excluding Washington, DC. Discuss which comparison is more informative and explain your reasoning.
+10\. Calculate the mean and standard deviation of incident rates for each region. Perform the analysis twice: once including all observations and once excluding Washington, DC. Discuss which comparison is more informative and explain your reasoning.
 
 
 

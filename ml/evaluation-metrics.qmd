@@ -4,11 +4,11 @@ Before we start describing approaches to optimize the way we build algorithms, w
 
 For our first introduction to machine learning concepts, we will start with a boring and simple example: how to predict sex using height. As we explain how to build a prediction algorithm with this example, we will start to set down the first building block needed to understand machine learning. Soon enough, we will be undertaking more interesting challenges. 
 
-We introduce the **caret** package, which provides useful functions to facilitate machine learning in R, and we describe it in more detail in [@sec-caret]. For our first example, we use the height data provided by the **dslabs** package.
+We introduce the **caret** package, which provides useful functions to facilitate machine learning in R, and we describe it in more detail in [@sec-caret]. For our first example, we use the height data provided by the **behdslabs** package.
 
 ```{r, message=FALSE, warning=FALSE, cache=FALSE}
 library(caret)
-library(dslabs)
+library(behdslabs)
 ```
 
 We start by noting that `heights$sex` provides the outcomes $Y$ and `heights$height` is our predictor $X$. To simplify the code used throughout this chapter, we rename the variables:

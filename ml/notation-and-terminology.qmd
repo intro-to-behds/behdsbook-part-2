@@ -35,7 +35,7 @@ The general setup is as follows. We have a series of features and an unknown out
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(knitr)
-library(dslabs)
+library(behdslabs)
 tmp <- tibble(outcome = "?", 
               'feature 1' = "$X_1$",
               'feature 2' = "$X_2$",

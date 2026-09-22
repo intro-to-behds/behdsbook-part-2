@@ -24,10 +24,10 @@ the winners were announced[^reg-1]. In this chapter, we will demonstrate how reg
 
 ### Movielens data
 
-The Netflix data is not publicly available, but the GroupLens research lab^[https://grouplens.org/] generated their own database with over 20 million ratings for over 27,000 movies by more than 138,000 users. We make a small subset of this data available via the __dslabs__ package:
+The Netflix data is not publicly available, but the GroupLens research lab^[https://grouplens.org/] generated their own database with over 20 million ratings for over 27,000 movies by more than 138,000 users. We make a small subset of this data available via the __behdslabs__ package:
 
 ```{r, warning=FALSE, message=FALSE, cache=FALSE}
-library(dslabs)
+library(behdslabs)
 movielens |> tibble:::tibble() |> head(5)
 ```
 

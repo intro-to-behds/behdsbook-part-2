@@ -1,0 +1,338 @@
+# Behind the Simulations {#sec-simulating-measurement}
+
+_by Giorgio Arcara_
+
+```{r}
+#| label: sim-setup
+#| include: false
+library(ggplot2)
+library(behdslabs)
+```
+
+@sec-measurement used two simulated datasets: a five-item satisfaction scale, and a detection task. This chapter explains how they are generated. You can skip it and lose nothing from the argument of that chapter — but if you want to understand *why* the simulations behave the way they do, or you want to build your own, this is where the machinery is.
+
+## Why simulate at all
+
+There is one specific reason, and it is not convenience.
+
+Real data never hands you the true score. That is the entire problem @sec-measurement is about: you observe $X$, you want to know about $T$, and $T$ is permanently out of reach. Every reliability coefficient, every validity argument, every correction for attenuation is an attempt to reason about a quantity nobody can see.
+
+In a simulation, you generate $T$ yourself. That makes it the only setting in which you can *check* whether those techniques work — where you can compute a disattenuated correlation and then look up the answer. It is the difference between being told that Cronbach's $\alpha$ estimates reliability and watching it do so.
+
+The cost is that simulated data is only as realistic as the model that produced it. So it is worth being able to read that model.
+
+## The Likert simulator
+
+`simulate_likert()` generates responses to a multi-item scale in four steps. We will build each one by hand, then check the result against the package function.
+
+### Step 1: the true score
+
+Every respondent gets a position on the latent construct, on a standardised scale. This is $T$.
+
+```{r}
+#| label: step-true-score
+set.seed(1)
+n <- 400
+true_score <- rnorm(n, mean = 0, sd = 1)
+head(round(true_score, 2))
+```
+
+The units are arbitrary — a standard deviation of satisfaction. Nothing observable is in these numbers yet.
+
+When you ask for groups, the group shifts this distribution. `group_effect` moves the mean; `group_sd` changes the spread:
+
+```{r}
+#| label: step-groups
+group <- rep(c("standard", "redesigned"), length.out = n)
+shift <- ifelse(group == "standard", 0, 0.5)   # group_effect = 0.5
+true_grouped <- rnorm(n, mean = shift, sd = 1)
+tapply(true_grouped, group, mean)
+```
+
+Keeping those two knobs separate matters. Two groups can share a mean and differ in spread — some populations really are more homogeneous than others — and @sec-measurement uses exactly that case to show that a difference in *scores* is not always a difference in the construct.
+
+### Step 2: measurement error, one item at a time
+
+Each item is an imperfect window onto the same true score. Every item gets its own independent error:
+
+```{r}
+#| label: step-error
+n_items <- 5
+error_sd <- 1
+
+latent <- matrix(true_score, nrow = n, ncol = n_items) +
+  matrix(rnorm(n * n_items, mean = 0, sd = error_sd),
+         nrow = n, ncol = n_items)
+
+round(latent[1:3, ], 2)
+```
+
+This is $X = T + E$, written as a matrix. Each row is one respondent; each column is one item. The true score is constant along a row, and what varies is the error.
+
+`error_sd` is the single most consequential argument in the function. It is the size of $E$, and therefore it controls reliability: everything @sec-measurement says about noisy instruments is, mechanically, a statement about this number.
+
+### Step 3: the ordinal response process
+
+Here is the step that matters most, and the one that is invisible in real data.
+
+A respondent does not report a latent quantity. They pick a category. Somewhere in their head, a continuous impression gets converted into one of five boxes, and the conversion happens at **thresholds** — the points at which they switch from choosing "3" to choosing "4".
+
+```{r}
+#| label: step-thresholds
+thresholds <- qnorm(1:4 / 5) * 1.3 - 0.85
+round(thresholds, 2)
+```
+
+Those are the package defaults. Notice they are not symmetric: they sit well below zero, which means most of the latent distribution falls into the highest categories. That is deliberate, and it is what satisfaction and usability scales actually look like — ratings pile up at the top and the scale runs out of room. This is a **ceiling**.
+
+Cutting the latent values at those thresholds gives the responses:
+
+```{r}
+#| label: step-cut
+items <- matrix(findInterval(latent, thresholds) + 1L,
+                nrow = n, ncol = n_items)
+table(items[, 1])
+```
+
+Compare that with evenly spaced thresholds — the idealised response process in which the item behaves like an interval-scale measure:
+
+```{r}
+#| label: step-cut-even
+thresholds_even <- qnorm(1:4 / 5)
+round(thresholds_even, 2)
+
+items_even <- matrix(findInterval(latent, thresholds_even) + 1L,
+                     nrow = n, ncol = n_items)
+table(items_even[, 1])
+```
+
+Identical people. Identical true scores. Identical measurement error. Completely different-looking data, because the response process differs. @fig-thresholds shows what the two sets of cut points do to the same latent distribution.
+
+```{r}
+#| label: fig-thresholds
+#| echo: false
+#| fig-cap: "The same latent distribution, cut into response categories two ways. Top: evenly spaced thresholds, the interval-scale ideal. Bottom: the asymmetric defaults, which push most respondents into the top categories and produce a ceiling. The curve is identical in both panels — only the vertical lines move."
+#| fig-width: 6.5
+#| fig-height: 4.2
+
+cuts <- rbind(
+  data.frame(cut = thresholds_even, panel = "Evenly spaced (interval-like)"),
+  data.frame(cut = thresholds, panel = "Asymmetric default (ceiling)")
+)
+cuts$panel <- factor(cuts$panel,
+                     levels = c("Evenly spaced (interval-like)",
+                                "Asymmetric default (ceiling)"))
+
+curve_df <- do.call(rbind, lapply(levels(cuts$panel), function(p) {
+  x <- seq(-4, 4, length.out = 400)
+  data.frame(x = x, y = dnorm(x), panel = p)
+}))
+curve_df$panel <- factor(curve_df$panel, levels = levels(cuts$panel))
+
+ggplot(curve_df, aes(x, y)) +
+  geom_area(fill = "grey88") +
+  geom_line(colour = "grey40") +
+  geom_vline(data = cuts, aes(xintercept = cut),
+             colour = "firebrick", linewidth = 0.6) +
+  facet_wrap(~panel, ncol = 1) +
+  labs(x = "latent value", y = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(axis.text.y = element_blank(), panel.grid.minor = element_blank(),
+        strip.text = element_text(face = "bold", size = 9.5))
+```
+
+### Step 4: the total
+
+Finally the items are summed, which is what almost every scale does:
+
+```{r}
+#| label: step-total
+total <- rowSums(items)
+head(total)
+```
+
+Summing is itself an assumption worth noticing. It treats all five items as equally important and as equally spaced, which is the interval assumption arriving through the back door.
+
+### Checking against the package
+
+The four steps above are exactly what the function does. To prove it, let us run them again in one block — in the order the function uses them, so that the random draws line up — and compare:
+
+```{r}
+#| label: check-against-package
+set.seed(1)
+t_hand <- rnorm(400)
+lat_hand <- matrix(t_hand, 400, 5) + matrix(rnorm(400 * 5), 400, 5)
+total_hand <- rowSums(matrix(findInterval(lat_hand, thresholds) + 1L, 400, 5))
+
+from_package <- simulate_likert(n = 400, n_items = 5, error_sd = 1, seed = 1)
+
+all.equal(total_hand, from_package$total)
+all.equal(t_hand, from_package$true_score)
+```
+
+Identical, down to the last respondent. (The rebuild is necessary because the group demonstration in step 1 drew its own random numbers, which shifts everything drawn afterwards — a small reminder that in simulation work the *order* of your random draws is part of your results.)
+
+If you want to read the real thing, it is one command away:
+
+```{r}
+#| label: print-source
+#| eval: false
+behdslabs:::.simulate_likert
+```
+
+I would encourage you to do that, in the spirit of the point made in Part 1 about AI-assisted code: you are responsible for analyses built on code you have not read.
+
+### What the arguments do
+
+A compact summary of the two dials that carry the teaching load:
+
+```{r}
+#| label: arg-effects
+cronbach_alpha <- function(items) {
+  k <- ncol(items)
+  k / (k - 1) * (1 - sum(apply(items, 2, var)) / var(rowSums(items)))
+}
+
+for (e in c(0.5, 1, 2, 3)) {
+  d <- simulate_likert(n = 500, error_sd = e, seed = 3)
+  its <- as.matrix(d[, paste0("item_", 1:5)])
+  cat(sprintf("error_sd = %.1f  ->  alpha = %.2f,  cor(total, true) = %.2f\n",
+              e, cronbach_alpha(its), cor(d$total, d$true_score)))
+}
+```
+
+And `true_score`, which is both returned and accepted as an argument. That is what makes a retest expressible: the same people, the same construct, a new occasion.
+
+```{r}
+#| label: arg-retest
+t1 <- simulate_likert(n = 300, seed = 21)
+t2 <- simulate_likert(n = 300, true_score = t1$true_score, seed = 22)
+
+identical(t1$true_score, t2$true_score)   # same people, same construct
+cor(t1$total, t2$total)                   # but not the same scores
+```
+
+## The detection simulator
+
+`simulate_sdt()` implements the standard equal-variance signal detection model. The model is easier to see as a picture than as code, so here is the picture first (@fig-sdt).
+
+```{r}
+#| label: fig-sdt
+#| echo: false
+#| fig-cap: "The signal detection model. On each trial the participant gets some evidence: drawn from the left curve when there is no signal, and from the right curve when there is. The two curves are $d'$ apart — that distance is sensitivity, the construct. The participant answers 'yes' whenever the evidence exceeds their criterion (the vertical line), which they can place wherever they like. Moving the line changes hits and false alarms together; it does not change $d'$."
+#| fig-width: 6.8
+#| fig-height: 3.6
+
+d_prime <- 1.8
+crit <- 0.7
+x <- seq(-4, 6, length.out = 600)
+
+dens <- rbind(
+  data.frame(x = x, y = dnorm(x, 0, 1), dist = "noise (no signal)"),
+  data.frame(x = x, y = dnorm(x, d_prime, 1), dist = "signal present")
+)
+
+ggplot(dens, aes(x, y, fill = dist, colour = dist)) +
+  geom_area(alpha = 0.35, position = "identity") +
+  geom_line(linewidth = 0.6) +
+  geom_vline(xintercept = crit, linewidth = 0.9, colour = "grey15") +
+  # d' sits just above the peaks; the criterion label goes well above it,
+  # so the two can never be read as labelling the same thing.
+  annotate("segment", x = 0, xend = d_prime, y = 0.44, yend = 0.44,
+           arrow = arrow(length = unit(0.15, "cm"), ends = "both"),
+           colour = "grey25") +
+  annotate("text", x = d_prime / 2, y = 0.475, label = "d'",
+           fontface = "italic", size = 4.2, colour = "grey15") +
+  annotate("text", x = crit, y = 0.585, label = "criterion",
+           size = 3.2, colour = "grey15", hjust = -0.1) +
+  annotate("text", x = 4.4, y = 0.12, label = '"yes"', size = 3.2,
+           colour = "grey30") +
+  annotate("text", x = -2.6, y = 0.12, label = '"no"', size = 3.2,
+           colour = "grey30") +
+  scale_fill_manual(values = c("grey60", "steelblue"), name = NULL) +
+  scale_colour_manual(values = c("grey40", "steelblue4"), name = NULL) +
+  coord_cartesian(ylim = c(0, 0.61)) +
+  labs(x = "evidence on a trial", y = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(axis.text.y = element_blank(), panel.grid.minor = element_blank(),
+        legend.position = "bottom")
+```
+
+The two parameters are separate by construction. **Sensitivity** ($d'$) is the distance between the curves: how distinguishable signal is from noise, for this person. **Criterion** is where the line sits: how much evidence they demand before saying "yes". A cautious participant slides the line right and gets fewer hits and fewer false alarms. Their $d'$ does not move.
+
+From the picture, the two rates follow directly. The hit rate is the area of the signal curve to the right of the criterion; the false-alarm rate is the area of the noise curve to the right of it:
+
+```{r}
+#| label: sdt-rates
+d_prime <- 1.8
+crit <- 0.7
+
+hit_rate <- pnorm(d_prime - crit)   # signal curve, right of criterion
+fa_rate <- pnorm(-crit)             # noise curve, right of criterion
+c(hit_rate = hit_rate, fa_rate = fa_rate)
+```
+
+Trial counts are then binomial draws at those rates:
+
+```{r}
+#| label: sdt-counts
+set.seed(5)
+n_signal <- 100
+n_noise <- 100
+
+hits <- rbinom(1, n_signal, hit_rate)
+false_alarms <- rbinom(1, n_noise, fa_rate)
+
+c(hits = hits, misses = n_signal - hits,
+  false_alarms = false_alarms, correct_rejections = n_noise - false_alarms)
+```
+
+Going the other way — from counts back to $d'$ — just inverts the two `pnorm()` calls:
+
+```{r}
+#| label: sdt-recover
+qnorm(hits / n_signal) - qnorm(false_alarms / n_noise)
+```
+
+Close to the 1.8 we generated with, and it would get closer with more trials.
+
+### Why proportion correct is the wrong summary
+
+The simulator makes it easy to see why @sec-measurement warns against proportion correct. For a fixed $d'$, proportion correct depends on where the criterion sits, and it is highest when the criterion is exactly halfway between the two curves:
+
+```{r}
+#| label: sdt-pc-curve
+prop_correct <- function(d, crit, signal_prob = 0.5) {
+  signal_prob * pnorm(d - crit) + (1 - signal_prob) * pnorm(crit)
+}
+
+crits <- seq(-2, 2, by = 0.5)
+round(prop_correct(d = 1.8, crit = crits), 3)
+```
+
+The same person, with identical ability, scores anywhere from `r round(min(prop_correct(1.8, crits)), 2)` to `r round(max(prop_correct(1.8, crits)), 2)` depending only on how willing they are to say "yes".
+
+This also explains a detail in @sec-measurement that might otherwise look arbitrary. To construct two participants with equal proportion correct and different $d'$, you cannot pick the numbers freely: a weak detector at its *best possible* criterion sets a ceiling, and the strong detector has to be given a deliberately bad criterion to come down to it.
+
+```{r}
+#| label: sdt-equalise
+# A d' = 0.8 detector can do no better than this:
+ceiling_08 <- prop_correct(d = 0.8, crit = 0.4)
+ceiling_08
+
+# What criterion drags a d' = 2.0 detector down to the same score?
+uniroot(function(cc) prop_correct(2.0, cc) - ceiling_08, c(-3, 0))$root
+```
+
+Which is where the values `criterion = c(0.4, -0.475)` in @sec-measurement come from — solved, not guessed.
+
+## Building your own
+
+Both functions are deliberately small, and the point of this chapter is that you could have written either. If you want to explore a measurement question that neither covers, the pattern is the same one @sec-measurement describes in words:
+
+1. Generate the construct.
+2. Add whatever contaminates the observation of it.
+3. Apply whatever process turns that observation into a recorded value.
+4. Analyse the result *as if* you did not know steps 1 to 3 — then check your answer against them.
+
+Step 4 is the one people skip, and it is the only one that tells you whether your analysis works.

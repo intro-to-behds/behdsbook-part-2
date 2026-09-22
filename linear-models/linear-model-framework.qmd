@@ -255,11 +255,11 @@ In this section, we briefly present a setting where the measurement-error interp
 
 ### Example: modeling a falling object
 
-To understand these models, imagine you are Galileo in the 16th century, trying to describe the velocity of a falling object. An assistant climbs the Tower of Pisa and drops a ball, while several other assistants record the position at different times. Let's simulate some data using the physics equations that are now known, and add some measurement error. The **dslabs** function `rfalling_object` generates these simulations:
+To understand these models, imagine you are Galileo in the 16th century, trying to describe the velocity of a falling object. An assistant climbs the Tower of Pisa and drops a ball, while several other assistants record the position at different times. Let's simulate some data using the physics equations that are now known, and add some measurement error. The **behdslabs** function `rfalling_object` generates these simulations:
 
 ```{r, message=FALSE, warning=FALSE, cache=FALSE}
 library(tidyverse)
-library(dslabs)
+library(behdslabs)
 falling_object <- rfalling_object()
 ```
 

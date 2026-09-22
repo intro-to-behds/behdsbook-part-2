@@ -1,4 +1,4 @@
-This is the code for the second part of the Introduction Data Science book: [Statistics and Prediction Algorithms Through Case Studies](https://rafalab.github.io/dsbook-part-2/). 
+This is the code for the second part of **Introduction to Behavioural Data Science**: *Statistics and Prediction Algorithms Through Case Studies*, an adaptation of Rafael A. Irizarry's [Introduction to Data Science](https://rafalab.github.io/dsbook-part-2/), created by Giorgio Arcara for the *Behavioural Data Science* course (PS0000002, University of Padua). See [CHANGELOG.md](CHANGELOG.md) for a list of substantive changes from the original.
 
 The website for the first part is [here](http://rafalab.dfci.harvard.edu/dsbook-part-1/).
 

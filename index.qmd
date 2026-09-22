@@ -1,8 +1,33 @@
 # Preface {.unnumbered}
 
-This is the website for the **Statistics and Prediction Algorithms Through Case Studies**, the second part of **Introduction to Data Science**. 
+::: {.callout-note}
+## About this adaptation
+This book is an adaptation of Rafael A. Irizarry's *Introduction to Data Science* (<https://rafalab.github.io/dsbook-part-2/>), created by Giorgio Arcara for the *Behavioural Data Science* course (PS0000002, University of Padua). Substantive changes — replaced datasets and case studies, new chapters, retitling — are documented in [CHANGELOG.md](https://github.com/intro-to-behds/behdsbook-part-2/blob/main/CHANGELOG.md).
 
-The website for the first part, **Data Wrangling and Visualization with R**, is [here](http://rafalab.dfci.harvard.edu/dsbook-part-1/).
+This work remains licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0), consistent with the original.
+:::
+
+This is the website for the **Statistics and Prediction Algorithms Through Case Studies**, the second part of **Introduction to Behavioural Data Science**, an adaptation of **Introduction to Data Science**.
+
+This behavioural-science adaptation, *Introduction to Behavioural Data Science*, was created by Giorgio Arcara for the *Behavioural Data Science* course (PS0000002, University of Padua).
+
+The Quarto files used to generate this adaptation are available on [GitHub](https://github.com/intro-to-behds/behdsbook-part-2).
+
+The website for the original book are the following:
+
+- Part 1 **Data Wrangling and Visualization with R** part is [here](https://intro-to-behds.github.io/behdsbook-part-1/).
+- Part 2 **Statistics and Prediction Algorithms Through Case Studies** part is [here](https://intro-to-behds.github.io/behdsbook-part-2/).
+
+
+# Disclaimers
+
+In this version of the book, all examples and datasets are adaptations of the datasets in the original book, re-themed to fit a behavioural-science context. The numerical values derive from real datasets, but their behavioural framing is fictional: **these should not be interpreted or cited as genuine behavioural, statistical, or predictive-modeling data**.
+
+The English translation and adaptation were produced with the assistance of _Claude Code (Sonnet 4.6)_. The model was used for programming, language revision, and to help "reflavour" the examples; LLMs were not used to generate new ideas or to decide the content.
+
+# Preface to the Original Edition {.unnumbered}
+
+*The following is Rafael A. Irizarry's preface to the original* Introduction to Data Science*, unchanged except where noted.*
 
 This book started out as part of the class notes used in the HarvardX [Data Science Series](https://www.edx.org/professional-certificate/harvardx-data-science).
 
@@ -10,14 +35,16 @@ A hardcopy version of the first edition of the book, which combined both parts, 
 
 A free PDF of the October 24, 2019 version of the book, which combined both parts, is available from [Leanpub](https://leanpub.com/datasciencebook).
 
-The Quarto code used to generate the book is available on  [GitHub](https://github.com/rafalab/dsbook-part-2). 
+The Quarto code used to generate the original book is available on  [GitHub](https://github.com/rafalab/dsbook-part-2).
 
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).
 
 We make announcements related to the book on X. For updates follow [\@rafalab](https://x.com/rafalab).
 
 
-# Acknowledgments {.unnumbered}
+# Acknowledgments to the Original Edition {.unnumbered}
+
+*The following are Rafael A. Irizarry's original acknowledgments, unchanged.*
 
 A special thanks to Jenna Landy for her careful editing and helpful advice on this book; Amy Gill, Jorge Cornick, Barry MacLean, and Robert Gentleman for dozens of comments, edits, and suggestions. Also, many thanks to Stephanie Hicks who twice served as a co-instructor in my data science classes and Yihui Xie who patiently put up with my many questions about bookdown. Thanks also to Héctor Corrada-Bravo, for advice on how to best teach machine learning. Thanks to Alyssa Frazee for helping create the homework problem that became the Recommendation Systems case study. Also, many thanks to Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund for making the Quarto code for their R for Data Science book open. Finally, thanks to Alex Nones for proofreading the manuscript during its various stages.
 
@@ -26,6 +53,5 @@ This book was conceived during the teaching of several applied statistics course
 A special thanks goes to all those who edited the book via GitHub pull requests or made suggestions by creating an _issue_ or sending an email:  `hbmaclean` (Barry MacLean), `nickyfoto` (Huang Qiang), `desautm` (Marc-André Désautels), `michaschwab` (Michail Schwab), `alvarolarreategui` (Alvaro Larreategui), `jakevc` (Jake VanCampen), `omerta` (Guillermo Lengemann), `espinielli` (Enrico Spinielli), `asimumba`(Aaron Simumba), `braunschweig` (Maldewar), `gwierzchowski` (Grzegorz Wierzchowski), `technocrat` (Richard Careaga), `atzakas`, `defeit` (David Emerson Feit), `shiraamitchell` (Shira Mitchell),  `Nathalie-S`, `andreashandel` (Andreas Handel), `berkowitze` (Elias Berkowitz), `Dean-Webb` (Dean Webber), `mohayusuf`, `jimrothstein`, `mPloenzke` (Matthew Ploenzke), `NicholasDowand` (Nicholas Dow), `kant` (Darío Hereñú), `debbieyuster` (Debbie Yuster), `tuanchauict` (Tuan Chau), `phzeller`, `BTJ01` (BradJ), `glsnow` (Greg Snow), `mberlanda` (Mauro Berlanda), `wfan9`, `larswestvang` (Lars Westvang), `jj999` (Jan Andrejkovic), `Kriegslustig` (Luca Nils Schmid), `odahhani`, `aidanhorn` (Aidan Horn), `atraxler` (Adrienne Traxler), `alvegorova`,`wycheong` (Won Young Cheong), 
 `med-hat` (Medhat Khalil), `biscotty666` (Brian Carey), `kengustafson`, `Yowza63`, `ryan-heslin` (Ryan Heslin), `SydneyUni-Jim` (Jim Nicholls), `raffaem`, `BruciiZ` (Huiyuan (Bruce) Zhou), `tim8west`, `aosaf-e-c` (Aosaf Ershad Chowdhury), `annlia`, `jonkiparsky` (Jon Kiparsky), `ang101` (Angela), `Daniel-Yonkov` (Daniel Yonkov), `lilyclements` (Lily Clements),
 David D. Kane, El Mustapha El Abbassi, Vadim Zipunnikov, Anna Quaglieri, Chris Dong, Rick Schoenberg, Isabella Grabski, Doug Snyder, and JT Harton.
- 
 
 

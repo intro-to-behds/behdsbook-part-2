@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.7.31">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="Rafael A. Irizarry">
-<title>24&nbsp; Regularization – Introduction to Data Science</title>
+
+<meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
+
+<title>26&nbsp; Regularization – Introduction to Behavioural Data Science</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -58,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -73,10 +74,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-416763588d27101c2483b91fe87266df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-8f18353b6674da201bf96e4b700cba6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -102,8 +104,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="../site_libs/kePrint-0.0.1/kePrint.js"></script><link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script>
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -114,7 +122,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -129,28 +137,37 @@ window.Quarto = {
   typesetMath
 };
 </script>
+
 </head>
+
 <body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../highdim/intro-highdim.html">High Dimensional Data</a></li><li class="breadcrumb-item"><a href="../highdim/regularization.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../highdim/intro-highdim.html">High Dimensional Data</a></li><li class="breadcrumb-item"><a href="../highdim/regularization.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Introduction to Data Science</a> 
-        <div class="sidebar-tools-main">
-    <a href="https://github.com/rafalab/dsbook-part-2" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+      <a href="../">Introduction to Behavioural Data Science</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/intro-to-behds/behdsbook-part-2" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../Introduction-to-Behavioural-Data-Science.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -166,7 +183,7 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -180,29 +197,52 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summary Statistics</span></a>
+            <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioural Measurement</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/simulating-measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -212,44 +252,44 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -259,50 +299,50 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hierarchical-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -312,50 +352,50 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linear Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/linear-model-framework.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/treatment-effect-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/association-not-causation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/multivariable-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -365,44 +405,44 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../highdim/intro-highdim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">High Dimensional Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/matrices-in-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/linear-algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/dimension-reduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/regularization.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/latent-factor-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -412,56 +452,56 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../ml/intro-ml.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/notation-and-terminology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/evaluation-metrics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/conditionals-and-smoothing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/resampling-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/ml-in-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -471,19 +511,20 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li>
-<a href="#sec-recommendation-systems" id="toc-sec-recommendation-systems" class="nav-link active" data-scroll-target="#sec-recommendation-systems"><span class="header-section-number">24.1</span> Case study: recommendation systems</a>
+  <li><a href="#sec-recommendation-systems" id="toc-sec-recommendation-systems" class="nav-link active" data-scroll-target="#sec-recommendation-systems"><span class="header-section-number">26.1</span> Case study: recommendation systems</a>
   <ul class="collapse">
-<li><a href="#movielens-data" id="toc-movielens-data" class="nav-link" data-scroll-target="#movielens-data">Movielens data</a></li>
+  <li><a href="#movielens-data" id="toc-movielens-data" class="nav-link" data-scroll-target="#movielens-data">Movielens data</a></li>
   <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link" data-scroll-target="#data-exploration">Data exploration</a></li>
   <li><a href="#preparing-the-data" id="toc-preparing-the-data" class="nav-link" data-scroll-target="#preparing-the-data">Preparing the data</a></li>
   <li><a href="#sec-netflix-loss-function" id="toc-sec-netflix-loss-function" class="nav-link" data-scroll-target="#sec-netflix-loss-function">Loss function</a></li>
@@ -491,25 +532,26 @@ window.Quarto = {
   <li><a href="#user-effects" id="toc-user-effects" class="nav-link" data-scroll-target="#user-effects">User effects</a></li>
   <li><a href="#sec-movie-effects" id="toc-sec-movie-effects" class="nav-link" data-scroll-target="#sec-movie-effects">Movie effects</a></li>
   <li><a href="#overfitting" id="toc-overfitting" class="nav-link" data-scroll-target="#overfitting">Overfitting</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#penalized-least-squares" id="toc-penalized-least-squares" class="nav-link" data-scroll-target="#penalized-least-squares"><span class="header-section-number">24.2</span> Penalized least squares</a>
+  </ul></li>
+  <li><a href="#penalized-least-squares" id="toc-penalized-least-squares" class="nav-link" data-scroll-target="#penalized-least-squares"><span class="header-section-number">26.2</span> Penalized least squares</a>
   <ul class="collapse">
-<li><a href="#a-general-formulation" id="toc-a-general-formulation" class="nav-link" data-scroll-target="#a-general-formulation">A general formulation</a></li>
+  <li><a href="#a-general-formulation" id="toc-a-general-formulation" class="nav-link" data-scroll-target="#a-general-formulation">A general formulation</a></li>
   <li><a href="#applying-penalization-to-movie-effects" id="toc-applying-penalization-to-movie-effects" class="nav-link" data-scroll-target="#applying-penalization-to-movie-effects">Applying penalization to movie effects</a></li>
   <li><a href="#estimating-parameters-via-als" id="toc-estimating-parameters-via-als" class="nav-link" data-scroll-target="#estimating-parameters-via-als">Estimating parameters via ALS</a></li>
   <li><a href="#how-shrinkage-behaves" id="toc-how-shrinkage-behaves" class="nav-link" data-scroll-target="#how-shrinkage-behaves">How shrinkage behaves</a></li>
   <li><a href="#improved-results" id="toc-improved-results" class="nav-link" data-scroll-target="#improved-results">Improved results</a></li>
+  </ul></li>
+  <li><a href="#sec-selecting-penalty-term" id="toc-sec-selecting-penalty-term" class="nav-link" data-scroll-target="#sec-selecting-penalty-term"><span class="header-section-number">26.3</span> Selecting the penalty term</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">26.4</span> Exercises</a></li>
   </ul>
-</li>
-  <li><a href="#sec-selecting-penalty-term" id="toc-sec-selecting-penalty-term" class="nav-link" data-scroll-target="#sec-selecting-penalty-term"><span class="header-section-number">24.3</span> Selecting the penalty term</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">24.4</span> Exercises</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/rafalab/dsbook-part-2/blob/main/highdim/regularization.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rafalab/dsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/highdim/regularization.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../highdim/intro-highdim.html">High Dimensional Data</a></li><li class="breadcrumb-item"><a href="../highdim/regularization.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-regularization" class="quarto-section-identifier"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></span></h1>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../highdim/intro-highdim.html">High Dimensional Data</a></li><li class="breadcrumb-item"><a href="../highdim/regularization.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-regularization" class="quarto-section-identifier"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span></h1>
 </div>
 
 
@@ -523,49 +565,56 @@ window.Quarto = {
   
 
 
-</header><p>Statistical models are meant to capture meaningful structure in data. However, when a model includes many parameters, or when some parameters are informed by only a small number of observations, the fitted values can become unstable. In these situations, the least squares estimates may be much larger than the underlying true effects. This phenomenon is a form of overfitting, and it can lead to misleading interpretations.</p>
+</header>
+
+
+<p>Statistical models are meant to capture meaningful structure in data. However, when a model includes many parameters, or when some parameters are informed by only a small number of observations, the fitted values can become unstable. In these situations, the least squares estimates may be much larger than the underlying true effects. This phenomenon is a form of overfitting, and it can lead to misleading interpretations.</p>
 <p>The issue becomes particularly apparent when we use fitted models to make predictions for new data not used during model fitting. A model that overfits will often produce estimates that vary too much from sample to sample. In the next part of this book, we describe overfitting in more detail and introduce tools for diagnosing and preventing it.</p>
 <p>Regularization provides one of the most effective general strategies for reducing overfitting. The idea is to modify the fitting procedure so that large parameter estimates are penalized. In practice, this is done by adding a penalty term to the quantity we minimize, such as the sum of squared errors. The penalty discourages extreme estimates, especially when they are supported by limited data. The result is a more stable model with parameter estimates that are smaller in magnitude and more reliable for use beyond the training data.</p>
 <p>In this chapter, we introduce regularization in the context of a recommendation system for movie ratings. We start with user and movie-specific effects and observe how least squares can produce unrealistic estimates, particularly for movies with very few ratings. Regularization helps by shrinking these unstable estimates toward zero. In the next chapter, we build on this idea and show how it can be extended through latent factor models, which form the basis of modern recommendation systems.</p>
-<section id="sec-recommendation-systems" class="level2" data-number="24.1"><h2 data-number="24.1" class="anchored" data-anchor-id="sec-recommendation-systems">
-<span class="header-section-number">24.1</span> Case study: recommendation systems</h2>
+<section id="sec-recommendation-systems" class="level2" data-number="26.1">
+<h2 data-number="26.1" class="anchored" data-anchor-id="sec-recommendation-systems"><span class="header-section-number">26.1</span> Case study: recommendation systems</h2>
 <p>Recommendation systems, such as the one used by Amazon, operate by analyzing the ratings that customers give to various products. These ratings form a large dataset. The system uses this data to predict how likely a specific user is to favorably rate a particular product. For example, if the system predicts that a user is likely to give a high rating to a certain book or gadget, it will recommend that item to them. In essence, the system tries to guess which products a user will like based on the ratings provided by them and other customers for various items. This approach helps in personalizing recommendations to suit individual preferences.</p>
 <p>During its initial years of operation, Netflix used a 5-star recommendation system. One star suggested the user would dislike the movie, whereas five stars suggested the user would love it. Here, we provide the basics of how these recommendations are made, motivated by some of the approaches taken by the winners of the <em>Netflix challenges</em>.</p>
 <p>In October 2006, Netflix offered a challenge to the data science community: improve our recommendation algorithm by 10% and win a million dollars. In September 2009, the winners were announced<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. In this chapter, we will demonstrate how regularization was an important part of the winning team’s strategy<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
-<section id="movielens-data" class="level3"><h3 class="anchored" data-anchor-id="movielens-data">Movielens data</h3>
-<p>The Netflix data is not publicly available, but the GroupLens research lab<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> generated their own database with over 20 million ratings for over 27,000 movies by more than 138,000 users. We make a small subset of this data available via the <strong>dslabs</strong> package:</p>
+<section id="movielens-data" class="level3">
+<h3 class="anchored" data-anchor-id="movielens-data">Movielens data</h3>
+<p>The Netflix data is not publicly available, but the GroupLens research lab<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> generated their own database with over 20 million ratings for over 27,000 movies by more than 138,000 users. We make a small subset of this data available via the <strong>behdslabs</strong> package:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dslabs</span><span class="op">)</span></span>
-<span><span class="va">movielens</span> <span class="op">|&gt;</span> <span class="fu">tibble</span><span class="fu">:::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 5 × 7</span></span>
-<span><span class="co">#&gt;   movieId title                      year genres userId rating timestamp</span></span>
-<span><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;                     &lt;int&gt; &lt;fct&gt;   &lt;int&gt;  &lt;dbl&gt;     &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1      31 Dangerous Minds            1995 Drama       1    2.5    1.26e9</span></span>
-<span><span class="co">#&gt; 2    1029 Dumbo                      1941 Anima…      1    3      1.26e9</span></span>
-<span><span class="co">#&gt; 3    1061 Sleepers                   1996 Thril…      1    3      1.26e9</span></span>
-<span><span class="co">#&gt; 4    1129 Escape from New York       1981 Actio…      1    2      1.26e9</span></span>
-<span><span class="co">#&gt; 5    1172 Cinema Paradiso (Nuovo c…  1989 Drama       1    4      1.26e9</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(behdslabs)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>movielens <span class="sc">|&gt;</span> tibble<span class="sc">:::</span><span class="fu">tibble</span>() <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 7</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   movieId title                      year genres userId rating timestamp</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;                     &lt;int&gt; &lt;fct&gt;   &lt;int&gt;  &lt;dbl&gt;     &lt;int&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1      31 Dangerous Minds            1995 Drama       1    2.5    1.26e9</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2    1029 Dumbo                      1941 Anima…      1    3      1.26e9</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    1061 Sleepers                   1996 Thril…      1    3      1.26e9</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4    1129 Escape from New York       1981 Actio…      1    2      1.26e9</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    1172 Cinema Paradiso (Nuovo c…  1989 Drama       1    4      1.26e9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Each row represents a rating given by one user to one movie.</p>
 <p>Because we are working with a relatively large dataset, we will convert the data frame to a <code>data.table</code> object to take advantage of more efficient data wrangling.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span>
-<span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/as.data.table.html">as.data.table</a></span><span class="op">(</span><span class="va">movielens</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(movielens)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can see the number of unique users who provided ratings and how many unique movies were rated:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span>n_users <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/duplicated.html">uniqueN</a></span><span class="op">(</span><span class="va">userId</span><span class="op">)</span>, n_movies <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/duplicated.html">uniqueN</a></span><span class="op">(</span><span class="va">movieId</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="co">#&gt;    n_users n_movies</span></span>
-<span><span class="co">#&gt;      &lt;int&gt;    &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1:     671     9066</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dt[, .(<span class="at">n_users =</span> <span class="fu">uniqueN</span>(userId), <span class="at">n_movies =</span> <span class="fu">uniqueN</span>(movieId))]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    n_users n_movies</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt;    &lt;int&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:     671     9066</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If we multiply those two numbers, we get a figure exceeding 5 million, yet our dataset contains only about 100,000 rows. This tells us that not every user rated every movie. In fact, the median number of movies rated per user is 71. We can think of the data as a very large matrix, with users as rows and movies as columns, filled with many missing entries. The goal of a movie recommendation system is to accurately predict those missing values.</p>
-</section><section id="data-exploration" class="level3"><h3 class="anchored" data-anchor-id="data-exploration">Data exploration</h3>
+</section>
+<section id="data-exploration" class="level3">
+<h3 class="anchored" data-anchor-id="data-exploration">Data exploration</h3>
 <p>Let’s look at some of the general properties of the data to better understand the challenges by examining histograms of the number of ratings given to movies and the number of ratings given by users:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="regularization_files/figure-html/movie-id-and-user-hists-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="regularization_files/figure-html/movie-id-and-user-hists-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -573,16 +622,18 @@ window.Quarto = {
 <p>The first thing we notice is that some movies receive far more ratings than others. Most movies are rated only a handful of times, while a small number accumulate hundreds of ratings. This pattern is not surprising. Popular, widely released films tend to be watched and rated by many users, while niche or independent films attract much smaller audiences.</p>
 <p>We also see variation among users, although the disparity is less extreme. Some users rate only about 10 movies, while others rate dozens or even hundreds.</p>
 <p>These imbalances will be important as we build models, because estimates based on very few observations are inherently less reliable.</p>
-</section><section id="preparing-the-data" class="level3"><h3 class="anchored" data-anchor-id="preparing-the-data">Preparing the data</h3>
+</section>
+<section id="preparing-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="preparing-the-data">Preparing the data</h3>
 <p>Before we can fit models or make predictions, we need to shape the data into a form suitable for analysis. Our goal is to develop an algorithm using historical ratings and then evaluate how well it predicts ratings not used for training.</p>
 <p>We begin by focusing on users who have provided enough information for us to learn from their behavior. In this case, we keep only users with at least 100 ratings:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/as.data.table.html">as.data.table</a></span><span class="op">(</span><span class="va">movielens</span><span class="op">)</span><span class="op">[</span>, <span class="kw">if</span> <span class="op">(</span><span class="va">.N</span> <span class="op">&gt;=</span> <span class="fl">100</span><span class="op">)</span> <span class="va">.SD</span>, by <span class="op">=</span> <span class="va">userId</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(movielens)[, <span class="cf">if</span> (.N <span class="sc">&gt;=</span> <span class="dv">100</span>) .SD, by <span class="ot">=</span> userId]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For convenience, we convert both <code>userId</code> and <code>movieId</code> to character strings. This will let us use them as names for vectors later. We also keep only the columns relevant to this analysis to keep printed output manageable:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt</span><span class="op">[</span>, <span class="fu">`:=`</span><span class="op">(</span>userId <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">userId</span><span class="op">)</span>, movieId <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">movieId</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="va">dt</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"userId"</span>, <span class="st">"movieId"</span>, <span class="st">"title"</span>, <span class="st">"rating"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dt[, <span class="st">`</span><span class="at">:=</span><span class="st">`</span>(<span class="at">userId =</span> <span class="fu">as.character</span>(userId), <span class="at">movieId =</span> <span class="fu">as.character</span>(movieId))]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> dt[, <span class="fu">c</span>(<span class="st">"userId"</span>, <span class="st">"movieId"</span>, <span class="st">"title"</span>, <span class="st">"rating"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
@@ -599,26 +650,28 @@ window.Quarto = {
 <li>a <em>training set</em>, used to estimate the parameters</li>
 <li>a <em>test set</em>, used only to assess prediction accuracy</li>
 </ul>
-<p>We will say much more about the importance of this split in <a href="../ml/resampling-methods.html" class="quarto-xref"><span>Chapter 29</span></a>. For now, we simply want to ensure that our test set contains ratings that are not used in the training set.</p>
+<p>We will say much more about the importance of this split in <a href="../ml/resampling-methods.html" class="quarto-xref"><span>Chapter 31</span></a>. For now, we simply want to ensure that our test set contains ratings that are not used in the training set.</p>
 <p>We create the split at the user level, assigning 80% of each user’s ratings to the training set and 20% to the test set:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2006</span><span class="op">)</span></span>
-<span><span class="va">indexes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dt</span><span class="op">)</span>, <span class="va">dt</span><span class="op">$</span><span class="va">userId</span><span class="op">)</span></span>
-<span><span class="va">test_ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">indexes</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">i</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">test_ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">test_ind</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2006</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>indexes <span class="ot">&lt;-</span> <span class="fu">split</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dt), dt<span class="sc">$</span>userId)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>test_ind <span class="ot">&lt;-</span> <span class="fu">sapply</span>(indexes, <span class="cf">function</span>(i) <span class="fu">sample</span>(i, <span class="fu">ceiling</span>(<span class="fu">length</span>(i) <span class="sc">*</span> <span class="fl">0.2</span>)))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>test_ind <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unlist</span>(test_ind))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We then construct the two datasets:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_set</span>  <span class="op">&lt;-</span> <span class="va">dt</span><span class="op">[</span><span class="va">test_ind</span>,<span class="op">]</span></span>
-<span><span class="va">train_set</span> <span class="op">&lt;-</span> <span class="va">dt</span><span class="op">[</span><span class="op">-</span><span class="va">test_ind</span>,<span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>test_set  <span class="ot">&lt;-</span> dt[test_ind,]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>train_set <span class="ot">&lt;-</span> dt[<span class="sc">-</span>test_ind,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Since the model cannot make predictions for movies it has never seen, we remove from the test set any movies that do not appear in the training set:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_set</span> <span class="op">&lt;-</span> <span class="va">test_set</span><span class="op">[</span><span class="va">movieId</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">train_set</span><span class="op">$</span><span class="va">movieId</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>test_set <span class="ot">&lt;-</span> test_set[movieId <span class="sc">%in%</span> train_set<span class="sc">$</span>movieId]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This gives us a consistent training and testing framework that we will use throughout the chapter.</p>
-</section><section id="sec-netflix-loss-function" class="level3"><h3 class="anchored" data-anchor-id="sec-netflix-loss-function">Loss function</h3>
-<p>To describe our models and their estimates, we use the array representation introduced in <a href="../linear-models/treatment-effect-models.html#sec-anova" class="quarto-xref"><span>Section 17.6</span></a>. We denote the rating given by user <span class="math inline">\(i\)</span> to movie <span class="math inline">\(j\)</span> as <span class="math inline">\(y_{ij}\)</span>.</p>
+</section>
+<section id="sec-netflix-loss-function" class="level3">
+<h3 class="anchored" data-anchor-id="sec-netflix-loss-function">Loss function</h3>
+<p>To describe our models and their estimates, we use the array representation introduced in <a href="../linear-models/treatment-effect-models.html#sec-anova" class="quarto-xref"><span>Section 19.6</span></a>. We denote the rating given by user <span class="math inline">\(i\)</span> to movie <span class="math inline">\(j\)</span> as <span class="math inline">\(y_{ij}\)</span>.</p>
 <div class="callout callout-style-simple callout-important">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -638,7 +691,7 @@ window.Quarto = {
 <p>We can interpret RMSE in the same units as the ratings themselves. It behaves much like a standard deviation: it represents the typical size of the error in our predictions. A value greater than 1 means that, on average, our predicted rating is off by more than one star, which is undesirable.</p>
 <p>To make it easy to compute RMSE for any vector of residuals, we define:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rmse</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">r</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">r</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rmse <span class="ot">&lt;-</span> <span class="cf">function</span>(r) <span class="fu">sqrt</span>(<span class="fu">mean</span>(r<span class="sc">^</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
@@ -646,11 +699,13 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>We discuss the mean squared error more formally in <a href="../ml/resampling-methods.html" class="quarto-xref"><span>Chapter 29</span></a>.</p>
+<p>We discuss the mean squared error more formally in <a href="../ml/resampling-methods.html" class="quarto-xref"><span>Chapter 31</span></a>.</p>
 </div>
 </div>
 </div>
-</section><section id="the-simplest-model" class="level3"><h3 class="anchored" data-anchor-id="the-simplest-model">The simplest model</h3>
+</section>
+<section id="the-simplest-model" class="level3">
+<h3 class="anchored" data-anchor-id="the-simplest-model">The simplest model</h3>
 <p>We begin with the simplest possible recommendation system. Suppose we ignore all information about users and movies and predict the same rating for every user–movie pair. In this setting, the only question is: what single number should we use?</p>
 <p>We can answer this using a model. Assume that all ratings come from the same underlying value <span class="math inline">\(\mu\)</span>, with random variation accounting for the differences we observe:</p>
 <p><span class="math display">\[
@@ -659,27 +714,30 @@ Y_{ij} = \mu + \varepsilon_{ij}
 <p>Here <span class="math inline">\(\varepsilon_{ij}\)</span> represents independent errors with mean 0, and <span class="math inline">\(\mu\)</span> is the true average rating across all users and movies.</p>
 <p>The value of <span class="math inline">\(\mu\)</span> that minimizes the RMSE is the least squares estimate, which in this case is simply the average of all ratings in the training set:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">train_set</span><span class="op">$</span><span class="va">rating</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">mean</span>(train_set<span class="sc">$</span>rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If we predict every rating in the test set with this single value, the resulting RMSE is:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">rmse</span><span class="op">(</span><span class="va">test_set</span><span class="op">$</span><span class="va">rating</span> <span class="op">-</span> <span class="va">mu</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1.04</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse</span>(test_set<span class="sc">$</span>rating <span class="sc">-</span> mu)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.04</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Mathematically, this choice is optimal for this model. Any other number leads to a larger RMSE. For example:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">rmse</span><span class="op">(</span><span class="va">test_set</span><span class="op">$</span><span class="va">rating</span> <span class="op">-</span> <span class="fl">3</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1.17</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse</span>(test_set<span class="sc">$</span>rating <span class="sc">-</span> <span class="dv">3</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.17</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This simple approach provides a useful baseline. However, it falls well short of the performance needed to win the Netflix challenge, which required an RMSE of about 0.857 to claim the one-million-dollar prize. We should be able to do better by incorporating more structure into the model.</p>
-</section><section id="user-effects" class="level3"><h3 class="anchored" data-anchor-id="user-effects">User effects</h3>
+</section>
+<section id="user-effects" class="level3">
+<h3 class="anchored" data-anchor-id="user-effects">User effects</h3>
 <p>A natural question is whether all users rate movies in the same way. Some users tend to give very high ratings, while others rarely give more than three stars. To see this, we compute the average rating for each user:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">dt</span>, <span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span><span class="va">rating</span>, <span class="va">userId</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span>nclass <span class="op">=</span> <span class="fl">30</span>, main <span class="op">=</span> <span class="st">"User averages"</span>, xlab <span class="op">=</span> <span class="st">"Average rating"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(dt, <span class="fu">tapply</span>(rating, userId, mean)) <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(<span class="at">nclass =</span> <span class="dv">30</span>, <span class="at">main =</span> <span class="st">"User averages"</span>, <span class="at">xlab =</span> <span class="st">"Average rating"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="regularization_files/figure-html/user-effect-hist-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="regularization_files/figure-html/user-effect-hist-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -690,24 +748,24 @@ Y_{ij} = \mu + \varepsilon_{ij}
 Y_{ij} = \mu + \alpha_i + \varepsilon_{ij}
 \]</span></p>
 <p>Here, <span class="math inline">\(\mu\)</span> represents the overall average rating, and <span class="math inline">\(\alpha_i\)</span> captures how much user <span class="math inline">\(i\)</span> tends to deviate from that average. Statistics textbooks typically refer to the <span class="math inline">\(\alpha_i\)</span> as treatment effects. In the Netflix prize literature, they are often called <em>bias terms</em>.</p>
-<p>This is a linear model, so we can fit the model using <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>:</p>
+<p>This is a linear model, so we can fit the model using <code>lm()</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">rating</span> <span class="op">~</span> <span class="va">userId</span>, data <span class="op">=</span> <span class="va">train_set</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(rating <span class="sc">~</span> userId, <span class="at">data =</span> train_set)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>However, in this dataset, the number of user effect parameters is:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/data.table/man/duplicated.html">uniqueN</a></span><span class="op">(</span><span class="va">train_set</span><span class="op">$</span><span class="va">userId</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 263</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">uniqueN</span>(train_set<span class="sc">$</span>userId)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 263</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We therefore need hundreds of dummy variables, which makes fitting the model computationally inefficient.</p>
 <p>Fortunately, for this model, we can derive the least squares estimate directly. The estimate <span class="math inline">\(\hat{\alpha}_i\)</span> is simply the average of <span class="math inline">\(y_{ij} - \hat{\mu}\)</span> for user <span class="math inline">\(i\)</span>:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">train_set</span><span class="op">$</span><span class="va">rating</span><span class="op">)</span></span>
-<span><span class="va">user_avgs</span> <span class="op">&lt;-</span> <span class="va">train_set</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span>avg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">rating</span> <span class="op">-</span> <span class="va">mu</span><span class="op">)</span><span class="op">)</span>, by <span class="op">=</span> <span class="va">userId</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">mean</span>(train_set<span class="sc">$</span>rating)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>user_avgs <span class="ot">&lt;-</span> train_set[, .(<span class="at">avg =</span> <span class="fu">mean</span>(rating <span class="sc">-</span> mu)), by <span class="ot">=</span> userId]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We store these values in a named vector, which lets us look up each user’s effect easily:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="va">user_avgs</span><span class="op">$</span><span class="va">avg</span>, <span class="va">user_avgs</span><span class="op">$</span><span class="va">userId</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">setNames</span>(user_avgs<span class="sc">$</span>avg, user_avgs<span class="sc">$</span>userId)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>From this point forward, we use <code>a</code> to represent the vector of user effect estimates <span class="math inline">\(\hat{\alpha}_i\)</span>, and later we will use <code>b</code> for the movie effect estimates. In the code, we drop the hat notation for convenience, but in the mathematical expressions, we will continue to write <span class="math inline">\(\hat{\alpha}_i\)</span> and <span class="math inline">\(\hat{\beta}_j\)</span> to make clear that these are estimates.</p>
 <p>With the <span class="math inline">\(\hat{\alpha}\)</span> estimates in place, we predict a rating using:</p>
@@ -716,16 +774,18 @@ Y_{ij} = \mu + \alpha_i + \varepsilon_{ij}
 \]</span></p>
 <p>Since ratings are always between 0.5 and 5, we define a helper function to enforce this constraint:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">clamp</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">lower</span> <span class="op">=</span> <span class="fl">0.5</span>, <span class="va">upper</span> <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">pmax</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">pmin</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">upper</span><span class="op">)</span>, <span class="va">lower</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>clamp <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">lower =</span> <span class="fl">0.5</span>, <span class="at">upper =</span> <span class="dv">5</span>) <span class="fu">pmax</span>(<span class="fu">pmin</span>(x, upper), lower)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We obtain predictions for the test set using the estimates obtained on the training set and then evaluate the RMSE:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">test_set</span>, <span class="va">rating</span> <span class="op">-</span> <span class="fu">clamp</span><span class="op">(</span><span class="va">mu</span> <span class="op">+</span> <span class="va">a</span><span class="op">[</span><span class="va">userId</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">rmse</span><span class="op">(</span><span class="va">resid</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.949</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>resid <span class="ot">&lt;-</span> <span class="fu">with</span>(test_set, rating <span class="sc">-</span> <span class="fu">clamp</span>(mu <span class="sc">+</span> a[userId]))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse</span>(resid)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.949</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The RMSE decreases, which confirms that user effects improve our predictions. But users are not the only source of variation. Some movies are simply better liked than others. We address this next.</p>
-</section><section id="sec-movie-effects" class="level3"><h3 class="anchored" data-anchor-id="sec-movie-effects">Movie effects</h3>
+</section>
+<section id="sec-movie-effects" class="level3">
+<h3 class="anchored" data-anchor-id="sec-movie-effects">Movie effects</h3>
 <p>Users differ in how they rate movies, but movies themselves also vary in how they are received. Some movies are widely liked, while others consistently receive low ratings. To capture this source of variation, we extend our model by adding a movie-specific effect <span class="math inline">\(\beta_j\)</span>:</p>
 <p><span class="math display">\[
 Y_{ij} = \mu + \alpha_i + \beta_j + \varepsilon_{ij}
@@ -733,9 +793,9 @@ Y_{ij} = \mu + \alpha_i + \beta_j + \varepsilon_{ij}
 <p>Here, <span class="math inline">\(\beta_j\)</span> represents how much movie <span class="math inline">\(j\)</span> tends to deviate from the overall average rating <span class="math inline">\(\mu\)</span>, after accounting for user tendencies.</p>
 <p>In principle, we could estimate all user and movie effects at once using least squares:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">rating</span> <span class="op">~</span> <span class="va">userId</span> <span class="op">+</span> <span class="va">movieId</span>, data <span class="op">=</span> <span class="va">train_set</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(rating <span class="sc">~</span> userId <span class="sc">+</span> movieId, <span class="at">data =</span> train_set)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>However, this requires creating thousands of indicator variables, one for each user and one for each movie. The resulting design matrix is large and sparse, making <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> inefficient for this purpose.</p>
+<p>However, this requires creating thousands of indicator variables, one for each user and one for each movie. The resulting design matrix is large and sparse, making <code>lm()</code> inefficient for this purpose.</p>
 <p>Instead, we use an <em>Alternating Least Squares (ALS)</em> algorithm. This is an iterative method that relies on two facts:</p>
 <ul>
 <li><p>If <span class="math inline">\(\mu\)</span> and the <span class="math inline">\(\alpha_i\)</span> are known, the least squares estimate of <span class="math inline">\(\beta_j\)</span> is the average of <span class="math inline">\(y_{ij} - \mu - \alpha_i\)</span> over users who rated movie <span class="math inline">\(j\)</span>.</p></li>
@@ -743,24 +803,24 @@ Y_{ij} = \mu + \alpha_i + \beta_j + \varepsilon_{ij}
 </ul>
 <p>By alternating these updates, the estimates converge to the least squares solution.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/copy.html">copy</a></span><span class="op">(</span><span class="va">train_set</span><span class="op">)</span></span>
-<span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">rating</span><span class="op">)</span></span>
-<span><span class="va">fit</span><span class="op">[</span>, <span class="fu">`:=`</span><span class="op">(</span>a <span class="op">=</span> <span class="fl">0</span>, b <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">]</span>  <span class="co"># starting values</span></span>
-<span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">iter</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">a_old</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/copy.html">copy</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">a</span><span class="op">)</span></span>
-<span>  <span class="va">b_old</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/copy.html">copy</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">b</span><span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="va">fit</span><span class="op">[</span>, <span class="va">a</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">rating</span> <span class="op">-</span> <span class="va">mu</span> <span class="op">-</span> <span class="va">b</span><span class="op">)</span>, by <span class="op">=</span> <span class="va">userId</span><span class="op">]</span></span>
-<span>  <span class="va">fit</span><span class="op">[</span>, <span class="va">b</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">rating</span> <span class="op">-</span> <span class="va">mu</span> <span class="op">-</span> <span class="va">a</span><span class="op">)</span>, by <span class="op">=</span> <span class="va">movieId</span><span class="op">]</span></span>
-<span>  </span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">a</span> <span class="op">-</span> <span class="va">a_old</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">b</span> <span class="op">-</span> <span class="va">b_old</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1e-6</span><span class="op">)</span> <span class="kw">break</span></span>
-<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">copy</span>(train_set)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">mean</span>(fit<span class="sc">$</span>rating)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>fit[, <span class="st">`</span><span class="at">:=</span><span class="st">`</span>(<span class="at">a =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">0</span>)]  <span class="co"># starting values</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (iter <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  a_old <span class="ot">&lt;-</span> <span class="fu">copy</span>(fit<span class="sc">$</span>a)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  b_old <span class="ot">&lt;-</span> <span class="fu">copy</span>(fit<span class="sc">$</span>b)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  fit[, a <span class="sc">:</span><span class="er">=</span> <span class="fu">mean</span>(rating <span class="sc">-</span> mu <span class="sc">-</span> b), by <span class="ot">=</span> userId]</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  fit[, b <span class="sc">:</span><span class="er">=</span> <span class="fu">mean</span>(rating <span class="sc">-</span> mu <span class="sc">-</span> a), by <span class="ot">=</span> movieId]</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">max</span>(<span class="fu">c</span>(<span class="fu">abs</span>(fit<span class="sc">$</span>a <span class="sc">-</span> a_old), <span class="fu">abs</span>(fit<span class="sc">$</span>b <span class="sc">-</span> b_old))) <span class="sc">&lt;</span> <span class="fl">1e-6</span>) <span class="cf">break</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We then extract the user and movie effects into a named vector:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">a</span>, <span class="va">fit</span><span class="op">$</span><span class="va">userId</span><span class="op">)</span></span>
-<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">b</span>, <span class="va">fit</span><span class="op">$</span><span class="va">movieId</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">setNames</span>(fit<span class="sc">$</span>a, fit<span class="sc">$</span>userId)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">setNames</span>(fit<span class="sc">$</span>b, fit<span class="sc">$</span>movieId)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With both user and movie effects in place, our predictions are:</p>
 <p><span class="math display">\[
@@ -768,48 +828,53 @@ Y_{ij} = \mu + \alpha_i + \beta_j + \varepsilon_{ij}
 \]</span></p>
 <p>The resulting RMSE for the predictions on the test set is:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">test_set</span>, <span class="va">rating</span> <span class="op">-</span> <span class="fu">clamp</span><span class="op">(</span><span class="va">mu</span> <span class="op">+</span> <span class="va">a</span><span class="op">[</span><span class="va">userId</span><span class="op">]</span> <span class="op">+</span> <span class="va">b</span><span class="op">[</span><span class="va">movieId</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">rmse</span><span class="op">(</span><span class="va">resid</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.882</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>resid <span class="ot">&lt;-</span> <span class="fu">with</span>(test_set, rating <span class="sc">-</span> <span class="fu">clamp</span>(mu <span class="sc">+</span> a[userId] <span class="sc">+</span> b[movieId]))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse</span>(resid)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.882</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This further reduces the error, confirming that including both user and movie effects improves predictive accuracy. However, these estimates can still be unstable, especially for movies with only a few ratings.</p>
-</section><section id="overfitting" class="level3"><h3 class="anchored" data-anchor-id="overfitting">Overfitting</h3>
+</section>
+<section id="overfitting" class="level3">
+<h3 class="anchored" data-anchor-id="overfitting">Overfitting</h3>
 <p>If we examine the movies with the largest estimated movie effects <span class="math inline">\(\hat{\beta}_j\)</span>, we find that they are all obscure films with only a single rating:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">top_movies</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">b</span><span class="op">[</span><span class="va">b</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="va">train_set</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span>n <span class="op">=</span> <span class="va">.N</span><span class="op">)</span>, by <span class="op">=</span> <span class="fu">.</span><span class="op">(</span><span class="va">movieId</span>, <span class="va">title</span><span class="op">)</span><span class="op">]</span><span class="op">[</span><span class="va">movieId</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">top_movies</span><span class="op">]</span></span>
-<span><span class="co">#&gt;    movieId                                         title     n</span></span>
-<span><span class="co">#&gt;     &lt;char&gt;                                        &lt;char&gt; &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1:    1450 Prisoner of the Mountains (Kavkazsky plennik)     1</span></span>
-<span><span class="co">#&gt; 2:    4076                                     Two Ninas     1</span></span>
-<span><span class="co">#&gt; 3:    4591                               Erik the Viking     1</span></span>
-<span><span class="co">#&gt; 4:    4930                             Funeral in Berlin     1</span></span>
-<span><span class="co">#&gt; 5:    5427                                       Caveman     1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>top_movies <span class="ot">&lt;-</span> <span class="fu">names</span>(b[b <span class="sc">==</span> <span class="fu">max</span>(b)])</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>train_set[, .(<span class="at">n =</span> .N), by <span class="ot">=</span> .(movieId, title)][movieId <span class="sc">%in%</span> top_movies]</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    movieId                                         title     n</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;char&gt;                                        &lt;char&gt; &lt;int&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:    1450 Prisoner of the Mountains (Kavkazsky plennik)     1</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:    4076                                     Two Ninas     1</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:    4591                               Erik the Viking     1</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:    4930                             Funeral in Berlin     1</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:    5427                                       Caveman     1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Do we really believe these are the best movies in the database? None of these supposedly top-rated movies appears in the test set. To investigate further, let us examine all movies with estimated effects <span class="math inline">\(\hat{\beta}_j \ge 2\)</span>:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">top_movies</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">b</span><span class="op">[</span><span class="va">b</span> <span class="op">&gt;</span> <span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">top_movies</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 16</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>top_movies <span class="ot">&lt;-</span> <span class="fu">names</span>(b[b <span class="sc">&gt;</span> <span class="dv">2</span>])</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(top_movies)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 16</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>All 16 of these movies were rated at most twice:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">train_set</span><span class="op">[</span><span class="va">movieId</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">top_movies</span><span class="op">]</span><span class="op">$</span><span class="va">movieId</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 1 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(<span class="fu">table</span>(train_set[movieId <span class="sc">%in%</span> top_movies]<span class="sc">$</span>movieId))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And every prediction we made for these movies in the test set was an overestimate:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">resid</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">test_set</span>, <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">movieId</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">top_movies</span><span class="op">)</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] -1.41 -0.50</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(resid[<span class="fu">with</span>(test_set, <span class="fu">which</span>(movieId <span class="sc">%in%</span> top_movies))])</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -1.41 -0.50</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This is a clear example of <em>overfitting</em>. A movie rated only once or twice can receive a very large positive (or negative) estimate simply by chance. The fewer observations that support an estimate, the more variable it becomes. These unstable estimates lead to large prediction errors, which in turn increase the RMSE.</p>
 <p>Earlier in the book, when we faced uncertainty, we relied on standard errors or confidence intervals to communicate it. But when competing on RMSE, we do not get to present a range. We must choose a single number, even if the estimate is unreliable.</p>
 <p>This is where <em>regularization</em> becomes essential. Regularization shrinks extreme estimates toward zero when they are based on small samples, producing more stable and reliable predictions. In the next section, we introduce penalized least squares, a principled way to achieve this shrinkage.</p>
-</section></section><section id="penalized-least-squares" class="level2" data-number="24.2"><h2 data-number="24.2" class="anchored" data-anchor-id="penalized-least-squares">
-<span class="header-section-number">24.2</span> Penalized least squares</h2>
+</section>
+</section>
+<section id="penalized-least-squares" class="level2" data-number="26.2">
+<h2 data-number="26.2" class="anchored" data-anchor-id="penalized-least-squares"><span class="header-section-number">26.2</span> Penalized least squares</h2>
 <p>In the previous section, we saw that the largest movie effect estimates came from movies with only one or two ratings. These estimates are unstable, and the resulting predictions can be highly inaccurate. This is a classic example of <em>overfitting</em>, in which estimates become too large because they rely on too little data.</p>
 <p>A common way to address overfitting in linear models is to add a <em>penalty</em> that shrinks large coefficients toward zero. This approach is known as <em>penalized least squares</em>, or <em>ridge regression</em>, when the penalty is quadratic.</p>
-<section id="a-general-formulation" class="level3"><h3 class="anchored" data-anchor-id="a-general-formulation">A general formulation</h3>
+<section id="a-general-formulation" class="level3">
+<h3 class="anchored" data-anchor-id="a-general-formulation">A general formulation</h3>
 <p>To describe the idea in a more familiar setting, we temporarily switch from the matrix notation <span class="math inline">\(y_{ij}\)</span> used in the recommendation problem to a standard linear model with outcome <span class="math inline">\(y_i\)</span> and covariates <span class="math inline">\(x_{i1}, \dots, x_{ip}\)</span>:</p>
 <p><span class="math display">\[
 Y_i = \beta_0 + \sum_{j=1}^p x_{ij}\beta_j + \varepsilon_i, \quad i = 1, \dots, N
@@ -822,10 +887,10 @@ Y_i = \beta_0 + \sum_{j=1}^p x_{ij}\beta_j + \varepsilon_i, \quad i = 1, \dots, 
 <p>The first term is the usual mean squared error. The second term discourages large coefficients, with the tuning parameter <span class="math inline">\(\lambda\)</span> controlling how strongly we penalize them. The intercept <span class="math inline">\(\beta_0\)</span> is typically not penalized, as we usually know the data is not centered at 0.</p>
 <p>This approach is known as <em>ridge regression</em>. The <code>MASS</code> package in R provides the <code>lm.ridge</code> function to fit the model using penalized least squares:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span></span>
-<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/lm.ridge.html">lm.ridge</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, lambda <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm.ridge</span>(y <span class="sc">~</span> x, <span class="at">lambda =</span> <span class="fl">0.001</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>However, this function is not efficient for models with thousands of indicator variables, as in our movie rating application. In the sections below, we use penalized least squares, but to find the estimates, we implement the ALS algorithm described in <a href="#sec-movie-effects" class="quarto-xref"><span>Section 24.1.7</span></a>.</p>
+<p>However, this function is not efficient for models with thousands of indicator variables, as in our movie rating application. In the sections below, we use penalized least squares, but to find the estimates, we implement the ALS algorithm described in <a href="#sec-movie-effects" class="quarto-xref"><span>Section 26.1.7</span></a>.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -837,7 +902,9 @@ Y_i = \beta_0 + \sum_{j=1}^p x_{ij}\beta_j + \varepsilon_i, \quad i = 1, \dots, 
 </div>
 </div>
 </div>
-</section><section id="applying-penalization-to-movie-effects" class="level3"><h3 class="anchored" data-anchor-id="applying-penalization-to-movie-effects">Applying penalization to movie effects</h3>
+</section>
+<section id="applying-penalization-to-movie-effects" class="level3">
+<h3 class="anchored" data-anchor-id="applying-penalization-to-movie-effects">Applying penalization to movie effects</h3>
 <p>Returning to our setting, we want to shrink movie effects <span class="math inline">\(\beta_j\)</span> and user effects <span class="math inline">\(\alpha_i\)</span> toward zero, especially when they are based on only a few ratings. Instead of minimizing:</p>
 <p><span class="math display">\[
 \sum_{i,j} \left[y_{ij} - (\mu + \alpha_i + \beta_j) \right]^2,
@@ -861,117 +928,129 @@ Y_i = \beta_0 + \sum_{j=1}^p x_{ij}\beta_j + \varepsilon_i, \quad i = 1, \dots, 
 \]</span></p>
 <p>where <span class="math inline">\(n_j\)</span> is the number of ratings for movie <span class="math inline">\(j\)</span>.</p>
 <p>The effect of the penalty is clear. If <span class="math inline">\(n_j\)</span> is large, <span class="math inline">\(n_j + N\lambda \approx n_j\)</span>, shrinkage is minimal, and <span class="math inline">\(\hat{\beta}_j(\lambda)\)</span> essentially becomes an average. If <span class="math inline">\(n_j\)</span> is small, the estimate is pulled strongly toward 0. The larger the <span class="math inline">\(\lambda\)</span>, the larger the pull.</p>
-</section><section id="estimating-parameters-via-als" class="level3"><h3 class="anchored" data-anchor-id="estimating-parameters-via-als">Estimating parameters via ALS</h3>
+</section>
+<section id="estimating-parameters-via-als" class="level3">
+<h3 class="anchored" data-anchor-id="estimating-parameters-via-als">Estimating parameters via ALS</h3>
 <p>Because <code>lm.ridge</code> is inefficient for our setting where we have thousands of indicator variables and a very sparse design, we instead apply the same Alternating Least Squares (ALS) strategy introduced earlier. The key difference is that we now replace the movie-effect and user-effect updates with their penalized versions, which shrink estimates more strongly when a movie or user has only a few ratings.</p>
 <p>For convenience, we define an auxiliary function <code>fit_als</code> that takes a value of <code>lambda</code> and returns a copy of <code>train_set</code> with the regularized estimates of the user and movie effects. This function is specific to our movie rating example. It assumes that <code>train_set</code> is available in the environment.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_als</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">lambda</span>, <span class="va">tol</span> <span class="op">=</span> <span class="fl">1e-6</span>, <span class="va">max_iter</span> <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/copy.html">copy</a></span><span class="op">(</span><span class="va">train_set</span><span class="op">)</span></span>
-<span>  <span class="va">N</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span>
-<span>  <span class="va">mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">rating</span><span class="op">)</span></span>
-<span>  <span class="va">fit</span><span class="op">[</span>, <span class="fu">`:=`</span><span class="op">(</span>a <span class="op">=</span> <span class="fl">0</span>, b <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">]</span>  <span class="co"># starting values</span></span>
-<span></span>
-<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">iter</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">max_iter</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">a_old</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/copy.html">copy</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">a</span><span class="op">)</span></span>
-<span>    <span class="va">b_old</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/copy.html">copy</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">b</span><span class="op">)</span></span>
-<span>    </span>
-<span>    <span class="va">fit</span><span class="op">[</span>, <span class="va">a</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">rating</span> <span class="op">-</span> <span class="va">mu</span> <span class="op">-</span> <span class="va">b</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">.N</span> <span class="op">+</span> <span class="va">N</span><span class="op">*</span><span class="va">lambda</span><span class="op">)</span>, by <span class="op">=</span> <span class="va">userId</span><span class="op">]</span></span>
-<span>    <span class="va">fit</span><span class="op">[</span>, <span class="va">b</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">rating</span> <span class="op">-</span> <span class="va">mu</span> <span class="op">-</span> <span class="va">a</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">.N</span> <span class="op">+</span> <span class="va">N</span><span class="op">*</span><span class="va">lambda</span><span class="op">)</span>, by <span class="op">=</span> <span class="va">movieId</span><span class="op">]</span></span>
-<span>    </span>
-<span>    <span class="va">delta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">a</span> <span class="op">-</span> <span class="va">a_old</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">b</span> <span class="op">-</span> <span class="va">b_old</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="va">delta</span> <span class="op">&lt;</span> <span class="va">tol</span><span class="op">)</span> <span class="kw">break</span></span>
-<span>  <span class="op">}</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">fit</span>,</span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mu <span class="op">=</span> <span class="va">mu</span>, a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">userId</span><span class="op">)</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="va">b</span>, <span class="va">movieId</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>fit_als <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda, <span class="at">tol =</span> <span class="fl">1e-6</span>, <span class="at">max_iter =</span> <span class="dv">100</span>) {</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> <span class="fu">copy</span>(train_set)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(fit)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> <span class="fu">mean</span>(fit<span class="sc">$</span>rating)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  fit[, <span class="st">`</span><span class="at">:=</span><span class="st">`</span>(<span class="at">a =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">0</span>)]  <span class="co"># starting values</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (iter <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>max_iter) {</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    a_old <span class="ot">&lt;-</span> <span class="fu">copy</span>(fit<span class="sc">$</span>a)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    b_old <span class="ot">&lt;-</span> <span class="fu">copy</span>(fit<span class="sc">$</span>b)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    fit[, a <span class="sc">:</span><span class="er">=</span> <span class="fu">sum</span>(rating <span class="sc">-</span> mu <span class="sc">-</span> b)<span class="sc">/</span>(.N <span class="sc">+</span> N<span class="sc">*</span>lambda), by <span class="ot">=</span> userId]</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    fit[, b <span class="sc">:</span><span class="er">=</span> <span class="fu">sum</span>(rating <span class="sc">-</span> mu <span class="sc">-</span> a)<span class="sc">/</span>(.N <span class="sc">+</span> N<span class="sc">*</span>lambda), by <span class="ot">=</span> movieId]</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    delta <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">c</span>(<span class="fu">abs</span>(fit<span class="sc">$</span>a <span class="sc">-</span> a_old), <span class="fu">abs</span>(fit<span class="sc">$</span>b <span class="sc">-</span> b_old)))</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (delta <span class="sc">&lt;</span> tol) <span class="cf">break</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(fit,</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">mu =</span> mu, <span class="at">a =</span> <span class="fu">setNames</span>(a, userId), <span class="at">b =</span> <span class="fu">setNames</span>(b, movieId)))</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This implementation alternates between updating the penalized estimates for the user effects <code>a</code> and movie effects <code>b</code> until the updates become smaller than <code>tol</code> or we reach <code>max_iter</code>. The final result is a regularized movie effect for each movie:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">fit_als</span><span class="op">(</span>lambda <span class="op">=</span> <span class="fl">0.0001</span><span class="op">)</span></span>
-<span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="va">fit</span><span class="op">$</span><span class="va">mu</span>; <span class="va">a_reg</span> <span class="op">&lt;-</span> <span class="va">fit</span><span class="op">$</span><span class="va">a</span>; <span class="va">b_reg</span> <span class="op">&lt;-</span> <span class="va">fit</span><span class="op">$</span><span class="va">b</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">fit_als</span>(<span class="at">lambda =</span> <span class="fl">0.0001</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> fit<span class="sc">$</span>mu; a_reg <span class="ot">&lt;-</span> fit<span class="sc">$</span>a; b_reg <span class="ot">&lt;-</span> fit<span class="sc">$</span>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note that in this example we use <span class="math inline">\(\lambda = 0.0001\)</span>. In <a href="#sec-selecting-penalty-term" class="quarto-xref"><span>Section 24.3</span></a>, we describe a data-driven approach for choosing <span class="math inline">\(\lambda\)</span> that optimizes predictive accuracy.</p>
-</section><section id="how-shrinkage-behaves" class="level3"><h3 class="anchored" data-anchor-id="how-shrinkage-behaves">How shrinkage behaves</h3>
+<p>Note that in this example we use <span class="math inline">\(\lambda = 0.0001\)</span>. In <a href="#sec-selecting-penalty-term" class="quarto-xref"><span>Section 26.3</span></a>, we describe a data-driven approach for choosing <span class="math inline">\(\lambda\)</span> that optimizes predictive accuracy.</p>
+</section>
+<section id="how-shrinkage-behaves" class="level3">
+<h3 class="anchored" data-anchor-id="how-shrinkage-behaves">How shrinkage behaves</h3>
 <p>We can compare the penalized movie-effect estimates to the unpenalized ones by plotting them against each other:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="regularization_files/figure-html/b-reg-vs-b-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="regularization_files/figure-html/b-reg-vs-b-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>We note that movies with few ratings are heavily shrunk: the regularized versions are closer to 0 than the original. Movies with many ratings remain mostly unchanged: the points are close to the identity line.</p>
-</section><section id="improved-results" class="level3"><h3 class="anchored" data-anchor-id="improved-results">Improved results</h3>
+</section>
+<section id="improved-results" class="level3">
+<h3 class="anchored" data-anchor-id="improved-results">Improved results</h3>
 <p>Let us look at the top 5 movies under the penalized model:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">top_movies</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="op">-</span><span class="va">b_reg</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">b_reg</span><span class="op">)</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="va">train_set</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span>n <span class="op">=</span> <span class="va">.N</span><span class="op">)</span>, by <span class="op">=</span> <span class="fu">.</span><span class="op">(</span><span class="va">movieId</span>, <span class="va">title</span><span class="op">)</span><span class="op">]</span><span class="op">[</span><span class="va">movieId</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">top_movies</span><span class="op">]</span></span>
-<span><span class="co">#&gt;    movieId                     title     n</span></span>
-<span><span class="co">#&gt;     &lt;char&gt;                    &lt;char&gt; &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1:     296              Pulp Fiction   155</span></span>
-<span><span class="co">#&gt; 2:     858            Godfather, The   112</span></span>
-<span><span class="co">#&gt; 3:      50       Usual Suspects, The   111</span></span>
-<span><span class="co">#&gt; 4:     318 Shawshank Redemption, The   131</span></span>
-<span><span class="co">#&gt; 5:    1252                 Chinatown    49</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>top_movies <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="sc">-</span>b_reg[<span class="fu">unique</span>(<span class="fu">names</span>(b_reg))])[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>train_set[, .(<span class="at">n =</span> .N), by <span class="ot">=</span> .(movieId, title)][movieId <span class="sc">%in%</span> top_movies]</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    movieId                     title     n</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;char&gt;                    &lt;char&gt; &lt;int&gt;</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:     296              Pulp Fiction   155</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:     858            Godfather, The   112</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:      50       Usual Suspects, The   111</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:     318 Shawshank Redemption, The   131</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:    1252                 Chinatown    49</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>These are far more plausible than the previous list of one-rating obscure films.</p>
 <p>Finally, we evaluate the RMSE:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">test_set</span>, <span class="va">rating</span> <span class="op">-</span> <span class="fu">clamp</span><span class="op">(</span><span class="va">mu</span> <span class="op">+</span> <span class="va">a_reg</span><span class="op">[</span><span class="va">userId</span><span class="op">]</span> <span class="op">+</span> <span class="va">b_reg</span><span class="op">[</span><span class="va">movieId</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">rmse</span><span class="op">(</span><span class="va">resid</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.868</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>resid <span class="ot">&lt;-</span> <span class="fu">with</span>(test_set, rating <span class="sc">-</span> <span class="fu">clamp</span>(mu <span class="sc">+</span> a_reg[userId] <span class="sc">+</span> b_reg[movieId]))</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse</span>(resid)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.868</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The RMSE improves, confirming that regularization stabilizes estimates and reduces overfitting.</p>
-</section></section><section id="sec-selecting-penalty-term" class="level2" data-number="24.3"><h2 data-number="24.3" class="anchored" data-anchor-id="sec-selecting-penalty-term">
-<span class="header-section-number">24.3</span> Selecting the penalty term</h2>
+</section>
+</section>
+<section id="sec-selecting-penalty-term" class="level2" data-number="26.3">
+<h2 data-number="26.3" class="anchored" data-anchor-id="sec-selecting-penalty-term"><span class="header-section-number">26.3</span> Selecting the penalty term</h2>
 <p>The regularization parameter <span class="math inline">\(\lambda\)</span> controls how strongly we shrink the movie effects. If <span class="math inline">\(\lambda\)</span> is too small, we do not reduce overfitting. If it is too large, we shrink too much and lose a useful signal.</p>
-<p>In <a href="../ml/resampling-methods.html" class="quarto-xref"><span>Chapter 29</span></a>, we introduce formal methods for choosing tuning parameters. Here, we take a simple approach for illustrative purposes: we compute the RMSE for a range of <span class="math inline">\(\lambda\)</span> values and pick the one that gives the best performance on our test set.</p>
+<p>In <a href="../ml/resampling-methods.html" class="quarto-xref"><span>Chapter 31</span></a>, we introduce formal methods for choosing tuning parameters. Here, we take a simple approach for illustrative purposes: we compute the RMSE for a range of <span class="math inline">\(\lambda\)</span> values and pick the one that gives the best performance on our test set.</p>
 <p>We consider 100 values between 0 and 0.0002:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lambdas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.0002</span>, length.out <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
-<span><span class="va">rmses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">lambdas</span>, <span class="kw">function</span><span class="op">(</span><span class="va">lambda</span><span class="op">)</span> <span class="op">{</span> </span>
-<span>  <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">fit_als</span><span class="op">(</span><span class="va">lambda</span><span class="op">)</span></span>
-<span>  <span class="va">fitted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">test_set</span>, <span class="fu">clamp</span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">mu</span> <span class="op">+</span> <span class="va">fit</span><span class="op">$</span><span class="va">a</span><span class="op">[</span><span class="va">userId</span><span class="op">]</span> <span class="op">+</span> <span class="va">fit</span><span class="op">$</span><span class="va">b</span><span class="op">[</span><span class="va">movieId</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> </span>
-<span>  <span class="va">resid</span> <span class="op">&lt;-</span> <span class="va">test_set</span><span class="op">$</span><span class="va">rating</span> <span class="op">-</span> <span class="va">fitted</span></span>
-<span>  <span class="fu">rmse</span><span class="op">(</span><span class="va">resid</span><span class="op">)</span></span>
-<span><span class="op">}</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>lambdas <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.0002</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>rmses <span class="ot">&lt;-</span> <span class="fu">sapply</span>(lambdas, <span class="cf">function</span>(lambda) { </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> <span class="fu">fit_als</span>(lambda)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  fitted <span class="ot">&lt;-</span> <span class="fu">with</span>(test_set, <span class="fu">clamp</span>(fit<span class="sc">$</span>mu <span class="sc">+</span> fit<span class="sc">$</span>a[userId] <span class="sc">+</span> fit<span class="sc">$</span>b[movieId])) </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  resid <span class="ot">&lt;-</span> test_set<span class="sc">$</span>rating <span class="sc">-</span> fitted</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rmse</span>(resid)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We then plot RMSE as a function of <span class="math inline">\(\lambda\)</span>:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">lambdas</span>, <span class="va">rmses</span>, type <span class="op">=</span> <span class="st">"l"</span>, xlab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">lambda</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="st">"RMSE"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lambdas, rmses, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">xlab =</span> <span class="fu">expression</span>(lambda), <span class="at">ylab =</span> <span class="st">"RMSE"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="regularization_files/figure-html/best-penalty-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="regularization_files/figure-html/best-penalty-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>We see a clear minimum. The optimal value is:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">best_lambda</span> <span class="op">&lt;-</span> <span class="va">lambdas</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.min</a></span><span class="op">(</span><span class="va">rmses</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="va">best_lambda</span></span>
-<span><span class="co">#&gt; [1] 3.64e-05</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>best_lambda <span class="ot">&lt;-</span> lambdas[<span class="fu">which.min</span>(rmses)]</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>best_lambda</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3.64e-05</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We now refit the model using this value:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">fit_als</span><span class="op">(</span><span class="va">best_lambda</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">fit_als</span>(best_lambda)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and compute the final RMSE:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fitted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">test_set</span>, <span class="fu">clamp</span><span class="op">(</span><span class="va">fit</span><span class="op">$</span><span class="va">mu</span> <span class="op">+</span> <span class="va">fit</span><span class="op">$</span><span class="va">a</span><span class="op">[</span><span class="va">userId</span><span class="op">]</span> <span class="op">+</span> <span class="va">fit</span><span class="op">$</span><span class="va">b</span><span class="op">[</span><span class="va">movieId</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> </span>
-<span><span class="va">resid</span> <span class="op">&lt;-</span> <span class="va">test_set</span><span class="op">$</span><span class="va">rating</span> <span class="op">-</span> <span class="va">fitted</span></span>
-<span><span class="fu">rmse</span><span class="op">(</span><span class="va">resid</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.863</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>fitted <span class="ot">&lt;-</span> <span class="fu">with</span>(test_set, <span class="fu">clamp</span>(fit<span class="sc">$</span>mu <span class="sc">+</span> fit<span class="sc">$</span>a[userId] <span class="sc">+</span> fit<span class="sc">$</span>b[movieId])) </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>resid <span class="ot">&lt;-</span> test_set<span class="sc">$</span>rating <span class="sc">-</span> fitted</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse</span>(resid)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.863</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This result confirms that regularization improves our predictive accuracy. The following table compares this RMSE to the values obtained from the earlier models.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<table class="table table-striped caption-top table-sm small">
-<thead><tr class="header">
+<table class="table table-striped caption-top table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">model</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">RMSE</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Just the mean</td>
@@ -993,32 +1072,33 @@ Y_i = \beta_0 + \sum_{j=1}^p x_{ij}\beta_j + \varepsilon_i, \quad i = 1, \dots, 
 </table>
 </div>
 </div>
-</section><section id="exercises" class="level2" data-number="24.4"><h2 data-number="24.4" class="anchored" data-anchor-id="exercises">
-<span class="header-section-number">24.4</span> Exercises</h2>
+</section>
+<section id="exercises" class="level2" data-number="26.4">
+<h2 data-number="26.4" class="anchored" data-anchor-id="exercises"><span class="header-section-number">26.4</span> Exercises</h2>
 <p>For exercises 1-8, we will use the following simulation: An education expert is advocating for smaller schools. The expert bases this recommendation on the fact that among the best-performing schools, many are small. Let’s simulate a dataset for 1000 schools. First, let’s simulate the number of students in each school.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1986</span><span class="op">)</span></span>
-<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">^</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">8</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1986</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="dv">2</span><span class="sc">^</span><span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="dv">8</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, let’s assign a <em>true</em> quality for each school, completely independent from size. This is the parameter we want to estimate, and it represents the score an average student in that school would get in an aptitude test. We simulate this value like this:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">80</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">rt</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="dv">80</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">rt</span>(<span class="dv">1000</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now let’s construct a dataset:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">schools</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"PS%03d"</span>, <span class="fl">0</span><span class="op">:</span><span class="fl">999</span><span class="op">)</span>, size <span class="op">=</span> <span class="va">n</span>, quality <span class="op">=</span> <span class="va">mu</span>, </span>
-<span>                      rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="op">-</span><span class="va">mu</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>schools <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="fu">sprintf</span>(<span class="st">"PS%03d"</span>, <span class="dv">0</span><span class="sc">:</span><span class="dv">999</span>), <span class="at">size =</span> n, <span class="at">quality =</span> mu, </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>mu))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can view the top 10 schools with:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
-<span><span class="va">schools</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/top_n.html">top_n</a></span><span class="op">(</span><span class="fl">10</span>, <span class="va">quality</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">quality</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>schools <span class="sc">|&gt;</span> <span class="fu">top_n</span>(<span class="dv">10</span>, quality) <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(quality))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now let’s have the students in the school take a test. There is variability across students in each school, so we will also consider random variability in test taking, so we will simulate the test scores as normally distributed, with the average determined by the school quality and standard deviations of 30 percentage points:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">schools</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">schools</span><span class="op">$</span><span class="va">size</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="va">schools</span><span class="op">$</span><span class="va">quality</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">schools</span> <span class="op">&lt;-</span> <span class="va">schools</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">scores</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(schools), <span class="cf">function</span>(i)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnorm</span>(schools<span class="sc">$</span>size[i], schools<span class="sc">$</span>quality[i], <span class="dv">30</span>))</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>schools <span class="ot">&lt;-</span> schools <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">score =</span> <span class="fu">sapply</span>(scores, mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>1. What are the top schools based on the average score? Show just the ID, size, and the average score.</p>
 <p>2. Compare the median school size to the median school size of the top 10 schools based on the score.</p>
@@ -1027,7 +1107,7 @@ Y_i = \beta_0 + \sum_{j=1}^p x_{ij}\beta_j + \varepsilon_i, \quad i = 1, \dots, 
 <p>5. We can see that the standard error of the score has larger variability when the school is smaller. This is a basic statistical reality we learned in the probability and inference sections.</p>
 <p>Let’s use regularization to pick the best schools. Remember, regularization <em>shrinks</em> deviations from the average towards 0. So to apply regularization here, we first need to center the value we want to shrink. Let’s call it <code>theta</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">schools</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">schools</span>, theta <span class="op">=</span> <span class="va">score</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">score</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>schools <span class="ot">&lt;-</span> <span class="fu">mutate</span>(schools, <span class="at">theta =</span> score <span class="sc">-</span> <span class="fu">mean</span>(score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Use the closed form solution for the penalized least square estimates shown in this chapter to show that we can find the regularized estimate multiplying <code>theta</code> by <code>size/(size + 1000*lambda)</code>. Try <code>lambda = 0.05</code> and examine the top 10 schools based on this regularized estimate.</p>
 <p>6. Notice that this improves our results a bit: the number of small schools that are incorrectly highly ranked decreases. But is there a better <code>lambda</code>? Find the <code>lambda</code> that minimizes the RMSE = <span class="math inline">\(1/100 \sum_{i=1}^{100} (\mbox{school quality} - \mbox{estimate})^2\)</span>.</p>
@@ -1063,7 +1143,7 @@ Y_i = \beta_0 + \sum_{j=1}^p x_{ij}\beta_j + \varepsilon_i, \quad i = 1, \dots, 
 </ul>
 <p>12. The <code>movielens</code> data also includes a timestamp.</p>
 <ul>
-<li>Convert the timestamp to a date (hint: use <code><a href="https://lubridate.tidyverse.org/reference/as_date.html">lubridate::as_datetime</a></code>).</li>
+<li>Convert the timestamp to a date (hint: use <code>lubridate::as_datetime</code>).</li>
 <li>Compute the average rating per week (hint: use <code>round_date</code> and <code>group_by</code>). Plot time on the x-axis and weekly average rating on the y-axis.</li>
 <li>Interpret the trend. Does a time effect seem plausible?</li>
 </ul>
@@ -1099,13 +1179,19 @@ Y_i = \beta_0 + \sum_{j=1}^p x_{ij}\beta_j + \varepsilon_i, \quad i = 1, \dots, 
 </ul>
 
 
-</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
 <ol>
 <li id="fn1"><p>http://bits.blogs.nytimes.com/2009/09/21/netflix-awards-1-million-prize-and-starts-a-new-contest/<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>https://en.wikipedia.org/wiki/Netflix_Prize<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>https://www2.seas.gwu.edu/~simhaweb/champalg/cf/papers/KorenBellKor2009.pdf<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>https://grouplens.org/<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -1156,14 +1242,13 @@ Y_i = \beta_0 + \sum_{j=1}^p x_{ij}\beta_j + \varepsilon_i, \quad i = 1, \dots, 
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1178,7 +1263,7 @@ Y_i = \beta_0 + \sum_{j=1}^p x_{ij}\beta_j + \varepsilon_i, \quad i = 1, \dots, 
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("http:\/\/rafalab\.dfci\.harvard\.edu\/dsbook-part-2");
+        var filterRegex = new RegExp("https:\/\/intro-to-behds\.github\.io\/behdsbook-part-2\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1504,30 +1589,35 @@ Y_i = \beta_0 + \sum_{j=1}^p x_{ij}\beta_j + \varepsilon_i, \quad i = 1, \dots, 
       }
     }
   });
-  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
       <a href="../highdim/dimension-reduction.html" class="pagination-link" aria-label="Dimension Reduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../highdim/latent-factor-models.html" class="pagination-link" aria-label="Latent Factor Models">
-        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introduction to Data Science was written by Rafael A. Irizarry</p>
+<p>Introduction to Behavioural Data Science, adapted from Rafael A. Irizarry’s Introduction to Data Science</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/rafalab/dsbook-part-2/blob/main/highdim/regularization.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rafalab/dsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/highdim/regularization.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
   </div>
 </footer>
+
+
 
 
 </body></html>

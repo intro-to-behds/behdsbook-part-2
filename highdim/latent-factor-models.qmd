@@ -3,7 +3,7 @@
 ```{r, message=FALSE, echo=FALSE, cache=FALSE}
 ## Generate the train_set data frame created in the previous chapter
 library(data.table)
-library(dslabs)
+library(behdslabs)
 movielens <- as.data.table(movielens)
 movielens <- movielens[, if (.N >= 100) .SD, by = userId]
 
@@ -470,7 +470,7 @@ However, recommendation systems present a critical complication: the rating matr
 
 To address these challenges, we again turn to the *Alternating Least Squares (ALS)* algorithm described in @sec-movie-effects. The key idea is to alternately estimate each column of $\mathbf{P}$ and $\mathbf{Q}$: fix all columns except one, and solve for that one column using penalized least squares, then switch across all columns. This alternating approach also extends naturally to penalized versions of the model, where user and movie effects and latent factors are regularized separately. For these reasons, ALS has become one of the standard approaches for fitting latent factor models in recommendation systems, where sparsity makes direct application of PCA infeasible.
 
-The **dslabs** package provides the `fit_recommender_model` function, which implements a latent factor model with regularization:
+The **behdslabs** package provides the `fit_recommender_model` function, which implements a latent factor model with regularization:
 
 ```{r}
 #| warning: false

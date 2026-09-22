@@ -59,13 +59,13 @@ knitr::include_graphics("img/urn.jpg")
 
 Before making a prediction, you can take a sample (with replacement) from the urn. To reflect the fact that running polls is expensive, it costs you \$0.10 for each bead you sample. Therefore, if your sample size is 250, and you win, you will break even since you would have paid \$25 to collect your \$25 prize. Your entry into the competition can be an interval. If the interval you submit contains the true proportion, you receive half what you paid and proceed to the second phase of the competition. In the second phase, the entry with the smallest interval is selected as the winner.
 
-The **dslabs** package includes a function that shows a random draw from this urn:
+The **behdslabs** package includes a function that shows a random draw from this urn:
 
 
 ```{r first-simulated-poll, message=FALSE, warning=FALSE, echo=c(-1,-4), cache=FALSE}
 set.seed(1)
 library(tidyverse)
-library(dslabs)
+library(behdslabs)
 rafalib::mypar()
 take_poll(25)
 ```
@@ -446,11 +446,11 @@ d.  not a random variable.
 
 23\. Assume you are in a practical situation and you don't know $p$. Take a sample of size $N=100$ and obtain a sample average of $\bar{X} = 0.51$. What is the CLT approximation for the probability that your error is equal to or larger than 0.01?
 
-For the next exercises, we will use actual polls from the 2016 election included in the **dslabs** package.
+For the next exercises, we will use actual polls from the 2016 election included in the **behdslabs** package.
 Specifically, we will use all the national polls that ended within one week prior to the election.
 
 ```{r, message=FALSE}
-library(dslabs)
+library(behdslabs)
 library(tidyverse)
 polls <- polls_us_election_2016 |> 
   filter(enddate >= "2016-10-31" & state == "U.S.") 

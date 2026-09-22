@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.7.31">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="Rafael A. Irizarry">
-<title>8&nbsp; Sampling Models and the Central Limit Theorem – Introduction to Data Science</title>
+
+<meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
+
+<title>10&nbsp; Sampling Models and the Central Limit Theorem – Introduction to Behavioural Data Science</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -58,6 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -73,10 +74,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-416763588d27101c2483b91fe87266df.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-8f18353b6674da201bf96e4b700cba6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -102,7 +104,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -113,7 +120,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -128,28 +135,37 @@ window.Quarto = {
   typesetMath
 };
 </script>
+
 </head>
+
 <body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/sampling-models-and-clt.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/sampling-models-and-clt.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Introduction to Data Science</a> 
-        <div class="sidebar-tools-main">
-    <a href="https://github.com/rafalab/dsbook-part-2" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+      <a href="../">Introduction to Behavioural Data Science</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/intro-to-behds/behdsbook-part-2" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../Introduction-to-Behavioural-Data-Science.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -165,7 +181,7 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -179,29 +195,52 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summary Statistics</span></a>
+            <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioural Measurement</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/simulating-measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -211,44 +250,44 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -258,50 +297,50 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hierarchical-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -311,50 +350,50 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linear Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/linear-model-framework.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/treatment-effect-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/association-not-causation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linear-models/multivariable-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -364,44 +403,44 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../highdim/intro-highdim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">High Dimensional Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/matrices-in-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/linear-algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/dimension-reduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/regularization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../highdim/latent-factor-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -411,56 +450,56 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../ml/intro-ml.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/notation-and-terminology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/evaluation-metrics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/conditionals-and-smoothing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/resampling-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/ml-in-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../ml/clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -470,33 +509,35 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-</li>
+  </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li>
-<a href="#sec-sampling-models" id="toc-sec-sampling-models" class="nav-link active" data-scroll-target="#sec-sampling-models"><span class="header-section-number">8.1</span> Sampling models</a>
+  <li><a href="#sec-sampling-models" id="toc-sec-sampling-models" class="nav-link active" data-scroll-target="#sec-sampling-models"><span class="header-section-number">10.1</span> Sampling models</a>
   <ul class="collapse">
-<li><a href="#roulette-example" id="toc-roulette-example" class="nav-link" data-scroll-target="#roulette-example">Roulette example</a></li>
+  <li><a href="#roulette-example" id="toc-roulette-example" class="nav-link" data-scroll-target="#roulette-example">Roulette example</a></li>
   <li><a href="#connecting-sampling-models-to-real-data" id="toc-connecting-sampling-models-to-real-data" class="nav-link" data-scroll-target="#connecting-sampling-models-to-real-data">Connecting sampling models to real data</a></li>
+  </ul></li>
+  <li><a href="#a-monte-carlo-simulation" id="toc-a-monte-carlo-simulation" class="nav-link" data-scroll-target="#a-monte-carlo-simulation"><span class="header-section-number">10.2</span> A Monte Carlo Simulation</a></li>
+  <li><a href="#sec-clt-prob" id="toc-sec-clt-prob" class="nav-link" data-scroll-target="#sec-clt-prob"><span class="header-section-number">10.3</span> The Central Limit Theorem</a></li>
+  <li><a href="#how-large-is-large" id="toc-how-large-is-large" class="nav-link" data-scroll-target="#how-large-is-large"><span class="header-section-number">10.4</span> How large is large?</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">10.5</span> Exercises</a></li>
   </ul>
-</li>
-  <li><a href="#a-monte-carlo-simulation" id="toc-a-monte-carlo-simulation" class="nav-link" data-scroll-target="#a-monte-carlo-simulation"><span class="header-section-number">8.2</span> A Monte Carlo Simulation</a></li>
-  <li><a href="#sec-clt-prob" id="toc-sec-clt-prob" class="nav-link" data-scroll-target="#sec-clt-prob"><span class="header-section-number">8.3</span> The Central Limit Theorem</a></li>
-  <li><a href="#how-large-is-large" id="toc-how-large-is-large" class="nav-link" data-scroll-target="#how-large-is-large"><span class="header-section-number">8.4</span> How large is large?</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">8.5</span> Exercises</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/rafalab/dsbook-part-2/blob/main/prob/sampling-models-and-clt.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rafalab/dsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/prob/sampling-models-and-clt.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/sampling-models-and-clt.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title">
-<span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span>
-</h1>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/sampling-models-and-clt.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></h1>
 </div>
 
 
@@ -510,68 +551,78 @@ window.Quarto = {
   
 
 
-</header><p>In the previous chapter, we introduced random variables and saw how their distributions, expected values, and standard deviations describe uncertainty. In this chapter, we build on those ideas by introducing <em>sampling models</em>, which are mathematical abstractions of how data are generated. We then use the Central Limit Theorem (CLT) to approximate the distribution of sums and averages of independent draws. Through a concrete example based on playing roulette in a casino, we show how the CLT can be used to answer practical questions such as “What is the chance of losing money?”</p>
-<section id="sec-sampling-models" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="sec-sampling-models">
-<span class="header-section-number">8.1</span> Sampling models</h2>
+</header>
+
+
+<p>In the previous chapter, we introduced random variables and saw how their distributions, expected values, and standard deviations describe uncertainty. In this chapter, we build on those ideas by introducing <em>sampling models</em>, which are mathematical abstractions of how data are generated. We then use the Central Limit Theorem (CLT) to approximate the distribution of sums and averages of independent draws. Through a concrete example based on playing roulette in a casino, we show how the CLT can be used to answer practical questions such as “What is the chance of losing money?”</p>
+<section id="sec-sampling-models" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="sec-sampling-models"><span class="header-section-number">10.1</span> Sampling models</h2>
 <p>Many data-generating processes can be effectively modeled as <em>draws from an urn</em>. For example, polling likely voters can be viewed as drawing 0s (Republicans) and 1s (Democrats) from an urn containing the preferences of the entire population. In epidemiology, we often assume that individuals in a study are random draws from a larger population, where each draw corresponds to an individual’s outcome. Similarly, in experimental research, we treat subjects (worms, flies, mice, or humans, for example) as random draws from a broader population. Randomized experiments follow the same logic: each participant’s assignment to treatment or control can be seen as a random draw from an urn.</p>
 <p>Because random sampling and random assignment are fundamental to data analysis, <em>sampling models</em> appear everywhere in statistics. To build intuition, we start with <em>games of chance</em>, where randomness is explicit, and the link between probability and real outcomes is perfectly clear. We now define a specific example.</p>
-<section id="roulette-example" class="level3"><h3 class="anchored" data-anchor-id="roulette-example">Roulette example</h3>
+<section id="roulette-example" class="level3">
+<h3 class="anchored" data-anchor-id="roulette-example">Roulette example</h3>
 <p>Suppose a small casino hires you to decide whether it should install roulette wheels. To keep things simple, imagine 1,000 independent players, each placing a single bet on black on separate spins of the wheel. The casino wants you to estimate how much money it can expect to make, or lose, and, most importantly, the probability of losing money. If that probability is too high, they will decide not to install the wheels.</p>
 <p>We define a random variable <span class="math inline">\(S_n\)</span> to represent the casino’s total winnings after <span class="math inline">\(n\)</span> games. A roulette wheel has 18 red pockets, 18 black pockets, and 2 green ones. The outcome is equivalent to drawing a ball from this urn:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Black"</span>, <span class="st">"Red"</span>, <span class="st">"Green"</span><span class="op">)</span>, times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">18</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>color <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Black"</span>, <span class="st">"Red"</span>, <span class="st">"Green"</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">18</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Each of the 1,000 outcomes is an independent draw from this urn. If black comes up, the gambler wins, and the casino loses $1 (recorded as −1). Otherwise, the casino wins $1.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">color</span> <span class="op">==</span> <span class="st">"Black"</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, <span class="va">n</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">ifelse</span>(color <span class="sc">==</span> <span class="st">"Black"</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Since we already know the proportions of 1s and −1s, we can simplify:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, <span class="va">n</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9</span><span class="op">/</span><span class="fl">19</span>, <span class="fl">10</span><span class="op">/</span><span class="fl">19</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">9</span><span class="sc">/</span><span class="dv">19</span>, <span class="dv">10</span><span class="sc">/</span><span class="dv">19</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We call this a <em>sampling model</em> because it represents random behavior through repeated sampling from an urn. The casino’s total winnings, defined as <span class="math inline">\(S_n\)</span>, are simply the sum of these independent draws:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sum</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Before deriving the distribution of total winnings <span class="math inline">\(S_n\)</span>, it’s worth pausing to ask <em>why</em> we study problems like roulette in the first place.</p>
-</section><section id="connecting-sampling-models-to-real-data" class="level3"><h3 class="anchored" data-anchor-id="connecting-sampling-models-to-real-data">Connecting sampling models to real data</h3>
+</section>
+<section id="connecting-sampling-models-to-real-data" class="level3">
+<h3 class="anchored" data-anchor-id="connecting-sampling-models-to-real-data">Connecting sampling models to real data</h3>
 <p>Thinking in terms of a sampling model is central to data analysis under uncertainty. It connects the random variables we study in probability to the datasets we analyze in practice. By imagining data as random draws from an urn, a population, or a randomization procedure, we clarify what our models represent and what assumptions they rely on.</p>
 <p>This perspective also underpins much of modern statistics. Tools like confidence intervals, hypothesis tests, and regression all depend on assumptions derived from sampling models. Understanding these assumptions helps us apply these methods thoughtfully and recognize their limits.</p>
 <p>Casino games make these ideas tangible because their sampling models are fully known. The probabilities, such as the number of red, black, and green pockets, are explicit and easy to simulate. In contrast, real-world data come from more complex “urns”, such as populations of individuals with varying heights, incomes, or health outcomes. When we collect data, we are effectively drawing a random sample from such a population.</p>
 <p>This way of thinking builds statistical intuition: every dataset represents a sample from some underlying process, and the validity of our conclusions depends on how well our assumptions about that process hold.</p>
-</section></section><section id="a-monte-carlo-simulation" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="a-monte-carlo-simulation">
-<span class="header-section-number">8.2</span> A Monte Carlo Simulation</h2>
+</section>
+</section>
+<section id="a-monte-carlo-simulation" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="a-monte-carlo-simulation"><span class="header-section-number">10.2</span> A Monte Carlo Simulation</h2>
 <p>To find the probability that the casino loses money, we need to estimate the distribution of <span class="math inline">\(S_n\)</span>. In the language of probability, this is <span class="math inline">\(\Pr(S_n &lt; 0)\)</span>. If we define the distribution function <span class="math inline">\(F(a) = \Pr(S_n \leq a)\)</span>, we can answer any question about probabilities involving <span class="math inline">\(S_n\)</span>.</p>
 <p>We can estimate <span class="math inline">\(F(a)\)</span> with a Monte Carlo simulation, generating many realizations of <span class="math inline">\(S_n\)</span>. The following code simulates 1,000 people playing roulette and repeats the process 100,000 times:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
-<span><span class="va">roulette_winnings</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, <span class="va">n</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9</span><span class="op">/</span><span class="fl">19</span>, <span class="fl">10</span><span class="op">/</span><span class="fl">19</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">100000</span>, <span class="fu">roulette_winnings</span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>roulette_winnings <span class="ot">&lt;-</span> <span class="cf">function</span>(n){</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">9</span><span class="sc">/</span><span class="dv">19</span>, <span class="dv">10</span><span class="sc">/</span><span class="dv">19</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(x)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">100000</span>, <span class="fu">roulette_winnings</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The fraction of simulations in which <span class="math inline">\(S_n \leq a\)</span> approximates <span class="math inline">\(F(a)\)</span>:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">s</span> <span class="op">&lt;=</span> <span class="va">a</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(s <span class="sc">&lt;=</span> a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For instance, the probability of losing money is:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">s</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.0452</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(s <span class="sc">&lt;</span> <span class="dv">0</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.045</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A histogram and qqplot of <span class="math inline">\(S_n\)</span> show that the distribution is approximately normal, an observation that the <strong>Central Limit Theorem</strong> will soon explain.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="sampling-models-and-clt_files/figure-html/normal-approximates-distribution-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figure class="figure">
+<p><img src="sampling-models-and-clt_files/figure-html/normal-approximates-distribution-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="sec-clt-prob" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="sec-clt-prob">
-<span class="header-section-number">8.3</span> The Central Limit Theorem</h2>
+</section>
+<section id="sec-clt-prob" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="sec-clt-prob"><span class="header-section-number">10.3</span> The Central Limit Theorem</h2>
 <p>The Central Limit Theorem (CLT) states that when the number of draws (the <em>sample size</em>) is large, the distribution of the sum of independent draws is approximately normal. Because sampling models describe so many data-generating processes, the CLT is one of the most important results in statistics.</p>
 <p>In the roulette example, the urn contains 20 $1 gains and 18 $1 losses, giving an expected value of:</p>
 <p><span class="math display">\[
@@ -581,7 +632,7 @@ window.Quarto = {
 <p><span class="math display">\[
 \mathrm{E}[X] = ap + b(1-p).
 \]</span></p>
-<p>By the properties introduced in <a href="random-variables.html#sec-key-properties" class="quarto-xref"><span>Section 7.5</span></a>, the expected total winnings are:</p>
+<p>By the properties introduced in <a href="random-variables.html#sec-key-properties" class="quarto-xref"><span>Section 9.5</span></a>, the expected total winnings are:</p>
 <p><span class="math display">\[
 \mathrm{E}[S_n] = n\,\mathrm{E}[X].
 \]</span></p>
@@ -592,8 +643,8 @@ window.Quarto = {
 \]</span></p>
 <p>In the roulette example, we obtain:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">90</span><span class="op">)</span><span class="op">/</span><span class="fl">19</span></span>
-<span><span class="co">#&gt; [1] 0.999</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">90</span>)<span class="sc">/</span><span class="dv">19</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.999</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Thus, the standard error of the sum is:</p>
 <p><span class="math display">\[
@@ -601,25 +652,25 @@ window.Quarto = {
 \]</span></p>
 <p>which in this case is:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">*</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">90</span><span class="op">)</span><span class="op">/</span><span class="fl">19</span></span>
-<span><span class="co">#&gt; [1] 31.6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(n)<span class="sc">*</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">90</span>)<span class="sc">/</span><span class="dv">19</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 31.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>These theoretical values agree closely with the Monte Carlo results:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 52.7</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 31.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(s)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 52.5</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(s)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 31.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Using the CLT, we can now compute the probability that the casino loses money without simulation:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">n</span><span class="op">*</span><span class="op">(</span><span class="fl">20</span> <span class="op">-</span> <span class="fl">18</span><span class="op">)</span><span class="op">/</span><span class="fl">38</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">*</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">90</span><span class="op">)</span><span class="op">/</span><span class="fl">19</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.0478</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">0</span>, n<span class="sc">*</span>(<span class="dv">20</span> <span class="sc">-</span> <span class="dv">18</span>)<span class="sc">/</span><span class="dv">38</span>, <span class="fu">sqrt</span>(n)<span class="sc">*</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">90</span>)<span class="sc">/</span><span class="dv">19</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.0478</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>which matches our earlier estimate:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">s</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.0452</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(s <span class="sc">&lt;</span> <span class="dv">0</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.045</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
@@ -629,21 +680,23 @@ window.Quarto = {
 <div class="callout-body-container">
 <p>The quantity <span class="math inline">\((S_n + n)/2\)</span> represents the number of wins for the casino and follows a <em>binomial distribution</em>. Thus, the probability <span class="math inline">\(\Pr(S_n &lt; 0)\)</span> can also be computed directly:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="va">n</span><span class="op">/</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="va">n</span>, prob <span class="op">=</span> <span class="fl">10</span><span class="op">/</span><span class="fl">19</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.0448</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(n<span class="sc">/</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">1</span>, <span class="at">size =</span> n, <span class="at">prob =</span> <span class="dv">10</span><span class="sc">/</span><span class="dv">19</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.0448</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>However, the binomial result applies only to Bernoulli trials. In many real-world settings, data are not binomial, yet we still want to approximate the distribution of sums or averages. For those cases, the CLT provides a general framework that extends far beyond Bernoulli trials.</p>
 </div>
 </div>
 </div>
-</section><section id="how-large-is-large" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="how-large-is-large">
-<span class="header-section-number">8.4</span> How large is large?</h2>
+</section>
+<section id="how-large-is-large" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="how-large-is-large"><span class="header-section-number">10.4</span> How large is large?</h2>
 <p>The CLT applies when the number of draws is <em>large</em>, but <em>large</em> depends on context. In many cases, 30 draws are enough for a good approximation, sometimes even fewer. In the roulette example, when the probability of success is very small, much larger samples may be required.</p>
 <p>For example, in a lottery where the chance of winning is less than one in a million, even millions of tickets result in only a few winners. In such highly skewed cases, the <em>Poisson distribution</em> offers a better approximation than the normal. While we do not cover its theory here, it is discussed in most probability textbooks and on <a href="https://en.wikipedia.org/wiki/Poisson_distribution">Wikipedia</a>. You can explore the Poisson distribution in R with <code>dpois</code>, <code>ppois</code>, and <code>rpois</code>.</p>
 <p>In summary, the CLT explains why the normal distribution appears so often in statistics and why many methods work well in practice. But it has limits: when probabilities are extremely small, or distributions are highly skewed, other models, such as the Poisson or binomial, are more appropriate. Developing intuition for when the CLT applies is essential for principled, thoughtful data analysis.</p>
-</section><section id="exercises" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="exercises">
-<span class="header-section-number">8.5</span> Exercises</h2>
-<p>1. From the previous chapter, you have already computed the expected value, standard deviation, and probability distribution for betting on green 100 times (exercises 9-12 in <a href="random-variables.html" class="quarto-xref"><span>Chapter 7</span></a>). Now apply the Central Limit Theorem to betting on green 1,000 times.</p>
+</section>
+<section id="exercises" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">10.5</span> Exercises</h2>
+<p>1. From the previous chapter, you have already computed the expected value, standard deviation, and probability distribution for betting on green 100 times (exercises 9-12 in <a href="random-variables.html" class="quarto-xref"><span>Chapter 9</span></a>). Now apply the Central Limit Theorem to betting on green 1,000 times.</p>
 <p>In American Roulette, you can bet on green. There are 18 reds, 18 blacks, and 2 greens (0 and 00). Create a random variable <span class="math inline">\(S_n\)</span> that is the sum of your winnings after betting on green 1,000 times.</p>
 <p>2. Use the CLT to estimate the probability that you end up winning money.</p>
 <p>3. Create a Monte Carlo simulation that generates 10,000 outcomes of <span class="math inline">\(S_n\)</span>. Compute the average and standard deviation of the resulting list to confirm the results from the previous chapter. Start your code by setting the seed to 1 with <code>set.seed(1)</code>.</p>
@@ -686,11 +739,17 @@ window.Quarto = {
 <p>24. Use the simulation results of exercise 23 to report the expected profit, the probability of losing money, and the probability of losing more than $10,000,000. Study the distribution of profit and discuss how making the wrong assumption led to a catastrophic result.</p>
 
 
-</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
 <ol>
 <li id="fn1"><p>https://en.wikipedia.org/w/index.php?title=Financial_crisis_of_2007%E2%80%932008<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>https://en.wikipedia.org/w/index.php?title=Security_(finance)<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -741,14 +800,13 @@ window.Quarto = {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -763,7 +821,7 @@ window.Quarto = {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("http:\/\/rafalab\.dfci\.harvard\.edu\/dsbook-part-2");
+        var filterRegex = new RegExp("https:\/\/intro-to-behds\.github\.io\/behdsbook-part-2\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1089,9 +1147,11 @@ window.Quarto = {
       }
     }
   });
-  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
       <a href="../prob/random-variables.html" class="pagination-link" aria-label="Random Variables">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random Variables</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -1101,18 +1161,21 @@ window.Quarto = {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introduction to Data Science was written by Rafael A. Irizarry</p>
+<p>Introduction to Behavioural Data Science, adapted from Rafael A. Irizarry’s Introduction to Data Science</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/rafalab/dsbook-part-2/blob/main/prob/sampling-models-and-clt.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rafalab/dsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/prob/sampling-models-and-clt.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
   </div>
 </footer>
+
+
 
 
 </body></html>

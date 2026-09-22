@@ -21,7 +21,7 @@ The following comical example underscores the concept that correlation is not ca
 ```{r divorce-versus-margarine, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE}
 library(tidyverse)
 library(broom)
-library(dslabs)
+library(behdslabs)
 the_title <- paste("Correlation =", 
                 round(with(divorce_margarine, 
                            cor(margarine_consumption_per_capita, divorce_rate_maine)),2))
@@ -330,7 +330,7 @@ Who is correct here, the original paper or the response? Below, you will examine
 1\. The primary evidence for the conclusion of the original paper relies on a comparison of the percentages. Table S1 in the paper includes the information we need:
 
 ```{r,eval=FALSE}
-library(dslabs)
+library(behdslabs)
 research_funding_rates
 ```
 

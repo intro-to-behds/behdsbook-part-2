@@ -7,21 +7,21 @@
 #| echo: false
 
 library(tidyverse)
-library(dslabs)
+library(behdslabs)
 library(scales)
 ```
 
 Before we begin, we clarify that this chapter will not cover distributions in the context of probability, which is the mathematical framework used to model uncertainty. We postpone that discussion until the next part of the book, where we will use it throughout. Here, we focus on _distributions_ as a way to describe and summarize data we've already collected. Our goal is to understand the variation and patterns present in a dataset, without yet making probabilistic claims or predictions. The concepts introduced in this chapter will later serve as the foundation for understanding probability distributions, where similar tools are used to describe the likely outcomes of random processes.
 
-To illustrate the concepts needed to understand distributions and how they relate to summary statistics, we will pretend that we have to describe the heights of our classmates to ET, an extraterrestrial that has never seen humans. As a first step, we need to collect data. To do this, we ask students to report their heights in inches. We ask them to provide sex information because we know that height has different distributions across sexes. We collect the data and save it in the `heights` data frame included in the **dslabs** package.
+To illustrate the concepts needed to understand distributions and how they relate to summary statistics, we will pretend that we have to describe the reaction times of our study participants to ET, an extraterrestrial that has never run a psychology experiment. As a first step, we need to collect data. To do this, we ask participants to complete a simple reaction-time task and record their response time in milliseconds. We ask them to provide sex information because we want to compare the two groups. We collect the data and save it in the `reaction_times` data frame included in the **behdslabs** package.
 
 ```{r}
-library(dslabs)
-str(heights)
+library(behdslabs)
+str(reaction_times)
 ```
 
 
-One way to convey the heights to ET is to simply send the entire dataset of heights. However, there are much more effective ways to convey this information, and understanding the concept of a distribution will help. To simplify the explanation, we first focus on male heights. We examine the female height data in @sec-stratification.
+One way to convey the reaction times to ET is to simply send the entire list of measurements. However, there are much more effective ways to convey this information, and understanding the concept of a distribution will help. To simplify the explanation, we first focus on male reaction times. We examine the female reaction-time data in @sec-stratification.
 
 It turns out that, in some cases, the two summary statistics introduced in the next chapter, the average and the standard deviation, are all we need to understand the data. We will learn data visualization techniques that will help us determine when this two-number summary is appropriate. These same techniques will serve as an alternative for when two numbers are not enough.
 
@@ -33,7 +33,7 @@ We will be working with two types of variables: categorical and numeric. Each ca
 
 When data values represent groups instead of numbers, we refer to the data as _categorical_. Two simple examples are sex (male or female) and US regions (Northeast, South, North Central, West). Some categorical data can be ordered even if they are not numbers, such as spiciness (mild, medium, hot). These ordered categorical data are referred to as _ordinal_ data.
 
-Numerical data can be continuous or discrete. A continuous variable can take on any value within a range. For example, if measured with sufficient precision, height is continuous because the difference between two individuals (even identical twins) can be an arbitrarily small fraction. However, if height is rounded to the nearest inch, it becomes discrete since values must be whole numbers. Other examples of discrete data are the number of heads when tossing 10 coins, the number of cigarettes a person smokes per day, or the number of customers visiting a store in an hour. In these cases, the values are countable and cannot take on fractional values. Unlike continuous data, which can be measured with increasing precision, discrete data are limited to distinct, separate values.
+Numerical data can be continuous or discrete. A continuous variable can take on any value within a range. For example, if measured with sufficient precision, reaction time is continuous because the difference between two participants (even identical twins) can be an arbitrarily small fraction of a millisecond. However, if reaction time is rounded to the nearest millisecond, it becomes discrete since values must be whole numbers. Other examples of discrete data are the number of heads when tossing 10 coins, the number of cigarettes a person smokes per day, or the number of customers visiting a store in an hour. In these cases, the values are countable and cannot take on fractional values. Unlike continuous data, which can be measured with increasing precision, discrete data are limited to distinct, separate values.
 
 In practice, there are occasions in which discrete variables are treated as continuous. For example, a digital measuring instrument might record data as 16-bit integers. However, because it is rare to obtain exactly the same reading more than once, it is convenient to treat the data as continuous. Another example is country population size. Although population counts are always whole numbers, it is uncommon for two jurisdictions to have exactly the same population. For this reason, population size is also commonly treated as continuous.
 
@@ -63,9 +63,9 @@ $$
 
 Here is the distribution for US state populations rounded to the nearest million, which are discrete numerical values:
 
-```{r summaries-rounded-heights-distribution}
+```{r summaries-rounded-population-distribution}
 #| echo: false
-murders |> mutate(x = round(population/10^6)) |> count(x) |> mutate(f = n/sum(n)) |>
+app_data_breaches |> mutate(x = round(population/10^6)) |> count(x) |> mutate(f = n/sum(n)) |>
   ggplot(aes(x, f)) + geom_col() + 
   scale_x_continuous(breaks = seq(1, 37, by = 1)) +
   theme(axis.text.x = element_text(angle = 90, hjust = 0.5, size = 8)) +
@@ -80,7 +80,7 @@ Here are the relative frequencies of US state populations, no longer rounded:
 
 ```{r relative-frequencies-of-US}
 #| echo: false
-murders |> filter(state %in% state.name) |>
+app_data_breaches |> filter(state %in% state.name) |>
   count(population) |> mutate(f = n/sum(n)) |> ggplot(aes(population, f)) + 
   geom_col() + xlab("x = population") + ylab("f(x)") + theme(panel.grid = element_blank()) +
   ylab("f(x)") + theme(panel.grid = element_blank()) + 
@@ -97,7 +97,7 @@ Here is the eCDF for state population data above:
 
 ```{r state-population-ecdf}
 #| echo: false
-murders |> filter(state %in% state.name) |>
+app_data_breaches |> filter(state %in% state.name) |>
   ggplot(aes(population)) + 
   stat_ecdf() +
   labs(x = "a", y = "F(a)") + 
@@ -106,31 +106,31 @@ murders |> filter(state %in% state.name) |>
 
 Similar to how a frequency table summarizes categorical data, the empirical cumulative distribution function (eCDF) summarizes continuous data. The eCDF provides a clear picture of how the values are distributed and highlights key characteristics of the dataset. For instance, in the population data, we can see that about half of the states have populations greater than 5,000,000, while most states fall below 20,000,000. This type of summary helps us to quickly identify medians, ranges, and other important distributional features.
 
-In our heights case study, most students reported heights rounded to the nearest inch. However, some did not. For example, one student reported a height of `68.503937007874` inches, and another reported `68.8976377952756` inches. These values correspond to 174 cm and 175 cm converted to inches, respectively, suggesting that some students knew their heights to the closest centimeter and reported this number divided by 2.54.
+In our reaction-time case study, response times were recorded with sub-millisecond precision, so almost every value is unique. For example, one participant recorded a reaction time of `283.1325` milliseconds and another recorded `435.0265` milliseconds, and no other participant matched either value exactly.
 
 As a result the data is continuous and the relative frequency distribution is somewhat confusing:
 
 ```{r frequency-of-continuous-data-not-good}
 #| echo: false
-heights |> filter(sex == "Male") |> 
-  count(height) |> mutate(f = n/sum(n)) |> ggplot(aes(height, f)) + 
+reaction_times |> filter(sex == "Male") |> 
+  count(rt_ms) |> mutate(f = n/sum(n)) |> ggplot(aes(rt_ms, f)) + 
   geom_col(width = 0.1) +
-  xlab("x = height") + ylab("f(x)")
+  xlab("x = reaction time (ms)") + ylab("f(x)")
 ```
 
-Although this approach preserves all the information from the list of observations, it can give misleading impressions if extrapolating insights to a broader population. For example, it might suggest there are no people with heights between 74 and 74.5 inches or that significantly more people are exactly 72 inches tall than 71.5 inches, patterns we know aren't accurate. In contrast, the eCDF provides a more useful visual summary:
+Although this approach preserves all the information from the list of observations, it can give misleading impressions if extrapolating insights to a broader population. For example, it might suggest that participants are much more likely to respond in exactly 374.4 milliseconds than in 374.0 milliseconds, or that no participant responds between 350 and 351 milliseconds, patterns we know aren't accurate. In contrast, the eCDF provides a more useful visual summary:
 
 ```{r summaries-ecdf}
 #| echo: false
-heights |> filter(sex == "Male") |> 
-  ggplot(aes(height)) + 
+reaction_times |> filter(sex == "Male") |> 
+  ggplot(aes(rt_ms)) + 
   stat_ecdf() +
   labs(x = "a", y = "F(a)")
 ```
 
-From a quick glance at the figure, we can already infer some general characteristics of the data. For example, about half of the males are shorter than 69 inches, since $F(69) \approx 0.5$, and being shorter than 60 inches or taller than 80 inches is very rare. Moreover, because we can compute the proportion of individuals with heights between any two values $a$ and $b$ as $F(b) - F(a)$, the plot above contains all the information needed to reconstruct the entire dataset.
+From a quick glance at the figure, we can already infer some general characteristics of the data. For example, about half of the males respond in under 375 milliseconds, since $F(375) \approx 0.5$, and responding in under 275 milliseconds or taking more than 475 milliseconds is very rare. Moreover, because we can compute the proportion of participants with reaction times between any two values $a$ and $b$ as $F(b) - F(a)$, the plot above contains all the information needed to reconstruct the entire dataset.
 
-Paraphrasing the saying “a picture is worth a thousand words,” in this case, a picture is as informative as `r sum(heights$sex == "Male")` numbers.
+Paraphrasing the saying “a picture is worth a thousand words,” in this case, a picture is as informative as `r sum(reaction_times$sex == "Male")` numbers.
 
 :::{.callout-note}
 The reason we add the word *empirical* is because, as we will see in @sec-cdf-intro, the cumulative distribution function (CDF) can be defined mathematically, meaning without any data.
@@ -142,52 +142,56 @@ Although the eCDF is a fundamental concept in statistics, it is not commonly use
 
 To construct a histogram, we first divide the range of the data into non-overlapping bins. Each bin acts as a category, and its height is chosen so that the area of the bar, calculated as the height multiplied by the bin width, represents the relative frequency of observations within that bin. Although a histogram resembles a bar plot, it differs in that the x-axis represents numerical values rather than categorical ones.
 
-If we round the reported heights to the nearest inch and create a relative frequency distribution, we obtain a histogram with bins defined in one-inch intervals: 
+If we round the reaction times to the nearest 10 milliseconds and create a relative frequency distribution, we obtain a histogram with bins defined in 10-millisecond intervals: 
 
-$$(49.5, 50.5], (50.5, 51.5], (51.5, 52.5], (52.5, 53.5], \dots, (82.5, 83.5]$$
+$$(195, 205], (205, 215], (215, 225], (225, 235], \dots, (495, 505]$$
 
 We can do this with the following **ggplot2** code:
 
-```{r frequency-distribution-rounded-heights}
+```{r frequency-distribution-rounded-rt}
 library(tidyverse)
-heights |> filter(sex == "Male") |> 
-  mutate(height = round(height)) |>
-  count(height) |> mutate(f = n / sum(n)) |> 
-  ggplot(aes(height, f)) + geom_col()
+reaction_times |> filter(sex == "Male") |> 
+  mutate(rt_ms = round(rt_ms, -1)) |>
+  count(rt_ms) |> mutate(f = n / sum(n)) |> 
+  ggplot(aes(rt_ms, f)) + geom_col(width = 8)
 ```
 
 The R base `hist` function also allows us to quickly construct a histogram. We can define custom bin intervals which is particularly useful for grouping extreme values and avoiding empty bins:
 
 ```{r hist-custom-bin-example}
-with(heights, hist(height[sex == "Male"], breaks = c(50, 55, 60:80, 85)))
+with(reaction_times, hist(rt_ms[sex == "Male"], breaks = c(200, 250, seq(300, 450, by = 10), 500)))
 ```
 
-If we were to send either of these plots to an extraterrestrial unfamiliar with human height distributions, they would immediately gain key insights about the data. First, the male height values range from 50 to 84 inches, with over 95% of observations falling between 63 and 75 inches. Second, the distribution is approximately symmetric around 69 inches. Additionally, by summing bin counts, one could estimate the proportion of data falling within any given interval. Thus, a histogram provides an intuitive summary that preserves most of the information from the original `r sum(heights$sex=="Male")` height measurements using only about 30 bin counts.
+If we were to send either of these plots to an extraterrestrial unfamiliar with human reaction times, they would immediately gain key insights about the data. First, the male reaction times range from 200 to 500 milliseconds, with over 95% of observations falling between 305 and 439 milliseconds. Second, the distribution is approximately symmetric around 375 milliseconds. Additionally, by summing bin counts, one could estimate the proportion of data falling within any given interval. Thus, a histogram provides an intuitive summary that preserves most of the information from the original `r sum(reaction_times$sex=="Male")` reaction-time measurements using only about 30 bin counts.
 
-What information is lost?  A histogram treats all values within a bin as if they were the same when computing bar heights. For instance, values of 64.0, 64.1, and 64.2 inches are grouped together. However, since these differences are barely perceptible, the practical impact is negligible, and we achieve a meaningful summary using just 23 numbers.
+What information is lost?  A histogram treats all values within a bin as if they were the same when computing bar heights. For instance, values of 340.0, 340.1, and 340.2 milliseconds are grouped together. However, since these differences are barely perceptible, the practical impact is negligible, and we achieve a meaningful summary using just 18 numbers.
+
+:::{.callout-note}
+The `reaction_times` data are simulated, and their distribution is close to symmetric. Real reaction times are typically **right-skewed**: most responses are fairly quick, but a minority are much slower (lapses of attention, for example), producing a long right tail. Keep this in mind when we describe distribution shapes below, and do not take the symmetry of this dataset as a general property of reaction-time data.
+:::
 
 By default, histograms often display frequency on the y-axis instead of relative frequency. The **ggplot2** package follows this convention:
 
-```{r summaries-height-histogram}
-heights |> filter(sex == "Male") |> ggplot(aes(x = height)) + 
-  geom_histogram(breaks = c(50, 55, 60:80, 85), color = "black")
+```{r summaries-rt-histogram}
+reaction_times |> filter(sex == "Male") |> ggplot(aes(x = rt_ms)) + 
+  geom_histogram(breaks = c(200, 250, seq(300, 450, by = 10), 500), color = "black")
 ```
 
 Note we use `fill` and `color` to mimic the behavior of `hist`.
 
 When displaying frequencies, it is important to use equally spaced bins, as larger bins will naturally contain more observations and may distort the visual representation of the data. To instead display **relative** frequency, as done by `hist` above, you can modify the code by setting `y = after_stat(density)`:
 
-```{r summaries-height-histogram-ggplot2}
+```{r summaries-rt-histogram-ggplot2}
 #| eval: false
-heights |> filter(sex == "Male") |> 
-  ggplot(aes(x = height, y = after_stat(density))) + 
-  geom_histogram(breaks = c(50, 55, 60:80, 85), color = "black")
+reaction_times |> filter(sex == "Male") |> 
+  ggplot(aes(x = rt_ms, y = after_stat(density))) + 
+  geom_histogram(breaks = c(200, 250, seq(300, 450, by = 10), 500), color = "black")
 ```
 
 
 ### Choosing bin widths
 
-The appearance and interpretation of a histogram depend on the choice of bins, and in the case of equally sized bins, their width. Different bin widths can make the same data look quite different: too narrow, and the histogram may appear noisy or fragmented; too wide, and important features of the distribution may be hidden. The choice of bin width should be guided by the context of the data. For example, in the case of height, most people report values rounded to the nearest half inch, so using bins smaller than that does not make sense. At the same time, because height differences of more than an inch are noticeable in real life, bins larger than about two inches would obscure meaningful variation. For the extreme regions of the distribution, such as below 60 inches or above 80 inches, where there are few observations, it is reasonable to use wider bins to keep the summary clear. Every dataset requires a context-specific decision: the goal is to choose bins that reveal structure without introducing noise, maximizing the information conveyed by a single figure.
+The appearance and interpretation of a histogram depend on the choice of bins, and in the case of equally sized bins, their width. Different bin widths can make the same data look quite different: too narrow, and the histogram may appear noisy or fragmented; too wide, and important features of the distribution may be hidden. The choice of bin width should be guided by the context of the data. For example, in the case of reaction times, timing hardware and software have limited resolution, so using bins much smaller than about 10 milliseconds does not make sense. At the same time, because differences of more than 50 milliseconds are meaningful in a psychological experiment, bins larger than about 20 milliseconds would obscure meaningful variation. For the extreme regions of the distribution, such as below 300 milliseconds or above 450 milliseconds, where there are few observations, it is reasonable to use wider bins to keep the summary clear. Every dataset requires a context-specific decision: the goal is to choose bins that reveal structure without introducing noise, maximizing the information conveyed by a single figure.
 
 ## Smoothed density plots
 
@@ -195,27 +199,27 @@ Smooth density plots are similar to histograms, but without bins. Instead of sha
 
 ```{r summaries-example-of-smoothed-density}
 #| echo: false
-heights |> filter(sex == "Male") |> 
-  ggplot(aes(height)) + geom_density(alpha = 0.2, fill = "#00BFC4")
+reaction_times |> filter(sex == "Male") |> 
+  ggplot(aes(rt_ms)) + geom_density(alpha = 0.2, fill = "#00BFC4")
 ```
 
 To understand smooth densities, think of our sample as coming from a much larger, unobserved population. If we had many more observations, we could build a histogram with very small bins. As bin width decreases, the histogram becomes smoother and approaches a continuous curve:
 
 ```{r summaries-simulated-data-histogram-2, fig.width = 9, fig.height = 3,  out.width = "100%",echo = FALSE, message = FALSE}
 set.seed(1988)
-x <- data.frame(height = c(rnorm(1000000, 69, 3), rnorm(1000000, 65, 3)))
+x <- data.frame(rt_ms = c(rnorm(1000000, 377, 33), rnorm(1000000, 337, 33)))
 p1 <- x |> 
-  ggplot(aes(x = height, y = after_stat(density))) + 
-  geom_histogram(binwidth = 1, fill = "grey", color = "black") + 
-  ggtitle("binwidth = 1")
+  ggplot(aes(x = rt_ms, y = after_stat(density))) + 
+  geom_histogram(binwidth = 10, fill = "grey", color = "black") + 
+  ggtitle("binwidth = 10")
 p2 <- x |> 
-  ggplot(aes(x = height, y = after_stat(density))) + 
-  geom_histogram(binwidth = 0.5, fill = "grey", color = "black") + 
-  ggtitle("binwidth = 0.5")
+  ggplot(aes(x = rt_ms, y = after_stat(density))) + 
+  geom_histogram(binwidth = 5, fill = "grey", color = "black") + 
+  ggtitle("binwidth = 5")
 p3 <- x |> 
-  ggplot(aes(x = height, y = after_stat(density))) + 
-  geom_histogram(binwidth = 0.25, fill = "grey", color = "black") + 
-  ggtitle("binwidth = 0.25")
+  ggplot(aes(x = rt_ms, y = after_stat(density))) + 
+  geom_histogram(binwidth = 2.5, fill = "grey", color = "black") + 
+  ggtitle("binwidth = 2.5")
 library(gridExtra)
 grid.arrange(p1, p2, p3, nrow = 1)
 ```
@@ -225,10 +229,10 @@ A smooth density can be viewed as the curve tracing the tops of these increasing
 In practice, we have limited data, so we use a histogram with reasonable bin width and overlay a smooth curve. The following steps illustrate how this curve is constructed:
 
 ```{r summaries-smooth-density-2, echo = FALSE, out.width = "100%"}
-hist1 <- heights |> 
+hist1 <- reaction_times |> 
   filter(sex == "Male") |> 
-  ggplot(aes(height)) +
-  geom_histogram(aes(y = after_stat(density)), binwidth = 1, fill = "grey", color = "black") 
+  ggplot(aes(rt_ms)) +
+  geom_histogram(aes(y = after_stat(density)), binwidth = 10, fill = "grey", color = "black") 
 
 hist2 <- hist1 +
   geom_line(stat = 'density', lwd = 0.75)
@@ -237,13 +241,13 @@ hist3 <- hist1 +
   geom_point(data = ggplot_build(hist2)$data[[1]], aes(x,y), col = "blue")
 
 hist4 <- ggplot() + geom_point(data = ggplot_build(hist2)$data[[1]], aes(x,y), col = "blue") + 
-  xlab("height") + ylab("density")
+  xlab("reaction time (ms)") + ylab("density")
 
 hist5 <- hist4 + geom_line(data = ggplot_build(hist2)$data[[2]], aes(x,y), lwd = 0.75)
 
-hist6 <- heights |> 
+hist6 <- reaction_times |> 
   filter(sex == "Male") |> 
-  ggplot(aes(height)) +
+  ggplot(aes(rt_ms)) +
   geom_density(alpha = 0.2, fill = "#00BFC4", col = 0) +
   geom_line(stat = 'density', lwd = 0.75) +
   scale_y_continuous(limits = layer_scales(hist2)$y$range$range)
@@ -256,9 +260,9 @@ grid.arrange(hist1, hist3, hist4, hist5, hist2, hist6, nrow = 2)
 The smoothness of a density curve is controlled by a parameter called the *bandwidth*. Smaller values produce more detail (and noise), while larger values produce smoother curves:
 
 ```{r summaries-densities-different-smoothness, out.width = "100%", fig.width = 6, fig.height = 3, echo=FALSE,cache=FALSE, message=FALSE}
-p <- heights |> filter(sex == "Male") |> 
-  ggplot(aes(height)) +
-  geom_histogram(aes(y = after_stat(density)), binwidth = 1, alpha = 0.5) 
+p <- reaction_times |> filter(sex == "Male") |> 
+  ggplot(aes(rt_ms)) +
+  geom_histogram(aes(y = after_stat(density)), binwidth = 10, alpha = 0.5) 
 
 p1 <- p +  geom_line(stat = 'density', adjust = 0.5)
 p2 <- p +  geom_line(stat = 'density', adjust = 2) 
@@ -271,23 +275,23 @@ As with bin width in histograms, the goal is to balance noise and smoothness.
 
 ### Interpreting the y-axis
 
-The y-axis is scaled so the total area under the curve equals 1. Probabilities are represented by areas under the curve. For example, the proportion of values between 65 and 68 is the area over that interval:
+The y-axis is scaled so the total area under the curve equals 1. Probabilities are represented by areas under the curve. For example, the proportion of values between 350 and 380 milliseconds is the area over that interval:
 
 ```{r summaries-area-under-curve, echo = FALSE}
-d <- with(heights, density(height[sex == "Male"]))
-tmp <- data.frame(height = d$x, density = d$y)
-tmp |> ggplot(aes(height,density)) + geom_line() + 
-  geom_area(aes(x = height, y = density), data = filter(tmp, between(height, 65, 68)), alpha = 0.2, fill = "#00BFC4")
+d <- with(reaction_times, density(rt_ms[sex == "Male"]))
+tmp <- data.frame(rt_ms = d$x, density = d$y)
+tmp |> ggplot(aes(rt_ms,density)) + geom_line() + 
+  geom_area(aes(x = rt_ms, y = density), data = filter(tmp, between(rt_ms, 350, 380)), alpha = 0.2, fill = "#00BFC4")
 ```
 
-This proportion is about `r round(mean(dplyr::between(heights$height[heights$sex=="Male"], 65, 68)), 2)`, meaning roughly `r noquote(paste0(round(mean(dplyr::between(heights$height[heights$sex=="Male"], 65, 68)), 2)*100, '%'))` of male heights fall in this range.
+This proportion is about `r round(mean(dplyr::between(reaction_times$rt_ms[reaction_times$sex=="Male"], 350, 380)), 2)`, meaning roughly `r noquote(paste0(round(mean(dplyr::between(reaction_times$rt_ms[reaction_times$sex=="Male"], 350, 380)), 2)*100, '%'))` of male reaction times fall in this range.
 
 With this interpretation, smooth densities provide a useful and visually appealing summary of the data:
 
 ```{r summaries-example-of-smoothed-density-2, echo = FALSE}
-heights |> 
+reaction_times |> 
   filter(sex == "Male") |> 
-  ggplot(aes(height)) + 
+  ggplot(aes(rt_ms)) + 
   geom_density(alpha = 0.2, fill = "#00BFC4")
 ```
 
@@ -305,7 +309,7 @@ A _symmetric_ distribution has as many data points to both sides of the mode. A 
 
 The _tails_ of a distribution are the regions that extend toward the smallest and largest values.
 
-A _right-skewed_ (positively skewed) distribution has a long tail toward larger values, for example, income, where most people earn modest amounts but a few earn much more.
+A _right-skewed_ (positively skewed) distribution has a long tail toward larger values, for example, income, where most people earn modest amounts but a few earn much more. Real reaction times are another example: most responses are quick but a few are very slow.
 
 A _left-skewed_ (negatively skewed) distribution has a longer tail toward smaller values, such as test scores on an easy exam where most students score high but a few perform poorly.
 
@@ -345,12 +349,12 @@ As we've seen, visual tools such as histograms and density plots help us underst
 
 ## Exercises
 
-1\. In the `murders` dataset, the region is a categorical variable and the following is its distribution:
+1\. In the `app_data_breaches` dataset, the region is a categorical variable and the following is its distribution:
 
 ```{r summaries-barplot-exercise, echo = FALSE}
-library(dslabs)
+library(behdslabs)
 ds_theme_set()
-murders |> group_by(region) |>
+app_data_breaches |> group_by(region) |>
   summarize(n = n()) |>
   mutate(Proportion = n/sum(n), 
          region = reorder(region, Proportion)) |>
@@ -368,38 +372,38 @@ b.  The graph above shows only four numbers with a bar plot.
 c.  Categories are not numbers, so it does not make sense to graph the distribution.
 d.  The colors, not the height of the bars, describe the distribution.
 
-3\. The plot below shows the eCDF for male heights:
+3\. The plot below shows the eCDF for male reaction times:
 
 ```{r summaries-ecdf-exercise, echo = FALSE}
-heights |> filter(sex == "Male") |> ggplot(aes(height)) + 
+reaction_times |> filter(sex == "Male") |> ggplot(aes(rt_ms)) + 
   stat_ecdf() +
   ylab("F(a)") + xlab("a")
 ```
 
-Based on the plot, what percentage of males are shorter than 75 inches?
+Based on the plot, what percentage of males have a reaction time under 425 milliseconds?
 
 a.  100%
 b.  95%
 c.  80%
-d.  72 inches
+d.  425 milliseconds
 
-4\. To the closest inch, what height $m$ has the property that 1/2 of the male students are taller than $m$ and 1/2 are shorter?
+4\. To the closest 25 milliseconds, what reaction time $m$ has the property that 1/2 of the male participants are slower than $m$ and 1/2 are faster?
 
-a.  61 inches
-b.  64 inches
-c.  69 inches
-d.  74 inches
+a.  250 milliseconds
+b.  300 milliseconds
+c.  375 milliseconds
+d.  450 milliseconds
 
-5\. Here is an eCDF of the murder rates (number of murders per 100,000 people) across states in 2010:
+5\. Here is an eCDF of the incident rates (number of reported data-breach incidents per 100,000 people) across states:
 
 ```{r summaries-ecdf-exercise-2, echo = FALSE}
-murders |> mutate(murder_rate = total/population * 10^5) |>
-  ggplot(aes(murder_rate)) + 
+app_data_breaches |> mutate(incident_rate = incidents/population * 10^5) |>
+  ggplot(aes(incident_rate)) + 
   stat_ecdf() +
   ylab("F(a)") + xlab("a")
 ```
 
-Knowing that there are 51 observations (50 states and DC) and based on this plot, how many states have murder rates larger than 10 per 100,000 people?
+Knowing that there are 51 observations (50 states and DC) and based on this plot, how many states have incident rates larger than 20 per 100,000 people?
 
 a.  1
 b.  5
@@ -408,30 +412,30 @@ d.  50
 
 6\. Based on the eCDF above, which of the following statements are true:
 
-a.  About half the states have murder rates above 7 per 100,000 and the other half below.
-b.  Most states have murder rates below 2 per 100,000.
-c.  All the states have murder rates above 2 per 100,000.
-d.  With the exception of 4 states, the murder rates are below 5 per 100,000.
+a.  About half the states have incident rates above 14 per 100,000 and the other half below.
+b.  Most states have incident rates below 4 per 100,000.
+c.  All the states have incident rates above 4 per 100,000.
+d.  With the exception of 4 states, the incident rates are below 10 per 100,000.
 
-7\. Below is a histogram of male heights in our `heights` dataset:
+7\. Below is a histogram of male reaction times in our `reaction_times` dataset:
 
-```{r summaries-height-histogram-exercise, echo = FALSE}
-heights |> 
+```{r summaries-rt-histogram-exercise, echo = FALSE}
+reaction_times |> 
   filter(sex == "Male") |> 
-  ggplot(aes(height)) + 
-  geom_histogram(binwidth = 1, color = "black")
+  ggplot(aes(rt_ms)) + 
+  geom_histogram(binwidth = 10, color = "black")
 ```
 
-Based on this plot, how many males are between 63.5 and 65.5?
+Based on this plot, how many males have reaction times between 345 and 365 milliseconds?
 
-a.  10
-b.  24
-c.  47
-d.  100
+a.  15
+b.  50
+c.  150
+d.  500
 
-8\. About what **percentage** are shorter than 60 inches?
+8\. About what **percentage** have reaction times under 300 milliseconds?
 
-a.  1%
+a.  2%
 b.  10%
 c.  25%
 d.  50%
@@ -439,7 +443,7 @@ d.  50%
 9\. Based on the density plot below, about what proportion of US states have populations larger than 10 million?
 
 ```{r summaries-density-exercise, echo = FALSE}
-murders |> ggplot(aes(x = population/10^6)) + 
+app_data_breaches |> ggplot(aes(x = population/10^6)) + 
   geom_density(fill = "grey") + 
   scale_x_log10() +
   xlab("Population in millions")
@@ -454,11 +458,11 @@ d.  0.55
 
 ```{r summaries-density-exercise-2, echo = FALSE, warning = FALSE, message = FALSE}
 library(gridExtra)
-p1 <- murders |> ggplot(aes(x = population/10^6)) + 
+p1 <- app_data_breaches |> ggplot(aes(x = population/10^6)) + 
   geom_density(fill = "grey", bw = 5) + xlab("Population in millions") + ggtitle("1")
-p2 <- murders |> ggplot(aes(x = population/10^6)) + 
+p2 <- app_data_breaches |> ggplot(aes(x = population/10^6)) + 
   geom_density(fill = "grey", bw = .05) + scale_x_log10() + xlab("Population in millions") + ggtitle("2")
-p3 <- murders |> ggplot(aes(x = population/10^6)) + 
+p3 <- app_data_breaches |> ggplot(aes(x = population/10^6)) + 
   geom_density(fill = "grey", bw = 1) + scale_x_log10() + xlab("Population in millions") + ggtitle("3")
 grid.arrange(p1,p2,p3,ncol = 2)
 ```

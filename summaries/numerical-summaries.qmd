@@ -4,7 +4,7 @@ Histograms and density plots provide excellent summaries of a distribution. But 
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
 library(tidyverse)
-library(dslabs)
+library(behdslabs)
 ```
 
 ## The Normal distribution {#sec-normal-distribution}
@@ -52,12 +52,12 @@ $$
 $$
 which can be thought of as the average distance of the points $x_i$ to the mean $\mu_x$. 
 
-Let's compute the mean and standard deviations for the height of males:
+Let's compute the mean and standard deviation of the reaction times of males:
 
 ```{r}
 library(tidyverse)
 library(rafalib)
-x <- with(heights, height[sex == "Male"])
+x <- with(reaction_times, rt_ms[sex == "Male"])
 ```
 
 The pre-built functions `mean` and `sd` can be used here:
@@ -85,7 +85,7 @@ The plot below shows the smooth density of the observed data (blue) and the corr
 norm_dist <- data.frame(x = seq(-4, 4, len = 50)*s + m) |> 
   mutate(density = dnorm(x, m, s))
 
-heights |> filter(sex == "Male") |> ggplot(aes(height)) +
+reaction_times |> filter(sex == "Male") |> ggplot(aes(rt_ms)) +
   geom_density(fill = "#00BFC4") +
   geom_line(aes(x, density), data = norm_dist)
 ```
@@ -104,7 +104,7 @@ Here, the logical expression `x > a & x <= b` returns `TRUE` for all values of `
 
 The following examples illustrate how closely the observed proportions match the theoretical probabilities from the normal distribution.
 
-The probability of being shorter than the average student:
+The probability of responding faster than the average participant:
 
 ```{r}
 pnorm(m, m, s)
@@ -114,20 +114,20 @@ mean(x <= m)
 The probability of being within two standard deviations of the mean:
 
 ```{r}
-pnorm(76.5, m, s) - pnorm(62.1, m, s)
-mean(x > 62.1 & x <= 76.5)
+pnorm(443.6, m, s) - pnorm(311, m, s)
+mean(x > 311 & x <= 443.6)
 ```
 
 
 :::{.callout-note}
-When using the normal approximation with discrete data (for example, when heights are rounded to the nearest inch), note that `mean(x < a)` and `mean(x <= a)` may differ. In such cases, it's common to apply a *continuity correction*, using `pnorm(a + delta/2, m, s)` to approximate `mean(x <= a)`, where `delta` is the bin width (in our example, 1 inch). In our dataset, however, some students reported more precise measurements, so the degree of discretization varies. As a result, the normal approximation should be applied with care.
+When using the normal approximation with discrete data (for example, when reaction times are recorded to the nearest 10 milliseconds), note that `mean(x < a)` and `mean(x <= a)` may differ. In such cases, it's common to apply a *continuity correction*, using `pnorm(a + delta/2, m, s)` to approximate `mean(x <= a)`, where `delta` is the bin width (in that example, 10 milliseconds). In our dataset, however, reaction times were recorded with sub-millisecond precision, so the data are effectively continuous and no correction is needed.
 :::
 
 ## Standard units
 
 For data that is approximately normally distributed, it is convenient to think in terms of *standard units*. The standard unit of a value tells us how many standard deviations away from the average it is. Specifically, for a value $x_i$ from a list $(x_1, \dots, x_n)$, we define the value of $x_i$ in standard units as $z_i = (x_i - \mu_x)/\sigma_x$ with $\mu_x$ and $\sigma_x$ the average and standard deviation of the list, respectively. 
 
-Why is this convenient? First, revisit the formula for the normal distribution and observe that what is being exponentiated is $-z^2/2$ with $z$ equivalent to $x$ in standard units. Because the maximum of $e^{-z^2/2}$ is at $z = 0$, this explains why the maximum of the distribution occurs at the mean. It also explains the symmetry since $- z^2/2$ is symmetric around 0. Second, note that by converting the normally distributed data to standard units, we can quickly ascertain whether, for example, a person is about average ($z = 0$), one of the tallest ($z \approx 2$), one of the shortest ($z \approx -2$), or an extremely rare occurrence ($z > 3$ or $z < -3$). Remember that it does not matter what the original units are, these rules apply to any data that is approximately normal.
+Why is this convenient? First, revisit the formula for the normal distribution and observe that what is being exponentiated is $-z^2/2$ with $z$ equivalent to $x$ in standard units. Because the maximum of $e^{-z^2/2}$ is at $z = 0$, this explains why the maximum of the distribution occurs at the mean. It also explains the symmetry since $- z^2/2$ is symmetric around 0. Second, note that by converting the normally distributed data to standard units, we can quickly ascertain whether, for example, a participant is about average ($z = 0$), one of the slowest ($z \approx 2$), one of the fastest ($z \approx -2$), or an extremely rare occurrence ($z > 3$ or $z < -3$). Remember that it does not matter what the original units are, these rules apply to any data that is approximately normal.
 
 In R, we can transform to standard units using the function `scale`:
 
@@ -151,58 +151,58 @@ Throughout this book, we use $z$ and $Z$ in this way whenever we describe quanti
 
 ## Robust summaries
 
-Note that the heights we explored in the @sec-summaries-distributions are not the original heights reported by students. A second challenge involves exploring the _original_ reported heights, which are also included in the **dslabs** package in the `reported_heights` object. We will see that due to errors in reporting, using _robust summaries_ are necessary to produce useful summaries.
+Note that the reaction times we explored in @sec-summaries-distributions were recorded cleanly by an experimental task. A second challenge involves exploring self-reported data that people typed in by hand. The **behdslabs** package includes two such datasets: `reported_daily_screen_time`, a vector of self-reported daily screen-time hours, and `wearable_onboarding_height`, heights typed in by users while setting up a fitness-wearable app. We will see that due to errors in reporting, using _robust summaries_ is necessary to produce useful summaries.
 
 
 ### Outliers 
 
 
-Outliers are very common in real-world data analysis. Data recording can be complex and it is common to observe data points generated in error. For example, an old monitoring device may read out nonsensical measurements before completely failing. Human error is also a source of outliers, in particular when data entry is done manually. For example, an individual may mistakenly enter their height in centimeters instead of inches or put the decimal in the wrong place.
+Outliers are very common in real-world data analysis. Data recording can be complex and it is common to observe data points generated in error. For example, an old monitoring device may read out nonsensical measurements before completely failing. Human error is also a source of outliers, in particular when data entry is done manually. For example, a user may mistakenly enter their daily screen time in minutes instead of hours, or put the decimal in the wrong place.
 
 How do we distinguish an outlier from measurements that were too big or too small simply due to expected variability? This is not always an easy question to answer, but we try to provide some guidance. Let's begin with a simple case.
 
-Suppose a colleague is charged with collecting demography data for a group of males. The data report height in feet and are stored in the object:
+Suppose a colleague is charged with collecting daily screen-time data for a group of app users. The data report screen time in hours and are stored in the object:
 
 ```{r, message=FALSE, warning=FALSE, cache=FALSE}
-library(dslabs)
-str(outlier_example)
+library(behdslabs)
+str(reported_daily_screen_time)
 ```
 
-Our colleague uses the fact that heights are usually well approximated by a normal distribution and summarizes the data with average and standard deviation:
+Our colleague uses the fact that daily screen times are often well approximated by a normal distribution and summarizes the data with average and standard deviation:
 
 ```{r}
-mean(outlier_example)
+mean(reported_daily_screen_time)
 ```
 
-Our colleage writes a report on the interesting fact that this group of males is much taller than usual. The average height is over six feet tall! However, using your data analysis skills you notice something else that is unexpected: the standard deviation is over 7 feet. 
+Our colleague writes a report on the interesting fact that this group of users spends much more time on screens than usual. The average is over 12 hours a day! However, using your data analysis skills you notice something else that is unexpected: the standard deviation is over 15 hours. 
 
 ```{r}
-sd(outlier_example)
+sd(reported_daily_screen_time)
 ```
 
-Adding and subtracting two standard deviations, you note that 95% of this population will have heights between `r round(mean(outlier_example) + c(-2, 2)*sd(outlier_example), 1)` feet, which does not make sense. A histogram reveals the problem:
+Adding and subtracting two standard deviations, you note that 95% of this population will have daily screen times between `r round(mean(reported_daily_screen_time) + c(-2, 2)*sd(reported_daily_screen_time), 1)` hours, which does not make sense. A histogram reveals the problem:
 
 
 ```{r, boxplot-reveals-outliers}
 #| warning=FALSE, message=FALSE, echo=FALSE
 rafalib::mypar()
-hist(outlier_example, breaks = seq(min(outlier_example), max(outlier_example), 1/12))
+hist(reported_daily_screen_time, breaks = seq(floor(min(reported_daily_screen_time)), ceiling(max(reported_daily_screen_time)), 1))
 ```
 
-There appears to be at least one value that is nonsensical, since we know that a height of `r max(outlier_example)` feet is impossible.
+There appears to be at least one value that is nonsensical, since we know that a daily screen time of `r max(reported_daily_screen_time)` hours is impossible: a day has only 24 hours.
 
 
 ### The Median
 
-Outliers can make the average arbitrarily large. With `r length(outlier_example)` data points, increasing a single observation by $\Delta \times$ `r length(outlier_example)` raises the average by $\Delta$. In contrast, the *median* is *robust* to outliers: no matter how extreme one value becomes, the median remains unchanged as long as it does not cross the middle of the data.
+Outliers can make the average arbitrarily large. With `r length(reported_daily_screen_time)` data points, increasing a single observation by $\Delta \times$ `r length(reported_daily_screen_time)` raises the average by $\Delta$. In contrast, the *median* is *robust* to outliers: no matter how extreme one value becomes, the median remains unchanged as long as it does not cross the middle of the data.
 
 The median of our example data is:
 
 ```{r}
-median(outlier_example)
+median(reported_daily_screen_time)
 ```
 
-which corresponds to about `r floor(median(outlier_example))` feet and `r round(12*(median(outlier_example) - floor(median(outlier_example))))` inches.
+which corresponds to about `r floor(median(reported_daily_screen_time))` hours and `r round(60*(median(reported_daily_screen_time) - floor(median(reported_daily_screen_time))))` minutes.
 The median is often a better measure of *typical* value when the data contain outliers.
 
 
@@ -212,13 +212,13 @@ Just as outliers can distort the average, they can also make the standard deviat
 
 To compute the MAD, we first find the median, then calculate the absolute deviation of each value from the median, and finally take the median of those deviations. To make it comparable to the standard deviation when data are normally distributed, we need to multiply this value by 1.4826. (The `mad` function in R applies this correction automatically.)
 
-For our height data, the MAD is:
+For our screen-time data, the MAD is:
 
 ```{r}
-mad(outlier_example)
+mad(reported_daily_screen_time)
 ```
 
-which corresponds to about `r round(mad(outlier_example)*12)` inches.
+which corresponds to about `r round(mad(reported_daily_screen_time)*60)` minutes.
 
 The MAD provides a more stable estimate of variability when data include outliers. In such cases, it offers a truer sense of the dataset’s *typical* spread.
 
@@ -231,10 +231,10 @@ Like the median and MAD, the IQR is resistant to extreme values: no matter how l
 In our example, this approximation works well. The IQR-based estimate of the standard deviation is:
 
 ```{r}
-IQR(outlier_example)/1.349
+IQR(reported_daily_screen_time)/1.349
 ```
 
-which corresponds to about `r round(IQR(outlier_example)/1.349*12)` inches.
+which corresponds to about `r round(IQR(reported_daily_screen_time)/1.349*60)` minutes.
 
 In addition to summarizing spread, the IQR allows us to formally define what we mean by an *outlier*, a concept we will introduce in the next section.
 
@@ -266,19 +266,19 @@ Thus, about `r round((pnorm(r[2]) - pnorm(r[1]))*100, 1)`% of the data lie insid
 
 To identify *far-out outliers* more strictly, Tukey proposed using a wider multiplier, such as 3 instead of 1.5, to define the outlier boundaries. For normally distributed data, using a multiplier of 3 means the range `c(q1 - 3*iqr, q3 + 3*iqr)` contains approximately `r r <- c(q1 - 3*iqr, q3 + 3*iqr); round((pnorm(r[2]) - pnorm(r[1]))*100, 4)`% of all values. This means only about 2 in a million observations would be flagged as outliers. Any function that flags outliers must choose a multiplier; in **ggplot2**'s `geom_boxplot()`, this is controlled via the `coef` argument, which defaults to 1.5.
 
-Let's apply Tukey's rule to our height data. The extreme 180-foot measurement is well beyond the upper bound of this range defined by $Q_3 + 3 \times \text{IQR}$:
+Let's apply Tukey's rule to our screen-time data. The extreme 360-hour measurement is well beyond the upper bound of this range defined by $Q_3 + 3 \times \text{IQR}$:
 
 ```{r}
-max_height <- quantile(outlier_example, 0.75) + 3*IQR(outlier_example)
-max_height
+max_hours <- quantile(reported_daily_screen_time, 0.75) + 3*IQR(reported_daily_screen_time)
+max_hours
 ```
 
 If we remove this value, the remaining data follow an approximately normal distribution, as expected:
 
 ```{r outlier-qqnorm, echo=-1}
 rafalib::mypar()
-x <- outlier_example[outlier_example < max_height]
-hist(x, breaks = seq(5, 7, 2/12))
+x <- reported_daily_screen_time[reported_daily_screen_time < max_hours]
+hist(x, breaks = seq(10, 14, 1/3))
 ```
 
 This demonstrates the usefulness of Tukey's approach: it provides an objective, reproducible way to detect unusual observations—one that adapts to the spread of the data itself.
@@ -286,12 +286,12 @@ This demonstrates the usefulness of Tukey's approach: it provides an objective, 
 ## Boxplots {#sec-boxplots}
 
 
-To introduce boxplots, we will use a dataset of U.S. murders by state. Suppose we want to summarize the distribution of murder rates. A histogram quickly reveals that the data are right-skewed, indicating that the normal approximation does not apply:
+To introduce boxplots, we will use a dataset of reported data-breach incidents by U.S. state. Suppose we want to summarize the distribution of incident rates (incidents per 100,000 people). A histogram quickly reveals that the data are right-skewed, indicating that the normal approximation does not apply:
 
 ```{r summaries-hist-qqplot-non-normal-data, echo = FALSE, warning=FALSE, message=FALSE}
-murders <- murders |> mutate(rate = total/population*100000)
+app_data_breaches <- app_data_breaches |> mutate(rate = incidents/population*100000)
 library(gridExtra)
-murders |> ggplot(aes(x = rate)) + geom_histogram(binwidth = 0.5, color = "black") 
+app_data_breaches |> ggplot(aes(x = rate)) + geom_histogram(binwidth = 1, color = "black") 
 ```
 
 While a histogram provides valuable detail, people often prefer a more concise numerical summary, one that highlights the main features of the distribution without showing every data point.
@@ -300,10 +300,10 @@ The *boxplot* offers such a summary. It condenses a dataset into five numbers:
 the minimum, first quartile ($Q_1$), median ($Q_2$), third quartile ($Q_3$), and maximum.
 Outliers, values that fall outside Tukey's range, defined in the previous section, are not included in the computation of the range, but are instead plotted as individual points.
 
-Here’s the boxplot for the murder rate data:
+Here’s the boxplot for the incident rate data:
 
 ```{r summaries-first-boxplot, echo = FALSE}
-murders |> ggplot(aes("", rate)) + geom_boxplot() +
+app_data_breaches |> ggplot(aes("", rate)) + geom_boxplot() +
   coord_cartesian(xlim = c(0, 2)) + xlab("")
 ```
 
@@ -311,38 +311,38 @@ The box spans from $Q_1$ to $Q_3$, with a horizontal line marking the median.
 The whiskers extend to the smallest and largest observations that are not outliers, while outliers are shown as separate points.
 The height of the box corresponds to the IQR, representing the middle 50% of the data.
 
-Boxplots are especially useful when comparing distributions across groups, for example, comparing murder rates across regions or height distributions between males and females. They provide a quick visual summary of differences in center, spread, and the presence of outliers.
+Boxplots are especially useful when comparing distributions across groups, for example, comparing incident rates across regions or reaction-time distributions between males and females. They provide a quick visual summary of differences in center, spread, and the presence of outliers.
 In the next chapter, we will use boxplots in exactly this way to compare distributions between groups.
 
 ## Exercises
 
-1\. Load the height dataset and create a vector `x` with just the male heights:
+1\. Load the reaction-time dataset and create a vector `x` with just the male reaction times:
 
 ```{r, eval = FALSE}
-library(dslabs)
-x <- heights$height[heights$sex=="Male"]
+library(behdslabs)
+x <- reaction_times$rt_ms[reaction_times$sex=="Male"]
 ```
 
-What proportion of the data is between 69 and 72 inches (taller than 69, but shorter or equal to 72)? Hint: use a logical operator and `mean`.
+What proportion of the data is between 370 and 390 milliseconds (slower than 370, but faster than or equal to 390)? Hint: use a logical operator and `mean`.
 
 2\. Suppose all you know about the data is the average and the standard deviation. Use the normal approximation to estimate the proportion you just calculated. Hint: start by computing the average and standard deviation. Then use the `pnorm` function to predict the proportions.
 
-3\. Notice that the approximation calculated in question 1 is very close to the exact calculation in question 2. Now perform the same task for more extreme values. Compare the exact calculation and the normal approximation for the interval (79,81\]. How many times larger is the actual proportion than the approximation?
+3\. Notice that the approximation calculated in question 2 is very close to the exact calculation in question 1. Now perform the same task for more extreme values. Compare the exact calculation and the normal approximation for the interval (270,290\]. How many times larger is the actual proportion than the approximation?
 
-4\. Approximate the distribution of adult men in the world as normally distributed with an average of 69 inches and a standard deviation of 3 inches. Using this approximation, estimate the proportion of adult men that are 7 feet tall or taller, referred to as *seven-footers*. Hint: use the `pnorm` function.
+4\. Approximate the distribution of simple reaction times of adults in the world as normally distributed with an average of 375 milliseconds and a standard deviation of 30 milliseconds. Using this approximation, estimate the proportion of adults who respond in under 225 milliseconds, referred to as *ultra-fast responders*. Hint: use the `pnorm` function.
 
-5\. There are about 1 billion men between the ages of 18 and 40 in the world. Use your answer to the previous question to estimate how many of these men (18-40 year olds) are seven feet tall or taller in the world?
+5\. There are about 1 billion adults between the ages of 18 and 40 in the world. Use your answer to the previous question to estimate how many of these adults (18-40 year olds) are ultra-fast responders in the world?
 
-6\. There are about 10 National Basketball Association (NBA) players that are 7 feet tall or higher. Using the answer to the previous two questions, what proportion of the world's 18-to-40-year-old *seven-footers* are in the NBA?
+6\. Suppose there are about 10 professional esports players whose reaction time is under 225 milliseconds. (This number is hypothetical.) Using the answer to the previous two questions, what proportion of the world's 18-to-40-year-old *ultra-fast responders* are professional esports players?
 
-7\. Repeat the calculations performed in the previous question for Lebron James' height: 6 feet 8 inches. There are about 150 players that are at least that tall.
+7\. Repeat the calculations performed in the previous question for a reaction time of 265 milliseconds. Suppose there are about 150 professional players who respond at least that fast.
 
-8\. In answering the previous questions, we found that it is not uncommon for a seven-footer to become an NBA player. What would be a fair critique of our calculations:
+8\. In answering the previous questions, we found that it is not uncommon for an ultra-fast responder to become a professional player. What would be a fair critique of our calculations (hint: can a reaction time be arbitrarily small?):
 
-a.  Practice and talent are what make a great basketball player, not height.
-b.  The normal approximation is not appropriate for heights.
-c.  The normal approximation tends to underestimate the extreme values. It's possible that there are more seven-footers than we predicted.
-d.  The normal approximation tends to overestimate the extreme values. It's possible that there are fewer seven-footers than we predicted.
+a.  Practice and talent are what make a great esports player, not reaction time.
+b.  The normal approximation is not appropriate for reaction times.
+c.  The normal approximation tends to underestimate the extreme values. It's possible that there are more ultra-fast responders than we predicted.
+d.  The normal approximation tends to overestimate the extreme values. It's possible that there are fewer ultra-fast responders than we predicted.
 
 For the next few exercises, we are going to use the **HistData** package. Load the `Galton` data and create a vector `x`, consisting solely of the child heights:
 
@@ -380,23 +380,23 @@ d.  A scatterplot would show high levels of measurement error.
 16\. How much can the average accidentally grow with mistakes like this? Write a function called `error_avg` that takes in a value `k`. This function should replace the first entry of the vector `x` with the value `k`, then compute and return the average of this modified `x`. Show the results for `k=10000` and `k=-10000`.
 
 
-17\. Using the `murders` dataset in the __dslabs__ package. Compute the murder rate for each state. Make a boxplot comparing the murder rates for each region of the United States.
+17\. Using the `app_data_breaches` dataset in the __behdslabs__ package. Compute the incident rate (incidents per 100,000 people) for each state. Make a boxplot comparing the incident rates for each region of the United States.
 
-18\. For the same dataset, compute the median and IQR murder rate for each region.
+18\. For the same dataset, compute the median and IQR incident rate for each region.
 
-19\. The heights we have been looking at in the `heights` data frame are not the original heights reported by students. The original reported heights are also included in the **dslabs** package in the object `reported_heights`. Note that the `height` column in this data frame is a character, and if we try to create a new column with the numeric version, we get a warnings about NAs.
+19\. Heights typed in by users while setting up a fitness-wearable app are included in the **behdslabs** package in the object `wearable_onboarding_height`. Note that the `reported_height_raw` column in this data frame is a character, and if we try to create a new column with the numeric version, we get a warning about NAs.
 
 ```{r}
 #| eval = FALSE
 
 library(tidyverse)  
-reported_heights <- reported_heights |>
-  mutate(original_heights = height, height = as.numeric(height))
+wearable_onboarding_height <- wearable_onboarding_height |>
+  mutate(original_heights = reported_height_raw, height = as.numeric(reported_height_raw))
 ```
 
 Examine the rows that result in NAs and describe why this is happening.
 
-20\. Add a column to the `reported_heights` with the year the height was entered. You can use the `year` function in the __lubridate__ package to extract the year from `reported_heights$time_stamp`. Change the `height` column from characters to numbers using `as.numeric`. Some of the heights will be converted to `NA` because they were incorrectly entered and include characters, for example `165cm`. These heights were supposed to be reported in inches, but many clearly did not. Convert any entry with highly unlikely heights, below 54 or above 72, to `NA` using the `na_if` function from __dplyr__. Once you do this, stratify by sex and year and report the percentage of incorrectly entered heights, represented by the `NA`.
+20\. Add a column to `wearable_onboarding_height` with the year the height was entered. You can use the `year` function in the __lubridate__ package to extract the year from `wearable_onboarding_height$onboarding_timestamp`. Change the `reported_height_raw` column from characters to numbers using `as.numeric`. Some of the heights will be converted to `NA` because they were incorrectly entered and include characters, for example `165cm`. These heights were supposed to be reported in inches, but many clearly did not. Convert any entry with highly unlikely heights, below 54 or above 72, to `NA` using the `na_if` function from __dplyr__. Once you do this, stratify by sex and year and report the percentage of incorrectly entered heights, represented by the `NA`.
 
 21\. Remove the entries that result in NAs when attempting to convert heights to numbers. Compute the mean, standard deviation, median, and MAD by sex. What do you notice?
 
