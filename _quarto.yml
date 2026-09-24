@@ -29,6 +29,8 @@ book:
       chapters:
         - behav/measurement.qmd
         - behav/simulating-measurement.qmd
+        - behav/research-ethics.qmd
+        - behav/experimental-designs.qmd
 
     - part: summaries/intro-summaries.qmd
       chapters:
