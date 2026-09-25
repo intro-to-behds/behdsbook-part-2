@@ -11,7 +11,7 @@ library(behdslabs)
 
 The normal distribution, also known as the bell curve and as the Gaussian distribution, is one of the most famous mathematical concepts in history. One reason for this is that approximately normal distributions occur in many situations, including gambling winnings, heights, weights, blood pressure, standardized test scores, and experimental measurement errors. There are explanations for these occurrences, which we will describe later. Here we focus on how the normal distribution helps us summarize data.
 
-Rather than using data, the normal distribution is defined with a mathematical formula---unlike the empirical distributions in the previous chapter, the normal distribution is a *theoretical* distribution (theoretical distributions will be discussed more in @sec-random-variables). For any interval $(a,b)$, the proportion of values in that interval can be computed using this formula:
+Rather than using data, the normal distribution is defined with a mathematical formula---unlike the empirical distributions in the previous chapter, the normal distribution is a *theoretical* distribution (theoretical distributions will be discussed more in a later chapter<!-- @sec-random-variables -->). For any interval $(a,b)$, the proportion of values in that interval can be computed using this formula:
 
 $$\mathrm{Pr}(a < x \leq b) = \int_a^b \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{1}{2}\left( \frac{x-\mu}{\sigma} \right)^2} \, dx$$
 
@@ -34,7 +34,7 @@ norm_dist |> ggplot(aes(x,density)) + geom_line()
 
 The fact that the distribution is defined by just two parameters implies that if a dataset's distribution is approximated by the normal distribution, all the information needed to describe the distribution can be encoded in just two numbers: the mean and the standard deviation.
 
-Although introduced in the context of the normal distribution, the mean and standard deviation apply to any list of numbers. We will revisit these summaries for discrete distributions in @sec-random-variables; for now, we focus on computing them from data.
+Although introduced in the context of the normal distribution, the mean and standard deviation apply to any list of numbers. We will revisit these summaries for discrete distributions in a later chapter<!-- @sec-random-variables -->; for now, we focus on computing them from data.
 
 ## The mean and standard deviation {#sec-average-and-sd-def}
 
@@ -68,13 +68,13 @@ s <- sd(x)
 ```
 
 :::{.callout-warning}
-For reasons explained in @sec-population-sd, `sd(x)` divides by $n-1$ rather than $n$. When $n$ is large, however, the difference is negligible:
+For reasons explained in a later chapter<!-- @sec-population-sd -->, `sd(x)` divides by $n-1$ rather than $n$. When $n$ is large, however, the difference is negligible:
 
 $$
 \frac{1}{n}\sum_{i=1}^n (x_i - \mu_x)^2 \approx \frac{1}{n-1}\sum_{i=1}^n (x_i - \mu_x)^2.
 $$
 
-We will explain why $n-1$ is often preferred in @sec-population-sd. For now, we will use `sd(x)` to compute the standard deviation of the values in `x`.
+We will explain why $n-1$ is often preferred in a later chapter<!-- @sec-population-sd -->. For now, we will use `sd(x)` to compute the standard deviation of the values in `x`.
 :::
 
 If the distribution of the values stored in `x` is well approximated by a normal distribution, we can use `m <- mean(x)` and `s <- sd(x)` as estimates of the normal distribution's mean $\mu$ and standard deviation $\sigma$. Then the entire distribution of `x` can be summarized with just these two numbers!
