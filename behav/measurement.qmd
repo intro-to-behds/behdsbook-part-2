@@ -5,6 +5,7 @@ _by Giorgio Arcara_
 ```{r}
 #| label: measurement-setup
 #| include: false
+#| cache: false
 library(dplyr)
 library(ggplot2)
 library(behdslabs)
