@@ -13,6 +13,9 @@ under which this adaptation is distributed.
 - Updated self-referential GitHub/site links (`_quarto.yml`, `index.qmd`, `intro.qmd`) from the upstream `rafalab/dsbook-part-2` repo to this fork, `intro-to-behds/behdsbook-part-2`; `index.qmd`'s cross-link to Part 1 now points to the `intro-to-behds`-hosted site instead of the original edition.
 - `intro.qmd`: package reference "All datasets used in the book are available in the **dslabs** package" → "**behdslabs**".
 - Enabled a PDF download button in the book navbar (`book: downloads: [pdf]`).
+- Front page (`index.qmd`) aligned with `behdsbook-part-1`: added the book cover (`cover.png`, also used as favicon), and the Disclaimers are now in a warning callout, with a new paragraph noting that some exercises use simulated data built around fictional scenarios.
+- `summaries/numerical-summaries.qmd`, exercises 9–16: the `HistData::Galton` child heights are replaced by 150 simulated System Usability Scale (SUS) scores from a fictional usability study of a hospital check-in tablet app. The data-entry error in exercise 11 is now a missed decimal point when typing paper SUS forms (units: points instead of inches).
+- **Temporarily excluded from the build** until reflavoured: the Statistical Inference, Linear Models, High-Dimensional Data and Machine Learning parts, and `prob/connecting-data-and-probability.qmd`, `discrete-probability.qmd`, `random-variables.qmd` and `sampling-models-and-clt.qmd`. They are commented out in `_quarto.yml`, not deleted. Cross-references from published chapters to them are replaced by plain text, with the original reference kept in an `<!-- @sec-… -->` comment for restoring.
 
 ### Added
 - **New part, `behav/` — "Behavioural Measurement"** — original material with no equivalent in the upstream book, placed first in the chapter list (immediately after `intro.qmd`) because it is course Week 4 and precedes every other Part 2 topic. Three new files:
