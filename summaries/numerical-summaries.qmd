@@ -344,11 +344,13 @@ b.  The normal approximation is not appropriate for reaction times.
 c.  The normal approximation tends to underestimate the extreme values. It's possible that there are more ultra-fast responders than we predicted.
 d.  The normal approximation tends to overestimate the extreme values. It's possible that there are fewer ultra-fast responders than we predicted.
 
-For the next few exercises, we are going to use the **HistData** package. Load the `Galton` data and create a vector `x`, consisting solely of the child heights:
+For the next few exercises, imagine a usability study of a tablet app that patients use to check in while they wait at a hospital clinic. After using the app, each patient filled in a paper version of the System Usability Scale (SUS), a standard 10-item questionnaire whose total score ranges from 0 to 100 in steps of 2.5. At the end of each day, a member of the reception staff typed the scores from the paper forms into a spreadsheet. The following code simulates the scores of 150 patients:
 
 ```{r, eval=FALSE}
-library(HistData)
-x <- Galton$child
+set.seed(2026)
+x <- rnorm(150, mean = 68, sd = 13)
+x <- pmin(pmax(x, 0), 100)   # SUS scores range from 0 to 100
+x <- round(x / 2.5) * 2.5    # in steps of 2.5
 ```
 
 9\. Compute the average and SD of these data.
