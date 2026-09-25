@@ -43,52 +43,56 @@ book:
         
     - part: prob/intro-to-prob.qmd
       chapters:
-        - prob/connecting-data-and-probability.qmd
-        - prob/discrete-probability.qmd
+        # - prob/connecting-data-and-probability.qmd
+        # - prob/discrete-probability.qmd
         - prob/continuous-probability.qmd
-        - prob/random-variables.qmd
-        - prob/sampling-models-and-clt.qmd
+        # - prob/random-variables.qmd
+        # - prob/sampling-models-and-clt.qmd
         - prob/reading-prob.qmd
         
-    - part: inference/intro-inference.qmd
-      chapters:
-        - inference/estimates-confidence-intervals.qmd
-        - inference/models.qmd
-        - inference/bayes.qmd
-        - inference/hierarchical-models.qmd
-        - inference/hypothesis-testing.qmd
-        - inference/bootstrap.qmd
-        - inference/reading-inference.qmd
+    # [hidden until reflavoured]
+    # - part: inference/intro-inference.qmd
+      # chapters:
+        # - inference/estimates-confidence-intervals.qmd
+        # - inference/models.qmd
+        # - inference/bayes.qmd
+        # - inference/hierarchical-models.qmd
+        # - inference/hypothesis-testing.qmd
+        # - inference/bootstrap.qmd
+        # - inference/reading-inference.qmd
         
-    - part: linear-models/intro-to-linear-models.qmd
-      chapters:
-        - linear-models/regression.qmd
-        - linear-models/linear-model-framework.qmd
-        - linear-models/treatment-effect-models.qmd
-        - linear-models/glm.qmd
-        - linear-models/association-not-causation.qmd
-        - linear-models/multivariable-regression.qmd
-        - linear-models/reading-lm.qmd
+    # [hidden until reflavoured]
+    # - part: linear-models/intro-to-linear-models.qmd
+      # chapters:
+        # - linear-models/regression.qmd
+        # - linear-models/linear-model-framework.qmd
+        # - linear-models/treatment-effect-models.qmd
+        # - linear-models/glm.qmd
+        # - linear-models/association-not-causation.qmd
+        # - linear-models/multivariable-regression.qmd
+        # - linear-models/reading-lm.qmd
         
-    - part: highdim/intro-highdim.qmd
-      chapters:
-        - highdim/matrices-in-R.qmd
-        - highdim/linear-algebra.qmd
-        - highdim/dimension-reduction.qmd
-        - highdim/regularization.qmd
-        - highdim/latent-factor-models.qmd
-        - highdim/reading-highdim.qmd
+    # [hidden until reflavoured]
+    # - part: highdim/intro-highdim.qmd
+      # chapters:
+        # - highdim/matrices-in-R.qmd
+        # - highdim/linear-algebra.qmd
+        # - highdim/dimension-reduction.qmd
+        # - highdim/regularization.qmd
+        # - highdim/latent-factor-models.qmd
+        # - highdim/reading-highdim.qmd
 
-    - part: ml/intro-ml.qmd
-      chapters:
-        - ml/notation-and-terminology.qmd
-        - ml/evaluation-metrics.qmd
-        - ml/conditionals-and-smoothing.qmd
-        - ml/resampling-methods.qmd
-        - ml/algorithms.qmd
-        - ml/ml-in-practice.qmd
-        - ml/clustering.qmd
-        - ml/reading-ml.qmd
+    # [hidden until reflavoured]
+    # - part: ml/intro-ml.qmd
+      # chapters:
+        # - ml/notation-and-terminology.qmd
+        # - ml/evaluation-metrics.qmd
+        # - ml/conditionals-and-smoothing.qmd
+        # - ml/resampling-methods.qmd
+        # - ml/algorithms.qmd
+        # - ml/ml-in-practice.qmd
+        # - ml/clustering.qmd
+        # - ml/reading-ml.qmd
         
 format:
   html:
