@@ -364,13 +364,13 @@ x_with_error <- x
 x_with_error[1] <- x_with_error[1]*10
 ```
 
-How many inches does the average grow after this mistake?
+How many points does the average grow after this mistake?
 
-12\. How many inches does the SD grow after this mistake?
+12\. How many points does the SD grow after this mistake?
 
-13\. How many inches does the median grow after this mistake?
+13\. How many points does the median grow after this mistake?
 
-14\. How many inches does the MAD grow after this mistake?
+14\. How many points does the MAD grow after this mistake?
 
 15\. How could you use exploratory data analysis to detect that an error was made?
 
