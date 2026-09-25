@@ -357,7 +357,7 @@ x <- round(x / 2.5) * 2.5    # in steps of 2.5
 
 10\. Compute the median and median absolute deviation of these data.
 
-11\. Now suppose Galton made a mistake when entering the first value and forgot to use the decimal point. You can imitate this error by typing:
+11\. Now suppose that, while typing in the first form, the staff member missed the decimal point (for example, a score of 72.5 was entered as 725). You can imitate this error by typing:
 
 ```{r, eval=FALSE}
 x_with_error <- x
