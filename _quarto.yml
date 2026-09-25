@@ -19,6 +19,8 @@ book:
   repo-branch: main
   repo-actions: [source, issue]
   downloads: [pdf]
+  cover-image: cover.png
+  favicon: cover.png
   sidebar:
     collapse-level: 1
   chapters:
