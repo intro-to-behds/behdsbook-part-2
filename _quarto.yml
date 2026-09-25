@@ -93,6 +93,8 @@ book:
         # - ml/ml-in-practice.qmd
         # - ml/clustering.qmd
         # - ml/reading-ml.qmd
+
+    - work-in-progress.qmd
         
 format:
   html:
