@@ -2,31 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/index.html</loc>
-    <lastmod>2026-09-25T06:33:55.341Z</lastmod>
+    <lastmod>2026-09-28T14:52:05.888Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/intro.html</loc>
-    <lastmod>2026-09-21T08:46:04.990Z</lastmod>
+    <lastmod>2026-09-28T14:52:05.889Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/intro-behav.html</loc>
-    <lastmod>2026-09-20T16:53:30.243Z</lastmod>
+    <lastmod>2026-09-28T14:52:05.838Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/measurement.html</loc>
-    <lastmod>2026-09-25T06:36:22.068Z</lastmod>
+    <lastmod>2026-09-28T14:52:05.839Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/simulating-measurement.html</loc>
-    <lastmod>2026-09-21T12:29:35.285Z</lastmod>
+    <lastmod>2026-09-28T14:52:05.839Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/research-ethics.html</loc>
-    <lastmod>2026-09-24T18:13:31.558Z</lastmod>
+    <lastmod>2026-09-28T14:52:05.839Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/experimental-designs.html</loc>
-    <lastmod>2026-09-24T18:13:31.575Z</lastmod>
+    <lastmod>2026-09-28T14:52:05.838Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/intro-summaries.html</loc>
@@ -34,15 +34,15 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/distributions.html</loc>
-    <lastmod>2026-09-21T05:20:34.940Z</lastmod>
+    <lastmod>2026-09-28T14:52:05.897Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/numerical-summaries.html</loc>
-    <lastmod>2026-09-25T06:34:29.339Z</lastmod>
+    <lastmod>2026-09-28T14:52:05.897Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/comparing-groups.html</loc>
-    <lastmod>2026-09-21T08:11:20.114Z</lastmod>
+    <lastmod>2026-09-28T14:52:05.897Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/reading-summaries.html</loc>
@@ -54,14 +54,18 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/continuous-probability.html</loc>
-    <lastmod>2026-09-25T06:34:29.388Z</lastmod>
+    <lastmod>2026-09-28T14:52:05.893Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/reading-prob.html</loc>
     <lastmod>2026-07-11T14:58:04.090Z</lastmod>
   </url>
   <url>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/work-in-progress.html</loc>
+    <lastmod>2026-09-28T14:52:05.898Z</lastmod>
+  </url>
+  <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/Introduction-to-Behavioural-Data-Science.pdf</loc>
-    <lastmod>2026-09-25T06:40:02.730Z</lastmod>
+    <lastmod>2026-09-28T14:54:35.936Z</lastmod>
   </url>
 </urlset>

@@ -839,5 +839,15 @@
       "Probability",
       "Recommended Reading"
     ]
+  },
+  {
+    "objectID": "work-in-progress.html",
+    "href": "work-in-progress.html",
+    "title": "Work in Progress",
+    "section": "",
+    "text": "This book is being adapted chapter by chapter for the Behavioural Data Science course (AY 2026/2027). Only some chapters are published so far: the ones listed in the sidebar. The others will be added soon.\n\n\n\nThe following material is currently being reworked with behavioural examples and datasets, and will appear here as soon as it is ready:\n\nProbability: the remaining chapters, on the connection between data and probability, discrete probability, random variables, and sampling models and the Central Limit Theorem.\nStatistical Inference\nLinear Models\nHigh-Dimensional Data\nMachine Learning\n\nTo follow progress or report an issue, visit the book’s GitHub repository: https://github.com/intro-to-behds/behdsbook-part-2.",
+    "crumbs": [
+      "Work in Progress"
+    ]
   }
 ]
