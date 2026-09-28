@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/index.html</loc>
-    <lastmod>2026-09-14T10:05:58.282Z</lastmod>
+    <lastmod>2026-09-25T06:33:55.341Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/intro.html</loc>
@@ -14,11 +14,19 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/measurement.html</loc>
-    <lastmod>2026-09-20T16:58:05.913Z</lastmod>
+    <lastmod>2026-09-25T06:36:22.068Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/simulating-measurement.html</loc>
     <lastmod>2026-09-21T12:29:35.285Z</lastmod>
+  </url>
+  <url>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/research-ethics.html</loc>
+    <lastmod>2026-09-24T18:13:31.558Z</lastmod>
+  </url>
+  <url>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/experimental-designs.html</loc>
+    <lastmod>2026-09-24T18:13:31.575Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/intro-summaries.html</loc>
@@ -30,7 +38,7 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/numerical-summaries.html</loc>
-    <lastmod>2026-09-21T07:45:58.796Z</lastmod>
+    <lastmod>2026-09-25T06:34:29.339Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/comparing-groups.html</loc>
@@ -45,155 +53,15 @@
     <lastmod>2026-07-11T14:58:04.089Z</lastmod>
   </url>
   <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/connecting-data-and-probability.html</loc>
-    <lastmod>2026-07-11T14:58:04.089Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/discrete-probability.html</loc>
-    <lastmod>2026-07-11T14:58:04.089Z</lastmod>
-  </url>
-  <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/continuous-probability.html</loc>
-    <lastmod>2026-09-21T08:24:29.181Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/random-variables.html</loc>
-    <lastmod>2026-07-11T14:58:04.090Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/sampling-models-and-clt.html</loc>
-    <lastmod>2026-07-11T14:58:04.090Z</lastmod>
+    <lastmod>2026-09-25T06:34:29.388Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/reading-prob.html</loc>
     <lastmod>2026-07-11T14:58:04.090Z</lastmod>
   </url>
   <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/intro-inference.html</loc>
-    <lastmod>2026-07-11T14:58:03.903Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/estimates-confidence-intervals.html</loc>
-    <lastmod>2026-09-14T13:46:06.806Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/models.html</loc>
-    <lastmod>2026-09-14T13:46:06.799Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/bayes.html</loc>
-    <lastmod>2026-09-14T13:46:06.803Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/hierarchical-models.html</loc>
-    <lastmod>2026-09-14T13:46:06.802Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/hypothesis-testing.html</loc>
-    <lastmod>2026-07-11T14:58:03.896Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/bootstrap.html</loc>
-    <lastmod>2026-07-11T14:58:03.894Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/reading-inference.html</loc>
-    <lastmod>2026-07-11T14:58:03.904Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/intro-to-linear-models.html</loc>
-    <lastmod>2026-07-11T14:58:03.908Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/regression.html</loc>
-    <lastmod>2026-07-11T14:58:03.909Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/linear-model-framework.html</loc>
-    <lastmod>2026-09-14T13:46:06.759Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/treatment-effect-models.html</loc>
-    <lastmod>2026-09-14T13:46:06.751Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/glm.html</loc>
-    <lastmod>2026-09-14T13:46:06.754Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/association-not-causation.html</loc>
-    <lastmod>2026-09-14T13:46:06.757Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/multivariable-regression.html</loc>
-    <lastmod>2026-09-21T11:13:09.384Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/reading-lm.html</loc>
-    <lastmod>2026-07-11T14:58:03.909Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/highdim/intro-highdim.html</loc>
-    <lastmod>2026-07-11T14:58:03.892Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/highdim/matrices-in-R.html</loc>
-    <lastmod>2026-09-14T13:46:06.767Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/highdim/linear-algebra.html</loc>
-    <lastmod>2026-09-14T13:46:06.762Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/highdim/dimension-reduction.html</loc>
-    <lastmod>2026-09-14T17:39:05.318Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/highdim/regularization.html</loc>
-    <lastmod>2026-09-14T13:46:06.764Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/highdim/latent-factor-models.html</loc>
-    <lastmod>2026-09-14T13:46:06.770Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/highdim/reading-highdim.html</loc>
-    <lastmod>2026-07-11T14:58:03.893Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/intro-ml.html</loc>
-    <lastmod>2026-07-11T14:58:04.088Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/notation-and-terminology.html</loc>
-    <lastmod>2026-09-14T13:46:06.775Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/evaluation-metrics.html</loc>
-    <lastmod>2026-09-14T13:46:06.780Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/conditionals-and-smoothing.html</loc>
-    <lastmod>2026-09-14T21:13:00.847Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/resampling-methods.html</loc>
-    <lastmod>2026-09-14T17:38:48.925Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/algorithms.html</loc>
-    <lastmod>2026-09-15T05:48:22.681Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/ml-in-practice.html</loc>
-    <lastmod>2026-09-15T05:48:27.507Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/clustering.html</loc>
-    <lastmod>2026-09-14T17:50:15.392Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/ml/reading-ml.html</loc>
-    <lastmod>2026-07-11T14:58:04.089Z</lastmod>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/Introduction-to-Behavioural-Data-Science.pdf</loc>
+    <lastmod>2026-09-25T06:40:02.730Z</lastmod>
   </url>
 </urlset>

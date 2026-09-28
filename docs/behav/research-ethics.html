@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
+
+<title>3&nbsp; Research Ethics and Data Privacy – Introduction to Behavioural Data Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../behav/experimental-designs.html" rel="next">
+<link href="../behav/simulating-measurement.html" rel="prev">
+<link href="../cover.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8f18353b6674da201bf96e4b700cba6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../behav/intro-behav.html">Behavioural Measurement</a></li><li class="breadcrumb-item"><a href="../behav/research-ethics.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Research Ethics and Data Privacy</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introduction to Behavioural Data Science</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/intro-to-behds/behdsbook-part-2" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../Introduction-to-Behavioural-Data-Science.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Behavioural Measurement</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/simulating-measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/research-ethics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Research Ethics and Data Privacy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/experimental-designs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Experimental Designs in Psychology</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../summaries/reading-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recommended Reading</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/reading-prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recommended Reading</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#why-ethics-is-part-of-research" id="toc-why-ethics-is-part-of-research" class="nav-link active" data-scroll-target="#why-ethics-is-part-of-research"><span class="header-section-number">3.1</span> Why ethics is part of research</a></li>
+  <li><a href="#ethical-approval-and-informed-consent" id="toc-ethical-approval-and-informed-consent" class="nav-link" data-scroll-target="#ethical-approval-and-informed-consent"><span class="header-section-number">3.2</span> Ethical approval and informed consent</a></li>
+  <li><a href="#vulnerable-participants-and-freedom-of-consent" id="toc-vulnerable-participants-and-freedom-of-consent" class="nav-link" data-scroll-target="#vulnerable-participants-and-freedom-of-consent"><span class="header-section-number">3.3</span> Vulnerable participants and freedom of consent</a>
+  <ul class="collapse">
+  <li><a href="#power-relationships" id="toc-power-relationships" class="nav-link" data-scroll-target="#power-relationships">Power relationships</a></li>
+  <li><a href="#consent-assent-and-legal-representatives" id="toc-consent-assent-and-legal-representatives" class="nav-link" data-scroll-target="#consent-assent-and-legal-representatives">Consent, assent, and legal representatives</a></li>
+  <li><a href="#incentives" id="toc-incentives" class="nav-link" data-scroll-target="#incentives">Incentives</a></li>
+  </ul></li>
+  <li><a href="#deception-and-debriefing" id="toc-deception-and-debriefing" class="nav-link" data-scroll-target="#deception-and-debriefing"><span class="header-section-number">3.4</span> Deception and debriefing</a></li>
+  <li><a href="#personal-and-sensitive-data" id="toc-personal-and-sensitive-data" class="nav-link" data-scroll-target="#personal-and-sensitive-data"><span class="header-section-number">3.5</span> Personal and sensitive data</a></li>
+  <li><a href="#anonymisation-and-pseudonymisation" id="toc-anonymisation-and-pseudonymisation" class="nav-link" data-scroll-target="#anonymisation-and-pseudonymisation"><span class="header-section-number">3.6</span> Anonymisation and pseudonymisation</a></li>
+  <li><a href="#gdpr-principles-and-the-data-life-cycle" id="toc-gdpr-principles-and-the-data-life-cycle" class="nav-link" data-scroll-target="#gdpr-principles-and-the-data-life-cycle"><span class="header-section-number">3.7</span> GDPR principles and the data life cycle</a></li>
+  <li><a href="#open-science-and-data-sharing" id="toc-open-science-and-data-sharing" class="nav-link" data-scroll-target="#open-science-and-data-sharing"><span class="header-section-number">3.8</span> Open Science and data sharing</a></li>
+  <li><a href="#scientific-integrity" id="toc-scientific-integrity" class="nav-link" data-scroll-target="#scientific-integrity"><span class="header-section-number">3.9</span> Scientific integrity</a></li>
+  <li><a href="#bias-fairness-and-the-consequences-of-analysis" id="toc-bias-fairness-and-the-consequences-of-analysis" class="nav-link" data-scroll-target="#bias-fairness-and-the-consequences-of-analysis"><span class="header-section-number">3.10</span> Bias, fairness, and the consequences of analysis</a></li>
+  <li><a href="#ai-and-external-tools" id="toc-ai-and-external-tools" class="nav-link" data-scroll-target="#ai-and-external-tools"><span class="header-section-number">3.11</span> AI and external tools</a>
+  <ul class="collapse">
+  <li><a href="#a-final-perspective" id="toc-a-final-perspective" class="nav-link" data-scroll-target="#a-final-perspective">A final perspective</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/behav/research-ethics.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../behav/intro-behav.html">Behavioural Measurement</a></li><li class="breadcrumb-item"><a href="../behav/research-ethics.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Research Ethics and Data Privacy</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-research-ethics" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Research Ethics and Data Privacy</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>by C. Costa (and G. Arcara)</em></p>
+<p>Imagine we want to study fluctuations in stress during everyday life. Participants install an app that asks them several times per day how stressed they feel, while a smartwatch continuously records heart rate, sleep, and physical activity. From a data-science perspective, this is an attractive design. We obtain repeated measurements in the real world, physiological data can be aligned with subjective reports, and individual changes can be followed over time.</p>
+<p>But consider what the resulting dataset may reveal. It may show when somebody wakes up and goes to sleep, when they exercise, when their heart rate is unusually high, and how their mood changes during the working week. Depending on the study, it may also contain mobility or location-related information that makes parts of a person’s daily routine visible. Behavioural data can become highly informative very quickly. This creates scientific opportunities, but also responsibilities. Research ethics is therefore not something that happens only when a participant signs a consent form. Ethical decisions are involved in deciding what to collect, how to collect it, how long to retain it, who may access it, how it is analysed, and whether it can later be shared.</p>
+<section id="why-ethics-is-part-of-research" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="why-ethics-is-part-of-research"><span class="header-section-number">3.1</span> Why ethics is part of research</h2>
+<p>Research with human participants is guided by broad principles including <strong>respect for autonomy</strong>, <strong>beneficence and non-maleficence</strong>, <strong>justice</strong>, and <strong>scientific integrity</strong>. Respect for autonomy means treating participants as people capable of making decisions about whether and how they take part in research. Beneficence and non-maleficence concern the balance between the potential value of the research and the risks or burdens imposed on participants. Justice concerns how the benefits and burdens of research are distributed. A population should not be selected simply because it is easy to recruit or has less power to refuse participation.</p>
+<p>Scientific integrity concerns the responsibility to design, analyse, and communicate research honestly and rigorously. These principles are connected. A badly designed study is not only a methodological problem. If participants contribute their time, personal information, discomfort, or exposure to risk to a study that cannot meaningfully address its stated question, this can also become an ethical problem. Ethical and legal requirements are also not identical. Something may be technically possible, or legally permissible under particular conditions, without being a good research decision. Suppose an app allows us to collect precise GPS location continuously, but our research question concerns daily stress and can be answered using activity levels and occasional EMA reports. Collecting location simply because the technology makes it available may be difficult to justify. A useful rule of thumb is:</p>
+<blockquote class="blockquote">
+<p><strong>Collect what you need, not everything you can collect.</strong></p>
+</blockquote>
+<p>In Italy, psychological research is guided, among other sources, by the Code of Ethics of the Italian Association of Psychology (AIP), which was updated in May 2025 and is complemented by guidance on internet-mediated research and generative AI.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+</section>
+<section id="ethical-approval-and-informed-consent" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="ethical-approval-and-informed-consent"><span class="header-section-number">3.2</span> Ethical approval and informed consent</h2>
+<p>Before data collection begins, researchers need to consider the study’s risks, benefits, procedures, recruitment methods, and handling of participant data. These elements are evaluated through the relevant ethics-review procedures within the applicable institutional and regulatory context. Ethics review is not simply an administrative step. Its purpose is to provide an independent assessment of whether participants are adequately protected and whether potential risks are proportionate to the scientific aims. A central component is <strong>informed consent</strong>.</p>
+<p>Participants should receive information that allows them to understand what they are agreeing to. This normally includes the purpose of the research, relevant procedures, expected duration, potential risks or discomforts, and the possibility of refusing or discontinuing participation. Consent also needs to be voluntary. A participant should be able to refuse or withdraw without inappropriate negative consequences. This is especially important when the researcher has authority over the participant or when incentives are offered.</p>
+<p>Technology-based studies require particular care because much of the data collection may happen in the background. Suppose participants are asked to wear a smartwatch for two weeks. Saying only that “physiological data” will be collected is not particularly informative. Participants should be given an understandable account of what the device records, which variables researchers will access, how frequently data are recorded, whether data leave the device, and what happens to them after collection.</p>
+<p>The same applies to smartphone research. An EMA app may collect timestamps automatically. A sensing application may record activity in the background even when participants are not actively responding. Researchers therefore need to understand their own data pipeline before they can adequately explain it to participants. It is also important to distinguish <strong>consent to participate in research</strong> from the <strong>legal basis for processing personal data</strong>. Under the GDPR, consent is one possible legal basis, but it is not the only one relevant in research contexts.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>The practical lesson is not that behavioural scientists should become data-protection lawyers. Rather, they should avoid assuming that a participant’s signature on a study consent form automatically resolves every issue concerning personal data.</p>
+</section>
+<section id="vulnerable-participants-and-freedom-of-consent" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="vulnerable-participants-and-freedom-of-consent"><span class="header-section-number">3.3</span> Vulnerable participants and freedom of consent</h2>
+<p>Some research contexts require additional safeguards because participants may find it harder to make a genuinely free decision about participation or may face greater consequences if something goes wrong. The term <strong>vulnerability</strong> covers different situations. Children and some people with cognitive impairment may have limited ability to understand the implications of participation. Clinical populations may face particular physical or psychological risks. People in institutional settings may have reduced freedom to decline. Socially marginalised groups may face particularly serious consequences if identifiable information is disclosed.</p>
+<p>AIP has emphasised that vulnerability should be considered in relation to the circumstances of the research rather than treated simply as a fixed label attached to a group.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<section id="power-relationships" class="level3">
+<h3 class="anchored" data-anchor-id="power-relationships">Power relationships</h3>
+<p>Vulnerability can also arise from relationships of power. Suppose a lecturer invites students enrolled in their own course to participate in a study. Participation may be described as voluntary, but students may still worry that declining could influence how they are perceived. Similar issues can arise when employers recruit employees, clinicians recruit their own patients, or researchers recruit people who depend on an institution for services. The question is therefore not only whether a consent form exists, but whether saying “no” is meaningfully possible.</p>
+</section>
+<section id="consent-assent-and-legal-representatives" class="level3">
+<h3 class="anchored" data-anchor-id="consent-assent-and-legal-representatives">Consent, assent, and legal representatives</h3>
+<p>When a participant cannot legally provide valid consent, permission may need to be obtained from a parent, guardian, or another authorised representative. However, this does not mean that the participant’s own preference becomes irrelevant. When the person can understand the research sufficiently to express a view, their <strong>assent</strong> should also be sought and respected where appropriate. The current Italian professional code for psychologists requires prior informed consent in research, protects the freedom to grant, refuse, or withdraw it, and provides additional safeguards when a person cannot validly consent independently.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+</section>
+<section id="incentives" class="level3">
+<h3 class="anchored" data-anchor-id="incentives">Incentives</h3>
+<p>Payment and other incentives also deserve attention. Compensating participants for time, inconvenience, or expenses is common and often appropriate. However, a very large incentive may create pressure to accept burdens or risks that a person would otherwise prefer to avoid. There is no universal monetary threshold that separates appropriate compensation from undue influence. The ethical question is whether the incentive compromises the freedom of the decision.</p>
+</section>
+</section>
+<section id="deception-and-debriefing" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="deception-and-debriefing"><span class="header-section-number">3.4</span> Deception and debriefing</h2>
+<p>Sometimes telling participants the complete purpose of a psychological experiment in advance would alter the behaviour we want to study. Suppose we are investigating whether people change how often they check their smartphone when they believe they are being socially evaluated. Fully explaining the hypothesis at the start may make participants unusually aware of their checking behaviour. Researchers may therefore sometimes use <strong>deception</strong> or temporarily withhold specific information. This requires strong justification.</p>
+<p>Deception should be scientifically necessary, proportionate to the question, and designed to minimise harm. Researchers should also consider whether a less deceptive alternative could answer the same question. Information that would reasonably change a person’s willingness to participate in a study involving substantial risk should not simply be concealed for methodological convenience. Afterwards, participants should normally receive a <strong>debriefing</strong> explaining the true purpose of the procedure and correcting misleading or incomplete information.</p>
+<p>Debriefing should help participants understand what happened, why deception was considered necessary, and how their data will be used. Italian professional guidance specifically requires researchers to provide missing information after the experimental activity or data collection when the nature of the research prevented complete prior disclosure, and to obtain authorisation for use of the collected data.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+</section>
+<section id="personal-and-sensitive-data" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="personal-and-sensitive-data"><span class="header-section-number">3.5</span> Personal and sensitive data</h2>
+<p>Under the GDPR, <strong>personal data</strong> are information relating to an identified or identifiable natural person.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Identification does not require a person’s name to appear in the dataset. Names, email addresses, or participant IDs linked to a lookup table are obvious examples. But people can also be identifiable indirectly through location information, device identifiers, physiological characteristics, or combinations of variables. This is particularly important in behavioural data science. Imagine a dataset containing no names but including precise timestamps, GPS locations, age, occupation, and smartwatch activity. Identifying a participant may become relatively straightforward if the data reveal where that person sleeps, where they work, and which routes they regularly travel.</p>
+<p>Even variables that seem harmless in isolation may become identifying when combined. The GDPR also defines <strong>special categories of personal data</strong>, including data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, trade-union membership, genetic data, certain biometric data, health data, and information concerning a person’s sex life or sexual orientation.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> Behavioural data may sometimes reveal or allow inferences about such information even when researchers did not directly ask for it.</p>
+<p>Continuous location traces could reveal repeated attendance at a place of worship, a political organisation, a clinic, or a union office. A wearable-derived measure collected to study sleep or activity may become health-related information when interpreted in a clinical context. Researchers should therefore consider not only what a variable is called, but what can reasonably be inferred from it.</p>
+</section>
+<section id="anonymisation-and-pseudonymisation" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="anonymisation-and-pseudonymisation"><span class="header-section-number">3.6</span> Anonymisation and pseudonymisation</h2>
+<p>Two terms that are often confused are <strong>anonymisation</strong> and <strong>pseudonymisation</strong>. Suppose we replace participant names with codes such as <code>P001</code>, <code>P002</code>, and <code>P003</code>, while keeping a separate encrypted file that links those codes back to names and contact details. This is <strong>pseudonymisation</strong>. The main research dataset no longer directly identifies the participants, and access to the identifying information can be tightly restricted. However, identification remains possible using additional information. Pseudonymised data therefore remain personal data under the GDPR.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+<p><strong>Anonymous data</strong> are different. In genuinely anonymous data, people are no longer identifiable by means reasonably likely to be used. The distinction is simple in principle but can be difficult in practice.</p>
+<blockquote class="blockquote">
+<p>Removing a person’s name does not necessarily make a dataset anonymous.</p>
+</blockquote>
+<p>Suppose a dataset contains exact dates, geographic area, age, occupation, unusual mobility patterns, and detailed wearable measurements. Even without names or participant codes, combinations of these features may permit re-identification. Anonymisation therefore needs to be considered at the level of the whole dataset and its context, not as a single operation such as deleting one column. Pseudonymisation is nevertheless a valuable safeguard. Identifying information can be separated from research measurements, access to the linking key can be restricted, and analysts often do not need to know participant identities at all.</p>
+</section>
+<section id="gdpr-principles-and-the-data-life-cycle" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="gdpr-principles-and-the-data-life-cycle"><span class="header-section-number">3.7</span> GDPR principles and the data life cycle</h2>
+<p>Data protection does not concern only the moment at which data are collected. It applies across the <strong>data life cycle</strong>. The GDPR establishes principles including lawfulness, fairness and transparency, purpose limitation, data minimisation, accuracy, storage limitation, integrity and confidentiality, and accountability.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> For an introductory behavioural data science course, the detailed legal interpretation of each principle is beyond our scope. Their practical implications, however, are directly relevant to research. <strong>Purpose limitation</strong> means being clear about why personal data are collected and how they are intended to be used.</p>
+<p><strong>Data minimisation</strong> means collecting data that are adequate, relevant, and limited to what is necessary for that purpose. <strong>Storage limitation</strong> means that identifiable or pseudonymised personal data should not simply be retained indefinitely without an appropriate rationale. <strong>Integrity and confidentiality</strong> require reasonable protection against unauthorised access, loss, or disclosure. For research, appropriate technical and organisational safeguards may include pseudonymisation, encryption, access controls, secure institutional storage, and clear rules about who can access which files.</p>
+<p>Consider a wearable study. Before collection, researchers decide which sensors are actually necessary. During collection, data are transmitted and stored using appropriate safeguards. Identifying information is separated where feasible. Access is restricted. At the end of the project, researchers decide what needs to be retained, in what form, and for how long. Data management is therefore part of study design, not merely housekeeping performed after the analysis.</p>
+</section>
+<section id="open-science-and-data-sharing" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="open-science-and-data-sharing"><span class="header-section-number">3.8</span> Open Science and data sharing</h2>
+<p>Modern science increasingly encourages researchers to share data, code, materials, and analysis procedures. This can improve reproducibility, enable reanalysis, facilitate new discoveries, and make scientific claims more transparent. But <strong>Open Science does not mean that every dataset should be publicly downloadable</strong>. Imagine that we have collected four weeks of EMA responses, sleep measures, heart rate, and detailed mobility information. Publishing the raw dataset may allow someone to reconstruct participants’ routines or identify particular people even after obvious identifiers have been removed.</p>
+<p>Privacy and openness therefore need to be considered together. Several strategies are possible. Researchers may share a sufficiently anonymised version of a dataset. Data can sometimes be placed in a <strong>controlled-access repository</strong>, where researchers request access under specified conditions. <strong>Synthetic data</strong> can reproduce selected statistical features of an original dataset without containing the actual participant records, although synthetic data cannot replace the original data for every scientific purpose. In other situations, participant-level data cannot responsibly be released, but analysis code, metadata, variable dictionaries, preprocessing pipelines, and study materials can still be shared.</p>
+<p>The best time to think about data sharing is <strong>before data collection begins</strong>. If researchers know that a dataset may later be archived or reused, this can be reflected in the participant information, consent procedures, and <strong>data management plan</strong>. Open Science and privacy are therefore not opposing goals. Responsible openness means deciding which parts of a research project can be made accessible without compromising the people who contributed the data.</p>
+</section>
+<section id="scientific-integrity" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="scientific-integrity"><span class="header-section-number">3.9</span> Scientific integrity</h2>
+<p>Research ethics also concerns what happens during analysis. The clearest forms of misconduct are <strong>fabrication</strong>, in which data or results are invented, and <strong>falsification</strong>, in which research materials, procedures, or data are deliberately manipulated in a misleading way. However, problems can also arise through less obvious analytical practices. Suppose we collect reaction times and try several plausible exclusion thresholds. We then report only the threshold that produces a statistically significant result.</p>
+<p>Or imagine that a smartphone study produces twenty potential behavioural variables and we test all twenty against stress, but report only the two significant associations. These choices can give readers a distorted impression of the evidence. <strong>p-hacking</strong> refers broadly to using analytical flexibility in ways that increase the probability of obtaining statistically significant results. <strong>Selective reporting</strong> occurs when only a subset of outcomes or analyses is presented. <strong>HARKing</strong>—<em>hypothesising after the results are known</em>—occurs when a pattern discovered after seeing the data is presented as though it had been predicted in advance.</p>
+<p>Exploratory analysis is not itself a problem. Exploration is an essential part of data science and scientific discovery. The issue is transparency. A result discovered during exploration should be presented as exploratory rather than retrospectively converted into a confirmatory prediction. Preregistration, complete reporting, code sharing, robustness checks, and clear distinctions between planned and exploratory analyses are all tools that can improve transparency. Poor statistical practice is not merely a technical problem. Participants contribute time and information because they expect researchers to use those contributions responsibly.</p>
+</section>
+<section id="bias-fairness-and-the-consequences-of-analysis" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="bias-fairness-and-the-consequences-of-analysis"><span class="header-section-number">3.10</span> Bias, fairness, and the consequences of analysis</h2>
+<p>Suppose we develop a machine-learning model that predicts periods of high stress from smartphone and smartwatch data. The model performs well overall. Does this mean it works equally well for everyone? Not necessarily. If most participants in the training dataset are young adults using recent devices, the model may perform worse in older participants, people with different patterns of technology use, or users of devices with different sensor characteristics. A model can therefore achieve good <strong>average performance</strong> while performing poorly for particular groups.</p>
+<p>Bias can enter at several points: who is recruited, who remains in the study, what is measured, what data are missing, how outcomes are labelled, and how a model is trained and evaluated. Technology itself can contribute. Different wearable devices may measure the same signal differently. Smartphone behaviours vary across age groups, occupations, cultures, and socioeconomic settings. Missingness may also be informative: people may stop responding to EMA prompts precisely when they are stressed, busy, or unwell.</p>
+<p>These issues matter especially when predictions have consequences. A model used to explore associations in a research paper creates different risks from a model used to identify individuals considered at high risk of burnout, depression, or cognitive impairment. Researchers should therefore ask not only:</p>
+<blockquote class="blockquote">
+<p><strong>How accurate is the model?</strong></p>
+</blockquote>
+<p>but also:</p>
+<blockquote class="blockquote">
+<p><strong>For whom is it accurate, where does it fail, and what are the consequences of those errors?</strong></p>
+</blockquote>
+<p>There is no single statistical definition of fairness that solves every ethical problem. At a minimum, researchers should examine whether the sample represents the intended population, evaluate performance across relevant groups when appropriate, and communicate limitations clearly. Responsible interpretation matters as much as model performance. A predictive association is not necessarily causal, and a relationship observed at the group level should not automatically be translated into strong claims about an individual.</p>
+</section>
+<section id="ai-and-external-tools" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="ai-and-external-tools"><span class="header-section-number">3.11</span> AI and external tools</h2>
+<p>Artificial intelligence and cloud-based tools are increasingly part of research workflows. A researcher might use a large language model to debug R code, explain an error message, improve documentation, or generate a first draft of a plotting function. These uses may involve no participant information at all. The situation changes when actual research data are uploaded to an external service. Imagine copying rows from an EMA dataset into an AI assistant to ask why a model fails. Those rows may contain timestamps, participant codes, free-text responses, health information, or other personal data.</p>
+<p>Even if the researcher’s goal is simply to obtain programming help, the action may disclose information to an external provider. A useful distinction is therefore between: <strong>using AI to work on a research problem</strong> and <strong>giving an AI system access to research data</strong>. Before entering non-public participant data into an external AI, cloud, transcription, translation, or analysis service, researchers should know whether the service is approved for that type of information and understand relevant institutional rules and data-processing arrangements.</p>
+<p>Questions include where the data are processed, how long they are retained, who can access them, and whether they may be reused for other purposes. When the real data are not necessary, a simple alternative is to create a <strong>synthetic or minimal example</strong> that reproduces the structure of the programming problem without exposing participant information. The 2025 AIP ethical framework explicitly notes emerging ethical questions related to generative AI and internet-mediated research, reflecting how closely modern research ethics is connected to digital research practice.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
+<section id="a-final-perspective" class="level3">
+<h3 class="anchored" data-anchor-id="a-final-perspective">A final perspective</h3>
+<p>Behavioural data science can make human behaviour visible at an extraordinary level of detail. A smartwatch can turn everyday physiological activity into thousands of measurements. An EMA app can capture emotions close to the moment in which they occur. A smartphone can reveal behavioural patterns that would be difficult to reconstruct using traditional laboratory methods. Richer data, however, are not ethically neutral data. Every dataset represents decisions about what was measured, from whom, under what conditions, and with what expectations about future use.</p>
+<p>Responsible research therefore requires us to think about participants not only when recruiting them, but throughout the entire life cycle of their data. A useful final question is:</p>
+<blockquote class="blockquote">
+<p><strong>If these were my data, would I understand what was being collected, why it was needed, who could access it, and what might happen to it afterwards?</strong></p>
+</blockquote>
+<hr>
+<p><em>All chapters were drafted and written by C. Costa; topics and content were agreed and discussed with G. Arcara.</em></p>
+
+
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Associazione Italiana di Psicologia, <em>Codice Etico per la ricerca in psicologia</em>, updated May 2025: <a href="https://aipass.org/wp-content/uploads/2025/07/Codice-Etico-approvato-ass.-16-05-2025.pdf" class="uri">https://aipass.org/wp-content/uploads/2025/07/Codice-Etico-approvato-ass.-16-05-2025.pdf</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Regulation (EU) 2016/679 (General Data Protection Regulation): <a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" class="uri">https://eur-lex.europa.eu/eli/reg/2016/679/oj</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Associazione Italiana di Psicologia, <em>Considerazioni etiche nella ricerca con persone e gruppi in condizioni di vulnerabilità</em>, 2025: <a href="https://aipass.org/considerazioni-etiche-nella-ricerca-con-persone-e-gruppi-in-condizioni-di-vunerabilita/" class="uri">https://aipass.org/considerazioni-etiche-nella-ricerca-con-persone-e-gruppi-in-condizioni-di-vunerabilita/</a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Consiglio Nazionale Ordine Psicologi, <em>Codice Deontologico degli Psicologi Italiani</em>, Article 9: <a href="https://www.psy.it/la-professione-psicologica/codice-deontologico-degli-psicologi-italiani/codice-deontologico-vigente/" class="uri">https://www.psy.it/la-professione-psicologica/codice-deontologico-degli-psicologi-italiani/codice-deontologico-vigente/</a>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Consiglio Nazionale Ordine Psicologi, <em>Codice Deontologico degli Psicologi Italiani</em>, Article 9: <a href="https://www.psy.it/la-professione-psicologica/codice-deontologico-degli-psicologi-italiani/codice-deontologico-vigente/" class="uri">https://www.psy.it/la-professione-psicologica/codice-deontologico-degli-psicologi-italiani/codice-deontologico-vigente/</a>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Regulation (EU) 2016/679 (General Data Protection Regulation): <a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" class="uri">https://eur-lex.europa.eu/eli/reg/2016/679/oj</a>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Regulation (EU) 2016/679 (General Data Protection Regulation): <a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" class="uri">https://eur-lex.europa.eu/eli/reg/2016/679/oj</a>.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Regulation (EU) 2016/679 (General Data Protection Regulation): <a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" class="uri">https://eur-lex.europa.eu/eli/reg/2016/679/oj</a>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Regulation (EU) 2016/679 (General Data Protection Regulation): <a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" class="uri">https://eur-lex.europa.eu/eli/reg/2016/679/oj</a>.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Associazione Italiana di Psicologia, <em>Codice Etico per la ricerca in psicologia</em>, updated May 2025: <a href="https://aipass.org/wp-content/uploads/2025/07/Codice-Etico-approvato-ass.-16-05-2025.pdf" class="uri">https://aipass.org/wp-content/uploads/2025/07/Codice-Etico-approvato-ass.-16-05-2025.pdf</a>.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/intro-to-behds\.github\.io\/behdsbook-part-2\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../behav/simulating-measurement.html" class="pagination-link" aria-label="Behind the Simulations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../behav/experimental-designs.html" class="pagination-link" aria-label="Experimental Designs in Psychology">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Experimental Designs in Psychology</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Introduction to Behavioural Data Science, adapted from Rafael A. Irizarry’s Introduction to Data Science</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/behav/research-ethics.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

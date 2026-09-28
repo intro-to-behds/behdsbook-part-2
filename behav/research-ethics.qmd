@@ -1,0 +1,142 @@
+# Research Ethics and Data Privacy {#sec-research-ethics}
+
+_by C. Costa (and G. Arcara)_
+
+
+Imagine we want to study fluctuations in stress during everyday life. Participants install an app that asks them several times per day how stressed they feel, while a smartwatch continuously records heart rate, sleep, and physical activity. From a data-science perspective, this is an attractive design. We obtain repeated measurements in the real world, physiological data can be aligned with subjective reports, and individual changes can be followed over time.
+
+But consider what the resulting dataset may reveal. It may show when somebody wakes up and goes to sleep, when they exercise, when their heart rate is unusually high, and how their mood changes during the working week. Depending on the study, it may also contain mobility or location-related information that makes parts of a person's daily routine visible. Behavioural data can become highly informative very quickly. This creates scientific opportunities, but also responsibilities. Research ethics is therefore not something that happens only when a participant signs a consent form. Ethical decisions are involved in deciding what to collect, how to collect it, how long to retain it, who may access it, how it is analysed, and whether it can later be shared.
+
+## Why ethics is part of research
+
+Research with human participants is guided by broad principles including **respect for autonomy**, **beneficence and non-maleficence**, **justice**, and **scientific integrity**. Respect for autonomy means treating participants as people capable of making decisions about whether and how they take part in research. Beneficence and non-maleficence concern the balance between the potential value of the research and the risks or burdens imposed on participants. Justice concerns how the benefits and burdens of research are distributed. A population should not be selected simply because it is easy to recruit or has less power to refuse participation.
+
+Scientific integrity concerns the responsibility to design, analyse, and communicate research honestly and rigorously. These principles are connected. A badly designed study is not only a methodological problem. If participants contribute their time, personal information, discomfort, or exposure to risk to a study that cannot meaningfully address its stated question, this can also become an ethical problem. Ethical and legal requirements are also not identical. Something may be technically possible, or legally permissible under particular conditions, without being a good research decision. Suppose an app allows us to collect precise GPS location continuously, but our research question concerns daily stress and can be answered using activity levels and occasional EMA reports. Collecting location simply because the technology makes it available may be difficult to justify. A useful rule of thumb is:
+
+> **Collect what you need, not everything you can collect.**
+
+In Italy, psychological research is guided, among other sources, by the Code of Ethics of the Italian Association of Psychology (AIP), which was updated in May 2025 and is complemented by guidance on internet-mediated research and generative AI.[^aip-code]
+
+[^aip-code]: Associazione Italiana di Psicologia, *Codice Etico per la ricerca in psicologia*, updated May 2025: <https://aipass.org/wp-content/uploads/2025/07/Codice-Etico-approvato-ass.-16-05-2025.pdf>.
+
+## Ethical approval and informed consent
+
+Before data collection begins, researchers need to consider the study's risks, benefits, procedures, recruitment methods, and handling of participant data. These elements are evaluated through the relevant ethics-review procedures within the applicable institutional and regulatory context. Ethics review is not simply an administrative step. Its purpose is to provide an independent assessment of whether participants are adequately protected and whether potential risks are proportionate to the scientific aims. A central component is **informed consent**.
+
+Participants should receive information that allows them to understand what they are agreeing to. This normally includes the purpose of the research, relevant procedures, expected duration, potential risks or discomforts, and the possibility of refusing or discontinuing participation. Consent also needs to be voluntary. A participant should be able to refuse or withdraw without inappropriate negative consequences. This is especially important when the researcher has authority over the participant or when incentives are offered.
+
+Technology-based studies require particular care because much of the data collection may happen in the background. Suppose participants are asked to wear a smartwatch for two weeks. Saying only that “physiological data” will be collected is not particularly informative. Participants should be given an understandable account of what the device records, which variables researchers will access, how frequently data are recorded, whether data leave the device, and what happens to them after collection.
+
+The same applies to smartphone research. An EMA app may collect timestamps automatically. A sensing application may record activity in the background even when participants are not actively responding. Researchers therefore need to understand their own data pipeline before they can adequately explain it to participants. It is also important to distinguish **consent to participate in research** from the **legal basis for processing personal data**. Under the GDPR, consent is one possible legal basis, but it is not the only one relevant in research contexts.[^gdpr]
+
+[^gdpr]: Regulation (EU) 2016/679 (General Data Protection Regulation): <https://eur-lex.europa.eu/eli/reg/2016/679/oj>.
+
+The practical lesson is not that behavioural scientists should become data-protection lawyers. Rather, they should avoid assuming that a participant's signature on a study consent form automatically resolves every issue concerning personal data.
+
+## Vulnerable participants and freedom of consent
+
+Some research contexts require additional safeguards because participants may find it harder to make a genuinely free decision about participation or may face greater consequences if something goes wrong. The term **vulnerability** covers different situations. Children and some people with cognitive impairment may have limited ability to understand the implications of participation. Clinical populations may face particular physical or psychological risks. People in institutional settings may have reduced freedom to decline. Socially marginalised groups may face particularly serious consequences if identifiable information is disclosed.
+
+AIP has emphasised that vulnerability should be considered in relation to the circumstances of the research rather than treated simply as a fixed label attached to a group.[^aip-vulnerability]
+
+[^aip-vulnerability]: Associazione Italiana di Psicologia, *Considerazioni etiche nella ricerca con persone e gruppi in condizioni di vulnerabilità*, 2025: <https://aipass.org/considerazioni-etiche-nella-ricerca-con-persone-e-gruppi-in-condizioni-di-vunerabilita/>.
+
+### Power relationships
+
+Vulnerability can also arise from relationships of power. Suppose a lecturer invites students enrolled in their own course to participate in a study. Participation may be described as voluntary, but students may still worry that declining could influence how they are perceived. Similar issues can arise when employers recruit employees, clinicians recruit their own patients, or researchers recruit people who depend on an institution for services. The question is therefore not only whether a consent form exists, but whether saying “no” is meaningfully possible.
+
+### Consent, assent, and legal representatives
+
+When a participant cannot legally provide valid consent, permission may need to be obtained from a parent, guardian, or another authorised representative. However, this does not mean that the participant's own preference becomes irrelevant. When the person can understand the research sufficiently to express a view, their **assent** should also be sought and respected where appropriate. The current Italian professional code for psychologists requires prior informed consent in research, protects the freedom to grant, refuse, or withdraw it, and provides additional safeguards when a person cannot validly consent independently.[^cnop]
+
+[^cnop]: Consiglio Nazionale Ordine Psicologi, *Codice Deontologico degli Psicologi Italiani*, Article 9: <https://www.psy.it/la-professione-psicologica/codice-deontologico-degli-psicologi-italiani/codice-deontologico-vigente/>.
+
+### Incentives
+
+Payment and other incentives also deserve attention. Compensating participants for time, inconvenience, or expenses is common and often appropriate. However, a very large incentive may create pressure to accept burdens or risks that a person would otherwise prefer to avoid. There is no universal monetary threshold that separates appropriate compensation from undue influence. The ethical question is whether the incentive compromises the freedom of the decision.
+
+## Deception and debriefing
+
+Sometimes telling participants the complete purpose of a psychological experiment in advance would alter the behaviour we want to study. Suppose we are investigating whether people change how often they check their smartphone when they believe they are being socially evaluated. Fully explaining the hypothesis at the start may make participants unusually aware of their checking behaviour. Researchers may therefore sometimes use **deception** or temporarily withhold specific information. This requires strong justification.
+
+Deception should be scientifically necessary, proportionate to the question, and designed to minimise harm. Researchers should also consider whether a less deceptive alternative could answer the same question. Information that would reasonably change a person's willingness to participate in a study involving substantial risk should not simply be concealed for methodological convenience. Afterwards, participants should normally receive a **debriefing** explaining the true purpose of the procedure and correcting misleading or incomplete information.
+
+Debriefing should help participants understand what happened, why deception was considered necessary, and how their data will be used. Italian professional guidance specifically requires researchers to provide missing information after the experimental activity or data collection when the nature of the research prevented complete prior disclosure, and to obtain authorisation for use of the collected data.[^cnop]
+
+## Personal and sensitive data
+
+Under the GDPR, **personal data** are information relating to an identified or identifiable natural person.[^gdpr] Identification does not require a person's name to appear in the dataset. Names, email addresses, or participant IDs linked to a lookup table are obvious examples. But people can also be identifiable indirectly through location information, device identifiers, physiological characteristics, or combinations of variables. This is particularly important in behavioural data science. Imagine a dataset containing no names but including precise timestamps, GPS locations, age, occupation, and smartwatch activity. Identifying a participant may become relatively straightforward if the data reveal where that person sleeps, where they work, and which routes they regularly travel.
+
+Even variables that seem harmless in isolation may become identifying when combined. The GDPR also defines **special categories of personal data**, including data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, trade-union membership, genetic data, certain biometric data, health data, and information concerning a person's sex life or sexual orientation.[^gdpr] Behavioural data may sometimes reveal or allow inferences about such information even when researchers did not directly ask for it.
+
+Continuous location traces could reveal repeated attendance at a place of worship, a political organisation, a clinic, or a union office. A wearable-derived measure collected to study sleep or activity may become health-related information when interpreted in a clinical context. Researchers should therefore consider not only what a variable is called, but what can reasonably be inferred from it.
+
+## Anonymisation and pseudonymisation
+
+Two terms that are often confused are **anonymisation** and **pseudonymisation**. Suppose we replace participant names with codes such as `P001`, `P002`, and `P003`, while keeping a separate encrypted file that links those codes back to names and contact details. This is **pseudonymisation**. The main research dataset no longer directly identifies the participants, and access to the identifying information can be tightly restricted. However, identification remains possible using additional information. Pseudonymised data therefore remain personal data under the GDPR.[^gdpr]
+
+**Anonymous data** are different. In genuinely anonymous data, people are no longer identifiable by means reasonably likely to be used. The distinction is simple in principle but can be difficult in practice.
+
+> Removing a person's name does not necessarily make a dataset anonymous.
+
+Suppose a dataset contains exact dates, geographic area, age, occupation, unusual mobility patterns, and detailed wearable measurements. Even without names or participant codes, combinations of these features may permit re-identification. Anonymisation therefore needs to be considered at the level of the whole dataset and its context, not as a single operation such as deleting one column. Pseudonymisation is nevertheless a valuable safeguard. Identifying information can be separated from research measurements, access to the linking key can be restricted, and analysts often do not need to know participant identities at all.
+
+## GDPR principles and the data life cycle
+
+Data protection does not concern only the moment at which data are collected. It applies across the **data life cycle**. The GDPR establishes principles including lawfulness, fairness and transparency, purpose limitation, data minimisation, accuracy, storage limitation, integrity and confidentiality, and accountability.[^gdpr] For an introductory behavioural data science course, the detailed legal interpretation of each principle is beyond our scope. Their practical implications, however, are directly relevant to research. **Purpose limitation** means being clear about why personal data are collected and how they are intended to be used.
+
+**Data minimisation** means collecting data that are adequate, relevant, and limited to what is necessary for that purpose. **Storage limitation** means that identifiable or pseudonymised personal data should not simply be retained indefinitely without an appropriate rationale. **Integrity and confidentiality** require reasonable protection against unauthorised access, loss, or disclosure. For research, appropriate technical and organisational safeguards may include pseudonymisation, encryption, access controls, secure institutional storage, and clear rules about who can access which files.
+
+Consider a wearable study. Before collection, researchers decide which sensors are actually necessary. During collection, data are transmitted and stored using appropriate safeguards. Identifying information is separated where feasible. Access is restricted. At the end of the project, researchers decide what needs to be retained, in what form, and for how long. Data management is therefore part of study design, not merely housekeeping performed after the analysis.
+
+## Open Science and data sharing
+
+Modern science increasingly encourages researchers to share data, code, materials, and analysis procedures. This can improve reproducibility, enable reanalysis, facilitate new discoveries, and make scientific claims more transparent. But **Open Science does not mean that every dataset should be publicly downloadable**. Imagine that we have collected four weeks of EMA responses, sleep measures, heart rate, and detailed mobility information. Publishing the raw dataset may allow someone to reconstruct participants' routines or identify particular people even after obvious identifiers have been removed.
+
+Privacy and openness therefore need to be considered together. Several strategies are possible. Researchers may share a sufficiently anonymised version of a dataset. Data can sometimes be placed in a **controlled-access repository**, where researchers request access under specified conditions. **Synthetic data** can reproduce selected statistical features of an original dataset without containing the actual participant records, although synthetic data cannot replace the original data for every scientific purpose. In other situations, participant-level data cannot responsibly be released, but analysis code, metadata, variable dictionaries, preprocessing pipelines, and study materials can still be shared.
+
+The best time to think about data sharing is **before data collection begins**. If researchers know that a dataset may later be archived or reused, this can be reflected in the participant information, consent procedures, and **data management plan**. Open Science and privacy are therefore not opposing goals. Responsible openness means deciding which parts of a research project can be made accessible without compromising the people who contributed the data.
+
+## Scientific integrity
+
+Research ethics also concerns what happens during analysis. The clearest forms of misconduct are **fabrication**, in which data or results are invented, and **falsification**, in which research materials, procedures, or data are deliberately manipulated in a misleading way. However, problems can also arise through less obvious analytical practices. Suppose we collect reaction times and try several plausible exclusion thresholds. We then report only the threshold that produces a statistically significant result.
+
+Or imagine that a smartphone study produces twenty potential behavioural variables and we test all twenty against stress, but report only the two significant associations. These choices can give readers a distorted impression of the evidence. **p-hacking** refers broadly to using analytical flexibility in ways that increase the probability of obtaining statistically significant results. **Selective reporting** occurs when only a subset of outcomes or analyses is presented. **HARKing**—*hypothesising after the results are known*—occurs when a pattern discovered after seeing the data is presented as though it had been predicted in advance.
+
+Exploratory analysis is not itself a problem. Exploration is an essential part of data science and scientific discovery. The issue is transparency. A result discovered during exploration should be presented as exploratory rather than retrospectively converted into a confirmatory prediction. Preregistration, complete reporting, code sharing, robustness checks, and clear distinctions between planned and exploratory analyses are all tools that can improve transparency. Poor statistical practice is not merely a technical problem. Participants contribute time and information because they expect researchers to use those contributions responsibly.
+
+## Bias, fairness, and the consequences of analysis
+
+Suppose we develop a machine-learning model that predicts periods of high stress from smartphone and smartwatch data. The model performs well overall. Does this mean it works equally well for everyone? Not necessarily. If most participants in the training dataset are young adults using recent devices, the model may perform worse in older participants, people with different patterns of technology use, or users of devices with different sensor characteristics. A model can therefore achieve good **average performance** while performing poorly for particular groups.
+
+Bias can enter at several points: who is recruited, who remains in the study, what is measured, what data are missing, how outcomes are labelled, and how a model is trained and evaluated. Technology itself can contribute. Different wearable devices may measure the same signal differently. Smartphone behaviours vary across age groups, occupations, cultures, and socioeconomic settings. Missingness may also be informative: people may stop responding to EMA prompts precisely when they are stressed, busy, or unwell.
+
+These issues matter especially when predictions have consequences. A model used to explore associations in a research paper creates different risks from a model used to identify individuals considered at high risk of burnout, depression, or cognitive impairment. Researchers should therefore ask not only:
+
+> **How accurate is the model?**
+
+but also:
+
+> **For whom is it accurate, where does it fail, and what are the consequences of those errors?**
+
+There is no single statistical definition of fairness that solves every ethical problem. At a minimum, researchers should examine whether the sample represents the intended population, evaluate performance across relevant groups when appropriate, and communicate limitations clearly. Responsible interpretation matters as much as model performance. A predictive association is not necessarily causal, and a relationship observed at the group level should not automatically be translated into strong claims about an individual.
+
+## AI and external tools
+
+Artificial intelligence and cloud-based tools are increasingly part of research workflows. A researcher might use a large language model to debug R code, explain an error message, improve documentation, or generate a first draft of a plotting function. These uses may involve no participant information at all. The situation changes when actual research data are uploaded to an external service. Imagine copying rows from an EMA dataset into an AI assistant to ask why a model fails. Those rows may contain timestamps, participant codes, free-text responses, health information, or other personal data.
+
+Even if the researcher's goal is simply to obtain programming help, the action may disclose information to an external provider. A useful distinction is therefore between: **using AI to work on a research problem** and **giving an AI system access to research data**. Before entering non-public participant data into an external AI, cloud, transcription, translation, or analysis service, researchers should know whether the service is approved for that type of information and understand relevant institutional rules and data-processing arrangements.
+
+Questions include where the data are processed, how long they are retained, who can access them, and whether they may be reused for other purposes. When the real data are not necessary, a simple alternative is to create a **synthetic or minimal example** that reproduces the structure of the programming problem without exposing participant information. The 2025 AIP ethical framework explicitly notes emerging ethical questions related to generative AI and internet-mediated research, reflecting how closely modern research ethics is connected to digital research practice.[^aip-code]
+
+### A final perspective
+
+Behavioural data science can make human behaviour visible at an extraordinary level of detail. A smartwatch can turn everyday physiological activity into thousands of measurements. An EMA app can capture emotions close to the moment in which they occur. A smartphone can reveal behavioural patterns that would be difficult to reconstruct using traditional laboratory methods. Richer data, however, are not ethically neutral data. Every dataset represents decisions about what was measured, from whom, under what conditions, and with what expectations about future use.
+
+Responsible research therefore requires us to think about participants not only when recruiting them, but throughout the entire life cycle of their data. A useful final question is:
+
+> **If these were my data, would I understand what was being collected, why it was needed, who could access it, and what might happen to it afterwards?**
+
+---
+
+_All chapters were drafted and written by C. Costa; topics and content were agreed and discussed with G. Arcara._

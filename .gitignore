@@ -12,7 +12,6 @@ summaries/*_files
 .DS_Store
 copy-qmds.R
 crossref.sh
-cover.png
 /.quarto/
 *.tex
 !preamble.tex

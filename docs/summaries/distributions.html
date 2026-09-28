@@ -8,7 +8,7 @@
 
 <meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
 
-<title>3&nbsp; Distributions – Introduction to Behavioural Data Science</title>
+<title>5&nbsp; Distributions – Introduction to Behavioural Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,6 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <link href="../summaries/numerical-summaries.html" rel="next">
 <link href="../summaries/intro-summaries.html" rel="prev">
+<link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -147,7 +148,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../summaries/intro-summaries.html">Summary Statistics</a></li><li class="breadcrumb-item"><a href="../summaries/distributions.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../summaries/intro-summaries.html">Summary Statistics</a></li><li class="breadcrumb-item"><a href="../summaries/distributions.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Distributions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -214,6 +215,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/research-ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Research Ethics and Data Privacy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/experimental-designs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Experimental Designs in Psychology</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -228,19 +241,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -262,250 +275,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../prob/reading-prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Recommended Reading</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Statistical Inference</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../inference/models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data-Driven Models</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../inference/bayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Bayesian Statistics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../inference/hierarchical-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hierarchical Models</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../inference/bootstrap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bootstrap</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../inference/reading-inference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Recommended Reading</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Linear Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../linear-models/linear-model-framework.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../linear-models/treatment-effect-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../linear-models/association-not-causation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../linear-models/multivariable-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multivariable Regression</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../linear-models/reading-lm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Recommended Reading</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../highdim/intro-highdim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">High Dimensional Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../highdim/matrices-in-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Working with Matrices in R</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../highdim/linear-algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Applied Linear Algebra</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../highdim/dimension-reduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Dimension Reduction</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../highdim/regularization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Regularization</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../highdim/latent-factor-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Latent Factor Models</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../highdim/reading-highdim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Recommended reading</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../ml/intro-ml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ml/notation-and-terminology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Notation and Terminology</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ml/evaluation-metrics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ml/conditionals-and-smoothing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Conditional Expectations and Smoothing</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ml/resampling-methods.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Resampling and Model Assessment</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ml/algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Supervised Learning Methods</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ml/ml-in-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Machine Learning Models</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ml/clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Unsupervised Learning: Clustering</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ml/reading-ml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Recommended reading</span></a>
   </div>
 </li>
       </ul>
@@ -520,30 +297,30 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#variable-types" id="toc-variable-types" class="nav-link active" data-scroll-target="#variable-types"><span class="header-section-number">3.1</span> Variable types</a></li>
-  <li><a href="#sec-pmf-intro" id="toc-sec-pmf-intro" class="nav-link" data-scroll-target="#sec-pmf-intro"><span class="header-section-number">3.2</span> Relative frequency distribution</a></li>
-  <li><a href="#sec-ecdf-intro" id="toc-sec-ecdf-intro" class="nav-link" data-scroll-target="#sec-ecdf-intro"><span class="header-section-number">3.3</span> Empirical cumulative distribution functions</a></li>
-  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms"><span class="header-section-number">3.4</span> Histograms</a>
+  <li><a href="#variable-types" id="toc-variable-types" class="nav-link active" data-scroll-target="#variable-types"><span class="header-section-number">5.1</span> Variable types</a></li>
+  <li><a href="#sec-pmf-intro" id="toc-sec-pmf-intro" class="nav-link" data-scroll-target="#sec-pmf-intro"><span class="header-section-number">5.2</span> Relative frequency distribution</a></li>
+  <li><a href="#sec-ecdf-intro" id="toc-sec-ecdf-intro" class="nav-link" data-scroll-target="#sec-ecdf-intro"><span class="header-section-number">5.3</span> Empirical cumulative distribution functions</a></li>
+  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms"><span class="header-section-number">5.4</span> Histograms</a>
   <ul class="collapse">
   <li><a href="#choosing-bin-widths" id="toc-choosing-bin-widths" class="nav-link" data-scroll-target="#choosing-bin-widths">Choosing bin widths</a></li>
   </ul></li>
-  <li><a href="#smoothed-density-plots" id="toc-smoothed-density-plots" class="nav-link" data-scroll-target="#smoothed-density-plots"><span class="header-section-number">3.5</span> Smoothed density plots</a>
+  <li><a href="#smoothed-density-plots" id="toc-smoothed-density-plots" class="nav-link" data-scroll-target="#smoothed-density-plots"><span class="header-section-number">5.5</span> Smoothed density plots</a>
   <ul class="collapse">
   <li><a href="#choosing-the-bandwidth" id="toc-choosing-the-bandwidth" class="nav-link" data-scroll-target="#choosing-the-bandwidth">Choosing the bandwidth</a></li>
   <li><a href="#interpreting-the-y-axis" id="toc-interpreting-the-y-axis" class="nav-link" data-scroll-target="#interpreting-the-y-axis">Interpreting the y-axis</a></li>
   </ul></li>
-  <li><a href="#describing-distributions" id="toc-describing-distributions" class="nav-link" data-scroll-target="#describing-distributions"><span class="header-section-number">3.6</span> Describing distributions</a></li>
-  <li><a href="#from-visual-to-numerical-summaries" id="toc-from-visual-to-numerical-summaries" class="nav-link" data-scroll-target="#from-visual-to-numerical-summaries"><span class="header-section-number">3.7</span> From visual to numerical summaries</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3.8</span> Exercises</a></li>
+  <li><a href="#describing-distributions" id="toc-describing-distributions" class="nav-link" data-scroll-target="#describing-distributions"><span class="header-section-number">5.6</span> Describing distributions</a></li>
+  <li><a href="#from-visual-to-numerical-summaries" id="toc-from-visual-to-numerical-summaries" class="nav-link" data-scroll-target="#from-visual-to-numerical-summaries"><span class="header-section-number">5.7</span> From visual to numerical summaries</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">5.8</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/summaries/distributions.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../summaries/intro-summaries.html">Summary Statistics</a></li><li class="breadcrumb-item"><a href="../summaries/distributions.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../summaries/intro-summaries.html">Summary Statistics</a></li><li class="breadcrumb-item"><a href="../summaries/distributions.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Distributions</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-summaries-distributions" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Distributions</span></span></h1>
+<h1 class="title"><span id="sec-summaries-distributions" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Distributions</span></span></h1>
 </div>
 
 
@@ -569,18 +346,18 @@ window.Quarto = {
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ sex  : Factor w/ 2 levels "Female","Male": 2 2 2 2 2 1 1 1 1 2 ...</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ rt_ms: num  430 384 365 420 301 ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>One way to convey the reaction times to ET is to simply send the entire list of measurements. However, there are much more effective ways to convey this information, and understanding the concept of a distribution will help. To simplify the explanation, we first focus on male reaction times. We examine the female reaction-time data in <a href="comparing-groups.html#sec-stratification" class="quarto-xref"><span>Section 5.3</span></a>.</p>
+<p>One way to convey the reaction times to ET is to simply send the entire list of measurements. However, there are much more effective ways to convey this information, and understanding the concept of a distribution will help. To simplify the explanation, we first focus on male reaction times. We examine the female reaction-time data in <a href="comparing-groups.html#sec-stratification" class="quarto-xref"><span>Section 7.3</span></a>.</p>
 <p>It turns out that, in some cases, the two summary statistics introduced in the next chapter, the average and the standard deviation, are all we need to understand the data. We will learn data visualization techniques that will help us determine when this two-number summary is appropriate. These same techniques will serve as an alternative for when two numbers are not enough.</p>
-<section id="variable-types" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="variable-types"><span class="header-section-number">3.1</span> Variable types</h2>
+<section id="variable-types" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="variable-types"><span class="header-section-number">5.1</span> Variable types</h2>
 <p>Knowing what variable type we are working with is important because it will help us determine the most effective way to summarize our data and display its distribution.</p>
 <p>We will be working with two types of variables: categorical and numeric. Each can be divided into two other groups: categorical can be ordinal or not, whereas numerical variables can be discrete or continuous.</p>
 <p>When data values represent groups instead of numbers, we refer to the data as <em>categorical</em>. Two simple examples are sex (male or female) and US regions (Northeast, South, North Central, West). Some categorical data can be ordered even if they are not numbers, such as spiciness (mild, medium, hot). These ordered categorical data are referred to as <em>ordinal</em> data.</p>
 <p>Numerical data can be continuous or discrete. A continuous variable can take on any value within a range. For example, if measured with sufficient precision, reaction time is continuous because the difference between two participants (even identical twins) can be an arbitrarily small fraction of a millisecond. However, if reaction time is rounded to the nearest millisecond, it becomes discrete since values must be whole numbers. Other examples of discrete data are the number of heads when tossing 10 coins, the number of cigarettes a person smokes per day, or the number of customers visiting a store in an hour. In these cases, the values are countable and cannot take on fractional values. Unlike continuous data, which can be measured with increasing precision, discrete data are limited to distinct, separate values.</p>
 <p>In practice, there are occasions in which discrete variables are treated as continuous. For example, a digital measuring instrument might record data as 16-bit integers. However, because it is rare to obtain exactly the same reading more than once, it is convenient to treat the data as continuous. Another example is country population size. Although population counts are always whole numbers, it is uncommon for two jurisdictions to have exactly the same population. For this reason, population size is also commonly treated as continuous.</p>
 </section>
-<section id="sec-pmf-intro" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="sec-pmf-intro"><span class="header-section-number">3.2</span> Relative frequency distribution</h2>
+<section id="sec-pmf-intro" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="sec-pmf-intro"><span class="header-section-number">5.2</span> Relative frequency distribution</h2>
 <p>The most basic statistical summary of a list of numbers or categories is its <em>distribution</em>. By a <em>list</em>, we simply mean a collection of observed values, such as a column in a dataset. The order of the values does not matter, but repeated values are allowed. The simplest way to think of a distribution is as a compact description of how values are spread across observations. This concept should not be new for readers of this book. For example, with categorical data, the <em>relative frequency distribution</em> simply describes the proportion of each unique category:</p>
 <p><span class="math display">\[
 p_k = \frac{\mbox{number of times category }k \mbox{ appears in the list}}{n}
@@ -608,8 +385,8 @@ f(x) = \frac{\mbox{number of times value } x \mbox{ appears in the list}}{n}
 </div>
 </div>
 </section>
-<section id="sec-ecdf-intro" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="sec-ecdf-intro"><span class="header-section-number">3.3</span> Empirical cumulative distribution functions</h2>
+<section id="sec-ecdf-intro" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="sec-ecdf-intro"><span class="header-section-number">5.3</span> Empirical cumulative distribution functions</h2>
 <p>When the data is continuous, the task of constructing a summary based on a distribution is more challenging because reporting the frequency of each entry is not an effective summary: most entries are unique so the relative frequency distribution does not summarize much.</p>
 <p>Here are the relative frequencies of US state populations, no longer rounded:</p>
 <div class="cell" data-layout-align="center">
@@ -669,8 +446,8 @@ f(x) = \frac{\mbox{number of times value } x \mbox{ appears in the list}}{n}
 </div>
 </div>
 </section>
-<section id="histograms" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="histograms"><span class="header-section-number">3.4</span> Histograms</h2>
+<section id="histograms" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="histograms"><span class="header-section-number">5.4</span> Histograms</h2>
 <p>Although the eCDF is a fundamental concept in statistics, it is not commonly used in practice. The main reason is that it does not easily highlight key distribution characteristics, such as the central tendency, symmetry, or the range that contains 95% of the values. In contrast, histograms are widely preferred because they make these features much more interpretable. While histograms sacrifice a small amount of information, they provide a much clearer summary of the data.</p>
 <p>To construct a histogram, we first divide the range of the data into non-overlapping bins. Each bin acts as a category, and its height is chosen so that the area of the bar, calculated as the height multiplied by the bin width, represents the relative frequency of observations within that bin. Although a histogram resembles a bar plot, it differs in that the x-axis represents numerical values rather than categorical ones.</p>
 <p>If we round the reaction times to the nearest 10 milliseconds and create a relative frequency distribution, we obtain a histogram with bins defined in 10-millisecond intervals:</p>
@@ -737,8 +514,8 @@ f(x) = \frac{\mbox{number of times value } x \mbox{ appears in the list}}{n}
 <p>The appearance and interpretation of a histogram depend on the choice of bins, and in the case of equally sized bins, their width. Different bin widths can make the same data look quite different: too narrow, and the histogram may appear noisy or fragmented; too wide, and important features of the distribution may be hidden. The choice of bin width should be guided by the context of the data. For example, in the case of reaction times, timing hardware and software have limited resolution, so using bins much smaller than about 10 milliseconds does not make sense. At the same time, because differences of more than 50 milliseconds are meaningful in a psychological experiment, bins larger than about 20 milliseconds would obscure meaningful variation. For the extreme regions of the distribution, such as below 300 milliseconds or above 450 milliseconds, where there are few observations, it is reasonable to use wider bins to keep the summary clear. Every dataset requires a context-specific decision: the goal is to choose bins that reveal structure without introducing noise, maximizing the information conveyed by a single figure.</p>
 </section>
 </section>
-<section id="smoothed-density-plots" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="smoothed-density-plots"><span class="header-section-number">3.5</span> Smoothed density plots</h2>
+<section id="smoothed-density-plots" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="smoothed-density-plots"><span class="header-section-number">5.5</span> Smoothed density plots</h2>
 <p>Smooth density plots are similar to histograms, but without bins. Instead of sharp edges, they produce a continuous curve:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -819,8 +596,8 @@ f(x) = \frac{\mbox{number of times value } x \mbox{ appears in the list}}{n}
 </div>
 </section>
 </section>
-<section id="describing-distributions" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="describing-distributions"><span class="header-section-number">3.6</span> Describing distributions</h2>
+<section id="describing-distributions" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="describing-distributions"><span class="header-section-number">5.6</span> Describing distributions</h2>
 <p>When visualizing data with a histogram or density plot, we often describe the shape of a distribution using a few key terms and concepts. In this section, our goal is simply to familiarize you with this vocabulary, terms that you’ll encounter in most discussions of data analysis.</p>
 <p>A <em>mode</em> is a value or region where the data are most concentrated, the peak of the distribution. Some distributions have one peak (unimodal), while others have two or more (bimodal or multimodal), which can indicate distinct subgroups within the data.</p>
 <p>A <em>symmetric</em> distribution has as many data points to both sides of the mode. A distribution is <em>skewed</em> if it is asymmetric.</p>
@@ -839,12 +616,12 @@ f(x) = \frac{\mbox{number of times value } x \mbox{ appears in the list}}{n}
 </div>
 </div>
 </section>
-<section id="from-visual-to-numerical-summaries" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="from-visual-to-numerical-summaries"><span class="header-section-number">3.7</span> From visual to numerical summaries</h2>
+<section id="from-visual-to-numerical-summaries" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="from-visual-to-numerical-summaries"><span class="header-section-number">5.7</span> From visual to numerical summaries</h2>
 <p>As we’ve seen, visual tools such as histograms and density plots help us understand the shape of a distribution, its center, spread, symmetry, and tails. However, graphical summaries are often complemented by numerical summaries, which distill much of this information into just a few key numbers. In the next chapter, we introduce two of the most useful numerical summaries, the average and the standard deviation, which provide all the information you need when the data are approximately normal. We will also explore alternative measures that are more appropriate when distributions deviate from normality. The visualization techniques introduced here will guide us in deciding when simple numerical summaries are sufficient and when more detailed descriptions are needed.</p>
 </section>
-<section id="exercises" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.8</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5.8</span> Exercises</h2>
 <p>1. In the <code>app_data_breaches</code> dataset, the region is a categorical variable and the following is its distribution:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -1380,7 +1157,7 @@ f(x) = \frac{\mbox{number of times value } x \mbox{ appears in the list}}{n}
   </div>
   <div class="nav-page nav-page-next">
       <a href="../summaries/numerical-summaries.html" class="pagination-link" aria-label="Numerical Summaries">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

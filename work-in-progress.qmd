@@ -1,0 +1,15 @@
+# Work in Progress {.unnumbered}
+
+::: {.callout-note}
+This book is being adapted chapter by chapter for the *Behavioural Data Science* course (AY 2026/2027). Only some chapters are published so far: the ones listed in the sidebar. The others will be added soon.
+:::
+
+The following material is currently being reworked with behavioural examples and datasets, and will appear here as soon as it is ready:
+
+* **Probability**: the remaining chapters, on the connection between data and probability, discrete probability, random variables, and sampling models and the Central Limit Theorem.
+* **Statistical Inference**
+* **Linear Models**
+* **High-Dimensional Data**
+* **Machine Learning**
+
+To follow progress or report an issue, visit the book's GitHub repository: <https://github.com/intro-to-behds/behdsbook-part-2>.
