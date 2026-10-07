@@ -4,23 +4,23 @@
 ## Generate the train_set data frame created in the previous chapter
 library(data.table)
 library(behdslabs)
-movielens <- as.data.table(movielens)
-movielens <- movielens[, if (.N >= 100) .SD, by = userId]
+app_ratings <- as.data.table(app_ratings)
+app_ratings <- app_ratings[, if (.N >= 100) .SD, by = user_id]
 
 set.seed(2006)
-indexes <- split(1:nrow(movielens), movielens$userId)
+indexes <- split(1:nrow(app_ratings), app_ratings$user_id)
 
 test_ind <- sapply(indexes, function(i) sample(i, ceiling(length(i)*.2))) 
 test_ind <- sort(unlist(test_ind))
 
-movielens[, `:=`(userId = as.character(userId), movieId = as.character(movieId))]
-cols <- c("userId", "movieId", "title", "rating")
-test_set <- movielens[test_ind, ..cols] 
-train_set <- movielens[-test_ind, ..cols]
-test_set <- test_set[movieId %in% train_set$movieId]
+app_ratings[, `:=`(user_id = as.character(user_id), app_id = as.character(app_id))]
+cols <- c("user_id", "app_id", "app_name", "rating")
+test_set <- app_ratings[test_ind, ..cols] 
+train_set <- app_ratings[-test_ind, ..cols]
+test_set <- test_set[app_id %in% train_set$app_id]
 
 rmse <- function(r) sqrt(mean(r^2))
-clamp <- function(x, lower = 0.5, upper = 5) pmax(pmin(x, upper), lower)
+clamp <- function(x, lower = 1, upper = 10) pmax(pmin(x, upper), lower)
 fit_als <- function(lambda, tol = 1e-6, max_iter = 100) {
   fit <- copy(train_set)
   N <- nrow(fit)
@@ -31,15 +31,15 @@ fit_als <- function(lambda, tol = 1e-6, max_iter = 100) {
     a_old <- copy(fit$a)
     b_old <- copy(fit$b)
     
-    fit[, a := sum(rating - mu - b)/(.N + N*lambda) , by = userId]
-    fit[, b := sum(rating - mu - a)/(.N + N*lambda), by = movieId]
+    fit[, a := sum(rating - mu - b)/(.N + N*lambda) , by = user_id]
+    fit[, b := sum(rating - mu - a)/(.N + N*lambda), by = app_id]
     
     delta <- max(c(abs(fit$a - a_old), abs(fit$b - b_old)))
     if (delta < tol) break
   }
-  return(with(fit, list(mu = mu, a = setNames(a, userId), b = setNames(b, movieId))))
+  return(with(fit, list(mu = mu, a = setNames(a, user_id), b = setNames(b, app_id))))
 }
-movie_map <- unique(train_set[,.(movieId, title)])
+app_map <- unique(train_set[,.(app_id, app_name)])
 ```
 
 Many data problems involve large matrices with structure we cannot see directly. Latent factor models provide a powerful way to uncover this hidden structure. The key idea is that observed data often reflect the influence of a smaller number of unobserved (latent) features. These latent factors capture patterns such as groups of similar individuals, groups of similar items, or shared underlying attributes that drive the observed values.
@@ -50,7 +50,7 @@ $$
 Y_{ij} = \mu + \alpha_i + \beta_j + \varepsilon_{ij}
 $$
 
-to describe movie ratings. This model accounts for differences between users through $\alpha_i$ and differences between movies through $\beta_j$. However, it treats all movies and all users as unrelated beyond these simple averages. In practice, we know that groups of movies tend to be liked by the same kinds of users, and groups of users tend to give similar ratings to the same kinds of movies. This shared structure is not captured by user and movie effects alone.
+to describe app ratings. This model accounts for differences between users through $\alpha_i$ and differences between apps through $\beta_j$. However, it treats all apps and all users as unrelated beyond these simple averages. In practice, we know that groups of apps tend to be liked by the same kinds of users, and groups of users tend to give similar ratings to the same kinds of apps. This shared structure is not captured by user and app effects alone.
 
 To see this, we compute residuals
 
@@ -63,18 +63,18 @@ by fitting the model to the `train_set` dataset using the `fit_als` function, bo
 ```{r}
 #| cache: false
 fit <- fit_als(lambda = 3.636364e-05)
-train_set[,resid := rating - clamp(fit$mu + fit$a[userId] + fit$b[movieId])]
+train_set[,resid := rating - clamp(fit$mu + fit$a[user_id] + fit$b[app_id])]
 ```
 
-and then, for example,  compare the residuals for *The Godfather* with three other films:
+and then, for example, compare the residuals for *Vesuvio mafia game* with three other apps:
 
-```{r movie-cor, echo=FALSE, warning=FALSE, message=FALSE, out.width="100%", fig.width=9, fig.height=3}
-ms <- c("Godfather, The", "Godfather: Part II, The", "Goodfellas", "You've Got Mail",
-        "Sleepless in Seattle")
-ids <- movie_map[title %in% ms, movieId]
-r <- dcast(train_set[movieId %in% ids, ], userId ~ movieId, value.var = "resid")[,-1] |>
+```{r app-cor, echo=FALSE, warning=FALSE, message=FALSE, out.width="100%", fig.width=9, fig.height=3}
+ms <- c("Vesuvio mafia game", "Vesuvio mafia game II", "Mob family crime game",
+        "Pen-pal dating app", "Long-distance dating app")
+ids <- app_map[app_name %in% ms, app_id]
+r <- dcast(train_set[app_id %in% ids, ], user_id ~ app_id, value.var = "resid")[,-1] |>
   as.matrix()
-colnames(r) <- with(movie_map, title[match(colnames(r), movieId)])
+colnames(r) <- with(app_map, app_name[match(colnames(r), app_id)])
 
 the_lim <- range(r, na.rm = TRUE)
 p1 <- data.frame(x = r[,ms[1]], y = r[,ms[2]]) |> 
@@ -92,9 +92,9 @@ p3 <- data.frame(x = r[,ms[1]], y = r[,ms[5]]) |>
 gridExtra::grid.arrange(p1, p2 ,p3, ncol = 3)
 ```
 
-These correlations range from strongly positive to negative. Specifically the correlations between *The Godfather* and *The Godfather part II*, *Goodfellas*, and *Sleepless in Seattle* are `r round(cor(r[,"Godfather: Part II, The"], r[,"Godfather, The"], use = "complete"), 2)`, `r round(cor(r[,"Goodfellas"],r[,"Godfather, The"], use = "complete"), 2)`, and `r round(cor(r[,"Sleepless in Seattle"],r[,"Godfather, The"], use = "complete"), 2)`, respectively. Users who love *The Godfather* also tend to like *The Godfather Part II* and *Goodfellas*, but often dislike *Sleepless in Seattle*. These kinds of relationships are because movies share latent characteristics: genre, tone, style, era, or audience appeal. Similarly, users have latent traits that make them prefer some types of movies over others.
+These correlations range from strongly positive to negative. Specifically the correlations between *Vesuvio mafia game* and *Vesuvio mafia game II*, *Mob family crime game*, and *Long-distance dating app* are `r round(cor(r[,"Vesuvio mafia game II"], r[,"Vesuvio mafia game"], use = "complete"), 2)`, `r round(cor(r[,"Mob family crime game"],r[,"Vesuvio mafia game"], use = "complete"), 2)`, and `r round(cor(r[,"Long-distance dating app"],r[,"Vesuvio mafia game"], use = "complete"), 2)`, respectively. Users who love *Vesuvio mafia game* also tend to like its sequel and *Mob family crime game*, but often dislike *Long-distance dating app*. These kinds of relationships arise because apps share latent characteristics: theme, tone, style, developer, or audience appeal. Similarly, users have latent traits that make them prefer some types of apps over others.
 
-Latent factor models are designed to capture exactly this type of structure. Instead of estimating thousands of separate parameters, they represent users and movies in a lower-dimensional space defined by a small number of latent features. The winning team of the Netflix Prize competition relied heavily on this idea, using latent factor models to achieve an improvement in predictive accuracy.
+Latent factor models are designed to capture exactly this type of structure. Instead of estimating thousands of separate parameters, they represent users and apps in a lower-dimensional space defined by a small number of latent features. The winning team of the Netflix Prize competition relied heavily on this idea, using latent factor models to achieve an improvement in predictive accuracy.
 
 Although recommendation systems are one of the most famous applications, latent factor models are widely used in other fields, such as  genomics (to model hidden biological structure),
  text analysis (topics in documents), marketing (customer segmentation), and  finance (risk factors underlying asset returns).
@@ -105,8 +105,8 @@ In this chapter, we introduce latent factor models in the context of recommendat
 
 ```{r, echo=FALSE}
 set.seed(1987)
-short_names <- c("Godfather", "Godfather 2", "Goodfellas",
-                 "Scent of a Woman", "You've Got Mail", "Sleepless in Seattle")
+short_names <- c("Vesuvio mafia", "Vesuvio mafia II", "Mob family",
+                 "Vesuvio tango", "Pen-pal dating", "Long-distance dating")
 q <- cbind(c(1 , 1, 1, -1, -1, -1), 
            c(1 , 1, -1, 1, -1, -1))
 p <- cbind(sqrt(2)*rep(c(-1,0,1), c(3,6,3)*10),
@@ -116,13 +116,13 @@ rownames(q) <- c(short_names)
 y <- p %*% t(q) + matrix(rnorm(nrow(p)*nrow(q), 0, 0.5), nrow(p), nrow(q))
 ```
 
-We start with a simple simulated example of ratings $Y_{ij}$ for six movies and 120 users. To illustrate how factor analysis uncovers hidden structure, we don't show the data-generating code. For simplicity, we assume ratings have been adjusted for movie and user effects (as described in [@sec-regularization]), and we store the residuals in the object `y`:
+We start with a simple simulated example of ratings $Y_{ij}$ for six apps and 120 users: three crime games (two of them from the same fictional studio, Vesuvio, plus *Mob family crime game*), a dance game also made by Vesuvio, and two dating apps. To illustrate how factor analysis uncovers hidden structure, we don't show the data-generating code. For simplicity, we assume ratings have been adjusted for app and user effects (as described in [@sec-regularization]), and we store the residuals in the object `y`:
 
 ```{r}
 dim(y)
 ```
 
-If we examine the correlation between movies based on user ratings, we notice a pattern:
+If we examine the correlation between apps based on user ratings, we notice a pattern:
 
 :::{.small-code}
 ```{r}
@@ -148,18 +148,18 @@ if (knitr::is_latex_output()) {
 ```
 :::
 
-It appears that ratings are positively correlated within genres, for example, among mob movies or among romance movies, and negatively correlated across the two genres. In statistics, such patterns are often explained by factors: unobserved, or latent, variables that account for the correlations or associations among the observed variables. Under certain assumptions, which we will describe below, these latent factors can be estimated from the data and used to capture the underlying structure driving the correlations.
+It appears that ratings are positively correlated within themes, for example, among mafia games or among dating apps, and negatively correlated across the two themes. In statistics, such patterns are often explained by factors: unobserved, or latent, variables that account for the correlations or associations among the observed variables. Under certain assumptions, which we will describe below, these latent factors can be estimated from the data and used to capture the underlying structure driving the correlations.
 
-One approach is to use our knowledge of movie genres to define a factor that distinguishes between mob and romance movies:
+One approach is to use our knowledge of the apps' themes to define a factor that distinguishes between mafia games and dating apps:
 
 ```{r}
 q <- c(1, 1, 1, -1, -1, -1)
 ```
 
-We code mob movies with `-1` and romance movies with `1`.
+We code mafia games with `1` and dating apps with `-1`.
 
 
-To quantify each user's genre preferences, we fit a separate linear model for every user $i$ (rows of `y`) by using `apply`:
+To quantify each user's theme preferences, we fit a separate linear model for every user $i$ (rows of `y`) by using `apply`:
 
 ```{r}
 p <- apply(y, 1, function(y_i) lm(y_i ~ q - 1)$coef)
@@ -167,7 +167,7 @@ p <- apply(y, 1, function(y_i) lm(y_i ~ q - 1)$coef)
 
 We include `-1` in the formula because the residuals were constructed to have a mean of 0, so no intercept is needed. 
 
-Each call to `lm` returns an estimated coefficient representing the difference in average ratings between mob and romance movies. A positive value indicates a preference for mob movies, a negative value indicates a preference for romance movies, and values near 0 suggest no strong preference. 
+Each call to `lm` returns an estimated coefficient representing the difference in average ratings between mafia games and dating apps. A positive value indicates a preference for mafia games, a negative value indicates a preference for dating apps, and values near 0 suggest no strong preference. 
 
 Collecting these across users gives us `p`, a vector with one entry per user. The histogram below shows users cluster into these three types: 
 
@@ -177,7 +177,7 @@ hist(p, breaks = seq(-2, 2, 0.1))
 ```
 
 
-We now show that we can approximate each rating $Y_{ij}$ using just the product of two vectors: one describing user preferences ($p$) and one describing movie characteristics ($q$). To work with matrix algebra, we convert the vectors into matrices and multiply them:
+We now show that we can approximate each rating $Y_{ij}$ using just the product of two vectors: one describing user preferences ($p$) and one describing app characteristics ($q$). To work with matrix algebra, we convert the vectors into matrices and multiply them:
 
 ```{r e-vs-pq, echo=-1}
 rafalib::mypar()
@@ -187,7 +187,7 @@ plot(p %*% t(q), y)
 ```
 
 The points fall roughly along the diagonal, which means the model captures a good amount of structure in the data.
-However, there is still substantial unexplained variation. Even after removing the "mob vs. romance" effect, we still see correlation patterns:
+However, there is still substantial unexplained variation. Even after removing the "mafia vs. dating" effect, we still see correlation patterns:
 
 :::{.small-code}
 ```{r}
@@ -211,17 +211,17 @@ if (knitr::is_latex_output()) {
 }
 ```
 :::
-Looking more closely, this structure appears to come from whether or not Al Pacino is in the movie. This suggests we can improve the model by adding a second latent factor, one that distinguishes Pacino films from non-Pacino films. We do this by adding a second column to `q`:
+Looking more closely, this structure appears to come from whether or not the app was made by the Vesuvio studio. This suggests we can improve the model by adding a second latent factor, one that distinguishes Vesuvio apps from all the others. We do this by adding a second column to `q`:
 
 ```{r}
 q <- cbind(c(1, 1, 1, -1, -1, -1),
            c(1, 1, -1, 1, -1, -1))
 ```
 
-Now each movie is described by *two latent factors*:
+Now each app is described by *two latent factors*:
 
-1. Mob vs. romance
-2. Al Pacino vs. not Al Pacino
+1. Mafia vs. dating
+2. Vesuvio studio vs. other developers
 
 We then fit a model for each user to estimate their preference for each factor:
 
@@ -230,7 +230,7 @@ p <- t(apply(y, 1, function(y_i) lm(y_i ~ q-1)$coef))
 ```
 
 Because `q` now has two columns, `lm` returns two coefficients per user.
-The first captures mob/romance preference, and the second captures whether the user tends to like Al Pacino films.
+The first captures mafia/dating preference, and the second captures whether the user tends to like Vesuvio apps.
 
 We use `t` (transpose) because `apply` stacks results as columns, but we want one user per row.
 
@@ -273,7 +273,7 @@ This approximation with two factors can be written as:
 $$
 Y_{ij} \approx p_{i1}q_{j1} + p_{i2}q_{j2}, i = 1 \dots, I \mbox{ and } j = 1, \dots, J
 $$
-with $I$ the number of users and $J$ the number of movies.
+with $I$ the number of users and $J$ the number of apps.
 
 Using matrix representation, we can rewrite the above expression like this:
 
@@ -282,11 +282,11 @@ $$
 $$
 with $\mathbf{Y}$ an $I\times J$ matrix with entries $Y_{ij}$, $\mathbf{P}$ a $I\times K$ matrix with entries $p_{ik}$, and $\mathbf{Q}$ a $J\times K$ matrix with entries $q_{jk}$, where $K$ is the number of latent factors (here, $K = 2$).
 
-This analysis provides insights into the process of generating our data since $\mathbf{P}$ contains user-specific parameters and $\mathbf{Q}$ contains movie-specific parameters. The approach is often referred to as *matrix factorization* because the rating matrix has been *factorized* into two lower-dimensional, interpretable matrices. 
+This analysis provides insights into the process of generating our data since $\mathbf{P}$ contains user-specific parameters and $\mathbf{Q}$ contains app-specific parameters. The approach is often referred to as *matrix factorization* because the rating matrix has been *factorized* into two lower-dimensional, interpretable matrices. 
 
 Note that the approach also provides compression since the $120 \times 6 = 720$ observations can be well approximated by a matrix multiplication of a $120 \times 2$ matrix $\mathbf{P}$ and a $6 \times 2$ matrix $\mathbf{Q}$, a total of $252$ parameters. 
 
-In our example with simulated data, we deduced the factors $\mathbf{q}_1$ and $\mathbf{q}_2$ from the sample correlation and our knowledge of movies. These ended up working well. However, in general, deducing factors is not this easy. Furthermore, factors that provide good approximation might be more complicated than containing just two values. For example, _The Godfather III_ has a romantic subplot, so we might not know what value to assign it in $q_1$. 
+In our example with simulated data, we deduced the factors $\mathbf{q}_1$ and $\mathbf{q}_2$ from the sample correlation and our knowledge of the apps. These ended up working well. However, in general, deducing factors is not this easy. Furthermore, factors that provide good approximation might be more complicated than containing just two values. For example, *Vesuvio mafia game III* adds a romance storyline, so we might not know what value to assign it in $q_1$. 
 
 So, can we estimate the factors? A challenge is that if $\mathbf{P}$ is unknown, our model is no longer linear: we can't use `lm` to estimate both $\mathbf{P}$ and $\mathbf{Q}$. In the next sections, we describe how PCA can be used to estimate $\mathbf{P}$ and $\mathbf{Q}$.
 
@@ -340,7 +340,7 @@ Next, notice that the first column of $\mathbf{V}$:
 pca$rotation[,1]
 ```
 
-is assigning positive values to the mob movies and negative values to the romance movies.
+is assigning positive values to the mafia games and negative values to the dating apps.
 
 The second column: 
 
@@ -348,9 +348,9 @@ The second column:
 pca$rotation[,2]
 ```
 
-is coding for Al Pacino movies. 
+is coding for Vesuvio apps. 
 
-PCA is automatically discovering the structure we inferred using our knowledge of the movies. This is not a coincidence; there is a mathematical connection that explains why PCA aligns with these latent patterns.
+PCA is automatically discovering the structure we inferred using our knowledge of the apps. This is not a coincidence; there is a mathematical connection that explains why PCA aligns with these latent patterns.
 
 To see this assume that the data $\mathbf{Y}$ follows the model:
 
@@ -371,7 +371,7 @@ $$
 To understand why we need this constraint, notice that without it, the model is not uniquely defined---it is *unidentifiable*. For example, we can multiply any column of $\mathbf{P}$ by a constant $c > 0$ and divide the corresponding column of $\mathbf{Q}$ by the same constant, and the product $\mathbf{P}\mathbf{Q}^\top$ remains unchanged. This constraint removes the scaling ambiguity and ensures that the factorization has a well-defined form.
 :::
 
-The first $K$ columns of the principal components and the associated rotation matrix provide estimates of $\mathbf{P}$ and $\mathbf{Q}$, respectively. In other words, PCA can be viewed as a special case of latent factor modeling where the latent factors are chosen to be orthogonal and ordered by the variance they explain. This explains why PCA naturally recovers interpretable patterns, such as genre preferences or actor-specific effects, without us explicitly coding them into the model.
+The first $K$ columns of the principal components and the associated rotation matrix provide estimates of $\mathbf{P}$ and $\mathbf{Q}$, respectively. In other words, PCA can be viewed as a special case of latent factor modeling where the latent factors are chosen to be orthogonal and ordered by the variance they explain. This explains why PCA naturally recovers interpretable patterns, such as theme preferences or developer-specific effects, without us explicitly coding them into the model.
 
 Another way to see this connection is through optimization. PCA can be formulated as the solution to a least squares problem: among all possible $K$-dimensional projections of the data, PCA finds the one that minimizes the reconstruction error. That is, of any $K$ latent factors that could describe the data, the first $K$ PCs minimize the sum of squared differences between the original data $\mathbf{Y}$ and its approximation $\mathbf{P}\mathbf{Q}^\top$. In this sense, PCA provides the best rank-$K$ approximation of $\mathbf{Y}$ in the least squares sense. 
 
@@ -384,9 +384,9 @@ Thus, the factorization is identifiable only up to these sign changes.
 
 ## Case study: recommendation systems
 
-We now move back from the small simulated example to the real Movielens dataset. In the previous section, we used a toy setting to illustrate how latent factors can capture patterns such as "mob vs. romance" or "Al Pacino vs. not Al Pacino". Here, we show that a similar latent structure is present in the real movie ratings and that we can exploit it to further improve predictions.
+We now move back from the small simulated example to the `app_ratings` dataset. In the previous section, we used a toy setting to illustrate how latent factors can capture patterns such as "mafia vs. dating" or "Vesuvio studio vs. other developers". Here, we show that a similar latent structure is present in the app ratings and that we can exploit it to further improve predictions.
 
-Starting from the residuals of our regularized user + movie model (introduced in @sec-regularization), we can examine how movie ratings correlate after accounting for overall averages and user and movie effects. Focusing on a small set of well-known titles, we compute the correlation matrix of these residuals:
+Starting from the residuals of our regularized user + app model (introduced in @sec-regularization), we can examine how app ratings correlate after accounting for overall averages and user and app effects. Focusing on a small set of well-known apps, we compute the correlation matrix of these residuals:
 
 :::{.small-code}
 ```{r}
@@ -399,14 +399,13 @@ if (knitr::is_latex_output()) {
 ```{r}
 #| echo: false
 ow <- options(width = 200)
-ms <- c("Godfather, The", "Godfather: Part II, The", "Goodfellas", 
-            "Scent of a Woman",  "You've Got Mail", "Sleepless in Seattle")
-ids <- movie_map[match(ms, title), movieId]
-r <- dcast(train_set[movieId %in% ids, ], userId ~ movieId, value.var = "resid")[,-1] |>
+ms <- c("Vesuvio mafia game", "Vesuvio mafia game II", "Mob family crime game", 
+            "Vesuvio tango game",  "Pen-pal dating app", "Long-distance dating app")
+ids <- app_map[match(ms, app_name), app_id]
+r <- dcast(train_set[app_id %in% ids, ], user_id ~ app_id, value.var = "resid")[,-1] |>
   as.matrix()
 r <- r[,ids]
-colnames(r) <- with(movie_map, title[match(colnames(r), movieId)]) |>
-  stringr::str_remove(", The") |> stringr::str_remove(": Part")
+colnames(r) <- with(app_map, app_name[match(colnames(r), app_id)])
 
 round(cor(r, use = "pairwise.complete.obs"), 2)
 options(ow)
@@ -419,24 +418,24 @@ if (knitr::is_latex_output()) {
 }
 ```
 :::
-As in the simulated example, we see clear correlation patterns. For instance, *The Godfather*, *The Godfather Part II*, and *Goodfellas* share similar residuals, while romantic comedies show different behavior. This suggests that ratings are influenced by *latent characteristics* that group movies and users in meaningful ways.
+As in the simulated example, we see clear correlation patterns. For instance, *Vesuvio mafia game*, its sequel, and *Mob family crime game* share similar residuals, while the dating apps show different behavior. This suggests that ratings are influenced by *latent characteristics* that group apps and users in meaningful ways.
 
 
-### A latent factor model for movie ratings
+### A latent factor model for app ratings
 
-This motivates extending our earlier model with latent factors that capture similarities between movies and users. This approach is a simplified version used by the Netflix Prize winners, who combined latent factor models with the regularization methods from @sec-regularization.
+This motivates extending our earlier model with latent factors that capture similarities between apps and users. This approach is a simplified version used by the Netflix Prize winners, who combined latent factor models with the regularization methods from @sec-regularization.
 
-We use a latent factor model that extends the model from @sec-regularization to include factors capturing similarities between movies:
+We use a latent factor model that extends the model from @sec-regularization to include factors capturing similarities between apps:
 $$
 Y_{ij} = \mu + \alpha_i + \beta_j + \sum_{k=1}^K p_{ik}q_{jk} + \varepsilon_{ij}
 $$
 
-Recall that, as explained in the previous chapter, we do not observe all $(i,j)$ combinations. Writing the data as an $I \times J$ matrix $\mathbf{Y}$, with $I$ users and $J$ movies, would produce many missing values.
+Recall that, as explained in the previous chapter, we do not observe all $(i,j)$ combinations. Writing the data as an $I \times J$ matrix $\mathbf{Y}$, with $I$ users and $J$ apps, would produce many missing values.
 
 However, the sum $\sum_{k=1}^K p_{ik}q_{jk}$ can be expressed as the $I \times J$ matrix product $\mathbf{P}\mathbf{Q}^\top$, where $\mathbf{P}$ is an $I \times K$ matrix and $\mathbf{Q}$ is a $J \times K$ matrix. Estimating all parameters effectively fills in every cell of the $I \times J$ matrix, giving predictions for all $(i,j)$ pairs. 
 
 
-So if this latent factor model is a good approximation, we don’t actually need to observe every user-movie rating to make predictions. Instead, we just need enough observed ratings to estimate the latent factor matrices $\mathbf{P}$ (for users) and $\mathbf{Q}$ (for movies). Once we have these matrices, we can predict any user-movie combination, even those not seen in the training data, simply by computing:
+So if this latent factor model is a good approximation, we don’t actually need to observe every user-app rating to make predictions. Instead, we just need enough observed ratings to estimate the latent factor matrices $\mathbf{P}$ (for users) and $\mathbf{Q}$ (for apps). Once we have these matrices, we can predict any user-app combination, even those not seen in the training data, simply by computing:
 
 $$
 \hat{y}_{ij} = \hat{\mu} + \hat{\alpha}_i + \hat{\beta}_j + \hat{p}_i^\top \hat{q}_j
@@ -445,7 +444,7 @@ $$
 
 ### Regularization 
 
-Given the large number of parameters and the sparsity of the data, especially for movies with few ratings, it is appropriate to use penalized least squares. We therefore minimize:
+Given the large number of parameters and the sparsity of the data, especially for apps with few ratings, it is appropriate to use penalized least squares. We therefore minimize:
 
 $$
 \frac{1}{N}
@@ -460,22 +459,22 @@ $$
 \right)
 $$
 
-Here, $N$ is the number of observed ratings, $I$ is the number of users, and $J$ is the number of movies. The vectors $\boldsymbol{\alpha}$ and $\boldsymbol{\beta}$ are the user and movie effects, $\boldsymbol{\alpha} = (\alpha_1,\dots,\alpha_I)^\top$ and $\boldsymbol{\beta} = (\beta_1,\dots,\beta_J)^\top$. The vectors $\mathbf{p}_k = (p_{1k}, \dots, p_{Ik})^\top$ and $\mathbf{q}_k = (q_{1k}, \dots, q_{Jk})^\top$ are the $k$-th latent factor components. Recall that for any vector $\mathbf{x} = (x_1,\dots x_n)^\top$, $\|\mathbf{x}\|^2$ denotes the sum of squares, $\sum_{i=1}^n x_i^2$.
+Here, $N$ is the number of observed ratings, $I$ is the number of users, and $J$ is the number of apps. The vectors $\boldsymbol{\alpha}$ and $\boldsymbol{\beta}$ are the user and app effects, $\boldsymbol{\alpha} = (\alpha_1,\dots,\alpha_I)^\top$ and $\boldsymbol{\beta} = (\beta_1,\dots,\beta_J)^\top$. The vectors $\mathbf{p}_k = (p_{1k}, \dots, p_{Ik})^\top$ and $\mathbf{q}_k = (q_{1k}, \dots, q_{Jk})^\top$ are the $k$-th latent factor components. Recall that for any vector $\mathbf{x} = (x_1,\dots x_n)^\top$, $\|\mathbf{x}\|^2$ denotes the sum of squares, $\sum_{i=1}^n x_i^2$.
 
 We use two penalties: $\lambda_1$ for the linear effects (the $\alpha$s and $\beta$s), and $\lambda_2$ for the latent factors. This lets us regularize the two components differently, reflecting their distinct roles in the model.
 
 How do we estimate the parameters in this model? The challenge comes from the fact that both the $p$s and $q$s are unknown and appear multiplied together, making the model nonlinear in its parameters. In earlier sections, we highlighted the connection between factor analysis and principal component analysis (PCA), and showed that in settings with complete data, PCA can be used to estimate the latent factors of a factor analysis model.
 
-However, recommendation systems present a critical complication: the rating matrix is extremely sparse. Most users only rate a small subset of movies, so the data matrix has many missing entries. PCA and related approaches require a fully observed matrix, so they cannot be applied directly in this context. In addition, while PCA provides least squares estimates, here we want to use *penalized least squares*, which allows us to regularize the parameters and avoid overfitting when the data for some users or movies are limited.
+However, recommendation systems present a critical complication: the rating matrix is extremely sparse. Most users only rate a small subset of apps, so the data matrix has many missing entries. PCA and related approaches require a fully observed matrix, so they cannot be applied directly in this context. In addition, while PCA provides least squares estimates, here we want to use *penalized least squares*, which allows us to regularize the parameters and avoid overfitting when the data for some users or apps are limited.
 
-To address these challenges, we again turn to the *Alternating Least Squares (ALS)* algorithm described in @sec-movie-effects. The key idea is to alternately estimate each column of $\mathbf{P}$ and $\mathbf{Q}$: fix all columns except one, and solve for that one column using penalized least squares, then switch across all columns. This alternating approach also extends naturally to penalized versions of the model, where user and movie effects and latent factors are regularized separately. For these reasons, ALS has become one of the standard approaches for fitting latent factor models in recommendation systems, where sparsity makes direct application of PCA infeasible.
+To address these challenges, we again turn to the *Alternating Least Squares (ALS)* algorithm described in @sec-app-effects. The key idea is to alternately estimate each column of $\mathbf{P}$ and $\mathbf{Q}$: fix all columns except one, and solve for that one column using penalized least squares, then switch across all columns. This alternating approach also extends naturally to penalized versions of the model, where user and app effects and latent factors are regularized separately. For these reasons, ALS has become one of the standard approaches for fitting latent factor models in recommendation systems, where sparsity makes direct application of PCA infeasible.
 
-The **behdslabs** package provides the `fit_recommender_model` function, which implements a latent factor model with regularization:
+The **behdslabs** package provides the `fit_recommender_model` function, which implements a latent factor model with regularization. Its default penalties were chosen for ratings on a 5-star scale. Our scores run from 1 to 10, a scale twice as wide, and the latent-factor penalty does not adjust to the scale by itself, so we double $\lambda_2$ from its default of 0.0001:
 
 ```{r}
 #| warning: false
 fit <- with(train_set, 
-  fit_recommender_model(rating, userId, movieId, reltol=1e-6))
+  fit_recommender_model(rating, user_id, app_id, lambda_2 = 0.0002, reltol=1e-6))
 ```
 
 You can learn more about the function by running `?fit_recommender_model` or by examining the source code.
@@ -483,44 +482,44 @@ You can learn more about the function by running `?fit_recommender_model` or by 
 Once we have a fitted model, we can build predictions for the test set and compute the RMSE:
 
 ```{r}
-i <- test_set$userId
-j <- test_set$movieId
+i <- test_set$user_id
+j <- test_set$app_id
 res <- test_set$rating - with(fit, mu + a[i] + b[j] + rowSums(p[i,]*q[j,]))
 rmse(res)
 ```
 
-This improves accuracy beyond the regularized user + movie effects model from @sec-regularization. It illustrates, in simplified form, how the Netflix Prize winners improved prediction: by combining regularization with a latent factor model that learns hidden structure in user–movie interactions.
+This improves accuracy beyond the regularized user + app effects model from @sec-regularization. It illustrates, in simplified form, how the Netflix Prize winners improved prediction: by combining regularization with a latent factor model that learns hidden structure in user–app interactions.
 
 Importantly, this improvement is achieved without tuning the penalty terms $\lambda_1$ and $\lambda_2$, the number of latent factors $K$, or other model settings discussed next.
 
 
 ### Visualizing factors
 
-Examining the estimated movie factors $\mathbf{q}_k$ reveals that they are interpretable.
+Examining the estimated app factors $\mathbf{q}_k$ reveals that they are interpretable.
 
-The estimates for these factors are contained in `fit$q`. Because some movies do not have enough ratings to stably estimate latent factors, the `fit_recommender_model` function excludes these movies from the estimation. We therefore obtain the estimated movie factors $\mathbf{q}_k$ using:
+The estimates for these factors are contained in `fit$q`. Because some apps do not have enough ratings to stably estimate latent factors, the `fit_recommender_model` function excludes these apps from the estimation. We therefore obtain the estimated app factors $\mathbf{q}_k$ using:
 
 ```{r}
 factors <- fit$q[fit$n_item >= fit$min_ratings,] 
 ```
 
-To make interpretation easier, we replace the row names (which are movie IDs) with movie titles:
+To make interpretation easier, we replace the row names (which are app IDs) with app names:
 
 ```{r}
-rownames(factors) <- movielens[match(rownames(factors), movieId)]$title
+rownames(factors) <- app_ratings[match(rownames(factors), app_id)]$app_name
 ```
 
-Plotting the first two factors reveals several insights. First note that the six movies of our earlier example are highlighted in blue: we can see that these two factors start to explain the correlations we saw earlier, with mob films clustering together, romance films far from these, and Al Pacino being somewhere in between:
+Plotting the first two factors reveals several insights. First note that the six apps of our earlier example are highlighted in blue: we can see that these two factors start to explain the correlations we saw earlier, with the mafia games clustering together, the dating apps far from these, and *Vesuvio tango game* somewhere in between:
 
-```{r movies-pca, echo=FALSE, warning=FALSE, out.width="95%"}
+```{r apps-pca, echo=FALSE, warning=FALSE, out.width="95%"}
 library(ggrepel)
 pcs <- data.table(factor_1 = factors[,1], 
                   factor_2 = factors[,2],
                   name = rownames(factors))
 highlight1 <- pcs[name %in% 
-                    c("Godfather, The", "Godfather: Part II, The", 
-                      "Goodfellas", "Scent of a Woman", 
-                      "Sleepless in Seattle", "You've Got Mail")]
+                    c("Vesuvio mafia game", "Vesuvio mafia game II", 
+                      "Mob family crime game", "Vesuvio tango game", 
+                      "Long-distance dating app", "Pen-pal dating app")]
 highlight2 <- pcs[c(order(factor_1)[1:5],
                     order(-factor_1)[1:5],
                     order(factor_2)[1:5],
@@ -534,49 +533,49 @@ pcs |>  ggplot(aes(factor_1, factor_2)) +
                   data = highlight2, size = 2, color = "red")
 ```
 
-Looking at the movies with the most extreme factor values (red) provides a clear interpretation for the factors. 
+Looking at the apps with the most extreme factor values (red) provides a clear interpretation for the factors. 
 
-The first factor separates iconic dark classics
+The first factor separates big-budget blockbuster games
 
 ```{r}
 names(sort(factors[,1], decreasing = TRUE)[1:5]) |> cat(sep = "\n")
 ```
 
-from Hollywood blockbusters
+from dark, cult-classic apps
 
 ```{r}
 names(sort(factors[,1])[1:5]) |> cat(sep = "\n")
 ```
 
-The second factor separates weird cult movies
+The second factor separates odd, polarizing apps
 
 ```{r}
 names(sort(factors[,2], decreasing = TRUE)[1:5]) |> cat(sep = "\n")
 ```
 
-from big-budget epic historical and fantasy sagas
+from epic fantasy and adventure sagas
 
 ```{r}
 names(sort(factors[,2])[1:5]) |> cat(sep = "\n")
 ```
 
-These results demonstrate that the latent factors capture meaningful distinctions in film genres and styles, showing how latent factor models  can uncover interpretable structure from sparse rating data.
+These results demonstrate that the latent factors capture meaningful distinctions in the apps' themes and styles, showing how latent factor models  can uncover interpretable structure from sparse rating data.
 
 ### Practical considerations
 
 The `fit_recommender_model` function includes several adjustable parameters:
 
-* Penalty terms: by default, $\lambda_1 = 0.00005$ and $\lambda_2 = 0.0001$. A grid search, as in @sec-selecting-penalty-term, can identify better choices.
+* Penalty terms: by default, $\lambda_1 = 0.00005$ and $\lambda_2 = 0.0001$ (above, we doubled $\lambda_2$ to match our 1–10 scale). A grid search, as in @sec-selecting-penalty-term, can identify better choices.
 
 * Number of latent factors: the default is $K = 8$, but this may not be optimal. If $K$ is too small, the model may miss structure. If $K$ is too large, the model risks overfitting and instability.
 
-* Minimum ratings per movie: the function only estimates latent factors for movies with at least 20 ratings. This helps avoid unstable estimates of the $q$ vectors. However, 20 may be too high, or too low, depending on the dataset.
+* Minimum ratings per app: the function only estimates latent factors for apps with at least 20 ratings. This helps avoid unstable estimates of the $q$ vectors. However, 20 may be too high, or too low, depending on the dataset.
 
 * Convergence tolerance: the default stopping rule requires model improvement below `reltol`. Decreasing the tolerance will make results better, but increasing the tolerance often speeds up computation with little loss in accuracy. 
 
-Further improvements can be made by adding more predictors, such as rating timestamps or movie genres.
+Further improvements can be made by adding more predictors, such as rating timestamps or app categories.
 
-Finally, the winning team's breakthrough came from recognizing that missing ratings are informative. Users tend to avoid movies they expect to dislike, meaning that the absence of a rating is not random. By modeling this structure, they achieved state-of-the-art performance that ultimately led to victory.
+Finally, the winning team's breakthrough came from recognizing that missing ratings are informative. Users tend to avoid apps they expect to dislike, meaning that the absence of a rating is not random. By modeling this structure, they achieved state-of-the-art performance that ultimately led to victory.
 
 
 ## Singular Value Decomposition
@@ -616,7 +615,7 @@ The Singular Value Decomposition is  one of the most widely used tools in modern
 
 ## Exercises
 
-1\. Examine the movie names in the extreme values of factors 3, 4, 5, 6, 7, and 8. Describe any interesting patterns you observe.
+1\. Examine the app names in the extreme values of factors 3, 4, 5, 6, 7, and 8. Describe any interesting patterns you observe.
 
 
 2\. Fit the recommender model with several values of
@@ -634,7 +633,7 @@ At what point do gains level off? Based on the plot, what value of $K$ would you
 
 4\. Using your results from Exercises 2 and 3, perform a grid search over three values of each parameter, $\lambda_1$, $\lambda_2$, and $K$, for a total of $3 \times 3 \times 3 = 27$ combinations. Report the lowest RMSE.
 
-5\. The default model estimates movie factors only for movies with at least 20 ratings. Try thresholds of 5, 10, 20, and 50. How does the RMSE change? Which threshold seems to balance stability and coverage best?
+5\. The default model estimates app factors only for apps with at least 20 ratings. Try thresholds of 5, 10, 20, and 50. How does the RMSE change? Which threshold seems to balance stability and coverage best?
 
 6\. Run the ALS algorithm with stopping rules `reltol = 10^-seq(1, 8, 0.5)`. Record the number of iterations taken and the final RMSE. Is the improvement from tighter convergence worth the additional computation?
 

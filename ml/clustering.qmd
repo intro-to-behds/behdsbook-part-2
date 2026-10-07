@@ -18,31 +18,30 @@ These two methods are foundational, as many advanced unsupervised learning techn
 To make the concepts concrete, we study two real examples. These examples illustrate how unsupervised learning can uncover latent structure in real data, even when no outcome labels are available.
 
 
-### Movie ratings
+### App ratings
 
-Our first example is based on movie ratings. Here we quickly construct a matrix `movies` that has ratings for the 50 movies with the most ratings among users with at least 100 ratings: 
+Our first example is based on the app ratings introduced in @sec-regularization. Here we quickly construct a matrix `apps` that has ratings for the 50 apps with the most ratings among users with at least 100 ratings: 
 
 
 ```{r, cache=FALSE, message=FALSE, warning=FALSE}
 library(behdslabs)
 library(data.table)
-library(stringr)
-dt <- as.data.table(movielens)
-dt <- dt[, if (.N >= 100) .SD, by = userId]
-top_movies <- dt[, .N, by = .(movieId, title)]
-dt <- dt[movieId %in% top_movies[order(-N)][1:50, movieId]]
-dt <- dcast(dt, title ~ userId, value.var = "rating") 
-movies <- as.matrix(dt[,-1])
-rownames(movies) <- str_remove(dt$title, ": Episode") |> str_trunc(20)
+dt <- as.data.table(app_ratings)
+dt <- dt[, if (.N >= 100) .SD, by = user_id]
+top_apps <- dt[, .N, by = .(app_id, app_name)]
+dt <- dt[app_id %in% top_apps[order(-N)][1:50, app_id]]
+dt <- dcast(dt, app_name ~ user_id, value.var = "rating") 
+apps <- as.matrix(dt[,-1])
+rownames(apps) <- dt$app_name
 ```
 
-Notice that if we compute distances directly from the original ratings, movies with generally high ratings will tend to be close to each other, as will movies with generally low ratings. However, this is not what we are actually interested in. Instead, we want to capture how ratings correlate *across users* for the `r ncol(movies)` of different users. To achieve this, we center the ratings for each movie by removing the movie effect:
+Notice that if we compute distances directly from the original ratings, apps with generally high ratings will tend to be close to each other, as will apps with generally low ratings. However, this is not what we are actually interested in. Instead, we want to capture how ratings correlate *across* the `r ncol(apps)` different users. To achieve this, we center the ratings for each app by removing the app effect:
 
 ```{r}
-movies <- movies - rowMeans(movies, na.rm = TRUE)
+apps <- apps - rowMeans(apps, na.rm = TRUE)
 ```
 
-As described in @sec-regularization, many of the entries are missing because not every user rates every movie, so we use the argument `na.rm = TRUE`. With the centered data, we can now cluster movies based on their rating patterns. 
+As described in @sec-regularization, many of the entries are missing because not every user rates every app, so we use the argument `na.rm = TRUE`. With the centered data, we can now cluster apps based on their rating patterns. Remember that the app names are invented labels that echo each app's content: if the clustering works, apps with related names should end up in the same groups. 
 
 ### Sensor activity features
 
@@ -64,16 +63,16 @@ When we later explore `genex`, even without giving the algorithm the activity la
 
 ## Hierarchical clustering
 
-The first clustering algorithm we describe is *hierarchical clustering*. As with many clustering algorithms, the first step is to compute distances between each pair of observations. We do this for the `movies` matrix as an example:
+The first clustering algorithm we describe is *hierarchical clustering*. As with many clustering algorithms, the first step is to compute distances between each pair of observations. We do this for the `apps` matrix as an example:
 
 
 ```{r}
-d <- dist(movies)
+d <- dist(apps)
 ```
 
-The `dist` function automatically accounts for missing values and standardizes the distance measurements, ensuring that the computed distance between two movies does not depend on the number of ratings available.
+The `dist` function automatically accounts for missing values and standardizes the distance measurements, ensuring that the computed distance between two apps does not depend on the number of ratings available.
 
-With the distance between each pair of movies computed, we need an algorithm to define groups based on these distances. Hierarchical clustering starts by defining each observation as a separate group, then the two closest groups are joined into a new group. We then continue joining the closest groups into new groups iteratively until there is just one group including all the observations. 
+With the distance between each pair of apps computed, we need an algorithm to define groups based on these distances. Hierarchical clustering starts by defining each observation as a separate group, then the two closest groups are joined into a new group. We then continue joining the closest groups into new groups iteratively until there is just one group including all the observations. 
 
 
 The `hclust` function implements this algorithm and takes a distance as input:
@@ -90,7 +89,13 @@ rafalib::mypar()
 plot(h, cex = 0.75, main = "", xlab = "")
 ```
 
-This graph gives us an approximation of the distance between any two movies. To find this distance, we find the first location, from top to bottom, where these movies split into two different groups. The height of this location is the distance between these two groups. So, for example, the distance between the three _Star Wars_ movies is 8 or less, while the distance between _Raiders of the Lost Ark_ and _The Silence of the Lambs_ is about 17.
+```{r}
+#| echo: false
+coph <- as.matrix(cophenetic(h))
+saga <- c("Space saga game IV", "Space saga game V", "Space saga game VI")
+```
+
+This graph gives us an approximation of the distance between any two apps. To find this distance, we find the first location, from top to bottom, where these apps split into two different groups. The height of this location is the distance between these two groups. So, for example, the distance between the three _Space saga game_ episodes is `r ceiling(max(coph[saga, saga]))` or less, while the distance between _Treasure hunt game I_ and _Serial killer profiler game_ is about `r round(coph["Treasure hunt game I", "Serial killer profiler game"])`.
 
 To generate actual groups, we can do one of two things: 1) decide on a minimum distance needed for observations to be in the same group, or 2) decide on the number of groups you want and then find the minimum distance that achieves this. 
 
@@ -100,16 +105,16 @@ The function `cutree` can be applied to the output of `hclust` to perform either
 groups <- cutree(h, k = 10)
 ```
 
-Note that the clustering provides some insights into types of movies. Group 2 appears to be critically acclaimed movies:
+Note that the clustering provides some insights into types of apps. For example, the group that contains *Vesuvio mafia game* gathers dark, crime-themed apps:
 
 ```{r}
-names(groups)[groups == 2]
+names(groups)[groups == groups["Vesuvio mafia game"]]
 ```
 
-And Group 9 appears to be _nerd_ movies:
+and the group that contains *Space saga game IV* gathers the sci-fi and fantasy saga games:
 
 ```{r}
-names(groups)[groups == 9]
+names(groups)[groups == groups["Space saga game IV"]]
 ```
 
 We can change the size of the group by either making `k` larger or `h` smaller. 
@@ -145,7 +150,7 @@ heatmap(genex)
 
 Note, we do not show the results of the two lines of code above because there are too many features for the plot to be useful. We will therefore filter some columns and remake the plots.
 
-If only a few features are different between clusters, including all the features can add enough noise to make cluster detection challenging. A simple approach to avoid this is to assume low-variability features are not informative and include only high-variability features. For example, in the movie example, users with low variance in their ratings do not really distinguish movies: all the movies seem about the same to them. Similarly, in the sensor-feature example, features that don't vary across samples are less likely to be informative of activity-related patterns.
+If only a few features are different between clusters, including all the features can add enough noise to make cluster detection challenging. A simple approach to avoid this is to assume low-variability features are not informative and include only high-variability features. For example, in the app example, users with low variance in their ratings do not really distinguish apps: all the apps seem about the same to them. Similarly, in the sensor-feature example, features that don't vary across samples are less likely to be informative of activity-related patterns.
 
 Here we show how to restrict the heatmap to only the most variable features, which often reveal the strongest patterns. We first compute the standard deviation for each feature, select the top 25 most variable features, and then plot a heatmap using a more suitable divergent color palette:
 
@@ -254,18 +259,18 @@ In practice, purity and the corresponding contingency table are often the first 
 
 ## Exercises
 
-1\. Compute the pairwise distance between users in the `movies` dataset using a standard distance (e.g., Euclidean).
-   You will get an error because some user pairs have no movies rated in common, producing rows or columns with all NAs.
-   To diagnose this, create a matrix `in_common` where entry $(i, j)$ is the number of movies that users $i$ and $j$ both rated.
+1\. Compute the pairwise distance between users in the `apps` matrix using a standard distance (e.g., Euclidean).
+   You will get an error because some user pairs have no apps rated in common, producing rows or columns with all NAs.
+   To diagnose this, create a matrix `in_common` where entry $(i, j)$ is the number of apps that users $i$ and $j$ both rated.
    *Hint:* use `is.na()` together with `crossprod()`.
 
-2\. Create a reduced version of the `movies` matrix containing only users who share at least one commonly rated movie with every other user in the subset.  Center each user's ratings by subtracting their mean, compute a distance matrix, and run hierarchical clustering (`hclust`).  Inspect the resulting dendrogram: Do you observe any structure? Do any groups of users cluster together?
+2\. Create a reduced version of the `apps` matrix containing only users who share at least one commonly rated app with every other user in the subset.  Center each user's ratings by subtracting their mean, compute a distance matrix, and run hierarchical clustering (`hclust`).  Inspect the resulting dendrogram: Do you observe any structure? Do any groups of users cluster together?
 
-3\. Use `cutree` with `k = 7` or equivalently `cutree` with `h = 14`  to obtain 7 clusters.
+3\. Use `cutree` with `k = 7` or equivalently `cutree` with `h = 28`  to obtain 7 clusters.
    Create a table showing how many users fall into each of the 7 clusters.
 
-4\. For the largest and second-largest clusters, examine the users' favorite movies (e.g., movies with the highest average ratings).
-   Describe the types of movie watchers in each group. Do the clusters correspond to clear preference patterns (e.g., action fans, romance fans, etc.)?
+4\. For the largest and second-largest clusters, examine the users' favorite apps (e.g., apps with the highest average ratings).
+   Describe the types of app users in each group. Do the clusters correspond to clear preference patterns (e.g., action-game fans, cartoon fans, etc.)?
 
 5\. Perform hierarchical clustering on the sensor-feature matrix `genex` and label the dendrogram leaves using the activity contexts.
    Two walking samples (row names `cerebellum_29` and `cerebellum_30` — the row names of `x` still carry the original tissue-based labels, see the note above) and two gaming samples (`kidney_38` and `kidney_39`) cluster with driving. Verify this in your plot.
