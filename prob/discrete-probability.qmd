@@ -1,6 +1,6 @@
 # Discrete Probability {#sec-discrete-probability}
 
-We begin by covering some basic principles related to categorical data. The specific area of probability that deals with categorical data is referred to as *discrete probability*. Understanding this topic will help us comprehend the probability theory we will later introduce for numeric and continuous data, which is much more common in data analysis. Since discrete probability is invaluable in card games, we will use these as illustrative examples.
+We begin by covering some basic principles related to categorical data. The specific area of probability that deals with categorical data is referred to as *discrete probability*. Understanding this topic will help us comprehend the probability theory we will later introduce for numeric and continuous data, which is much more common in data analysis. We will use simple experiments with categorical outcomes, such as stimuli drawn from a set or responses in a task, as illustrative examples.
 
 ## Relative frequency
 
@@ -14,11 +14,11 @@ A more intuitive way to think about the probability of an event is as the long-r
 
 ## Probability distributions
 
-Probability distributions are the foundation of most statistical models. They describe how likely different outcomes are, providing a mathematical summary of uncertainty. Every model we use in data analysis, from simple polling examples to complex multivariate models, is built on assumptions about underlying probability distributions. As we move to continuous and multidimensional settings, these distributions become more complex and abstract. For discrete cases, however, the idea is quite intuitive: each possible outcome, or category, is assigned a probability based on its relative frequency.
+Probability distributions are the foundation of most statistical models. They describe how likely different outcomes are, providing a mathematical summary of uncertainty. Every model we use in data analysis, from simple survey examples to complex multivariate models, is built on assumptions about underlying probability distributions. As we move to continuous and multidimensional settings, these distributions become more complex and abstract. For discrete cases, however, the idea is quite intuitive: each possible outcome, or category, is assigned a probability based on its relative frequency.
 
 If we know the true relative frequencies of the different categories---that is, the actual proportions in the population, not the proportions observed in a particular sample---then defining a distribution for categorical outcomes is relatively straightforward. We simply assign each relative frequency as the probability of its respective category. In cases analogous to beads in an urn, for each bead type, its proportion defines the distribution.
 
-For example, if we are randomly calling likely voters from a population that is 44% Democrat, 44% Republican, 10% Undecided, and 2% Green Party, these proportions define the probability for each group in any given call. The probability distribution for each call is defined by four numbers: Pr(calling a Republican) =  0.44, Pr(calling a Democrat) = 0.44, Pr(calling an Undecided) = 10%, and Pr(calling a Green) = 0.02.
+For example, if we are randomly recruiting participants from a panel of wearable users in which 44% use a smartwatch, 44% a fitness band, 10% a smart ring, and 2% a chest strap, these proportions define the probability for each group in any given recruitment. The probability distribution for each recruited participant is defined by four numbers: Pr(smartwatch user) = 0.44, Pr(fitness band user) = 0.44, Pr(smart ring user) = 0.10, and Pr(chest strap user) = 0.02.
 
 ## Monte Carlo {#sec-monte-carlo}
 
@@ -108,27 +108,27 @@ events <- sample(beads, 10000, replace = TRUE)
 
 Most university-level statistics courses begin with combinatorics, which provides the foundation for many probability calculations. These techniques let us count the number of outcomes that satisfy a condition, typically by computing the number of *permutations* (when order matters) or *combinations* (when order does not matter).  
 
-To make these ideas concrete, let's consider a familiar setting: card games. Suppose we want to understand the probability of drawing specific hands from a deck. This example helps demonstrate how combinatorics works and how we can use R to perform these calculations.
+To make these ideas concrete, let's consider a visual-search experiment. On each trial, participants see a display of letters and must decide, as fast as possible, whether the target letter T is present. The stimulus set contains 13 letters, each shown in 4 colours, for a total of 52 stimuli. Suppose we want to understand the probability that a display contains specific stimuli. This example helps demonstrate how combinatorics works and how we can use R to perform these calculations.
 
-First, let's build a deck of cards:
-
-```{r}
-numbers <- c("Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven",
-             "Eight", "Nine", "Ten", "Jack", "Queen", "King")
-suits <- c("Diamonds", "Clubs", "Hearts", "Spades")
-deck <- expand.grid(number = numbers, suit = suits)
-deck <- paste(deck$number, deck$suit)
-```
-
-If we draw one card at random, the probability of getting a King is 1/13:
+First, let's build the stimulus set:
 
 ```{r}
-mean(deck %in% paste("King", suits))
+letter <- c("T", "A", "B", "C", "D", "G", "H", "K", "M",
+            "L", "I", "F", "E")
+colour <- c("red", "green", "blue", "yellow")
+stimuli <- expand.grid(letter = letter, colour = colour)
+stimuli <- paste(stimuli$letter, stimuli$colour)
 ```
 
-Because the deck includes all possible outcomes, this calculation gives the exact probability. Since `mean` converts logical values to 0s and 1s, the result represents the fraction of Kings in the deck, four out of fifty-two cards, which corresponds exactly to the theoretical probability of $1/13$.
+If we draw one stimulus at random, the probability of getting a T is 1/13:
 
-Now let's introduce two key functions: `permutations()` and `combinations()` from the **gtools** package. These functions let us enumerate all possible ways to select items from a list, depending on whether order matters (`permutations`) or not (`combinations`). Such calculations are fundamental in probability because they allow us to count the number of possible outcomes in complex settings, like determining the odds of drawing a particular poker hand or arranging cards in a specific order. Card games, lotteries, and many other probability problems rely on these principles to compute exact probabilities. For readers interested in the mathematical foundations, the Recommended Reading section lists probability textbooks that explore permutations and combinations in greater detail.
+```{r}
+mean(stimuli %in% paste("T", colour))
+```
+
+Because the stimulus set includes all possible outcomes, this calculation gives the exact probability. Since `mean` converts logical values to 0s and 1s, the result represents the fraction of Ts in the set, four out of fifty-two stimuli, which corresponds exactly to the theoretical probability of $1/13$.
+
+Now let's introduce two key functions: `permutations()` and `combinations()` from the **gtools** package. These functions let us enumerate all possible ways to select items from a list, depending on whether order matters (`permutations`) or not (`combinations`). Such calculations are fundamental in probability because they allow us to count the number of possible outcomes in complex settings, like determining the chance that a trial display contains a particular set of stimuli, or that stimuli are presented in a specific order. Stimulus randomization, counterbalancing, and many other probability problems rely on these principles to compute exact probabilities. For readers interested in the mathematical foundations, the Recommended Reading section lists probability textbooks that explore permutations and combinations in greater detail.
 
 Here is a simple example enumerating all the permutations of three items taken two at a time:
 
@@ -145,27 +145,28 @@ combinations(3, 2)
 
 Now (1,2) and (2,1) are treated as the same outcome.
 
-Let's use these tools to compute the probability of a *Natural 21* in Blackjack, which occurs when a player's first two cards are an Ace and a face card (Jack, Queen, King, or Ten). Since order does not matter, we use `combinations()`, and pass our deck of cards in as the values corresponding to numbers 1 through 52 using the parameter `v`:
+Let's use these tools to compute the probability of a *hard trial*. Letters made of similar strokes, such as L, I, F, and E, are easily confused with a T, so a two-letter display that contains the target T and one of these confusable letters is harder than the others. Since order does not matter, we use `combinations()`, and pass our stimulus set in as the values corresponding to numbers 1 through 52 using the parameter `v`:
 
 ```{r}
-aces <- paste("Ace", suits)
-facecard <- expand.grid(number = numbers[10:13], suit = suits)
-facecard <- paste(facecard$number, facecard$suit)
-hands <- combinations(52, 2, v = deck)
-mean((hands[,1] %in% aces & hands[,2] %in% facecard) |
-       (hands[,2] %in% aces & hands[,1] %in% facecard))
+target <- paste("T", colour)
+confusable <- expand.grid(letter = letter[10:13], colour = colour)
+confusable <- paste(confusable$letter, confusable$colour)
+displays <- combinations(52, 2, v = stimuli)
+mean((displays[,1] %in% target & displays[,2] %in% confusable) |
+       (displays[,2] %in% target & displays[,1] %in% confusable))
 ```
 
 ### Monte Carlo approach
 
-We can obtain the same result through simulation. Instead of enumerating all combinations, we repeatedly draw two cards from the deck and check whether we have a Natural 21. This is a Monte Carlo approximation to the same probability.
+We can obtain the same result through simulation. Instead of enumerating all combinations, we repeatedly draw two stimuli from the set and check whether we have a hard trial. This is a Monte Carlo approximation to the same probability.
 
 ```{r}
-blackjack <- function(){
-   x <- sample(deck, 2)
-   (x[1]%in%aces & x[2]%in%facecard) | (x[2]%in%aces & x[1]%in%facecard)
+hard_trial <- function(){
+   x <- sample(stimuli, 2)
+   (x[1] %in% target & x[2] %in% confusable) |
+     (x[2] %in% target & x[1] %in% confusable)
 }
-results <- replicate(10000, blackjack())
+results <- replicate(10000, hard_trial())
 mean(results)
 ```
 
@@ -324,41 +325,41 @@ In this plot, we can see that the values start to stabilize at around $10^{3.5} 
 
 6\. If you roll a 6-sided die six times, write a Monte Carlo simulation to estimate the probability of not seeing a 6. Confirm this by computing the exact probability.
 
-7\. Two teams, let's say the Celtics and the Cavaliers, are playing a seven-game series. The first to win four games, therefore, wins the series. The Cavaliers are a better team and have a 60% chance of winning each game. What is the probability that the Celtics will win **at least** one game? 
+7\. Two app prototypes, A and B, are compared in a usability study. Participants are tested one at a time, and each says which prototype they prefer. The first prototype to be preferred by four participants is chosen, so at most seven participants are needed. Prototype A is better and is preferred by 60% of users. What is the probability that prototype B is preferred by **at least** one participant? 
 
-8\. Create a Monte Carlo simulation to confirm your answer to the previous problem. Use `B <- 10000` simulations. Hint: use the following code to generate the results of the first four games:
+8\. Create a Monte Carlo simulation to confirm your answer to the previous problem. Use `B <- 10000` simulations. Hint: use the following code to generate the preferences of the first four participants:
 
 ```{r, eval=FALSE}
-celtic_wins <- sample(c(0,1), 4, replace = TRUE, prob = c(0.6, 0.4))
+b_preferred <- sample(c(0,1), 4, replace = TRUE, prob = c(0.6, 0.4))
 ```
 
-The Celtics must win one of these 4 games.
+Prototype B must be preferred by one of these 4 participants.
 
-9\. Two teams, say the Cavaliers and the Warriors, are playing a seven-game series. The teams are equally good, so they each have a 50-50 chance of winning each game. If the Cavaliers lose the first game, what is the probability that they win the series?
+9\. Two other prototypes, A and B, are compared with the same procedure. They are equally good, so each participant has a 50-50 chance of preferring either of them. If the first participant prefers B, what is the probability that A is chosen anyway?
 
 10\. Confirm the results of the previous question with a Monte Carlo simulation.
 
-11\. Two teams, $A$ and $B$, are playing a seven-game series. Team $A$ is better than team $B$ and has a $p>0.5$ chance of winning each game. Given a value $p$, the probability of the underdog team $B$ winning the series can be estimated with a Monte Carlo simulation using the following function:
+11\. Two prototypes, $A$ and $B$, are compared by asking seven participants which one they prefer. Prototype $A$ is better than prototype $B$ and has a $p>0.5$ chance of being preferred by each participant. Given a value $p$, the probability that the worse prototype $B$ is chosen anyway, because it is preferred by at least four of the seven participants, can be estimated with a Monte Carlo simulation using the following function:
 
 ```{r, eval=FALSE}
 prob_win <- function(p, B =10000){
   result <- replicate(B, {
-    b_win <- sample(c(1,0), 7, replace = TRUE, prob = c(1 - p, p))
-    sum(b_win) >= 4
+    b_preferred <- sample(c(1,0), 7, replace = TRUE, prob = c(1 - p, p))
+    sum(b_preferred) >= 4
   })
   mean(result)
 }
 ```
 
-For `p <- seq(0.5, 0.95, 0.025)`, use the function `sapply` to compute the corresponding probabilities of winning, call it `ws`. Then plot the result.
+For `p <- seq(0.5, 0.95, 0.025)`, use the function `sapply` to compute the corresponding probabilities that $B$ is chosen, call it `ws`. Then plot the result.
 
-12\. Repeat the exercise above, but now keep the probability fixed at `p <- 0.75` and compute the probability for different series lengths: best of 1 game, best of 3 games, best of 5 games, and so on. Specifically, `ns <- seq(1, 25, 2)`. Hint: use the function below.
+12\. Repeat the exercise above, but now keep the probability fixed at `p <- 0.75` and compute the probability for different numbers of participants: 1 participant, 3 participants, 5 participants, and so on. Specifically, `ns <- seq(1, 25, 2)`. How many participants do you need before the worse prototype is rarely chosen? Hint: use the function below.
 
 ```{r, eval = FALSE}
 prob_win <- function(n, p = 0.75, B = 10000){
   result <- replicate(B, {
-    b_win <- sample(c(1,0), n, replace = TRUE, prob = c(1 - p, p))
-    sum(b_win) >= (n + 1)/2
+    b_preferred <- sample(c(1,0), n, replace = TRUE, prob = c(1 - p, p))
+    sum(b_preferred) >= (n + 1)/2
   })
   mean(result)
 }
