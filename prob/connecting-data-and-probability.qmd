@@ -1,22 +1,22 @@
 # Connecting Data and Probability
 
-In this part of the book, we use games of chance---tossing coins, drawing beads, spinning a roulette wheel---to illustrate the principles of probability. These examples are valuable because the probabilistic mechanism is perfectly known. We can compute exact probabilities, repeat experiments as many times as we like, and verify the results mathematically or by simulation.
+In this part of the book, we use games of chance and other simple random devices---tossing coins, drawing beads, an app that shows a randomly chosen image---to illustrate the principles of probability. These examples are valuable because the probabilistic mechanism is perfectly known. We can compute exact probabilities, repeat experiments as many times as we like, and verify the results mathematically or by simulation.
 
 In real-world data analysis, the connection between probability and observation is rarely so clear. The systems we study, such as people, hospitals, weather, economies, and biological processes, are complex. We use probability not because these systems are necessarily truly random, but because probabilistic models provide a practical way to describe and reason about unexplained variability and uncertainty. In this chapter, we introduce some of the ways real-world problems can be connected to probabilistic models, so you can begin to recognize these connections as you learn about probability theory in the following chapters.
 
 ## Probability models in the real world
 
-Today, probability underlies far more than gambling. We use it to describe the likelihood of rain, the risk of disease, or the uncertainty in an election forecast. Yet, outside of games of chance, the meaning of *probability* is often less obvious. In practice, when we use probability to analyze data, we are almost always assuming that a probabilistic model applies. Sometimes this assumption is well motivated; other times, it is simply a convenient approximation.
+Today, probability underlies far more than gambling. We use it to describe the likelihood of rain, the risk of disease, or the uncertainty in a usability benchmark. Yet, outside of games of chance, the meaning of *probability* is often less obvious. In practice, when we use probability to analyze data, we are almost always assuming that a probabilistic model applies. Sometimes this assumption is well motivated; other times, it is simply a convenient approximation.
 
 It is important to keep in mind that when our probability model is wrong, our conclusions may be wrong as well.
 
-Below, we go over the five main ways we connect probability to data.
+Below, we go over the four main ways we connect probability to data.
 
 ### Random sampling
 
-Assuming data come from a random sample is perhaps the most common way we connect data and probability. In polling, for example, we assume that those who answer our questions are a random sample from the population of interest. For example, imagine putting the phone numbers of all eligible voters into a large bag and drawing 1,000 at random, then calling them and asking who they support. If this process were truly random, the statistical methods we will introduce would apply directly.
+Assuming data come from a random sample is perhaps the most common way we connect data and probability. In surveys, for example, we assume that those who answer our questions are a random sample from the population of interest. For example, imagine putting the IDs of all registered users of a wellbeing app into a large bag, drawing 1,000 at random, and inviting them to answer a questionnaire about their stress. If this process were truly random, the statistical methods we will introduce would apply directly.
 
-This assumption is also common in animal or laboratory studies. When a researcher orders mice from a breeding facility, the supplier's shipment is often treated as a random sample from all possible mice in that strain. This makes it possible to apply probability models in a way very similar to our games of chance.
+This assumption is also common in laboratory studies. When a lab buys a batch of 20 wristbands from the same production line to test their accuracy, the batch is often treated as a random sample from all the devices of that model. This makes it possible to apply probability models in a way very similar to our games of chance.
 
 ### Random assignment
 
@@ -32,11 +32,11 @@ The same assumption appears in machine learning. When we train a model, we use o
 
 Despite this, such models and analyses often work remarkably well and have provided valuable insights. For example, studies using observational data have convincingly shown that smoking harms health and that regular exercise and a good diet extend life. But when data come from convenience samples, extra care is needed. The assumptions behind our probability models become especially important. Treating a convenience sample as if it were a simple random sample can lead to biased and misleading conclusions.
 
-These biases can sometimes be corrected with statistical techniques, but doing so requires making additional assumptions. Understanding what those assumptions are, and thinking critically about whether they are reasonable, is essential for sound data analysis. In @sec-association-not-causation we will revisit this topic and show concrete examples of how unexamined assumptions about randomness can distort results.
+These biases can sometimes be corrected with statistical techniques, but doing so requires making additional assumptions. Understanding what those assumptions are, and thinking critically about whether they are reasonable, is essential for sound data analysis. In a later chapter<!-- @sec-association-not-causation --> we will revisit this topic and show concrete examples of how unexamined assumptions about randomness can distort results.
 
 ### Natural variation
 
-Finally, many natural processes appear random even when no measurement error or sampling is involved. Which genes are inherited, small biometric differences between genetically identical organisms, variation in the stock market, the number of earthquakes in a year, whether a particular cell becomes cancerous, or the number of photons striking a telescope’s detector all vary in ways that seem unpredictable. In these situations, probability serves as a modeling tool---a concise way to describe complex systems whose underlying mechanisms are too intricate, chaotic, or numerous to predict exactly.
+Finally, many natural processes appear random even when no measurement error or sampling is involved. The reaction time of the same person on two identical trials, which genes are inherited, small biometric differences between genetically identical organisms, variation in the stock market, the number of earthquakes in a year, whether a particular cell becomes cancerous, or the number of photons striking a telescope’s detector all vary in ways that seem unpredictable. In these situations, probability serves as a modeling tool---a concise way to describe complex systems whose underlying mechanisms are too intricate, chaotic, or numerous to predict exactly.
 
 In such cases, probabilistic models do not imply that nature itself is random. Rather, they acknowledge our limited ability to predict and give us a useful way to summarize uncertainty.
 
@@ -51,7 +51,7 @@ This book does not cover experimental design in detail, but we recommend several
 
 ## Exercises
 
-1\. Suppose a national poll reports that 52% of voters support a candidate, based on a random sample of 1,000 people.
+1\. Suppose a survey reports that 52% of the users of a wellbeing app prefer its new interface, based on a random sample of 1,000 users.
 
    a. Explain what "random sample" means in this context.
    b. Describe at least two ways the real sampling process might deviate from true randomness.
@@ -72,9 +72,9 @@ This book does not cover experimental design in detail, but we recommend several
 
 5\. For each of the following, identify the primary source of randomness being modeled,  *sampling variation*, *measurement error*, *natural variation*, or *random assignment*:
 
-   a. Estimating unemployment from a household survey.
-   b. Measuring air temperature every hour for a week.
-   c. Testing whether a fertilizer increases crop yield.
+   a. Estimating the average daily screen time of university students from a survey of randomly selected students.
+   b. Recording one participant's reaction time over 200 identical trials.
+   c. Testing whether a redesigned app interface reduces task completion time, with each user assigned to the old or new version by a coin flip.
    d. Comparing test scores from different schools.
-   e. Predicting how many hurricanes will form next year.
+   e. Predicting how many users will report a bug in an app next month.
 
