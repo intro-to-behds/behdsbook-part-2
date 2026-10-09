@@ -49,11 +49,11 @@ book:
         
     - part: prob/intro-to-prob.qmd
       chapters:
-        # - prob/connecting-data-and-probability.qmd
-        # - prob/discrete-probability.qmd
+        - prob/connecting-data-and-probability.qmd
+        - prob/discrete-probability.qmd
         - prob/continuous-probability.qmd
-        # - prob/random-variables.qmd
-        # - prob/sampling-models-and-clt.qmd
+        - prob/random-variables.qmd
+        - prob/sampling-models-and-clt.qmd
         - prob/reading-prob.qmd
         
     # [hidden until reflavoured]

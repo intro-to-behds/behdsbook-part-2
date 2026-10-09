@@ -8,7 +8,7 @@
 
 <meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
 
-<title>8&nbsp; Continuous Probability – Introduction to Behavioural Data Science</title>
+<title>10&nbsp; Continuous Probability – Introduction to Behavioural Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,8 +66,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../prob/reading-prob.html" rel="next">
-<link href="../prob/intro-to-prob.html" rel="prev">
+<link href="../prob/random-variables.html" rel="next">
+<link href="../prob/discrete-probability.html" rel="prev">
 <link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -148,7 +148,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/continuous-probability.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/continuous-probability.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Continuous Probability</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -275,8 +275,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -303,26 +327,26 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-cdf-intro" id="toc-sec-cdf-intro" class="nav-link active" data-scroll-target="#sec-cdf-intro"><span class="header-section-number">8.1</span> Cumulative distribution functions</a></li>
-  <li><a href="#probability-density-function" id="toc-probability-density-function" class="nav-link" data-scroll-target="#probability-density-function"><span class="header-section-number">8.2</span> Probability density function</a></li>
-  <li><a href="#theoretical-distributions-as-practical-models" id="toc-theoretical-distributions-as-practical-models" class="nav-link" data-scroll-target="#theoretical-distributions-as-practical-models"><span class="header-section-number">8.3</span> Theoretical distributions as practical models</a></li>
-  <li><a href="#monte-carlo-simulations" id="toc-monte-carlo-simulations" class="nav-link" data-scroll-target="#monte-carlo-simulations"><span class="header-section-number">8.4</span> Monte Carlo simulations</a>
+  <li><a href="#sec-cdf-intro" id="toc-sec-cdf-intro" class="nav-link active" data-scroll-target="#sec-cdf-intro"><span class="header-section-number">10.1</span> Cumulative distribution functions</a></li>
+  <li><a href="#probability-density-function" id="toc-probability-density-function" class="nav-link" data-scroll-target="#probability-density-function"><span class="header-section-number">10.2</span> Probability density function</a></li>
+  <li><a href="#theoretical-distributions-as-practical-models" id="toc-theoretical-distributions-as-practical-models" class="nav-link" data-scroll-target="#theoretical-distributions-as-practical-models"><span class="header-section-number">10.3</span> Theoretical distributions as practical models</a></li>
+  <li><a href="#monte-carlo-simulations" id="toc-monte-carlo-simulations" class="nav-link" data-scroll-target="#monte-carlo-simulations"><span class="header-section-number">10.4</span> Monte Carlo simulations</a>
   <ul class="collapse">
   <li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link" data-scroll-target="#normal-distribution">Normal distribution</a></li>
   <li><a href="#example-extreme-values" id="toc-example-extreme-values" class="nav-link" data-scroll-target="#example-extreme-values">Example: extreme values</a></li>
   </ul></li>
-  <li><a href="#calculating-densities-probabilities-quantiles-and-other-continuous-distributions" id="toc-calculating-densities-probabilities-quantiles-and-other-continuous-distributions" class="nav-link" data-scroll-target="#calculating-densities-probabilities-quantiles-and-other-continuous-distributions"><span class="header-section-number">8.5</span> Calculating densities, probabilities, quantiles, and other continuous distributions</a></li>
-  <li><a href="#beyond-one-variable" id="toc-beyond-one-variable" class="nav-link" data-scroll-target="#beyond-one-variable"><span class="header-section-number">8.6</span> Beyond one variable</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">8.7</span> Exercises</a></li>
+  <li><a href="#calculating-densities-probabilities-quantiles-and-other-continuous-distributions" id="toc-calculating-densities-probabilities-quantiles-and-other-continuous-distributions" class="nav-link" data-scroll-target="#calculating-densities-probabilities-quantiles-and-other-continuous-distributions"><span class="header-section-number">10.5</span> Calculating densities, probabilities, quantiles, and other continuous distributions</a></li>
+  <li><a href="#beyond-one-variable" id="toc-beyond-one-variable" class="nav-link" data-scroll-target="#beyond-one-variable"><span class="header-section-number">10.6</span> Beyond one variable</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">10.7</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/prob/continuous-probability.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/continuous-probability.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../prob/intro-to-prob.html">Probability</a></li><li class="breadcrumb-item"><a href="../prob/continuous-probability.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Continuous Probability</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-continuous-probability" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></h1>
+<h1 class="title"><span id="sec-continuous-probability" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></h1>
 </div>
 
 
@@ -341,8 +365,8 @@ window.Quarto = {
 
 <p>In <a href="../summaries/distributions.html#sec-ecdf-intro" class="quarto-xref"><span>Section 5.3</span></a>, we discussed why it is not practical to assign a frequency to every possible continuous outcome, such as an exact reaction time, since there are infinitely many possible values. The same idea extends to random outcomes that take values on a continuous scale: each individual value has probability zero. Instead, we describe their behavior through probability density functions, which let us compute probabilities for intervals of values rather than single points.</p>
 <p>In this chapter, we introduce the mathematical framework for continuous probability distributions and present several useful approximations that frequently appear in data analysis.</p>
-<section id="sec-cdf-intro" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="sec-cdf-intro"><span class="header-section-number">8.1</span> Cumulative distribution functions</h2>
+<section id="sec-cdf-intro" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="sec-cdf-intro"><span class="header-section-number">10.1</span> Cumulative distribution functions</h2>
 <p>We return to our example using the reaction times of male participants:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -369,8 +393,8 @@ F(a) = \Pr(X \leq a)
 \]</span></p>
 <p>Because we can determine the probability of any event from the CDF, it fully defines the probability distribution of a continuous outcome.</p>
 </section>
-<section id="probability-density-function" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="probability-density-function"><span class="header-section-number">8.2</span> Probability density function</h2>
+<section id="probability-density-function" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="probability-density-function"><span class="header-section-number">10.2</span> Probability density function</h2>
 <p>For most continuous distributions, we can describe the cumulative distribution function (CDF) in terms of another function, <span class="math inline">\(f(x)\)</span>, such that</p>
 <p><span class="math display">\[
 F(b) - F(a) = \int_a^b f(x)\,dx.
@@ -420,15 +444,15 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.351</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="theoretical-distributions-as-practical-models" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="theoretical-distributions-as-practical-models"><span class="header-section-number">8.3</span> Theoretical distributions as practical models</h2>
+<section id="theoretical-distributions-as-practical-models" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="theoretical-distributions-as-practical-models"><span class="header-section-number">10.3</span> Theoretical distributions as practical models</h2>
 <p>Theoretical distributions, such as the normal distribution, are defined mathematically rather than derived directly from data. In practice, we use them to <em>approximate</em> the behavior of real data that arise from complex or unknown processes. Almost all datasets we analyze consist of discrete observations, yet many of these quantities, such as reaction time, weight, or blood pressure, are better understood as measurements of underlying continuous variables.</p>
 <p>For example, reaction times are recorded by a computer clock with finite resolution, so they always appear discrete: a timer that records to the nearest millisecond can only return whole numbers. Therefore, it is more realistic to think of reaction time as a continuous variable whose apparent discreteness comes from the recording resolution.</p>
 <p>When using a continuous distribution such as the normal, we no longer assign probabilities to individual points—each exact value has probability zero—but rather to <em>intervals</em>. In <a href="../summaries/numerical-summaries.html" class="quarto-xref"><span>Chapter 6</span></a>, we showed how theoretical normal distributions can approximate the distribution of our reaction-time data. (This works well here because our data are simulated to be close to normal; real reaction times are usually right-skewed and cannot fall below a physiological minimum, so the normal is only a rough approximation for them.)</p>
 <p>The key idea is that theoretical distributions serve as <em>useful approximations</em>. They provide smooth mathematical descriptions that let us compute probabilities and reason about uncertainty. Even though real measurements are discrete, the continuous approximations that apply, such as the normal distribution, allow us to work with data analytically and build models that generalize well beyond a specific dataset.</p>
 </section>
-<section id="monte-carlo-simulations" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="monte-carlo-simulations"><span class="header-section-number">8.4</span> Monte Carlo simulations</h2>
+<section id="monte-carlo-simulations" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="monte-carlo-simulations"><span class="header-section-number">10.4</span> Monte Carlo simulations</h2>
 <p>Simulation is a powerful way to understand randomness, approximate probabilities, and explore how theoretical models behave in practice. Many of the probability models used in data analysis are continuous distributions, which describe outcomes that can take any value within a range. In R, all random-number–generating functions that produce simulated data from a distribution begin with the letter <code>r</code>. These functions form part of a consistent family that allows us to simulate from nearly any probability distribution. In this section, we illustrate Monte Carlo techniques using continuous distributions, starting with the normal distribution and extending to other commonly used models.</p>
 <section id="normal-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="normal-distribution">Normal distribution</h3>
@@ -476,8 +500,8 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
 <p>Although deriving this distribution analytically is possible, it is not straightforward. Once derived, it provides a faster way to evaluate probabilities than simulation. However, when analytic derivations are too complex or infeasible, Monte Carlo simulation offers a practical alternative. By repeatedly generating random samples, we can approximate the distribution of almost any statistic and obtain reliable estimates even when theoretical results are unavailable.</p>
 </section>
 </section>
-<section id="calculating-densities-probabilities-quantiles-and-other-continuous-distributions" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="calculating-densities-probabilities-quantiles-and-other-continuous-distributions"><span class="header-section-number">8.5</span> Calculating densities, probabilities, quantiles, and other continuous distributions</h2>
+<section id="calculating-densities-probabilities-quantiles-and-other-continuous-distributions" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="calculating-densities-probabilities-quantiles-and-other-continuous-distributions"><span class="header-section-number">10.5</span> Calculating densities, probabilities, quantiles, and other continuous distributions</h2>
 <p>Beyond simulation, R provides companion functions to evaluate and summarize continuous distributions. Each distribution in base R follows a simple naming convention:</p>
 <ul>
 <li><code>d</code> - density function</li>
@@ -487,16 +511,16 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
 </ul>
 <p>For example, the Student’s <em>t</em> distribution uses <code>dt</code>, <code>pt</code>, <code>qt</code>, and <code>rt</code>. Base R includes the most common continuous distributions, normal, <em>t</em>, chi-square, exponential, gamma, and beta (corresponding shorthand names in R are <code>t</code>, <code>chisq</code>, <code>exp</code>, <code>gamma</code>, and <code>beta</code>), but many additional distributions are available in specialized packages such as <strong>extraDistr</strong> and <strong>actuar</strong>. While there are dozens of continuous distributions in use, the ones provided by base R cover the majority of applications encountered in practice.</p>
 </section>
-<section id="beyond-one-variable" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="beyond-one-variable"><span class="header-section-number">8.6</span> Beyond one variable</h2>
+<section id="beyond-one-variable" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="beyond-one-variable"><span class="header-section-number">10.6</span> Beyond one variable</h2>
 <p>So far, we have focused on random variables representing just one outcome. In many applications, however, we are interested in several quantities at once. In these cases, we work with <em>multivariate</em> random variables, written as <span class="math inline">\((X_1, X_2, \ldots, X_k)\)</span>, where each <span class="math inline">\(X_i\)</span> is a random variable.</p>
 <p>Just as in the univariate case, we can describe the <em>joint</em> distribution of these variables using a probability density function. The <em>joint probability density function</em> <span class="math inline">\(f(x_1, x_2, \ldots, x_k)\)</span> characterizes how probability is distributed across combinations of values. For continuous variables, probabilities are obtained by integrating this function over a region of the <span class="math inline">\(k\)</span>-dimensional space.</p>
-<p>Once a joint density is defined, we can recover familiar quantities such as <em>marginal</em> and <em>conditional</em> distributions. Intuitively, a <em>marginal distribution</em> describes the behavior of one variable on its own, ignoring the others. We obtain it by <em>averaging out</em> or integrating over the remaining variables. A <em>conditional distribution</em>, on the other hand, describes the behavior of one variable given that we know the value of another. This extends the idea of conditional probability<!-- introduced in @sec-conditional-probability --> to the continuous setting.</p>
+<p>Once a joint density is defined, we can recover familiar quantities such as <em>marginal</em> and <em>conditional</em> distributions. Intuitively, a <em>marginal distribution</em> describes the behavior of one variable on its own, ignoring the others. We obtain it by <em>averaging out</em> or integrating over the remaining variables. A <em>conditional distribution</em>, on the other hand, describes the behavior of one variable given that we know the value of another. This extends the idea of conditional probability (introduced in <a href="discrete-probability.html#sec-conditional-probability" class="quarto-xref"><span>Section 9.5</span></a>) to the continuous setting.</p>
 <p>These quantities can be derived from the joint density: marginals by integrating out variables, and conditionals by combining the joint density with the appropriate marginal. Carrying out these calculations requires tools from multivariate calculus, including integration over higher-dimensional regions.</p>
 <p>These ideas extend naturally from the one-dimensional case and allow us to study relationships between variables, such as dependence and correlation. We will revisit these concepts in a later chapter<!-- @sec-conditional-expectation -->, particularly in the context of regression, where we use conditional distributions to describe how an outcome variable behaves given one or more predictors. We do not cover multivariate distributions in detail here, but we provide references for further reading in the recommended reading section.</p>
 </section>
-<section id="exercises" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">8.7</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">10.7</span> Exercises</h2>
 <p>1. Assume the distribution of female reaction times is approximated by a normal distribution with a mean of 340 milliseconds and a standard deviation of 35 milliseconds. If we pick a female participant at random, what is the probability that her reaction time is 300 milliseconds or faster?</p>
 <p>2. Assume the same distribution as the previous exercise. If we pick a female participant at random, what is the probability that her reaction time is 400 milliseconds or slower?</p>
 <p>3. Assume the same distribution as the previous exercise. If we pick a female participant at random, what is the probability that her reaction time is between 305 and 375 milliseconds?</p>
@@ -929,13 +953,13 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../prob/intro-to-prob.html" class="pagination-link" aria-label="Probability">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Probability</span>
+      <a href="../prob/discrete-probability.html" class="pagination-link" aria-label="Discrete Probability">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../prob/reading-prob.html" class="pagination-link" aria-label="Recommended Reading">
-        <span class="nav-page-text">Recommended Reading</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../prob/random-variables.html" class="pagination-link" aria-label="Random Variables">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Random Variables</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

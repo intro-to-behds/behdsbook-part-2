@@ -275,8 +275,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -345,7 +369,7 @@ window.Quarto = {
 <section id="sec-normal-distribution" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="sec-normal-distribution"><span class="header-section-number">6.1</span> The Normal distribution</h2>
 <p>The normal distribution, also known as the bell curve and as the Gaussian distribution, is one of the most famous mathematical concepts in history. One reason for this is that approximately normal distributions occur in many situations, including gambling winnings, heights, weights, blood pressure, standardized test scores, and experimental measurement errors. There are explanations for these occurrences, which we will describe later. Here we focus on how the normal distribution helps us summarize data.</p>
-<p>Rather than using data, the normal distribution is defined with a mathematical formula—unlike the empirical distributions in the previous chapter, the normal distribution is a <em>theoretical</em> distribution (theoretical distributions will be discussed more in a later chapter<!-- @sec-random-variables -->). For any interval <span class="math inline">\((a,b)\)</span>, the proportion of values in that interval can be computed using this formula:</p>
+<p>Rather than using data, the normal distribution is defined with a mathematical formula—unlike the empirical distributions in the previous chapter, the normal distribution is a <em>theoretical</em> distribution (theoretical distributions will be discussed more in <a href="../prob/random-variables.html" class="quarto-xref"><span>Chapter 11</span></a>). For any interval <span class="math inline">\((a,b)\)</span>, the proportion of values in that interval can be computed using this formula:</p>
 <p><span class="math display">\[\mathrm{Pr}(a &lt; x \leq b) = \int_a^b \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{1}{2}\left( \frac{x-\mu}{\sigma} \right)^2} \, dx\]</span></p>
 <p>But you don’t need to memorize the formula to use the normal distribution in practice. The most important characteristic is that it is completely defined by just two parameters: <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. The rest of the symbols in the formula represent the interval ends, <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, and known mathematical constants <span class="math inline">\(\pi\)</span> and <span class="math inline">\(e\)</span>. These two parameters, <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, are referred to as the <em>mean</em> and the <em>standard deviation</em> (SD) of the distribution, respectively (<span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> are the Greek letters for <span class="math inline">\(m\)</span> and <span class="math inline">\(s\)</span>). In R the function <code>pnorm</code> lets us compute the <span class="math inline">\(\mathrm{Pr}(x \leq a)\)</span> for any <span class="math inline">\(a,\mu,\)</span> and <span class="math inline">\(\sigma\)</span>:</p>
 <div class="cell" data-layout-align="center">
@@ -362,7 +386,7 @@ window.Quarto = {
 </div>
 </div>
 <p>The fact that the distribution is defined by just two parameters implies that if a dataset’s distribution is approximated by the normal distribution, all the information needed to describe the distribution can be encoded in just two numbers: the mean and the standard deviation.</p>
-<p>Although introduced in the context of the normal distribution, the mean and standard deviation apply to any list of numbers. We will revisit these summaries for discrete distributions in a later chapter<!-- @sec-random-variables -->; for now, we focus on computing them from data.</p>
+<p>Although introduced in the context of the normal distribution, the mean and standard deviation apply to any list of numbers. We will revisit these summaries for discrete distributions in <a href="../prob/random-variables.html" class="quarto-xref"><span>Chapter 11</span></a>; for now, we focus on computing them from data.</p>
 </section>
 <section id="sec-average-and-sd-def" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="sec-average-and-sd-def"><span class="header-section-number">6.2</span> The mean and standard deviation</h2>
