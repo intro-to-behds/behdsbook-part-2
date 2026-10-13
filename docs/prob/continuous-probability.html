@@ -485,7 +485,7 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
 <p>Reaching the maximum is quite rare:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(highest <span class="sc">&gt;=</span> <span class="dv">100</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.0811</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.082</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here is the resulting distribution of the highest score:</p>
 <div class="cell" data-layout-align="center">
@@ -497,6 +497,7 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
 </div>
 </div>
 </div>
+<p>Notice that some of the simulated maxima are above 100, a score that cannot occur: the normal distribution extends without limit in both directions, while the questionnaire stops at 100. This is a reminder that the normal is an approximation, and that it is least trustworthy in the tails, which is exactly where questions about extreme values take us.</p>
 <p>Although deriving this distribution analytically is possible, it is not straightforward. Once derived, it provides a faster way to evaluate probabilities than simulation. However, when analytic derivations are too complex or infeasible, Monte Carlo simulation offers a practical alternative. By repeatedly generating random samples, we can approximate the distribution of almost any statistic and obtain reliable estimates even when theoretical results are unavailable.</p>
 </section>
 </section>
