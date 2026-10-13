@@ -743,7 +743,15 @@ Data science is usually aimed at predicting the operationalisation: the recorded
 
 However as Behavioral data scientis you shoule be aware that it will be tempting to interpret something at *construct level*, and not at *behavioral (i.e., at indicator/proxy)*, level. You could do that even withoud dedicated analysis, with the caveats that you should keep in mind your are making a strong assumption and that interpretation could be easily a different one.
 
-<PLACE-HOLDER-CLAUDE: add a clear banner that says Beware of Interpretations, Behaviour != Construct>
+::: {.callout-caution appearance="simple"}
+## Beware of interpretations
+
+::: {style="text-align: center; font-size: 1.6em; margin: 0.4em 0;"}
+**Behaviour ≠ Construct**
+:::
+
+An effect on the indicator is not automatically an effect on the construct. Whenever you describe a result in construct terms ("users are *more satisfied*", "the app *reduced stress*"), you are adding an assumption that the data alone do not support.
+:::
 
 ## Exercises
 
