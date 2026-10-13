@@ -384,20 +384,37 @@ median(clean)
 
 The mean moves by about `r round(mean(reported_daily_screen_time) - mean(clean), 2)` hours because of one observation out of `r length(reported_daily_screen_time)`. The median barely notices. This is the standard reason to prefer the median for duration and latency measures, and it is a *measurement* decision, made before any model is fitted.
 
-Real reaction-time data adds a further complication that is worth naming even though the package data does not show it.
-
-::: {.callout-warning}
-## A caveat about this dataset
-
-`reaction_times` in `behdslabs` is a linear rescaling of the `heights` data of the original version of the book, so its distribution is symmetric:
+Real reaction-time data adds a further complication: they are strongly **right-skewed**. There is a hard floor below which nobody can respond, most responses cluster a little above it, and a long tail of slow responses stretches out to the right. `reaction_times` in `behdslabs` contains the mean simple reaction time of `r nrow(reaction_times)` participants, simulated to have exactly these properties:
 
 ```{r}
-#| label: rt-symmetric
+#| label: rt-mean-median
 with(reaction_times, c(mean = mean(rt_ms), median = median(rt_ms)))
 ```
 
-Real reaction times are not like this. They are strongly **right-skewed**: a long tail of slow responses, and a hard floor below which nobody can respond. That skew is itself a measurement issue, because it means the mean RT is pulled around by the slowest trials, which are often the least informative ones — lapses of attention rather than slow processing. Use this dataset to practise the mechanics, not to form intuitions about what RT distributions look like.
-:::
+```{r}
+#| label: fig-rt-skew
+#| echo: false
+#| fig-cap: "Mean simple reaction times of the participants in `reaction_times`. The distribution has a floor and a long right tail; the tail pulls the mean (dashed line) above the median (solid line)."
+#| fig-width: 6.5
+#| fig-height: 3.4
+
+rt_stats <- data.frame(
+  value = with(reaction_times, c(mean(rt_ms), median(rt_ms))),
+  stat = c("mean", "median")
+)
+
+ggplot(reaction_times, aes(rt_ms)) +
+  geom_histogram(binwidth = 15, fill = "grey75", colour = "white") +
+  geom_vline(data = rt_stats, aes(xintercept = value, linetype = stat),
+             colour = "steelblue", linewidth = 0.9, key_glyph = "path") +
+  scale_linetype_manual(values = c(mean = "dashed", median = "solid")) +
+  labs(x = "mean reaction time (ms)", y = "participants", linetype = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(panel.grid.minor = element_blank(), legend.position = "bottom",
+        legend.key.width = unit(1.4, "cm"))
+```
+
+That skew is itself a measurement issue, because it means the mean RT is pulled around by the slowest responses, which are often the least informative ones — lapses of attention rather than slow processing. It is also why, when this book introduces the normal distribution, it does so with a different variable rather than with reaction times.
 
 Three more decisions hide inside any RT analysis, and none of them are statistical:
 
