@@ -407,46 +407,6 @@ Three more decisions hide inside any RT analysis, and none of them are statistic
 
 That last point is the same problem as the satisfaction scale, in a different costume: the proxy is contaminated by something that is not the construct.
 
-## Signal detection theory
-
-There is one classical technique that addresses that contamination head-on, and it is worth a short section because it shows what a solution looks like.
-
-Suppose you are testing whether users can spot a phishing message. You show them a series of messages, some fraudulent and some not, and they say "fraudulent" or "not". The obvious summary is the proportion they got right.
-
-The obvious summary is contaminated. Proportion correct mixes together two entirely different things: how good the person is at *telling the difference* (which is what you want to know), and how *willing they are to say "fraudulent"* (which you do not). Someone who flags everything as fraudulent catches every phishing message and is not thereby a good detector.
-
-Signal detection theory separates the two.[^sdt] **Sensitivity**, written $d'$, is the construct: how far apart the evidence is, on average, for real and fake messages. The **criterion** is the response tendency: how much evidence someone needs before they will commit to "fraudulent".
-
-[^sdt]: D. M. Green & J. A. Swets (1966), **Signal Detection Theory and Psychophysics**. New York: Wiley. The framework comes originally from radar engineering, which is where the vocabulary of "signal", "noise" and "false alarm" is from.
-
-Here are two participants, simulated so you can see both parameters:
-
-```{r}
-#| label: sdt-sim
-detection <- simulate_sdt(n = 2, n_trials = 2000,
-                          d_prime = c(0.8, 2.0),
-                          criterion = c(0.4, -0.475),
-                          seed = 2026)
-detection
-```
-
-Both are right about `r round(100 * mean(detection$prop_correct))`% of the time. On proportion correct they are indistinguishable. But look at the counts: the second participant caught `r detection$hits[2]` of the `r detection$hits[2] + detection$misses[2]` real threats, against the first participant's `r detection$hits[1]` — and raised `r detection$false_alarms[2]` false alarms against `r detection$false_alarms[1]`. The second is a much better detector with a wildly trigger-happy criterion, and the summary statistic hides this completely.
-
-Recovering the construct takes one line. Compute the hit rate and the false-alarm rate, convert both to the $z$ scale, and take the difference:
-
-```{r}
-#| label: sdt-dprime
-hit_rate <- detection$hits / (detection$hits + detection$misses)
-fa_rate <- detection$false_alarms /
-  (detection$false_alarms + detection$correct_rejections)
-
-qnorm(hit_rate) - qnorm(fa_rate)
-```
-
-Those are, to within sampling error, the `d_prime` values the data were generated from — 0.8 and 2.0. One participant is more than twice as sensitive as the other, and no amount of staring at "66% correct" would have told you.
-
-This is the whole chapter in miniature: a raw proxy conflated a construct with something irrelevant to it, and a measurement model pulled them apart.
-
 ## Validity and reliability
 
 We now have the vocabulary to ask the question that matters about any instrument: is it any good? Under CTT the answer has two halves, and they are not the same question.
@@ -525,7 +485,7 @@ Modern practice, following the *Standards for Educational and Psychological Test
 Two specific failure modes cut across all five, and they are the two you should be able to name:
 
 - **Construct under-representation** — the instrument leaves out parts of the construct it claims to cover. The digital-literacy scale above is a case.
-- **Construct-irrelevant variance** — the scores are systematically pushed around by something that is not the construct. A "reasoning" task whose items are so wordy that it partly measures reading ability is a case. So, for that matter, is the response bias in the phishing example.
+- **Construct-irrelevant variance** — the scores are systematically pushed around by something that is not the construct. A "reasoning" task whose items are so wordy that it partly measures reading ability is a case. So, for that matter, is caution in a reaction-time task: through the speed–accuracy trade-off, an RT partly measures how careful someone chose to be.
 
 Both are in @fig-other-variables, which is what that figure was for.
 
@@ -795,11 +755,9 @@ However as Behavioral data scientis you shoule be aware that it will be tempting
 
 4\. Re-run the running example with `error_sd = 2` instead of the default. What happens to Cronbach's $\alpha$? What happens to `cor(total, true_score)`? Now compute both for `error_sd = 0.5`. Write one sentence stating the relationship between the two quantities.
 
-5\. Using `simulate_sdt()`, construct two participants with the same `prop_correct` but clearly different `d_prime`. (Hint: for a given $d'$, proportion correct is highest when the criterion sits at $d'/2$ — so the better detector has to be given a badly chosen criterion.) Which participant would you rather have screening your email?
+5\. Repeat the disattenuation example with a much noisier second scale (`error_sd = 3`). What happens to the observed correlation, to $\alpha$, and to the corrected value? Now push `error_sd` higher until the corrected correlation exceeds 1. Explain what that result tells you — about the constructs, and about the correction.
 
-6\. Repeat the disattenuation example with a much noisier second scale (`error_sd = 3`). What happens to the observed correlation, to $\alpha$, and to the corrected value? Now push `error_sd` higher until the corrected correlation exceeds 1. Explain what that result tells you — about the constructs, and about the correction.
-
-7\. Design an instrument. Propose four items for a construct of your choice in human–technology interaction. For each item, say which aspect of the construct it is meant to cover. Then name one piece of validity evidence and one reliability estimate you would collect before using it, and say what result would make you abandon the instrument.
+6\. Design an instrument. Propose four items for a construct of your choice in human–technology interaction. For each item, say which aspect of the construct it is meant to cover. Then name one piece of validity evidence and one reliability estimate you would collect before using it, and say what result would make you abandon the instrument.
 
 ::: {.callout-tip}
 ## Going further with R
