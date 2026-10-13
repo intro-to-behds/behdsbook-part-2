@@ -52,12 +52,12 @@ $$
 $$
 which can be thought of as the average distance of the points $x_i$ to the mean $\mu_x$. 
 
-Let's compute the mean and standard deviation of the reaction times of males:
+Let's compute the mean and standard deviation of the UX scores of desktop users:
 
 ```{r}
 library(tidyverse)
 library(rafalib)
-x <- with(reaction_times, rt_ms[sex == "Male"])
+x <- with(ux_scores, ux_score[device == "desktop"])
 ```
 
 The pre-built functions `mean` and `sd` can be used here:
@@ -85,8 +85,8 @@ The plot below shows the smooth density of the observed data (blue) and the corr
 norm_dist <- data.frame(x = seq(-4, 4, len = 50)*s + m) |> 
   mutate(density = dnorm(x, m, s))
 
-reaction_times |> filter(sex == "Male") |> ggplot(aes(rt_ms)) +
-  geom_density(fill = "#00BFC4") +
+ux_scores |> filter(device == "desktop") |> ggplot(aes(ux_score)) +
+  geom_density(fill = "#F8766D") +
   geom_line(aes(x, density), data = norm_dist)
 ```
 
@@ -104,7 +104,7 @@ Here, the logical expression `x > a & x <= b` returns `TRUE` for all values of `
 
 The following examples illustrate how closely the observed proportions match the theoretical probabilities from the normal distribution.
 
-The probability of responding faster than the average participant:
+The probability of scoring at or below the average user:
 
 ```{r}
 pnorm(m, m, s)
@@ -114,20 +114,20 @@ mean(x <= m)
 The probability of being within two standard deviations of the mean:
 
 ```{r}
-pnorm(443.6, m, s) - pnorm(311, m, s)
-mean(x > 311 & x <= 443.6)
+pnorm(81.2, m, s) - pnorm(37, m, s)
+mean(x > 37 & x <= 81.2)
 ```
 
 
 :::{.callout-note}
-When using the normal approximation with discrete data (for example, when reaction times are recorded to the nearest 10 milliseconds), note that `mean(x < a)` and `mean(x <= a)` may differ. In such cases, it's common to apply a *continuity correction*, using `pnorm(a + delta/2, m, s)` to approximate `mean(x <= a)`, where `delta` is the bin width (in that example, 10 milliseconds). In our dataset, however, reaction times were recorded with sub-millisecond precision, so the data are effectively continuous and no correction is needed.
+When using the normal approximation with discrete data (for example, when scores are rounded to whole points), note that `mean(x < a)` and `mean(x <= a)` may differ. In such cases, it's common to apply a *continuity correction*, using `pnorm(a + delta/2, m, s)` to approximate `mean(x <= a)`, where `delta` is the spacing between possible values (in that example, 1 point). Our scores are not rounded, but many users share exactly the same score, so `mean(x < a)` and `mean(x <= a)` can differ when `a` is one of those shared values. For intervals as wide as the ones above, the difference is small, and we do not apply the correction.
 :::
 
 ## Standard units
 
 For data that is approximately normally distributed, it is convenient to think in terms of *standard units*. The standard unit of a value tells us how many standard deviations away from the average it is. Specifically, for a value $x_i$ from a list $(x_1, \dots, x_n)$, we define the value of $x_i$ in standard units as $z_i = (x_i - \mu_x)/\sigma_x$ with $\mu_x$ and $\sigma_x$ the average and standard deviation of the list, respectively. 
 
-Why is this convenient? First, revisit the formula for the normal distribution and observe that what is being exponentiated is $-z^2/2$ with $z$ equivalent to $x$ in standard units. Because the maximum of $e^{-z^2/2}$ is at $z = 0$, this explains why the maximum of the distribution occurs at the mean. It also explains the symmetry since $- z^2/2$ is symmetric around 0. Second, note that by converting the normally distributed data to standard units, we can quickly ascertain whether, for example, a participant is about average ($z = 0$), one of the slowest ($z \approx 2$), one of the fastest ($z \approx -2$), or an extremely rare occurrence ($z > 3$ or $z < -3$). Remember that it does not matter what the original units are, these rules apply to any data that is approximately normal.
+Why is this convenient? First, revisit the formula for the normal distribution and observe that what is being exponentiated is $-z^2/2$ with $z$ equivalent to $x$ in standard units. Because the maximum of $e^{-z^2/2}$ is at $z = 0$, this explains why the maximum of the distribution occurs at the mean. It also explains the symmetry since $- z^2/2$ is symmetric around 0. Second, note that by converting the normally distributed data to standard units, we can quickly ascertain whether, for example, a user's score is about average ($z = 0$), one of the highest ($z \approx 2$), one of the lowest ($z \approx -2$), or an extremely rare occurrence ($z > 3$ or $z < -3$). Remember that it does not matter what the original units are, these rules apply to any data that is approximately normal.
 
 In R, we can transform to standard units using the function `scale`:
 
@@ -135,7 +135,7 @@ In R, we can transform to standard units using the function `scale`:
 z <- scale(x)
 ```
 
-To see how many males are within 2 SDs from the average, we simply type:
+To see how many desktop users are within 2 SDs from the average, we simply type:
 
 ```{r}
 mean(abs(z) < 2)
@@ -151,7 +151,7 @@ Throughout this book, we use $z$ and $Z$ in this way whenever we describe quanti
 
 ## Robust summaries
 
-Note that the reaction times we explored in @sec-summaries-distributions were recorded cleanly by an experimental task. A second challenge involves exploring self-reported data that people typed in by hand. The **behdslabs** package includes two such datasets: `reported_daily_screen_time`, a vector of self-reported daily screen-time hours, and `wearable_onboarding_height`, heights typed in by users while setting up a fitness-wearable app. We will see that due to errors in reporting, using _robust summaries_ is necessary to produce useful summaries.
+Note that the UX scores we explored in @sec-summaries-distributions were computed automatically by the questionnaire software. A second challenge involves exploring self-reported data that people typed in by hand. The **behdslabs** package includes two such datasets: `reported_daily_screen_time`, a vector of self-reported daily screen-time hours, and `wearable_onboarding_height`, heights typed in by users while setting up a fitness-wearable app. We will see that due to errors in reporting, using _robust summaries_ is necessary to produce useful summaries.
 
 
 ### Outliers 
@@ -311,31 +311,31 @@ The box spans from $Q_1$ to $Q_3$, with a horizontal line marking the median.
 The whiskers extend to the smallest and largest observations that are not outliers, while outliers are shown as separate points.
 The height of the box corresponds to the IQR, representing the middle 50% of the data.
 
-Boxplots are especially useful when comparing distributions across groups, for example, comparing incident rates across regions or reaction-time distributions between males and females. They provide a quick visual summary of differences in center, spread, and the presence of outliers.
+Boxplots are especially useful when comparing distributions across groups, for example, comparing incident rates across regions or UX scores between desktop and mobile users. They provide a quick visual summary of differences in center, spread, and the presence of outliers.
 In the next chapter, we will use boxplots in exactly this way to compare distributions between groups.
 
 ## Exercises
 
-1\. Load the reaction-time dataset and create a vector `x` with just the male reaction times:
+1\. Load the `ux_scores` dataset and create a vector `x` with just the scores of desktop users:
 
 ```{r, eval = FALSE}
 library(behdslabs)
-x <- reaction_times$rt_ms[reaction_times$sex=="Male"]
+x <- ux_scores$ux_score[ux_scores$device=="desktop"]
 ```
 
-What proportion of the data is between 370 and 390 milliseconds (slower than 370, but faster than or equal to 390)? Hint: use a logical operator and `mean`.
+What proportion of the data is between 57 and 67 (higher than 57, but lower than or equal to 67)? Hint: use a logical operator and `mean`.
 
 2\. Suppose all you know about the data is the average and the standard deviation. Use the normal approximation to estimate the proportion you just calculated. Hint: start by computing the average and standard deviation. Then use the `pnorm` function to predict the proportions.
 
-3\. Notice that the approximation calculated in question 2 is very close to the exact calculation in question 1. Now perform the same task for more extreme values. Compare the exact calculation and the normal approximation for the interval (270,290\]. How many times larger is the actual proportion than the approximation?
+3\. Notice that the approximation calculated in question 2 is very close to the exact calculation in question 1. Now perform the same task for more extreme values. Compare the exact calculation and the normal approximation for the interval (25,32\]. How many times larger is the actual proportion than the approximation?
 
-4\. Approximate the distribution of simple reaction times of adults in the world as normally distributed with an average of 375 milliseconds and a standard deviation of 30 milliseconds. Using this approximation, estimate the proportion of adults who respond in under 225 milliseconds, referred to as *ultra-fast responders*. Hint: use the `pnorm` function.
+4\. Approximate the distribution of simple reaction times of adults in the world as normally distributed with an average of 300 milliseconds and a standard deviation of 30 milliseconds. Using this approximation, estimate the proportion of adults who respond in under 150 milliseconds, referred to as *ultra-fast responders*. Hint: use the `pnorm` function.
 
 5\. There are about 1 billion adults between the ages of 18 and 40 in the world. Use your answer to the previous question to estimate how many of these adults (18-40 year olds) are ultra-fast responders in the world?
 
-6\. Suppose there are about 10 professional esports players whose reaction time is under 225 milliseconds. (This number is hypothetical.) Using the answer to the previous two questions, what proportion of the world's 18-to-40-year-old *ultra-fast responders* are professional esports players?
+6\. Suppose there are about 10 professional esports players whose reaction time is under 150 milliseconds. (This number is hypothetical.) Using the answer to the previous two questions, what proportion of the world's 18-to-40-year-old *ultra-fast responders* are professional esports players?
 
-7\. Repeat the calculations performed in the previous question for a reaction time of 265 milliseconds. Suppose there are about 150 professional players who respond at least that fast.
+7\. Repeat the calculations performed in the previous question for a reaction time of 190 milliseconds. Suppose there are about 150 professional players who respond at least that fast.
 
 8\. In answering the previous questions, we found that it is not uncommon for an ultra-fast responder to become a professional player. What would be a fair critique of our calculations (hint: can a reaction time be arbitrarily small?):
 
