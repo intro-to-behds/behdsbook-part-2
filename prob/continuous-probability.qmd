@@ -206,6 +206,8 @@ data.frame(highest = highest) |> ggplot(aes(highest)) +
   geom_histogram(color = "black", binwidth = 1.5) 
 ```
 
+Notice that some of the simulated maxima are above 100, a score that cannot occur: the normal distribution extends without limit in both directions, while the questionnaire stops at 100. This is a reminder that the normal is an approximation, and that it is least trustworthy in the tails, which is exactly where questions about extreme values take us.
+
 Although deriving this distribution analytically is possible, it is not straightforward. Once derived, it provides a faster way to evaluate probabilities than simulation. However, when analytic derivations are too complex or infeasible, Monte Carlo simulation offers a practical alternative. By repeatedly generating random samples, we can approximate the distribution of almost any statistic and obtain reliable estimates even when theoretical results are unavailable.
 
 
