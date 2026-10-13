@@ -331,7 +331,7 @@ The $t$-test reports a difference, convincingly. The rank-based test does not. A
 
 What went wrong? The scale has a ceiling: most responses pile up at the top, which is what satisfaction scales actually do.
 
-<PLACE-HOLDER: add here a reference to inferential statistics part of the book>
+<CLAUDE-PLACE-HOLDER: add here a reference to inferential statistics part of the book for better understanding of t-tests and wilcox-test or use reference to other books e.g., lakens one>
 
 ```{r}
 #| label: ceiling-table
@@ -749,7 +749,7 @@ Go back to the wellbeing app from the opening. Stress scores dropped over the mo
 
 Every one of these is an arrow in @fig-other-variables — something that moves the observable behaviour without moving the construct. None of them is exotic, and none of them is ruled out by a small p-value.
 
-This family of problems is exactly what Flake and Fried set out to document under the heading of *questionable measurement practices*: not fraud, but the ordinary, widespread habit of not asking what a measure measures.[^flake]
+This family of problems is exactly what Flake and Fried set out to document under the heading of *questionable measurement practices*: not literal frauds, but the ordinary, widespread habits of not asking what a measure is actually measuring.[^flake]
 
 [^flake]: J. K. Flake & E. I. Fried (2020), *Measurement Schmeasurement: Questionable Measurement Practices and How to Avoid Them*, **Advances in Methods and Practices in Psychological Science**, 3(4), 456–465, <https://doi.org/10.1177/2515245920952393>.
 
@@ -768,11 +768,22 @@ This is the same instinct as the disclosure norms for AI-assisted work discussed
 
 ## Other analyses
 
-The distinction this chapter is built on — between a construct and the indicators we use for it — is not just a conceptual caution. There is a family of statistical methods built directly on it: **exploratory and confirmatory factor analysis**, and more generally **structural equation modelling**. These model the latent construct and the observed indicators as separate objects, which is what makes them the natural tools for asking whether your five items really are measuring one thing, and whether they measure the same thing in different groups.
+The distinction this chapter is built on — between a construct and the indicators we use for it — is not just a conceptual caution. There is a family of statistical methods built directly on it: **exploratory and confirmatory factor analysis**, and more generally **structural equation modelling**. These model the _latent_ construct and the observed indicators as separate objects, which is what makes them the natural tools for asking whether your five items really are measuring one thing, and whether they measure the same thing in different groups.
 
-You will meet the underlying mathematics in the chapters on latent factor models and dimension reduction, to be added in a later version of this book<!-- @sec-latent-factor-models @sec-dimension-reduction -->. Be aware of a difference in emphasis, though. Those chapters use latent factors to *predict better* — to improve recommendations by discovering structure in ratings. That is a different goal from using them to *justify an interpretation*, which is what a psychometrician wants. The machinery overlaps substantially; the questions do not.
+One could ask, why don't we use these more appropriate methods for measuring constructs then, if they are available? 
 
-That difference in emphasis is worth generalising, because it is largely what separates this chapter from the rest of the book. Data science is usually aimed at predicting the operationalisation — the recorded number, the logged outcome, the observed label. Psychometrics is aimed at establishing what the operationalisation is entitled to be called. You will spend most of this book doing the former. It is worth occasionally remembering to ask the latter.
+A **first reason** is simple: these methods are actually more difficult to fit, they can require large number of observations or participants, or require the fulfillment of some assumptions about data distribution that could not be met. Also modeling complex interactions or non-linear relationship can be more difficult as compared to other, more widely used, models. For this reason a widespread habit is to use traditional methods and then interpret them.  
+
+To be more precise, you will meet some details on latent factor models and dimension reduction in this book, in a chapter to be added in a later version of this book<!-- @sec-latent-factor-models @sec-dimension-reduction -->. There is, however, an important difference in emphasis. Those chapters use latent factors to *predict better* — to improve recommendations by discovering structure in ratings. That is a different goal from using them to *justify an interpretation*, which is what a psychometrician wants. While the machinery overlaps substantially, the questions should be considered as separate.
+
+That difference in emphasis is worth generalising and it is largely what separates this chapter from the rest of the book. 
+This is the **second reason** why methods that are more appropriate to investigate construct are seldomly used.
+
+Data science is usually aimed at predicting the operationalisation: the recorded number, the logged outcome, the observed label. In our case, the _behavior_. Psychometrics is aimed at establishing what the operationalisation is entitled to be called. You will spend most of this book doing the former. It is worth occasionally remembering to ask the latter.
+
+However as Behavioral data scientis you shoule be aware that it will be tempting to interpret something at *construct level*, and not at *behavioral (i.e., at indicator/proxy)*, level. You could do that even withoud dedicated analysis, with the caveats that you should keep in mind your are making a strong assumption and that interpretation could be easily a different one.
+
+<PLACE-HOLDER-CLAUDE: add a clear banner that says Beware of Interpretations, Behaviour != Construct>
 
 ## Exercises
 
