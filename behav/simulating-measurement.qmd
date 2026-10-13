@@ -9,7 +9,7 @@ library(ggplot2)
 library(behdslabs)
 ```
 
-@sec-measurement used two simulated datasets: a five-item satisfaction scale, and a detection task. This chapter explains how they are generated. You can skip it and lose nothing from the argument of that chapter — but if you want to understand *why* the simulations behave the way they do, or you want to build your own, this is where the machinery is.
+@sec-measurement used a simulated five-item satisfaction scale. This chapter explains how it is generated. You can skip it and lose nothing from the argument of that chapter — but if you want to understand *why* the simulations behave the way they do, or you want to build your own, this is where the machinery is.
 
 ## Why simulate at all
 
@@ -212,123 +212,9 @@ identical(t1$true_score, t2$true_score)   # same people, same construct
 cor(t1$total, t2$total)                   # but not the same scores
 ```
 
-## The detection simulator
-
-`simulate_sdt()` implements the standard equal-variance signal detection model. The model is easier to see as a picture than as code, so here is the picture first (@fig-sdt).
-
-```{r}
-#| label: fig-sdt
-#| echo: false
-#| fig-cap: "The signal detection model. On each trial the participant gets some evidence: drawn from the left curve when there is no signal, and from the right curve when there is. The two curves are $d'$ apart — that distance is sensitivity, the construct. The participant answers 'yes' whenever the evidence exceeds their criterion (the vertical line), which they can place wherever they like. Moving the line changes hits and false alarms together; it does not change $d'$."
-#| fig-width: 6.8
-#| fig-height: 3.6
-
-d_prime <- 1.8
-crit <- 0.7
-x <- seq(-4, 6, length.out = 600)
-
-dens <- rbind(
-  data.frame(x = x, y = dnorm(x, 0, 1), dist = "noise (no signal)"),
-  data.frame(x = x, y = dnorm(x, d_prime, 1), dist = "signal present")
-)
-
-ggplot(dens, aes(x, y, fill = dist, colour = dist)) +
-  geom_area(alpha = 0.35, position = "identity") +
-  geom_line(linewidth = 0.6) +
-  geom_vline(xintercept = crit, linewidth = 0.9, colour = "grey15") +
-  # d' sits just above the peaks; the criterion label goes well above it,
-  # so the two can never be read as labelling the same thing.
-  annotate("segment", x = 0, xend = d_prime, y = 0.44, yend = 0.44,
-           arrow = arrow(length = unit(0.15, "cm"), ends = "both"),
-           colour = "grey25") +
-  annotate("text", x = d_prime / 2, y = 0.475, label = "d'",
-           fontface = "italic", size = 4.2, colour = "grey15") +
-  annotate("text", x = crit, y = 0.585, label = "criterion",
-           size = 3.2, colour = "grey15", hjust = -0.1) +
-  annotate("text", x = 4.4, y = 0.12, label = '"yes"', size = 3.2,
-           colour = "grey30") +
-  annotate("text", x = -2.6, y = 0.12, label = '"no"', size = 3.2,
-           colour = "grey30") +
-  scale_fill_manual(values = c("grey60", "steelblue"), name = NULL) +
-  scale_colour_manual(values = c("grey40", "steelblue4"), name = NULL) +
-  coord_cartesian(ylim = c(0, 0.61)) +
-  labs(x = "evidence on a trial", y = NULL) +
-  theme_minimal(base_size = 11) +
-  theme(axis.text.y = element_blank(), panel.grid.minor = element_blank(),
-        legend.position = "bottom")
-```
-
-The two parameters are separate by construction. **Sensitivity** ($d'$) is the distance between the curves: how distinguishable signal is from noise, for this person. **Criterion** is where the line sits: how much evidence they demand before saying "yes". A cautious participant slides the line right and gets fewer hits and fewer false alarms. Their $d'$ does not move.
-
-From the picture, the two rates follow directly. The hit rate is the area of the signal curve to the right of the criterion; the false-alarm rate is the area of the noise curve to the right of it:
-
-```{r}
-#| label: sdt-rates
-d_prime <- 1.8
-crit <- 0.7
-
-hit_rate <- pnorm(d_prime - crit)   # signal curve, right of criterion
-fa_rate <- pnorm(-crit)             # noise curve, right of criterion
-c(hit_rate = hit_rate, fa_rate = fa_rate)
-```
-
-Trial counts are then binomial draws at those rates:
-
-```{r}
-#| label: sdt-counts
-set.seed(5)
-n_signal <- 100
-n_noise <- 100
-
-hits <- rbinom(1, n_signal, hit_rate)
-false_alarms <- rbinom(1, n_noise, fa_rate)
-
-c(hits = hits, misses = n_signal - hits,
-  false_alarms = false_alarms, correct_rejections = n_noise - false_alarms)
-```
-
-Going the other way — from counts back to $d'$ — just inverts the two `pnorm()` calls:
-
-```{r}
-#| label: sdt-recover
-qnorm(hits / n_signal) - qnorm(false_alarms / n_noise)
-```
-
-Close to the 1.8 we generated with, and it would get closer with more trials.
-
-### Why proportion correct is the wrong summary
-
-The simulator makes it easy to see why @sec-measurement warns against proportion correct. For a fixed $d'$, proportion correct depends on where the criterion sits, and it is highest when the criterion is exactly halfway between the two curves:
-
-```{r}
-#| label: sdt-pc-curve
-prop_correct <- function(d, crit, signal_prob = 0.5) {
-  signal_prob * pnorm(d - crit) + (1 - signal_prob) * pnorm(crit)
-}
-
-crits <- seq(-2, 2, by = 0.5)
-round(prop_correct(d = 1.8, crit = crits), 3)
-```
-
-The same person, with identical ability, scores anywhere from `r round(min(prop_correct(1.8, crits)), 2)` to `r round(max(prop_correct(1.8, crits)), 2)` depending only on how willing they are to say "yes".
-
-This also explains a detail in @sec-measurement that might otherwise look arbitrary. To construct two participants with equal proportion correct and different $d'$, you cannot pick the numbers freely: a weak detector at its *best possible* criterion sets a ceiling, and the strong detector has to be given a deliberately bad criterion to come down to it.
-
-```{r}
-#| label: sdt-equalise
-# A d' = 0.8 detector can do no better than this:
-ceiling_08 <- prop_correct(d = 0.8, crit = 0.4)
-ceiling_08
-
-# What criterion drags a d' = 2.0 detector down to the same score?
-uniroot(function(cc) prop_correct(2.0, cc) - ceiling_08, c(-3, 0))$root
-```
-
-Which is where the values `criterion = c(0.4, -0.475)` in @sec-measurement come from — solved, not guessed.
-
 ## Building your own
 
-Both functions are deliberately small, and the point of this chapter is that you could have written either. If you want to explore a measurement question that neither covers, the pattern is the same one @sec-measurement describes in words:
+The function is deliberately small, and the point of this chapter is that you could have written it. If you want to explore a measurement question that it does not cover, the pattern is the same one @sec-measurement describes in words:
 
 1. Generate the construct.
 2. Add whatever contaminates the observation of it.
