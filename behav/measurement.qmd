@@ -21,7 +21,7 @@ The first one you could, in principle, verify. If you doubted it, you could go t
 
 The second is not. Notice that I did not write "the score on the stress questionnaire". I wrote "stress reduction". The score is a number you obtained; stress is a *psychological concept*, and nobody has ever observed one directly. The number expressing the stress reduction has been obtained through a questionnaire, and more specifically, through the items composing the questionnaire. An observable behavior, i.e., the responses to each items, have been combined and used to express something related to an unobservable concept, in this case the psychological stress.
 
-This distinction is the subject of an entire discipline, **psychometrics**: the study of how psychological attributes can be measured, and of how well a given instrument manages it.[^oip] Psychometrics exists because measurement in psychology is a very peculiar situtation It does not deal with physical properties of physical objects, but with **constructs**: psychological concepts that are not directly observable.
+This distinction is the subject of an entire discipline, **psychometrics**: the study of how psychological attributes can be measured, and of how well a given instrument manages it.[^oip] Psychometrics exists because measurement in psychology is a very peculiar situtation It does not deal with physical properties of physical objects, but with **constructs**: psychological concepts that are not directly observable (in statistical terms, *latent* variables: hidden, inferred from what we can observe).
 
 [^oip]: This chapter draws heavily on my own book on psychometrics in clinical neuropsychology, G. Arcara, *Oltre i punteggi* (in Italian), where several of these topics are treated at much greater length. The examples here have been re-anchored from clinical assessment to human–technology research, but the underlying problems are the same ones.
 
@@ -54,7 +54,7 @@ We need to introduce two important terms.
 ::: {.callout-note}
 ## Definitions
 
-**Construct** — a psychological concept that is not directly observable (satisfaction, attention, trust, cognitive load). To be measured at all, it has to be tied to one or more *indicators*.
+**Construct** — a psychological concept that is not directly observable (satisfaction, attention, trust, cognitive load). To be measured at all, it has to be tied to one or more *indicators*. Because they are not observed, constructs are also called **latent variables**.
 
 **Indicator** (or **proxy**) — an observable behaviour which, alone or together with others, we assume is a manifestation of the construct. Answers to the items of a questionnaire are the typical case.
 :::
