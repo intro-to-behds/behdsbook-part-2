@@ -398,11 +398,11 @@ window.Quarto = {
 <p><span class="math display">\[
 \sigma_x = \sqrt{\frac{1}{n}\sum_{i=1}^n (x_i - \mu_x)^2}
 \]</span> which can be thought of as the average distance of the points <span class="math inline">\(x_i\)</span> to the mean <span class="math inline">\(\mu_x\)</span>.</p>
-<p>Let’s compute the mean and standard deviation of the reaction times of males:</p>
+<p>Let’s compute the mean and standard deviation of the UX scores of desktop users:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rafalib)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">with</span>(reaction_times, rt_ms[sex <span class="sc">==</span> <span class="st">"Male"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">with</span>(ux_scores, ux_score[device <span class="sc">==</span> <span class="st">"desktop"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The pre-built functions <code>mean</code> and <code>sd</code> can be used here:</p>
 <div class="cell" data-layout-align="center">
@@ -424,7 +424,7 @@ window.Quarto = {
 </div>
 </div>
 <p>If the distribution of the values stored in <code>x</code> is well approximated by a normal distribution, we can use <code>m &lt;- mean(x)</code> and <code>s &lt;- sd(x)</code> as estimates of the normal distribution’s mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>. Then the entire distribution of <code>x</code> can be summarized with just these two numbers!</p>
-<p>The plot below shows the smooth density of the observed data (blue) and the corresponding normal approximation (black line) with mean <span class="math inline">\(\mu\)</span> = 69.3 and SD <span class="math inline">\(\sigma\)</span> = 3.6:</p>
+<p>The plot below shows the smooth density of the observed data (blue) and the corresponding normal approximation (black line) with mean <span class="math inline">\(\mu\)</span> = 59.1 and SD <span class="math inline">\(\sigma\)</span> = 11.1:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -441,7 +441,7 @@ window.Quarto = {
 </div>
 <p>Here, the logical expression <code>x &gt; a &amp; x &lt;= b</code> returns <code>TRUE</code> for all values of <code>x</code> in the interval and <code>FALSE</code> otherwise. Because the <code>mean</code> function automatically converts <code>TRUE</code> to 1 and <code>FALSE</code> to 0, the average of this logical vector is simply the proportion of observations that fall within the interval. We will use this convenient approach throughout the book.</p>
 <p>The following examples illustrate how closely the observed proportions match the theoretical probabilities from the normal distribution.</p>
-<p>The probability of responding faster than the average participant:</p>
+<p>The probability of scoring at or below the average user:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(m, m, s)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.5</span></span>
@@ -450,9 +450,9 @@ window.Quarto = {
 </div>
 <p>The probability of being within two standard deviations of the mean:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">443.6</span>, m, s) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">311</span>, m, s)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x <span class="sc">&gt;</span> <span class="dv">311</span> <span class="sc">&amp;</span> x <span class="sc">&lt;=</span> <span class="fl">443.6</span>)</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">81.2</span>, m, s) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">37</span>, m, s)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.954</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x <span class="sc">&gt;</span> <span class="dv">37</span> <span class="sc">&amp;</span> x <span class="sc">&lt;=</span> <span class="fl">81.2</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.95</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-note">
@@ -461,7 +461,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>When using the normal approximation with discrete data (for example, when reaction times are recorded to the nearest 10 milliseconds), note that <code>mean(x &lt; a)</code> and <code>mean(x &lt;= a)</code> may differ. In such cases, it’s common to apply a <em>continuity correction</em>, using <code>pnorm(a + delta/2, m, s)</code> to approximate <code>mean(x &lt;= a)</code>, where <code>delta</code> is the bin width (in that example, 10 milliseconds). In our dataset, however, reaction times were recorded with sub-millisecond precision, so the data are effectively continuous and no correction is needed.</p>
+<p>When using the normal approximation with discrete data (for example, when scores are rounded to whole points), note that <code>mean(x &lt; a)</code> and <code>mean(x &lt;= a)</code> may differ. In such cases, it’s common to apply a <em>continuity correction</em>, using <code>pnorm(a + delta/2, m, s)</code> to approximate <code>mean(x &lt;= a)</code>, where <code>delta</code> is the spacing between possible values (in that example, 1 point). Our scores are not rounded, but many users share exactly the same score, so <code>mean(x &lt; a)</code> and <code>mean(x &lt;= a)</code> can differ when <code>a</code> is one of those shared values. For intervals as wide as the ones above, the difference is small, and we do not apply the correction.</p>
 </div>
 </div>
 </div>
@@ -469,12 +469,12 @@ window.Quarto = {
 <section id="standard-units" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="standard-units"><span class="header-section-number">6.3</span> Standard units</h2>
 <p>For data that is approximately normally distributed, it is convenient to think in terms of <em>standard units</em>. The standard unit of a value tells us how many standard deviations away from the average it is. Specifically, for a value <span class="math inline">\(x_i\)</span> from a list <span class="math inline">\((x_1, \dots, x_n)\)</span>, we define the value of <span class="math inline">\(x_i\)</span> in standard units as <span class="math inline">\(z_i = (x_i - \mu_x)/\sigma_x\)</span> with <span class="math inline">\(\mu_x\)</span> and <span class="math inline">\(\sigma_x\)</span> the average and standard deviation of the list, respectively.</p>
-<p>Why is this convenient? First, revisit the formula for the normal distribution and observe that what is being exponentiated is <span class="math inline">\(-z^2/2\)</span> with <span class="math inline">\(z\)</span> equivalent to <span class="math inline">\(x\)</span> in standard units. Because the maximum of <span class="math inline">\(e^{-z^2/2}\)</span> is at <span class="math inline">\(z = 0\)</span>, this explains why the maximum of the distribution occurs at the mean. It also explains the symmetry since <span class="math inline">\(- z^2/2\)</span> is symmetric around 0. Second, note that by converting the normally distributed data to standard units, we can quickly ascertain whether, for example, a participant is about average (<span class="math inline">\(z = 0\)</span>), one of the slowest (<span class="math inline">\(z \approx 2\)</span>), one of the fastest (<span class="math inline">\(z \approx -2\)</span>), or an extremely rare occurrence (<span class="math inline">\(z &gt; 3\)</span> or <span class="math inline">\(z &lt; -3\)</span>). Remember that it does not matter what the original units are, these rules apply to any data that is approximately normal.</p>
+<p>Why is this convenient? First, revisit the formula for the normal distribution and observe that what is being exponentiated is <span class="math inline">\(-z^2/2\)</span> with <span class="math inline">\(z\)</span> equivalent to <span class="math inline">\(x\)</span> in standard units. Because the maximum of <span class="math inline">\(e^{-z^2/2}\)</span> is at <span class="math inline">\(z = 0\)</span>, this explains why the maximum of the distribution occurs at the mean. It also explains the symmetry since <span class="math inline">\(- z^2/2\)</span> is symmetric around 0. Second, note that by converting the normally distributed data to standard units, we can quickly ascertain whether, for example, a user’s score is about average (<span class="math inline">\(z = 0\)</span>), one of the highest (<span class="math inline">\(z \approx 2\)</span>), one of the lowest (<span class="math inline">\(z \approx -2\)</span>), or an extremely rare occurrence (<span class="math inline">\(z &gt; 3\)</span> or <span class="math inline">\(z &lt; -3\)</span>). Remember that it does not matter what the original units are, these rules apply to any data that is approximately normal.</p>
 <p>In R, we can transform to standard units using the function <code>scale</code>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">scale</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>To see how many males are within 2 SDs from the average, we simply type:</p>
+<p>To see how many desktop users are within 2 SDs from the average, we simply type:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(z) <span class="sc">&lt;</span> <span class="dv">2</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.95</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -494,7 +494,7 @@ window.Quarto = {
 </section>
 <section id="robust-summaries" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="robust-summaries"><span class="header-section-number">6.4</span> Robust summaries</h2>
-<p>Note that the reaction times we explored in <a href="distributions.html" class="quarto-xref"><span>Chapter 5</span></a> were recorded cleanly by an experimental task. A second challenge involves exploring self-reported data that people typed in by hand. The <strong>behdslabs</strong> package includes two such datasets: <code>reported_daily_screen_time</code>, a vector of self-reported daily screen-time hours, and <code>wearable_onboarding_height</code>, heights typed in by users while setting up a fitness-wearable app. We will see that due to errors in reporting, using <em>robust summaries</em> is necessary to produce useful summaries.</p>
+<p>Note that the UX scores we explored in <a href="distributions.html" class="quarto-xref"><span>Chapter 5</span></a> were computed automatically by the questionnaire software. A second challenge involves exploring self-reported data that people typed in by hand. The <strong>behdslabs</strong> package includes two such datasets: <code>reported_daily_screen_time</code>, a vector of self-reported daily screen-time hours, and <code>wearable_onboarding_height</code>, heights typed in by users while setting up a fitness-wearable app. We will see that due to errors in reporting, using <em>robust summaries</em> is necessary to produce useful summaries.</p>
 <section id="outliers" class="level3">
 <h3 class="anchored" data-anchor-id="outliers">Outliers</h3>
 <p>Outliers are very common in real-world data analysis. Data recording can be complex and it is common to observe data points generated in error. For example, an old monitoring device may read out nonsensical measurements before completely failing. Human error is also a source of outliers, in particular when data entry is done manually. For example, a user may mistakenly enter their daily screen time in minutes instead of hours, or put the decimal in the wrong place.</p>
@@ -629,22 +629,22 @@ window.Quarto = {
 </div>
 </div>
 <p>The box spans from <span class="math inline">\(Q_1\)</span> to <span class="math inline">\(Q_3\)</span>, with a horizontal line marking the median. The whiskers extend to the smallest and largest observations that are not outliers, while outliers are shown as separate points. The height of the box corresponds to the IQR, representing the middle 50% of the data.</p>
-<p>Boxplots are especially useful when comparing distributions across groups, for example, comparing incident rates across regions or reaction-time distributions between males and females. They provide a quick visual summary of differences in center, spread, and the presence of outliers. In the next chapter, we will use boxplots in exactly this way to compare distributions between groups.</p>
+<p>Boxplots are especially useful when comparing distributions across groups, for example, comparing incident rates across regions or UX scores between desktop and mobile users. They provide a quick visual summary of differences in center, spread, and the presence of outliers. In the next chapter, we will use boxplots in exactly this way to compare distributions between groups.</p>
 </section>
 <section id="exercises" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6.6</span> Exercises</h2>
-<p>1. Load the reaction-time dataset and create a vector <code>x</code> with just the male reaction times:</p>
+<p>1. Load the <code>ux_scores</code> dataset and create a vector <code>x</code> with just the scores of desktop users:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(behdslabs)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> reaction_times<span class="sc">$</span>rt_ms[reaction_times<span class="sc">$</span>sex<span class="sc">==</span><span class="st">"Male"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> ux_scores<span class="sc">$</span>ux_score[ux_scores<span class="sc">$</span>device<span class="sc">==</span><span class="st">"desktop"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>What proportion of the data is between 370 and 390 milliseconds (slower than 370, but faster than or equal to 390)? Hint: use a logical operator and <code>mean</code>.</p>
+<p>What proportion of the data is between 57 and 67 (higher than 57, but lower than or equal to 67)? Hint: use a logical operator and <code>mean</code>.</p>
 <p>2. Suppose all you know about the data is the average and the standard deviation. Use the normal approximation to estimate the proportion you just calculated. Hint: start by computing the average and standard deviation. Then use the <code>pnorm</code> function to predict the proportions.</p>
-<p>3. Notice that the approximation calculated in question 2 is very close to the exact calculation in question 1. Now perform the same task for more extreme values. Compare the exact calculation and the normal approximation for the interval (270,290]. How many times larger is the actual proportion than the approximation?</p>
-<p>4. Approximate the distribution of simple reaction times of adults in the world as normally distributed with an average of 375 milliseconds and a standard deviation of 30 milliseconds. Using this approximation, estimate the proportion of adults who respond in under 225 milliseconds, referred to as <em>ultra-fast responders</em>. Hint: use the <code>pnorm</code> function.</p>
+<p>3. Notice that the approximation calculated in question 2 is very close to the exact calculation in question 1. Now perform the same task for more extreme values. Compare the exact calculation and the normal approximation for the interval (25,32]. How many times larger is the actual proportion than the approximation?</p>
+<p>4. Approximate the distribution of simple reaction times of adults in the world as normally distributed with an average of 300 milliseconds and a standard deviation of 30 milliseconds. Using this approximation, estimate the proportion of adults who respond in under 150 milliseconds, referred to as <em>ultra-fast responders</em>. Hint: use the <code>pnorm</code> function.</p>
 <p>5. There are about 1 billion adults between the ages of 18 and 40 in the world. Use your answer to the previous question to estimate how many of these adults (18-40 year olds) are ultra-fast responders in the world?</p>
-<p>6. Suppose there are about 10 professional esports players whose reaction time is under 225 milliseconds. (This number is hypothetical.) Using the answer to the previous two questions, what proportion of the world’s 18-to-40-year-old <em>ultra-fast responders</em> are professional esports players?</p>
-<p>7. Repeat the calculations performed in the previous question for a reaction time of 265 milliseconds. Suppose there are about 150 professional players who respond at least that fast.</p>
+<p>6. Suppose there are about 10 professional esports players whose reaction time is under 150 milliseconds. (This number is hypothetical.) Using the answer to the previous two questions, what proportion of the world’s 18-to-40-year-old <em>ultra-fast responders</em> are professional esports players?</p>
+<p>7. Repeat the calculations performed in the previous question for a reaction time of 190 milliseconds. Suppose there are about 150 professional players who respond at least that fast.</p>
 <p>8. In answering the previous questions, we found that it is not uncommon for an ultra-fast responder to become a professional player. What would be a fair critique of our calculations (hint: can a reaction time be arbitrarily small?):</p>
 <ol type="a">
 <li>Practice and talent are what make a great esports player, not reaction time.</li>

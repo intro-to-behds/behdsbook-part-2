@@ -367,27 +367,27 @@ window.Quarto = {
 <p>In this chapter, we introduce the mathematical framework for continuous probability distributions and present several useful approximations that frequently appear in data analysis.</p>
 <section id="sec-cdf-intro" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="sec-cdf-intro"><span class="header-section-number">10.1</span> Cumulative distribution functions</h2>
-<p>We return to our example using the reaction times of male participants:</p>
+<p>We return to our example using the UX scores of desktop users:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(behdslabs)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> reaction_times <span class="sc">|&gt;</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Male"</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(rt_ms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> ux_scores <span class="sc">|&gt;</span> <span class="fu">filter</span>(device <span class="sc">==</span> <span class="st">"desktop"</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(ux_score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We previously defined the empirical cumulative distribution function (eCDF) as</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>F <span class="ot">&lt;-</span> <span class="cf">function</span>(a) <span class="fu">mean</span>(x <span class="sc">&lt;=</span> a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>which, for any value <code>a</code>, gives the proportion of values in the list <code>x</code> that are less than or equal to <code>a</code>.</p>
-<p>To connect the eCDF to probability, imagine randomly selecting one of the male participants. What is the chance that their reaction time is slower than 390 milliseconds? Because each participant is equally likely to be chosen, this probability is simply the proportion of participants slower than 390 milliseconds. Using the eCDF, we can compute it as:</p>
+<p>To connect the eCDF to probability, imagine randomly selecting one of the desktop users. What is the chance that their score is higher than 65? Because each user is equally likely to be chosen, this probability is simply the proportion of users scoring higher than 65. Using the eCDF, we can compute it as:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">F</span>(<span class="dv">390</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.363</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">F</span>(<span class="dv">65</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.273</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The cumulative distribution function (CDF) is the theoretical counterpart of the eCDF. Rather than relying on observed data to compute proportions, it directly assigns probabilities to ranges of values for a random outcome <span class="math inline">\(X\)</span>. Specifically, the CDF gives, for any number <span class="math inline">\(a\)</span>, the probability that <span class="math inline">\(X\)</span> is less than or equal to <span class="math inline">\(a\)</span>:</p>
 <p><span class="math display">\[
 F(a) = \Pr(X \leq a)
 \]</span></p>
-<p>Once the CDF is defined, we can compute the probability that <span class="math inline">\(X\)</span> falls within any interval. For example, the probability that a participant’s reaction time is between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> is:</p>
+<p>Once the CDF is defined, we can compute the probability that <span class="math inline">\(X\)</span> falls within any interval. For example, the probability that a user’s score is between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> is:</p>
 <p><span class="math display">\[
 \Pr(a &lt; X \leq b) = F(b) - F(a)
 \]</span></p>
@@ -436,19 +436,19 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">F</span>(a) <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(a, <span class="at">mean =</span> m, <span class="at">sd =</span> s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This is useful in many data applications. If we are willing to assume that a variable, such as reaction time, follows a normal distribution, we can answer probability questions without needing the full dataset. For example, to find the probability that a randomly selected participant is slower than 390 milliseconds, we only need the sample mean and standard deviation:</p>
+<p>This is useful in many data applications. If we are willing to assume that a variable, such as a UX score, follows a normal distribution, we can answer probability questions without needing the full dataset. For example, to find the probability that a randomly selected user scores higher than 65, we only need the sample mean and standard deviation:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">390</span>, m, s)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.351</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">65</span>, m, s)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.297</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="theoretical-distributions-as-practical-models" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="theoretical-distributions-as-practical-models"><span class="header-section-number">10.3</span> Theoretical distributions as practical models</h2>
 <p>Theoretical distributions, such as the normal distribution, are defined mathematically rather than derived directly from data. In practice, we use them to <em>approximate</em> the behavior of real data that arise from complex or unknown processes. Almost all datasets we analyze consist of discrete observations, yet many of these quantities, such as reaction time, weight, or blood pressure, are better understood as measurements of underlying continuous variables.</p>
 <p>For example, reaction times are recorded by a computer clock with finite resolution, so they always appear discrete: a timer that records to the nearest millisecond can only return whole numbers. Therefore, it is more realistic to think of reaction time as a continuous variable whose apparent discreteness comes from the recording resolution.</p>
-<p>When using a continuous distribution such as the normal, we no longer assign probabilities to individual points—each exact value has probability zero—but rather to <em>intervals</em>. In <a href="../summaries/numerical-summaries.html" class="quarto-xref"><span>Chapter 6</span></a>, we showed how theoretical normal distributions can approximate the distribution of our reaction-time data. (This works well here because our data are simulated to be close to normal; real reaction times are usually right-skewed and cannot fall below a physiological minimum, so the normal is only a rough approximation for them.)</p>
+<p>When using a continuous distribution such as the normal, we no longer assign probabilities to individual points—each exact value has probability zero—but rather to <em>intervals</em>. In <a href="../summaries/numerical-summaries.html" class="quarto-xref"><span>Chapter 6</span></a>, we showed how theoretical normal distributions can approximate the distribution of our UX scores. (This works well for these scores. It would work less well for reaction times, which are right-skewed and cannot fall below a physiological minimum, as the <code>reaction_times</code> data in <a href="../behav/measurement.html" class="quarto-xref"><span>Chapter 1</span></a> show: for them the normal is only a rough approximation.)</p>
 <p>The key idea is that theoretical distributions serve as <em>useful approximations</em>. They provide smooth mathematical descriptions that let us compute probabilities and reason about uncertainty. Even though real measurements are discrete, the continuous approximations that apply, such as the normal distribution, allow us to work with data analytically and build models that generalize well beyond a specific dataset.</p>
 </section>
 <section id="monte-carlo-simulations" class="level2" data-number="10.4">
@@ -457,19 +457,19 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
 <section id="normal-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="normal-distribution">Normal distribution</h3>
 <p>R provides the <code>rnorm</code> function to generate normally distributed outcomes. It takes three arguments—sample size, mean (default 0), and standard deviation (default 1)—and produces random numbers that follow a normal distribution.</p>
-<p>Here is an example of how we could generate data that resemble our reaction times:</p>
+<p>Here is an example of how we could generate data that resemble our UX scores:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>simulated_rt <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, m, s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>simulated_ux <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, m, s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Not surprisingly, the distribution of the simulated reaction times looks normal:</p>
+<p>Not surprisingly, the distribution of the simulated scores looks normal:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="continuous-probability_files/figure-html/simulated-rt-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="continuous-probability_files/figure-html/simulated-ux-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -478,21 +478,21 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
 </section>
 <section id="example-extreme-values" class="level3">
 <h3 class="anchored" data-anchor-id="example-extreme-values">Example: extreme values</h3>
-<p>How rare is it to find a lapse of 510 milliseconds or more among 800 male participants? Suppose we repeatedly sample 800 male participants at random and record the slowest reaction time in each group. What does the distribution of these slowest reaction times look like? The following Monte Carlo simulation helps us find out:</p>
+<p>How rare is it to find a score of 100, the maximum of the scale, among 800 desktop users? Suppose we repeatedly sample 800 desktop users at random and record the highest score in each group. What does the distribution of these highest scores look like? The following Monte Carlo simulation helps us find out:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>slowest <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, <span class="fu">max</span>(<span class="fu">rnorm</span>(<span class="dv">800</span>, m, s)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>highest <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, <span class="fu">max</span>(<span class="fu">rnorm</span>(<span class="dv">800</span>, m, s)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Having a lapse that long is quite rare:</p>
+<p>Reaching the maximum is quite rare:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(slowest <span class="sc">&gt;=</span> <span class="dv">510</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.0242</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(highest <span class="sc">&gt;=</span> <span class="dv">100</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.0811</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here is the resulting distribution of the slowest reaction time:</p>
+<p>Here is the resulting distribution of the highest score:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="continuous-probability_files/figure-html/simulated-slowest-rt-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="continuous-probability_files/figure-html/simulated-highest-ux-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -521,11 +521,11 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
 </section>
 <section id="exercises" class="level2" data-number="10.7">
 <h2 data-number="10.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">10.7</span> Exercises</h2>
-<p>1. Assume the distribution of female reaction times is approximated by a normal distribution with a mean of 340 milliseconds and a standard deviation of 35 milliseconds. If we pick a female participant at random, what is the probability that her reaction time is 300 milliseconds or faster?</p>
-<p>2. Assume the same distribution as the previous exercise. If we pick a female participant at random, what is the probability that her reaction time is 400 milliseconds or slower?</p>
-<p>3. Assume the same distribution as the previous exercise. If we pick a female participant at random, what is the probability that her reaction time is between 305 and 375 milliseconds?</p>
-<p>4. Repeat the exercise above, but convert everything to seconds. That is, divide every reaction time, including the standard deviation, by 1000. What is the answer now?</p>
-<p>5. Notice that the answers to the previous two exercises are identical even when you change units. This makes sense since the standard deviations from the average for an entry in a list are not affected by what units we use. In fact, if you look closely, you notice that 305 and 375 are both 1 SD away from the average. Compute the probability that a randomly picked, normally distributed random outcome is within 1 SD of the average.</p>
+<p>1. Assume the distribution of mobile users’ UX scores is approximated by a normal distribution with a mean of 45 points and a standard deviation of 12 points. If we pick a mobile user at random, what is the probability that their score is 35 or lower?</p>
+<p>2. Assume the same distribution as the previous exercise. If we pick a mobile user at random, what is the probability that their score is 60 or higher?</p>
+<p>3. Assume the same distribution as the previous exercise. If we pick a mobile user at random, what is the probability that their score is between 33 and 57?</p>
+<p>4. Repeat the exercise above, but convert everything to a 0–1 scale. That is, divide every score, including the standard deviation, by 100. What is the answer now?</p>
+<p>5. Notice that the answers to the previous two exercises are identical even when you change units. This makes sense since the standard deviations from the average for an entry in a list are not affected by what units we use. In fact, if you look closely, you notice that 33 and 57 are both 1 SD away from the average. Compute the probability that a randomly picked, normally distributed random outcome is within 1 SD of the average.</p>
 <p>6. To understand the mathematical rationale that explains why the answers to exercises 3, 4, and 5 are the same, suppose we have a random outcome <span class="math inline">\(X\)</span> with average <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> and that we ask what the probability of <span class="math inline">\(X\)</span> being smaller than or equal to <span class="math inline">\(a\)</span> is. The probability is:</p>
 <p><span class="math display">\[
 \mathrm{Pr}(X \leq a)
@@ -545,7 +545,7 @@ f(x) = \frac{1}{\sqrt{2\pi}\,\sigma} \exp\left(-\frac{1}{2}\left(\frac{x - \mu}{
 <li><code>pnorm((a - m)/s, m, s)</code></li>
 <li><code>pnorm(a)</code></li>
 </ol>
-<p>7. Imagine the distribution of male reaction times is approximately normal with a mean of 375 milliseconds and a standard deviation of 30 milliseconds. How slow is the participant at the 99th percentile? Hint: use <code>qnorm</code>.</p>
+<p>7. Imagine the distribution of desktop users’ UX scores is approximately normal with a mean of 60 points and a standard deviation of 11 points. What is the score of the user at the 99th percentile? Hint: use <code>qnorm</code>.</p>
 <p>8. IQ scores are approximately normally distributed, with a mean of 100 and a standard deviation of 15. Suppose we want to know what the distribution of the highest IQ would look like across all high school graduating classes if 10,000 people are born each year in a school district. Run a Monte Carlo simulation with <code>B = 1000</code>, where each iteration generates 10,000 IQ scores and records the highest value. Then, create a histogram to visualize the distribution of the maximum IQ in the district.</p>
 
 

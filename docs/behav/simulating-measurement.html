@@ -337,11 +337,7 @@ window.Quarto = {
   <li><a href="#checking-against-the-package" id="toc-checking-against-the-package" class="nav-link" data-scroll-target="#checking-against-the-package">Checking against the package</a></li>
   <li><a href="#what-the-arguments-do" id="toc-what-the-arguments-do" class="nav-link" data-scroll-target="#what-the-arguments-do">What the arguments do</a></li>
   </ul></li>
-  <li><a href="#the-detection-simulator" id="toc-the-detection-simulator" class="nav-link" data-scroll-target="#the-detection-simulator"><span class="header-section-number">2.3</span> The detection simulator</a>
-  <ul class="collapse">
-  <li><a href="#why-proportion-correct-is-the-wrong-summary" id="toc-why-proportion-correct-is-the-wrong-summary" class="nav-link" data-scroll-target="#why-proportion-correct-is-the-wrong-summary">Why proportion correct is the wrong summary</a></li>
-  </ul></li>
-  <li><a href="#building-your-own" id="toc-building-your-own" class="nav-link" data-scroll-target="#building-your-own"><span class="header-section-number">2.4</span> Building your own</a></li>
+  <li><a href="#building-your-own" id="toc-building-your-own" class="nav-link" data-scroll-target="#building-your-own"><span class="header-section-number">2.3</span> Building your own</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/behav/simulating-measurement.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -368,7 +364,7 @@ window.Quarto = {
 
 
 <p><em>by Giorgio Arcara</em></p>
-<p><a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a> used two simulated datasets: a five-item satisfaction scale, and a detection task. This chapter explains how they are generated. You can skip it and lose nothing from the argument of that chapter — but if you want to understand <em>why</em> the simulations behave the way they do, or you want to build your own, this is where the machinery is.</p>
+<p><a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a> used a simulated five-item satisfaction scale. This chapter explains how it is generated. You can skip it and lose nothing from the argument of that chapter — but if you want to understand <em>why</em> the simulations behave the way they do, or you want to build your own, this is where the machinery is.</p>
 <section id="why-simulate-at-all" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="why-simulate-at-all"><span class="header-section-number">2.1</span> Why simulate at all</h2>
 <p>There is one specific reason, and it is not convenience.</p>
@@ -534,87 +530,9 @@ Figure&nbsp;2.1: The same latent distribution, cut into response categories two 
 </div>
 </section>
 </section>
-<section id="the-detection-simulator" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="the-detection-simulator"><span class="header-section-number">2.3</span> The detection simulator</h2>
-<p><code>simulate_sdt()</code> implements the standard equal-variance signal detection model. The model is easier to see as a picture than as code, so here is the picture first (<a href="#fig-sdt" class="quarto-xref">Figure&nbsp;<span>2.2</span></a>).</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-sdt" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-sdt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="simulating-measurement_files/figure-html/fig-sdt-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sdt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.2: The signal detection model. On each trial the participant gets some evidence: drawn from the left curve when there is no signal, and from the right curve when there is. The two curves are <span class="math inline">\(d'\)</span> apart — that distance is sensitivity, the construct. The participant answers ‘yes’ whenever the evidence exceeds their criterion (the vertical line), which they can place wherever they like. Moving the line changes hits and false alarms together; it does not change <span class="math inline">\(d'\)</span>.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>The two parameters are separate by construction. <strong>Sensitivity</strong> (<span class="math inline">\(d'\)</span>) is the distance between the curves: how distinguishable signal is from noise, for this person. <strong>Criterion</strong> is where the line sits: how much evidence they demand before saying “yes”. A cautious participant slides the line right and gets fewer hits and fewer false alarms. Their <span class="math inline">\(d'\)</span> does not move.</p>
-<p>From the picture, the two rates follow directly. The hit rate is the area of the signal curve to the right of the criterion; the false-alarm rate is the area of the noise curve to the right of it:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>d_prime <span class="ot">&lt;-</span> <span class="fl">1.8</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>crit <span class="ot">&lt;-</span> <span class="fl">0.7</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>hit_rate <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(d_prime <span class="sc">-</span> crit)   <span class="co"># signal curve, right of criterion</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>fa_rate <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="sc">-</span>crit)             <span class="co"># noise curve, right of criterion</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">hit_rate =</span> hit_rate, <span class="at">fa_rate =</span> fa_rate)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; hit_rate  fa_rate </span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    0.864    0.242</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Trial counts are then binomial draws at those rates:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>n_signal <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>n_noise <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>hits <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, n_signal, hit_rate)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>false_alarms <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, n_noise, fa_rate)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">hits =</span> hits, <span class="at">misses =</span> n_signal <span class="sc">-</span> hits,</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">false_alarms =</span> false_alarms, <span class="at">correct_rejections =</span> n_noise <span class="sc">-</span> false_alarms)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               hits             misses       false_alarms </span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 89                 11                 26 </span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; correct_rejections </span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 74</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Going the other way — from counts back to <span class="math inline">\(d'\)</span> — just inverts the two <code>pnorm()</code> calls:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(hits <span class="sc">/</span> n_signal) <span class="sc">-</span> <span class="fu">qnorm</span>(false_alarms <span class="sc">/</span> n_noise)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.87</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Close to the 1.8 we generated with, and it would get closer with more trials.</p>
-<section id="why-proportion-correct-is-the-wrong-summary" class="level3">
-<h3 class="anchored" data-anchor-id="why-proportion-correct-is-the-wrong-summary">Why proportion correct is the wrong summary</h3>
-<p>The simulator makes it easy to see why <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a> warns against proportion correct. For a fixed <span class="math inline">\(d'\)</span>, proportion correct depends on where the criterion sits, and it is highest when the criterion is exactly halfway between the two curves:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>prop_correct <span class="ot">&lt;-</span> <span class="cf">function</span>(d, crit, <span class="at">signal_prob =</span> <span class="fl">0.5</span>) {</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  signal_prob <span class="sc">*</span> <span class="fu">pnorm</span>(d <span class="sc">-</span> crit) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> signal_prob) <span class="sc">*</span> <span class="fu">pnorm</span>(crit)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>crits <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">by =</span> <span class="fl">0.5</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop_correct</span>(<span class="at">d =</span> <span class="fl">1.8</span>, <span class="at">crit =</span> crits), <span class="dv">3</span>)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.511 0.533 0.578 0.649 0.732 0.797 0.815 0.776 0.699</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The same person, with identical ability, scores anywhere from 0.51 to 0.81 depending only on how willing they are to say “yes”.</p>
-<p>This also explains a detail in <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a> that might otherwise look arbitrary. To construct two participants with equal proportion correct and different <span class="math inline">\(d'\)</span>, you cannot pick the numbers freely: a weak detector at its <em>best possible</em> criterion sets a ceiling, and the strong detector has to be given a deliberately bad criterion to come down to it.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A d' = 0.8 detector can do no better than this:</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ceiling_08 <span class="ot">&lt;-</span> <span class="fu">prop_correct</span>(<span class="at">d =</span> <span class="fl">0.8</span>, <span class="at">crit =</span> <span class="fl">0.4</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>ceiling_08</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.655</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># What criterion drags a d' = 2.0 detector down to the same score?</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(<span class="cf">function</span>(cc) <span class="fu">prop_correct</span>(<span class="fl">2.0</span>, cc) <span class="sc">-</span> ceiling_08, <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">0</span>))<span class="sc">$</span>root</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -0.475</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Which is where the values <code>criterion = c(0.4, -0.475)</code> in <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a> come from — solved, not guessed.</p>
-</section>
-</section>
-<section id="building-your-own" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="building-your-own"><span class="header-section-number">2.4</span> Building your own</h2>
-<p>Both functions are deliberately small, and the point of this chapter is that you could have written either. If you want to explore a measurement question that neither covers, the pattern is the same one <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a> describes in words:</p>
+<section id="building-your-own" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="building-your-own"><span class="header-section-number">2.3</span> Building your own</h2>
+<p>The function is deliberately small, and the point of this chapter is that you could have written it. If you want to explore a measurement question that it does not cover, the pattern is the same one <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a> describes in words:</p>
 <ol type="1">
 <li>Generate the construct.</li>
 <li>Add whatever contaminates the observation of it.</li>

@@ -385,17 +385,17 @@ p_i = \frac{i - 0.5}{n}, \quad i = 1, \dots, n,
 <p>The most common use of qqplots is to assess whether two distributions, <span class="math inline">\(F_1(x)\)</span> and <span class="math inline">\(F_2(x)\)</span>, are similar. If the points in the qqplot fall approximately along the identity line, it suggests that the two distributions have a similar shape.</p>
 <section id="example" class="level3">
 <h3 class="anchored" data-anchor-id="example">Example</h3>
-<p>Up to now we have only examined the distribution of reaction times for males. We expect the distribution for females to be similar except for a shift of about 40 milliseconds, since in these data males are slower than females, on average. A qqplot confirms this after shifting both distributions to have the same average reaction time:</p>
+<p>Up to now we have only examined the distribution of UX scores for desktop users. We expect the distribution for mobile users to be similar except for a shift of about 13 points, since in these data desktop users score higher than mobile users, on average. A qqplot confirms this after shifting both distributions to have the same average score:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(behdslabs)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">with</span>(reaction_times, rt_ms[sex <span class="sc">==</span> <span class="st">"Female"</span>])</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">with</span>(reaction_times, rt_ms[sex <span class="sc">==</span> <span class="st">"Male"</span>])</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qqplot</span>(f <span class="sc">-</span> <span class="fu">mean</span>(f), m <span class="sc">-</span> <span class="fu">mean</span>(m))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>mob <span class="ot">&lt;-</span> <span class="fu">with</span>(ux_scores, ux_score[device <span class="sc">==</span> <span class="st">"mobile"</span>])</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>desk <span class="ot">&lt;-</span> <span class="fu">with</span>(ux_scores, ux_score[device <span class="sc">==</span> <span class="st">"desktop"</span>])</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qqplot</span>(mob <span class="sc">-</span> <span class="fu">mean</span>(mob), desk <span class="sc">-</span> <span class="fu">mean</span>(desk))</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="comparing-groups_files/figure-html/male-vs-female-qqplot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+<p><img src="comparing-groups_files/figure-html/desktop-vs-mobile-qqplot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 </div>
@@ -426,12 +426,12 @@ p_i = \frac{i - 0.5}{n}, \quad i = 1, \dots, n,
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="at">mean =</span> <span class="dv">375</span>, <span class="at">sd =</span> <span class="dv">30</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 434</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>For observed data, we can compute sample quantiles using the <code>quantile</code> function. For example, here are the quartiles of male reaction times:</p>
+<p>For observed data, we can compute sample quantiles using the <code>quantile</code> function. For example, here are the quartiles of the desktop users’ scores:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">with</span>(reaction_times, rt_ms[sex <span class="sc">==</span> <span class="st">"Male"</span>])</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">with</span>(ux_scores, ux_score[device <span class="sc">==</span> <span class="st">"desktop"</span>])</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25% 50% 75% </span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 356 374 402</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  25%  50%  75% </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 52.0 58.1 67.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To check whether these data are approximately normal, we can construct a QQ plot following these steps:</p>
 <ol type="1">
@@ -463,7 +463,7 @@ p_i = \frac{i - 0.5}{n}, \quad i = 1, \dots, n,
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>The <code>reaction_times</code> data are simulated and very close to normal, which makes them a clean first example. Real reaction times are typically right-skewed, and a qqplot of real data would curve away from the line, with the slowest responses lying well above it. Do not treat the good normal fit here as a general property of reaction-time data.</p>
+<p>Not every variable is this well behaved. Try the same plot with the <code>reaction_times</code> data, which are right-skewed like real reaction times: the points curve away from the line, with the slowest responses lying well above it. Scores on bounded scales can also bend away from the line at the ends, when many people sit at the floor or the ceiling of the scale (see <a href="../behav/measurement.html" class="quarto-xref"><span>Chapter 1</span></a>).</p>
 </div>
 </div>
 </div>
@@ -475,8 +475,8 @@ p_i = \frac{i - 0.5}{n}, \quad i = 1, \dots, n,
 <p>And similarly with <strong>ggplot2</strong>, which uses a different vector of probabilities than our <code>p</code>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>reaction_times <span class="sc">|&gt;</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"Male"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> <span class="fu">scale</span>(rt_ms))) <span class="sc">+</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ux_scores <span class="sc">|&gt;</span> <span class="fu">filter</span>(device <span class="sc">==</span> <span class="st">"desktop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> <span class="fu">scale</span>(ux_score))) <span class="sc">+</span> </span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>() <span class="sc">+</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -506,40 +506,40 @@ p_i = \frac{i - 0.5}{n}, \quad i = 1, \dots, n,
 </section>
 <section id="sec-stratification" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="sec-stratification"><span class="header-section-number">7.3</span> Stratification</h2>
-<p>In data analysis, we often divide observations into groups based on the values of one or more variables associated with those observations. For example, we can divide the reaction-time values into groups based on a sex variable: females and males. We call this procedure <em>stratification</em> and refer to the resulting groups as <em>strata</em>.</p>
+<p>In data analysis, we often divide observations into groups based on the values of one or more variables associated with those observations. For example, we can divide the UX scores into groups based on a device variable: desktop and mobile. We call this procedure <em>stratification</em> and refer to the resulting groups as <em>strata</em>.</p>
 <p>Stratification is common in data visualization because we are often interested in how the distribution of variables differs across different subgroups.</p>
-<p>Using the histogram, density plots, and qqplots, we have become convinced that the male reaction-time data is well approximated with a normal distribution. In this case, we report back to ET a very succinct summary: male reaction times follow a normal distribution with an average of 377.3 milliseconds and a SD of 33.2 milliseconds. With this information, ET will have a good idea of what to expect when they test our male participants. However, to provide a complete picture we need to also provide a summary of the female reaction times.</p>
-<p>Boxplots are useful when we want to quickly compare two or more distributions. Here are the reaction times for females and males:</p>
+<p>Using the histogram, density plots, and qqplots, we have become convinced that the desktop scores are well approximated with a normal distribution. In this case, we report back to ET a very succinct summary: desktop users’ UX scores follow a normal distribution with an average of 59.1 points and a SD of 11.1 points. With this information, ET will have a good idea of what to expect from our desktop users. However, to provide a complete picture we need to also provide a summary of the mobile users’ scores.</p>
+<p>Boxplots are useful when we want to quickly compare two or more distributions. Here are the UX scores for desktop and mobile users:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(behdslabs)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>reaction_times <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(sex, rt_ms, <span class="at">fill =</span> sex)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ux_scores <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(device, ux_score, <span class="at">fill =</span> device)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="comparing-groups_files/figure-html/summaries-female-male-boxplots-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="comparing-groups_files/figure-html/summaries-desktop-mobile-boxplots-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The plot immediately reveals that males are, on average, slower to respond than females. The standard deviations appear to be similar. But does the normal approximation also work for the female reaction-time data collected by the study? We expect that they will follow a normal distribution, just like males. However, exploratory plots reveal that the approximation is not as useful:</p>
+<p>The plot immediately reveals that desktop users, on average, rate the app higher than mobile users. The standard deviations appear to be similar. But does the normal approximation also work for the mobile scores collected by the study? We expect that they will follow a normal distribution, just like the desktop scores. However, exploratory plots reveal that the approximation is not as useful:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="comparing-groups_files/figure-html/summaries-histogram-qqplot-female-rt-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p><img src="comparing-groups_files/figure-html/summaries-histogram-qqplot-mobile-ux-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>We see something we did not see for the males: the density plot has a second <em>bump</em> near a reaction time of 220 milliseconds. This is reflected in the qqplot with five points that suggest faster than expected reaction times for a normal distribution. The qqplot also shows that the highest points tend to be slower than expected by the normal distribution. When reporting back to ET, we might need to provide a histogram rather than just the average and standard deviation for the female reaction times.</p>
-<p>This is unexpected—we would expect the female distribution to be well approximated by a normal distribution, just as the male one is. What explains the five unusually fast reaction times and the excess of very slow ones? One possibility is that some male participants entered their data without changing the default sex selection of Female in the form. Whatever the cause, data visualization has uncovered a potential flaw in the data.</p>
+<p>We see something we did not see for the desktop users: the density plot has a second <em>bump</em> at very low scores, below 10. This is reflected in the qqplot with five points that are lower than expected for a normal distribution. The qqplot also shows that the highest points tend to be higher than expected by the normal distribution. When reporting back to ET, we might need to provide a histogram rather than just the average and standard deviation for the mobile scores.</p>
+<p>This is unexpected—we would expect the mobile distribution to be well approximated by a normal distribution, just as the desktop one is. What explains the five unusually low scores and the excess of very high ones? One possibility for the high scores is that some desktop users were recorded as mobile users, for example because the survey fell back to a default device when it could not detect one. Whatever the cause, data visualization has uncovered a potential flaw in the data.</p>
 <p>Regarding the five smallest values, note that these are:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(reaction_times, sex <span class="sc">==</span> <span class="st">"Female"</span>) <span class="sc">|&gt;</span> <span class="fu">slice_min</span>(rt_ms, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(rt_ms)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 209 218 218 228 246</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(ux_scores, device <span class="sc">==</span> <span class="st">"mobile"</span>) <span class="sc">|&gt;</span> <span class="fu">slice_min</span>(ux_score, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(ux_score)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  3.06  6.12  6.12  9.18 15.30</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Because genuine visual reaction times rarely drop below about 200 milliseconds, a possibility is that these were anticipatory presses: participants responding before the stimulus appeared, rather than truly reacting to it.</p>
+<p>Scores this low mean choosing the most negative answer to almost every item. A possibility is <em>careless responding</em>: some users click through a questionnaire without reading it, always choosing the same option. Another is that these users met a real problem, such as a crash in the mobile version. The data alone cannot tell the two apart, but either way these five values deserve a closer look before we summarise the mobile scores.</p>
 </section>
 <section id="exercises" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="exercises"><span class="header-section-number">7.4</span> Exercises</h2>
@@ -564,14 +564,14 @@ p_i = \frac{i - 0.5}{n}, \quad i = 1, \dots, n,
 <li>0.25</li>
 </ol>
 <p>5. On the displayed log scale, which continent has the largest interquartile range (IQR)? Hint: IQR was defined in <a href="numerical-summaries.html#sec-boxplots" class="quarto-xref"><span>Section 6.5</span></a>.</p>
-<p>6. Define variables containing the reaction times of males and females as follows:</p>
+<p>6. Define variables containing the UX scores of desktop and mobile users as follows:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(behdslabs)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>male <span class="ot">&lt;-</span> reaction_times<span class="sc">$</span>rt_ms[reaction_times<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">"Male"</span>]</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>female <span class="ot">&lt;-</span> reaction_times<span class="sc">$</span>rt_ms[reaction_times<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">"Female"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>desktop <span class="ot">&lt;-</span> ux_scores<span class="sc">$</span>ux_score[ux_scores<span class="sc">$</span>device <span class="sc">==</span> <span class="st">"desktop"</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>mobile <span class="ot">&lt;-</span> ux_scores<span class="sc">$</span>ux_score[ux_scores<span class="sc">$</span>device <span class="sc">==</span> <span class="st">"mobile"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>How many measurements do we have for each?</p>
-<p>7. Suppose we can’t make a plot and want to compare the distributions side by side. We can’t just list all the numbers. Instead, we will look at the percentiles. Create a table for each sex with 10th, 30th, 50th, 70th, &amp; 90th percentiles. Then create a data frame with a column for each sex, and 5 rows as these percentiles.</p>
+<p>7. Suppose we can’t make a plot and want to compare the distributions side by side. We can’t just list all the numbers. Instead, we will look at the percentiles. Create a table for each device with 10th, 30th, 50th, 70th, &amp; 90th percentiles. Then create a data frame with a column for each device, and 5 rows as these percentiles.</p>
 <p>8. Use the <code>app_data_breaches</code> dataset to compute each state’s incident rate (incidents per 100,000 people). Use a qqplot to demonstrate that these incident rates do not follow a normal distribution.</p>
 <p>9. Remove the data for the District of Columbia (DC), then strarify the data into the four regions and generate a qqplot for each to see if the incident rates follow a normal distribution within each of the four regions.</p>
 <p>10. Calculate the mean and standard deviation of incident rates for each region. Perform the analysis twice: once including all observations and once excluding Washington, DC. Discuss which comparison is more informative and explain your reasoning.</p>
