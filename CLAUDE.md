@@ -14,6 +14,8 @@ Irizarry's original datasets (elections, genomics) must be replaced with behavio
 
 Chapters are top-level folders (`prob/`, `inference/`, `linear-models/`, `highdim/`, `ml/`), each containing `.qmd` files. Rendered via Quarto (`_quarto.yml`) to `docs/`.
 
+Rendering notes: render with `LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8` set (Quarto can hang silently without a locale). The knitr cache (`cache: true`) is keyed on the installed `behdslabs` version and data hash by a hook in `.Rprofile`, so updating the package re-executes cached chunks on the next render. GitHub Pages serves `docs/` (branch `main`, path `/docs`); a root-level `site_libs/` is not used and is ignored.
+
 ## Adding a new chapter
 
 1. Create a new top-level folder (mirrors `prob/`, `inference/`, etc.) containing:
