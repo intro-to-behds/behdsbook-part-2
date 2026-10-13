@@ -13,19 +13,19 @@ library(behdslabs)
 
 ## Introduction to the problem
 
-Imagine you are evaluating a wellbeing app, and you have two numbers for each user. The first is how many times they opened the app last month. The second is how much their stress went down over the same period, measured with a short questionnaire they filled in every week.
+Imagine you are evaluating a wellbeing app, and you have two numbers for each user. The first is how many times they opened the app last month. The second indicates the psychological stress reduction over the same period, measured with a short questionnaire they filled in every week. 
 
-Both are numbers. Both will sit in the same data frame, in adjacent columns, and every function in this book will treat them identically. But they are not the same kind of thing at all.
+Both are numbers. Both will sit in the same data frame, in adjacent columns, and every function in this book will treat them identically. But if you think more about it, we cannot treat them the same way. 
 
 The first one you could, in principle, verify. If you doubted it, you could go to the server logs and count. "Number of app opens" is a description of something that happened, and the number is the thing itself.
 
-The second is not. Notice that I did not write "the score on the stress questionnaire" — I wrote "stress reduction". The score is a number you obtained; stress is a *psychological concept*, and nobody has ever observed one directly. You cannot go and check. The number is standing in for something, and how well it stands in for it is a question the number itself cannot answer.
+The second is not. Notice that I did not write "the score on the stress questionnaire". I wrote "stress reduction". The score is a number you obtained; stress is a *psychological concept*, and nobody has ever observed one directly. The number expressing the stress reduction has been obtained through a questionnaire, and more specifically, through the items composing the questionnaire. An observable behavior, i.e., the responses to each items, have been combined and used to express something related to an unobservable concept, in this case the psychological stress.
 
-This distinction is the subject of an entire discipline, **psychometrics**: the study of how psychological attributes can be measured, and of how well a given instrument manages it.[^oip] Psychometrics exists because measurement in psychology is a peculiar business. It does not deal with physical properties of physical objects, but with **constructs** — psychological concepts that are not directly observable.
+This distinction is the subject of an entire discipline, **psychometrics**: the study of how psychological attributes can be measured, and of how well a given instrument manages it.[^oip] Psychometrics exists because measurement in psychology is a very peculiar situtation It does not deal with physical properties of physical objects, but with **constructs**: psychological concepts that are not directly observable.
 
 [^oip]: This chapter draws heavily on my own book on psychometrics in clinical neuropsychology, G. Arcara, *Oltre i punteggi* (in Italian), where several of these topics are treated at much greater length. The examples here have been re-anchored from clinical assessment to human–technology research, but the underlying problems are the same ones.
 
-Let me make the point concretely, with data.
+Let me make the point concretely, with data from another example.
 
 ```{r}
 #| label: two-kinds-of-column
@@ -49,7 +49,7 @@ That is what this chapter is about.
 
 ## Constructs and proxies
 
-We need two terms.
+We need to introduce two important terms.
 
 ::: {.callout-note}
 ## Definitions
@@ -59,13 +59,13 @@ We need two terms.
 **Indicator** (or **proxy**) — an observable behaviour which, alone or together with others, we assume is a manifestation of the construct. Answers to the items of a questionnaire are the typical case.
 :::
 
-The fact that constructs are unobservable is not, by itself, a catastrophe, and it is not unique to psychology. Temperature is not directly observable either. What we observe in an old-fashioned thermometer is a column of liquid metal getting longer, and we convert that length into a number we call degrees. Nobody objects, because the physical relationship between temperature and the expansion of the metal is tight, well understood, and does not depend on what kind of day the thermometer is having.
+The fact that constructs are unobservable is not, by itself, a crucial issue, and it is not unique to psychology. Temperature is not directly observable either. What we observe in an old-fashioned thermometer is a column of liquid metal getting longer, and we convert that length into a number we call degrees. Nobody objects, because the physical relationship between temperature and the expansion of the metal is tight, well understood, and does not depend on what kind of day the thermometer is having.
 
-Psychological measurement has the same shape — an observable indicator standing in for an unobservable property — and this is where the resemblance ends. The link between a construct and the behaviour we use to indicate it is far looser than the link between temperature and expansion, for two reasons.
+Psychological measurement has the same shape with an observable indicator standing in for an unobservable property, but this is where the resemblance ends. The link between a construct and the behaviour we use to indicate it is far looser than the link between temperature and expansion, for two reasons.
 
-The first is that **there is no one-to-one correspondence between a behaviour and a single underlying process.** Almost by definition, any behaviour can be produced by more than one route. A user who fails a task may not lack the ability the task was designed to probe: they may have misread an ambiguous label, been distracted by a notification, misunderstood the instructions, or simply been fighting an unfamiliar device. The failure is real; what it indicates is not settled by the fact that it happened.
+The first is that **there is no one-to-one correspondence between a behaviour and a single underlying process.** Almost by definition, any behaviour can be produced by more than one route. A user who fails a task may not lack the ability the task was designed to probe: they may have misread an ambiguous label, been distracted by a notification, misunderstood the instructions, or simply been fighting an unfamiliar device. We cannot just _assume_ we are measuring a specific construct when using an indicator, especially if we don't have empirical evidence that the indicator is appropriate to this kind of inference.
 
-The second is that a great many variables that we do not care about can push the observed behaviour around. Motivation, mood, fatigue, time pressure, the device being used, how clearly the instructions were phrased — all of these can move the indicator without moving the construct at all.
+The second is that a great many variables that we do not care about can change the relationship between indicator and construct. Motivation, mood, fatigue, time pressure, the device being used, how clearly the instructions were phrased, all of these can move the indicator without moving the construct at all.
 
 @fig-construct-score draws the basic situation, and @fig-other-variables adds the complication.
 
@@ -137,7 +137,7 @@ ggplot(boxes) +
 
 ## Measurement in psychology
 
-If measuring a construct is this awkward, it is worth asking what we even mean by "measurement". There is more than one answer, and the differences are not academic.
+If measuring a construct is this difficult, it is worth asking what we even mean by "measurement". There is more than one answer, and the differences are not academic.
 
 ### Stevens, and the four scales
 
@@ -194,9 +194,13 @@ Now try the same three claims with a satisfaction score, where one user scores 2
 
 Only the first claim survives comfortably. And Suppes and Zinnes' point is precisely that you do not get to assume the other two just because you have numbers that permit the arithmetic. Whether the numerical system really represents the structure of the empirical one is something to be *demonstrated*, not taken for granted.
 
+Importantly, both Stevens' and Suppes and Zinnes' definitions deal with the relation between numbers of things to be measured, but no tells us the implications, for example of the precision or accuracy we are measuring.
+
+In fact, this seems a crucial issue in psychology. A good instrument should be an instrument in which the proxies selected and the items, captures adequately the construct that is intended to measure, and that are accurate enough. These were the starting points of Classical Test Theory, the topic of the next paragraph.
+
 ### Classical Test Theory
 
-Most instruments you will meet, in psychology and in UX research, were built under a third framework, which comes at the problem from a different angle: instead of asking what measurement *is*, it asks what a score *contains*. This is **Classical Test Theory** (CTT), and it rests on one equation.
+Most instruments you will meet, in psychology and in UX research, were built under a measurement perspective that tackle the the problem from a different angle: instead of asking what measurement *is*, it asks what a score *contains*. This is **Classical Test Theory** (CTT), and its foundations rest on one simple equation.
 
 ::: {.callout-note}
 ## Definition
@@ -227,34 +231,32 @@ ctt <- data.frame(occasion = 1:30, observed = 20 + rnorm(30, 0, 2))
 ggplot(ctt, aes(occasion, observed)) +
   geom_hline(yintercept = 20, colour = "steelblue", linewidth = 1.1) +
   geom_point(shape = 21, fill = "white", colour = "grey20", size = 2.4) +
-  annotate("text", x = 30, y = 20.45, label = "true score", hjust = 1,
-           colour = "steelblue", size = 3.2) +
+  annotate("text", x = 30, y = 19, label = "true score", hjust = 1,
+           colour = "steelblue", size = 4) +
   labs(x = "administration", y = "observed score") +
   coord_cartesian(ylim = c(14, 26)) +
   theme_minimal(base_size = 11) +
   theme(panel.grid.minor = element_blank())
 ```
 
-This picture has a consequence worth stating plainly, because it is easy to nod at and then forget: **in practice you always see a single observed score.** One circle. You never see the line. Everything you conclude about the person rests on one draw from a distribution whose centre you are trying to guess.
+This picture has a consequence worth stating plainly, because it is easy to nod at and then forget: **in practice you always see a single observed score.**. In other words you see one circle, but you never see the line (which is what you would like to see). Everything you conclude about the person rests on one draw from a distribution whose centre you are trying to guess.
 
-Two priorities follow. Make $E$ as small as possible, so that the circle lands near the line. And *estimate how big $E$ is*, so you know how much to trust the circle you got. The second half of this chapter is mostly about those two jobs.
+Two priorities follow. Make $E$ as small as possible, so that the circle lands near the line. And *estimate how big $E$ is*, so you know how much to trust the circle you got. The second half of this chapter is mostly about those two jobs. Tests could differ on $E$ and we should prefer tests with the smallest $E$.
 
 CTT has real limitations. The most relevant one here is that the independence of $T$ and $E$ breaks down at the ends of the scale. If someone's true score is at the maximum, error cannot push their observed score any higher — it can only pull it down. The error stops being symmetric, and stops being independent of $T$. On bounded scales, which is to say on most UX instruments, this matters.
 
 ::: {.callout-note}
 ## Other measurement models exist
 
-CTT is the dominant framework and the one this chapter uses, but it is not the only one, and its limitations have known answers. **Item Response Theory** (IRT) — a family of models descending from the Rasch model — represents item difficulty and person ability as separate parameters rather than bundling them into a single total score, and can provide the justification for an interval scale that CTT simply assumes. Other approaches drop the assumption that a construct is best described by a number at all: **Knowledge Space Theory**, for instance, describes a person as occupying one of a set of *states* organised in a network, rather than a position on a line. None of these are covered here, but it is worth knowing they exist, and that "this is how it has always been done" is not an argument that CTT is right.
+CTT is the dominant framework and the one this chapter uses, but it is not the only one, and its limitations have known answers. **Item Response Theory** (IRT) is a family of models descending from the Rasch model that represents item difficulty and person ability as separate parameters rather than bundling them into a single total score, and can provide the justification for an interval scale that CTT simply assumes. Other approaches drop the assumption that a construct is best described by a number at all: **Knowledge Space Theory**, for instance, describes a person as occupying one of a set of *states* organised in a network, rather than a position on a line. None of these are covered here, but it is worth knowing they exist, and that "this is how it has always been done" is not an argument that CTT is right.
 :::
 
 ## Interval scales as an assumption, not a demonstration
 
-Here is the uncomfortable part. The great majority of psychological instruments — and effectively all the UX scales you will meet in practice — are analysed as though their scores were on an **interval** scale. Means are computed, standard deviations are reported, difference scores are taken, regressions are fitted. Every one of those operations requires interval-level measurement.
-
-Almost none of those instruments ever demonstrated that they have it.
+Here is the uncomfortable part. The great majority of psychological instruments, and effectively most of the UX scales you will meet in practice, are analysed as though their scores were on an **interval** scale. Means are computed, standard deviations are reported, difference scores are taken, regressions are fitted. Every one of those operations requires interval-level measurement. However, almost none of those instruments ever demonstrated that they have it.
 
 ::: {.callout-important}
-In most psychological and UX instruments, interval-level measurement is **assumed**, not shown. It is the starting point, not a finding.
+In most psychological instruments, interval-level measurement is **assumed**, not shown. It is the starting point, not a finding.
 :::
 
 Apply the interval assumption to a five-point satisfaction item and see whether you believe it. The assumption says the distance from 1 to 2 is the same as the distance from 4 to 5. But moving a user from "very dissatisfied" to "dissatisfied" and moving one from "satisfied" to "very satisfied" are not obviously the same amount of anything. Or take a 0–100 usability score: is a gain of 2 points at 96 — where you are running out of scale — really the same as a gain of 2 points at 60?
@@ -263,11 +265,11 @@ This is why, on the standard view, **Likert responses should be treated as ordin
 
 [^liddell]: T. M. Liddell & J. K. Kruschke (2018), *Analyzing ordinal data with metric models: What could possibly go wrong?*, **Journal of Experimental Social Psychology**, 79, 328–348, <https://doi.org/10.1016/j.jesp.2018.08.009>. Their answer to the title's question is: quite a lot, including inferring effects that are not there and missing ones that are.
 
-Let me state my own position, because this is a place where it is easy to take the argument too far. I do not think any of this means you should throw out your satisfaction scale. An instrument with questionable assumptions is very often better than no instrument, and a purist who refuses to measure anything until the measurement theory is airtight will simply not measure anything. What I do think is that you should know which assumption you are relying on, and be able to say what would happen if it were wrong. Sometimes nothing happens. Sometimes quite a lot does.
+Let me state my own position, because this is a place where it is easy to take the argument too far. I do not think any of this means you should throw out your satisfaction scale. An instrument with questionable assumptions is very often better than no instrument at all, and a purist who refuses to measure anything until the measurement theory is airtight will simply not measure anything. What I do think is that you should know which assumption you are relying on, and be able to say what would happen if it were wrong. Sometimes nothing happens. Sometimes quite a lot does.
 
 ### What the assumption actually costs
 
-Start with real data. `daily_mood_ratings` records daily mood on a 1–7 scale.
+Start with some realistic data. `daily_mood_ratings` records daily mood on a 1–7 scale.
 
 ```{r}
 #| label: mood-table
@@ -280,7 +282,7 @@ mean(daily_mood_ratings, na.rm = TRUE)
 median(daily_mood_ratings, na.rm = TRUE)
 ```
 
-The mean is about `r round(mean(daily_mood_ratings, na.rm = TRUE), 2)`. Now ask what that number denotes. It is not a response anybody could have given — there is no such thing as a mood of 2.3 on this scale. It is the centre of gravity of a set of category labels, and it only means something if the gaps between those labels are equal, which is exactly what we have no evidence for. The median, `r median(daily_mood_ratings, na.rm = TRUE)`, makes a weaker claim and needs a weaker assumption.
+The mean is about `r round(mean(daily_mood_ratings, na.rm = TRUE), 2)`. Now ask what that number denotes. It is not a response anybody could have given — there is no such thing as a mood of 2.3 on this scale. It is the "centre of gravity" of a set of category labels, and it only means something if the gaps between those labels are equal, which is exactly what we have no evidence for. The median, `r median(daily_mood_ratings, na.rm = TRUE)`, makes a weaker claim and needs a weaker assumption.
 
 (Notice also the `r sum(is.na(daily_mood_ratings))` missing days. We will come back to those.)
 
@@ -288,7 +290,7 @@ Now the more serious question: can this assumption change what you *conclude*? I
 
 ### A running example
 
-We will use a simulated 5-item app-satisfaction scale, administered to users of two versions of an interface. Simulation is the right tool here for one specific reason: it hands us the true score $T$, which no real dataset ever will. The generating machinery is explained in @sec-simulating-measurement.
+We will use a simulated 5-item app-satisfaction scale, administered to users of two versions of an interface. Simulation is the right tool here for one specific reason: it hands us the true score $T$, which no real dataset ever will. Simulating data is a powerful way to learn, because we know the real underlying properties and we can check if the analyses are able to reconstruct them (with some caveats). The generating machinery is explained in @sec-simulating-measurement.
 
 ```{r}
 #| label: satisfaction-sim
@@ -298,7 +300,7 @@ satisfaction <- simulate_likert(n = 200,
 head(satisfaction)
 ```
 
-Each row is a user: five item responses, their total, and — the luxury of simulation — the true satisfaction that generated them.
+Each row is a user: five item responses, their total, and — the main advantage of simulation — the true satisfaction that generated them.
 
 Now for the demonstration. Consider a *different* pair of groups, constructed so that the two groups have **exactly the same average satisfaction** and differ only in how spread out they are. Some populations are more homogeneous than others; that is not a difference in satisfaction.
 
@@ -328,6 +330,8 @@ wilcox.test(total ~ group, data = ceiling_effect)$p.value
 The $t$-test reports a difference, convincingly. The rank-based test does not. And we know, because we built the data, that **there is no difference in satisfaction to find**.
 
 What went wrong? The scale has a ceiling: most responses pile up at the top, which is what satisfaction scales actually do.
+
+<PLACE-HOLDER: add here a reference to inferential statistics part of the book>
 
 ```{r}
 #| label: ceiling-table
@@ -385,7 +389,7 @@ Real reaction-time data adds a further complication that is worth naming even th
 ::: {.callout-warning}
 ## A caveat about this dataset
 
-`reaction_times` in `behdslabs` is a linear rescaling of the `heights` data, so its distribution is symmetric:
+`reaction_times` in `behdslabs` is a linear rescaling of the `heights` data of the original version of the book, so its distribution is symmetric:
 
 ```{r}
 #| label: rt-symmetric
