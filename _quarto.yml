@@ -56,16 +56,16 @@ book:
         - prob/sampling-models-and-clt.qmd
         - prob/reading-prob.qmd
         
-    # [hidden until reflavoured]
-    # - part: inference/intro-inference.qmd
-      # chapters:
-        # - inference/estimates-confidence-intervals.qmd
-        # - inference/models.qmd
-        # - inference/bayes.qmd
-        # - inference/hierarchical-models.qmd
-        # - inference/hypothesis-testing.qmd
-        # - inference/bootstrap.qmd
-        # - inference/reading-inference.qmd
+    - part: inference/intro-inference.qmd
+      chapters:
+        - inference/estimates-confidence-intervals.qmd
+        # [hidden until reflavoured] - inference/models.qmd
+        # [hidden until reflavoured] - inference/bayes.qmd
+        # [hidden until reflavoured] - inference/hierarchical-models.qmd
+        - inference/hypothesis-testing.qmd
+        - inference/comparing-two-groups.qmd
+        # [hidden until reflavoured] - inference/bootstrap.qmd
+        - inference/reading-inference.qmd
         
     # [hidden until reflavoured]
     # - part: linear-models/intro-to-linear-models.qmd

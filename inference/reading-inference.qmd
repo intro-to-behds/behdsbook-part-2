@@ -1,26 +1,11 @@
 # Recommended Reading  {.unnumbered}
 
-- **Freedman, D., Pisani, R., & Purves, R. (2007). _Statistics_ (4th ed.).**  
-  Emphasizes conceptual understanding of estimation and uncertainty. Especially strong on interpreting standard errors and margins of error.
+- **Freedman, D., Pisani, R., & Purves, R. (2007). _Statistics_ (4th ed.). W. W. Norton.**  
+  Emphasizes conceptual understanding of estimation and uncertainty. Especially strong on interpreting standard errors, margins of error and tests of significance.
 
-- **Berger, J. O. (1985). *Statistical Decision Theory and Bayesian Analysis* (2nd ed.). Springer-Verlag.**  
-  A classic and comprehensive reference that develops Bayesian methods from first principles of decision theory. Recommended for readers who wish to explore the mathematical foundations in more depth.
+- **Lakens, D. (2022). _Improving Your Statistical Inferences_.**  
+  A free online textbook written for psychologists, covering p-values, error rates, power, effect sizes and confidence intervals, with many interactive examples.  
+  [https://lakens.github.io/statistical_inferences/](https://lakens.github.io/statistical_inferences/)
 
-- **Nate Silver (2016).** *How FiveThirtyEight's Election Forecast Works.*  
-  FiveThirtyEight's official explanation of the 2016 model, including poll weighting, correlated errors, and simulation methodology.  
-  [https://fivethirtyeight.com/features/how-fivethirtyeights-election-forecast-works/](https://fivethirtyeight.com/features/how-fivethirtyeights-election-forecast-works/)
-
-- **FiveThirtyEight (2020).** *How Our Presidential Forecast Works (2020 Edition).*  
-  Details updates to the 2020 model, including adjustments for state and national polling correlation, house effects, and uncertainty in turnout and the Electoral College.  
-  [https://fivethirtyeight.com/features/how-our-presidential-forecast-works/](https://fivethirtyeight.com/features/how-our-presidential-forecast-works/)
-
-- **Andrew Gelman (2020).** *Election Forecasting: Why We're Not as Sure as We Think.*  
-  A statistical perspective on model uncertainty, correlated polling errors, and the interpretation of forecast probabilities.  
-  [https://statmodeling.stat.columbia.edu/2020/11/02/election-forecasting-why-were-not-as-sure-as-we-think/](https://statmodeling.stat.columbia.edu/2020/11/02/election-forecasting-why-were-not-as-sure-as-we-think/)
-
-- **James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021). _An Introduction to Statistical Learning_ (2nd ed.). Springer.**  
-   See the chapter on resampling methods for a clear, concise introduction to the bootstrap with intuitive examples and code.
-
-- **Efron, B., & Tibshirani, R. J. (1993). _An Introduction to the Bootstrap_. Chapman & Hall/CRC.**  
-  The classic, authoritative treatment. Develops the bootstrap from first principles, with theory, practical guidance, and many examples.
-
+- **Cumming, G. (2012). _Understanding the New Statistics: Effect Sizes, Confidence Intervals, and Meta-Analysis_. Routledge.**  
+  Argues for estimation (effect sizes with confidence intervals) rather than significance testing alone, with examples from psychology.

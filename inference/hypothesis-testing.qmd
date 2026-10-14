@@ -10,7 +10,7 @@ Take, for instance, a participant in a two-choice task: on every trial, they see
 
 The initial hypothesis that the parameter equals the predetermined value is called the _null hypothesis_. It's popular because it allows us to focus on the data's properties under this null scenario. Once data is collected, we estimate the parameter and calculate the p-value, which is the probability of the estimate being as or more extreme as observed if the null hypothesis is true. If the p-value is small, it indicates the null hypothesis is unlikely, providing evidence against it.
 
-We will see more examples of hypothesis testing in the next chapter, where we compare two groups<!-- @sec-two-groups -->.
+We will see more examples of hypothesis testing in @sec-two-groups, where we compare two groups.
 
 ## p-values
 

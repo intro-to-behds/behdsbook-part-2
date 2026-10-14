@@ -1,23 +1,11 @@
 # Statistical Inference {#sec-intro-inference .unnumbered}
 
-Statistical Inference is the branch of statistics dedicated to distinguishing patterns arising from signal versus those arising from chance. It is a broad topic and, in this section, we review the basics using polls as a motivating example. To illustrate the concepts, we supplement mathematical formulas with Monte Carlo simulations and R code. We demonstrate the practical value of these concepts by using election forecasting as a case study. Readers already familiar with statistical inference theory and interested in the case study you can focus on Chapter @sec-election-forecasting.
+Statistical inference is the branch of statistics dedicated to distinguishing patterns arising from signal versus those arising from chance. When a usability study finds that 48% of participants rate a new interface positively, or an experiment finds that responses are 40 ms slower in one condition than in another, inference tells us how much these numbers could change if we ran the study again, and whether a difference is large enough not to be explained by chance alone.
 
-The day before the 2008 presidential election, Nate Silver's FiveThirtyEight stated that "Barack Obama appears poised for a decisive electoral victory". They went further and predicted that Obama would win the election with 349 electoral votes to 189, and the popular vote by a margin of 6.1%. FiveThirtyEight also attached a probabilistic statement to their prediction claiming that Obama had a 91% chance of winning the election. The predictions were quite accurate since, in the final results, Obama won the electoral college 365 to 173 and the popular vote by a 7.2% difference. Their performance in the 2008 election brought FiveThirtyEight to the attention of political pundits and TV personalities. Four years later, the week before the 2012 presidential election, FiveThirtyEight's Nate Silver was giving Obama a 90% chance of winning despite many of the experts thinking the final results would be closer. Political commentator Joe Scarborough said during his show[^models-1]:
+In this part of the book, we show how the probability concepts from the previous part can be applied to develop these methods. To illustrate the concepts, we supplement mathematical formulas with Monte Carlo simulations and R code.
 
-[^models-1]: https://www.youtube.com/watch?v=TbKkjm-gheY
+We begin with estimates, standard errors, margins of error and confidence intervals, using a satisfaction survey as the running example (@sec-estimates-and-ci). We then introduce hypothesis testing, p-values and statistical power, starting from a participant who may or may not be guessing in a two-choice task (@sec-hypothesis-testing). Finally, we compare two groups or two conditions, the most common question in behavioural research, with the t-test and the Wilcoxon test (@sec-two-groups).
 
-> Anybody that thinks that this race is anything but a toss-up right now is such an ideologue ... they're jokes.
-
-To which Nate Silver responded via Twitter:
-
-> If you think it's a toss-up, let's bet. If Obama wins, you donate \$1,000 to the American Red Cross. If Romney wins, I do. Deal?
-
-Obama won the election.
-
-In 2016, Silver was not as certain and gave Hillary Clinton only a 71% chance of winning. In contrast, many other forecasters were almost certain she would win. She lost. But 71% is still more than 50%, so was Mr. Silver wrong? And what does probability mean in this context anyway? 
-
-In this part of the book, we show how the probability concepts from the previous part can be applied to develop statistical methods that make polls effective tools for understanding public opinion. Although in the United States the popular vote does not determine the presidential outcome, we use it as a simple and illustrative example to introduce the core ideas of statistical inference.
-
-We begin by learning how to define estimates and margins of error for the popular vote and how these lead naturally to confidence intervals. We then extend this framework by aggregating data from multiple pollsters to examine the limitations of traditional models and explore improvements. To interpret probabilistic statements about the likelihood of a candidate winning, we introduce Bayesian modeling, and finally, we combine these ideas through hierarchical models to build a simplified version of the FiveThirtyEight election model and apply it to the 2016 election.
-
-We conclude with two widely taught topics that, while not required for the case study, are central to statistical practice: statistical power and p-values. This part of the book ends with a brief introduction to the bootstrap, an inferential method we will revisit in the machine learning part.
+:::{.callout-note}
+Irizarry's original book develops inference through a case study on election forecasting, including chapters on data-driven models, Bayesian statistics, hierarchical models and the bootstrap. These chapters are not part of this edition yet: the estimates and hypothesis-testing chapters have been rewritten around behavioural examples, and the chapter on comparing two groups is new.
+:::
