@@ -4,32 +4,32 @@ In scientific studies, you'll often see phrases like "the results are statistica
 
 In hypothesis testing, rather than providing an estimate of the parameter we're studying, we provide a probability that serves as evidence supporting or contradicting a specific hypothesis. The hypothesis usually involves whether a parameter is different from a predetermined value (often 0).
 
-Hypothesis testing is used when you can phrase your research question in terms of whether a parameter differs from this predetermined value. It's applied in various fields, asking questions such as: Does a medication extend the lives of cancer patients? Does an increase in gun sales correlate with more gun violence? Does class size affect test scores?
+Hypothesis testing is used when you can phrase your research question in terms of whether a parameter differs from this predetermined value. It's applied in various fields, asking questions such as: Does a stress-reduction app lower stress compared to no app? Does a redesigned interface change how long users take to complete a task? Does a night without sleep slow down reaction times?
 
-Take, for instance, the previously used example with colored beads. We might not be concerned about the exact proportion of blue beads, but instead ask: Is the proportion of blue beads different from 0.5? We could also ask if there are more blue beads than red, which would be a _one-sided test_, but we focus on more commonly used two-sided tests here.
+Take, for instance, a participant in a two-choice task: on every trial, they see a stimulus and press one of two keys. We might not be concerned about the participant's exact accuracy, but instead ask: Is their probability of a correct answer different from 0.5, the accuracy of someone who simply guesses? We could also ask if the participant does *better* than guessing, which would be a _one-sided test_, but we focus on more commonly used two-sided tests here.
 
 The initial hypothesis that the parameter equals the predetermined value is called the _null hypothesis_. It's popular because it allows us to focus on the data's properties under this null scenario. Once data is collected, we estimate the parameter and calculate the p-value, which is the probability of the estimate being as or more extreme as observed if the null hypothesis is true. If the p-value is small, it indicates the null hypothesis is unlikely, providing evidence against it.
 
-We will see more examples of hypothesis testing in @sec-treatment-effect-models.
+We will see more examples of hypothesis testing in the next chapter, where we compare two groups<!-- @sec-two-groups -->.
 
 ## p-values
 
-Suppose we take a random sample of $N=100$ and we observe $52$ blue beads, which gives us $\bar{X} = 0.52$. This seems to be pointing to there being more blue than red beads since 0.52 is larger than 0.5. However, we know chance is involved in this process, and we could observe 52 blue beads even when the actual probability is 0.5. We call the assumption that the probability is 0.5, $\pi = 0.5$, a *null hypothesis*. The null hypothesis is the skeptic's hypothesis. 
+Suppose our participant completes $N=100$ trials and answers $52$ of them correctly, which gives us $\bar{X} = 0.52$. This seems to be pointing to the participant doing better than chance, since 0.52 is larger than 0.5. However, we know chance is involved in this process, and a participant who is purely guessing could also get 52 correct answers. We call the assumption that the probability of a correct answer is 0.5, $\pi = 0.5$, a *null hypothesis*. The null hypothesis is the skeptic's hypothesis: the participant is just guessing.
 
 :::{.callout-note}
-We use $\pi$ to represent the probability of drawing a blue bead, instead of $p$ as in previous sections, to avoid confusion between the parameter $p$ and the p in p-value.
+We use $\pi$ to represent the probability of a correct answer, instead of $p$ as in previous sections, to avoid confusion between the parameter $p$ and the p in p-value.
 :::
 
-We have observed a random variable $\bar{X} = 0.52$, and the p-value is the answer to the question: How likely is it to see a value at least this large, when the null hypothesis is true? If the p-value is small enough, we _reject the null hypothesis_ and say that the results are _statistically significant_. 
+We have observed a random variable $\bar{X} = 0.52$, and the p-value is the answer to the question: How likely is it to see a value at least this far from 0.5, when the null hypothesis is true? If the p-value is small enough, we _reject the null hypothesis_ and say that the results are _statistically significant_.
 
 :::{.callout-warning}
-The p-value of 0.05 as a threshold for statistical significance is conventionally used in many areas of research. A cutoff of 0.01 is also used to define _highly significant_ results. The choice of 0.05 is somewhat arbitrary and was popularized by the British statistician Ronald Fisher in the 1920s. We do not recommend using these cutoffs without justification and recommend avoiding the phrase _statistically significant_. 
+The p-value of 0.05 as a threshold for statistical significance is conventionally used in many areas of research. A cutoff of 0.01 is also used to define _highly significant_ results. The choice of 0.05 is somewhat arbitrary and was popularized by the British statistician Ronald Fisher in the 1920s. We do not recommend using these cutoffs without justification and recommend avoiding the phrase _statistically significant_.
 :::
 
 To obtain a p-value for our example, we write:
 
 $$
-\Pr(| \bar{X} - 0.5 | > 0.02 ) 
+\Pr(| \bar{X} - 0.5 | > 0.02 )
 $$
 
 assuming $\pi=0.5$. Under the null hypothesis, we know that:
@@ -50,15 +50,33 @@ z <- sqrt(N)*0.02/0.5
 1 - (pnorm(z) - pnorm(-z))
 ```
 
-In this case, there is actually a large chance of seeing 52 or larger under the null hypothesis. 
+In this case, there is actually a large chance of seeing 52 or more correct answers, or 48 or fewer, from a participant who is guessing. These data give us no reason to doubt that the participant is guessing.
+
+### A p-value without the normal approximation
+
+The normal approximation works well for 100 trials. With fewer trials, we can compute the p-value exactly, because the number of correct answers of a guessing participant follows the binomial distribution we met in @sec-random-variables. Suppose a participant answers 15 of 20 trials correctly. How surprising is this if they are guessing? The probability of 15 or more correct answers is:
+
+```{r}
+1 - pbinom(14, size = 20, prob = 0.5)
+```
+
+about 2 in 100. This is the one-sided p-value: the probability, under the null hypothesis, of a result at least as extreme as the one observed, in the direction of doing better than chance. The two-sided p-value also counts results as extreme in the other direction (5 or fewer correct), and R computes it with `binom.test()`:
+
+```{r}
+binom.test(15, n = 20, p = 0.5)$p.value
+```
+
+Keep in mind what this number is: the probability of the *data*, assuming the participant is guessing. It is not the probability that the participant is guessing given the data. The two are different conditional probabilities (see @sec-conditional-probability), and confusing them is one of the most common errors in reading p-values.
+
+### p-values and confidence intervals
 
 Keep in mind that there is a close connection between p-values and confidence intervals. In our example, if a 95% confidence interval does not include the null hypothesis value 0.5, we know that the p-value must be smaller than 0.05. In general, we can show mathematically that if a $(1-\alpha)\times 100$% confidence interval does not contain the null hypothesis value, the null hypothesis is rejected with a p-value as small or smaller than $\alpha$. So, _statistical significance_ can be determined from confidence intervals.
 
-To learn more about p-values, you can consult any statistics textbook. However, in general, we prefer reporting confidence intervals over p-values because they give us an idea of the size of the estimate. If we just report the p-value, we provide no information about the significance of the finding in the context of the problem. For this reason, we recommend avoiding p-values whenever you can compute a confidence interval. 
+To learn more about p-values, you can consult any statistics textbook. However, in general, we prefer reporting confidence intervals over p-values because they give us an idea of the size of the estimate. If we just report the p-value, we provide no information about the significance of the finding in the context of the problem. For this reason, we recommend avoiding p-values whenever you can compute a confidence interval.
 
 ## Power
 
-Pollsters are not successful at providing correct confidence intervals, but rather at predicting who will win. When we used a sample size of 25 beads, the confidence interval for the spread included 0:
+A team running a satisfaction survey is rarely asked for a perfect confidence interval; it is asked for a decision: are most users satisfied or not? Recall the sample of 25 reviews from @sec-estimates-and-ci, with $\bar{X} = 0.48$. The confidence interval for the net satisfaction, $2p - 1$, includes 0:
 
 ```{r}
 N <- 25
@@ -66,21 +84,24 @@ x_hat <- 0.48
 (2*x_hat - 1) + c(-1.96, 1.96)*2*sqrt(x_hat*(1 - x_hat)/N)
 ```
 
-If this were a poll and we were forced to make a declaration, we would have to say it was a "toss-up".
+If we were forced to make a call, we would have to say it was too close to call.
 
-One problem with our poll results is that, given the sample size and the value of $\pi$, we would have to sacrifice the probability of an incorrect call to create an interval that does not include 0.
+One problem with our results is that, given the sample size and the value of $\pi$, we would have to sacrifice the probability of an incorrect call to create an interval that does not include 0.
 
-This does not mean that the election is close. It only means that we have a small sample size. In statistical textbooks, this is called lack of *power*. In the context of polls, *power* is the probability of detecting a nonzero spread when the true spread is in fact not 0.
+This does not mean that opinions are evenly split. It only means that we have a small sample size. In statistical textbooks, this is called lack of *power*. In this context, *power* is the probability of detecting a nonzero net satisfaction when the true net satisfaction is in fact not 0.
 
-By increasing our sample size, we lower our standard error and thus have a much better chance of detecting the direction of the spread.
+By increasing our sample size, we lower our standard error and thus have a much better chance of detecting the direction of the difference.
 
+:::{.callout-note}
+Lack of power is common in behavioural research, where studies often test a few dozen participants. A study with low power will usually miss real effects, and when it does find one, the estimate tends to exaggerate its size. This is one of the methodological roots of the replication crisis in psychology, which we discuss with study design in @sec-experimental-designs.
+:::
 
 Statistical textbooks provide much more detail on hypothesis testing, including formal definitions of p-values, statistical power, and related concepts. The Recommended Reading section lists texts that cover these topics in depth for readers interested in exploring them further.
 
 ## Exercises
 
 
-1\. Generate a sample of size $N=1000$ from an urn model with 50% blue beads:
+1\. Generate the answers of a participant who guesses on $N=1000$ two-choice trials, where 1 is a correct answer and 0 an incorrect one:
 
 ```{r, eval=FALSE}
 N <- 1000
@@ -88,7 +109,7 @@ pi0 <- 0.5 #we use pi0 to avoid the reserved constant pi
 x <- rbinom(N, 1, pi0)
 ```
 
-then, compute a p-value if the null hypothesis value $\pi=0.5$. Repeat this 10,000 times and report how often the p-value is lower than 0.05? How often is it lower than 0.01?
+then, compute a p-value for the null hypothesis $\pi=0.5$. Repeat this 10,000 times and report how often the p-value is lower than 0.05. How often is it lower than 0.01?
 
 2\. Make a histogram of the p-values you generated in exercise 1. Which of the following is true:
 
@@ -120,15 +141,15 @@ $$
 Remember, if $\Pr(p \leq a) = a$ for all $a$ in $[0,1]$, then $p$ follows a *uniform distribution*. Show that this relationship holds when $Z$ is standard normal.
 
 
-4\.  Generate a sample of size $N=1000$ from an urn model with 52% blue beads:
+4\.  Generate the answers of a participant who is correct 52% of the time on $N=1000$ trials:
 
 ```{r, eval=FALSE}
-N <- 1000 
+N <- 1000
 pi0 <- 0.52
 x <- rbinom(N, 1, pi0)
 ```
 
-Compute a p-value to test if $\pi=0.5$. Repeat this 10,000 times and report how often the p-value is larger than 0.05? Note that you are computing 1 - power. 
+Compute a p-value to test if $\pi=0.5$. Repeat this 10,000 times and report how often the p-value is larger than 0.05. Note that you are computing 1 - power.
 
 5\. Repeat exercise 4 but for the following values:
 
@@ -139,4 +160,5 @@ expand.grid(N = c(25, 50, 100, 500, 1000), pi = seq(0.51 ,0.75, 0.01))
 
 Plot power as a function of $N$ with a different color curve for each value of `pi0`.
 
+6\. A participant answers 15 of 20 two-choice trials correctly. Use `binom.test()` to compute the two-sided p-value for $\pi = 0.5$, then compute a 95% confidence interval for their accuracy with `binom.test(15, 20)$conf.int`. Does the interval include 0.5? How does this agree with the p-value?
 
