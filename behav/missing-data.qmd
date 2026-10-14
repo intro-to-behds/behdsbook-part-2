@@ -1,0 +1,137 @@
+# Missing Data {#sec-missing-data}
+
+Almost every behavioural dataset has holes. Participants skip questionnaire items, forget to fill in a diary on some days, fail to respond on some trials, or drop out of a study halfway through. In R, a missing value is recorded as `NA`, "not available". It is tempting to treat missing values as a nuisance that a function argument can make disappear. This chapter argues that they are data about the data: *who* is missing, and *why*, can change what a study concludes.
+
+:::{.callout-note}
+This chapter is original material written for this book; it is not part of Irizarry's *Introduction to Data Science*.
+:::
+
+## Counting what is missing
+
+`daily_mood_ratings` contains 1,000 daily mood ratings on a 1–7 scale, collected with an app. On some days, participants did not respond:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(behdslabs)
+sum(is.na(daily_mood_ratings))
+mean(is.na(daily_mood_ratings))
+```
+
+`is.na()` returns `TRUE` for each missing value, so `sum()` counts them and `mean()` gives their proportion: `r round(100*mean(is.na(daily_mood_ratings)))`% of the days have no rating. Most summary functions return `NA` as soon as one value is missing, unless we tell them to remove the missing values first:
+
+```{r}
+mean(daily_mood_ratings)
+mean(daily_mood_ratings, na.rm = TRUE)
+```
+
+The answer `NA` is R being honest: the average of a set of numbers that includes unknown numbers is unknown. `na.rm = TRUE` gives the average of the days *that were observed*. Whether that is a good estimate of the participants' typical mood is a different question, and it is the question of this chapter.
+
+With a data frame, we usually want to know how much is missing in each column and in each row. The following data are simulated: a small diary study in which 6 participants rated their mood and their stress for 5 days.
+
+```{r}
+set.seed(4)
+diary <- expand_grid(participant = sprintf("P%d", 1:6), day = 1:5) |>
+  mutate(mood = sample(1:7, n(), replace = TRUE),
+         stress = sample(1:7, n(), replace = TRUE))
+diary$mood[c(3, 8, 9, 10, 22)] <- NA
+diary$stress[c(10, 17, 22)] <- NA
+
+colSums(is.na(diary))
+diary |>
+  group_by(participant) |>
+  summarize(missing_mood = sum(is.na(mood)), missing_stress = sum(is.na(stress)))
+```
+
+Missing values are rarely spread evenly. Here, participant P2 accounts for most of the missing mood ratings. Counting missing values by participant, by item or by day is the first step of any analysis: it tells us where the holes are before we decide what to do about them.
+
+## Why the data are missing matters
+
+Statisticians distinguish three situations, which we describe in plain words:
+
+- **Missing completely at random.** Whether a value is missing has nothing to do with the participant or with the value itself: the app crashed on random days, a page of a paper questionnaire was lost. The observed values are then a random sample of all the values.
+- **Missing at random.** Whether a value is missing depends on something else we have *observed*: for example, younger participants skip more days, and we know each participant's age. Within each age group, the observed values are still representative.
+- **Missing not at random.** Whether a value is missing depends on the value itself: participants on their worst days do not open the app at all. The observed values are then systematically different from the missing ones.
+
+The names are confusing (the second case is not random in the everyday sense), but the idea is simple. To see why it matters, we simulate the true mood of 1,000 participants on a 1–7 scale (higher is better) and then remove ratings in two different ways: completely at random, and more often on bad days:
+
+```{r}
+set.seed(2026)
+n <- 1000
+mood <- pmin(pmax(round(rnorm(n, 4, 1.5)), 1), 7)
+
+# completely at random: every rating has the same 30% chance of being missing
+mood_mcar <- ifelse(runif(n) < 0.3, NA, mood)
+
+# not at random: the worse the mood, the higher the chance of being missing
+p_missing <- c(0.70, 0.55, 0.40, 0.25, 0.15, 0.10, 0.05)[mood]
+mood_mnar <- ifelse(runif(n) < p_missing, NA, mood)
+
+c(true = mean(mood),
+  mcar = mean(mood_mcar, na.rm = TRUE),
+  mnar = mean(mood_mnar, na.rm = TRUE))
+```
+
+```{r, echo=FALSE}
+bias_mnar <- mean(mood_mnar, na.rm = TRUE) - mean(mood)
+```
+
+In both cases, a similar share of ratings is missing (`r round(100*mean(is.na(mood_mcar)))`% and `r round(100*mean(is.na(mood_mnar)))`%). When ratings are missing completely at random, the average of the observed ratings is very close to the true average. When the worst days are the ones that go missing, the observed average overestimates mood by about `r round(bias_mnar, 1)` points, and no amount of extra data fixes it: a larger sample gives a more precise estimate of the wrong value, as we saw for biased surveys in @sec-estimates-and-ci.
+
+:::{.callout-warning}
+The data alone cannot tell us which situation we are in. The missing values are, by definition, not there to compare with the observed ones. Deciding whether missingness is plausibly related to the outcome requires knowledge of the study: how data were collected, who dropped out, and why. This is a question about the design, not about the code.
+:::
+
+## Listwise deletion
+
+The most common way of dealing with missing values is to analyse only the rows with no missing values in the variables of interest. This is called *listwise deletion* or *complete-case analysis*, and it is what many R functions do by default. With the tidyverse, `drop_na()` removes every row that has at least one `NA`:
+
+```{r}
+diary |> drop_na() |> nrow()
+nrow(diary)
+```
+
+Listwise deletion is simple and, when values are missing completely at random, it does not bias the estimates. But it can throw away much more data than we expect. Suppose a questionnaire has 10 items and each participant skips each item with probability 5%, independently. The proportion of participants with all 10 items answered is only
+
+```{r}
+0.95^10
+```
+
+so about `r round(100*(1 - 0.95^10))`% of the participants are dropped, even though 95% of all the answers were given. Fewer participants means wider confidence intervals and less power (@sec-hypothesis-testing). And if values are not missing completely at random, the participants who remain are no longer representative.
+
+## Filling in the holes: imputation
+
+An alternative is to replace each missing value with a plausible value, a procedure called *imputation*. The simplest version replaces every missing value with the average of the observed values:
+
+```{r}
+mood_imputed <- ifelse(is.na(mood_mcar), mean(mood_mcar, na.rm = TRUE), mood_mcar)
+c(sd_true = sd(mood),
+  sd_observed = sd(mood_mcar, na.rm = TRUE),
+  sd_imputed = sd(mood_imputed))
+```
+
+The average does not change, but the standard deviation shrinks: `r round(100*mean(is.na(mood_mcar)))`% of the values are now identical, all sitting exactly at the mean. The data look more precise than they are, confidence intervals become too narrow, and correlations with other variables are weakened. Mean imputation also does nothing for data missing not at random: filling in the worst days with the average of the better ones keeps the bias.
+
+Better methods predict each missing value from the other variables and add the uncertainty of that prediction back into the analysis. The standard approach, *multiple imputation*, creates several completed datasets, analyses each, and combines the results; in R, it is implemented in the **mice** package. These methods are beyond the scope of this book, but they rely on the same assumption as listwise deletion with covariates: that the values are missing at random given what we observed. No method can fully repair data that are missing not at random.
+
+## Reporting missing data
+
+Whatever we do with missing values, readers need to know it. A good report states:
+
+- how many values are missing, in which variables, and for how many participants;
+- what was done with them (listwise deletion, imputation, which method), and how many participants entered each analysis;
+- whether missingness could plausibly be related to the outcome, and what the consequences would be.
+
+Decide how missing data will be handled *before* looking at the results, ideally in a preregistration (@sec-research-ethics). Trying several approaches and reporting the one that gives the most convenient result is one more way of making a p-value meaningless.
+
+## Exercises
+
+1\. Using `daily_mood_ratings`, compute the mean, the median and the standard deviation of the observed ratings. Then make a table of the ratings with `table(daily_mood_ratings, useNA = "always")`. In two sentences, explain what you would need to know about the study to decide whether the `r sum(is.na(daily_mood_ratings))` missing days could bias these summaries.
+
+2\. Using the `diary` data from this chapter, compute each participant's average mood with `na.rm = TRUE`, together with the number of days each average is based on. Which participant's average would you trust least, and why?
+
+3\. Repeat the simulation of this chapter, making missingness depend even more strongly on mood: set `p_missing` to 0.9 for a mood of 1, decreasing to 0.05 for a mood of 7. How large is the bias of the observed average? Does it change if you use `n <- 100000`?
+
+4\. Simulate a questionnaire with 20 items, in which each answer is missing with probability 3%, independently. What proportion of participants would listwise deletion keep? Check your answer with a Monte Carlo simulation.
+
+5\. Using the simulated `mood_mcar` and a second variable `stress <- 8 - mood + round(rnorm(n))`, compute the correlation between mood and stress with complete cases (`cor(mood_mcar, stress, use = "complete.obs")`) and after mean imputation of mood. What happens to the correlation, and why?
+
