@@ -1,5 +1,10 @@
 # Missing Data {#sec-missing-data}
 
+:::{.callout-warning}
+## Draft
+This chapter is a **draft**, written with an AI assistant (Claude) on 14 October 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
+:::
+
 Almost every behavioural dataset has holes. Participants skip questionnaire items, forget to fill in a diary on some days, fail to respond on some trials, or drop out of a study halfway through. In R, a missing value is recorded as `NA`, "not available". It is tempting to treat missing values as a nuisance that a function argument can make disappear. This chapter argues that they are data about the data: *who* is missing, and *why*, can change what a study concludes.
 
 :::{.callout-note}

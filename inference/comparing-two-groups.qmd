@@ -1,5 +1,10 @@
 # Comparing Two Groups: the t-test and the Wilcoxon Test {#sec-two-groups}
 
+:::{.callout-warning}
+## Draft
+This chapter is a **draft**, written with an AI assistant (Claude) on 14 October 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
+:::
+
 Many questions in behavioural research compare two groups or two conditions. Do users rate an app differently on desktop and on mobile? Is engagement higher with a redesigned interface than with the standard one? Are responses slower when the colour of a word conflicts with its meaning? In each case, we have a continuous outcome measured in two groups, and we want to know whether the difference we see in our sample reflects a real difference in the population or could have been produced by chance.
 
 In @sec-estimates-and-ci and @sec-hypothesis-testing, we built confidence intervals and p-values for a proportion. In this chapter, we apply the same ideas to the difference between two averages. This leads to the two tests you will meet most often in psychology papers: the *t-test*, which compares means, and the *Wilcoxon test*, which compares ranks and is the usual choice when the data are skewed, contain outliers, or are only ordinal.
