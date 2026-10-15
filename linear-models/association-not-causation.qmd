@@ -16,25 +16,25 @@ Finally, we note that randomized controlled experiments, where subjects are assi
 
 ## Spurious correlation
 
-The following comical example underscores the concept that correlation is not causation. It shows a very strong correlation between divorce rates and margarine consumption.
+The following example underscores the concept that correlation is not causation. It shows a very strong correlation between average daily screen time and an index of smart-speaker sales, over ten consecutive years.
 
-```{r divorce-versus-margarine, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE}
+```{r screen-time-versus-smart-speakers, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE}
 library(tidyverse)
 library(broom)
 library(behdslabs)
 the_title <- paste("Correlation =", 
-                round(with(divorce_margarine, 
-                           cor(margarine_consumption_per_capita, divorce_rate_maine)),2))
-divorce_margarine |> 
-  ggplot(aes(margarine_consumption_per_capita, divorce_rate_maine)) + 
+                round(with(screen_time_vs_smart_speaker_trend, 
+                           cor(smart_speaker_sales_index, avg_daily_screen_time_hours)),2))
+screen_time_vs_smart_speaker_trend |> 
+  ggplot(aes(smart_speaker_sales_index, avg_daily_screen_time_hours)) + 
   geom_point(cex = 3) + 
   geom_smooth(method = "lm") + 
   ggtitle(the_title) +
-  xlab("Margarine Consumption per Capita (lbs)") + 
-  ylab("Divorce rate in Maine (per 1000)")
+  xlab("Smart-speaker sales index") + 
+  ylab("Average daily screen time (hours)")
 ```
 
-Does this mean that margarine consumption causes divorces? Or do divorces cause people to eat more margarine? Of course not. This is just an example of what we call a *spurious correlation*.
+Does this mean that buying fewer smart speakers makes people spend less time on screens? Or that spending less time on screens makes people buy fewer smart speakers? Of course not: both series simply decline over the same ten years. This is just an example of what we call a *spurious correlation*.
 
 You can see many more absurd examples on the Spurious Correlations website[^association-not-causation-1].
 
@@ -161,33 +161,30 @@ A form of this claim actually made it into an op-ed in the New York Times titled
 A very likely possibility is that the children needing regular parental help receive this help because they don't perform well in school.
 
 
-We can illustrate cause-effect reversal by fitting the regression
+We can illustrate cause-effect reversal with a stress-reduction app. People who feel stressed are the ones most likely to install it, and the app, used regularly, lowers stress a little. The following data are simulated so that we know the truth: the probability of using the app increases with a person's baseline stress, and using the app *reduces* stress by 0.5 points on a 10-point scale.
 
-$$
-X = \beta_0 + \beta_1 y + \varepsilon
-$$
-
-to the father–son height data, where $X$ and $y$ represents father and son heights, respectively. Interpreting $\beta_1$ causally here would be backward, as it would imply that sons' heights determine fathers' heights. Using the previously defined `galton` dataset, we do in fact obtain a statistically significant slope, demonstrating that statistical significance does not imply causation or the correct direction of effect.
-
-```{r, echo=FALSE, cache=FALSE}
-library(HistData)
-
+```{r stress-app-simulation}
 set.seed(1983)
-galton <- GaltonFamilies |>
-  filter(gender == "male") |>
-  group_by(family) |>
-  sample_n(1) |>
-  ungroup() |>
-  select(father, childHeight) |>
-  rename(son = childHeight)
+n <- 500
+baseline <- rnorm(n, 5, 1.5)
+app <- rbinom(n, 1, plogis(-6 + 1.1 * baseline))
+stress <- baseline - 0.5 * app + rnorm(n, 0, 0.5)
+stress_app <- tibble(app, stress)
 ```
+
+Now suppose we only observe who uses the app and their current stress, and we fit the regression
+
+$$
+Y = \beta_0 + \beta_1 x + \varepsilon
+$$
+
+where $Y$ is stress and $x$ is 1 for app users and 0 otherwise:
 
 ```{r}
-tidy(lm(father ~ son, data = galton))[2,]
+tidy(lm(stress ~ app, data = stress_app))[2,]
 ```
 
-The model fits the data very well, and the estimates, standard errors, and p-values all correctly show that there is an association between son and father heights.
-However, if we look only at its mathematical formulation, it could easily be misinterpreted as implying that a son's height causes his father's height. From our knowledge of genetics and biology, we know the direction of influence is the opposite. The statistical model itself is not at fault, and we did not make coding mistakes. What is misleading here is the interpretation, not the model or computation.
+The model fits the data well, and the estimate, standard error, and p-value all correctly show that app users are, on average, more stressed than non-users. However, interpreting $\beta_1$ causally would be backward: it would imply that the app *increases* stress by about `r round(coef(lm(stress ~ app, data = stress_app))[2], 1)` points, when we built the data so that it lowers stress. Stress causes app use, not the other way around. The statistical model itself is not at fault, and we did not make coding mistakes. What is misleading here is the interpretation, not the model or computation. Only by comparing the same people before and after, or by assigning the app at random (see @sec-experimental-designs), could we estimate its effect.
 
 ## Confounders
 
@@ -195,68 +192,71 @@ Confounders are perhaps the most common reason that leads to associations being 
 
 If $X$ and $Y$ are correlated, we call $Z$ a *confounder* if it, or some factor associated with it, is a cause of both $X$ and $Y$, thereby creating a spurious association between them unless we properly account for $Z$. 
 
-Incorrect interpretation due to confounders is ubiquitous in the lay press, and they are often hard to detect. Here, we present a widely used example related to college admissions.
+Incorrect interpretation due to confounders is ubiquitous in the lay press, and they are often hard to detect. Here, we present an example about how often users complete tasks in an app, on mobile and on desktop.
 
-### Example: UC Berkeley admissions
+### Example: task completion on mobile and desktop
 
-Admission data from six U.C. Berkeley majors, from 1973, showed that more men were being admitted than women: 44% men were admitted compared to 30% women[^association-not-causation-5]. We can load the data and compute a statistical test, which clearly rejects the hypothesis that gender and admission are independent:
-
-[^association-not-causation-5]: https://pubmed.ncbi.nlm.nih.gov/17835295/
-
+The `app_task_completion` dataset records, for six in-app tasks (A to F), how many attempts users made on mobile and on desktop, and the percentage of attempts that were completed. Overall, attempts on mobile were completed more often than attempts on desktop: `r with(app_task_completion |> group_by(device) |> summarize(r = 100*sum(completion_rate*n_attempts/100)/sum(n_attempts)), round(r[device == "mobile"]))`% compared to `r with(app_task_completion |> group_by(device) |> summarize(r = 100*sum(completion_rate*n_attempts/100)/sum(n_attempts)), round(r[device == "desktop"]))`%. We can compute a statistical test, which clearly rejects the hypothesis that device and task completion are independent:
 
 ```{r}
 library(dplyr)
-two_by_two <- admissions |> group_by(gender) |> 
-  summarize(total_admitted = round(sum(admitted / 100 * applicants)), 
-            not_admitted = sum(applicants) - sum(total_admitted)) |>
-  select(-gender) 
+two_by_two <- app_task_completion |> group_by(device) |> 
+  summarize(total_completed = round(sum(completion_rate / 100 * n_attempts)), 
+            not_completed = sum(n_attempts) - sum(total_completed)) |>
+  select(-device) 
 chisq.test(two_by_two)$p.value
 ```
 
-But closer inspection shows a paradoxical result. Here are the percent admissions by major:
+But closer inspection shows a paradoxical result. Here are the completion rates by task:
 
 ```{r}
-admissions |> select(major, gender, admitted) |>
-  pivot_wider(names_from = "gender", values_from = "admitted") |>
-  mutate(women_minus_men = women - men) |> print(n = 6)
+app_task_completion |> select(task, device, completion_rate) |>
+  pivot_wider(names_from = "device", values_from = "completion_rate") |>
+  mutate(desktop_minus_mobile = desktop - mobile) |> print(n = 6)
 ```
 
-For five of the six majors, the differences are small, with major A favoring women. More importantly, these differences are all much smaller than the 14.2-point difference in favor of men observed when looking at the overall totals.
+For five of the six tasks, the differences are small, and task A clearly favors desktop. More importantly, these differences are all much smaller than the 14.2-point difference in favor of mobile observed when looking at the overall totals.
 
-The paradox is that analyzing the totals suggests a dependence between admission and gender, but when the data is grouped by major, this dependence seems to disappear. What's going on? This actually can happen if an unaccounted for confounder is driving most of the variability.
+:::{.callout-note}
+This dataset has the same structure as a classic real example of the paradox described below: graduate admissions by sex at the University of California, Berkeley, in 1973 (Bickel, Hammel, and O'Connell, *Science*, 1975)[^association-not-causation-5].
+:::
 
-Discovering confounders and understanding how they can lead to misleading conclusions often requires exploratory data analysis and critical thinking. Looking at the table above, we notice substantial variability in admission rates across majors. Could this be influencing the overall results? To investigate, we add a _selectivity_ column, the overall admission rate within each major, to the admissions table.
+[^association-not-causation-5]: https://pubmed.ncbi.nlm.nih.gov/17835295/
+
+The paradox is that analyzing the totals suggests a dependence between completion and device, but when the data is grouped by task, this dependence seems to disappear. What's going on? This actually can happen if an unaccounted for confounder is driving most of the variability.
+
+Discovering confounders and understanding how they can lead to misleading conclusions often requires exploratory data analysis and critical thinking. Looking at the table above, we notice substantial variability in completion rates across tasks: some tasks are much harder than others. Could this be influencing the overall results? To investigate, we add an _ease_ column, the overall completion rate of each task, to the table.
 
 ```{r}
-admissions <- group_by(admissions, major) |>
-  summarize(selectivity = sum(admitted*applicants/100)/sum(applicants)) |>
-  right_join(admissions, by = "major")
+app_task_completion <- group_by(app_task_completion, task) |>
+  summarize(ease = sum(completion_rate*n_attempts/100)/sum(n_attempts)) |>
+  right_join(app_task_completion, by = "task")
 ```
 
-Next, we examine how the number of applicants relates to major selectivity. If selectivity is a confounder, patterns may differ by gender across majors with varying selectivity.
+Next, we examine how the number of attempts relates to task ease. If ease is a confounder, patterns may differ by device across tasks of varying difficulty.
 
-```{r applicants-vs-selectivity}
-admissions |>
-  ggplot(aes(selectivity, applicants, label = major)) +
+```{r attempts-vs-ease}
+app_task_completion |>
+  ggplot(aes(ease, n_attempts, label = task)) +
   geom_text() +
-  facet_wrap(~gender) 
+  facet_wrap(~device) 
 ```
 
-We can see the key issue right away: women are submitting far fewer applications to the less selective majors (A and B). So  department selectivity is a confounder that influenced both gender (different application patterns) and admission outcome.
+We can see the key issue right away: desktop users make far fewer attempts at the easy tasks (A and B) and spend most of their attempts on the hard ones. So task difficulty is a confounder that influenced both device (which tasks people attempt on which device) and the completion outcome.
 
 ### Stratifying
 
-The first hint that something was off in the interpretation of the overall admission rates came from stratifying by major. Stratifying by a known or potential confounder is a powerful technique for examining the relationship between two other variables. In exploratory data analysis, stratification can help us detect how a confounder might be distorting the analysis and can offer ideas for how to adjust for it. 
+The first hint that something was off in the interpretation of the overall completion rates came from stratifying by task. Stratifying by a known or potential confounder is a powerful technique for examining the relationship between two other variables. In exploratory data analysis, stratification can help us detect how a confounder might be distorting the analysis and can offer ideas for how to adjust for it. 
 
-Here is an example in which we plot admissions stratified by major and show that women tend to apply to the more selective majors:
+Here is an example in which we plot completion rates stratified by task and show that desktop users tend to attempt the harder tasks:
 
-```{r admission-by-major}
-admissions |> 
-  ggplot(aes(major, admitted, col = gender, size = applicants)) + 
+```{r completion-by-task}
+app_task_completion |> 
+  ggplot(aes(task, completion_rate, col = device, size = n_attempts)) + 
   geom_point()
 ```
 
-We see that, major by major, there is not much difference in admission rates between genders. However, the large number of men applying to Majors A and B, which admit over 60% of applicants, causes confusion in the overall comparison. This plot suggests that a more sophisticated analysis, adjusting for major factors, is needed. We will learn how to perform such an analysis in the next chapter, in @sec-multivariable-regression.
+We see that, task by task, there is not much difference in completion rates between devices. However, the large number of mobile attempts at tasks A and B, which are completed over 60% of the time, causes confusion in the overall comparison. This plot suggests that a more sophisticated analysis, adjusting for task, is needed. We will learn how to perform such an analysis in the next chapter, in @sec-multivariable-regression.
 
 ### Simpson's paradox
 
@@ -313,25 +313,15 @@ Readers interested in exploring these sources of bias in greater depth---includi
 
 ## Exercises
 
-For the next set of exercises, we examine the data from a 2014 PNAS paper[^association-not-causation-3] that analyzed success rates from funding agencies in the Netherlands and concluded:
+For the next set of exercises, we examine success rates of applications to a technology research-grant programme, by applicant gender and by technology domain. Imagine that a report on the programme concluded that the review process favours men, because men's applications succeed more often than women's. A response argued that this could be a case of Simpson's paradox: if a higher percentage of women apply in more competitive domains (with low success rates for both men and women), an analysis across all domains could incorrectly show evidence of gender bias. (The data have the same structure as a real debate about research funding in the Netherlands, published in *PNAS* in 2015.)
 
-[^association-not-causation-3]: http://www.pnas.org/content/112/40/12349.abstract
+Who is correct here, the report or the response? Below, you will examine the data and come to your own conclusion.
 
-> Our results reveal gender bias favoring male applicants over female applicants in the prioritization of their "quality of researcher" (but not "quality of proposal") evaluations and success rates, as well as in the language used in instructional and evaluation materials.
-
-A response[^association-not-causation-4] was published a few months later titled *No evidence that gender contributes to personal research funding success in The Netherlands: A reaction to Van der Lee and Ellemers* which concluded:
-
-[^association-not-causation-4]: http://www.pnas.org/content/112/51/E7036.extract
-
-> However, the overall gender effect borders on statistical significance, despite the large sample. Moreover, their conclusion could be a prime example of Simpson's paradox; if a higher percentage of women apply for grants in more competitive scientific disciplines (i.e., with low application success rates for both men and women), then an analysis across all disciplines could incorrectly show "evidence" of gender inequality.
-
-Who is correct here, the original paper or the response? Below, you will examine the data and come to your own conclusion.
-
-1\. The primary evidence for the conclusion of the original paper relies on a comparison of the percentages. Table S1 in the paper includes the information we need:
+1\. The primary evidence for the report's conclusion relies on a comparison of the percentages. The data are in:
 
 ```{r,eval=FALSE}
 library(behdslabs)
-research_funding_rates
+tech_grant_funding_gender_gap
 ```
 
 Construct the two-by-two table used for the conclusion about differences in awards by gender.
@@ -340,12 +330,12 @@ Construct the two-by-two table used for the conclusion about differences in awar
 
 3\. In the previous exercise, we noticed that the success rate is lower for women. But is it significant? Compute a p-value using a Chi-square test.
 
-4\. We see that the p-value is about 0.05. So there appears to be some evidence of an association. But can we infer causation here? Is gender bias causing this observed difference? The response to the original paper claims that what we see here is similar to the UC Berkeley admissions example. To settle this dispute, create a dataset with the number of applications, awards, and success rate for each gender. Re-order the disciplines by their overall success rate. Hint: use the `reorder` function to re-order the disciplines in a first step, then use `pivot_longer`, `separate`, and `pivot_wider` to create the desired table.
+4\. The p-value is small, so there appears to be evidence of an association. But can we infer causation here? Is gender bias causing this observed difference? The response to the report claims that what we see here is similar to the task-completion example in this chapter. To settle this dispute, create a dataset with the number of applications, awards, and success rate for each gender. Re-order the technology domains by their overall success rate. Hint: use the `reorder` function to re-order the disciplines in a first step, then use `pivot_longer`, `separate`, and `pivot_wider` to create the desired table.
 
-5\. To check if this is a case of Simpson's paradox, plot the success rates versus disciplines, which have been ordered by overall success, with colors to denote the genders and size to denote the number of applications.
+5\. To check if this is a case of Simpson's paradox, plot the success rates versus technology domains, which have been ordered by overall success, with colors to denote the genders and size to denote the number of applications.
 
-6\. We definitely do not see the same level of confounding as in the UC Berkeley example. It is hard to say that there is a clear confounder here. However, we do see that, based on the observed rates, some fields may favor men and others may favor women. We also see that the two fields with the largest difference favoring men are also the fields with the most applications. But, unlike the UC Berkeley example, women are not more likely to apply for the harder subjects. Is it possible that some of the selection committees are biased and others are not?
+6\. Compare the plot with the task-completion example. Is there a clear confounder here? Based on the observed rates, do some domains favor men and others favor women? Are women more likely to apply in the domains with the lowest success rates, as the response claims? Is it possible that some of the selection committees are biased and others are not?
 
-To answer this question we start by checking if any of the differences seen above are statistically significant. Remember that even when there is no bias, we will see differences due to random variability in the review process as well as random variability across candidates. Perform a Chi-square test for each discipline. Hint: define a function that receives the total of a two-by-two table and returns a data frame with the p-value. Use the 0.5 correction. Then use the `summarize` function.
+To answer this question we start by checking if any of the differences seen above are statistically significant. Remember that even when there is no bias, we will see differences due to random variability in the review process as well as random variability across candidates. Perform a Chi-square test for each technology domain. Hint: define a function that receives the total of a two-by-two table and returns a data frame with the p-value. Use the 0.5 correction. Then use the `summarize` function.
 
-7\. In the medical sciences, there appears to be a statistically significant difference, but could this be a spurious correlation? We performed 9 tests. Reporting only the one case with a p-value less than 0.05 might be considered an example of cherry picking. Repeat the exercise above, but instead of a p-value, compute a log odds ratio divided by its standard error. Then use qq-plot to see how much these log odds ratios deviate from the standard normal distribution we would expect.
+7\. Some domains show a p-value below 0.05, but could these be spurious? We performed 9 tests. Reporting only the cases with a p-value less than 0.05 might be considered an example of cherry picking. Repeat the exercise above, but instead of a p-value, compute a log odds ratio divided by its standard error. Then use qq-plot to see how much these log odds ratios deviate from the standard normal distribution we would expect.
