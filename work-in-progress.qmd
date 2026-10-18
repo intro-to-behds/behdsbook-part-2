@@ -6,8 +6,8 @@ This book is being adapted chapter by chapter for the *Behavioural Data Science*
 
 The following material is currently being reworked with behavioural examples and datasets, and will appear here as soon as it is ready:
 
-* **Probability**: the remaining chapters, on the connection between data and probability, discrete probability, random variables, and sampling models and the Central Limit Theorem.
-* **Statistical Inference**
+* **Missing Data**
+* **Statistical Inference**: the remaining chapters, including comparing two groups with the t-test and the Wilcoxon test.
 * **Linear Models**
 * **High-Dimensional Data**
 * **Machine Learning**
