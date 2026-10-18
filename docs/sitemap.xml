@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/measurement.html</loc>
-    <lastmod>2026-10-14T21:20:53.000Z</lastmod>
+    <lastmod>2026-10-18T05:04:27.842Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/simulating-measurement.html</loc>
@@ -23,10 +23,6 @@
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/research-ethics.html</loc>
     <lastmod>2026-09-28T14:52:05.839Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/missing-data.html</loc>
-    <lastmod>2026-10-15T06:43:53.339Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/experimental-designs.html</loc>
@@ -82,7 +78,7 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/intro-inference.html</loc>
-    <lastmod>2026-10-14T21:20:44.567Z</lastmod>
+    <lastmod>2026-10-18T05:04:19.259Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/estimates-confidence-intervals.html</loc>
@@ -90,11 +86,7 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/hypothesis-testing.html</loc>
-    <lastmod>2026-10-14T21:20:52.998Z</lastmod>
-  </url>
-  <url>
-    <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/comparing-two-groups.html</loc>
-    <lastmod>2026-10-15T06:43:53.339Z</lastmod>
+    <lastmod>2026-10-18T05:04:19.259Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/reading-inference.html</loc>
@@ -102,6 +94,6 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/work-in-progress.html</loc>
-    <lastmod>2026-09-28T14:52:05.898Z</lastmod>
+    <lastmod>2026-10-18T05:04:19.261Z</lastmod>
   </url>
 </urlset>
