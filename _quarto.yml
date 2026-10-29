@@ -64,7 +64,6 @@ book:
         # [hidden until reflavoured] - inference/bayes.qmd
         # [hidden until reflavoured] - inference/hierarchical-models.qmd
         - inference/hypothesis-testing.qmd
-        # [hidden until reviewed] - inference/comparing-two-groups.qmd
         # [hidden until reflavoured] - inference/bootstrap.qmd
         - inference/reading-inference.qmd
         

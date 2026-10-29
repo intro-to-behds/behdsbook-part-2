@@ -4,8 +4,7 @@ Statistical inference is the branch of statistics dedicated to distinguishing pa
 
 In this part of the book, we show how the probability concepts from the previous part can be applied to develop these methods. To illustrate the concepts, we supplement mathematical formulas with Monte Carlo simulations and R code.
 
-We begin with estimates, standard errors, margins of error and confidence intervals, using a satisfaction survey as the running example (@sec-estimates-and-ci). We then introduce hypothesis testing, p-values and statistical power, starting from a participant who may or may not be guessing in a two-choice task (@sec-hypothesis-testing). Finally, we compare two groups or two conditions, the most common question in behavioural research, with the t-test and the Wilcoxon test (chapter in preparation).
-<!-- restore @sec-two-groups when comparing-two-groups.qmd is published -->
+We begin with estimates, standard errors, margins of error and confidence intervals, using a satisfaction survey as the running example (@sec-estimates-and-ci). We then introduce hypothesis testing, p-values and statistical power, starting from a participant who may or may not be guessing in a two-choice task (@sec-hypothesis-testing). Finally, we compare two groups or two conditions, the most common question in behavioural research, with the t-test and the Wilcoxon test, which are reviewed in the *Basic Statistics* part of Part 1 ([*Comparing Two Groups*](https://intro-to-behds.github.io/behdsbook-part-1/basic-stats/comparing-two-groups.html)).
 
 :::{.callout-note}
 Irizarry's original book develops inference through a case study on election forecasting, including chapters on data-driven models, Bayesian statistics, hierarchical models and the bootstrap. These chapters are not part of this edition yet: the estimates and hypothesis-testing chapters have been rewritten around behavioural examples, and the chapter on comparing two groups is new.
