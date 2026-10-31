@@ -31,6 +31,7 @@ under which this adaptation is distributed.
   - `behav/experimental-designs.qmd` — **"Experimental Designs in Psychology"**, an original chapter by C. Costa (with G. Arcara) covering operationalisation and units of analysis, association vs. causality and confounding, validity of designs, cross-sectional/longitudinal/intensive longitudinal designs, experimental control, random assignment vs. random sampling, between- and within-subjects designs, trials and stimuli in cognitive experiments, factorial and mixed designs, bias and control procedures, and planning before data collection.
 
 - `work-in-progress.qmd`: an unnumbered, standalone closing page (last entry in `_quarto.yml`, outside any part) that says only some chapters are published so far and lists the parts still to come. Remove it once all parts are restored.
+- `prob/connecting-data-and-probability.qmd` (Ch. 4): new subsection *Measurement error*, a fifth way to connect probability to data ("four main ways" → "five"), linking to `behav/measurement.qmd`. It also matches Exercise 5, which already listed measurement error. Draft, marked with a callout, not yet reviewed.
 
 ### Replaced
 - (dataset/case-study swaps land here as they're made, chapter by chapter — see `PART2_PLAN_DIARY.md` for the concrete, file-scoped migration plan: package-source switch to `behdslabs`, then `mnist_27`/`mnist_127`, `tissue_gene_expression`, `movielens`, `pr_death_counts`, `olive`, `stars`, and the 2012/2016 election datasets, each mapped to their `behdslabs` behavioural equivalents)

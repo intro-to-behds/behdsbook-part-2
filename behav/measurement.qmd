@@ -331,9 +331,7 @@ The $t$-test reports a difference, convincingly. The rank-based test does not.[^
 
 What went wrong? The scale has a ceiling: most responses pile up at the top, which is what satisfaction scales actually do.
 
-[^tests]: You do not need the mechanics of these tests to follow the argument. Both ask whether the two groups differ: the $t$-test (`t.test()`) compares the group *means*, treating the totals as interval-scale numbers; the Wilcoxon–Mann–Whitney test (`wilcox.test()`) only compares how the groups *rank*, so it needs nothing more than ordinal data. A small $p$-value is read as evidence of a difference. Hypothesis testing is covered in @sec-hypothesis-testing, and these two tests in a chapter in preparation; for a clear, free introduction to $p$-values written for psychologists, see D. Lakens, *Improving Your Statistical Inferences*, Ch. 1, <https://lakens.github.io/statistical_inferences/>.
-
-<!-- restore @sec-two-groups in the [^tests] footnote above when comparing-two-groups.qmd is published -->
+[^tests]: You do not need the mechanics of these tests to follow the argument. Both ask whether the two groups differ: the $t$-test (`t.test()`) compares the group *means*, treating the totals as interval-scale numbers; the Wilcoxon–Mann–Whitney test (`wilcox.test()`) only compares how the groups *rank*, so it needs nothing more than ordinal data. A small $p$-value is read as evidence of a difference. Hypothesis testing is covered in @sec-hypothesis-testing, and these two tests in [*Comparing Two Groups*](https://intro-to-behds.github.io/behdsbook-part-1/basic-stats/comparing-two-groups.html) in Part 1; for a clear, free introduction to $p$-values written for psychologists, see D. Lakens, *Improving Your Statistical Inferences*, Ch. 1, <https://lakens.github.io/statistical_inferences/>.
 
 ```{r}
 #| label: ceiling-table

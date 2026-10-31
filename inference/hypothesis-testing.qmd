@@ -10,8 +10,7 @@ Take, for instance, a participant in a two-choice task: on every trial, they see
 
 The initial hypothesis that the parameter equals the predetermined value is called the _null hypothesis_. It's popular because it allows us to focus on the data's properties under this null scenario. Once data is collected, we estimate the parameter and calculate the p-value, which is the probability of the estimate being as or more extreme as observed if the null hypothesis is true. If the p-value is small, it indicates the null hypothesis is unlikely, providing evidence against it.
 
-We will see more examples of hypothesis testing in a chapter on comparing two groups, in preparation.
-<!-- restore @sec-two-groups when comparing-two-groups.qmd is published -->
+More examples of hypothesis testing, applied to two groups or two conditions, are in the chapter [*Comparing Two Groups: the t-test and the Wilcoxon Test*](https://intro-to-behds.github.io/behdsbook-part-1/basic-stats/comparing-two-groups.html) in Part 1.
 
 ## p-values
 
