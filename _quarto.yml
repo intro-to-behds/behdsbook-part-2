@@ -66,7 +66,16 @@ book:
         - inference/hypothesis-testing.qmd
         # [hidden until reflavoured] - inference/bootstrap.qmd
         - inference/reading-inference.qmd
-        
+
+    - part: basic-stats/intro-basic-stats.qmd
+      chapters:
+        - basic-stats/central-tendency-dispersion.qmd
+        - basic-stats/correlation.qmd
+        - basic-stats/comparing-two-groups.qmd
+        - basic-stats/anova.qmd
+        - basic-stats/multiple-comparisons.qmd
+        - basic-stats/chi-square.qmd
+
     # [hidden until reflavoured]
     # - part: linear-models/intro-to-linear-models.qmd
       # chapters:
