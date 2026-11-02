@@ -68,7 +68,7 @@ s <- sd(x)
 ```
 
 :::{.callout-warning}
-For reasons explained in the chapter [*Central Tendency and Dispersion*](https://intro-to-behds.github.io/behdsbook-part-1/basic-stats/central-tendency-dispersion.html#sec-standard-deviation) of Part 1<!-- @sec-population-sd -->, `sd(x)` divides by $n-1$ rather than $n$. When $n$ is large, however, the difference is negligible:
+For reasons explained in @sec-standard-deviation<!-- @sec-population-sd -->, `sd(x)` divides by $n-1$ rather than $n$. When $n$ is large, however, the difference is negligible:
 
 $$
 \frac{1}{n}\sum_{i=1}^n (x_i - \mu_x)^2 \approx \frac{1}{n-1}\sum_{i=1}^n (x_i - \mu_x)^2.

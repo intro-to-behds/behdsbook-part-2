@@ -340,6 +340,53 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../basic-stats/intro-basic-stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basic Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/central-tendency-dispersion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Central Tendency and Dispersion</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/comparing-two-groups.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Comparing Two Groups: the t-test and the Wilcoxon Test</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Comparing More Than Two Groups: ANOVA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/multiple-comparisons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple Comparisons</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/chi-square.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two Categorical Variables: the Chi-square Test</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../work-in-progress.html" class="sidebar-item-text sidebar-link">
@@ -394,7 +441,7 @@ window.Quarto = {
 <p>Hypothesis testing is used when you can phrase your research question in terms of whether a parameter differs from this predetermined value. It’s applied in various fields, asking questions such as: Does a stress-reduction app lower stress compared to no app? Does a redesigned interface change how long users take to complete a task? Does a night without sleep slow down reaction times?</p>
 <p>Take, for instance, a participant in a two-choice task: on every trial, they see a stimulus and press one of two keys. We might not be concerned about the participant’s exact accuracy, but instead ask: Is their probability of a correct answer different from 0.5, the accuracy of someone who simply guesses? We could also ask if the participant does <em>better</em> than guessing, which would be a <em>one-sided test</em>, but we focus on more commonly used two-sided tests here.</p>
 <p>The initial hypothesis that the parameter equals the predetermined value is called the <em>null hypothesis</em>. It’s popular because it allows us to focus on the data’s properties under this null scenario. Once data is collected, we estimate the parameter and calculate the p-value, which is the probability of the estimate being as or more extreme as observed if the null hypothesis is true. If the p-value is small, it indicates the null hypothesis is unlikely, providing evidence against it.</p>
-<p>More examples of hypothesis testing, applied to two groups or two conditions, are in the chapter <a href="https://intro-to-behds.github.io/behdsbook-part-1/basic-stats/comparing-two-groups.html"><em>Comparing Two Groups: the t-test and the Wilcoxon Test</em></a> in Part 1.</p>
+<p>More examples of hypothesis testing, applied to two groups or two conditions, are in <a href="../basic-stats/comparing-two-groups.html" class="quarto-xref"><span>Chapter 17</span></a>.</p>
 <section id="p-values" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="p-values"><span class="header-section-number">14.1</span> p-values</h2>
 <p>Suppose our participant completes <span class="math inline">\(N=100\)</span> trials and answers <span class="math inline">\(52\)</span> of them correctly, which gives us <span class="math inline">\(\bar{X} = 0.52\)</span>. This seems to be pointing to the participant doing better than chance, since 0.52 is larger than 0.5. However, we know chance is involved in this process, and a participant who is purely guessing could also get 52 correct answers. We call the assumption that the probability of a correct answer is 0.5, <span class="math inline">\(\pi = 0.5\)</span>, a <em>null hypothesis</em>. The null hypothesis is the skeptic’s hypothesis: the participant is just guessing.</p>
@@ -462,10 +509,10 @@ window.Quarto = {
 <p>p-values are easy to compute and easy to misread. Five common misreadings:</p>
 <ol type="1">
 <li><p><strong>It is not the probability that the null hypothesis is true.</strong> As seen above, it is the probability of the data, or more extreme data, assuming the null hypothesis. Turning one into the other requires Bayes’ theorem and a prior probability for the null hypothesis, which is the Bayesian approach to inference, not covered in this book.</p></li>
-<li><p><strong>It is not the size of the effect.</strong> With enough participants, even a negligible difference gives a very small p-value. The size of the effect, in the units of the outcome or as a standardized measure such as Cohen’s d, is reported separately (see <a href="https://intro-to-behds.github.io/behdsbook-part-1/basic-stats/comparing-two-groups.html"><em>Comparing Two Groups</em></a> in Part 1).</p></li>
+<li><p><strong>It is not the size of the effect.</strong> With enough participants, even a negligible difference gives a very small p-value. The size of the effect, in the units of the outcome or as a standardized measure such as Cohen’s d, is reported separately (see <a href="../basic-stats/comparing-two-groups.html" class="quarto-xref"><span>Chapter 17</span></a>).</p></li>
 <li><p><strong>A p-value above 0.05 does not show that there is no effect.</strong> Absence of evidence is not evidence of absence: a large effect can give a large p-value when the sample is small or the data are very variable, as the example on power below shows. To support the claim that an effect is too small to matter, a different procedure is needed, equivalence testing.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
 <li><p><strong>It is not a guarantee that the result will replicate.</strong> Even when there is no effect at all, a p-value below 0.01 occurs in about 1 study in 100. With small samples, real effects are hard to detect, so a significant result is more often a fluke, and its estimate tends to be too large. Only replication, ideally with larger samples, makes a finding robust.</p></li>
-<li><p><strong>It cannot be read in the same way after many tests.</strong> If we run many tests, or test the same data again and again as participants are added and stop as soon as p &lt; 0.05, a small p-value becomes easy to obtain by chance alone. Fix the sample size and the analysis in advance, correct for multiple tests (see <a href="https://intro-to-behds.github.io/behdsbook-part-1/basic-stats/multiple-comparisons.html"><em>Multiple Comparisons</em></a> in Part 1), and, when possible, pre-register the analysis.</p></li>
+<li><p><strong>It cannot be read in the same way after many tests.</strong> If we run many tests, or test the same data again and again as participants are added and stop as soon as p &lt; 0.05, a small p-value becomes easy to obtain by chance alone. Fix the sample size and the analysis in advance, correct for multiple tests (see <a href="../basic-stats/multiple-comparisons.html" class="quarto-xref"><span>Chapter 19</span></a>), and, when possible, pre-register the analysis.</p></li>
 </ol>
 </section>
 </section>

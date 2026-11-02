@@ -32,6 +32,7 @@ old-publisher-bundle/
 publisher-bundle/
 publisher-bundle2.zip
 behav/*_files
+basic-stats/*_files
 
 # stray upstream build output: the site is built into docs/
 /site_libs/

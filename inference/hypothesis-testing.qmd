@@ -10,7 +10,7 @@ Take, for instance, a participant in a two-choice task: on every trial, they see
 
 The initial hypothesis that the parameter equals the predetermined value is called the _null hypothesis_. It's popular because it allows us to focus on the data's properties under this null scenario. Once data is collected, we estimate the parameter and calculate the p-value, which is the probability of the estimate being as or more extreme as observed if the null hypothesis is true. If the p-value is small, it indicates the null hypothesis is unlikely, providing evidence against it.
 
-More examples of hypothesis testing, applied to two groups or two conditions, are in the chapter [*Comparing Two Groups: the t-test and the Wilcoxon Test*](https://intro-to-behds.github.io/behdsbook-part-1/basic-stats/comparing-two-groups.html) in Part 1.
+More examples of hypothesis testing, applied to two groups or two conditions, are in @sec-two-groups.
 
 ## p-values
 
@@ -80,13 +80,13 @@ p-values are easy to compute and easy to misread. Five common misreadings:
 
 1. **It is not the probability that the null hypothesis is true.** As seen above, it is the probability of the data, or more extreme data, assuming the null hypothesis. Turning one into the other requires Bayes' theorem and a prior probability for the null hypothesis, which is the Bayesian approach to inference, not covered in this book.
 
-2. **It is not the size of the effect.** With enough participants, even a negligible difference gives a very small p-value. The size of the effect, in the units of the outcome or as a standardized measure such as Cohen's d, is reported separately (see [*Comparing Two Groups*](https://intro-to-behds.github.io/behdsbook-part-1/basic-stats/comparing-two-groups.html) in Part 1).
+2. **It is not the size of the effect.** With enough participants, even a negligible difference gives a very small p-value. The size of the effect, in the units of the outcome or as a standardized measure such as Cohen's d, is reported separately (see @sec-two-groups).
 
 3. **A p-value above 0.05 does not show that there is no effect.** Absence of evidence is not evidence of absence: a large effect can give a large p-value when the sample is small or the data are very variable, as the example on power below shows. To support the claim that an effect is too small to matter, a different procedure is needed, equivalence testing.[^equivalence]
 
 4. **It is not a guarantee that the result will replicate.** Even when there is no effect at all, a p-value below 0.01 occurs in about 1 study in 100. With small samples, real effects are hard to detect, so a significant result is more often a fluke, and its estimate tends to be too large. Only replication, ideally with larger samples, makes a finding robust.
 
-5. **It cannot be read in the same way after many tests.** If we run many tests, or test the same data again and again as participants are added and stop as soon as p < 0.05, a small p-value becomes easy to obtain by chance alone. Fix the sample size and the analysis in advance, correct for multiple tests (see [*Multiple Comparisons*](https://intro-to-behds.github.io/behdsbook-part-1/basic-stats/multiple-comparisons.html) in Part 1), and, when possible, pre-register the analysis.
+5. **It cannot be read in the same way after many tests.** If we run many tests, or test the same data again and again as participants are added and stop as soon as p < 0.05, a small p-value becomes easy to obtain by chance alone. Fix the sample size and the analysis in advance, correct for multiple tests (see @sec-multiple-comparisons), and, when possible, pre-register the analysis.
 
 [^equivalence]: D. Lakens, *Improving Your Statistical Inferences*, [Chapter 9, *Equivalence Testing and Interval Hypotheses*](https://lakens.github.io/statistical_inferences/09-equivalencetest.html).
 

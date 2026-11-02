@@ -6,7 +6,7 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/intro.html</loc>
-    <lastmod>2026-09-28T14:52:05.889Z</lastmod>
+    <lastmod>2026-11-02T17:47:11.968Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/intro-behav.html</loc>
@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/measurement.html</loc>
-    <lastmod>2026-10-31T08:54:53.665Z</lastmod>
+    <lastmod>2026-11-02T17:44:44.472Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/simulating-measurement.html</loc>
@@ -38,7 +38,7 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/numerical-summaries.html</loc>
-    <lastmod>2026-11-02T14:20:33.151Z</lastmod>
+    <lastmod>2026-11-02T17:44:44.474Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/comparing-groups.html</loc>
@@ -50,15 +50,15 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/intro-to-prob.html</loc>
-    <lastmod>2026-11-02T14:20:36.462Z</lastmod>
+    <lastmod>2026-11-02T14:55:33.291Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/connecting-data-and-probability.html</loc>
-    <lastmod>2026-11-02T14:20:34.739Z</lastmod>
+    <lastmod>2026-11-02T14:55:33.290Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/discrete-probability.html</loc>
-    <lastmod>2026-11-02T14:20:33.965Z</lastmod>
+    <lastmod>2026-11-02T14:55:33.290Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/continuous-probability.html</loc>
@@ -66,7 +66,7 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/random-variables.html</loc>
-    <lastmod>2026-11-02T14:20:31.603Z</lastmod>
+    <lastmod>2026-11-02T17:44:44.474Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/prob/sampling-models-and-clt.html</loc>
@@ -78,7 +78,7 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/intro-inference.html</loc>
-    <lastmod>2026-10-31T08:54:53.671Z</lastmod>
+    <lastmod>2026-11-02T17:44:44.473Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/estimates-confidence-intervals.html</loc>
@@ -86,11 +86,39 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/hypothesis-testing.html</loc>
-    <lastmod>2026-11-02T14:20:30.814Z</lastmod>
+    <lastmod>2026-11-02T17:44:44.473Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/inference/reading-inference.html</loc>
     <lastmod>2026-10-18T05:06:30.212Z</lastmod>
+  </url>
+  <url>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/basic-stats/intro-basic-stats.html</loc>
+    <lastmod>2026-11-02T17:44:14.801Z</lastmod>
+  </url>
+  <url>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/basic-stats/central-tendency-dispersion.html</loc>
+    <lastmod>2026-11-02T17:44:14.800Z</lastmod>
+  </url>
+  <url>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/basic-stats/correlation.html</loc>
+    <lastmod>2026-11-02T17:44:14.800Z</lastmod>
+  </url>
+  <url>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/basic-stats/comparing-two-groups.html</loc>
+    <lastmod>2026-11-02T17:56:19.600Z</lastmod>
+  </url>
+  <url>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/basic-stats/anova.html</loc>
+    <lastmod>2026-11-02T17:43:33.799Z</lastmod>
+  </url>
+  <url>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/basic-stats/multiple-comparisons.html</loc>
+    <lastmod>2026-11-02T17:43:33.800Z</lastmod>
+  </url>
+  <url>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/basic-stats/chi-square.html</loc>
+    <lastmod>2026-11-02T17:43:33.800Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/work-in-progress.html</loc>
@@ -98,6 +126,6 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/Introduction-to-Behavioural-Data-Science.pdf</loc>
-    <lastmod>2026-11-02T14:28:15.338Z</lastmod>
+    <lastmod>2026-11-02T17:59:49.908Z</lastmod>
   </url>
 </urlset>
