@@ -57,7 +57,7 @@ Because most real-world data do not arise from ideal random processes, our abili
 
 A well-designed study, one that uses randomization, proper sampling, and consistent measurement, creates conditions under which probabilistic reasoning is meaningful. Without this foundation, even the most sophisticated analyses can produce misleading results. Random assignment helps isolate cause and effect. Random sampling helps ensure representativeness. Standardized procedures reduce bias and make uncertainty quantifiable.
 
-This book does not cover experimental design in detail, but we recommend several excellent introductions in the Further Reading section. For now, the key idea is this: when we use probability to reason about data, we are implicitly assuming a connection between a mathematical model and a real process. The stronger that connection, through careful design, random sampling, or random assignment, the more trustworthy our conclusions will be. Poor design, on the other hand, weakens this bridge and makes uncertainty far harder to interpret.
+Experimental design is covered in @sec-experimental-designs, and the Recommended Reading section lists several excellent introductions. For now, the key idea is this: when we use probability to reason about data, we are implicitly assuming a connection between a mathematical model and a real process. The stronger that connection, through careful design, random sampling, or random assignment, the more trustworthy our conclusions will be. Poor design, on the other hand, weakens this bridge and makes uncertainty far harder to interpret.
 
 
 ## Exercises

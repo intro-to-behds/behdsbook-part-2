@@ -360,6 +360,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#a-p-value-without-the-normal-approximation" id="toc-a-p-value-without-the-normal-approximation" class="nav-link" data-scroll-target="#a-p-value-without-the-normal-approximation">A p-value without the normal approximation</a></li>
   <li><a href="#p-values-and-confidence-intervals" id="toc-p-values-and-confidence-intervals" class="nav-link" data-scroll-target="#p-values-and-confidence-intervals">p-values and confidence intervals</a></li>
+  <li><a href="#what-a-p-value-is-not" id="toc-what-a-p-value-is-not" class="nav-link" data-scroll-target="#what-a-p-value-is-not">What a p-value is not</a></li>
   </ul></li>
   <li><a href="#power" id="toc-power" class="nav-link" data-scroll-target="#power"><span class="header-section-number">14.2</span> Power</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">14.3</span> Exercises</a></li>
@@ -414,7 +415,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>The p-value of 0.05 as a threshold for statistical significance is conventionally used in many areas of research. A cutoff of 0.01 is also used to define <em>highly significant</em> results. The choice of 0.05 is somewhat arbitrary and was popularized by the British statistician Ronald Fisher in the 1920s. We do not recommend using these cutoffs without justification and recommend avoiding the phrase <em>statistically significant</em>.</p>
+<p>The p-value of 0.05 as a threshold for statistical significance is conventionally used in many areas of research. A cutoff of 0.01 is also used to define <em>highly significant</em> results. The choice of 0.05 is somewhat arbitrary and was popularized by the British statistician Ronald Fisher in the 1920s. Whether to keep such thresholds, and even the phrase <em>statistically significant</em>, is debated: some statisticians propose to abandon them, others to justify the threshold before collecting the data and to use p-values correctly. Whichever threshold you use, choose it in advance, and never report “significant” alone: report the p-value together with the size of the effect and its confidence interval.</p>
 </div>
 </div>
 </div>
@@ -454,7 +455,18 @@ window.Quarto = {
 <section id="p-values-and-confidence-intervals" class="level3">
 <h3 class="anchored" data-anchor-id="p-values-and-confidence-intervals">p-values and confidence intervals</h3>
 <p>Keep in mind that there is a close connection between p-values and confidence intervals. In our example, if a 95% confidence interval does not include the null hypothesis value 0.5, we know that the p-value must be smaller than 0.05. In general, we can show mathematically that if a <span class="math inline">\((1-\alpha)\times 100\)</span>% confidence interval does not contain the null hypothesis value, the null hypothesis is rejected with a p-value as small or smaller than <span class="math inline">\(\alpha\)</span>. So, <em>statistical significance</em> can be determined from confidence intervals.</p>
-<p>To learn more about p-values, you can consult any statistics textbook. However, in general, we prefer reporting confidence intervals over p-values because they give us an idea of the size of the estimate. If we just report the p-value, we provide no information about the significance of the finding in the context of the problem. For this reason, we recommend avoiding p-values whenever you can compute a confidence interval.</p>
+<p>A confidence interval, however, says more than a p-value: it also gives us an idea of the size of the estimate and of how precise it is. If we just report the p-value, we provide no information about the importance of the finding in the context of the problem. For this reason, always report the confidence interval, and the size of the effect, alongside the p-value.</p>
+</section>
+<section id="what-a-p-value-is-not" class="level3">
+<h3 class="anchored" data-anchor-id="what-a-p-value-is-not">What a p-value is not</h3>
+<p>p-values are easy to compute and easy to misread. Five common misreadings:</p>
+<ol type="1">
+<li><p><strong>It is not the probability that the null hypothesis is true.</strong> As seen above, it is the probability of the data, or more extreme data, assuming the null hypothesis. Turning one into the other requires Bayes’ theorem and a prior probability for the null hypothesis, which is the Bayesian approach to inference, not covered in this book.</p></li>
+<li><p><strong>It is not the size of the effect.</strong> With enough participants, even a negligible difference gives a very small p-value. The size of the effect, in the units of the outcome or as a standardized measure such as Cohen’s d, is reported separately (see <a href="https://intro-to-behds.github.io/behdsbook-part-1/basic-stats/comparing-two-groups.html"><em>Comparing Two Groups</em></a> in Part 1).</p></li>
+<li><p><strong>A p-value above 0.05 does not show that there is no effect.</strong> Absence of evidence is not evidence of absence: a large effect can give a large p-value when the sample is small or the data are very variable, as the example on power below shows. To support the claim that an effect is too small to matter, a different procedure is needed, equivalence testing.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
+<li><p><strong>It is not a guarantee that the result will replicate.</strong> Even when there is no effect at all, a p-value below 0.01 occurs in about 1 study in 100. With small samples, real effects are hard to detect, so a significant result is more often a fluke, and its estimate tends to be too large. Only replication, ideally with larger samples, makes a finding robust.</p></li>
+<li><p><strong>It cannot be read in the same way after many tests.</strong> If we run many tests, or test the same data again and again as participants are added and stop as soon as p &lt; 0.05, a small p-value becomes easy to obtain by chance alone. Fix the sample size and the analysis in advance, correct for multiple tests (see <a href="https://intro-to-behds.github.io/behdsbook-part-1/basic-stats/multiple-comparisons.html"><em>Multiple Comparisons</em></a> in Part 1), and, when possible, pre-register the analysis.</p></li>
+</ol>
 </section>
 </section>
 <section id="power" class="level2" data-number="14.2">
@@ -476,7 +488,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Lack of power is common in behavioural research, where studies often test a few dozen participants. A study with low power will usually miss real effects, and when it does find one, the estimate tends to exaggerate its size. This is one of the methodological roots of the replication crisis in psychology, which we discuss with study design in <a href="../behav/experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>.</p>
+<p>Lack of power is common in behavioural research, where studies often test a few dozen participants. A study with low power will usually miss real effects, and when it does find one, the estimate tends to exaggerate its size. This is one of the methodological roots of the replication crisis in psychology, the finding that many published effects could not be reproduced by new studies. Careful study design (<a href="../behav/experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>) and an adequate sample size, planned in advance, are the main protections.</p>
 </div>
 </div>
 </div>
@@ -525,6 +537,12 @@ p = 2\left[1 - \Phi(|z|)\right],
 <p>6. A participant answers 15 of 20 two-choice trials correctly. Use <code>binom.test()</code> to compute the two-sided p-value for <span class="math inline">\(\pi = 0.5\)</span>, then compute a 95% confidence interval for their accuracy with <code>binom.test(15, 20)$conf.int</code>. Does the interval include 0.5? How does this agree with the p-value?</p>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>D. Lakens, <em>Improving Your Statistical Inferences</em>, <a href="https://lakens.github.io/statistical_inferences/09-equivalencetest.html">Chapter 9, <em>Equivalence Testing and Interval Hypotheses</em></a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

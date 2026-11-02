@@ -184,7 +184,7 @@ $$
 
 This quantity tells us how likely $A$ is when we restrict attention to outcomes for which $B$ occurs.
 
-Conditional probability is a important probability theorytopic. Readers interested in a rigorous treatment of this concept should consult the probability textbooks listed in the Recommended Reading section. In this book, conditional probability becomes particularly important when we analyze relationships between two or more variables in the regression and linear models chapters, and when we work with multiple predictors in the machine learning chapters. In those sections, we provide detailed explanations and examples in context. 
+Conditional probability is an important topic in probability theory. Readers interested in a rigorous treatment of this concept should consult the probability textbooks listed in the Recommended Reading section. In this book, conditional probability becomes particularly important when we analyze relationships between two or more variables in the regression and linear models chapters, and when we work with multiple predictors in the machine learning chapters. In those sections, we provide detailed explanations and examples in context. 
 
 A related concept that will be important later in this book is the *law of total probability*. This law provides a way to break down probabilities into parts by conditioning on different events. Intuitively, if you want to know the probability of an event, you can condition on different scenarios and then combine those conditional probabilities, weighted by how likely each scenario is. Mathematically, if $B_1, B_2, \ldots, B_k$ are mutually exclusive and exhaustive events, then:
 
