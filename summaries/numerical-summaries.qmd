@@ -68,13 +68,13 @@ s <- sd(x)
 ```
 
 :::{.callout-warning}
-For reasons explained in a later chapter<!-- @sec-population-sd -->, `sd(x)` divides by $n-1$ rather than $n$. When $n$ is large, however, the difference is negligible:
+For reasons explained in the chapter [*Central Tendency and Dispersion*](https://intro-to-behds.github.io/behdsbook-part-1/basic-stats/central-tendency-dispersion.html#sec-standard-deviation) of Part 1<!-- @sec-population-sd -->, `sd(x)` divides by $n-1$ rather than $n$. When $n$ is large, however, the difference is negligible:
 
 $$
 \frac{1}{n}\sum_{i=1}^n (x_i - \mu_x)^2 \approx \frac{1}{n-1}\sum_{i=1}^n (x_i - \mu_x)^2.
 $$
 
-We will explain why $n-1$ is often preferred in a later chapter<!-- @sec-population-sd -->. For now, we will use `sd(x)` to compute the standard deviation of the values in `x`.
+<!-- We will explain why $n-1$ is often preferred in a later chapter @sec-population-sd. -->For now, we will use `sd(x)` to compute the standard deviation of the values in `x`.
 :::
 
 If the distribution of the values stored in `x` is well approximated by a normal distribution, we can use `m <- mean(x)` and `s <- sd(x)` as estimates of the normal distribution's mean $\mu$ and standard deviation $\sigma$. Then the entire distribution of `x` can be summarized with just these two numbers!

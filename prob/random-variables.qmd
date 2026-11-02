@@ -271,7 +271,7 @@ $$
 :::{.callout-warning title="The assumption of independence is important"}
 The given equation reveals crucial insights for practical scenarios. Specifically, it suggests that the standard deviation of the average of independent draws can be minimized by increasing the number of observations, $n$, and we can quantify this reduction. However, this principle holds true only when the variables $X_1, X_2, ... X_n$ are independent. If they are not, the estimated standard deviation can be significantly off.
 
-In a later chapter<!-- @sec-corr-coef -->, we introduce the concept of correlation, which quantifies the degree to which variables are interdependent. If the correlation coefficient between each pair of variables $X_i,X_j$ is $\rho$, the standard deviation of their average is:
+In the chapter [*Correlation*](https://intro-to-behds.github.io/behdsbook-part-1/basic-stats/correlation.html) of Part 1<!-- @sec-corr-coef -->, we introduce the concept of correlation, which quantifies the degree to which variables are interdependent. If the correlation coefficient between each pair of variables $X_i,X_j$ is $\rho$, the standard deviation of their average is:
 
 $$
 \mathrm{SD}\left[\bar{X}\right] = \sigma_X \sqrt{\frac{1 + (n-1) \rho}{n}}

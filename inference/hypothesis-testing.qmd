@@ -23,7 +23,7 @@ We use $\pi$ to represent the probability of a correct answer, instead of $p$ as
 We have observed a random variable $\bar{X} = 0.52$, and the p-value is the answer to the question: How likely is it to see a value at least this far from 0.5, when the null hypothesis is true? If the p-value is small enough, we _reject the null hypothesis_ and say that the results are _statistically significant_.
 
 :::{.callout-warning}
-The p-value of 0.05 as a threshold for statistical significance is conventionally used in many areas of research. A cutoff of 0.01 is also used to define _highly significant_ results. The choice of 0.05 is somewhat arbitrary and was popularized by the British statistician Ronald Fisher in the 1920s. We do not recommend using these cutoffs without justification and recommend avoiding the phrase _statistically significant_.
+The p-value of 0.05 as a threshold for statistical significance is conventionally used in many areas of research. A cutoff of 0.01 is also used to define _highly significant_ results. The choice of 0.05 is somewhat arbitrary and was popularized by the British statistician Ronald Fisher in the 1920s. Whether to keep such thresholds, and even the phrase _statistically significant_, is debated: some statisticians propose to abandon them, others to justify the threshold before collecting the data and to use p-values correctly. Whichever threshold you use, choose it in advance, and never report "significant" alone: report the p-value together with the size of the effect and its confidence interval.
 :::
 
 To obtain a p-value for our example, we write:
@@ -72,7 +72,23 @@ Keep in mind what this number is: the probability of the *data*, assuming the pa
 
 Keep in mind that there is a close connection between p-values and confidence intervals. In our example, if a 95% confidence interval does not include the null hypothesis value 0.5, we know that the p-value must be smaller than 0.05. In general, we can show mathematically that if a $(1-\alpha)\times 100$% confidence interval does not contain the null hypothesis value, the null hypothesis is rejected with a p-value as small or smaller than $\alpha$. So, _statistical significance_ can be determined from confidence intervals.
 
-To learn more about p-values, you can consult any statistics textbook. However, in general, we prefer reporting confidence intervals over p-values because they give us an idea of the size of the estimate. If we just report the p-value, we provide no information about the significance of the finding in the context of the problem. For this reason, we recommend avoiding p-values whenever you can compute a confidence interval.
+A confidence interval, however, says more than a p-value: it also gives us an idea of the size of the estimate and of how precise it is. If we just report the p-value, we provide no information about the importance of the finding in the context of the problem. For this reason, always report the confidence interval, and the size of the effect, alongside the p-value.
+
+### What a p-value is not
+
+p-values are easy to compute and easy to misread. Five common misreadings:
+
+1. **It is not the probability that the null hypothesis is true.** As seen above, it is the probability of the data, or more extreme data, assuming the null hypothesis. Turning one into the other requires Bayes' theorem and a prior probability for the null hypothesis, which is the Bayesian approach to inference, not covered in this book.
+
+2. **It is not the size of the effect.** With enough participants, even a negligible difference gives a very small p-value. The size of the effect, in the units of the outcome or as a standardized measure such as Cohen's d, is reported separately (see [*Comparing Two Groups*](https://intro-to-behds.github.io/behdsbook-part-1/basic-stats/comparing-two-groups.html) in Part 1).
+
+3. **A p-value above 0.05 does not show that there is no effect.** Absence of evidence is not evidence of absence: a large effect can give a large p-value when the sample is small or the data are very variable, as the example on power below shows. To support the claim that an effect is too small to matter, a different procedure is needed, equivalence testing.[^equivalence]
+
+4. **It is not a guarantee that the result will replicate.** Even when there is no effect at all, a p-value below 0.01 occurs in about 1 study in 100. With small samples, real effects are hard to detect, so a significant result is more often a fluke, and its estimate tends to be too large. Only replication, ideally with larger samples, makes a finding robust.
+
+5. **It cannot be read in the same way after many tests.** If we run many tests, or test the same data again and again as participants are added and stop as soon as p < 0.05, a small p-value becomes easy to obtain by chance alone. Fix the sample size and the analysis in advance, correct for multiple tests (see [*Multiple Comparisons*](https://intro-to-behds.github.io/behdsbook-part-1/basic-stats/multiple-comparisons.html) in Part 1), and, when possible, pre-register the analysis.
+
+[^equivalence]: D. Lakens, *Improving Your Statistical Inferences*, [Chapter 9, *Equivalence Testing and Interval Hypotheses*](https://lakens.github.io/statistical_inferences/09-equivalencetest.html).
 
 ## Power
 
@@ -93,7 +109,7 @@ This does not mean that opinions are evenly split. It only means that we have a 
 By increasing our sample size, we lower our standard error and thus have a much better chance of detecting the direction of the difference.
 
 :::{.callout-note}
-Lack of power is common in behavioural research, where studies often test a few dozen participants. A study with low power will usually miss real effects, and when it does find one, the estimate tends to exaggerate its size. This is one of the methodological roots of the replication crisis in psychology, which we discuss with study design in @sec-experimental-designs.
+Lack of power is common in behavioural research, where studies often test a few dozen participants. A study with low power will usually miss real effects, and when it does find one, the estimate tends to exaggerate its size. This is one of the methodological roots of the replication crisis in psychology, the finding that many published effects could not be reproduced by new studies. Careful study design (@sec-experimental-designs) and an adequate sample size, planned in advance, are the main protections.
 :::
 
 Statistical textbooks provide much more detail on hypothesis testing, including formal definitions of p-values, statistical power, and related concepts. The Recommended Reading section lists texts that cover these topics in depth for readers interested in exploring them further.
