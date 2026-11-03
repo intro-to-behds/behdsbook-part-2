@@ -446,19 +446,6 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-simple callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Draft
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This chapter is a <strong>draft</strong>, written with an AI assistant (Claude) on 14 October 2026 (moved to Part 1 on 29 October 2026 and back to Part 2 on 2 November 2026), and not yet reviewed by the instructor. It may be substantially rewritten or removed.</p>
-</div>
-</div>
 <p>Many questions in behavioural research compare two groups or two conditions. Do users rate an app differently on desktop and on mobile? Is engagement higher with a redesigned interface than with the standard one? Are responses slower when the colour of a word conflicts with its meaning? In each case, we have a continuous outcome measured in two groups, and we want to know whether the difference we see in our sample reflects a real difference in the population or could have been produced by chance.</p>
 <p>In <a href="../inference/estimates-confidence-intervals.html" class="quarto-xref"><span>Chapter 13</span></a> and <a href="../inference/hypothesis-testing.html" class="quarto-xref"><span>Chapter 14</span></a>, we built confidence intervals and p-values for a proportion. In this chapter, we apply the same ideas to the difference between two averages. This leads to the two tests you will meet most often in psychology papers: the <em>t-test</em>, which compares means, and the <em>Wilcoxon test</em>, which compares ranks and is the usual choice when the data are skewed, contain outliers, or are only ordinal.</p>
 <div class="callout callout-style-simple callout-note">
@@ -695,22 +682,23 @@ t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{s_1^2/N_1 + s_2^2/N_2}}.
 </section>
 <section id="paired-designs" class="level2" data-number="17.4">
 <h2 data-number="17.4" class="anchored" data-anchor-id="paired-designs"><span class="header-section-number">17.4</span> Paired designs</h2>
-<p>So far, the two groups contained different people: a <em>between-subjects</em> design. In many experiments, the same participants are measured in both conditions: a <em>within-subjects</em> design (see <a href="../behav/experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>). In a Stroop task, for example, each participant responds to congruent trials (the word <em>red</em> printed in red) and incongruent trials (the word <em>red</em> printed in green). The following data are simulated: each of 20 participants has their own overall speed, and incongruent trials add some extra time.</p>
+<p>So far, the two groups contained different people: a <em>between-subjects</em> design. In many experiments, the same participants are measured in both conditions: a <em>within-subjects</em> design (see <a href="../behav/experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>). In a simulated Stroop task, for example, each participant responds to congruent trials (the word <em>red</em> printed in red) and incongruent trials (the word <em>red</em> printed in green). The following data are simulated: each of 20 participants has their own overall speed, and incongruent trials add some extra time.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>speed <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">500</span>, <span class="dv">80</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>stroop <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">participant =</span> <span class="fu">sprintf</span>(<span class="st">"P%02d"</span>, <span class="dv">1</span><span class="sc">:</span>n),</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">congruent =</span> <span class="fu">round</span>(speed <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">20</span>)),</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">incongruent =</span> <span class="fu">round</span>(speed <span class="sc">+</span> <span class="dv">30</span> <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">20</span>)))</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stroop)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   participant congruent incongruent</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1         P01       490         553</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2         P02       442         500</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3         P03       377         404</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4         P04       410         499</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5         P05       498         534</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6         P06       524         561</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Simulation of Stroop task data</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>speed <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">500</span>, <span class="dv">80</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>stroop <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">participant =</span> <span class="fu">sprintf</span>(<span class="st">"P%02d"</span>, <span class="dv">1</span><span class="sc">:</span>n),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">congruent =</span> <span class="fu">round</span>(speed <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">20</span>)),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">incongruent =</span> <span class="fu">round</span>(speed <span class="sc">+</span> <span class="dv">30</span> <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">20</span>)))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stroop)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   participant congruent incongruent</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1         P01       490         553</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2         P02       442         500</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3         P03       377         404</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4         P04       410         499</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5         P05       498         534</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6         P06       524         561</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Participants differ a lot from each other in overall speed, but each participant is slower on incongruent trials. The two measurements of the same person are not independent, so the two-sample formula above does not apply. Instead, we compute each participant’s difference and test whether the average difference is 0. This is the <em>paired t-test</em>:</p>
 <div class="cell" data-layout-align="center">

@@ -412,8 +412,12 @@ window.Quarto = {
   <li><a href="#range" id="toc-range" class="nav-link" data-scroll-target="#range">Range</a></li>
   <li><a href="#sec-standard-deviation" id="toc-sec-standard-deviation" class="nav-link" data-scroll-target="#sec-standard-deviation">Variance and standard deviation</a></li>
   <li><a href="#quartiles-and-the-interquartile-range" id="toc-quartiles-and-the-interquartile-range" class="nav-link" data-scroll-target="#quartiles-and-the-interquartile-range">Quartiles and the interquartile range</a></li>
+  <li><a href="#percentiles" id="toc-percentiles" class="nav-link" data-scroll-target="#percentiles">Percentiles</a></li>
   </ul></li>
-  <li><a href="#sec-standard-units" id="toc-sec-standard-units" class="nav-link" data-scroll-target="#sec-standard-units"><span class="header-section-number">15.3</span> Standard units</a></li>
+  <li><a href="#sec-standard-units" id="toc-sec-standard-units" class="nav-link" data-scroll-target="#sec-standard-units"><span class="header-section-number">15.3</span> Standard units</a>
+  <ul class="collapse">
+  <li><a href="#from-z-scores-to-percentiles" id="toc-from-z-scores-to-percentiles" class="nav-link" data-scroll-target="#from-z-scores-to-percentiles">From z-scores to percentiles</a></li>
+  </ul></li>
   <li><a href="#which-summary-for-which-data" id="toc-which-summary-for-which-data" class="nav-link" data-scroll-target="#which-summary-for-which-data"><span class="header-section-number">15.4</span> Which summary for which data?</a></li>
   <li><a href="#sec-sd-to-se" id="toc-sec-sd-to-se" class="nav-link" data-scroll-target="#sec-sd-to-se"><span class="header-section-number">15.5</span> From the standard deviation to the standard error</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">15.6</span> Further reading</a></li>
@@ -442,19 +446,6 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-simple callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Draft
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This chapter is a <strong>draft</strong>, written with an AI assistant (Claude) on 29 October 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.</p>
-</div>
-</div>
 <p>When we describe a list of numbers, such as the reaction times of a group of participants, two questions come first: what is a typical value, and how much do the values differ from each other? Measures of <em>central tendency</em> answer the first question; measures of <em>dispersion</em> answer the second. In <a href="https://intro-to-behds.github.io/behdsbook-part-1/dataviz/distributions.html"><em>Visualizing data distributions</em></a> in Part 1, we saw that a plot of the distribution is usually the best way to answer both. In this chapter, we review the numbers we use to summarize them, and when each one is appropriate.</p>
 <p>We use two datasets from <code>behdslabs</code>: the simple reaction times in <code>reaction_times</code>, which are skewed to the right, and the UX questionnaire scores in <code>ux_scores</code>, which are roughly symmetric.</p>
 <div class="cell" data-layout-align="center">
@@ -469,7 +460,7 @@ Draft
 <p><span class="math display">\[
 \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i
 \]</span></p>
-<p>The <em>median</em> is the value in the middle: half of the values are below it, half above. To find it, we sort the values and take the middle one (or the average of the two middle ones when <span class="math inline">\(n\)</span> is even). In R:</p>
+<p>The <em>median</em> is the value in the middle, with half of the values below it and half above. To find it, we sort the values and take the middle one (or the average of the two middle ones when <span class="math inline">\(n\)</span> is even). In R:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(rt)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 319</span></span>
@@ -498,7 +489,7 @@ Draft
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   mean median </span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    575    327</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>A single value moved the mean by 236 ms, while the median changed by only 16 ms. We say that the median is <em>robust</em>: it is not strongly affected by a few extreme values. This is why the median is often preferred for reaction times.</p>
+<p>A single value moved the mean by 236 ms, while the median changed by only 16 ms. We say that the median is <em>robust</em>: it is not strongly affected by a few extreme values. This is why the median is often reported and often accompanies the mean in data summaries, especially when we expect asymmetry, as is the case for reaction times.</p>
 </section>
 </section>
 <section id="dispersion-how-much-the-values-differ" class="level2" data-number="15.2">
@@ -510,7 +501,7 @@ Draft
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(rt)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 205 648</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The range depends only on the two most extreme values, so a single lapse changes it completely. It is useful to check for impossible values, not to describe the spread.</p>
+<p>The range depends only on the two most extreme values, so a single lapse changes it completely. It is then useful to check for impossible values, but not to describe the spread of data.</p>
 </section>
 <section id="sec-standard-deviation" class="level3">
 <h3 class="anchored" data-anchor-id="sec-standard-deviation">Variance and standard deviation</h3>
@@ -535,7 +526,7 @@ s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2, \qquad s = \sqrt{s^2}
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(ux <span class="sc">-</span> <span class="fu">mean</span>(ux)) <span class="sc">&lt;</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sd</span>(ux))</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.947</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Like the mean, the SD is not robust: the lapse we added above inflates it a lot.</p>
+<p>Like the mean, the SD is not robust: the lapse we added above influences (and inflates) it a lot.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">sd</span>(rt_20), <span class="fu">sd</span>(rt_lapse))</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]   79.9 1044.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -555,6 +546,21 @@ s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2, \qquad s = \sqrt{s^2}
 </div>
 <p>Like the median, the IQR is robust: the lapse barely changes it. A related robust measure is the <em>median absolute deviation</em> (MAD), the median distance from the median. R’s <code>mad()</code> multiplies it by 1.4826, so that it is comparable to the SD when the data are normal.</p>
 </section>
+<section id="percentiles" class="level3">
+<h3 class="anchored" data-anchor-id="percentiles">Percentiles</h3>
+<p>Quartiles are a special case of <em>percentiles</em>. The <em>p</em>-th percentile is the value below which p% of the values fall: Q1 is the 25th percentile, the median the 50th, and Q3 the 75th. The same function, <code>quantile()</code>, gives any percentile. For example, the 10th and the 90th percentiles of the reaction times are:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(rt, <span class="fu">c</span>(<span class="fl">0.10</span>, <span class="fl">0.90</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10% 90% </span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 253 411</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can also go the other way, from a value to its <em>percentile rank</em>: the proportion of values at or below it. This is the empirical cumulative distribution function (<a href="../summaries/distributions.html#sec-ecdf-intro" class="quarto-xref"><span>Section 5.3</span></a>) evaluated at that value. For a UX score of 80:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ux <span class="sc">&lt;=</span> <span class="dv">80</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.982</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A score of 80 is higher than or equal to 98% of the scores. Percentile ranks are how many psychological tests report a result (“the score is at the 90th percentile of the normative sample”), and high percentiles, such as the 90th, are a common way to describe the slow tail of reaction times. Like the median and the IQR, percentiles make no assumption about the shape of the distribution, and are robust. R’s <code>quantile()</code> offers several ways to interpolate between two values (the <code>type</code> argument), but the differences only matter for small samples.</p>
+</section>
 </section>
 <section id="sec-standard-units" class="level2" data-number="15.3">
 <h2 data-number="15.3" class="anchored" data-anchor-id="sec-standard-units"><span class="header-section-number">15.3</span> Standard units</h2>
@@ -564,10 +570,36 @@ z_i = \frac{x_i - \bar{x}}{s}
 \]</span></p>
 <p>These are also called <em>z-scores</em>. For example, how far above the average is a UX score of 80?</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">80</span> <span class="sc">-</span> <span class="fu">mean</span>(ux)) <span class="sc">/</span> <span class="fu">sd</span>(ux)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.92</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">80</span> <span class="sc">-</span> <span class="fu">mean</span>(ux)) <span class="sc">/</span> <span class="fu">sd</span>(ux)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.92</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>About 1.9 SDs. Standard units have mean 0 and SD 1, whatever the original units. In R, <code>scale()</code> computes them for a whole vector. We use standard units again to define the correlation coefficient (<a href="correlation.html" class="quarto-xref"><span>Chapter 16</span></a>).</p>
+<section id="from-z-scores-to-percentiles" class="level3">
+<h3 class="anchored" data-anchor-id="from-z-scores-to-percentiles">From z-scores to percentiles</h3>
+<p>When the data are approximately normal, a z-score tells us the percentile too. The proportion of values below a given z is <code>pnorm(z)</code>, the cumulative distribution function of the standard normal (<a href="../prob/continuous-probability.html#sec-cdf-intro" class="quarto-xref"><span>Section 10.1</span></a>), and <code>qnorm(p)</code> goes back from a proportion to a z-score. A few values are worth remembering:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">:</span><span class="dv">2</span>), <span class="dv">3</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.023 0.159 0.500 0.841 0.977</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A z of −2, −1, 0, 1 and 2 corresponds to about the 2nd, 16th, 50th, 84th and 98th percentile: the same 68% and 95% we saw for the SD, split into the two tails. For the UX scores, the normal approximation works well. The z-score of 80 gives almost the same percentile rank we computed from the data, and the 90th percentile computed from the mean and the SD is close to the one computed from the data:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (<span class="dv">80</span> <span class="sc">-</span> <span class="fu">mean</span>(ux)) <span class="sc">/</span> <span class="fu">sd</span>(ux)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">normal =</span> <span class="fu">pnorm</span>(z), <span class="at">data =</span> <span class="fu">mean</span>(ux <span class="sc">&lt;=</span> <span class="dv">80</span>))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; normal   data </span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0.972  0.982</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">normal =</span> <span class="fu">mean</span>(ux) <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fl">0.90</span>) <span class="sc">*</span> <span class="fu">sd</span>(ux), <span class="at">data =</span> <span class="fu">quantile</span>(ux, <span class="fl">0.90</span>, <span class="at">names =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; normal   data </span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   72.1   70.4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For skewed data, the same shortcut gives the wrong answer. If the reaction times were normal, about 2.3% of them would be more than 2 SDs below the mean, and 2.3% more than 2 SDs above it:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>z_rt <span class="ot">&lt;-</span> (rt <span class="sc">-</span> <span class="fu">mean</span>(rt)) <span class="sc">/</span> <span class="fu">sd</span>(rt)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">below =</span> <span class="fu">mean</span>(z_rt <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">2</span>), <span class="at">above =</span> <span class="fu">mean</span>(z_rt <span class="sc">&gt;</span> <span class="dv">2</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  below  above </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.0000 0.0467</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Because of the floor and the long right tail, no reaction time is that fast, and about twice as many as expected are that slow. Convert z-scores to percentiles with <code>pnorm()</code> only when the distribution is roughly normal (see <a href="../summaries/numerical-summaries.html#sec-normal-distribution" class="quarto-xref"><span>Section 6.1</span></a>); otherwise, compute the percentiles from the data, with <code>quantile()</code> and <code>mean(x &lt;= a)</code>.</p>
+</section>
 </section>
 <section id="which-summary-for-which-data" class="level2" data-number="15.4">
 <h2 data-number="15.4" class="anchored" data-anchor-id="which-summary-for-which-data"><span class="header-section-number">15.4</span> Which summary for which data?</h2>
@@ -604,15 +636,15 @@ z_i = \frac{x_i - \bar{x}}{s}
 </table>
 <p>Whatever the summary, plot the data first: two numbers cannot show a bimodal distribution or an impossible value. Summaries are most often computed by group, with the <code>dplyr</code> functions of <a href="https://intro-to-behds.github.io/behdsbook-part-1/R/tidyverse.html"><em>The tidyverse</em></a> in Part 1:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>reaction_times <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean =</span> <span class="fu">mean</span>(rt_ms), <span class="at">sd =</span> <span class="fu">sd</span>(rt_ms),</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(rt_ms), <span class="at">iqr =</span> <span class="fu">IQR</span>(rt_ms))</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 6</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sex        n  mean    sd median   iqr</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Female   238  330.  68.5   319.  80.5</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Male     812  316.  65.4   300.  69.4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>reaction_times <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean =</span> <span class="fu">mean</span>(rt_ms), <span class="at">sd =</span> <span class="fu">sd</span>(rt_ms),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(rt_ms), <span class="at">iqr =</span> <span class="fu">IQR</span>(rt_ms))</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 6</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sex        n  mean    sd median   iqr</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Female   238  330.  68.5   319.  80.5</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Male     812  316.  65.4   300.  69.4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="sec-sd-to-se" class="level2" data-number="15.5">

@@ -1,11 +1,6 @@
 # Two Categorical Variables: the Chi-square Test {#sec-chi-square}
 
-:::{.callout-warning}
-## Draft
-This chapter is a **draft**, written with an AI assistant (Claude) on 29 October 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
-:::
-
-So far, our outcomes were numbers: reaction times, scores, error counts. Many behavioural outcomes are categories instead: whether a participant detected a target or not, which of two interfaces they preferred, whether an application was funded. When both variables are categorical, means make no sense: we count how many observations fall in each combination of categories, and we ask whether the two variables are associated. The usual tool is the *chi-square test* (χ², from the Greek letter *chi*).
+So far, we focused on numerical variables: reaction times, scores, error counts. Many behavioural outcomes are categories instead: whether a participant detected a target or not, which of two interfaces they preferred, whether an application was funded. When both variables are categorical, means make no sense: we count how many observations fall in each combination of categories, and we ask whether the two variables are associated. The usual tool is the *chi-square test* (χ², from the Greek letter *chi*).
 
 :::{.callout-note}
 This chapter is original material written for this book; it is not part of Irizarry's *Introduction to Data Science*.

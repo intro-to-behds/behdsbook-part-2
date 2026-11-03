@@ -1,9 +1,5 @@
 # Multiple Comparisons {#sec-multiple-comparisons}
 
-:::{.callout-warning}
-## Draft
-This chapter is a **draft**, written with an AI assistant (Claude) on 29 October 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
-:::
 
 A p-value below 0.05 is meant to be a rare event when there is no effect: it happens by chance only 5% of the time. But this holds for *one* test. When we run many tests, rare events become common: if we look at enough comparisons, some will be "significant" just by chance. This chapter explains the problem and the main corrections, without the mathematics behind them.
 
