@@ -1,5 +1,7 @@
 # Random Variables {#sec-random-variables}
 
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/prob/random-variables.html). Adapted by Giorgio Arcara: the roulette exercises are about a stress-reduction app, and the examples use reaction times instead of heights; the text is otherwise Irizarry's, with small edits to fit the new examples._
+
 To study uncertainty rigorously, we need mathematical tools that describe how data behave under randomness. *Statistical inference*, the topic of the next part of this book, builds on these tools to quantify uncertainty and make predictions. In this chapter, we introduce the concept of *random variables* and explore their main properties through simple examples.
 
 ## Definition 

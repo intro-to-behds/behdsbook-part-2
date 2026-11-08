@@ -1,5 +1,7 @@
 ## Recommended Reading {.unnumbered}
 
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/prob/reading-prob.html). Unchanged in this edition, except for links and package names._
+
 * **Fisher, R. A. (1935). *The Design of Experiments.* Oliver & Boyd.**  
   A foundational text that introduced the principles of randomization and experimental control, forming the basis of modern statistical design.
 

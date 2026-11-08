@@ -1,5 +1,7 @@
 # Statistical Inference {#sec-intro-inference .unnumbered}
 
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/inference/intro-inference.html). Adapted by Giorgio Arcara: rewritten to introduce the chapters published in this edition and the behavioural examples._
+
 Statistical inference is the branch of statistics dedicated to distinguishing patterns arising from signal versus those arising from chance. When a usability study finds that 48% of participants rate a new interface positively, or an experiment finds that responses are 40 ms slower in one condition than in another, inference tells us how much these numbers could change if we ran the study again, and whether a difference is large enough not to be explained by chance alone.
 
 In this part of the book, we show how the probability concepts from the previous part can be applied to develop these methods. To illustrate the concepts, we supplement mathematical formulas with Monte Carlo simulations and R code.

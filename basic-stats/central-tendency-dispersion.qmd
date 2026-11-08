@@ -1,5 +1,7 @@
 # Central Tendency and Dispersion {#sec-central-dispersion}
 
+_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+
 When we describe a list of numbers, such as the reaction times of a group of participants, two questions come first: what is a typical value, and how much do the values differ from each other? Measures of *central tendency* answer the first question; measures of *dispersion* answer the second. In [*Visualizing data distributions*](https://intro-to-behds.github.io/behdsbook-part-1/dataviz/distributions.html) in Part 1, we saw that a plot of the distribution is usually the best way to answer both. In this chapter, we review the numbers we use to summarize them, and when each one is appropriate.
 
 We use two datasets from `behdslabs`: the simple reaction times in `reaction_times`, which are skewed to the right, and the UX questionnaire scores in `ux_scores`, which are roughly symmetric.

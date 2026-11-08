@@ -1,6 +1,6 @@
 # Experimental Designs in Psychology {#sec-experimental-designs}
 
-_by C. Costa (and G. Arcara)_
+_Written for this book by Cristiano Costa, with Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
 
 
 Imagine we want to know whether frequent smartphone notifications make it harder to concentrate. We could ask people how many notifications they normally receive and compare this with their performance on an attention task. Alternatively, we could actively manipulate the number of notifications they receive while they complete the task. These two studies may produce very similar-looking datasets. In both cases, we could end up with one column containing the number of notifications and another containing reaction times or accuracy. Yet the conclusions we can draw from the two datasets are not the same.

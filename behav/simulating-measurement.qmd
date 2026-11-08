@@ -1,6 +1,6 @@
 # Behind the Simulations {#sec-simulating-measurement}
 
-_by Giorgio Arcara_
+_Written for this book by Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
 
 ```{r}
 #| label: sim-setup

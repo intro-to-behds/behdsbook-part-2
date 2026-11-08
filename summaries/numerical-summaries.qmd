@@ -1,5 +1,7 @@
 # Numerical Summaries {#sec-numeric-summaries}
 
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/summaries/numerical-summaries.html). Adapted by Giorgio Arcara: the examples use UX questionnaire scores instead of student heights, and the exercises use simulated usability (SUS) scores instead of Galton's heights; the text is otherwise Irizarry's, with small edits to fit the new examples._
+
 Histograms and density plots provide excellent summaries of a distribution. But can we summarize even further? We often see the average and standard deviation used as summary statistics: a two-number summary! To see why these summaries are especially useful, we introduce the normal distribution.
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}

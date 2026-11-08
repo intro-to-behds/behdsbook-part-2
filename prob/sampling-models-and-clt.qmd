@@ -1,5 +1,7 @@
 # Sampling Models and the Central Limit Theorem
 
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/prob/sampling-models-and-clt.html). Adapted by Giorgio Arcara: the roulette example is a stress-reduction app and the polling examples are about app and wearable users, with the same numbers, and a short example on the effect of the number of users was added; the text is otherwise Irizarry's, with small edits to fit the new examples._
+
 
 In the previous chapter, we introduced random variables and saw how their distributions, expected values, and standard deviations describe uncertainty. In this chapter, we build on those ideas by introducing *sampling models*, which are mathematical abstractions of how data are generated. We then use the Central Limit Theorem (CLT) to approximate the distribution of sums and averages of independent draws. Through a concrete example based on a stress-reduction app that shows randomly chosen content, we show how the CLT can be used to answer practical questions such as "What is the chance that the app increases stress overall?"
 

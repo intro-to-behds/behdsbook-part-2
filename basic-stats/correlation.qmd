@@ -1,5 +1,7 @@
 # Correlation {#sec-correlation}
 
+_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+
 Many questions in behavioural research are about two numerical variables measured on the same people. Do participants with a larger working memory span read faster? Do users who are more consistent from one session to the next also engage more with an app? A scatterplot shows the answer; the *correlation coefficient* summarizes it in one number. In this chapter, we review Pearson's correlation, its rank-based version, Spearman's correlation, and the cases in which a correlation is misleading.
 
 ## Look first: the scatterplot

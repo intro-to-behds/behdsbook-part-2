@@ -1,5 +1,7 @@
 # Discrete Probability {#sec-discrete-probability}
 
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/prob/discrete-probability.html). Adapted by Giorgio Arcara: the cards and Blackjack are replaced by a visual-search stimulus set, and the examples and exercises use behavioural and human–technology scenarios; the text is otherwise Irizarry's, with small edits to fit the new examples._
+
 We begin by covering some basic principles related to categorical data. The specific area of probability that deals with categorical data is referred to as *discrete probability*. Understanding this topic will help us comprehend the probability theory we will later introduce for numeric and continuous data, which is much more common in data analysis. We will use simple experiments with categorical outcomes, such as stimuli drawn from a set or responses in a task, as illustrative examples.
 
 ## Relative frequency

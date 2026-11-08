@@ -446,18 +446,9 @@ window.Quarto = {
 </header>
 
 
+<p><em>Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry’s <em>Introduction to Data Science</em>.</em></p>
 <p>Many questions in behavioural research compare two groups or two conditions. Do users rate an app differently on desktop and on mobile? Is engagement higher with a redesigned interface than with the standard one? Are responses slower when the colour of a word conflicts with its meaning? In each case, we have a continuous outcome measured in two groups, and we want to know whether the difference we see in our sample reflects a real difference in the population or could have been produced by chance.</p>
 <p>In <a href="../inference/estimates-confidence-intervals.html" class="quarto-xref"><span>Chapter 13</span></a> and <a href="../inference/hypothesis-testing.html" class="quarto-xref"><span>Chapter 14</span></a>, we built confidence intervals and p-values for a proportion. In this chapter, we apply the same ideas to the difference between two averages. This leads to the two tests you will meet most often in psychology papers: the <em>t-test</em>, which compares means, and the <em>Wilcoxon test</em>, which compares ranks and is the usual choice when the data are skewed, contain outliers, or are only ordinal.</p>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>This chapter is original material written for this book; it is not part of Irizarry’s <em>Introduction to Data Science</em>.</p>
-</div>
-</div>
-</div>
 <section id="a-difference-in-means-is-not-enough" class="level2" data-number="17.1">
 <h2 data-number="17.1" class="anchored" data-anchor-id="a-difference-in-means-is-not-enough"><span class="header-section-number">17.1</span> A difference in means is not enough</h2>
 <p>Suppose that two research teams compare a standard and a redesigned version of an app, each with 30 users per version, and that in both studies the redesigned version scores 5 points higher on average on a UX questionnaire. Do the two studies show the same thing? The following data are simulated so that the two studies have exactly the same means, 50 and 55, and differ only in how much the scores vary: their standard deviation is 3 in Study A and 15 in Study B.</p>
