@@ -2,11 +2,6 @@
 
 _Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
 
-:::{.callout-warning}
-## Draft
-This chapter is a **draft**, written with an AI assistant (Claude) on 12 November 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
-:::
-
 A p-value answers one question: could a difference this large easily arise by chance? It does not say how large the difference is. With enough participants, even a negligible difference gets a tiny p-value, and with too few, a large difference can get a large one (@sec-hypothesis-testing). An *effect size* answers the other question: how large is the difference, or how strong is the association? In @sec-two-groups, two studies had the same 5-point difference in means but very different spreads, and the t-test gave two different conclusions. An effect size describes that situation directly, and it does not depend on the sample size.
 
 This chapter shows how to compute the most common effect sizes in R, for the tests of the previous chapters: the t-test, the paired t-test, the Wilcoxon test, and the ANOVA. The companion chapter, @sec-power, uses the same effect sizes to plan how many participants a study needs.

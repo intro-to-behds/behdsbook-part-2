@@ -128,7 +128,7 @@ pwr.t.test(d = dz, power = 0.80, type = "paired")$n
 
 About `r ceiling(pwr.t.test(d = dz, power = 0.8, type = "paired")$n)` participants, measured twice, give the same power as `r 2 * ceiling(pwr.t.test(d = 0.5, power = 0.8)$n)` participants split into two groups. The gain shrinks as the correlation decreases: with $\rho = 0.5$, $d_z = d$, and the only advantage left is that each participant contributes two measurements instead of one.
 
-## The Wilcoxon test
+## The Wilcoxon test {#sec-power-wilcoxon}
 
 There is no simple formula for the power of the Wilcoxon test, because it depends on the shape of the distributions. Simulation solves the problem. We write a function that simulates one study and returns the p-values of both tests, so that we can compare them:
 
@@ -209,6 +209,8 @@ pwr.chisq.test(w = 0.3, df = 1, power = 0.80)$N
 ```
 
 ## Pitfalls
+
+**Power belongs to a statistical test, not to a design or an effect size alone.** Power is the probability of a significant p-value, and a p-value always comes from a specific test. With the same participants and the same effect size, different tests have different power. We saw this with the t-test and the Wilcoxon test on skewed data (@sec-power-wilcoxon); even Student's and Welch's t-tests differ when the group sizes and standard deviations differ. A common mistake is to compute the sample size for one test, for example a t-test with `pwr.t.test()`, and then analyse the data with another: a Wilcoxon test, an ANOVA with covariates, a mixed model, or a t-test after excluding participants. The power calculation then refers to an analysis that was never run, and says nothing about the one that was. Plan the power for the exact test you will report, and write that test down before collecting the data (ideally in a preregistration).
 
 **Power computed after the study is uninformative.** Some software reports "observed power", computed by plugging the effect size observed in the study into a power formula. It is a simple transformation of the p-value, and adds no information: a non-significant result always has low observed power. Power is a property of a design, computed before the data are collected.
 
