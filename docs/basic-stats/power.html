@@ -419,7 +419,7 @@ window.Quarto = {
   <li><a href="#the-pwr-package" id="toc-the-pwr-package" class="nav-link" data-scroll-target="#the-pwr-package"><span class="header-section-number">22.2</span> The <code>pwr</code> package</a></li>
   <li><a href="#two-independent-groups-the-t-test" id="toc-two-independent-groups-the-t-test" class="nav-link" data-scroll-target="#two-independent-groups-the-t-test"><span class="header-section-number">22.3</span> Two independent groups: the t-test</a></li>
   <li><a href="#paired-designs" id="toc-paired-designs" class="nav-link" data-scroll-target="#paired-designs"><span class="header-section-number">22.4</span> Paired designs</a></li>
-  <li><a href="#the-wilcoxon-test" id="toc-the-wilcoxon-test" class="nav-link" data-scroll-target="#the-wilcoxon-test"><span class="header-section-number">22.5</span> The Wilcoxon test</a></li>
+  <li><a href="#sec-power-wilcoxon" id="toc-sec-power-wilcoxon" class="nav-link" data-scroll-target="#sec-power-wilcoxon"><span class="header-section-number">22.5</span> The Wilcoxon test</a></li>
   <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova"><span class="header-section-number">22.6</span> ANOVA</a></li>
   <li><a href="#other-tests" id="toc-other-tests" class="nav-link" data-scroll-target="#other-tests"><span class="header-section-number">22.7</span> Other tests</a></li>
   <li><a href="#pitfalls" id="toc-pitfalls" class="nav-link" data-scroll-target="#pitfalls"><span class="header-section-number">22.8</span> Pitfalls</a></li>
@@ -451,19 +451,6 @@ window.Quarto = {
 
 
 <p><em>Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry’s <em>Introduction to Data Science</em>.</em></p>
-<div class="callout callout-style-simple callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Draft
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This chapter is a <strong>draft</strong>, written with an AI assistant (Claude) on 12 November 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.</p>
-</div>
-</div>
 <p>A p-value above 0.05 does not show that there is no effect: a real difference can easily be missed by a study that is too small (<a href="../inference/hypothesis-testing.html" class="quarto-xref"><span>Chapter 14</span></a>). In <a href="comparing-two-groups.html" class="quarto-xref"><span>Chapter 17</span></a>, a lab study with 15 users per device missed a difference that was obvious with the full sample. The probability that a study detects an effect that is really there is called its <em>power</em>. Power is decided before the data are collected, mostly by choosing how many participants to test, and this is why it belongs to the planning of a study (see <em>Sample size and precision</em> in <a href="../behav/experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>).</p>
 <p>This chapter shows how to compute power and the required sample size in R, for the tests of the previous chapters: the t-test, the paired t-test, the Wilcoxon test, and the ANOVA. Each calculation needs an effect size, which is the topic of the companion chapter, <a href="effect-size.html" class="quarto-xref"><span>Chapter 21</span></a>.</p>
 <div class="cell" data-layout-align="center">
@@ -596,8 +583,8 @@ d_z = \frac{d}{\sqrt{2(1 - \rho)}}
 </div>
 <p>About 15 participants, measured twice, give the same power as 128 participants split into two groups. The gain shrinks as the correlation decreases: with <span class="math inline">\(\rho = 0.5\)</span>, <span class="math inline">\(d_z = d\)</span>, and the only advantage left is that each participant contributes two measurements instead of one.</p>
 </section>
-<section id="the-wilcoxon-test" class="level2" data-number="22.5">
-<h2 data-number="22.5" class="anchored" data-anchor-id="the-wilcoxon-test"><span class="header-section-number">22.5</span> The Wilcoxon test</h2>
+<section id="sec-power-wilcoxon" class="level2" data-number="22.5">
+<h2 data-number="22.5" class="anchored" data-anchor-id="sec-power-wilcoxon"><span class="header-section-number">22.5</span> The Wilcoxon test</h2>
 <p>There is no simple formula for the power of the Wilcoxon test, because it depends on the shape of the distributions. Simulation solves the problem. We write a function that simulates one study and returns the p-values of both tests, so that we can compare them:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sim_two_tests <span class="ot">&lt;-</span> <span class="cf">function</span>(n, shift, rdist) {</span>
@@ -686,6 +673,7 @@ d_z = \frac{d}{\sqrt{2(1 - \rho)}}
 </section>
 <section id="pitfalls" class="level2" data-number="22.8">
 <h2 data-number="22.8" class="anchored" data-anchor-id="pitfalls"><span class="header-section-number">22.8</span> Pitfalls</h2>
+<p><strong>Power belongs to a statistical test, not to a design or an effect size alone.</strong> Power is the probability of a significant p-value, and a p-value always comes from a specific test. With the same participants and the same effect size, different tests have different power. We saw this with the t-test and the Wilcoxon test on skewed data (<a href="#sec-power-wilcoxon" class="quarto-xref"><span>Section 22.5</span></a>); even Student’s and Welch’s t-tests differ when the group sizes and standard deviations differ. A common mistake is to compute the sample size for one test, for example a t-test with <code>pwr.t.test()</code>, and then analyse the data with another: a Wilcoxon test, an ANOVA with covariates, a mixed model, or a t-test after excluding participants. The power calculation then refers to an analysis that was never run, and says nothing about the one that was. Plan the power for the exact test you will report, and write that test down before collecting the data (ideally in a preregistration).</p>
 <p><strong>Power computed after the study is uninformative.</strong> Some software reports “observed power”, computed by plugging the effect size observed in the study into a power formula. It is a simple transformation of the p-value, and adds no information: a non-significant result always has low observed power. Power is a property of a design, computed before the data are collected.</p>
 <p><strong>Published and pilot effect sizes are too optimistic.</strong> Effect sizes from small studies are imprecise, and published ones tend to be inflated (<a href="effect-size.html" class="quarto-xref"><span>Chapter 21</span></a>). Planning with them gives sample sizes that are too small. A safer approach is to plan for the <em>smallest effect size of interest</em>, the smallest effect that would matter in practice or for the theory, and to use pilot studies to check the procedure rather than to estimate the effect.</p>
 <p><strong>Unreliable measures cost participants.</strong> Measurement error shrinks standardized effect sizes (see <em>Measurement error and its consequences</em> in <a href="../behav/measurement.html" class="quarto-xref"><span>Chapter 1</span></a>). The observed d is about <span class="math inline">\(\sqrt{\rho_{XX'}}\)</span> times the d of a perfect measure, and the required sample size grows roughly as <span class="math inline">\(1/d^2\)</span>. With an outcome whose reliability is 0.6, a study needs about <span class="math inline">\(1/0.6 \approx\)</span> 1.7 times as many participants:</p>
