@@ -1,0 +1,245 @@
+# Statistical Power {#sec-power}
+
+_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+
+:::{.callout-warning}
+## Draft
+This chapter is a **draft**, written with an AI assistant (Claude) on 12 November 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
+:::
+
+A p-value above 0.05 does not show that there is no effect: a real difference can easily be missed by a study that is too small (@sec-hypothesis-testing). In @sec-two-groups, a lab study with 15 users per device missed a difference that was obvious with the full sample. The probability that a study detects an effect that is really there is called its *power*. Power is decided before the data are collected, mostly by choosing how many participants to test, and this is why it belongs to the planning of a study (see *Sample size and precision* in @sec-experimental-designs).
+
+This chapter shows how to compute power and the required sample size in R, for the tests of the previous chapters: the t-test, the paired t-test, the Wilcoxon test, and the ANOVA. Each calculation needs an effect size, which is the topic of the companion chapter, @sec-effect-size.
+
+```{r, message=FALSE, warning=FALSE}
+#| cache: false
+library(tidyverse)
+library(behdslabs)
+library(pwr)
+library(afex)
+```
+
+## The idea
+
+A hypothesis test can go wrong in two ways. If there is no effect and we find a significant result, we make a *Type I error*, or false positive; its probability is $\alpha$, usually 0.05. If there is an effect and we do not find a significant result, we make a *Type II error*, or false negative; its probability is called $\beta$. Power is $1 - \beta$: the probability of a significant result when the effect is real.
+
+Power depends on four quantities, linked to each other:
+
+1. the **effect size**: larger effects are easier to detect;
+2. the **sample size**: more participants give more precise estimates;
+3. the **significance level** $\alpha$: a stricter threshold, such as 0.01, needs more evidence;
+4. the **power** itself.
+
+Fix any three, and the fourth is determined. The most common use is to fix the effect size, $\alpha = 0.05$ and the desired power, usually 0.80 or 0.90, and compute the sample size.
+
+Power is a probability over many possible studies, so we can estimate it by simulation, as in the exercises of @sec-hypothesis-testing. Suppose the true difference between two groups is half a standard deviation (d = 0.5), and we test 30 participants per group. We simulate 2,000 studies and count how often the t-test is significant:
+
+```{r}
+set.seed(2026)
+p_values <- replicate(2000, {
+  x <- rnorm(30, mean = 0, sd = 1)
+  y <- rnorm(30, mean = 0.5, sd = 1)
+  t.test(x, y)$p.value
+})
+mean(p_values < 0.05)
+```
+
+Only about `r round(100 * mean(p_values < 0.05))`% of these studies find the effect, even though it is real in every one of them. The figure shows how power grows with the number of participants, for a small, a medium and a large effect:
+
+```{r power-curves, echo=FALSE, fig.height=3.5}
+expand_grid(d = c(0.2, 0.5, 0.8), n = seq(5, 200, by = 5)) |>
+  mutate(power = map2_dbl(d, n, ~ pwr.t.test(d = .x, n = .y)$power),
+         d = factor(d)) |>
+  ggplot(aes(n, power, colour = d)) +
+  geom_line(linewidth = 1) +
+  geom_hline(yintercept = 0.8, linetype = "dashed") +
+  labs(x = "Participants per group", y = "Power", colour = "Cohen's d")
+```
+
+The dashed line marks the conventional target of 80%. A large effect reaches it with about 25 participants per group, a medium one with about 65, and a small one needs about 400.
+
+## The `pwr` package
+
+For the most common tests, power can be computed exactly, without simulation. The `pwr` package implements the formulas of Cohen's classic book on power analysis. Install it once with `install.packages("pwr")`.
+
+Each function takes the four quantities as arguments; you leave out the one you want to compute. How many participants per group do we need to detect d = 0.5 with 80% power?
+
+```{r}
+pwr.t.test(d = 0.5, sig.level = 0.05, power = 0.80)
+```
+
+We need about `r ceiling(pwr.t.test(d = 0.5, power = 0.8)$n)` participants per group (always round up). Leave out `power` instead, and the function tells us the power of a given design; this is the same calculation we did by simulation above:
+
+```{r}
+pwr.t.test(d = 0.5, n = 30)
+```
+
+The default `sig.level` is 0.05, so from now on we leave it out.
+
+## Two independent groups: the t-test
+
+Suppose we want to repeat the comparison of desktop and mobile users of @sec-two-groups in a new lab study. How many participants do we need? It depends on the smallest effect we would care about. If only a medium effect matters, d = 0.5, we need the `r ceiling(pwr.t.test(d = 0.5, power = 0.8)$n)` per group computed above. If we want 90% power, or want to detect smaller effects, the numbers grow quickly:
+
+```{r}
+pwr.t.test(d = 0.5, power = 0.90)$n
+pwr.t.test(d = 0.3, power = 0.80)$n
+```
+
+We can also turn the question around and ask what the 15-per-group lab study of @sec-two-groups could detect. Its power for a medium effect was low:
+
+```{r}
+pwr.t.test(d = 0.5, n = 15)$power
+```
+
+And the smallest effect it could detect with 80% power was large:
+
+```{r}
+pwr.t.test(n = 15, power = 0.80)$d
+```
+
+Groups of different sizes are handled by `pwr.t2n.test()`. In `ux_scores`, there are many more desktop than mobile users. With the same total of 60 participants, unequal groups have less power than equal ones:
+
+```{r}
+pwr.t2n.test(n1 = 30, n2 = 30, d = 0.5)$power
+pwr.t2n.test(n1 = 45, n2 = 15, d = 0.5)$power
+```
+
+## Paired designs
+
+For a paired t-test, `pwr.t.test()` takes `type = "paired"`, and `n` becomes the number of participants, each measured twice:
+
+```{r}
+pwr.t.test(d = 0.5, power = 0.80, type = "paired")
+```
+
+The `d` here is $d_z$, the average difference divided by the standard deviation of the differences (@sec-effect-size). This is where the advantage of within-subjects designs shows up. If the two measurements of the same person are correlated, with correlation $\rho$, and the two conditions have the same standard deviation, then
+
+$$
+d_z = \frac{d}{\sqrt{2(1 - \rho)}}
+$$
+
+where $d$ is the effect size on the between-subjects scale. Reaction times of the same person in two conditions are often highly correlated. With $\rho = 0.8$, a between-subjects d of 0.5 becomes a much larger $d_z$:
+
+```{r}
+dz <- 0.5 / sqrt(2 * (1 - 0.8))
+dz
+pwr.t.test(d = dz, power = 0.80, type = "paired")$n
+```
+
+About `r ceiling(pwr.t.test(d = dz, power = 0.8, type = "paired")$n)` participants, measured twice, give the same power as `r 2 * ceiling(pwr.t.test(d = 0.5, power = 0.8)$n)` participants split into two groups. The gain shrinks as the correlation decreases: with $\rho = 0.5$, $d_z = d$, and the only advantage left is that each participant contributes two measurements instead of one.
+
+## The Wilcoxon test
+
+There is no simple formula for the power of the Wilcoxon test, because it depends on the shape of the distributions. Simulation solves the problem. We write a function that simulates one study and returns the p-values of both tests, so that we can compare them:
+
+```{r}
+sim_two_tests <- function(n, shift, rdist) {
+  x <- rdist(n)
+  y <- rdist(n) + shift
+  c(t_test = t.test(x, y)$p.value,
+    wilcoxon = wilcox.test(x, y)$p.value)
+}
+```
+
+The argument `rdist` is the function that generates the data. First, normal data, with a difference of half a standard deviation and 30 participants per group:
+
+```{r}
+set.seed(1)
+res_normal <- replicate(2000, sim_two_tests(30, 0.5, rnorm))
+rowMeans(res_normal < 0.05)
+```
+
+With normal data, the t-test is slightly more powerful, but the loss with the Wilcoxon test is small: for normal data it needs only about 5% more participants for the same power. Now reaction-time-like data: right-skewed, with a long tail of slow responses. We use a log-normal distribution and the same shift:
+
+```{r}
+rskewed <- function(n) rlnorm(n, meanlog = 0, sdlog = 0.8)
+set.seed(1)
+res_skewed <- replicate(2000, sim_two_tests(30, 0.5, rskewed))
+rowMeans(res_skewed < 0.05)
+```
+
+With skewed data, the Wilcoxon test is much *more* powerful than the t-test. The long tail inflates the standard deviation, and with it the standard error of the t-test, while the ranks are not affected. This is one more reason to look at the data, or at data from similar studies, before choosing the test, and to use that same test in the power analysis.
+
+## ANOVA
+
+For a one-way between-subjects ANOVA, `pwr.anova.test()` takes the number of groups `k` and the effect size as Cohen's f (@sec-effect-size). How many participants per group do we need in an attention experiment with three conditions, to detect a medium effect, f = 0.25?
+
+```{r}
+pwr.anova.test(k = 3, f = 0.25, power = 0.80)
+```
+
+About `r ceiling(pwr.anova.test(k = 3, f = 0.25, power = 0.8)$n)` per group, `r 3 * ceiling(pwr.anova.test(k = 3, f = 0.25, power = 0.8)$n)` in total. If a previous study reported $\eta^2$ instead of f, convert it first with $f = \sqrt{\eta^2 / (1 - \eta^2)}$:
+
+```{r}
+eta2 <- 0.06
+sqrt(eta2 / (1 - eta2))
+```
+
+This is the power of the *global* F test. If what you really care about is a specific comparison, such as no distractor versus visual distractor, plan the sample size for that comparison, with `pwr.t.test()`. Post-hoc comparisons are corrected for multiple testing (@sec-multiple-comparisons), and this reduces their power further.
+
+For repeated-measures and mixed designs, the formulas need extra information, such as the correlations between conditions, and simulation is the simplest route. We simulate the three-condition Stroop task of @sec-anova, with smaller differences between the conditions (0, 10 and 20 ms), and run the same `aov_ez()` call on each simulated dataset:
+
+```{r rm-power-sim, message=FALSE}
+sim_stroop3 <- function(n_part) {
+  speed <- rnorm(n_part, 500, 80)
+  d <- tibble(
+    participant = factor(rep(1:n_part, times = 3)),
+    condition = factor(rep(c("congruent", "neutral", "incongruent"), each = n_part)),
+    rt = rep(speed, 3) + rep(c(0, 10, 20), each = n_part) + rnorm(3 * n_part, 0, 25)
+  )
+  fit <- aov_ez(id = "participant", dv = "rt", data = d, within = "condition")
+  fit$anova_table$`Pr(>F)`
+}
+
+set.seed(2026)
+n_values <- c(10, 20, 30, 40)
+power_rm <- sapply(n_values, function(n) mean(replicate(200, sim_stroop3(n)) < 0.05))
+data.frame(participants = n_values, power = power_rm)
+```
+
+With 200 simulated studies per sample size, these estimates are approximate; use 1,000 or more for a real study. For complex designs, the `Superpower` package and the free program G\*Power offer ready-made tools.
+
+## Other tests
+
+The `pwr` package has a function for most basic tests. For a correlation, `pwr.r.test()` takes the expected $r$; for a chi-square test, `pwr.chisq.test()` takes Cohen's w, which for a 2 × 2 table equals the absolute value of Cramér's V (@sec-chi-square):
+
+```{r}
+pwr.r.test(r = 0.3, power = 0.80)$n
+pwr.chisq.test(w = 0.3, df = 1, power = 0.80)$N
+```
+
+## Pitfalls
+
+**Power computed after the study is uninformative.** Some software reports "observed power", computed by plugging the effect size observed in the study into a power formula. It is a simple transformation of the p-value, and adds no information: a non-significant result always has low observed power. Power is a property of a design, computed before the data are collected.
+
+**Published and pilot effect sizes are too optimistic.** Effect sizes from small studies are imprecise, and published ones tend to be inflated (@sec-effect-size). Planning with them gives sample sizes that are too small. A safer approach is to plan for the *smallest effect size of interest*, the smallest effect that would matter in practice or for the theory, and to use pilot studies to check the procedure rather than to estimate the effect.
+
+**Unreliable measures cost participants.** Measurement error shrinks standardized effect sizes (see *Measurement error and its consequences* in @sec-measurement). The observed d is about $\sqrt{\rho_{XX'}}$ times the d of a perfect measure, and the required sample size grows roughly as $1/d^2$. With an outcome whose reliability is 0.6, a study needs about $1/0.6 \approx$ `r round(1/0.6, 1)` times as many participants:
+
+```{r}
+pwr.t.test(d = 0.5, power = 0.80)$n
+pwr.t.test(d = 0.5 * sqrt(0.6), power = 0.80)$n
+```
+
+Improving the measure, for example by averaging more trials per participant, is often cheaper than recruiting more participants.
+
+**Power is not the only goal.** A study can also be planned to estimate an effect with a given precision, by choosing the sample size that gives a confidence interval of the desired width (see the margin of error in @sec-estimates-and-ci). And 80% power is itself a convention: it accepts missing a real effect one time in five.
+
+## Further reading
+
+- D. Lakens, *Improving Your Statistical Inferences*, [Chapter 8, *Sample Size Justification*](https://lakens.github.io/statistical_inferences/08-samplesizejustification.html).
+- D. Lakens (2022), *Sample size justification*, Collabra: Psychology, 8(1), 33267, <https://doi.org/10.1525/collabra.33267>.
+- The [`pwr` package vignette](https://cran.r-project.org/web/packages/pwr/vignettes/pwr-vignette.html), with an example for each function.
+- A. R. Caldwell, D. Lakens and colleagues, [*Power Analysis with Superpower*](https://aaroncaldwell.us/SuperpowerBook/), on simulation-based power for ANOVA designs.
+
+## Exercises
+
+1\. In `app_engagement_experiment`, compute Cohen's d for the difference in `engagement_score` between the two `ui_version`s (see @sec-effect-size). How many users per version would a new study need to detect an effect of this size with 80% power? And with 90% power?
+
+2\. Use `table()` to find the number of users per `ui_version` in `app_engagement_experiment`, and `pwr.t2n.test()` to compute the study's power to detect a small effect, d = 0.2. How would the power change if the same total number of users had been split very unequally, for example with only 80 users of the redesigned version?
+
+3\. Run the Wilcoxon simulation of this chapter again with 15 and with 60 participants per group, for both the normal and the skewed data. Does the advantage of the Wilcoxon test with skewed data depend on the sample size?
+
+4\. A colleague plans a one-way ANOVA with five groups, like the cohorts of `app_engagement_experiment`, and expects f = 0.10. Use `pwr.anova.test()` to compute the number of participants needed for 80% power. How does the answer change for f = 0.25?
+
+5\. Using `ux_scores`, draw a random sample of 10 users per device (use `slice_sample()`), and run a t-test. Repeat this 1,000 times and compute the proportion of samples in which the p-value is below 0.05. Compare this proportion with the power computed by `pwr.t.test()` for n = 10 and the d of the full dataset. Why are the two numbers close?

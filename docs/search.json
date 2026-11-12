@@ -1229,7 +1229,7 @@
     "href": "inference/hypothesis-testing.html#power",
     "title": "14  Hypothesis Testing",
     "section": "14.2 Power",
-    "text": "14.2 Power\nA team running a satisfaction survey is rarely asked for a perfect confidence interval; it is asked for a decision: are most users satisfied or not? Recall the sample of 25 reviews from Chapter 13, with \\(\\bar{X} = 0.48\\). The confidence interval for the net satisfaction, \\(2p - 1\\), includes 0:\n\nN &lt;- 25\nx_hat &lt;- 0.48\n(2*x_hat - 1) + c(-1.96, 1.96)*2*sqrt(x_hat*(1 - x_hat)/N)\n#&gt; [1] -0.432  0.352\n\nIf we were forced to make a call, we would have to say it was too close to call.\nOne problem with our results is that, given the sample size and the value of \\(\\pi\\), we would have to sacrifice the probability of an incorrect call to create an interval that does not include 0.\nThis does not mean that opinions are evenly split. It only means that we have a small sample size. In statistical textbooks, this is called lack of power. In this context, power is the probability of detecting a nonzero net satisfaction when the true net satisfaction is in fact not 0.\nBy increasing our sample size, we lower our standard error and thus have a much better chance of detecting the direction of the difference.\n\n\n\n\n\n\nLack of power is common in behavioural research, where studies often test a few dozen participants. A study with low power will usually miss real effects, and when it does find one, the estimate tends to exaggerate its size. This is one of the methodological roots of the replication crisis in psychology, the finding that many published effects could not be reproduced by new studies. Careful study design (Chapter 4) and an adequate sample size, planned in advance, are the main protections.\n\n\n\nStatistical textbooks provide much more detail on hypothesis testing, including formal definitions of p-values, statistical power, and related concepts. The Recommended Reading section lists texts that cover these topics in depth for readers interested in exploring them further.",
+    "text": "14.2 Power\nA team running a satisfaction survey is rarely asked for a perfect confidence interval; it is asked for a decision: are most users satisfied or not? Recall the sample of 25 reviews from Chapter 13, with \\(\\bar{X} = 0.48\\). The confidence interval for the net satisfaction, \\(2p - 1\\), includes 0:\n\nN &lt;- 25\nx_hat &lt;- 0.48\n(2*x_hat - 1) + c(-1.96, 1.96)*2*sqrt(x_hat*(1 - x_hat)/N)\n#&gt; [1] -0.432  0.352\n\nIf we were forced to make a call, we would have to say it was too close to call.\nOne problem with our results is that, given the sample size and the value of \\(\\pi\\), we would have to sacrifice the probability of an incorrect call to create an interval that does not include 0.\nThis does not mean that opinions are evenly split. It only means that we have a small sample size. In statistical textbooks, this is called lack of power. In this context, power is the probability of detecting a nonzero net satisfaction when the true net satisfaction is in fact not 0.\nBy increasing our sample size, we lower our standard error and thus have a much better chance of detecting the direction of the difference. How to compute power, and the sample size needed for a given power, for the t-test, the Wilcoxon test and the ANOVA, is shown in Chapter 22.\n\n\n\n\n\n\nLack of power is common in behavioural research, where studies often test a few dozen participants. A study with low power will usually miss real effects, and when it does find one, the estimate tends to exaggerate its size. This is one of the methodological roots of the replication crisis in psychology, the finding that many published effects could not be reproduced by new studies. Careful study design (Chapter 4) and an adequate sample size, planned in advance, are the main protections.\n\n\n\nStatistical textbooks provide much more detail on hypothesis testing, including formal definitions of p-values, statistical power, and related concepts. The Recommended Reading section lists texts that cover these topics in depth for readers interested in exploring them further.",
     "crumbs": [
       "Statistical Inference",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Hypothesis Testing</span>"
@@ -1273,7 +1273,7 @@
     "href": "basic-stats/intro-basic-stats.html",
     "title": "Basic Statistics",
     "section": "",
-    "text": "Written for this book by Giorgio Arcara, with an AI assistant (Claude). This part is not in Irizarry’s Introduction to Data Science.\nThis part of the book is a short refresher of the basic statistics you have probably met in earlier courses: how to summarize the centre and the spread of a list of numbers, how to describe the association between two variables with a correlation, how to compare two groups with the t-test and the Wilcoxon test, how to compare more than two groups with an ANOVA, how to deal with multiple comparisons, and how to test the association between two categorical variables with the chi-square test. It is meant to be read rather than studied as a separate topic: the course refers to these chapters whenever a concept such as the standard deviation or the correlation coefficient is used, so that you can check its definition quickly. The chapters use the same behdslabs datasets as the rest of the book. The ideas behind statistical inference, such as standard errors, confidence intervals and p-values, are explained in the earlier parts of this book, on probability and inference, and these chapters link back to them. If you want a fuller treatment, several excellent books are freely available online: Danielle Navarro’s Learning Statistics with R, written for psychology students; Russell Poldrack’s Statistical Thinking for the 21st Century; and Daniël Lakens’ Improving Your Statistical Inferences, which focuses on p-values, effect sizes and confidence intervals. Each chapter ends with pointers to the relevant sections.",
+    "text": "Written for this book by Giorgio Arcara, with an AI assistant (Claude). This part is not in Irizarry’s Introduction to Data Science.\nThis part of the book is a short refresher of the basic statistics you have probably met in earlier courses: how to summarize the centre and the spread of a list of numbers, how to describe the association between two variables with a correlation, how to compare two groups with the t-test and the Wilcoxon test, how to compare more than two groups with an ANOVA, how to deal with multiple comparisons, how to test the association between two categorical variables with the chi-square test, and, for all these tests, how to measure the size of an effect and how to plan the sample size of a study with a power analysis. It is meant to be read rather than studied as a separate topic: the course refers to these chapters whenever a concept such as the standard deviation or the correlation coefficient is used, so that you can check its definition quickly. The chapters use the same behdslabs datasets as the rest of the book. The ideas behind statistical inference, such as standard errors, confidence intervals and p-values, are explained in the earlier parts of this book, on probability and inference, and these chapters link back to them. If you want a fuller treatment, several excellent books are freely available online: Danielle Navarro’s Learning Statistics with R, written for psychology students; Russell Poldrack’s Statistical Thinking for the 21st Century; and Daniël Lakens’ Improving Your Statistical Inferences, which focuses on p-values, effect sizes and confidence intervals. Each chapter ends with pointers to the relevant sections.",
     "crumbs": [
       "Basic Statistics"
     ]
@@ -1525,7 +1525,7 @@
     "href": "basic-stats/comparing-two-groups.html#effect-size",
     "title": "17  Comparing Two Groups: the t-test and the Wilcoxon Test",
     "section": "17.8 Effect size",
-    "text": "17.8 Effect size\nA p-value tells us whether a difference could be due to chance, not whether it is large. With enough participants, even a tiny difference gets a tiny p-value. Always report the size of the difference, with its confidence interval, in the units of the outcome: “desktop users score 13.4 points higher on a 100-point scale” is more informative than “p &lt; 0.001”.\nWhen outcomes are measured on arbitrary scales, the difference is often divided by the standard deviation to give Cohen’s d:\n\\[\nd = \\frac{\\bar{X}_1 - \\bar{X}_2}{s_{\\text{pooled}}}, \\quad s_{\\text{pooled}} = \\sqrt{\\frac{(N_1 - 1)s_1^2 + (N_2 - 1)s_2^2}{N_1 + N_2 - 2}}\n\\]\n\ns_pooled &lt;- with(ux_sum, sqrt(((n[1] - 1)*sd[1]^2 + (n[2] - 1)*sd[2]^2)/(sum(n) - 2)))\nux_diff / s_pooled\n#&gt; [1] 1.2\n\nA difference of about 1.2 standard deviations is large by the usual rules of thumb (0.2 small, 0.5 medium, 0.8 large), which are, like the 0.05 threshold, conventions rather than laws.\nCohen’s d expresses the idea we started the chapter with: a difference means little until we compare it with how much the scores vary. The same 5 points are a d of 1.7 in Study A, where the standard deviation is 3, and a d of only 0.3 in Study B, where it is 15. Unlike \\(t\\), d does not grow with the sample size: it describes how large the difference is, not how sure we are that it exists.",
+    "text": "17.8 Effect size\nA p-value tells us whether a difference could be due to chance, not whether it is large. With enough participants, even a tiny difference gets a tiny p-value. Always report the size of the difference, with its confidence interval, in the units of the outcome: “desktop users score 13.4 points higher on a 100-point scale” is more informative than “p &lt; 0.001”.\nWhen outcomes are measured on arbitrary scales, the difference is often divided by the standard deviation to give Cohen’s d:\n\\[\nd = \\frac{\\bar{X}_1 - \\bar{X}_2}{s_{\\text{pooled}}}, \\quad s_{\\text{pooled}} = \\sqrt{\\frac{(N_1 - 1)s_1^2 + (N_2 - 1)s_2^2}{N_1 + N_2 - 2}}\n\\]\n\ns_pooled &lt;- with(ux_sum, sqrt(((n[1] - 1)*sd[1]^2 + (n[2] - 1)*sd[2]^2)/(sum(n) - 2)))\nux_diff / s_pooled\n#&gt; [1] 1.2\n\nA difference of about 1.2 standard deviations is large by the usual rules of thumb (0.2 small, 0.5 medium, 0.8 large), which are, like the 0.05 threshold, conventions rather than laws.\nCohen’s d expresses the idea we started the chapter with: a difference means little until we compare it with how much the scores vary. The same 5 points are a d of 1.7 in Study A, where the standard deviation is 3, and a d of only 0.3 in Study B, where it is 15. Unlike \\(t\\), d does not grow with the sample size: it describes how large the difference is, not how sure we are that it exists. Chapter 21 shows how to compute d and other effect sizes with a package, including for paired designs and the Wilcoxon test.",
     "crumbs": [
       "Basic Statistics",
       "<span class='chapter-number'>17</span>  <span class='chapter-title'>Comparing Two Groups: the t-test and the Wilcoxon Test</span>"
@@ -1848,6 +1848,248 @@
     "crumbs": [
       "Basic Statistics",
       "<span class='chapter-number'>20</span>  <span class='chapter-title'>Two Categorical Variables: the Chi-square Test</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/effect-size.html",
+    "href": "basic-stats/effect-size.html",
+    "title": "21  Effect Size",
+    "section": "",
+    "text": "21.1 The idea\nWritten for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry’s Introduction to Data Science.\nA p-value answers one question: could a difference this large easily arise by chance? It does not say how large the difference is. With enough participants, even a negligible difference gets a tiny p-value, and with too few, a large difference can get a large one (Chapter 14). An effect size answers the other question: how large is the difference, or how strong is the association? In Chapter 17, two studies had the same 5-point difference in means but very different spreads, and the t-test gave two different conclusions. An effect size describes that situation directly, and it does not depend on the sample size.\nThis chapter shows how to compute the most common effect sizes in R, for the tests of the previous chapters: the t-test, the paired t-test, the Wilcoxon test, and the ANOVA. The companion chapter, Chapter 22, uses the same effect sizes to plan how many participants a study needs.\nThe simplest effect size is the difference itself, in the units of the outcome: “desktop users score 13 points higher on a 100-point scale”, “incongruent trials are 48 ms slower”. This unstandardized effect size is often the most useful one, because it can be read directly by anyone who knows the measure.\nWhen the units are arbitrary, as for most questionnaire scores, or when we want to compare studies that used different measures, we use a standardized effect size, which has no units. There are two main families:\nTo get a feeling for Cohen’s d, the figure shows two normal distributions whose means differ by 0.2, 0.5 and 0.8 standard deviations:\nEven with d = 0.8, which is usually called “large”, the two distributions overlap a lot. One way to put this into words is the probability of superiority: the probability that a randomly chosen person from the second group scores higher than a randomly chosen person from the first. For normal distributions with the same standard deviation, it is pnorm(d / sqrt(2)):\nd &lt;- c(0.2, 0.5, 0.8)\nround(pnorm(d / sqrt(2)), 2)\n#&gt; [1] 0.56 0.64 0.71\nWith d = 0.5, a user of the redesigned version beats a user of the standard version only about 64% of the time, compared with 50% when there is no difference at all.\nCohen proposed rules of thumb for “small”, “medium” and “large” effects, which you will find in many papers:\nLike the 0.05 threshold for p-values, these are conventions, not laws. Cohen himself proposed them only for when nothing better is known. A 30 ms slowdown can be trivial in a lab task and important for a driver braking.",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Effect Size</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/effect-size.html#the-idea",
+    "href": "basic-stats/effect-size.html#the-idea",
+    "title": "21  Effect Size",
+    "section": "",
+    "text": "Differences between means, divided by a standard deviation. The best known is Cohen’s d, the difference in means in standard deviation units (see Section 15.3).\nMeasures of association, such as the correlation \\(r\\) (Chapter 16) and, for the ANOVA, the share of the variation in the outcome that is related to a factor (\\(\\eta^2\\), eta squared).\n\n\n\n\n\n\n\n\n\n\nEffect size\nSmall\nMedium\nLarge\n\n\n\n\nCohen’s d\n0.2\n0.5\n0.8\n\n\nCorrelation \\(r\\)\n0.1\n0.3\n0.5\n\n\n\\(\\eta^2\\) (ANOVA)\n0.01\n0.06\n0.14\n\n\nCohen’s f (ANOVA)\n0.10\n0.25\n0.40",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Effect Size</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/effect-size.html#the-effectsize-package",
+    "href": "basic-stats/effect-size.html#the-effectsize-package",
+    "title": "21  Effect Size",
+    "section": "21.2 The effectsize package",
+    "text": "21.2 The effectsize package\nWe could compute every effect size by hand, as we did for Cohen’s d in Chapter 17. The effectsize package does it for us, for most tests, and also gives a confidence interval for each effect size. Install it once with install.packages(\"effectsize\").\nSuppose eight users rated each of two versions of an app on the System Usability Scale (SUS), from 0 to 100, and the two groups of users are different people:\n\nstandard &lt;- c(62, 70, 55, 68, 74, 60, 66, 58)\nredesigned &lt;- c(71, 78, 64, 69, 83, 72, 66, 75)\ncohens_d(redesigned, standard)\n#&gt; Cohen's d |       95% CI\n#&gt; ------------------------\n#&gt; 1.28      | [0.17, 2.34]\n#&gt; \n#&gt; - Estimated using pooled SD.\n\nThe output gives Cohen’s d and its 95% confidence interval. The interval is very wide, from about 0.2 to above 2: with eight users per group, we know that the redesigned version scores higher, but not by how much. This is the usual situation with small samples, and the reason why an effect size should always be reported with its confidence interval.\nThe function interpret_cohens_d() translates a value into Cohen’s labels:\n\ninterpret_cohens_d(c(0.1, 0.3, 0.6, 1.2))\n#&gt; [1] \"very small\" \"small\"      \"medium\"     \"large\"     \n#&gt; (Rules: cohen1988)",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Effect Size</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/effect-size.html#two-independent-groups-the-t-test",
+    "href": "basic-stats/effect-size.html#two-independent-groups-the-t-test",
+    "title": "21  Effect Size",
+    "section": "21.3 Two independent groups: the t-test",
+    "text": "21.3 Two independent groups: the t-test\nIn Chapter 17 we compared UX scores of desktop and mobile users in the ux_scores dataset. First, the unstandardized effect: the difference in means, with its confidence interval, which t.test() already gives us.\n\ntt &lt;- t.test(ux_score ~ device, data = ux_scores)\ntt$estimate\n#&gt; mean in group desktop  mean in group mobile \n#&gt;                  59.1                  45.7\ntt$conf.int\n#&gt; [1] 11.7 15.0\n#&gt; attr(,\"conf.level\")\n#&gt; [1] 0.95\n\nDesktop users score about 13.4 points higher. Now the standardized version. cohens_d() accepts the same formula as t.test():\n\ncohens_d(ux_score ~ device, data = ux_scores)\n#&gt; Cohen's d |       95% CI\n#&gt; ------------------------\n#&gt; 1.20      | [1.05, 1.35]\n#&gt; \n#&gt; - Estimated using pooled SD.\n\nThis is the same value we computed by hand with the pooled standard deviation in Chapter 17, now with a confidence interval. The sign depends on the order of the groups: cohens_d() subtracts the second level of the factor (mobile) from the first (desktop), as t.test() does.\nTwo variants are worth knowing:\n\nHedges’ g corrects a small upward bias of d in small samples. With hundreds of participants, as here, the two are identical; with ten per group, g is a few percent smaller.\nWith pooled_sd = FALSE, the difference is divided by the average of the two standard deviations instead of the pooled one. This matches Welch’s t-test, which does not assume equal standard deviations.\n\n\nhedges_g(ux_score ~ device, data = ux_scores)\n#&gt; Hedges' g |       95% CI\n#&gt; ------------------------\n#&gt; 1.20      | [1.05, 1.35]\n#&gt; \n#&gt; - Estimated using pooled SD.\ncohens_d(ux_score ~ device, data = ux_scores, pooled_sd = FALSE)\n#&gt; Cohen's d |       95% CI\n#&gt; ------------------------\n#&gt; 1.19      | [1.02, 1.36]\n#&gt; \n#&gt; - Estimated using un-pooled SD.",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Effect Size</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/effect-size.html#paired-designs",
+    "href": "basic-stats/effect-size.html#paired-designs",
+    "title": "21  Effect Size",
+    "section": "21.4 Paired designs",
+    "text": "21.4 Paired designs\nIn a within-subjects design, the same participants are measured in both conditions. We use the simulated Stroop data from Chapter 17: 20 participants, each with a congruent and an incongruent reaction time.\n\nset.seed(10)\nn &lt;- 20\nspeed &lt;- rnorm(n, 500, 80)\nstroop &lt;- data.frame(participant = sprintf(\"P%02d\", 1:n),\n                     congruent = round(speed + rnorm(n, 0, 20)),\n                     incongruent = round(speed + 30 + rnorm(n, 0, 20)))\nmean(stroop$incongruent - stroop$congruent)\n#&gt; [1] 47.6\n\nThe unstandardized effect is the average slowdown, about 48 ms. For the standardized effect, there is a choice to make: which standard deviation do we divide by? The repeated_measures_d() function offers several options. The two most common are:\n\nrepeated_measures_d(stroop$incongruent, stroop$congruent, method = \"z\")\n#&gt; d (z) |       95% CI\n#&gt; --------------------\n#&gt; 2.08  | [1.31, 2.85]\n#&gt; \n#&gt; - Adjusted for small sample bias.\nrepeated_measures_d(stroop$incongruent, stroop$congruent, method = \"av\")\n#&gt; d (av) |       95% CI\n#&gt; ---------------------\n#&gt; 0.68   | [0.54, 0.82]\n#&gt; \n#&gt; - Adjusted for small sample bias.\n\n\n\\(d_z\\) divides the average difference by the standard deviation of the differences. It is the effect size behind the paired t-test, and the one used to plan a paired study (Chapter 22).\n\\(d_{av}\\) divides the average difference by the average of the standard deviations of the two conditions. It is on the same scale as the d of a between-subjects study.\n\nThe two values are very different. Participants differ a lot in overall speed, so the standard deviation of each condition is large, and \\(d_{av}\\) is moderate. But each participant is consistently slower on incongruent trials, so the differences vary little, and \\(d_z\\) is very large. Neither is wrong: they answer different questions. \\(d_z\\) says how consistent the effect is across participants. \\(d_{av}\\) says how large it is compared with the differences between people. Always say which one you report. Both are corrected for small-sample bias by default, like Hedges’ g.",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Effect Size</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/effect-size.html#the-wilcoxon-test",
+    "href": "basic-stats/effect-size.html#the-wilcoxon-test",
+    "title": "21  Effect Size",
+    "section": "21.5 The Wilcoxon test",
+    "text": "21.5 The Wilcoxon test\nThe Wilcoxon test compares ranks, not means, so its natural effect size is also based on ranks: the rank-biserial correlation. It goes from −1 to 1. It is the probability that a value from the first group is higher than a value from the second, minus the probability of the opposite. We use the small reaction-time sample from Chapter 17:\n\nset.seed(3)\nrt_small &lt;- reaction_times |&gt;\n  group_by(sex) |&gt;\n  slice_sample(n = 20) |&gt;\n  ungroup()\nrb &lt;- rank_biserial(rt_ms ~ sex, data = rt_small)\nrb\n#&gt; r (rank biserial) |       95% CI\n#&gt; --------------------------------\n#&gt; 0.57              | [0.28, 0.77]\n\nThe value is positive because the first group, Female, tends to have the higher reaction times. Converted into a probability, \\((r + 1)/2\\), it says that a randomly chosen woman in this sample was slower than a randomly chosen man in about 79% of the pairs. Like the test itself, this effect size is not affected by a single extreme value, which can inflate the standard deviation and distort Cohen’s d.\nFor paired data, the same function takes paired = TRUE:\n\nrank_biserial(stroop$incongruent, stroop$congruent, paired = TRUE)\n#&gt; r (rank biserial) |       95% CI\n#&gt; --------------------------------\n#&gt; 1                 | [1.00, 1.00]\n\nThe value is 1, the maximum: every participant was slower on incongruent trials.",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Effect Size</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/effect-size.html#anova",
+    "href": "basic-stats/effect-size.html#anova",
+    "title": "21  Effect Size",
+    "section": "21.6 ANOVA",
+    "text": "21.6 ANOVA\nWe use the two designs of Chapter 18: the attention experiment, with three distractor conditions between subjects, and the three-condition Stroop task within subjects.\n\nset.seed(2026)\nn &lt;- 20\nattention &lt;- tibble(\n  id = factor(sprintf(\"P%02d\", 1:(3 * n))),\n  condition = factor(rep(c(\"none\", \"auditory\", \"visual\"), each = n),\n                     levels = c(\"none\", \"auditory\", \"visual\")),\n  errors = round(pmax(0, rnorm(3 * n, mean = rep(c(8, 10, 13), each = n), sd = 3)))\n)\nfit1 &lt;- aov_ez(id = \"id\", dv = \"errors\", data = attention, between = \"condition\")\nfit1\n#&gt; Anova Table (Type 3 tests)\n#&gt; \n#&gt; Response: errors\n#&gt;      Effect    df  MSE         F  ges p.value\n#&gt; 1 condition 2, 57 7.46 20.00 *** .412   &lt;.001\n#&gt; ---\n#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '+' 0.1 ' ' 1\n\nThe ANOVA table of afex already includes an effect size, ges, the generalized eta squared. The effectsize package computes it and its relatives, with confidence intervals:\n\neta_squared(fit1)\n#&gt; # Effect Size for ANOVA (Type III)\n#&gt; \n#&gt; Parameter | Eta2 |       95% CI\n#&gt; -------------------------------\n#&gt; condition | 0.41 | [0.24, 1.00]\n#&gt; \n#&gt; - One-sided CIs: upper bound fixed at [1.00].\nomega_squared(fit1)\n#&gt; # Effect Size for ANOVA (Type III)\n#&gt; \n#&gt; Parameter | Omega2 |       95% CI\n#&gt; ---------------------------------\n#&gt; condition |   0.39 | [0.22, 1.00]\n#&gt; \n#&gt; - One-sided CIs: upper bound fixed at [1.00].\ncohens_f(fit1)\n#&gt; # Effect Size for ANOVA (Type III)\n#&gt; \n#&gt; Parameter | Cohen's f |      95% CI\n#&gt; -----------------------------------\n#&gt; condition |      0.84 | [0.57, Inf]\n#&gt; \n#&gt; - One-sided CIs: upper bound fixed at [Inf].\n\n\n\\(\\eta^2\\) is the share of the variation in errors related to the distractor condition. With a single between-subjects factor, the plain, partial and generalized versions are the same.\n\\(\\omega^2\\) (omega squared) estimates the same quantity with less upward bias, so it is a little smaller. It is a better choice for small samples.\nCohen’s f expresses the same information on a different scale, \\(f = \\sqrt{\\eta^2 / (1 - \\eta^2)}\\). Power calculations for the ANOVA use f (Chapter 22).\n\nThe confidence intervals are one-sided, with the upper limit fixed at 1 (or infinity for f). These effect sizes cannot be negative, and the F test only looks at one side, so the package reports the lower limit only.\nRemember that these effect sizes describe the global effect of the factor. For the size of the difference between two specific conditions, use Cohen’s d on that pair, as in the previous sections.\nIn a within-subjects design, the choice between the versions of eta squared matters:\n\nset.seed(10)\nn_part &lt;- 20\nspeed &lt;- rnorm(n_part, 500, 80)\nstroop3 &lt;- tibble(\n  participant = factor(rep(sprintf(\"P%02d\", 1:n_part), times = 3)),\n  condition = factor(rep(c(\"congruent\", \"neutral\", \"incongruent\"), each = n_part),\n                     levels = c(\"congruent\", \"neutral\", \"incongruent\")),\n  rt = round(rep(speed, 3) + rep(c(0, 10, 45), each = n_part) + rnorm(3 * n_part, 0, 25))\n)\nfit3 &lt;- aov_ez(id = \"participant\", dv = \"rt\", data = stroop3, within = \"condition\")\neta_squared(fit3)\n#&gt; # Effect Size for ANOVA (Type III)\n#&gt; \n#&gt; Parameter | Eta2 (partial) |       95% CI\n#&gt; -----------------------------------------\n#&gt; condition |           0.62 | [0.45, 1.00]\n#&gt; \n#&gt; - One-sided CIs: upper bound fixed at [1.00].\neta_squared(fit3, generalized = TRUE)\n#&gt; # Effect Size for ANOVA (Type III)\n#&gt; \n#&gt; Parameter | Eta2 (generalized) |       95% CI\n#&gt; ---------------------------------------------\n#&gt; condition |               0.11 | [0.00, 1.00]\n#&gt; \n#&gt; - Observed variables: All\n#&gt; - One-sided CIs: upper bound fixed at [1.00].\n\nThe partial eta squared, 0.62, leaves out the differences between participants: it compares the effect of the condition only with the variation that remains within each participant. The generalized eta squared, 0.11, keeps the differences between participants in the total. This is the same contrast as between \\(d_z\\) and \\(d_{av}\\). Partial eta squared is what most software reports by default. Generalized eta squared, which afex reports, is comparable across between- and within-subjects designs, and is the one recommended for comparing studies. Again: say which one you report.\nFor the Kruskal–Wallis test, the rank-based counterpart of the one-way ANOVA, the corresponding effect size is the rank epsilon squared:\n\nrank_epsilon_squared(errors ~ condition, data = attention)\n#&gt; Epsilon2 (rank) |       95% CI\n#&gt; ------------------------------\n#&gt; 0.43            | [0.29, 1.00]\n#&gt; \n#&gt; - One-sided CIs: upper bound fixed at [1.00].",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Effect Size</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/effect-size.html#other-tests",
+    "href": "basic-stats/effect-size.html#other-tests",
+    "title": "21  Effect Size",
+    "section": "21.7 Other tests",
+    "text": "21.7 Other tests\nThe correlation coefficient \\(r\\) is itself an effect size (Chapter 16). For the chi-square test, the effect size is Cramér’s V (Chapter 20), which effectsize computes from a contingency table with cramers_v().\nEffect sizes from different families can be converted into each other, under some assumptions. This is useful when you read papers that report different measures:\n\nd_to_r(0.5)\n#&gt; [1] 0.243\neta2_to_f(0.06)\n#&gt; [1] 0.253",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Effect Size</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/effect-size.html#pitfalls",
+    "href": "basic-stats/effect-size.html#pitfalls",
+    "title": "21  Effect Size",
+    "section": "21.8 Pitfalls",
+    "text": "21.8 Pitfalls\nRules of thumb are not a substitute for thinking. Whether an effect is “small” depends on the outcome and the context. Whenever the units of the outcome are meaningful, such as milliseconds, errors, or points on a well-known scale, report the unstandardized difference as well, with its confidence interval.\nEffect sizes from small samples are imprecise, and published ones tend to be too large. The confidence interval of d with 20 participants per group is often more than one unit wide. Moreover, small studies reach significance only when their estimate happens to be large. If mainly significant results are published, the published effect sizes overestimate the true ones. Keep this in mind when you take an effect size from a paper to plan a study (Chapter 22).\nMeasurement error makes effects look smaller, not larger. A standardized effect size divides by the observed standard deviation, which includes measurement error. If the reliability of the outcome is \\(\\rho_{XX'}\\), the observed d is about \\(\\sqrt{\\rho_{XX'}}\\) times the d we would see with a perfect measure. With a reliability of 0.6, a true d of 0.5 is observed as about 0.39. The same holds for correlations (see Measurement error and its consequences in Chapter 1).\nThe same data can give very different standardized effect sizes. As we saw with \\(d_z\\) and \\(d_{av}\\), and with partial and generalized eta squared, the answer depends on which standard deviation is in the denominator. Always name the measure you report.",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Effect Size</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/effect-size.html#further-reading",
+    "href": "basic-stats/effect-size.html#further-reading",
+    "title": "21  Effect Size",
+    "section": "21.9 Further reading",
+    "text": "21.9 Further reading\n\nD. Lakens, Improving Your Statistical Inferences, Chapter 6, Effect Sizes.\nD. Lakens (2013), Calculating and reporting effect sizes to facilitate cumulative science: a practical primer for t-tests and ANOVAs, Frontiers in Psychology, 4, 863, https://doi.org/10.3389/fpsyg.2013.00863. The source of the distinction between \\(d_z\\) and \\(d_{av}\\), and between partial and generalized eta squared.\nThe documentation of the effectsize package, with a vignette for each family of effect sizes.\nD. Navarro, Learning Statistics with R, Chapter 13, The t-test, section on Cohen’s d.",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Effect Size</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/effect-size.html#exercises",
+    "href": "basic-stats/effect-size.html#exercises",
+    "title": "21  Effect Size",
+    "section": "21.10 Exercises",
+    "text": "21.10 Exercises\n1. In app_engagement_experiment, compute the difference in mean engagement_score between the two ui_versions, with its 95% confidence interval. Then compute Cohen’s d with cohens_d(). Is the effect small, medium or large by Cohen’s rules of thumb?\n2. Repeat exercise 1 with hedges_g() and with cohens_d(..., pooled_sd = FALSE). Why are the three values so similar here?\n3. Make a boxplot of error_rate_pct by ui_version. Compute both Cohen’s d and the rank-biserial correlation. Which one would you report, and why?\n4. Run a one-way between-subjects ANOVA of engagement_score by cohort with aov_ez() (create an id column first, as in Chapter 18). Compute \\(\\eta^2\\), \\(\\omega^2\\) and Cohen’s f. Why is \\(\\omega^2\\) smaller than \\(\\eta^2\\)?\n5. Using ux_scores, draw a random sample of 10 users per device (use slice_sample()), and compute Cohen’s d. Repeat this 1,000 times and make a histogram of the 1,000 values of d. Compare it with the d computed on the full dataset. In what proportion of the samples is d more than 1.5 times the full-data value? What does this tell you about effect sizes reported by small studies?",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Effect Size</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/power.html",
+    "href": "basic-stats/power.html",
+    "title": "22  Statistical Power",
+    "section": "",
+    "text": "22.1 The idea\nWritten for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry’s Introduction to Data Science.\nA p-value above 0.05 does not show that there is no effect: a real difference can easily be missed by a study that is too small (Chapter 14). In Chapter 17, a lab study with 15 users per device missed a difference that was obvious with the full sample. The probability that a study detects an effect that is really there is called its power. Power is decided before the data are collected, mostly by choosing how many participants to test, and this is why it belongs to the planning of a study (see Sample size and precision in Chapter 4).\nThis chapter shows how to compute power and the required sample size in R, for the tests of the previous chapters: the t-test, the paired t-test, the Wilcoxon test, and the ANOVA. Each calculation needs an effect size, which is the topic of the companion chapter, Chapter 21.\nA hypothesis test can go wrong in two ways. If there is no effect and we find a significant result, we make a Type I error, or false positive; its probability is \\(\\alpha\\), usually 0.05. If there is an effect and we do not find a significant result, we make a Type II error, or false negative; its probability is called \\(\\beta\\). Power is \\(1 - \\beta\\): the probability of a significant result when the effect is real.\nPower depends on four quantities, linked to each other:\nFix any three, and the fourth is determined. The most common use is to fix the effect size, \\(\\alpha = 0.05\\) and the desired power, usually 0.80 or 0.90, and compute the sample size.\nPower is a probability over many possible studies, so we can estimate it by simulation, as in the exercises of Chapter 14. Suppose the true difference between two groups is half a standard deviation (d = 0.5), and we test 30 participants per group. We simulate 2,000 studies and count how often the t-test is significant:\nset.seed(2026)\np_values &lt;- replicate(2000, {\n  x &lt;- rnorm(30, mean = 0, sd = 1)\n  y &lt;- rnorm(30, mean = 0.5, sd = 1)\n  t.test(x, y)$p.value\n})\nmean(p_values &lt; 0.05)\n#&gt; [1] 0.47\nOnly about 47% of these studies find the effect, even though it is real in every one of them. The figure shows how power grows with the number of participants, for a small, a medium and a large effect:\nThe dashed line marks the conventional target of 80%. A large effect reaches it with about 25 participants per group, a medium one with about 65, and a small one needs about 400.",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Statistical Power</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/power.html#the-idea",
+    "href": "basic-stats/power.html#the-idea",
+    "title": "22  Statistical Power",
+    "section": "",
+    "text": "the effect size: larger effects are easier to detect;\nthe sample size: more participants give more precise estimates;\nthe significance level \\(\\alpha\\): a stricter threshold, such as 0.01, needs more evidence;\nthe power itself.",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Statistical Power</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/power.html#the-pwr-package",
+    "href": "basic-stats/power.html#the-pwr-package",
+    "title": "22  Statistical Power",
+    "section": "22.2 The pwr package",
+    "text": "22.2 The pwr package\nFor the most common tests, power can be computed exactly, without simulation. The pwr package implements the formulas of Cohen’s classic book on power analysis. Install it once with install.packages(\"pwr\").\nEach function takes the four quantities as arguments; you leave out the one you want to compute. How many participants per group do we need to detect d = 0.5 with 80% power?\n\npwr.t.test(d = 0.5, sig.level = 0.05, power = 0.80)\n#&gt; \n#&gt;      Two-sample t test power calculation \n#&gt; \n#&gt;               n = 63.8\n#&gt;               d = 0.5\n#&gt;       sig.level = 0.05\n#&gt;           power = 0.8\n#&gt;     alternative = two.sided\n#&gt; \n#&gt; NOTE: n is number in *each* group\n\nWe need about 64 participants per group (always round up). Leave out power instead, and the function tells us the power of a given design; this is the same calculation we did by simulation above:\n\npwr.t.test(d = 0.5, n = 30)\n#&gt; \n#&gt;      Two-sample t test power calculation \n#&gt; \n#&gt;               n = 30\n#&gt;               d = 0.5\n#&gt;       sig.level = 0.05\n#&gt;           power = 0.478\n#&gt;     alternative = two.sided\n#&gt; \n#&gt; NOTE: n is number in *each* group\n\nThe default sig.level is 0.05, so from now on we leave it out.",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Statistical Power</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/power.html#two-independent-groups-the-t-test",
+    "href": "basic-stats/power.html#two-independent-groups-the-t-test",
+    "title": "22  Statistical Power",
+    "section": "22.3 Two independent groups: the t-test",
+    "text": "22.3 Two independent groups: the t-test\nSuppose we want to repeat the comparison of desktop and mobile users of Chapter 17 in a new lab study. How many participants do we need? It depends on the smallest effect we would care about. If only a medium effect matters, d = 0.5, we need the 64 per group computed above. If we want 90% power, or want to detect smaller effects, the numbers grow quickly:\n\npwr.t.test(d = 0.5, power = 0.90)$n\n#&gt; [1] 85\npwr.t.test(d = 0.3, power = 0.80)$n\n#&gt; [1] 175\n\nWe can also turn the question around and ask what the 15-per-group lab study of Chapter 17 could detect. Its power for a medium effect was low:\n\npwr.t.test(d = 0.5, n = 15)$power\n#&gt; [1] 0.262\n\nAnd the smallest effect it could detect with 80% power was large:\n\npwr.t.test(n = 15, power = 0.80)$d\n#&gt; [1] 1.06\n\nGroups of different sizes are handled by pwr.t2n.test(). In ux_scores, there are many more desktop than mobile users. With the same total of 60 participants, unequal groups have less power than equal ones:\n\npwr.t2n.test(n1 = 30, n2 = 30, d = 0.5)$power\n#&gt; [1] 0.478\npwr.t2n.test(n1 = 45, n2 = 15, d = 0.5)$power\n#&gt; [1] 0.378",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Statistical Power</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/power.html#paired-designs",
+    "href": "basic-stats/power.html#paired-designs",
+    "title": "22  Statistical Power",
+    "section": "22.4 Paired designs",
+    "text": "22.4 Paired designs\nFor a paired t-test, pwr.t.test() takes type = \"paired\", and n becomes the number of participants, each measured twice:\n\npwr.t.test(d = 0.5, power = 0.80, type = \"paired\")\n#&gt; \n#&gt;      Paired t test power calculation \n#&gt; \n#&gt;               n = 33.4\n#&gt;               d = 0.5\n#&gt;       sig.level = 0.05\n#&gt;           power = 0.8\n#&gt;     alternative = two.sided\n#&gt; \n#&gt; NOTE: n is number of *pairs*\n\nThe d here is \\(d_z\\), the average difference divided by the standard deviation of the differences (Chapter 21). This is where the advantage of within-subjects designs shows up. If the two measurements of the same person are correlated, with correlation \\(\\rho\\), and the two conditions have the same standard deviation, then\n\\[\nd_z = \\frac{d}{\\sqrt{2(1 - \\rho)}}\n\\]\nwhere \\(d\\) is the effect size on the between-subjects scale. Reaction times of the same person in two conditions are often highly correlated. With \\(\\rho = 0.8\\), a between-subjects d of 0.5 becomes a much larger \\(d_z\\):\n\ndz &lt;- 0.5 / sqrt(2 * (1 - 0.8))\ndz\n#&gt; [1] 0.791\npwr.t.test(d = dz, power = 0.80, type = \"paired\")$n\n#&gt; [1] 14.6\n\nAbout 15 participants, measured twice, give the same power as 128 participants split into two groups. The gain shrinks as the correlation decreases: with \\(\\rho = 0.5\\), \\(d_z = d\\), and the only advantage left is that each participant contributes two measurements instead of one.",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Statistical Power</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/power.html#the-wilcoxon-test",
+    "href": "basic-stats/power.html#the-wilcoxon-test",
+    "title": "22  Statistical Power",
+    "section": "22.5 The Wilcoxon test",
+    "text": "22.5 The Wilcoxon test\nThere is no simple formula for the power of the Wilcoxon test, because it depends on the shape of the distributions. Simulation solves the problem. We write a function that simulates one study and returns the p-values of both tests, so that we can compare them:\n\nsim_two_tests &lt;- function(n, shift, rdist) {\n  x &lt;- rdist(n)\n  y &lt;- rdist(n) + shift\n  c(t_test = t.test(x, y)$p.value,\n    wilcoxon = wilcox.test(x, y)$p.value)\n}\n\nThe argument rdist is the function that generates the data. First, normal data, with a difference of half a standard deviation and 30 participants per group:\n\nset.seed(1)\nres_normal &lt;- replicate(2000, sim_two_tests(30, 0.5, rnorm))\nrowMeans(res_normal &lt; 0.05)\n#&gt;   t_test wilcoxon \n#&gt;    0.465    0.442\n\nWith normal data, the t-test is slightly more powerful, but the loss with the Wilcoxon test is small: for normal data it needs only about 5% more participants for the same power. Now reaction-time-like data: right-skewed, with a long tail of slow responses. We use a log-normal distribution and the same shift:\n\nrskewed &lt;- function(n) rlnorm(n, meanlog = 0, sdlog = 0.8)\nset.seed(1)\nres_skewed &lt;- replicate(2000, sim_two_tests(30, 0.5, rskewed))\nrowMeans(res_skewed &lt; 0.05)\n#&gt;   t_test wilcoxon \n#&gt;    0.362    0.698\n\nWith skewed data, the Wilcoxon test is much more powerful than the t-test. The long tail inflates the standard deviation, and with it the standard error of the t-test, while the ranks are not affected. This is one more reason to look at the data, or at data from similar studies, before choosing the test, and to use that same test in the power analysis.",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Statistical Power</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/power.html#anova",
+    "href": "basic-stats/power.html#anova",
+    "title": "22  Statistical Power",
+    "section": "22.6 ANOVA",
+    "text": "22.6 ANOVA\nFor a one-way between-subjects ANOVA, pwr.anova.test() takes the number of groups k and the effect size as Cohen’s f (Chapter 21). How many participants per group do we need in an attention experiment with three conditions, to detect a medium effect, f = 0.25?\n\npwr.anova.test(k = 3, f = 0.25, power = 0.80)\n#&gt; \n#&gt;      Balanced one-way analysis of variance power calculation \n#&gt; \n#&gt;               k = 3\n#&gt;               n = 52.4\n#&gt;               f = 0.25\n#&gt;       sig.level = 0.05\n#&gt;           power = 0.8\n#&gt; \n#&gt; NOTE: n is number in each group\n\nAbout 53 per group, 159 in total. If a previous study reported \\(\\eta^2\\) instead of f, convert it first with \\(f = \\sqrt{\\eta^2 / (1 - \\eta^2)}\\):\n\neta2 &lt;- 0.06\nsqrt(eta2 / (1 - eta2))\n#&gt; [1] 0.253\n\nThis is the power of the global F test. If what you really care about is a specific comparison, such as no distractor versus visual distractor, plan the sample size for that comparison, with pwr.t.test(). Post-hoc comparisons are corrected for multiple testing (Chapter 19), and this reduces their power further.\nFor repeated-measures and mixed designs, the formulas need extra information, such as the correlations between conditions, and simulation is the simplest route. We simulate the three-condition Stroop task of Chapter 18, with smaller differences between the conditions (0, 10 and 20 ms), and run the same aov_ez() call on each simulated dataset:\n\nsim_stroop3 &lt;- function(n_part) {\n  speed &lt;- rnorm(n_part, 500, 80)\n  d &lt;- tibble(\n    participant = factor(rep(1:n_part, times = 3)),\n    condition = factor(rep(c(\"congruent\", \"neutral\", \"incongruent\"), each = n_part)),\n    rt = rep(speed, 3) + rep(c(0, 10, 20), each = n_part) + rnorm(3 * n_part, 0, 25)\n  )\n  fit &lt;- aov_ez(id = \"participant\", dv = \"rt\", data = d, within = \"condition\")\n  fit$anova_table$`Pr(&gt;F)`\n}\n\nset.seed(2026)\nn_values &lt;- c(10, 20, 30, 40)\npower_rm &lt;- sapply(n_values, function(n) mean(replicate(200, sim_stroop3(n)) &lt; 0.05))\ndata.frame(participants = n_values, power = power_rm)\n#&gt;   participants power\n#&gt; 1           10 0.240\n#&gt; 2           20 0.560\n#&gt; 3           30 0.715\n#&gt; 4           40 0.860\n\nWith 200 simulated studies per sample size, these estimates are approximate; use 1,000 or more for a real study. For complex designs, the Superpower package and the free program G*Power offer ready-made tools.",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Statistical Power</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/power.html#other-tests",
+    "href": "basic-stats/power.html#other-tests",
+    "title": "22  Statistical Power",
+    "section": "22.7 Other tests",
+    "text": "22.7 Other tests\nThe pwr package has a function for most basic tests. For a correlation, pwr.r.test() takes the expected \\(r\\); for a chi-square test, pwr.chisq.test() takes Cohen’s w, which for a 2 × 2 table equals the absolute value of Cramér’s V (Chapter 20):\n\npwr.r.test(r = 0.3, power = 0.80)$n\n#&gt; [1] 84.1\npwr.chisq.test(w = 0.3, df = 1, power = 0.80)$N\n#&gt; [1] 87.2",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Statistical Power</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/power.html#pitfalls",
+    "href": "basic-stats/power.html#pitfalls",
+    "title": "22  Statistical Power",
+    "section": "22.8 Pitfalls",
+    "text": "22.8 Pitfalls\nPower computed after the study is uninformative. Some software reports “observed power”, computed by plugging the effect size observed in the study into a power formula. It is a simple transformation of the p-value, and adds no information: a non-significant result always has low observed power. Power is a property of a design, computed before the data are collected.\nPublished and pilot effect sizes are too optimistic. Effect sizes from small studies are imprecise, and published ones tend to be inflated (Chapter 21). Planning with them gives sample sizes that are too small. A safer approach is to plan for the smallest effect size of interest, the smallest effect that would matter in practice or for the theory, and to use pilot studies to check the procedure rather than to estimate the effect.\nUnreliable measures cost participants. Measurement error shrinks standardized effect sizes (see Measurement error and its consequences in Chapter 1). The observed d is about \\(\\sqrt{\\rho_{XX'}}\\) times the d of a perfect measure, and the required sample size grows roughly as \\(1/d^2\\). With an outcome whose reliability is 0.6, a study needs about \\(1/0.6 \\approx\\) 1.7 times as many participants:\n\npwr.t.test(d = 0.5, power = 0.80)$n\n#&gt; [1] 63.8\npwr.t.test(d = 0.5 * sqrt(0.6), power = 0.80)$n\n#&gt; [1] 106\n\nImproving the measure, for example by averaging more trials per participant, is often cheaper than recruiting more participants.\nPower is not the only goal. A study can also be planned to estimate an effect with a given precision, by choosing the sample size that gives a confidence interval of the desired width (see the margin of error in Chapter 13). And 80% power is itself a convention: it accepts missing a real effect one time in five.",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Statistical Power</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/power.html#further-reading",
+    "href": "basic-stats/power.html#further-reading",
+    "title": "22  Statistical Power",
+    "section": "22.9 Further reading",
+    "text": "22.9 Further reading\n\nD. Lakens, Improving Your Statistical Inferences, Chapter 8, Sample Size Justification.\nD. Lakens (2022), Sample size justification, Collabra: Psychology, 8(1), 33267, https://doi.org/10.1525/collabra.33267.\nThe pwr package vignette, with an example for each function.\nA. R. Caldwell, D. Lakens and colleagues, Power Analysis with Superpower, on simulation-based power for ANOVA designs.",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Statistical Power</span>"
+    ]
+  },
+  {
+    "objectID": "basic-stats/power.html#exercises",
+    "href": "basic-stats/power.html#exercises",
+    "title": "22  Statistical Power",
+    "section": "22.10 Exercises",
+    "text": "22.10 Exercises\n1. In app_engagement_experiment, compute Cohen’s d for the difference in engagement_score between the two ui_versions (see Chapter 21). How many users per version would a new study need to detect an effect of this size with 80% power? And with 90% power?\n2. Use table() to find the number of users per ui_version in app_engagement_experiment, and pwr.t2n.test() to compute the study’s power to detect a small effect, d = 0.2. How would the power change if the same total number of users had been split very unequally, for example with only 80 users of the redesigned version?\n3. Run the Wilcoxon simulation of this chapter again with 15 and with 60 participants per group, for both the normal and the skewed data. Does the advantage of the Wilcoxon test with skewed data depend on the sample size?\n4. A colleague plans a one-way ANOVA with five groups, like the cohorts of app_engagement_experiment, and expects f = 0.10. Use pwr.anova.test() to compute the number of participants needed for 80% power. How does the answer change for f = 0.25?\n5. Using ux_scores, draw a random sample of 10 users per device (use slice_sample()), and run a t-test. Repeat this 1,000 times and compute the proportion of samples in which the p-value is below 0.05. Compare this proportion with the power computed by pwr.t.test() for n = 10 and the d of the full dataset. Why are the two numbers close?",
+    "crumbs": [
+      "Basic Statistics",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Statistical Power</span>"
     ]
   },
   {
