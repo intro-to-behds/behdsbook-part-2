@@ -29,6 +29,9 @@ book:
       - icon: file-pdf
         href: https://github.com/intro-to-behds/behdsbook-part-2/releases/download/book-pdf/Introduction-to-Behavioural-Data-Science.pdf
         text: Download PDF
+      - icon: book
+        href: https://github.com/intro-to-behds/behdsbook-part-2/releases/download/book-pdf/Introduction-to-Behavioural-Data-Science.epub
+        text: Download EPUB
   chapters:
     - index.qmd
     - intro.qmd
@@ -123,6 +126,9 @@ format:
     callout-appearance: simple
     number-sections: true
     number-depth: 2
+  epub:
+    cover-image: cover.png
+
   pdf: 
     documentclass: krantz
     classoption: [krantz2,10pt,twoside,onecolumn,final,openright]

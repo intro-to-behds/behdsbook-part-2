@@ -2,11 +2,6 @@
 
 _Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
 
-:::{.callout-warning}
-## Draft
-This chapter is a **draft**, written with an AI assistant (Claude) on 12 November 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
-:::
-
 A p-value above 0.05 does not show that there is no effect: a real difference can easily be missed by a study that is too small (@sec-hypothesis-testing). In @sec-two-groups, a lab study with 15 users per device missed a difference that was obvious with the full sample. The probability that a study detects an effect that is really there is called its *power*. Power is decided before the data are collected, mostly by choosing how many participants to test, and this is why it belongs to the planning of a study (see *Sample size and precision* in @sec-experimental-designs).
 
 This chapter shows how to compute power and the required sample size in R, for the tests of the previous chapters: the t-test, the paired t-test, the Wilcoxon test, and the ANOVA. Each calculation needs an effect size, which is the topic of the companion chapter, @sec-effect-size.
