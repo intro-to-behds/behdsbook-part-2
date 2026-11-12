@@ -75,6 +75,8 @@ book:
         - basic-stats/anova.qmd
         - basic-stats/multiple-comparisons.qmd
         - basic-stats/chi-square.qmd
+        - basic-stats/effect-size.qmd
+        - basic-stats/power.qmd
 
     # [hidden until reflavoured]
     # - part: linear-models/intro-to-linear-models.qmd

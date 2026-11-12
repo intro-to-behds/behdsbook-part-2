@@ -1,5 +1,7 @@
 # Recommended Reading  {.unnumbered}
 
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/summaries/reading-summaries.html). Unchanged in this edition, except for links and package names._
+
 * **Freedman, D., Pisani, R., & Purves, R. (2007). *Statistics* (4th ed.).**
   A clear, concept-first introduction to distributions, variability, and summaries, excellent for intuition and statistical thinking.
 

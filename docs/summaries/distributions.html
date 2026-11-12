@@ -385,6 +385,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two Categorical Variables: the Chi-square Test</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/effect-size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Effect Size</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Statistical Power</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -443,6 +455,7 @@ window.Quarto = {
 </header>
 
 
+<p><em>Original chapter by Rafael A. Irizarry, from <a href="https://rafalab.dfci.harvard.edu/dsbook-part-2/summaries/distributions.html"><em>Introduction to Data Science</em></a>. Adapted by Giorgio Arcara: the examples use UX questionnaire scores (<code>ux_scores</code>) instead of student heights; the text is otherwise Irizarry’s, with small edits to fit the new examples.</em></p>
 <p>Before we begin, we clarify that this chapter will not cover distributions in the context of probability, which is the mathematical framework used to model uncertainty. We postpone that discussion until the next part of the book, where we will use it throughout. Here, we focus on <em>distributions</em> as a way to describe and summarize data we’ve already collected. Our goal is to understand the variation and patterns present in a dataset, without yet making probabilistic claims or predictions. The concepts introduced in this chapter will later serve as the foundation for understanding probability distributions, where similar tools are used to describe the likely outcomes of random processes.</p>
 <p>To illustrate the concepts needed to understand distributions and how they relate to summary statistics, we will pretend that we have to describe the users of an app to ET, an extraterrestrial that has never used one. As a first step, we need to collect data. To do this, we ask users to fill in a user-experience (UX) questionnaire, which gives each of them an overall score from 0 to 100. We also record whether they use the app on a desktop computer or on a mobile phone, because we want to compare the two groups. We collect the data and save it in the <code>ux_scores</code> data frame included in the <strong>behdslabs</strong> package.</p>
 <div class="cell" data-layout-align="center">

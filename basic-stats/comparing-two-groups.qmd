@@ -1,12 +1,10 @@
 # Comparing Two Groups: the t-test and the Wilcoxon Test {#sec-two-groups}
 
+_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+
 Many questions in behavioural research compare two groups or two conditions. Do users rate an app differently on desktop and on mobile? Is engagement higher with a redesigned interface than with the standard one? Are responses slower when the colour of a word conflicts with its meaning? In each case, we have a continuous outcome measured in two groups, and we want to know whether the difference we see in our sample reflects a real difference in the population or could have been produced by chance.
 
 In @sec-estimates-and-ci and @sec-hypothesis-testing, we built confidence intervals and p-values for a proportion. In this chapter, we apply the same ideas to the difference between two averages. This leads to the two tests you will meet most often in psychology papers: the *t-test*, which compares means, and the *Wilcoxon test*, which compares ranks and is the usual choice when the data are skewed, contain outliers, or are only ordinal.
-
-:::{.callout-note}
-This chapter is original material written for this book; it is not part of Irizarry's *Introduction to Data Science*.
-:::
 
 ## A difference in means is not enough
 
@@ -331,7 +329,7 @@ ux_diff / s_pooled
 
 A difference of about `r round(ux_diff / s_pooled, 1)` standard deviations is large by the usual rules of thumb (0.2 small, 0.5 medium, 0.8 large), which are, like the 0.05 threshold, conventions rather than laws.
 
-Cohen's d expresses the idea we started the chapter with: a difference means little until we compare it with how much the scores vary. The same 5 points are a d of `r round(5/3, 1)` in Study A, where the standard deviation is 3, and a d of only `r round(5/15, 1)` in Study B, where it is 15. Unlike $t$, d does not grow with the sample size: it describes how large the difference is, not how sure we are that it exists.
+Cohen's d expresses the idea we started the chapter with: a difference means little until we compare it with how much the scores vary. The same 5 points are a d of `r round(5/3, 1)` in Study A, where the standard deviation is 3, and a d of only `r round(5/15, 1)` in Study B, where it is 15. Unlike $t$, d does not grow with the sample size: it describes how large the difference is, not how sure we are that it exists. @sec-effect-size shows how to compute d and other effect sizes with a package, including for paired designs and the Wilcoxon test.
 
 ## Further reading
 

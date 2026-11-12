@@ -385,6 +385,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two Categorical Variables: the Chi-square Test</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/effect-size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Effect Size</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Statistical Power</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -446,18 +458,9 @@ window.Quarto = {
 </header>
 
 
+<p><em>Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry’s <em>Introduction to Data Science</em>.</em></p>
 <p>Many questions in behavioural research compare two groups or two conditions. Do users rate an app differently on desktop and on mobile? Is engagement higher with a redesigned interface than with the standard one? Are responses slower when the colour of a word conflicts with its meaning? In each case, we have a continuous outcome measured in two groups, and we want to know whether the difference we see in our sample reflects a real difference in the population or could have been produced by chance.</p>
 <p>In <a href="../inference/estimates-confidence-intervals.html" class="quarto-xref"><span>Chapter 13</span></a> and <a href="../inference/hypothesis-testing.html" class="quarto-xref"><span>Chapter 14</span></a>, we built confidence intervals and p-values for a proportion. In this chapter, we apply the same ideas to the difference between two averages. This leads to the two tests you will meet most often in psychology papers: the <em>t-test</em>, which compares means, and the <em>Wilcoxon test</em>, which compares ranks and is the usual choice when the data are skewed, contain outliers, or are only ordinal.</p>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>This chapter is original material written for this book; it is not part of Irizarry’s <em>Introduction to Data Science</em>.</p>
-</div>
-</div>
-</div>
 <section id="a-difference-in-means-is-not-enough" class="level2" data-number="17.1">
 <h2 data-number="17.1" class="anchored" data-anchor-id="a-difference-in-means-is-not-enough"><span class="header-section-number">17.1</span> A difference in means is not enough</h2>
 <p>Suppose that two research teams compare a standard and a redesigned version of an app, each with 30 users per version, and that in both studies the redesigned version scores 5 points higher on average on a UX questionnaire. Do the two studies show the same thing? The following data are simulated so that the two studies have exactly the same means, 50 and 55, and differ only in how much the scores vary: their standard deviation is 3 in Study A and 15 in Study B.</p>
@@ -853,7 +856,7 @@ d = \frac{\bar{X}_1 - \bar{X}_2}{s_{\text{pooled}}}, \quad s_{\text{pooled}} = \
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A difference of about 1.2 standard deviations is large by the usual rules of thumb (0.2 small, 0.5 medium, 0.8 large), which are, like the 0.05 threshold, conventions rather than laws.</p>
-<p>Cohen’s d expresses the idea we started the chapter with: a difference means little until we compare it with how much the scores vary. The same 5 points are a d of 1.7 in Study A, where the standard deviation is 3, and a d of only 0.3 in Study B, where it is 15. Unlike <span class="math inline">\(t\)</span>, d does not grow with the sample size: it describes how large the difference is, not how sure we are that it exists.</p>
+<p>Cohen’s d expresses the idea we started the chapter with: a difference means little until we compare it with how much the scores vary. The same 5 points are a d of 1.7 in Study A, where the standard deviation is 3, and a d of only 0.3 in Study B, where it is 15. Unlike <span class="math inline">\(t\)</span>, d does not grow with the sample size: it describes how large the difference is, not how sure we are that it exists. <a href="effect-size.html" class="quarto-xref"><span>Chapter 21</span></a> shows how to compute d and other effect sizes with a package, including for paired designs and the Wilcoxon test.</p>
 </section>
 <section id="further-reading" class="level2" data-number="17.9">
 <h2 data-number="17.9" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">17.9</span> Further reading</h2>

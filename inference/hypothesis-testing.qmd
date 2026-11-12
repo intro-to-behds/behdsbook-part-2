@@ -1,5 +1,7 @@
 # Hypothesis Testing {#sec-hypothesis-testing}
 
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/inference/hypothesis-testing.html). Adapted by Giorgio Arcara: the bead urn is replaced by a participant who may be guessing in a two-choice task, and the subsections *A p-value without the normal approximation*, *p-values and confidence intervals* and *What a p-value is not*, a note on power and one exercise were added; the text is otherwise Irizarry's, with small edits to fit the new examples._
+
 In scientific studies, you'll often see phrases like "the results are statistically significant". This points to a technique called hypothesis testing, where we use _p-values_, a type of probability, to test our initial assumption or hypothesis.
 
 In hypothesis testing, rather than providing an estimate of the parameter we're studying, we provide a probability that serves as evidence supporting or contradicting a specific hypothesis. The hypothesis usually involves whether a parameter is different from a predetermined value (often 0).
@@ -106,7 +108,7 @@ One problem with our results is that, given the sample size and the value of $\p
 
 This does not mean that opinions are evenly split. It only means that we have a small sample size. In statistical textbooks, this is called lack of *power*. In this context, *power* is the probability of detecting a nonzero net satisfaction when the true net satisfaction is in fact not 0.
 
-By increasing our sample size, we lower our standard error and thus have a much better chance of detecting the direction of the difference.
+By increasing our sample size, we lower our standard error and thus have a much better chance of detecting the direction of the difference. How to compute power, and the sample size needed for a given power, for the t-test, the Wilcoxon test and the ANOVA, is shown in @sec-power.
 
 :::{.callout-note}
 Lack of power is common in behavioural research, where studies often test a few dozen participants. A study with low power will usually miss real effects, and when it does find one, the estimate tends to exaggerate its size. This is one of the methodological roots of the replication crisis in psychology, the finding that many published effects could not be reproduced by new studies. Careful study design (@sec-experimental-designs) and an adequate sample size, planned in advance, are the main protections.

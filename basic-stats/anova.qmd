@@ -1,5 +1,7 @@
 # Comparing More Than Two Groups: ANOVA {#sec-anova}
 
+_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+
 :::{.callout-warning}
 ## Draft
 This chapter is a **draft**, written with an AI assistant (Claude) on 29 October 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
@@ -10,7 +12,7 @@ The t-test (@sec-two-groups) compares two groups. Many experiments have more: th
 This chapter is a practical refresher: how to run and read an ANOVA in R, without the formulas behind it. We use the `afex` package, which is widely used in psychology and handles between-subjects, within-subjects (repeated measures) and mixed designs with the same function, `aov_ez()`. Install it once with `install.packages("afex")`.
 
 :::{.callout-note}
-This chapter is original material written for this book; it is not part of Irizarry's *Introduction to Data Science*. You may also meet the older `ez` package and its function `ezANOVA()`, which works in a very similar way; `ez` is still on CRAN but no longer developed, so we use `afex`.
+You may also meet the older `ez` package and its function `ezANOVA()`, which works in a very similar way; `ez` is still on CRAN but no longer developed, so we use `afex`.
 :::
 
 ```{r, message=FALSE, warning=FALSE}

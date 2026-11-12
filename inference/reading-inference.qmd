@@ -1,5 +1,7 @@
 # Recommended Reading  {.unnumbered}
 
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/inference/reading-inference.html). Adapted by Giorgio Arcara: the readings on election forecasting and the bootstrap are replaced by Lakens (2022) and Cumming (2012)._
+
 - **Freedman, D., Pisani, R., & Purves, R. (2007). _Statistics_ (4th ed.). W. W. Norton.**  
   Emphasizes conceptual understanding of estimation and uncertainty. Especially strong on interpreting standard errors, margins of error and tests of significance.
 

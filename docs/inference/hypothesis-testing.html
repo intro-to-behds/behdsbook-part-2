@@ -385,6 +385,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two Categorical Variables: the Chi-square Test</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/effect-size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Effect Size</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Statistical Power</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -436,6 +448,7 @@ window.Quarto = {
 </header>
 
 
+<p><em>Original chapter by Rafael A. Irizarry, from <a href="https://rafalab.dfci.harvard.edu/dsbook-part-2/inference/hypothesis-testing.html"><em>Introduction to Data Science</em></a>. Adapted by Giorgio Arcara: the bead urn is replaced by a participant who may be guessing in a two-choice task, and the subsections <em>A p-value without the normal approximation</em>, <em>p-values and confidence intervals</em> and <em>What a p-value is not</em>, a note on power and one exercise were added; the text is otherwise Irizarry’s, with small edits to fit the new examples.</em></p>
 <p>In scientific studies, you’ll often see phrases like “the results are statistically significant”. This points to a technique called hypothesis testing, where we use <em>p-values</em>, a type of probability, to test our initial assumption or hypothesis.</p>
 <p>In hypothesis testing, rather than providing an estimate of the parameter we’re studying, we provide a probability that serves as evidence supporting or contradicting a specific hypothesis. The hypothesis usually involves whether a parameter is different from a predetermined value (often 0).</p>
 <p>Hypothesis testing is used when you can phrase your research question in terms of whether a parameter differs from this predetermined value. It’s applied in various fields, asking questions such as: Does a stress-reduction app lower stress compared to no app? Does a redesigned interface change how long users take to complete a task? Does a night without sleep slow down reaction times?</p>
@@ -528,7 +541,7 @@ window.Quarto = {
 <p>If we were forced to make a call, we would have to say it was too close to call.</p>
 <p>One problem with our results is that, given the sample size and the value of <span class="math inline">\(\pi\)</span>, we would have to sacrifice the probability of an incorrect call to create an interval that does not include 0.</p>
 <p>This does not mean that opinions are evenly split. It only means that we have a small sample size. In statistical textbooks, this is called lack of <em>power</em>. In this context, <em>power</em> is the probability of detecting a nonzero net satisfaction when the true net satisfaction is in fact not 0.</p>
-<p>By increasing our sample size, we lower our standard error and thus have a much better chance of detecting the direction of the difference.</p>
+<p>By increasing our sample size, we lower our standard error and thus have a much better chance of detecting the direction of the difference. How to compute power, and the sample size needed for a given power, for the t-test, the Wilcoxon test and the ANOVA, is shown in <a href="../basic-stats/power.html" class="quarto-xref"><span>Chapter 22</span></a>.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">

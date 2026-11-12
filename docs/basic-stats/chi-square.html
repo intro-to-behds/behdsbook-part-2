@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../work-in-progress.html" rel="next">
+<link href="../basic-stats/effect-size.html" rel="next">
 <link href="../basic-stats/multiple-comparisons.html" rel="prev">
 <link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -385,6 +385,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two Categorical Variables: the Chi-square Test</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/effect-size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Effect Size</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Statistical Power</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -437,17 +449,8 @@ window.Quarto = {
 </header>
 
 
+<p><em>Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry’s <em>Introduction to Data Science</em>.</em></p>
 <p>So far, we focused on numerical variables: reaction times, scores, error counts. Many behavioural outcomes are categories instead: whether a participant detected a target or not, which of two interfaces they preferred, whether an application was funded. When both variables are categorical, means make no sense: we count how many observations fall in each combination of categories, and we ask whether the two variables are associated. The usual tool is the <em>chi-square test</em> (χ², from the Greek letter <em>chi</em>).</p>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>This chapter is original material written for this book; it is not part of Irizarry’s <em>Introduction to Data Science</em>.</p>
-</div>
-</div>
-</div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(behdslabs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1050,8 +1053,8 @@ window.Quarto = {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../work-in-progress.html" class="pagination-link" aria-label="Work in Progress">
-        <span class="nav-page-text">Work in Progress</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../basic-stats/effect-size.html" class="pagination-link" aria-label="Effect Size">
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Effect Size</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

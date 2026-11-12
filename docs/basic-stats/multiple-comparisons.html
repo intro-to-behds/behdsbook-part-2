@@ -356,6 +356,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two Categorical Variables: the Chi-square Test</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/effect-size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Effect Size</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Statistical Power</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -406,17 +418,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p><em>Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry’s <em>Introduction to Data Science</em>.</em></p>
 <p>A p-value below 0.05 is meant to be a rare event when there is no effect: it happens by chance only 5% of the time. But this holds for <em>one</em> test. When we run many tests, rare events become common: if we look at enough comparisons, some will be “significant” just by chance. This chapter explains the problem and the main corrections, without the mathematics behind them.</p>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>This chapter is original material written for this book; it is not part of Irizarry’s <em>Introduction to Data Science</em>.</p>
-</div>
-</div>
-</div>
 <section id="the-problem" class="level2" data-number="19.1">
 <h2 data-number="19.1" class="anchored" data-anchor-id="the-problem"><span class="header-section-number">19.1</span> The problem</h2>
 <p>Let’s simulate it. A study compares two groups of 20 participants on several outcome measures, and <em>none</em> of the measures truly differs between the groups. We run one t-test per measure and record whether at least one p-value is below 0.05. We repeat the whole study 1,000 times, for studies with 1, 5, 20 and 50 measures:</p>

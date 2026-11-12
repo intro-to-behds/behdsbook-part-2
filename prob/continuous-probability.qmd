@@ -1,5 +1,7 @@
 # Continuous Probability {#sec-continuous-probability}
 
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/prob/continuous-probability.html). Adapted by Giorgio Arcara: the examples use UX questionnaire scores and reaction times instead of heights; the text is otherwise Irizarry's, with small edits to fit the new examples._
+
 In @sec-ecdf-intro, we discussed why it is not practical to assign a frequency to every possible continuous outcome, such as an exact reaction time, since there are infinitely many possible values. The same idea extends to random outcomes that take values on a continuous scale: each individual value has probability zero. Instead, we describe their behavior through probability density functions, which let us compute probabilities for intervals of values rather than single points.  
 
 In this chapter, we introduce the mathematical framework for continuous probability distributions and present several useful approximations that frequently appear in data analysis.

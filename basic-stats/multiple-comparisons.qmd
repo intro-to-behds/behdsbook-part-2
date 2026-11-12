@@ -1,11 +1,9 @@
 # Multiple Comparisons {#sec-multiple-comparisons}
 
+_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+
 
 A p-value below 0.05 is meant to be a rare event when there is no effect: it happens by chance only 5% of the time. But this holds for *one* test. When we run many tests, rare events become common: if we look at enough comparisons, some will be "significant" just by chance. This chapter explains the problem and the main corrections, without the mathematics behind them.
-
-:::{.callout-note}
-This chapter is original material written for this book; it is not part of Irizarry's *Introduction to Data Science*.
-:::
 
 ## The problem
 
