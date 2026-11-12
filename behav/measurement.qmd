@@ -770,6 +770,21 @@ However as Behavioral data scientis you shoule be aware that it will be tempting
 An effect on the indicator is not automatically an effect on the construct. Whenever you describe a result in construct terms ("users are *more satisfied*", "the app *reduced stress*"), you are adding an assumption that the data alone do not support.
 :::
 
+## Psychological measurement in behavioural data science: some pragmatic considerations {#sec-measurement-pragmatic}
+
+In an ideal world, we would only use well-developed scales or measures with known psychometric properties. This is not always the case. In usability and cognitive-technology research, we sometimes use questionnaires or other measures whose reliability and validity have not been established for the intended population and context. This is not always our choice: if we join a project after the data have been collected, we have no control over how good the measures are.
+
+These limitations matter most when we interpret results. Even a careful statistical analysis cannot establish, on its own, whether a measure captures the psychological construct we are interested in.
+
+The issue goes beyond questionnaires. In behavioural data science, we often give psychological meaning to directly observable behaviours. For example:
+
+- **Number of errors** may be interpreted as an indicator of *usability*, but errors can also reflect task difficulty, limited experience, or distraction.
+- **Number of logins** may be interpreted as an indicator of *engagement*, but frequent access can also reflect compulsory use, confusion, or repeated unsuccessful attempts.
+
+Counting these behaviours accurately does not automatically justify the interpretation we attach to them. The step from "more logins" to "greater engagement" requires supporting evidence.
+
+The take-home message is to use these measures thoughtfully. Understand the limits of what you are measuring, and match your conclusions to the available evidence. Pay particular attention to alternative explanations, especially when you use measures without established reliability and validity for your purpose. Ideally, design the study, or collect additional evidence, to assess and rule out plausible alternatives; when this is not possible, acknowledge them and keep your interpretation appropriately cautious.
+
 ## Exercises
 
 1\. Load `app_engagement_experiment` and `cognitive_task_metrics`. For each column, state which of Stevens' four scales it is on, and justify your answer in one sentence. Which columns are genuinely ratio-scaled? For any column you judge to be interval, say what evidence would be needed to support that.

@@ -430,7 +430,8 @@ window.Quarto = {
   <li><a href="#what-not-to-forget" id="toc-what-not-to-forget" class="nav-link" data-scroll-target="#what-not-to-forget"><span class="header-section-number">1.8</span> What not to forget</a></li>
   <li><a href="#a-checklist-before-you-measure-anything" id="toc-a-checklist-before-you-measure-anything" class="nav-link" data-scroll-target="#a-checklist-before-you-measure-anything"><span class="header-section-number">1.9</span> A checklist before you measure anything</a></li>
   <li><a href="#other-analyses" id="toc-other-analyses" class="nav-link" data-scroll-target="#other-analyses"><span class="header-section-number">1.10</span> Other analyses</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">1.11</span> Exercises</a></li>
+  <li><a href="#sec-measurement-pragmatic" id="toc-sec-measurement-pragmatic" class="nav-link" data-scroll-target="#sec-measurement-pragmatic"><span class="header-section-number">1.11</span> Psychological measurement in behavioural data science: some pragmatic considerations</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">1.12</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/behav/measurement.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -1241,8 +1242,20 @@ Beware of interpretations
 </div>
 </div>
 </section>
-<section id="exercises" class="level2" data-number="1.11">
-<h2 data-number="1.11" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.11</span> Exercises</h2>
+<section id="sec-measurement-pragmatic" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="sec-measurement-pragmatic"><span class="header-section-number">1.11</span> Psychological measurement in behavioural data science: some pragmatic considerations</h2>
+<p>In an ideal world, we would only use well-developed scales or measures with known psychometric properties. This is not always the case. In usability and cognitive-technology research, we sometimes use questionnaires or other measures whose reliability and validity have not been established for the intended population and context. This is not always our choice: if we join a project after the data have been collected, we have no control over how good the measures are.</p>
+<p>These limitations matter most when we interpret results. Even a careful statistical analysis cannot establish, on its own, whether a measure captures the psychological construct we are interested in.</p>
+<p>The issue goes beyond questionnaires. In behavioural data science, we often give psychological meaning to directly observable behaviours. For example:</p>
+<ul>
+<li><strong>Number of errors</strong> may be interpreted as an indicator of <em>usability</em>, but errors can also reflect task difficulty, limited experience, or distraction.</li>
+<li><strong>Number of logins</strong> may be interpreted as an indicator of <em>engagement</em>, but frequent access can also reflect compulsory use, confusion, or repeated unsuccessful attempts.</li>
+</ul>
+<p>Counting these behaviours accurately does not automatically justify the interpretation we attach to them. The step from “more logins” to “greater engagement” requires supporting evidence.</p>
+<p>The take-home message is to use these measures thoughtfully. Understand the limits of what you are measuring, and match your conclusions to the available evidence. Pay particular attention to alternative explanations, especially when you use measures without established reliability and validity for your purpose. Ideally, design the study, or collect additional evidence, to assess and rule out plausible alternatives; when this is not possible, acknowledge them and keep your interpretation appropriately cautious.</p>
+</section>
+<section id="exercises" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.12</span> Exercises</h2>
 <p>1. Load <code>app_engagement_experiment</code> and <code>cognitive_task_metrics</code>. For each column, state which of Stevens’ four scales it is on, and justify your answer in one sentence. Which columns are genuinely ratio-scaled? For any column you judge to be interval, say what evidence would be needed to support that.</p>
 <p>2. Using <code>daily_mood_ratings</code>, compute the mean, median, standard deviation and interquartile range. Which pair would you report in a paper, and why? Then consider the missing days: if participants were more likely to skip a check-in on a bad day, in which direction is your estimate wrong, and by how much could it plausibly be wrong?</p>
 <p>3. Compute the mode effect in <code>ui_redesign_surveys</code> (the difference in <code>margin</code> between <code>remote</code> and <code>lab</code>). Give <strong>two</strong> substantively different interpretations of that difference. Which of the five sources of validity evidence in <a href="#tbl-validity" class="quarto-xref">Table&nbsp;<span>1.2</span></a> would help you decide between them, and what study would you run?</p>
