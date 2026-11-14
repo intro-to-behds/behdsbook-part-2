@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -363,9 +398,25 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#deception-and-debriefing" id="toc-deception-and-debriefing" class="nav-link" data-scroll-target="#deception-and-debriefing"><span class="header-section-number">3.4</span> Deception and debriefing</a></li>
   <li><a href="#personal-and-sensitive-data" id="toc-personal-and-sensitive-data" class="nav-link" data-scroll-target="#personal-and-sensitive-data"><span class="header-section-number">3.5</span> Personal and sensitive data</a></li>
   <li><a href="#anonymisation-and-pseudonymisation" id="toc-anonymisation-and-pseudonymisation" class="nav-link" data-scroll-target="#anonymisation-and-pseudonymisation"><span class="header-section-number">3.6</span> Anonymisation and pseudonymisation</a></li>
-  <li><a href="#gdpr-principles-and-the-data-life-cycle" id="toc-gdpr-principles-and-the-data-life-cycle" class="nav-link" data-scroll-target="#gdpr-principles-and-the-data-life-cycle"><span class="header-section-number">3.7</span> GDPR principles and the data life cycle</a></li>
-  <li><a href="#open-science-and-data-sharing" id="toc-open-science-and-data-sharing" class="nav-link" data-scroll-target="#open-science-and-data-sharing"><span class="header-section-number">3.8</span> Open Science and data sharing</a></li>
-  <li><a href="#scientific-integrity" id="toc-scientific-integrity" class="nav-link" data-scroll-target="#scientific-integrity"><span class="header-section-number">3.9</span> Scientific integrity</a></li>
+  <li><a href="#gdpr-principles-and-the-data-life-cycle" id="toc-gdpr-principles-and-the-data-life-cycle" class="nav-link" data-scroll-target="#gdpr-principles-and-the-data-life-cycle"><span class="header-section-number">3.7</span> GDPR principles and the data life cycle</a>
+  <ul class="collapse">
+  <li><a href="#privacy-by-design-and-by-default" id="toc-privacy-by-design-and-by-default" class="nav-link" data-scroll-target="#privacy-by-design-and-by-default">Privacy by design and by default</a></li>
+  <li><a href="#the-gdpr-is-not-the-only-privacy-law" id="toc-the-gdpr-is-not-the-only-privacy-law" class="nav-link" data-scroll-target="#the-gdpr-is-not-the-only-privacy-law">The GDPR is not the only privacy law</a></li>
+  <li><a href="#storage-and-backup" id="toc-storage-and-backup" class="nav-link" data-scroll-target="#storage-and-backup">Storage and backup</a></li>
+  </ul></li>
+  <li><a href="#open-science-and-data-sharing" id="toc-open-science-and-data-sharing" class="nav-link" data-scroll-target="#open-science-and-data-sharing"><span class="header-section-number">3.8</span> Open Science and data sharing</a>
+  <ul class="collapse">
+  <li><a href="#data-management-plan" id="toc-data-management-plan" class="nav-link" data-scroll-target="#data-management-plan">Data management plan</a></li>
+  </ul></li>
+  <li><a href="#scientific-integrity" id="toc-scientific-integrity" class="nav-link" data-scroll-target="#scientific-integrity"><span class="header-section-number">3.9</span> Scientific integrity</a>
+  <ul class="collapse">
+  <li><a href="#sec-replication-crisis" id="toc-sec-replication-crisis" class="nav-link" data-scroll-target="#sec-replication-crisis">The replication crisis and Open Science</a></li>
+  <li><a href="#misconduct-and-questionable-research-practices" id="toc-misconduct-and-questionable-research-practices" class="nav-link" data-scroll-target="#misconduct-and-questionable-research-practices">Misconduct and questionable research practices</a></li>
+  <li><a href="#two-ways-of-exploring" id="toc-two-ways-of-exploring" class="nav-link" data-scroll-target="#two-ways-of-exploring">Two ways of exploring</a></li>
+  <li><a href="#preregistration" id="toc-preregistration" class="nav-link" data-scroll-target="#preregistration">Preregistration</a></li>
+  <li><a href="#open-materials-data-and-code" id="toc-open-materials-data-and-code" class="nav-link" data-scroll-target="#open-materials-data-and-code">Open materials, data, and code</a></li>
+  <li><a href="#credit-and-conflicts-of-interest" id="toc-credit-and-conflicts-of-interest" class="nav-link" data-scroll-target="#credit-and-conflicts-of-interest">Credit and conflicts of interest</a></li>
+  </ul></li>
   <li><a href="#bias-fairness-and-the-consequences-of-analysis" id="toc-bias-fairness-and-the-consequences-of-analysis" class="nav-link" data-scroll-target="#bias-fairness-and-the-consequences-of-analysis"><span class="header-section-number">3.10</span> Bias, fairness, and the consequences of analysis</a></li>
   <li><a href="#ai-and-external-tools" id="toc-ai-and-external-tools" class="nav-link" data-scroll-target="#ai-and-external-tools"><span class="header-section-number">3.11</span> AI and external tools</a>
   <ul class="collapse">
@@ -397,23 +448,42 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><em>Written for this book by Cristiano Costa, with Giorgio Arcara. This chapter is not in Irizarry’s <em>Introduction to Data Science</em>.</em></p>
-<p>Imagine we want to study fluctuations in stress during everyday life. Participants install an app that asks them several times per day how stressed they feel, while a smartwatch continuously records heart rate, sleep, and physical activity. From a data-science perspective, this is an attractive design. We obtain repeated measurements in the real world, physiological data can be aligned with subjective reports, and individual changes can be followed over time.</p>
-<p>But consider what the resulting dataset may reveal. It may show when somebody wakes up and goes to sleep, when they exercise, when their heart rate is unusually high, and how their mood changes during the working week. Depending on the study, it may also contain mobility or location-related information that makes parts of a person’s daily routine visible. Behavioural data can become highly informative very quickly. This creates scientific opportunities, but also responsibilities. Research ethics is therefore not something that happens only when a participant signs a consent form. Ethical decisions are involved in deciding what to collect, how to collect it, how long to retain it, who may access it, how it is analysed, and whether it can later be shared.</p>
+<!-- 14 Nov 2026 (Claude): chapter updated from the Week 08 slides (08-01 to 08-04, G. Arcara). The running example is now the slides' mental-health study; additions are marked "added from slides" below. To review. -->
+<!-- added from slides (08-01 "A mental-health study in everyday life", "What this dataset reveals"): running example switched to the mental-health study -->
+<p>Imagine we want to study how mood and depressive symptoms fluctuate in everyday life. Participants install an app that asks them five times a day how they feel and how strongly they experience a few depressive symptoms. Every evening they write a short entry in a free-text journal. A smartwatch records heart rate and sleep, and the phone’s GPS records how far they move each day, because physical activity is related to mood. From a data-science perspective, this is an attractive design. We obtain repeated measurements in the real world, physiological data can be aligned with subjective reports, and individual changes can be followed over time.</p>
+<p>But consider what the resulting dataset may reveal. The smartwatch shows that a participant is still awake at 2 a.m. The GPS shows where they live and that, at 11 a.m., they spent an hour at a mental-health clinic. At 4 p.m. their heart rate spikes. At 10 p.m. the journal reads: <em>“I can’t go on like this.”</em> No name appears anywhere, yet the dataset tells us a great deal about one person’s life. Behavioural data can become highly informative very quickly. This creates scientific opportunities, but also responsibilities. Research ethics is therefore not something that happens only when a participant signs a consent form. Ethical decisions are involved in deciding what to collect, how to collect it, how long to retain it, who may access it, how it is analysed, and whether it can later be shared.</p>
 <section id="why-ethics-is-part-of-research" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="why-ethics-is-part-of-research"><span class="header-section-number">3.1</span> Why ethics is part of research</h2>
-<p>Research with human participants is guided by broad principles including <strong>respect for autonomy</strong>, <strong>beneficence and non-maleficence</strong>, <strong>justice</strong>, and <strong>scientific integrity</strong>. Respect for autonomy means treating participants as people capable of making decisions about whether and how they take part in research. Beneficence and non-maleficence concern the balance between the potential value of the research and the risks or burdens imposed on participants. Justice concerns how the benefits and burdens of research are distributed. A population should not be selected simply because it is easy to recruit or has less power to refuse participation.</p>
-<p>Scientific integrity concerns the responsibility to design, analyse, and communicate research honestly and rigorously. These principles are connected. A badly designed study is not only a methodological problem. If participants contribute their time, personal information, discomfort, or exposure to risk to a study that cannot meaningfully address its stated question, this can also become an ethical problem. Ethical and legal requirements are also not identical. Something may be technically possible, or legally permissible under particular conditions, without being a good research decision. Suppose an app allows us to collect precise GPS location continuously, but our research question concerns daily stress and can be answered using activity levels and occasional EMA reports. Collecting location simply because the technology makes it available may be difficult to justify. A useful rule of thumb is:</p>
+<p>Research with human participants is guided by broad principles including <strong>respect for autonomy</strong>, <strong>beneficence and non-maleficence</strong>, <strong>justice</strong>, and <strong>scientific integrity</strong>. Respect for autonomy means treating participants as people capable of making decisions about whether and how they take part in research: each person decides whether to take part, how, and for how long, and can stop at any time. Beneficence and non-maleficence concern the balance between the potential value of the research and the risks or burdens imposed on participants. Justice concerns how the benefits and burdens of research are distributed. A population should not be selected simply because it is easy to recruit or has less power to refuse participation.</p>
+<p>Scientific integrity concerns the responsibility to design, analyse, and communicate research honestly and rigorously. These principles are connected. A badly designed study is not only a methodological problem. If participants contribute their time, personal information, discomfort, or exposure to risk to a study that cannot meaningfully address its stated question, this can also become an ethical problem. Ethical and legal requirements are also not identical. Something may be technically possible, or legally permissible under particular conditions, without being a good research decision. In our mood study, GPS is there to compute how far participants move each day. The daily distance is what we need; the raw coordinates are not. A continuous trace of positions would also show where each person lives, works, and seeks care, and recording it simply because the phone makes it available may be difficult to justify when only the daily total needs to be stored. A useful rule of thumb is:</p>
 <blockquote class="blockquote">
 <p><strong>Collect what you need, not everything you can collect.</strong></p>
 </blockquote>
+<!-- added from slides (08-03 "Collect what you need") -->
+<p>The rule applies to the simplest studies too. Suppose the research question is which of two versions of an app users prefer. To answer it, we need a participant code, an age group, the version each person used, their preference rating, and perhaps how many minutes they used the app. It is tempting to add a few questions “just in case”: chronic diseases, medication, home address, date of birth (<a href="#fig-collect-needed" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>). None of them is needed for the question, and health information is among the most sensitive kinds of personal data (see <a href="#personal-and-sensitive-data">Personal and sensitive data</a>). Data that are never collected cannot be lost, leaked, or misused.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-collect-needed" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-collect-needed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="research-ethics_files/figure-html/fig-collect-needed-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-collect-needed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Study question: which version of the app do users prefer? Left: the variables the question needs. Right: variables collected “just in case”. They do not help answer the question, and some of them (health information) are particularly sensitive, so they should not be collected.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>In Italy, psychological research is guided, among other sources, by the Code of Ethics of the Italian Association of Psychology (AIP), which was updated in May 2025 and is complemented by guidance on internet-mediated research and generative AI.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 </section>
 <section id="ethical-approval-and-informed-consent" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="ethical-approval-and-informed-consent"><span class="header-section-number">3.2</span> Ethical approval and informed consent</h2>
-<p>Before data collection begins, researchers need to consider the study’s risks, benefits, procedures, recruitment methods, and handling of participant data. These elements are evaluated through the relevant ethics-review procedures within the applicable institutional and regulatory context. Ethics review is not simply an administrative step. Its purpose is to provide an independent assessment of whether participants are adequately protected and whether potential risks are proportionate to the scientific aims. A central component is <strong>informed consent</strong>.</p>
+<!-- added from slides (08-02 "A final important aspect"): the Ethics Committee -->
+<p>Before data collection begins, researchers need to consider the study’s risks, benefits, procedures, recruitment methods, and handling of participant data. In research, these elements are evaluated by an <strong>Ethics Committee</strong> (in the United States, an <em>Institutional Review Board</em>, or IRB). Researchers submit the study protocol, the information given to participants, and the consent form, and the committee must approve them before any data are collected. Researchers cannot simply write a consent form on their own and start recruiting. Ethics review is not simply an administrative step. Its purpose is to provide an independent assessment of whether participants are adequately protected and whether potential risks are proportionate to the scientific aims. Outside research, for example when a company collects and stores data about its users, there may be no ethics committee, but the applicable laws on data protection still apply. A central component of ethical research is <strong>informed consent</strong>.</p>
 <p>Participants should receive information that allows them to understand what they are agreeing to. This normally includes the purpose of the research, relevant procedures, expected duration, potential risks or discomforts, and the possibility of refusing or discontinuing participation. Consent also needs to be voluntary. A participant should be able to refuse or withdraw without inappropriate negative consequences. This is especially important when the researcher has authority over the participant or when incentives are offered.</p>
-<p>Technology-based studies require particular care because much of the data collection may happen in the background. Suppose participants are asked to wear a smartwatch for two weeks. Saying only that “physiological data” will be collected is not particularly informative. Participants should be given an understandable account of what the device records, which variables researchers will access, how frequently data are recorded, whether data leave the device, and what happens to them after collection.</p>
-<p>The same applies to smartphone research. An EMA app may collect timestamps automatically. A sensing application may record activity in the background even when participants are not actively responding. Researchers therefore need to understand their own data pipeline before they can adequately explain it to participants. It is also important to distinguish <strong>consent to participate in research</strong> from the <strong>legal basis for processing personal data</strong>. Under the GDPR, consent is one possible legal basis, but it is not the only one relevant in research contexts.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>Technology-based studies require particular care because much of the data collection may happen in the background. In our mood study, participants wear a smartwatch for several weeks. Saying only that “physiological data” will be collected is not particularly informative. Participants should be given an understandable account of what the device records, which variables researchers will access, how frequently data are recorded, whether data leave the device, and what happens to them after collection.</p>
+<p>The same applies to smartphone research. An app may collect timestamps automatically. A sensing application may record activity or location in the background even when participants are not actively responding. Researchers therefore need to understand their own data pipeline before they can adequately explain it to participants. It is also important to distinguish <strong>consent to participate in research</strong> from the <strong>legal basis for processing personal data</strong>. Under the GDPR, consent is one possible legal basis, but it is not the only one relevant in research contexts.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p>The practical lesson is not that behavioural scientists should become data-protection lawyers. Rather, they should avoid assuming that a participant’s signature on a study consent form automatically resolves every issue concerning personal data.</p>
 </section>
 <section id="vulnerable-participants-and-freedom-of-consent" class="level2" data-number="3.3">
@@ -442,40 +512,227 @@ ul.task-list li input[type="checkbox"] {
 <section id="personal-and-sensitive-data" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="personal-and-sensitive-data"><span class="header-section-number">3.5</span> Personal and sensitive data</h2>
 <p>Under the GDPR, <strong>personal data</strong> are information relating to an identified or identifiable natural person. Identification does not require a person’s name to appear in the dataset. Names, email addresses, or participant IDs linked to a lookup table are obvious examples. But people can also be identifiable indirectly through location information, device identifiers, physiological characteristics, or combinations of variables. This is particularly important in behavioural data science. Imagine a dataset containing no names but including precise timestamps, GPS locations, age, occupation, and smartwatch activity. Identifying a participant may become relatively straightforward if the data reveal where that person sleeps, where they work, and which routes they regularly travel.</p>
+<!-- added from slides (08-03 "Personal data without names") -->
+<p><a href="#tbl-no-names" class="quarto-xref">Table&nbsp;<span>3.1</span></a> shows three fictional rows of such a dataset.</p>
+<div id="tbl-no-names" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-no-names-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.1: Three fictional rows from a dataset without names.
+</figcaption>
+<div aria-describedby="tbl-no-names-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Date-time</th>
+<th>GPS area</th>
+<th style="text-align: right;">Age</th>
+<th>Occupation</th>
+<th style="text-align: right;">Steps</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>02/03 07:41</td>
+<td>Mestre</td>
+<td style="text-align: right;">51</td>
+<td>bus driver</td>
+<td style="text-align: right;">9,310</td>
+</tr>
+<tr class="even">
+<td>02/03 07:44</td>
+<td>Venice Lido</td>
+<td style="text-align: right;">34</td>
+<td>paediatric nurse</td>
+<td style="text-align: right;">12,840</td>
+</tr>
+<tr class="odd">
+<td>02/03 07:52</td>
+<td>Mestre</td>
+<td style="text-align: right;">29</td>
+<td>student</td>
+<td style="text-align: right;">4,105</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>There are no names. But how many 34-year-old paediatric nurses live on the Venice Lido? Probably very few, and anyone who knows one of them could recognise the second row.</p>
 <p>Even variables that seem harmless in isolation may become identifying when combined. The GDPR also defines <strong>special categories of personal data</strong>, including data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, trade-union membership, genetic data, certain biometric data, health data, and information concerning a person’s sex life or sexual orientation. Behavioural data may sometimes reveal or allow inferences about such information even when researchers did not directly ask for it.</p>
-<p>Continuous location traces could reveal repeated attendance at a place of worship, a political organisation, a clinic, or a union office. A wearable-derived measure collected to study sleep or activity may become health-related information when interpreted in a clinical context. Researchers should therefore consider not only what a variable is called, but what can reasonably be inferred from it.</p>
+<p>Continuous location traces could reveal repeated attendance at a place of worship, a political organisation, a clinic, or a union office. A wearable-derived measure collected to study sleep or activity may become health-related information when interpreted in a clinical context. Researchers should therefore consider not only what a variable is called, but what can reasonably be inferred from it. <!-- added from slides (08-03 "Where does 'sensitive' begin?") --> The line between harmless and sensitive is therefore hard to draw. Step counts, hours of sleep, or a single GPS point look innocuous; combined and interpreted, they can say something about a person’s health, depression, or religion. When in doubt, treat the data as sensitive.</p>
 </section>
 <section id="anonymisation-and-pseudonymisation" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="anonymisation-and-pseudonymisation"><span class="header-section-number">3.6</span> Anonymisation and pseudonymisation</h2>
 <p>Two terms that are often confused are <strong>anonymisation</strong> and <strong>pseudonymisation</strong>. Suppose we replace participant names with codes such as <code>P001</code>, <code>P002</code>, and <code>P003</code>, while keeping a separate encrypted file that links those codes back to names and contact details. This is <strong>pseudonymisation</strong>. The main research dataset no longer directly identifies the participants, and access to the identifying information can be tightly restricted. However, identification remains possible using additional information. Pseudonymised data therefore remain personal data under the GDPR.</p>
-<p><strong>Anonymous data</strong> are different. In genuinely anonymous data, people are no longer identifiable by means reasonably likely to be used. The distinction is simple in principle but can be difficult in practice.</p>
+<p><strong>Anonymous data</strong> are different. In genuinely anonymous data, people are no longer identifiable by means reasonably likely to be used (<a href="#fig-pseudo-anon" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>). The distinction is simple in principle but can be difficult in practice.</p>
+<!-- added from slides (08-03 "Pseudonymisation vs anonymisation") -->
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-pseudo-anon" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pseudo-anon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="research-ethics_files/figure-html/fig-pseudo-anon-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pseudo-anon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: Pseudonymisation and anonymisation. Left: participants are replaced by codes, and a separate key file, encrypted and stored apart, links each code to a name. The data are still personal data. Right: there is no key, and nobody can be identified by means reasonably likely to be used.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <blockquote class="blockquote">
 <p>Removing a person’s name does not necessarily make a dataset anonymous.</p>
 </blockquote>
-<p>Suppose a dataset contains exact dates, geographic area, age, occupation, unusual mobility patterns, and detailed wearable measurements. Even without names or participant codes, combinations of these features may permit re-identification. Anonymisation therefore needs to be considered at the level of the whole dataset and its context, not as a single operation such as deleting one column. Pseudonymisation is nevertheless a valuable safeguard. Identifying information can be separated from research measurements, access to the linking key can be restricted, and analysts often do not need to know participant identities at all.</p>
+<!-- added from slides (08-03 "Removing the name is not enough") -->
+<p>In R, dropping the identifying column takes one line:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>diary_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Anna R."</span>, <span class="st">"Luca B."</span>, <span class="st">"Sara M."</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">c</span>(<span class="st">"02/03 07:44"</span>, <span class="st">"02/03 07:41"</span>, <span class="st">"02/03 07:52"</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">gps_area =</span> <span class="fu">c</span>(<span class="st">"Venice Lido"</span>, <span class="st">"Mestre"</span>, <span class="st">"Mestre"</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">34</span>, <span class="dv">51</span>, <span class="dv">29</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">job =</span> <span class="fu">c</span>(<span class="st">"paediatric nurse"</span>, <span class="st">"bus driver"</span>, <span class="st">"student"</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>diary_data <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>name)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 4</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   time        gps_area      age job             </span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           </span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 02/03 07:44 Venice Lido    34 paediatric nurse</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 02/03 07:41 Mestre         51 bus driver      </span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 02/03 07:52 Mestre         29 student</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This is not anonymisation: the first row is still the 34-year-old paediatric nurse on the Venice Lido. Suppose a dataset contains exact dates, geographic area, age, occupation, unusual mobility patterns, and detailed wearable measurements. Even without names or participant codes, combinations of these features may permit re-identification. Anonymisation therefore needs to be considered at the level of the whole dataset and its context, not as a single operation such as deleting one column. Pseudonymisation is nevertheless a valuable safeguard. Identifying information can be separated from research measurements, access to the linking key can be restricted, and analysts often do not need to know participant identities at all.</p>
 </section>
 <section id="gdpr-principles-and-the-data-life-cycle" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="gdpr-principles-and-the-data-life-cycle"><span class="header-section-number">3.7</span> GDPR principles and the data life cycle</h2>
-<p>Data protection does not concern only the moment at which data are collected. It applies across the <strong>data life cycle</strong>. The GDPR establishes principles including lawfulness, fairness and transparency, purpose limitation, data minimisation, accuracy, storage limitation, integrity and confidentiality, and accountability. For an introductory behavioural data science course, the detailed legal interpretation of each principle is beyond our scope. Their practical implications, however, are directly relevant to research. <strong>Purpose limitation</strong> means being clear about why personal data are collected and how they are intended to be used.</p>
+<p>Data protection does not concern only the moment at which data are collected. It applies across the <strong>data life cycle</strong>. The GDPR establishes principles including lawfulness, fairness and transparency, purpose limitation, data minimisation, accuracy, storage limitation, integrity and confidentiality, and accountability. For an introductory behavioural data science course, the detailed legal interpretation of each principle is beyond our scope. Their practical implications, however, are directly relevant to research (<a href="#fig-life-cycle" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>). <strong>Purpose limitation</strong> means being clear about why personal data are collected and how they are intended to be used.</p>
 <p><strong>Data minimisation</strong> means collecting data that are adequate, relevant, and limited to what is necessary for that purpose. <strong>Storage limitation</strong> means that identifiable or pseudonymised personal data should not simply be retained indefinitely without an appropriate rationale. <strong>Integrity and confidentiality</strong> require reasonable protection against unauthorised access, loss, or disclosure. For research, appropriate technical and organisational safeguards may include pseudonymisation, encryption, access controls, secure institutional storage, and clear rules about who can access which files.</p>
-<p>Consider a wearable study. Before collection, researchers decide which sensors are actually necessary. During collection, data are transmitted and stored using appropriate safeguards. Identifying information is separated where feasible. Access is restricted. At the end of the project, researchers decide what needs to be retained, in what form, and for how long. Data management is therefore part of study design, not merely housekeeping performed after the analysis.</p>
+<!-- added from slides (08-03 "GDPR across the data life cycle") -->
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-life-cycle" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-life-cycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="research-ethics_files/figure-html/fig-life-cycle-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-life-cycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: The data life cycle of a study, with the GDPR principles that matter most at each stage. Data protection is planned at the start (privacy by design) and applies until the data are deleted or shared.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Consider our mood study. Before collection, researchers decide which sensors are actually necessary: the daily distance, for example, rather than the full GPS trace. During collection, data are transmitted and stored using appropriate safeguards. Identifying information is separated where feasible. Access is restricted. At the end of the project, researchers decide what needs to be retained, in what form, and for how long. Data management is therefore part of study design, not merely housekeeping performed after the analysis.</p>
+<!-- added from slides (08-03 "Privacy by design, not anonymisation afterwards") -->
+<section id="privacy-by-design-and-by-default" class="level3">
+<h3 class="anchored" data-anchor-id="privacy-by-design-and-by-default">Privacy by design and by default</h3>
+<p>The GDPR turns this idea into an obligation: data protection <em>by design and by default</em> (GDPR, Article 25). A common but weak approach is to collect everything (full GPS traces, every journal entry), store it all, and strip the identifiers when the project ends. By then the data have already been collected, stored, and copied, and, as we saw, removing identifiers may not make them anonymous. <strong>Privacy by design</strong> reverses the order: first ask what the research question needs, collect only that (with participant codes from day one rather than names), restrict who can access what, and keep or delete the data as planned. <strong>Privacy by default</strong> means that the most protective setting is the starting point: GPS is off unless the question needs it. Both are design choices, made before the first participant is recruited.</p>
+<!-- added from slides (08-03 "GDPR ≠ privacy law"); law names are general knowledge, checked 14 Nov 2026 -->
+</section>
+<section id="the-gdpr-is-not-the-only-privacy-law" class="level3">
+<h3 class="anchored" data-anchor-id="the-gdpr-is-not-the-only-privacy-law">The GDPR is not the only privacy law</h3>
+<p>The GDPR applies in the European Union and the European Economic Area, together with national rules: in Italy, the <em>Codice in materia di protezione dei dati personali</em> (Legislative Decree 196/2003, amended in 2018 to align it with the GDPR). Elsewhere the rules differ. The United Kingdom has the UK GDPR and the Data Protection Act 2018; Switzerland has its revised Federal Act on Data Protection; Brazil has the LGPD; China has the Personal Information Protection Law (PIPL). The United States has no single general law: some health data are covered by HIPAA, and some states have their own laws, such as California’s CCPA. Which rules apply depends on where participants are and where data are processed, and an online study can easily recruit across borders. The practical advice is the same everywhere: check the local rules, and ask your institution.</p>
+<!-- added from slides (08-03 "One laptop is not a storage plan"); the 3-2-1 rule is general knowledge -->
+</section>
+<section id="storage-and-backup" class="level3">
+<h3 class="anchored" data-anchor-id="storage-and-backup">Storage and backup</h3>
+<p>Integrity and confidentiality also mean that data must not be lost. Keeping the only copy of a dataset on a personal laptop is not a storage plan. If the laptop is stolen, broken, or lost, two things can go wrong. The data may be gone, and with them the time participants gave once and cannot give again. And if the laptop was not encrypted, personal data are now in someone else’s hands: a data breach. Research data belong on storage provided by the institution, which is encrypted, backed up, and access controlled. A common rule of thumb for backups is <em>3-2-1</em>: three copies, on two different kinds of media, one of them off-site. Ask your institution where research data should be stored.</p>
+</section>
 </section>
 <section id="open-science-and-data-sharing" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="open-science-and-data-sharing"><span class="header-section-number">3.8</span> Open Science and data sharing</h2>
-<p>Modern science increasingly encourages researchers to share data, code, materials, and analysis procedures. This can improve reproducibility, enable reanalysis, facilitate new discoveries, and make scientific claims more transparent. But <strong>Open Science does not mean that every dataset should be publicly downloadable</strong>. Imagine that we have collected four weeks of EMA responses, sleep measures, heart rate, and detailed mobility information. Publishing the raw dataset may allow someone to reconstruct participants’ routines or identify particular people even after obvious identifiers have been removed.</p>
-<p>Privacy and openness therefore need to be considered together. Several strategies are possible. Researchers may share a sufficiently anonymised version of a dataset. Data can sometimes be placed in a <strong>controlled-access repository</strong>, where researchers request access under specified conditions. <strong>Synthetic data</strong> can reproduce selected statistical features of an original dataset without containing the actual participant records, although synthetic data cannot replace the original data for every scientific purpose. In other situations, participant-level data cannot responsibly be released, but analysis code, metadata, variable dictionaries, preprocessing pipelines, and study materials can still be shared.</p>
+<p>Modern science increasingly encourages researchers to share data, code, materials, and analysis procedures. This can improve reproducibility, enable reanalysis, facilitate new discoveries, and make scientific claims more transparent. (Why this matters so much in psychology is explained in <a href="#sec-replication-crisis" class="quarto-xref"><span>Section 3.9.1</span></a>.) But <strong>Open Science does not mean that every dataset should be publicly downloadable</strong>. Imagine that we have collected four weeks of journal entries, mood ratings, sleep, and GPS data. Publishing the raw dataset may allow someone to reconstruct participants’ routines or identify particular people even after obvious identifiers have been removed.</p>
+<!-- added from slides (08-03 "Ways to share data responsibly"): options ordered from most to least open -->
+<p>Privacy and openness therefore need to be considered together. Several strategies are possible, from the most to the least open:</p>
+<ol type="1">
+<li>Share a sufficiently <strong>anonymised</strong> version of the dataset.</li>
+<li>Place the data in a <strong>controlled-access repository</strong>, where researchers request access under specified conditions.</li>
+<li>Share <strong>synthetic data</strong>, which reproduce selected statistical features of the original dataset without containing the actual participant records. Synthetic data cannot replace the original data for every scientific purpose.</li>
+<li>When participant-level data cannot responsibly be released, share the analysis code, metadata, variable dictionaries, preprocessing pipelines, and study materials.</li>
+</ol>
 <p>The best time to think about data sharing is <strong>before data collection begins</strong>. If researchers know that a dataset may later be archived or reused, this can be reflected in the participant information, consent procedures, and <strong>data management plan</strong>. Open Science and privacy are therefore not opposing goals. Responsible openness means deciding which parts of a research project can be made accessible without compromising the people who contributed the data.</p>
+<!-- added from slides (08-03 "Data Management Plan"); links checked 14 Nov 2026 -->
+<section id="data-management-plan" class="level3">
+<h3 class="anchored" data-anchor-id="data-management-plan">Data management plan</h3>
+<p>A <strong>data management plan</strong> (DMP) is a document, written before a study starts, that describes how data will be handled in every phase of the life cycle: what will be collected and in which formats, where it will be stored and backed up, who can access it, how long it will be kept, and what will be shared and how. Many funders, including the European Commission’s Horizon Europe programme, require one. It is useful even when nobody asks for it, because writing it forces the decisions discussed in this chapter to be made in advance. Some starting points:</p>
+<ul>
+<li><a href="https://dmponline.dcc.ac.uk">DMPonline</a> (Digital Curation Centre) and <a href="https://argos.openaire.eu">Argos</a> (OpenAIRE) provide templates and guidance.</li>
+<li>Science Europe’s <a href="https://scienceeurope.org/our-resources/practical-guide-to-the-international-alignment-of-research-data-management/"><em>Practical Guide to the International Alignment of Research Data Management</em></a> describes what a DMP should cover.</li>
+<li>The <strong>FAIR principles</strong> (data that are Findable, Accessible, Interoperable, and Reusable) are a widely used target for shared data.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
+</ul>
+</section>
 </section>
 <section id="scientific-integrity" class="level2" data-number="3.9">
 <h2 data-number="3.9" class="anchored" data-anchor-id="scientific-integrity"><span class="header-section-number">3.9</span> Scientific integrity</h2>
-<p>Research ethics also concerns what happens during analysis. The clearest forms of misconduct are <strong>fabrication</strong>, in which data or results are invented, and <strong>falsification</strong>, in which research materials, procedures, or data are deliberately manipulated in a misleading way. However, problems can also arise through less obvious analytical practices. Suppose we collect reaction times and try several plausible exclusion thresholds. We then report only the threshold that produces a statistically significant result.</p>
-<p>Or imagine that a smartphone study produces twenty potential behavioural variables and we test all twenty against stress, but report only the two significant associations. These choices can give readers a distorted impression of the evidence. <strong>p-hacking</strong> refers broadly to using analytical flexibility in ways that increase the probability of obtaining statistically significant results. <strong>Selective reporting</strong> occurs when only a subset of outcomes or analyses is presented. <strong>HARKing</strong>—<em>hypothesising after the results are known</em>—occurs when a pattern discovered after seeing the data is presented as though it had been predicted in advance.</p>
-<p>Exploratory analysis is not itself a problem. Exploration is an essential part of data science and scientific discovery. The issue is transparency. A result discovered during exploration should be presented as exploratory rather than retrospectively converted into a confirmatory prediction. Preregistration, complete reporting, code sharing, robustness checks, and clear distinctions between planned and exploratory analyses are all tools that can improve transparency. Poor statistical practice is not merely a technical problem. Participants contribute time and information because they expect researchers to use those contributions responsibly.</p>
+<p>Research ethics also concerns what happens during analysis and reporting. To see why this matters, it helps to start from what happened in psychology about fifteen years ago.</p>
+<!-- added at instructor request (14 Nov 2026): replication crisis and Open Science; OSC 2015 figures checked against the PubMed abstract -->
+<section id="sec-replication-crisis" class="level3">
+<h3 class="anchored" data-anchor-id="sec-replication-crisis">The replication crisis and Open Science</h3>
+<p>In the early 2010s psychology went through what is now called the <strong>replication crisis</strong>. A <em>replication</em> asks the same question with new data: if a finding is real, a careful repetition of the study should find it again. A related idea, <em>reproducibility</em>, asks whether the same data and the same code give the same result. The largest test came in 2015, when the Open Science Collaboration repeated 100 studies published in three leading psychology journals. Ninety-seven percent of the original studies had reported statistically significant results; only thirty-six percent of the replications did, and the effects found in the replications were on average half the size of the original ones (<a href="#fig-osc" class="quarto-xref">Figure&nbsp;<span>3.4</span></a>).<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Similar problems have since been documented in other fields, including medicine and economics.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-osc" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-osc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="research-ethics_files/figure-html/fig-osc-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-osc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.4: Percentage of studies with a statistically significant result, in 100 original psychology studies and in their replications. Data from Open Science Collaboration (2015).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Why? Not mainly because of fraud. Three ordinary features of how science was done combined. Journals preferred significant, novel results (<strong>publication bias</strong>), so studies that found nothing tended to stay in the drawer. Many studies had small samples and therefore low <strong>statistical power</strong> (<a href="../basic-stats/power.html" class="quarto-xref"><span>Chapter 22</span></a>): when an underpowered study does find a significant effect, its estimate of the effect tends to be exaggerated. And researchers had a great deal of undisclosed flexibility in how they collected and analysed their data. In 2011, Simmons, Nelson, and Simonsohn showed that combining a few common and seemingly harmless choices, such as adding participants after looking at the results or choosing among several dependent variables, can push the false-positive rate far above the nominal 5%.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> These are the <em>questionable research practices</em> described below.</p>
+<p>The response is known as <strong>Open Science</strong>: a set of practices that make research easier to check. They include preregistration and <em>Registered Reports</em> (in which a journal reviews and accepts a study before the data are collected), open materials, data, and code, replication studies, and reporting effect sizes and their uncertainty rather than only p-values (<a href="../basic-stats/effect-size.html" class="quarto-xref"><span>Chapter 21</span></a>). Sharing data, discussed above, is part of this response, within the limits that protecting participants imposes.</p>
+</section>
+<section id="misconduct-and-questionable-research-practices" class="level3">
+<h3 class="anchored" data-anchor-id="misconduct-and-questionable-research-practices">Misconduct and questionable research practices</h3>
+<p>The clearest forms of misconduct are <strong>fabrication</strong>, in which data or results are invented, and <strong>falsification</strong>, in which research materials, procedures, or data are deliberately manipulated in a misleading way. However, problems can also arise through less obvious analytical practices. Suppose we collect reaction times and try several plausible exclusion thresholds. We then report only the threshold that produces a statistically significant result.</p>
+<p>Or imagine that a smartphone study produces twenty potential behavioural variables and we test all twenty against mood, but report only the two significant associations. These choices can give readers a distorted impression of the evidence. <strong>p-hacking</strong> refers broadly to using analytical flexibility in ways that increase the probability of obtaining statistically significant results. <strong>Selective reporting</strong> occurs when only a subset of outcomes or analyses is presented. <strong>HARKing</strong>, <em>hypothesising after the results are known</em>, occurs when a pattern discovered after seeing the data is presented as though it had been predicted in advance.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+<!-- added from slides (08-04 "Two ways of exploring", "A p-value assumes you haven't looked") -->
+</section>
+<section id="two-ways-of-exploring" class="level3">
+<h3 class="anchored" data-anchor-id="two-ways-of-exploring">Two ways of exploring</h3>
+<p>Exploratory analysis is not itself a problem. Exploration is an essential part of data science and scientific discovery. It helps, however, to distinguish two kinds. <strong>Exploring to check the data</strong> means looking for missing values, outliers, coding errors, odd distributions, and violated assumptions. It is good practice and belongs in every analysis. <strong>Exploring to decide what to test</strong> means looking at the patterns first and then choosing the comparison, the subgroup, or the outcome to test. This is fine as exploration, as long as it is labelled as such, but the p-values it produces no longer mean what they say.</p>
+<p>The reason is that a p-value assumes we did not already know the pattern in the data. It tells us how often a result at least this extreme would occur if there were no effect (<a href="../inference/hypothesis-testing.html" class="quarto-xref"><span>Chapter 14</span></a>). If we first look at the data, pick the biggest difference, and then test it, a small p-value is almost guaranteed: we chose that comparison precisely because it looked large. Looking at many comparisons and testing only the most striking one is, in effect, running all of them and reporting one, which is the multiple-comparisons problem (<a href="../basic-stats/multiple-comparisons.html" class="quarto-xref"><span>Chapter 19</span></a>) in disguise. The issue is transparency. A result discovered during exploration should be presented as exploratory rather than retrospectively converted into a confirmatory prediction.</p>
+<!-- added from slides (08-04 "Preregistration") -->
+</section>
+<section id="preregistration" class="level3">
+<h3 class="anchored" data-anchor-id="preregistration">Preregistration</h3>
+<p>A <strong>preregistration</strong> is a plan written and timestamped before the data are seen. It states the hypotheses, the design, the sample size, the exclusion criteria, and the planned analyses, and is deposited on a platform such as the Open Science Framework (OSF), either publicly or under embargo until publication. After data collection, the analysis follows the plan, and the report says which analyses were planned and which were not. Preregistration does not forbid exploring; it makes exploring visible, so that readers can tell a prediction from a discovery. Complete reporting, code sharing, and robustness checks are further tools that improve transparency. Poor statistical practice is not merely a technical problem. Participants contribute time and information because they expect researchers to use those contributions responsibly.</p>
+<!-- added from slides (08-04 "Open materials and open data", "Open code") -->
+</section>
+<section id="open-materials-data-and-code" class="level3">
+<h3 class="anchored" data-anchor-id="open-materials-data-and-code">Open materials, data, and code</h3>
+<p>A published claim can be checked only if others can see what was done. Three things make that possible: the <strong>materials</strong> (tasks, questionnaire items, stimuli), the <strong>data</strong> (as open as privacy allows, as discussed above), and the <strong>code</strong> (every step from the raw data to the reported numbers). Sharing the script behind a result lets others reproduce it, and helps catch errors, including our own. R itself exists because people share code: R and many of its packages are released under open licences such as the GPL. A <strong>licence</strong> is what makes shared code usable, because it says what others may do with it. Common choices are MIT or GPL for code, and Creative Commons licences such as CC BY for text and data. Openness is not the only legitimate model: licences, patents, and commercial software are legitimate ways of protecting and funding work. Integrity does not ask that everything be given away; it asks that the code behind a scientific claim can be checked.</p>
+<!-- added from slides (08-04 "Credit and conflicts of interest") -->
+</section>
+<section id="credit-and-conflicts-of-interest" class="level3">
+<h3 class="anchored" data-anchor-id="credit-and-conflicts-of-interest">Credit and conflicts of interest</h3>
+<p>Integrity also concerns who gets credit and who might gain. <strong>Authorship</strong> should reflect who did the work: those who contributed substantially should be authors, and those who did not should not. <strong>Plagiarism</strong>, presenting others’ words, ideas, or code as one’s own, applies to code as much as to text: code copied or adapted from elsewhere should be credited. Researchers should also declare <strong>conflicts of interest</strong>: who funded the work, and any financial or personal interest in its results, such as a stake in the app being evaluated.</p>
+</section>
 </section>
 <section id="bias-fairness-and-the-consequences-of-analysis" class="level2" data-number="3.10">
 <h2 data-number="3.10" class="anchored" data-anchor-id="bias-fairness-and-the-consequences-of-analysis"><span class="header-section-number">3.10</span> Bias, fairness, and the consequences of analysis</h2>
 <p>Suppose we develop a machine-learning model that predicts periods of high stress from smartphone and smartwatch data. The model performs well overall. Does this mean it works equally well for everyone? Not necessarily. If most participants in the training dataset are young adults using recent devices, the model may perform worse in older participants, people with different patterns of technology use, or users of devices with different sensor characteristics. A model can therefore achieve good <strong>average performance</strong> while performing poorly for particular groups.</p>
-<p>Bias can enter at several points: who is recruited, who remains in the study, what is measured, what data are missing, how outcomes are labelled, and how a model is trained and evaluated. Technology itself can contribute. Different wearable devices may measure the same signal differently. Smartphone behaviours vary across age groups, occupations, cultures, and socioeconomic settings. Missingness may also be informative: people may stop responding to EMA prompts precisely when they are stressed, busy, or unwell.</p>
+<!-- added from slides (08-04 "Accurate on average, but for whom?"): simulated numbers -->
+<p><a href="#fig-accuracy" class="quarto-xref">Figure&nbsp;<span>3.5</span></a> shows a simulated example. Reported as a single number, the model is 86% accurate, because most of the people it was tested on are young. Broken down by age group, it is 92% accurate for people aged 18 to 29 and 64% for people aged 65 and older. Reporting each group, and saying where the model fails, is part of reporting results honestly; reporting only the best-looking number hides a potential bias.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-accuracy" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-accuracy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="research-ethics_files/figure-html/fig-accuracy-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-accuracy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.5: Accuracy of a stress-prediction model, overall and by age group (simulated data). The overall figure hides the much lower accuracy for older users.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Bias can enter at several points: who is recruited, who remains in the study, what is measured, what data are missing, how outcomes are labelled, and how a model is trained and evaluated. Technology itself can contribute. Different wearable devices may measure the same signal differently. Smartphone behaviours vary across age groups, occupations, cultures, and socioeconomic settings. Missingness may also be informative: people may stop responding to app prompts precisely when they are stressed, busy, or unwell.</p>
 <p>These issues matter especially when predictions have consequences. A model used to explore associations in a research paper creates different risks from a model used to identify individuals considered at high risk of burnout, depression, or cognitive impairment. Researchers should therefore ask not only:</p>
 <blockquote class="blockquote">
 <p><strong>How accurate is the model?</strong></p>
@@ -488,12 +745,21 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="ai-and-external-tools" class="level2" data-number="3.11">
 <h2 data-number="3.11" class="anchored" data-anchor-id="ai-and-external-tools"><span class="header-section-number">3.11</span> AI and external tools</h2>
-<p>Artificial intelligence and cloud-based tools are increasingly part of research workflows. A researcher might use a large language model to debug R code, explain an error message, improve documentation, or generate a first draft of a plotting function. These uses may involve no participant information at all. The situation changes when actual research data are uploaded to an external service. Imagine copying rows from an EMA dataset into an AI assistant to ask why a model fails. Those rows may contain timestamps, participant codes, free-text responses, health information, or other personal data.</p>
+<p>Artificial intelligence and cloud-based tools are increasingly part of research workflows. A researcher might use a large language model to debug R code, explain an error message, improve documentation, or generate a first draft of a plotting function (see the chapter on <a href="https://intro-to-behds.github.io/behdsbook-part-1/productivity/ai-assisted-coding.html">AI-assisted coding</a> in Part 1). These uses may involve no participant information at all. The situation changes when actual research data are uploaded to an external service. Imagine copying rows from the mood study into an AI assistant to ask why a model fails: a participant code, a timestamp, a journal entry such as <em>“I can’t go on like this”</em>, and a pair of GPS coordinates. Those rows contain health-related information and location data about a real person.</p>
 <p>Even if the researcher’s goal is simply to obtain programming help, the action may disclose information to an external provider. A useful distinction is therefore between: <strong>using AI to work on a research problem</strong> and <strong>giving an AI system access to research data</strong>. Before entering non-public participant data into an external AI, cloud, transcription, translation, or analysis service, researchers should know whether the service is approved for that type of information and understand relevant institutional rules and data-processing arrangements.</p>
-<p>Questions include where the data are processed, how long they are retained, who can access them, and whether they may be reused for other purposes. When the real data are not necessary, a simple alternative is to create a <strong>synthetic or minimal example</strong> that reproduces the structure of the programming problem without exposing participant information. The 2025 AIP ethical framework explicitly notes emerging ethical questions related to generative AI and internet-mediated research, reflecting how closely modern research ethics is connected to digital research practice.</p>
+<p>Questions include where the data are processed, how long they are retained, who can access them, and whether they may be reused for other purposes. When the real data are not necessary, a simple alternative is to create a <strong>synthetic or minimal example</strong> that reproduces the structure of the programming problem without exposing participant information. <!-- added from slides (08-03 "A minimal example instead of real data") --> For instance, if computing a mean mood score unexpectedly returns <code>NA</code>, three invented rows are enough to reproduce the problem:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fake <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">id =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>),</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">mood =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="cn">NA</span>, <span class="st">"5"</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(fake<span class="sc">$</span>mood, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in mean.default(fake$mood, na.rm = TRUE): argument is not</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; numeric or logical: returning NA</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Same structure, same problem, no people. (The bug: one value typed as text, <code>"5"</code>, turns the whole column into text, and <code>mean()</code> cannot average text.) The 2025 AIP ethical framework explicitly notes emerging ethical questions related to generative AI and internet-mediated research, reflecting how closely modern research ethics is connected to digital research practice.</p>
 <section id="a-final-perspective" class="level3">
 <h3 class="anchored" data-anchor-id="a-final-perspective">A final perspective</h3>
-<p>Behavioural data science can make human behaviour visible at an extraordinary level of detail. A smartwatch can turn everyday physiological activity into thousands of measurements. An EMA app can capture emotions close to the moment in which they occur. A smartphone can reveal behavioural patterns that would be difficult to reconstruct using traditional laboratory methods. Richer data, however, are not ethically neutral data. Every dataset represents decisions about what was measured, from whom, under what conditions, and with what expectations about future use.</p>
+<p>Behavioural data science can make human behaviour visible at an extraordinary level of detail. A smartwatch can turn everyday physiological activity into thousands of measurements. An app can capture mood close to the moment in which it is felt, and a journal can record what a person would not say aloud. A phone can reveal where someone goes and how their routine changes, patterns that would be difficult to reconstruct using traditional laboratory methods. Richer data, however, are not ethically neutral data. Every dataset represents decisions about what was measured, from whom, under what conditions, and with what expectations about future use.</p>
 <p>Responsible research therefore requires us to think about participants not only when recruiting them, but throughout the entire life cycle of their data. A useful final question is:</p>
 <blockquote class="blockquote">
 <p><strong>If these were my data, would I understand what was being collected, why it was needed, who could access it, and what might happen to it afterwards?</strong></p>
@@ -511,6 +777,10 @@ ul.task-list li input[type="checkbox"] {
 <li id="fn2"><p>Regulation (EU) 2016/679 (General Data Protection Regulation): <a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" class="uri">https://eur-lex.europa.eu/eli/reg/2016/679/oj</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>Associazione Italiana di Psicologia, <em>Considerazioni etiche nella ricerca con persone e gruppi in condizioni di vulnerabilità</em>, 2025: <a href="https://aipass.org/considerazioni-etiche-nella-ricerca-con-persone-e-gruppi-in-condizioni-di-vunerabilita/" class="uri">https://aipass.org/considerazioni-etiche-nella-ricerca-con-persone-e-gruppi-in-condizioni-di-vunerabilita/</a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>Consiglio Nazionale Ordine Psicologi, <em>Codice Deontologico degli Psicologi Italiani</em>, Article 9: <a href="https://www.psy.it/la-professione-psicologica/codice-deontologico-degli-psicologi-italiani/codice-deontologico-vigente/" class="uri">https://www.psy.it/la-professione-psicologica/codice-deontologico-degli-psicologi-italiani/codice-deontologico-vigente/</a>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Wilkinson, M. D. et al.&nbsp;(2016). The FAIR Guiding Principles for scientific data management and stewardship. <em>Scientific Data</em>, 3, 160018. <a href="https://doi.org/10.1038/sdata.2016.18" class="uri">https://doi.org/10.1038/sdata.2016.18</a>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Open Science Collaboration (2015). Estimating the reproducibility of psychological science. <em>Science</em>, 349(6251), aac4716. <a href="https://doi.org/10.1126/science.aac4716" class="uri">https://doi.org/10.1126/science.aac4716</a>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Simmons, J. P., Nelson, L. D., &amp; Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. <em>Psychological Science</em>, 22(11), 1359–1366. <a href="https://doi.org/10.1177/0956797611417632" class="uri">https://doi.org/10.1177/0956797611417632</a>.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Kerr, N. L. (1998). HARKing: Hypothesizing after the results are known. <em>Personality and Social Psychology Review</em>, 2(3), 196–217. <a href="https://doi.org/10.1207/s15327957pspr0203_4" class="uri">https://doi.org/10.1207/s15327957pspr0203_4</a>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
