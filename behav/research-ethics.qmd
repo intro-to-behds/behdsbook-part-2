@@ -204,49 +204,9 @@ This is not anonymisation: the first row is still the 34-year-old paediatric nur
 
 ## GDPR principles and the data life cycle
 
-Data protection does not concern only the moment at which data are collected. It applies across the **data life cycle**. The GDPR establishes principles including lawfulness, fairness and transparency, purpose limitation, data minimisation, accuracy, storage limitation, integrity and confidentiality, and accountability. For an introductory behavioural data science course, the detailed legal interpretation of each principle is beyond our scope. Their practical implications, however, are directly relevant to research (@fig-life-cycle). **Purpose limitation** means being clear about why personal data are collected and how they are intended to be used.
+Data protection does not concern only the moment at which data are collected. It applies across the **data life cycle**. The GDPR establishes principles including lawfulness, fairness and transparency, purpose limitation, data minimisation, accuracy, storage limitation, integrity and confidentiality, and accountability. For an introductory behavioural data science course, the detailed legal interpretation of each principle is beyond our scope. Their practical implications, however, are directly relevant to research. **Purpose limitation** means being clear about why personal data are collected and how they are intended to be used.
 
 **Data minimisation** means collecting data that are adequate, relevant, and limited to what is necessary for that purpose. **Storage limitation** means that identifiable or pseudonymised personal data should not simply be retained indefinitely without an appropriate rationale. **Integrity and confidentiality** require reasonable protection against unauthorised access, loss, or disclosure. For research, appropriate technical and organisational safeguards may include pseudonymisation, encryption, access controls, secure institutional storage, and clear rules about who can access which files.
-
-<!-- added from slides (08-03 "GDPR across the data life cycle") -->
-```{r}
-#| label: fig-life-cycle
-#| echo: false
-#| fig-cap: "The data life cycle of a study, with the GDPR principles that matter most at each stage. Data protection is planned at the start (privacy by design) and applies until the data are deleted or shared."
-#| fig-width: 7
-#| fig-height: 4.2
-
-stages <- c("plan", "collect", "store, transmit", "access", "analyse",
-            "keep or delete", "share")
-k <- length(stages)
-ang <- pi / 2 - 2 * pi * (seq_len(k) - 1) / k
-nodes <- tibble(stage = stages, x = 3 * cos(ang), y = 2.1 * sin(ang))
-arrows <- tibble(x0 = nodes$x, y0 = nodes$y,
-                 x1 = nodes$x[c(2:k, 1)], y1 = nodes$y[c(2:k, 1)]) |>
-  mutate(xs = x0 + 0.3 * (x1 - x0), ys = y0 + 0.3 * (y1 - y0),
-         xe = x0 + 0.7 * (x1 - x0), ye = y0 + 0.7 * (y1 - y0))
-principles <- tibble(
-  stage = c("plan", "collect", "store, transmit", "keep or delete"),
-  label = c("purpose limitation", "data minimisation",
-            "integrity and\nconfidentiality", "storage limitation")) |>
-  left_join(nodes, by = "stage") |>
-  mutate(lx = x * 1.33, ly = y * 1.33 + ifelse(stage == "plan", 0.1, 0),
-         hj = case_when(x > 0.5 ~ 0, x < -0.5 ~ 1, .default = 0.5))
-
-ggplot() +
-  geom_segment(data = arrows, aes(x = xs, y = ys, xend = xe, yend = ye),
-               colour = "grey55", linewidth = 0.6,
-               arrow = arrow(length = unit(0.14, "cm"), type = "closed")) +
-  geom_label(data = nodes, aes(x, y, label = stage), size = 3.4,
-             fill = "grey95") +
-  geom_text(data = principles, aes(lx, ly, label = label, hjust = hj),
-            size = 3.2, fontface = "italic", colour = navy,
-            lineheight = 0.9) +
-  annotate("text", x = 0, y = 0, label = "Privacy\nby design",
-           fontface = "bold", colour = navy, size = 4.2, lineheight = 0.9) +
-  coord_cartesian(xlim = c(-6, 6), ylim = c(-2.6, 3.0), expand = FALSE) +
-  theme_void()
-```
 
 Consider our mood study. Before collection, researchers decide which sensors are actually necessary: the daily distance, for example, rather than the full GPS trace. During collection, data are transmitted and stored using appropriate safeguards. Identifying information is separated where feasible. Access is restricted. At the end of the project, researchers decide what needs to be retained, in what form, and for how long. Data management is therefore part of study design, not merely housekeeping performed after the analysis.
 
@@ -282,7 +242,7 @@ The best time to think about data sharing is **before data collection begins**. 
 <!-- added from slides (08-03 "Data Management Plan"); links checked 14 Nov 2026 -->
 ### Data management plan
 
-A **data management plan** (DMP) is a document, written before a study starts, that describes how data will be handled in every phase of the life cycle: what will be collected and in which formats, where it will be stored and backed up, who can access it, how long it will be kept, and what will be shared and how. Many funders, including the European Commission's Horizon Europe programme, require one. It is useful even when nobody asks for it, because writing it forces the decisions discussed in this chapter to be made in advance. Some starting points:
+A **data management plan** (DMP) is a document, written before a study starts, that describes how data will be handled at every stage of the study: what will be collected and in which formats, where it will be stored and backed up, who can access it, how long it will be kept, and what will be shared and how. Many funders, including the European Commission's Horizon Europe programme, require one. It is useful even when nobody asks for it, because writing it forces the decisions discussed in this chapter to be made in advance. Some starting points:
 
 - [DMPonline](https://dmponline.dcc.ac.uk) (Digital Curation Centre) and [Argos](https://argos.openaire.eu) (OpenAIRE) provide templates and guidance.
 - Science Europe's [*Practical Guide to the International Alignment of Research Data Management*](https://scienceeurope.org/our-resources/practical-guide-to-the-international-alignment-of-research-data-management/) describes what a DMP should cover.

@@ -605,23 +605,8 @@ Figure&nbsp;3.2: Pseudonymisation and anonymisation. Left: participants are repl
 </section>
 <section id="gdpr-principles-and-the-data-life-cycle" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="gdpr-principles-and-the-data-life-cycle"><span class="header-section-number">3.7</span> GDPR principles and the data life cycle</h2>
-<p>Data protection does not concern only the moment at which data are collected. It applies across the <strong>data life cycle</strong>. The GDPR establishes principles including lawfulness, fairness and transparency, purpose limitation, data minimisation, accuracy, storage limitation, integrity and confidentiality, and accountability. For an introductory behavioural data science course, the detailed legal interpretation of each principle is beyond our scope. Their practical implications, however, are directly relevant to research (<a href="#fig-life-cycle" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>). <strong>Purpose limitation</strong> means being clear about why personal data are collected and how they are intended to be used.</p>
+<p>Data protection does not concern only the moment at which data are collected. It applies across the <strong>data life cycle</strong>. The GDPR establishes principles including lawfulness, fairness and transparency, purpose limitation, data minimisation, accuracy, storage limitation, integrity and confidentiality, and accountability. For an introductory behavioural data science course, the detailed legal interpretation of each principle is beyond our scope. Their practical implications, however, are directly relevant to research. <strong>Purpose limitation</strong> means being clear about why personal data are collected and how they are intended to be used.</p>
 <p><strong>Data minimisation</strong> means collecting data that are adequate, relevant, and limited to what is necessary for that purpose. <strong>Storage limitation</strong> means that identifiable or pseudonymised personal data should not simply be retained indefinitely without an appropriate rationale. <strong>Integrity and confidentiality</strong> require reasonable protection against unauthorised access, loss, or disclosure. For research, appropriate technical and organisational safeguards may include pseudonymisation, encryption, access controls, secure institutional storage, and clear rules about who can access which files.</p>
-<!-- added from slides (08-03 "GDPR across the data life cycle") -->
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-life-cycle" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-life-cycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="research-ethics_files/figure-html/fig-life-cycle-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-life-cycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.3: The data life cycle of a study, with the GDPR principles that matter most at each stage. Data protection is planned at the start (privacy by design) and applies until the data are deleted or shared.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
 <p>Consider our mood study. Before collection, researchers decide which sensors are actually necessary: the daily distance, for example, rather than the full GPS trace. During collection, data are transmitted and stored using appropriate safeguards. Identifying information is separated where feasible. Access is restricted. At the end of the project, researchers decide what needs to be retained, in what form, and for how long. Data management is therefore part of study design, not merely housekeeping performed after the analysis.</p>
 <!-- added from slides (08-03 "Privacy by design, not anonymisation afterwards") -->
 <section id="privacy-by-design-and-by-default" class="level3">
@@ -654,7 +639,7 @@ Figure&nbsp;3.3: The data life cycle of a study, with the GDPR principles that m
 <!-- added from slides (08-03 "Data Management Plan"); links checked 14 Nov 2026 -->
 <section id="data-management-plan" class="level3">
 <h3 class="anchored" data-anchor-id="data-management-plan">Data management plan</h3>
-<p>A <strong>data management plan</strong> (DMP) is a document, written before a study starts, that describes how data will be handled in every phase of the life cycle: what will be collected and in which formats, where it will be stored and backed up, who can access it, how long it will be kept, and what will be shared and how. Many funders, including the European Commission’s Horizon Europe programme, require one. It is useful even when nobody asks for it, because writing it forces the decisions discussed in this chapter to be made in advance. Some starting points:</p>
+<p>A <strong>data management plan</strong> (DMP) is a document, written before a study starts, that describes how data will be handled at every stage of the study: what will be collected and in which formats, where it will be stored and backed up, who can access it, how long it will be kept, and what will be shared and how. Many funders, including the European Commission’s Horizon Europe programme, require one. It is useful even when nobody asks for it, because writing it forces the decisions discussed in this chapter to be made in advance. Some starting points:</p>
 <ul>
 <li><a href="https://dmponline.dcc.ac.uk">DMPonline</a> (Digital Curation Centre) and <a href="https://argos.openaire.eu">Argos</a> (OpenAIRE) provide templates and guidance.</li>
 <li>Science Europe’s <a href="https://scienceeurope.org/our-resources/practical-guide-to-the-international-alignment-of-research-data-management/"><em>Practical Guide to the International Alignment of Research Data Management</em></a> describes what a DMP should cover.</li>
@@ -668,7 +653,7 @@ Figure&nbsp;3.3: The data life cycle of a study, with the GDPR principles that m
 <!-- added at instructor request (14 Nov 2026): replication crisis and Open Science; OSC 2015 figures checked against the PubMed abstract -->
 <section id="sec-replication-crisis" class="level3">
 <h3 class="anchored" data-anchor-id="sec-replication-crisis">The replication crisis and Open Science</h3>
-<p>In the early 2010s psychology went through what is now called the <strong>replication crisis</strong>. A <em>replication</em> asks the same question with new data: if a finding is real, a careful repetition of the study should find it again. A related idea, <em>reproducibility</em>, asks whether the same data and the same code give the same result. The largest test came in 2015, when the Open Science Collaboration repeated 100 studies published in three leading psychology journals. Ninety-seven percent of the original studies had reported statistically significant results; only thirty-six percent of the replications did, and the effects found in the replications were on average half the size of the original ones (<a href="#fig-osc" class="quarto-xref">Figure&nbsp;<span>3.4</span></a>).<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Similar problems have since been documented in other fields, including medicine and economics.</p>
+<p>In the early 2010s psychology went through what is now called the <strong>replication crisis</strong>. A <em>replication</em> asks the same question with new data: if a finding is real, a careful repetition of the study should find it again. A related idea, <em>reproducibility</em>, asks whether the same data and the same code give the same result. The largest test came in 2015, when the Open Science Collaboration repeated 100 studies published in three leading psychology journals. Ninety-seven percent of the original studies had reported statistically significant results; only thirty-six percent of the replications did, and the effects found in the replications were on average half the size of the original ones (<a href="#fig-osc" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>).<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Similar problems have since been documented in other fields, including medicine and economics.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-osc" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -677,7 +662,7 @@ Figure&nbsp;3.3: The data life cycle of a study, with the GDPR principles that m
 <img src="research-ethics_files/figure-html/fig-osc-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-osc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.4: Percentage of studies with a statistically significant result, in 100 original psychology studies and in their replications. Data from Open Science Collaboration (2015).
+Figure&nbsp;3.3: Percentage of studies with a statistically significant result, in 100 original psychology studies and in their replications. Data from Open Science Collaboration (2015).
 </figcaption>
 </figure>
 </div>
@@ -717,7 +702,7 @@ Figure&nbsp;3.4: Percentage of studies with a statistically significant result, 
 <h2 data-number="3.10" class="anchored" data-anchor-id="bias-fairness-and-the-consequences-of-analysis"><span class="header-section-number">3.10</span> Bias, fairness, and the consequences of analysis</h2>
 <p>Suppose we develop a machine-learning model that predicts periods of high stress from smartphone and smartwatch data. The model performs well overall. Does this mean it works equally well for everyone? Not necessarily. If most participants in the training dataset are young adults using recent devices, the model may perform worse in older participants, people with different patterns of technology use, or users of devices with different sensor characteristics. A model can therefore achieve good <strong>average performance</strong> while performing poorly for particular groups.</p>
 <!-- added from slides (08-04 "Accurate on average, but for whom?"): simulated numbers -->
-<p><a href="#fig-accuracy" class="quarto-xref">Figure&nbsp;<span>3.5</span></a> shows a simulated example. Reported as a single number, the model is 86% accurate, because most of the people it was tested on are young. Broken down by age group, it is 92% accurate for people aged 18 to 29 and 64% for people aged 65 and older. Reporting each group, and saying where the model fails, is part of reporting results honestly; reporting only the best-looking number hides a potential bias.</p>
+<p><a href="#fig-accuracy" class="quarto-xref">Figure&nbsp;<span>3.4</span></a> shows a simulated example. Reported as a single number, the model is 86% accurate, because most of the people it was tested on are young. Broken down by age group, it is 92% accurate for people aged 18 to 29 and 64% for people aged 65 and older. Reporting each group, and saying where the model fails, is part of reporting results honestly; reporting only the best-looking number hides a potential bias.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-accuracy" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -726,7 +711,7 @@ Figure&nbsp;3.4: Percentage of studies with a statistically significant result, 
 <img src="research-ethics_files/figure-html/fig-accuracy-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-accuracy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.5: Accuracy of a stress-prediction model, overall and by age group (simulated data). The overall figure hides the much lower accuracy for older users.
+Figure&nbsp;3.4: Accuracy of a stress-prediction model, overall and by age group (simulated data). The overall figure hides the much lower accuracy for older users.
 </figcaption>
 </figure>
 </div>
