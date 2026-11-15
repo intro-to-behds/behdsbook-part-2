@@ -79,7 +79,7 @@ book:
         - basic-stats/chi-square.qmd
         - basic-stats/effect-size.qmd
         - basic-stats/power.qmd
-        # [hidden until reviewed] - basic-stats/missing-data.qmd
+        - basic-stats/missing-data.qmd
 
     # [hidden until reflavoured]
     # - part: linear-models/intro-to-linear-models.qmd

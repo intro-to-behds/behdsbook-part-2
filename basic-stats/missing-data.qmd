@@ -11,6 +11,7 @@ Almost every behavioural dataset has holes. Participants skip questionnaire item
 `daily_mood_ratings` contains 1,000 daily mood ratings on a 1–7 scale, collected with an app. On some days, participants did not respond:
 
 ```{r, message=FALSE, warning=FALSE}
+#| cache: false
 library(tidyverse)
 library(behdslabs)
 sum(is.na(daily_mood_ratings))
@@ -221,9 +222,9 @@ Listwise deletion is simple, every analysis uses the same cases, and, when value
 0.95^10
 ```
 
-so about `r round(100*(1 - 0.95^10))`% of the participants are dropped, even though 95% of all the answers were given (@fig-listwise). Fewer participants means wider confidence intervals and less power (@sec-power). And if values are not missing completely at random, the participants who remain are no longer representative.
+so about `r round(100*(1 - 0.95^10))`% of the participants are excluded, even though 95% of all the answers were given (@fig-listwise). Fewer participants means wider confidence intervals and less power (@sec-power). And if values are not missing completely at random, the participants who remain are no longer representative.
 
-<!-- from deck 08-05, slide "95% answered, 40% dropped" -->
+<!-- from deck 08-05, slide "95% answered, 40% excluded" -->
 ```{r}
 #| label: fig-listwise
 #| echo: false
@@ -235,15 +236,15 @@ set.seed(10)
 grid <- expand_grid(participant = 1:30, item = 1:10) |>
   mutate(missing = runif(n()) < 0.05) |>
   group_by(participant) |>
-  mutate(dropped = any(missing)) |>
+  mutate(excluded = any(missing)) |>
   ungroup() |>
   mutate(status = case_when(missing ~ "missing",
-                            dropped ~ "dropped",
+                            excluded ~ "excluded",
                             .default = "kept"))
 
 ggplot(grid, aes(item, participant, fill = status)) +
   geom_tile(colour = "white", linewidth = 0.4) +
-  scale_fill_manual(values = c(kept = navy, dropped = "grey85",
+  scale_fill_manual(values = c(kept = navy, excluded = "grey85",
                                missing = "grey45")) +
   scale_x_continuous(breaks = 1:10) +
   labs(x = "item", y = "participant", fill = NULL) +
@@ -275,8 +276,9 @@ Replacing missing values with the median instead of the mean is also common, esp
 ```{r}
 #| label: fig-imputation
 #| echo: false
+#| warning: false
 #| fig-cap: "The simulated mood ratings with about 30% missing completely at random: the observed values only, after mean imputation and after median imputation. Both imputations pile the missing values onto a single number and shrink the standard deviation."
-#| fig-width: 7
+#| fig-width: 7.5
 #| fig-height: 2.6
 
 mood_med <- ifelse(is.na(mood_mcar), median(mood_mcar, na.rm = TRUE), mood_mcar)
@@ -296,6 +298,7 @@ ggplot(imp, aes(value)) +
   labs(x = "mood (simulated)", y = "count") +
   theme_minimal(base_size = 12) +
   theme(panel.grid.minor = element_blank(),
+        panel.spacing = unit(2, "lines"),
         strip.text = element_text(face = "bold"))
 ```
 
