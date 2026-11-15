@@ -1,0 +1,440 @@
+# Missing Data {#sec-missing-data}
+
+_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+
+<!-- 15 Nov 2026 (Claude): updated from deck 08-05 (diary tile plot, mechanisms figure, the four strategies, median imputation, multiple-imputation diagram, migraine example, reporting example); moved from behav/ to basic-stats/. Still a draft, hidden until reviewed. -->
+
+Almost every behavioural dataset has holes. Participants skip questionnaire items, forget to fill in a diary on some days, fail to respond on some trials, or drop out of a study halfway through. In R, a missing value is recorded as `NA`, "not available". It is tempting to treat missing values as a nuisance that a function argument can make disappear. This chapter argues that they are data about the data: *who* is missing, and *why*, can change what a study concludes.
+
+## Counting what is missing
+
+`daily_mood_ratings` contains 1,000 daily mood ratings on a 1–7 scale, collected with an app. On some days, participants did not respond:
+
+```{r, message=FALSE, warning=FALSE}
+#| cache: false
+library(tidyverse)
+library(behdslabs)
+sum(is.na(daily_mood_ratings))
+mean(is.na(daily_mood_ratings))
+```
+
+```{r}
+#| echo: false
+navy <- "#001238"
+```
+
+`is.na()` returns `TRUE` for each missing value, so `sum()` counts them and `mean()` gives their proportion: `r round(100*mean(is.na(daily_mood_ratings)))`% of the days have no rating. Most summary functions return `NA` as soon as one value is missing, unless we tell them to remove the missing values first:
+
+```{r}
+mean(daily_mood_ratings)
+mean(daily_mood_ratings, na.rm = TRUE)
+```
+
+The answer `NA` is R being honest: the average of a set of numbers that includes unknown numbers is unknown. `na.rm = TRUE` gives the average of the days *that were observed*. Whether that is a good estimate of the participants' typical mood is a different question, and it is the question of this chapter.
+
+With a data frame, we usually want to know how much is missing in each column and in each row. The following data are simulated: a small diary study in which 6 participants rated their mood and their stress for 5 days.
+
+```{r}
+set.seed(4)
+diary <- expand_grid(participant = sprintf("P%d", 1:6), day = 1:5) |>
+  mutate(mood = sample(1:7, n(), replace = TRUE),
+         stress = sample(1:7, n(), replace = TRUE))
+diary$mood[c(3, 8, 9, 10, 22)] <- NA
+diary$stress[c(10, 17, 22)] <- NA
+
+colSums(is.na(diary))
+diary |>
+  group_by(participant) |>
+  summarize(missing_mood = sum(is.na(mood)), missing_stress = sum(is.na(stress)))
+```
+
+Missing values are rarely spread evenly. Here, participant P2 accounts for most of the missing mood ratings (@fig-diary-holes). Counting missing values by participant, by item or by day is the first step of any analysis: it tells us where the holes are before we decide what to do about them.
+
+<!-- from deck 08-05, slides "Almost every dataset has holes" and "Count first" -->
+```{r}
+#| label: fig-diary-holes
+#| echo: false
+#| fig-cap: "The simulated diary: 6 participants, 5 days, two variables. Missing values are the dark cells. Participant P2 (outlined) accounts for most of the missing mood ratings."
+#| fig-width: 7
+#| fig-height: 2.8
+
+diary_long <- diary |>
+  pivot_longer(c(mood, stress), names_to = "variable") |>
+  mutate(participant = fct_rev(participant), missing = is.na(value))
+
+ggplot(diary_long, aes(day, participant)) +
+  geom_tile(aes(fill = missing), colour = "white", linewidth = 1) +
+  geom_text(aes(label = ifelse(missing, "NA", value), colour = missing),
+            size = 3.6, show.legend = FALSE) +
+  annotate("rect", xmin = 0.5, xmax = 5.5, ymin = 4.5, ymax = 5.5,
+           fill = NA, colour = navy, linewidth = 1.1) +
+  facet_wrap(~variable) +
+  scale_fill_manual(values = c(`FALSE` = "grey90", `TRUE` = navy),
+                    guide = "none") +
+  scale_colour_manual(values = c(`FALSE` = "grey30", `TRUE` = "white")) +
+  labs(x = "day", y = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid = element_blank(),
+        strip.text = element_text(face = "bold"))
+```
+
+## Why the data are missing matters
+
+Statisticians distinguish three situations, which we describe in plain words:
+
+- **Missing completely at random.** Whether a value is missing has nothing to do with the participant or with the value itself: the app crashed on random days, a page of a paper questionnaire was lost. The observed values are then a random sample of all the values.
+- **Missing at random.** Whether a value is missing depends on something else we have *observed*: for example, younger participants skip more days, and we know each participant's age. Within each age group, the observed values are still representative.
+- **Missing not at random.** Whether a value is missing depends on the value itself: participants on their worst days do not open the app at all. The observed values are then systematically different from the missing ones.
+
+The names are confusing (the second case is not random in the everyday sense), but the idea is simple. To see why it matters, we simulate the true mood of 1,000 participants on a 1–7 scale (higher is better) and then remove ratings in two different ways: completely at random, and more often on bad days:
+
+```{r}
+set.seed(2026)
+n <- 1000
+mood <- pmin(pmax(round(rnorm(n, 4, 1.5)), 1), 7)
+
+# completely at random: every rating has the same 30% chance of being missing
+mood_mcar <- ifelse(runif(n) < 0.3, NA, mood)
+
+# not at random: the worse the mood, the higher the chance of being missing
+p_missing <- c(0.70, 0.55, 0.40, 0.25, 0.15, 0.10, 0.05)[mood]
+mood_mnar <- ifelse(runif(n) < p_missing, NA, mood)
+
+c(true = mean(mood),
+  mcar = mean(mood_mcar, na.rm = TRUE),
+  mnar = mean(mood_mnar, na.rm = TRUE))
+```
+
+```{r, echo=FALSE}
+bias_mnar <- mean(mood_mnar, na.rm = TRUE) - mean(mood)
+```
+
+In both cases, a similar share of ratings is missing (`r round(100*mean(is.na(mood_mcar)))`% and `r round(100*mean(is.na(mood_mnar)))`%). When ratings are missing completely at random, the average of the observed ratings is very close to the true average. When the worst days are the ones that go missing, the observed average overestimates mood by about `r round(bias_mnar, 1)` points (@fig-same-missing), and no amount of extra data fixes it: a larger sample gives a more precise estimate of the wrong value, as we saw for biased surveys in @sec-estimates-and-ci.
+
+<!-- from deck 08-05, slide "Same amount missing, different answers" -->
+```{r}
+#| label: fig-same-missing
+#| echo: false
+#| fig-cap: "Average mood in the simulation: the true average of all 1,000 ratings, and the average of the observed ratings when about the same share is missing completely at random or not at random. Only the first kind of missingness leaves the average right."
+#| fig-width: 6.5
+#| fig-height: 2.4
+
+means <- tibble(
+  case = c("true (all 1000)",
+           sprintf("completely at random (%d%% missing)",
+                   round(100 * mean(is.na(mood_mcar)))),
+           sprintf("not at random (%d%% missing)",
+                   round(100 * mean(is.na(mood_mnar))))),
+  value = c(mean(mood), mean(mood_mcar, na.rm = TRUE),
+            mean(mood_mnar, na.rm = TRUE))) |>
+  mutate(case = fct_rev(fct_inorder(case)))
+
+ggplot(means, aes(value, case)) +
+  geom_vline(xintercept = mean(mood), colour = "grey60", linetype = 2) +
+  geom_point(size = 4, colour = navy) +
+  geom_text(aes(label = sprintf("%.2f", value)), vjust = -1.1, size = 3.8) +
+  scale_x_continuous(limits = c(3.7, 4.9)) +
+  labs(x = "average mood (1-7)", y = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.minor = element_blank())
+```
+
+:::{.callout-warning}
+The data alone cannot tell us which situation we are in. The missing values are, by definition, not there to compare with the observed ones. Deciding whether missingness is plausibly related to the outcome requires knowledge of the study: how data were collected, who dropped out, and why. This is a question about the design, not about the code.
+:::
+
+<!-- from deck 08-05, slide "Four ways to deal with missing data" (instructor request, 15 Nov 2026) -->
+## Four ways to deal with missing data
+
+Once we know where the holes are, and have thought about why they are there, we must decide what to do with them. There are four basic strategies (@fig-four-ways): ignore the missing values in each analysis, remove the cases (rows) that have them, remove the variables (columns) that have them, or fill them in. Each has its advantages and its costs, and none of them fixes data that are missing not at random.
+
+```{r}
+#| label: fig-four-ways
+#| echo: false
+#| fig-cap: "Four ways to deal with missing data, on a small table of 4 rows (cases) and 3 columns (variables). Dark cells are missing values. Ignoring them: each analysis skips the missing value. Removing the case: the whole row goes. Removing the variable: the whole column goes. Imputing: the missing value is replaced with a made-up one."
+#| fig-width: 7
+#| fig-height: 4.4
+
+strategies <- c("1. Ignore them\n(na.rm = TRUE)",
+                "2. Remove the case\n(drop_na())",
+                "3. Remove the variable\n(select(-x))",
+                "4. Impute\n(mean, median, mice)")
+cells <- expand_grid(strategy = strategies, col = 1:3, row = 1:4) |>
+  mutate(state = case_when(
+    strategy == strategies[1] & col == 2 & row == 3 ~ "skipped",
+    strategy == strategies[2] & col == 2 & row == 3 ~ "missing",
+    strategy == strategies[2] & row == 3 ~ "removed",
+    strategy == strategies[3] & col == 3 & row %in% c(2, 4) ~ "missing",
+    strategy == strategies[3] & col == 3 ~ "removed",
+    strategy == strategies[4] & col == 2 & row == 3 ~ "imputed",
+    .default = "kept"),
+    strategy = factor(strategy, levels = strategies))
+strikes <- tibble(strategy = factor(strategies[2:3], levels = strategies),
+                  x = c(0.3, 3), xend = c(3.7, 3), y = c(3, 0.3), yend = c(3, 4.7))
+
+ggplot(cells, aes(col, row)) +
+  geom_tile(aes(fill = state, linetype = state == "skipped"),
+            colour = "white", linewidth = 1.2, width = 0.95, height = 0.95,
+            show.legend = FALSE) +
+  geom_tile(data = filter(cells, state == "skipped"), fill = NA,
+            colour = navy, linetype = "dashed", linewidth = 0.7,
+            width = 0.8, height = 0.8) +
+  geom_text(data = filter(cells, state == "imputed"), label = "4",
+            colour = navy, fontface = "bold", size = 4) +
+  geom_segment(data = strikes, aes(x = x, xend = xend, y = y, yend = yend),
+               colour = navy, linewidth = 1.2) +
+  facet_wrap(~strategy, ncol = 2) +
+  scale_fill_manual(values = c(kept = "grey70", missing = navy,
+                               removed = "grey93", skipped = "white",
+                               imputed = "#B3B8C3")) +
+  coord_fixed(xlim = c(-1, 5), ylim = c(0.2, 4.8)) +
+  theme_void(base_size = 12) +
+  theme(strip.text = element_text(face = "bold", margin = margin(4, 0, 6, 0)),
+        panel.spacing = unit(1.2, "lines"))
+```
+
+### Ignore them in each analysis
+
+The simplest strategy is the one we used at the start of the chapter: each summary or test simply skips the missing values (`na.rm = TRUE`, or the default behaviour of many functions). It uses every value that was observed. But each analysis then rests on a different subset of the data:
+
+```{r}
+diary |>
+  summarize(mean_mood = mean(mood, na.rm = TRUE),
+            n_mood = sum(!is.na(mood)),
+            mean_stress = mean(stress, na.rm = TRUE),
+            n_stress = sum(!is.na(stress)))
+```
+
+The average mood and the average stress are based on different days, and partly on different people, so they are not strictly comparable. And, as for every strategy, the averages are unbiased only if the values are missing completely at random.
+
+### Remove the case: listwise deletion
+
+The most common way of dealing with missing values is to analyse only the rows with no missing values in the variables of interest. This is called *listwise deletion* or *complete-case analysis*, and it is what many R functions do by default. With the tidyverse, `drop_na()` removes every row that has at least one `NA`:
+
+```{r}
+diary |> drop_na() |> nrow()
+nrow(diary)
+```
+
+Listwise deletion is simple, every analysis uses the same cases, and, when values are missing completely at random, it does not bias the estimates. But it can throw away much more data than we expect. Suppose a questionnaire has 10 items and each participant skips each item with probability 5%, independently. The proportion of participants with all 10 items answered is only
+
+```{r}
+0.95^10
+```
+
+so about `r round(100*(1 - 0.95^10))`% of the participants are excluded, even though 95% of all the answers were given (@fig-listwise). Fewer participants means wider confidence intervals and less power (@sec-power). And if values are not missing completely at random, the participants who remain are no longer representative.
+
+<!-- from deck 08-05, slide "95% answered, 40% excluded" -->
+```{r}
+#| label: fig-listwise
+#| echo: false
+#| fig-cap: "Thirty simulated participants answering 10 items, each item skipped with probability 5%. Listwise deletion drops every participant with at least one missing answer (light grey rows): a few holes remove a large share of the sample."
+#| fig-width: 5.5
+#| fig-height: 4
+
+set.seed(10)
+grid <- expand_grid(participant = 1:30, item = 1:10) |>
+  mutate(missing = runif(n()) < 0.05) |>
+  group_by(participant) |>
+  mutate(excluded = any(missing)) |>
+  ungroup() |>
+  mutate(status = case_when(missing ~ "missing",
+                            excluded ~ "excluded",
+                            .default = "kept"))
+
+ggplot(grid, aes(item, participant, fill = status)) +
+  geom_tile(colour = "white", linewidth = 0.4) +
+  scale_fill_manual(values = c(kept = navy, excluded = "grey85",
+                               missing = "grey45")) +
+  scale_x_continuous(breaks = 1:10) +
+  labs(x = "item", y = "participant", fill = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid = element_blank(), legend.position = "bottom")
+```
+
+<!-- from deck 08-05, slide "Four ways to deal with missing data" -->
+### Remove the variable
+
+Sometimes the holes are concentrated in one variable: an optional question that most participants skipped, or a sensor that failed for most of the study. Dropping that column (`select(-x)`) keeps every participant. It makes sense only when the variable is mostly missing and not essential to the question, because its information is lost with it. It is not an option when the variable with missing values is the outcome of the study.
+
+### Impute
+
+An alternative is to replace each missing value with a plausible value, a procedure called *imputation*. The simplest version replaces every missing value with the average of the observed values:
+
+```{r}
+mood_imputed <- ifelse(is.na(mood_mcar), mean(mood_mcar, na.rm = TRUE), mood_mcar)
+c(sd_true = sd(mood),
+  sd_observed = sd(mood_mcar, na.rm = TRUE),
+  sd_imputed = sd(mood_imputed))
+```
+
+The average does not change, but the standard deviation shrinks: `r round(100*mean(is.na(mood_mcar)))`% of the values are now identical, all sitting exactly at the mean. The data look more precise than they are, confidence intervals become too narrow, and correlations with other variables are weakened. Mean imputation also does nothing for data missing not at random: filling in the worst days with the average of the better ones keeps the bias.
+
+<!-- from deck 08-05, slide "Median imputation" (instructor request, 14 Nov 2026) -->
+Replacing missing values with the median instead of the mean is also common, especially with skewed variables such as reaction times, where the mean is pulled by the long tail. It has the same problems: a spike at the median, a smaller standard deviation and false precision (@fig-imputation).
+
+```{r}
+#| label: fig-imputation
+#| echo: false
+#| warning: false
+#| fig-cap: "The simulated mood ratings with about 30% missing completely at random: the observed values only, after mean imputation and after median imputation. Both imputations pile the missing values onto a single number and shrink the standard deviation."
+#| fig-width: 7.5
+#| fig-height: 2.6
+
+mood_med <- ifelse(is.na(mood_mcar), median(mood_mcar, na.rm = TRUE), mood_mcar)
+imp <- bind_rows(
+  tibble(version = sprintf("observed only\n(SD = %.2f)", sd(mood_mcar, na.rm = TRUE)),
+         value = mood_mcar[!is.na(mood_mcar)]),
+  tibble(version = sprintf("after mean imputation\n(SD = %.2f)", sd(mood_imputed)),
+         value = mood_imputed),
+  tibble(version = sprintf("after median imputation\n(SD = %.2f)", sd(mood_med)),
+         value = mood_med)) |>
+  mutate(version = fct_inorder(version))
+
+ggplot(imp, aes(value)) +
+  geom_bar(width = 0.2, fill = navy) +
+  facet_wrap(~version) +
+  scale_x_continuous(breaks = 1:7) +
+  labs(x = "mood (simulated)", y = "count") +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.minor = element_blank(),
+        panel.spacing = unit(2, "lines"),
+        strip.text = element_text(face = "bold"))
+```
+
+<!-- from deck 08-05, slide "Better methods, same assumption" (redrawn 15 Nov 2026) -->
+Better methods predict each missing value from the other variables and add the uncertainty of that prediction back into the analysis. The standard approach is *multiple imputation* (@fig-mice). Each missing value is filled in several times, each time with a different plausible value, which gives several completed datasets that agree on the observed values and differ on the imputed ones. The same analysis is run on each completed dataset, and the results are combined: the final estimate is their average, and its uncertainty includes how much the results differ from one completed dataset to the next, which is the uncertainty caused by not knowing the missing values. In R, multiple imputation is implemented in the **mice** package. These methods are beyond the scope of this book, but they rely on the same assumption as listwise deletion with covariates: that the values are missing at random given what we observed.
+
+```{r}
+#| label: fig-mice
+#| echo: false
+#| fig-cap: "Multiple imputation on a toy example. The missing value of P2 is filled in three times with different plausible values (3, 5, 4). Each completed dataset gives its own mean, and the combined result is their average, with a confidence interval widened by the spread between the three means."
+#| fig-width: 7
+#| fig-height: 3.3
+
+obs <- c(4, NA, 5, 3)
+imputed <- c(3, 5, 4)
+tables <- bind_rows(
+  tibble(x = 1, row = 4:1, value = as.character(obs),
+         type = ifelse(is.na(obs), "missing", "observed")),
+  map_dfr(1:3, \(k) tibble(x = 1.5 + 1.4 * k, row = 4:1,
+                           value = as.character(replace(obs, 2, imputed[k])),
+                           type = ifelse(is.na(obs), "imputed", "observed")))) |>
+  mutate(value = replace_na(value, "NA"))
+copy_means <- map_dbl(1:3, \(k) mean(replace(obs, 2, imputed[k])))
+heads <- tibble(x = c(1, 1.5 + 1.4 * (1:3)),
+                label = c("data with NA", paste("completed", 1:3)))
+
+ggplot(tables, aes(x, row)) +
+  annotate("rect", xmin = 2.35, xmax = 6.65, ymin = 0.45, ymax = 4.95,
+           fill = NA, colour = "grey60", linetype = "dashed") +
+  annotate("rect", xmin = 2.35, xmax = 6.65, ymin = -0.85, ymax = -0.15,
+           fill = NA, colour = "grey60", linetype = "dashed") +
+  geom_tile(aes(fill = type), colour = "white", width = 0.6, height = 0.9,
+            linewidth = 1, show.legend = FALSE) +
+  geom_text(aes(label = value, colour = type == "missing",
+                fontface = ifelse(type == "observed", "plain", "bold")),
+            size = 3.6, show.legend = FALSE) +
+  annotate("text", x = 0.45, y = 4:1, label = paste0("P", 1:4),
+           colour = "grey45", size = 3.4) +
+  geom_text(data = heads, aes(x, 5.35, label = label), inherit.aes = FALSE,
+            fontface = "bold", size = 3.4) +
+  annotate("text", x = 1.5 + 1.4 * (1:3), y = -0.5,
+           label = sprintf("mean = %.2f", copy_means), size = 3.4) +
+  annotate("segment", x = 1.4, xend = 2.3, y = 2.5, yend = 2.5,
+           colour = "grey45", linewidth = 0.6,
+           arrow = arrow(length = unit(0.15, "cm"), type = "closed")) +
+  annotate("segment", x = 6.7, xend = 7.25, y = -0.5, yend = -0.5,
+           colour = navy, linewidth = 0.7,
+           arrow = arrow(length = unit(0.15, "cm"), type = "closed")) +
+  annotate("label", x = 7.95, y = -0.5, size = 3.1, colour = navy,
+           label = sprintf("combined\nmean = %.2f\n+ the spread\n= a wider CI",
+                           mean(copy_means))) +
+  scale_fill_manual(values = c(observed = "grey88", missing = navy,
+                               imputed = "#B3B8C3")) +
+  scale_colour_manual(values = c(`FALSE` = "grey15", `TRUE` = "white")) +
+  coord_cartesian(xlim = c(0.3, 8.8), ylim = c(-1.6, 5.6), expand = FALSE) +
+  theme_void()
+```
+
+<!-- from deck 08-05, slides "When data are not missing at random" and "What this does to the conclusions" (instructor request); simulated, seed 8 -->
+## When data are not missing at random
+
+No method can fully repair data that are missing not at random, because the information needed to repair them is exactly what is missing. Consider a medical app in which patients log their migraine attacks, rating the severity of each one from 1 (mild) to 10 (severe). Patients log most of the severe attacks, but often don't bother to log the mild ones. We simulate 600 attacks, most of them mild, in which the chance of being logged grows with severity:
+
+```{r}
+set.seed(8)
+crises <- tibble(severity = sample(1:10, 600, replace = TRUE, prob = 14:5)) |>
+  mutate(logged = runif(n()) < plogis(-3.5 + 0.6 * severity))
+
+crises |>
+  summarize(n_all = n(), mean_all = mean(severity),
+            n_logged = sum(logged), mean_logged = mean(severity[logged]))
+```
+
+```{r}
+#| label: fig-crises
+#| echo: false
+#| fig-cap: "Simulated migraine attacks: all attacks (grey) and the attacks that patients logged in the app (dark). Mild attacks are rarely logged, so the logged attacks look fewer and more severe than the real ones."
+#| fig-width: 6.5
+#| fig-height: 2.9
+
+crisis_counts <- bind_rows(
+  crises |> count(severity) |> mutate(what = "all attacks"),
+  crises |> filter(logged) |> count(severity) |> mutate(what = "logged in the app"))
+
+ggplot(crisis_counts, aes(severity, n, fill = what)) +
+  geom_col(position = "identity", width = 0.75) +
+  scale_fill_manual(values = c(`all attacks` = "grey80",
+                               `logged in the app` = navy)) +
+  scale_x_continuous(breaks = 1:10) +
+  labs(x = "severity of the attack (1 = mild, 10 = severe)",
+       y = "number of attacks", fill = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "top", panel.grid.minor = element_blank())
+```
+
+Only `r sum(crises$logged)` of the `r nrow(crises)` attacks are logged, and their average severity is `r sprintf("%.1f", mean(crises$severity[crises$logged]))` instead of `r sprintf("%.1f", mean(crises$severity))` (@fig-crises). The consequences go beyond a biased average:
+
+- attacks look **more severe** and **less frequent** than they are;
+- patients who log more attacks may simply be **more conscientious**, not sicker;
+- a treatment that makes attacks **milder** can look like a treatment that makes them **rarer**, because mild attacks stop being logged;
+- groups with different logging habits (for example, younger and older patients) **cannot be compared fairly**.
+
+None of the four strategies above repairs this. The best defence is in the design (for example, prompting patients every day, whether or not they had an attack), together with honest reporting of what may be missing.
+
+## Reporting missing data
+
+Whatever we do with missing values, readers need to know it. A good report states:
+
+- how many values are missing, in which variables, and for how many participants;
+- what was done with them (listwise deletion, imputation, which method), and how many participants entered each analysis;
+- whether missingness could plausibly be related to the outcome, and what the consequences would be.
+
+```{r, echo=FALSE}
+n_miss_mood <- sum(is.na(diary$mood))
+max_miss_one <- diary |> group_by(participant) |>
+  summarize(m = sum(is.na(mood))) |> pull(m) |> max()
+complete <- drop_na(diary)
+```
+
+<!-- from deck 08-05, slide "Reporting missing data" -->
+For the diary study, a short methods paragraph covering the three points could read:
+
+> `r n_miss_mood` of `r nrow(diary)` mood ratings were missing (`r round(100 * n_miss_mood / nrow(diary))`%), `r max_miss_one` of them from one participant. We analysed complete cases: `r nrow(complete)` of `r nrow(diary)` diary days, from all `r n_distinct(complete$participant)` participants. Participants may skip the diary on their worst days, so mood may be overestimated.
+
+Decide how missing data will be handled *before* looking at the results, ideally in a preregistration (@sec-research-ethics, and in particular @sec-replication-crisis). Trying several approaches and reporting the one that gives the most convenient result is one more way of making a p-value meaningless.
+
+## Exercises
+
+1\. Using `daily_mood_ratings`, compute the mean, the median and the standard deviation of the observed ratings. Then make a table of the ratings with `table(daily_mood_ratings, useNA = "always")`. In two sentences, explain what you would need to know about the study to decide whether the `r sum(is.na(daily_mood_ratings))` missing days could bias these summaries.
+
+2\. Using the `diary` data from this chapter, compute each participant's average mood with `na.rm = TRUE`, together with the number of days each average is based on. Which participant's average would you trust least, and why?
+
+3\. Repeat the simulation of this chapter, making missingness depend even more strongly on mood: set `p_missing` to 0.9 for a mood of 1, decreasing to 0.05 for a mood of 7. How large is the bias of the observed average? Does it change if you use `n <- 100000`?
+
+4\. Simulate a questionnaire with 20 items, in which each answer is missing with probability 3%, independently. What proportion of participants would listwise deletion keep? Check your answer with a Monte Carlo simulation.
+
+5\. Using the simulated `mood_mcar` and a second variable `stress <- 8 - mood + round(rnorm(n))`, compute the correlation between mood and stress with complete cases (`cor(mood_mcar, stress, use = "complete.obs")`) and after mean imputation of mood. What happens to the correlation, and why?
+
+6\. Using `mood_mnar` from this chapter, impute the missing values once with the mean and once with the median of the observed ratings. Compare the mean and the standard deviation of the two imputed versions with those of the true `mood`. Which imputation is closer to the truth, and does either of them remove the bias?
