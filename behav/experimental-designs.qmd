@@ -13,17 +13,15 @@ A **study design** is the set of decisions that connects a research question to 
 
 We might ask participants to report how stressed they feel several times per day using an *Ecological Momentary Assessment* (EMA) app. We could also collect heart rate or heart-rate variability from a smartwatch, record physical activity, or administer a questionnaire at the end of each day. These measures may all be related to stress, but they are not interchangeable. An EMA rating captures a participant's subjective experience at a particular moment. Heart rate, in contrast, may change because of stress, physical activity, caffeine, temperature, illness, or many other factors. A daily questionnaire may capture a more general retrospective judgement, but it may miss short-lived fluctuations.
 
-The process of translating a theoretical construct into a measurable variable is called **operationalisation**. Operationalisation matters because the way a construct is measured helps define the question the study can actually answer.
+The process of translating a theoretical construct into a measurable variable is called **operationalisation** (the distinction between a construct and its proxy, see @sec-measurement). Operationalisation matters because the way a construct is measured helps define the question the study can actually answer.
 
-### Measurement quality: reliability and validity
+### Measurement quality
 
-Operationalising a construct is only the first step. We also need to ask whether the resulting measure behaves in a useful way. A **reliable** measure produces reasonably consistent information when the underlying quantity has not changed. A measure that fluctuates dramatically from one moment to the next because of sensor noise, unstable scoring, or inconsistent administration will make genuine effects harder to detect. **Validity** asks a different question: does the measure support the interpretation we want to make from it?
-
-The distinction matters because a measure can be reliable without being valid. Imagine a wearable that produces a very stable proprietary “stress score”. The score may be highly reproducible, but if it largely reflects movement or heart rate rather than the psychological construct we mean by stress, consistency alone does not make it a valid measure of stress. Measurement error can also be **random** or **systematic**. Random noise tends to reduce precision. Systematic measurement error can be more problematic because it may bias comparisons. For example, if a sensor estimates heart rate differently depending on device model, and one experimental condition happens to contain more users of one model, a technical measurement difference may become a methodological confound. For behavioural technologies, measurement quality therefore includes questions such as:
+Operationalising a construct is only the first step: the resulting measure must also be reliable and valid for the interpretation we want to make. Reliability, validity, and the consequences of measurement error are covered in @sec-measurement. Here we add only what matters for design: measurement quality can become a design problem. Measurement error that differs across conditions is not just noise. If a sensor estimates heart rate differently depending on device model, and one experimental condition happens to contain more users of one model, a technical measurement difference becomes a methodological confound. For behavioural technologies, the questions to ask at the design stage therefore include:
 
 - What exactly does the device or algorithm output?
 - How was that output validated?
-- Is measurement quality similar across participants, devices, and contexts?
+- Is measurement quality similar across participants, devices, and contexts? (This is the question of *measurement invariance*, see @sec-measurement.)
 - Are software or firmware versions held constant or documented?
 
 Large datasets do not compensate for poor measurement. A million observations of the wrong quantity do not answer the intended research question.
@@ -120,6 +118,23 @@ The point is not that observational data are uninformative. Quite the opposite: 
 
 The word **validity** appears frequently in research methods, but it refers to several related questions rather than one single property of a study.
 
+::: {.callout-important}
+## Two meanings of validity
+
+You have already met validity in @sec-measurement. There, validity concerns the **interpretation of an instrument's scores**: does this score reflect the construct, for this use, in this population? Following the *Standards for Educational and Psychological Testing*, it is a single concept supported by five sources of evidence (@tbl-validity).
+
+In this chapter, the same word refers to the **conclusions of a study**: does this design support this inference? Following the tradition of Shadish, Cook and Campbell,[^campbell] it is usually split into four kinds: internal, external, construct, and statistical conclusion validity.
+
+The two uses share one idea: validity is never a property of an object (a test, a study), but of a specific inference drawn from it. The two classifications, however, use two labels with different meanings:
+
+- **Construct validity.** In @tbl-validity it is a classical label for one source of evidence about a *measure*. Here it is broader: it asks whether both the measures and the *manipulations* of a study represent the constructs in the hypothesis.
+- **Ecological validity.** In @tbl-validity it is evidence that scores predict behaviour outside the laboratory. Here it describes how well a task or setting reflects everyday life.
+
+When you read or write that something is "valid", make clear which kind of validity is meant.
+:::
+
+[^campbell]: W. R. Shadish, T. D. Cook & D. T. Campbell (2002), **Experimental and Quasi-Experimental Designs for Generalized Causal Inference**. Boston: Houghton Mifflin.
+
 ### Internal validity
 
 **Internal validity** concerns whether an observed effect can plausibly be attributed to the factor we think produced it. If participants in a notification experiment differ not only in notification frequency but also in time of day, device type, instructions, or baseline ability, these alternative explanations weaken internal validity. Randomisation, appropriate control conditions, standardised procedures, blinding where possible, and careful measurement all help strengthen internal validity. Internal validity does not mean that every possible source of variation has been eliminated. Rather, it asks whether the design supports the specific comparison required for the causal claim.
@@ -132,7 +147,7 @@ The related term **ecological validity** is often used when asking how well a ta
 
 ### Construct validity
 
-**Construct validity** concerns whether the variables and manipulations adequately represent the theoretical constructs of interest. If we claim to manipulate “social distraction” but compare frequent social notifications with complete silence, several things change at once: social content, notification frequency, auditory stimulation, and interruption. The manipulation may therefore be broader than the construct named in the hypothesis. Similarly, if we describe a smartwatch-derived physiological index as “stress”, we need evidence that the measure captures the intended construct rather than simply physiological arousal more generally. Construct validity connects directly to operationalisation: good experimental control cannot rescue a study if the variables do not represent the concepts the theory is about.
+**Construct validity** concerns whether the variables and manipulations adequately represent the theoretical constructs of interest. If we claim to manipulate “social distraction” but compare frequent social notifications with complete silence, several things change at once: social content, notification frequency, auditory stimulation, and interruption. The manipulation may therefore be broader than the construct named in the hypothesis. For the measures themselves, the question is the measurement validity discussed in @sec-measurement. Construct validity connects directly to operationalisation: good experimental control cannot rescue a study if the variables do not represent the concepts the theory is about.
 
 ### Statistical conclusion validity
 

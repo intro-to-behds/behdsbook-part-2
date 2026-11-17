@@ -360,7 +360,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#from-a-research-question-to-a-study-design" id="toc-from-a-research-question-to-a-study-design" class="nav-link active" data-scroll-target="#from-a-research-question-to-a-study-design"><span class="header-section-number">4.1</span> From a research question to a study design</a>
   <ul class="collapse">
-  <li><a href="#measurement-quality-reliability-and-validity" id="toc-measurement-quality-reliability-and-validity" class="nav-link" data-scroll-target="#measurement-quality-reliability-and-validity">Measurement quality: reliability and validity</a></li>
+  <li><a href="#measurement-quality" id="toc-measurement-quality" class="nav-link" data-scroll-target="#measurement-quality">Measurement quality</a></li>
   <li><a href="#units-matter" id="toc-units-matter" class="nav-link" data-scroll-target="#units-matter">Units matter</a></li>
   </ul></li>
   <li><a href="#association-and-causality" id="toc-association-and-causality" class="nav-link" data-scroll-target="#association-and-causality"><span class="header-section-number">4.2</span> Association and causality</a>
@@ -470,15 +470,14 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="4.1" class="anchored" data-anchor-id="from-a-research-question-to-a-study-design"><span class="header-section-number">4.1</span> From a research question to a study design</h2>
 <p>A <strong>study design</strong> is the set of decisions that connects a research question to the observations used to answer it. These decisions include what we measure, whom we measure, when measurements are taken, whether something is manipulated, how participants are allocated to conditions, and how often observations are collected. Suppose we are interested in <strong>stress during everyday life</strong>. Stress is a theoretical construct: we cannot observe it directly in the same way that we can observe height, age, or time of day. Instead, we need to decide how to measure it.</p>
 <p>We might ask participants to report how stressed they feel several times per day using an <em>Ecological Momentary Assessment</em> (EMA) app. We could also collect heart rate or heart-rate variability from a smartwatch, record physical activity, or administer a questionnaire at the end of each day. These measures may all be related to stress, but they are not interchangeable. An EMA rating captures a participant’s subjective experience at a particular moment. Heart rate, in contrast, may change because of stress, physical activity, caffeine, temperature, illness, or many other factors. A daily questionnaire may capture a more general retrospective judgement, but it may miss short-lived fluctuations.</p>
-<p>The process of translating a theoretical construct into a measurable variable is called <strong>operationalisation</strong>. Operationalisation matters because the way a construct is measured helps define the question the study can actually answer.</p>
-<section id="measurement-quality-reliability-and-validity" class="level3">
-<h3 class="anchored" data-anchor-id="measurement-quality-reliability-and-validity">Measurement quality: reliability and validity</h3>
-<p>Operationalising a construct is only the first step. We also need to ask whether the resulting measure behaves in a useful way. A <strong>reliable</strong> measure produces reasonably consistent information when the underlying quantity has not changed. A measure that fluctuates dramatically from one moment to the next because of sensor noise, unstable scoring, or inconsistent administration will make genuine effects harder to detect. <strong>Validity</strong> asks a different question: does the measure support the interpretation we want to make from it?</p>
-<p>The distinction matters because a measure can be reliable without being valid. Imagine a wearable that produces a very stable proprietary “stress score”. The score may be highly reproducible, but if it largely reflects movement or heart rate rather than the psychological construct we mean by stress, consistency alone does not make it a valid measure of stress. Measurement error can also be <strong>random</strong> or <strong>systematic</strong>. Random noise tends to reduce precision. Systematic measurement error can be more problematic because it may bias comparisons. For example, if a sensor estimates heart rate differently depending on device model, and one experimental condition happens to contain more users of one model, a technical measurement difference may become a methodological confound. For behavioural technologies, measurement quality therefore includes questions such as:</p>
+<p>The process of translating a theoretical construct into a measurable variable is called <strong>operationalisation</strong> (the distinction between a construct and its proxy, see <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>). Operationalisation matters because the way a construct is measured helps define the question the study can actually answer.</p>
+<section id="measurement-quality" class="level3">
+<h3 class="anchored" data-anchor-id="measurement-quality">Measurement quality</h3>
+<p>Operationalising a construct is only the first step: the resulting measure must also be reliable and valid for the interpretation we want to make. Reliability, validity, and the consequences of measurement error are covered in <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>. Here we add only what matters for design: measurement quality can become a design problem. Measurement error that differs across conditions is not just noise. If a sensor estimates heart rate differently depending on device model, and one experimental condition happens to contain more users of one model, a technical measurement difference becomes a methodological confound. For behavioural technologies, the questions to ask at the design stage therefore include:</p>
 <ul>
 <li>What exactly does the device or algorithm output?</li>
 <li>How was that output validated?</li>
-<li>Is measurement quality similar across participants, devices, and contexts?</li>
+<li>Is measurement quality similar across participants, devices, and contexts? (This is the question of <em>measurement invariance</em>, see <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>.)</li>
 <li>Are software or firmware versions held constant or documented?</li>
 </ul>
 <p>Large datasets do not compensate for poor measurement. A million observations of the wrong quantity do not answer the intended research question.</p>
@@ -541,6 +540,26 @@ ul.task-list li input[type="checkbox"] {
 <section id="validity-what-makes-a-design-convincing" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="validity-what-makes-a-design-convincing"><span class="header-section-number">4.3</span> Validity: what makes a design convincing?</h2>
 <p>The word <strong>validity</strong> appears frequently in research methods, but it refers to several related questions rather than one single property of a study.</p>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Two meanings of validity
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You have already met validity in <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>. There, validity concerns the <strong>interpretation of an instrument’s scores</strong>: does this score reflect the construct, for this use, in this population? Following the <em>Standards for Educational and Psychological Testing</em>, it is a single concept supported by five sources of evidence (<a href="measurement.html#tbl-validity" class="quarto-xref">Table&nbsp;<span>1.2</span></a>).</p>
+<p>In this chapter, the same word refers to the <strong>conclusions of a study</strong>: does this design support this inference? Following the tradition of Shadish, Cook and Campbell,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> it is usually split into four kinds: internal, external, construct, and statistical conclusion validity.</p>
+<p>The two uses share one idea: validity is never a property of an object (a test, a study), but of a specific inference drawn from it. The two classifications, however, use two labels with different meanings:</p>
+<ul>
+<li><strong>Construct validity.</strong> In <a href="measurement.html#tbl-validity" class="quarto-xref">Table&nbsp;<span>1.2</span></a> it is a classical label for one source of evidence about a <em>measure</em>. Here it is broader: it asks whether both the measures and the <em>manipulations</em> of a study represent the constructs in the hypothesis.</li>
+<li><strong>Ecological validity.</strong> In <a href="measurement.html#tbl-validity" class="quarto-xref">Table&nbsp;<span>1.2</span></a> it is evidence that scores predict behaviour outside the laboratory. Here it describes how well a task or setting reflects everyday life.</li>
+</ul>
+<p>When you read or write that something is “valid”, make clear which kind of validity is meant.</p>
+</div>
+</div>
 <section id="internal-validity" class="level3">
 <h3 class="anchored" data-anchor-id="internal-validity">Internal validity</h3>
 <p><strong>Internal validity</strong> concerns whether an observed effect can plausibly be attributed to the factor we think produced it. If participants in a notification experiment differ not only in notification frequency but also in time of day, device type, instructions, or baseline ability, these alternative explanations weaken internal validity. Randomisation, appropriate control conditions, standardised procedures, blinding where possible, and careful measurement all help strengthen internal validity. Internal validity does not mean that every possible source of variation has been eliminated. Rather, it asks whether the design supports the specific comparison required for the causal claim.</p>
@@ -552,7 +571,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="construct-validity" class="level3">
 <h3 class="anchored" data-anchor-id="construct-validity">Construct validity</h3>
-<p><strong>Construct validity</strong> concerns whether the variables and manipulations adequately represent the theoretical constructs of interest. If we claim to manipulate “social distraction” but compare frequent social notifications with complete silence, several things change at once: social content, notification frequency, auditory stimulation, and interruption. The manipulation may therefore be broader than the construct named in the hypothesis. Similarly, if we describe a smartwatch-derived physiological index as “stress”, we need evidence that the measure captures the intended construct rather than simply physiological arousal more generally. Construct validity connects directly to operationalisation: good experimental control cannot rescue a study if the variables do not represent the concepts the theory is about.</p>
+<p><strong>Construct validity</strong> concerns whether the variables and manipulations adequately represent the theoretical constructs of interest. If we claim to manipulate “social distraction” but compare frequent social notifications with complete silence, several things change at once: social content, notification frequency, auditory stimulation, and interruption. The manipulation may therefore be broader than the construct named in the hypothesis. For the measures themselves, the question is the measurement validity discussed in <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>. Construct validity connects directly to operationalisation: good experimental control cannot rescue a study if the variables do not represent the concepts the theory is about.</p>
 </section>
 <section id="statistical-conclusion-validity" class="level3">
 <h3 class="anchored" data-anchor-id="statistical-conclusion-validity">Statistical conclusion validity</h3>
@@ -820,6 +839,12 @@ ul.task-list li input[type="checkbox"] {
 
 
 </section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>W. R. Shadish, T. D. Cook &amp; D. T. Campbell (2002), <strong>Experimental and Quasi-Experimental Designs for Generalized Causal Inference</strong>. Boston: Houghton Mifflin.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

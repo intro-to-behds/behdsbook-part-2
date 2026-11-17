@@ -506,6 +506,12 @@ Two specific failure modes cut across all five, and they are the two you should 
 
 Both are in @fig-other-variables, which is what that figure was for.
 
+::: {.callout-note}
+## Validity of a measure, validity of a study
+
+In this chapter, validity is about the interpretation of an instrument's scores. The same word is also used for the conclusions of a whole study (internal validity, external validity, and others), with a different classification in which some labels, such as *construct* and *ecological* validity, take on a different meaning. @sec-experimental-designs explains the difference.
+:::
+
 A brief historical note. You will occasionally meet **face validity**: whether an instrument *looks like* it measures what it claims. It is worth knowing the term mainly so you can recognise that it is not evidence. The phrase does not appear once in the 230-odd pages of the *Standards*. An instrument can look entirely convincing and be measuring something else, which is precisely why we need the other five kinds of evidence. (Face validity is not always even desirable: an instrument designed to detect people faking their responses works better when its purpose is *not* obvious.)
 
 And a related error, which is extremely common and costs nothing to avoid:
