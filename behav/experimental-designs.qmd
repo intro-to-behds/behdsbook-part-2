@@ -60,6 +60,15 @@ In an experiment, the researcher deliberately manipulates one or more variables 
 
 Experimental manipulation and random assignment are powerful because they directly address the third requirement.
 
+<!-- added by Claude, 17 Nov 2026, from the Week 9 slides; to review -->
+### Randomised controlled trials and A/B tests
+
+When an experiment tests an intervention, such as a training programme, a therapy, or an app, it is often called a **randomised controlled trial** (RCT). In the most common form, a *parallel-arm* trial, participants are randomly assigned to the intervention or to a control condition and followed over the same period, usually with measurements before and after. In a *crossover* trial, each participant receives both conditions in a random order, which is a within-subjects design (see *Within-subjects designs* below).
+
+The technology industry runs randomised experiments on a very large scale under the name of **A/B tests**: users are randomly shown version A or version B of an interface, and the versions are compared on behaviour such as clicks, completed tasks, or retention. The logic is the same as in any randomised experiment. The outcomes are usually logged behaviour, and the question of what that behaviour measures still applies (@sec-measurement).
+
+Two problems are especially common in trials that last weeks or months. Participants **drop out**, and those who drop out may differ from those who stay: the most stressed users may stop answering. Analysing only those who completed the study can therefore favour the intervention. A common safeguard is to analyse all participants in the group to which they were randomised, called an *intention-to-treat* analysis, which requires a plan for the missing outcomes (@sec-missing-data). The second problem is the **novelty effect**: a new app or interface may be rated better, or used more, simply because it is new, and the advantage may fade over time. A longer follow-up and an active control condition (see below) help to separate novelty from a lasting effect.
+
 ### The counterfactual idea
 
 Causal inference can also be understood through a counterfactual question:
@@ -71,6 +80,9 @@ For any individual at a given moment, we can observe only one of these possibili
 ### Quasi-experimental research
 
 Between purely observational research and fully randomised experiments are **quasi-experimental designs**. Here, researchers study an intervention, policy, technological change, or naturally occurring event but do not have complete control over assignment. Imagine that one university introduces an app that limits notifications during lectures while another does not. Comparing students before and after the intervention may provide valuable evidence, even though students were not individually randomised. Quasi-experiments can support stronger causal arguments than simple observational associations when the design creates a credible comparison. However, alternative explanations generally require more careful consideration than in a well-randomised experiment.
+
+<!-- added by Claude, 17 Nov 2026, from the Week 9 slides; to review -->
+A very common case is the comparison of **pre-existing groups**: patients and healthy controls, heavy and light smartphone users, older and younger adults. The analysis looks like that of an experiment, often a t-test between two groups, but nobody assigned participants to the groups, and the groups may differ in many other ways (age, education, medication, motivation). Matching participants on some of these characteristics helps, but only for the characteristics that were measured. @sec-results-to-conclusions discusses how to interpret such comparisons.
 
 ### A visual example: association can be misleading
 
@@ -327,7 +339,7 @@ ggplot(paired_data,
   theme_minimal()
 ```
 
-Notice how participants differ substantially in their absolute reaction times, but many show a change in the same direction. A paired design can focus directly on these within-person differences.
+Notice how participants differ substantially in their absolute reaction times, but many show a change in the same direction. A paired design can focus directly on these within-person differences. <!-- added by Claude, 17 Nov 2026; to review --> The design also determines the analysis: two conditions measured on the same participants are compared with paired tests, not with tests for independent groups (see *Paired designs* in @sec-two-groups), and the effect size and the power of paired designs are computed differently (@sec-effect-size, @sec-power).
 
 ### Order effects
 
@@ -420,7 +432,7 @@ Interactions are important because they prevent us from reducing a result to a s
 
 ### Mixed designs
 
-A **mixed design** combines between-subjects and within-subjects factors. Suppose we compare habitual users and non-users of smartwatches. User group is a between-subjects factor because each person belongs to one group. Every participant then completes a cognitive task with and without real-time physiological feedback from the watch. Feedback condition is a within-subjects factor. A mixed design allows us to examine whether the within-person effect of feedback differs between the two groups.
+A **mixed design** combines between-subjects and within-subjects factors. Suppose we compare habitual users and non-users of smartwatches. User group is a between-subjects factor because each person belongs to one group. Every participant then completes a cognitive task with and without real-time physiological feedback from the watch. Feedback condition is a within-subjects factor. A mixed design allows us to examine whether the within-person effect of feedback differs between the two groups. <!-- added by Claude, 17 Nov 2026; to review --> Note that the feedback condition is manipulated, but user group is not: participants arrive already being users or non-users, so a difference between the groups is a comparison of pre-existing groups, with all the alternative explanations that this implies.
 
 Mixed designs are common in behavioural science because they reflect the structure of many substantive questions: people belong to different groups, but are also measured repeatedly across tasks, sessions, or conditions.
 

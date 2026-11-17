@@ -340,6 +340,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Missing Data</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/results-to-conclusions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -367,6 +373,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#observational-research" id="toc-observational-research" class="nav-link" data-scroll-target="#observational-research">Observational research</a></li>
   <li><a href="#experimental-research" id="toc-experimental-research" class="nav-link" data-scroll-target="#experimental-research">Experimental research</a></li>
+  <li><a href="#randomised-controlled-trials-and-ab-tests" id="toc-randomised-controlled-trials-and-ab-tests" class="nav-link" data-scroll-target="#randomised-controlled-trials-and-ab-tests">Randomised controlled trials and A/B tests</a></li>
   <li><a href="#the-counterfactual-idea" id="toc-the-counterfactual-idea" class="nav-link" data-scroll-target="#the-counterfactual-idea">The counterfactual idea</a></li>
   <li><a href="#quasi-experimental-research" id="toc-quasi-experimental-research" class="nav-link" data-scroll-target="#quasi-experimental-research">Quasi-experimental research</a></li>
   <li><a href="#a-visual-example-association-can-be-misleading" id="toc-a-visual-example-association-can-be-misleading" class="nav-link" data-scroll-target="#a-visual-example-association-can-be-misleading">A visual example: association can be misleading</a></li>
@@ -508,6 +515,13 @@ ul.task-list li input[type="checkbox"] {
 <li>plausible <strong>alternative explanations</strong> have been sufficiently controlled.</li>
 </ol>
 <p>Experimental manipulation and random assignment are powerful because they directly address the third requirement.</p>
+<!-- added by Claude, 17 Nov 2026, from the Week 9 slides; to review -->
+</section>
+<section id="randomised-controlled-trials-and-ab-tests" class="level3">
+<h3 class="anchored" data-anchor-id="randomised-controlled-trials-and-ab-tests">Randomised controlled trials and A/B tests</h3>
+<p>When an experiment tests an intervention, such as a training programme, a therapy, or an app, it is often called a <strong>randomised controlled trial</strong> (RCT). In the most common form, a <em>parallel-arm</em> trial, participants are randomly assigned to the intervention or to a control condition and followed over the same period, usually with measurements before and after. In a <em>crossover</em> trial, each participant receives both conditions in a random order, which is a within-subjects design (see <em>Within-subjects designs</em> below).</p>
+<p>The technology industry runs randomised experiments on a very large scale under the name of <strong>A/B tests</strong>: users are randomly shown version A or version B of an interface, and the versions are compared on behaviour such as clicks, completed tasks, or retention. The logic is the same as in any randomised experiment. The outcomes are usually logged behaviour, and the question of what that behaviour measures still applies (<a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>).</p>
+<p>Two problems are especially common in trials that last weeks or months. Participants <strong>drop out</strong>, and those who drop out may differ from those who stay: the most stressed users may stop answering. Analysing only those who completed the study can therefore favour the intervention. A common safeguard is to analyse all participants in the group to which they were randomised, called an <em>intention-to-treat</em> analysis, which requires a plan for the missing outcomes (<a href="../basic-stats/missing-data.html" class="quarto-xref"><span>Chapter 23</span></a>). The second problem is the <strong>novelty effect</strong>: a new app or interface may be rated better, or used more, simply because it is new, and the advantage may fade over time. A longer follow-up and an active control condition (see below) help to separate novelty from a lasting effect.</p>
 </section>
 <section id="the-counterfactual-idea" class="level3">
 <h3 class="anchored" data-anchor-id="the-counterfactual-idea">The counterfactual idea</h3>
@@ -520,6 +534,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="quasi-experimental-research" class="level3">
 <h3 class="anchored" data-anchor-id="quasi-experimental-research">Quasi-experimental research</h3>
 <p>Between purely observational research and fully randomised experiments are <strong>quasi-experimental designs</strong>. Here, researchers study an intervention, policy, technological change, or naturally occurring event but do not have complete control over assignment. Imagine that one university introduces an app that limits notifications during lectures while another does not. Comparing students before and after the intervention may provide valuable evidence, even though students were not individually randomised. Quasi-experiments can support stronger causal arguments than simple observational associations when the design creates a credible comparison. However, alternative explanations generally require more careful consideration than in a well-randomised experiment.</p>
+<!-- added by Claude, 17 Nov 2026, from the Week 9 slides; to review -->
+<p>A very common case is the comparison of <strong>pre-existing groups</strong>: patients and healthy controls, heavy and light smartphone users, older and younger adults. The analysis looks like that of an experiment, often a t-test between two groups, but nobody assigned participants to the groups, and the groups may differ in many other ways (age, education, medication, motivation). Matching participants on some of these characteristics helps, but only for the characteristics that were measured. <a href="../basic-stats/results-to-conclusions.html" class="quarto-xref"><span>Chapter 24</span></a> discusses how to interpret such comparisons.</p>
 </section>
 <section id="a-visual-example-association-can-be-misleading" class="level3">
 <h3 class="anchored" data-anchor-id="a-visual-example-association-can-be-misleading">A visual example: association can be misleading</h3>
@@ -687,7 +703,7 @@ Two meanings of validity
 </div>
 </div>
 </div>
-<p>Notice how participants differ substantially in their absolute reaction times, but many show a change in the same direction. A paired design can focus directly on these within-person differences.</p>
+<p>Notice how participants differ substantially in their absolute reaction times, but many show a change in the same direction. A paired design can focus directly on these within-person differences. <!-- added by Claude, 17 Nov 2026; to review --> The design also determines the analysis: two conditions measured on the same participants are compared with paired tests, not with tests for independent groups (see <em>Paired designs</em> in <a href="../basic-stats/comparing-two-groups.html" class="quarto-xref"><span>Chapter 17</span></a>), and the effect size and the power of paired designs are computed differently (<a href="../basic-stats/effect-size.html" class="quarto-xref"><span>Chapter 21</span></a>, <a href="../basic-stats/power.html" class="quarto-xref"><span>Chapter 22</span></a>).</p>
 </section>
 <section id="order-effects" class="level3">
 <h3 class="anchored" data-anchor-id="order-effects">Order effects</h3>
@@ -765,7 +781,7 @@ Two meanings of validity
 </section>
 <section id="mixed-designs" class="level3">
 <h3 class="anchored" data-anchor-id="mixed-designs">Mixed designs</h3>
-<p>A <strong>mixed design</strong> combines between-subjects and within-subjects factors. Suppose we compare habitual users and non-users of smartwatches. User group is a between-subjects factor because each person belongs to one group. Every participant then completes a cognitive task with and without real-time physiological feedback from the watch. Feedback condition is a within-subjects factor. A mixed design allows us to examine whether the within-person effect of feedback differs between the two groups.</p>
+<p>A <strong>mixed design</strong> combines between-subjects and within-subjects factors. Suppose we compare habitual users and non-users of smartwatches. User group is a between-subjects factor because each person belongs to one group. Every participant then completes a cognitive task with and without real-time physiological feedback from the watch. Feedback condition is a within-subjects factor. A mixed design allows us to examine whether the within-person effect of feedback differs between the two groups. <!-- added by Claude, 17 Nov 2026; to review --> Note that the feedback condition is manipulated, but user group is not: participants arrive already being users or non-users, so a difference between the groups is a comparison of pre-existing groups, with all the alternative explanations that this implies.</p>
 <p>Mixed designs are common in behavioural science because they reflect the structure of many substantive questions: people belong to different groups, but are also measured repeatedly across tasks, sessions, or conditions.</p>
 </section>
 </section>

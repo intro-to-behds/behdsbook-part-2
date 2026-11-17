@@ -80,6 +80,7 @@ book:
         - basic-stats/effect-size.qmd
         - basic-stats/power.qmd
         - basic-stats/missing-data.qmd
+        - basic-stats/results-to-conclusions.qmd
 
     # [hidden until reflavoured]
     # - part: linear-models/intro-to-linear-models.qmd
