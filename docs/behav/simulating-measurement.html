@@ -435,16 +435,20 @@ window.Quarto = {
    
   <ul>
   <li><a href="#why-simulate-at-all" id="toc-why-simulate-at-all" class="nav-link active" data-scroll-target="#why-simulate-at-all"><span class="header-section-number">2.1</span> Why simulate at all</a></li>
-  <li><a href="#the-likert-simulator" id="toc-the-likert-simulator" class="nav-link" data-scroll-target="#the-likert-simulator"><span class="header-section-number">2.2</span> The Likert simulator</a>
+  <li><a href="#what-the-likert-simulator-models" id="toc-what-the-likert-simulator-models" class="nav-link" data-scroll-target="#what-the-likert-simulator-models"><span class="header-section-number">2.2</span> What the Likert simulator models</a></li>
+  <li><a href="#the-likert-simulator" id="toc-the-likert-simulator" class="nav-link" data-scroll-target="#the-likert-simulator"><span class="header-section-number">2.3</span> The Likert simulator</a>
   <ul class="collapse">
-  <li><a href="#step-1-the-true-score" id="toc-step-1-the-true-score" class="nav-link" data-scroll-target="#step-1-the-true-score">Step 1: the true score</a></li>
-  <li><a href="#step-2-measurement-error-one-item-at-a-time" id="toc-step-2-measurement-error-one-item-at-a-time" class="nav-link" data-scroll-target="#step-2-measurement-error-one-item-at-a-time">Step 2: measurement error, one item at a time</a></li>
+  <li><a href="#step-1-the-latent-construct" id="toc-step-1-the-latent-construct" class="nav-link" data-scroll-target="#step-1-the-latent-construct">Step 1: the latent construct</a></li>
+  <li><a href="#step-2-noise-in-each-items-latent-response" id="toc-step-2-noise-in-each-items-latent-response" class="nav-link" data-scroll-target="#step-2-noise-in-each-items-latent-response">Step 2: noise in each item’s latent response</a></li>
   <li><a href="#step-3-the-ordinal-response-process" id="toc-step-3-the-ordinal-response-process" class="nav-link" data-scroll-target="#step-3-the-ordinal-response-process">Step 3: the ordinal response process</a></li>
   <li><a href="#step-4-the-total" id="toc-step-4-the-total" class="nav-link" data-scroll-target="#step-4-the-total">Step 4: the total</a></li>
   <li><a href="#checking-against-the-package" id="toc-checking-against-the-package" class="nav-link" data-scroll-target="#checking-against-the-package">Checking against the package</a></li>
-  <li><a href="#what-the-arguments-do" id="toc-what-the-arguments-do" class="nav-link" data-scroll-target="#what-the-arguments-do">What the arguments do</a></li>
+  <li><a href="#retesting-the-same-people" id="toc-retesting-the-same-people" class="nav-link" data-scroll-target="#retesting-the-same-people">Retesting the same people</a></li>
   </ul></li>
-  <li><a href="#building-your-own" id="toc-building-your-own" class="nav-link" data-scroll-target="#building-your-own"><span class="header-section-number">2.3</span> Building your own</a></li>
+  <li><a href="#sec-is-it-ctt" id="toc-sec-is-it-ctt" class="nav-link" data-scroll-target="#sec-is-it-ctt"><span class="header-section-number">2.4</span> Is this Classical Test Theory?</a></li>
+  <li><a href="#simulating-ctt-directly" id="toc-simulating-ctt-directly" class="nav-link" data-scroll-target="#simulating-ctt-directly"><span class="header-section-number">2.5</span> Simulating CTT directly</a></li>
+  <li><a href="#two-simulators-two-questions" id="toc-two-simulators-two-questions" class="nav-link" data-scroll-target="#two-simulators-two-questions"><span class="header-section-number">2.6</span> Two simulators, two questions</a></li>
+  <li><a href="#building-your-own" id="toc-building-your-own" class="nav-link" data-scroll-target="#building-your-own"><span class="header-section-number">2.7</span> Building your own</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/behav/simulating-measurement.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -470,21 +474,41 @@ window.Quarto = {
 </header>
 
 
-<p><em>Written for this book by Giorgio Arcara. This chapter is not in Irizarry’s <em>Introduction to Data Science</em>.</em></p>
+<p><em>Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry’s <em>Introduction to Data Science</em>.</em></p>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Draft
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This chapter is a <strong>draft</strong>, revised with an AI assistant (Claude) on 18 November 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.</p>
+</div>
+</div>
+<!-- 18 Nov 2026 (Claude): revised at G. Arcara's request. The chapter used to present simulate_likert() as a Classical Test Theory simulation; it is a latent-threshold (ordinal) model, so it is now framed around Stevens' "assignment of numerals according to rules", with a new section on why it is not CTT and a direct CTT simulation (modelled on ONDAutils::simulate_scores()). To review. -->
 <p><a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a> used a simulated five-item satisfaction scale. This chapter explains how it is generated. You can skip it and lose nothing from the argument of that chapter — but if you want to understand <em>why</em> the simulations behave the way they do, or you want to build your own, this is where the machinery is.</p>
 <section id="why-simulate-at-all" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="why-simulate-at-all"><span class="header-section-number">2.1</span> Why simulate at all</h2>
 <p>There is one specific reason, and it is not convenience.</p>
 <p>Real data never hands you the true score. That is the entire problem <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a> is about: you observe <span class="math inline">\(X\)</span>, you want to know about <span class="math inline">\(T\)</span>, and <span class="math inline">\(T\)</span> is permanently out of reach. Every reliability coefficient, every validity argument, every correction for attenuation is an attempt to reason about a quantity nobody can see.</p>
 <p>In a simulation, you generate <span class="math inline">\(T\)</span> yourself. That makes it the only setting in which you can <em>check</em> whether those techniques work — where you can compute a disattenuated correlation and then look up the answer. It is the difference between being told that Cronbach’s <span class="math inline">\(\alpha\)</span> estimates reliability and watching it do so.</p>
-<p>The cost is that simulated data is only as realistic as the model that produced it. So it is worth being able to read that model.</p>
+<p>The cost is that simulated data is only as realistic as the model that produced it. So it is worth being able to read that model — and being clear about <em>which</em> model it is.</p>
 </section>
-<section id="the-likert-simulator" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="the-likert-simulator"><span class="header-section-number">2.2</span> The Likert simulator</h2>
+<section id="what-the-likert-simulator-models" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="what-the-likert-simulator-models"><span class="header-section-number">2.2</span> What the Likert simulator models</h2>
+<p>Recall Stevens’ definition of measurement from <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>: “the assignment of numerals to objects or events according to rules”. A Likert scale is a very literal case. A respondent has some position on a construct, and the questionnaire turns that position into one of the numerals 1 to 5. The interesting part is the <strong>rule</strong> that does the turning, because the rule decides what the numerals can be used for (<a href="measurement.html#tbl-scales" class="quarto-xref">Table&nbsp;<span>1.1</span></a>).</p>
+<p><code>simulate_likert()</code> is a model of that rule. It has a latent construct, some noise, and a set of cut points that convert a continuous impression into an ordered category. It is designed to show what happens to your numbers when the rule is not the interval-scale ideal — which is the question about Likert data that <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a> cares most about.</p>
+<p>It borrows the language of Classical Test Theory (CTT) for one of its steps, but it is <strong>not a CTT simulation</strong>. We come back to this after building it, in <a href="#sec-is-it-ctt" class="quarto-xref"><span>Section 2.4</span></a>.</p>
+</section>
+<section id="the-likert-simulator" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="the-likert-simulator"><span class="header-section-number">2.3</span> The Likert simulator</h2>
 <p><code>simulate_likert()</code> generates responses to a multi-item scale in four steps. We will build each one by hand, then check the result against the package function.</p>
-<section id="step-1-the-true-score" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-the-true-score">Step 1: the true score</h3>
-<p>Every respondent gets a position on the latent construct, on a standardised scale. This is <span class="math inline">\(T\)</span>.</p>
+<section id="step-1-the-latent-construct" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-the-latent-construct">Step 1: the latent construct</h3>
+<p>Every respondent gets a position on the latent construct, on a standardised scale. The function calls it the <code>true_score</code>; we write it <span class="math inline">\(T\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">400</span></span>
@@ -504,9 +528,9 @@ window.Quarto = {
 </div>
 <p>Keeping those two knobs separate matters. Two groups can share a mean and differ in spread — some populations really are more homogeneous than others — and <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a> uses exactly that case to show that a difference in <em>scores</em> is not always a difference in the construct.</p>
 </section>
-<section id="step-2-measurement-error-one-item-at-a-time" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-measurement-error-one-item-at-a-time">Step 2: measurement error, one item at a time</h3>
-<p>Each item is an imperfect window onto the same true score. Every item gets its own independent error:</p>
+<section id="step-2-noise-in-each-items-latent-response" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-noise-in-each-items-latent-response">Step 2: noise in each item’s latent response</h3>
+<p>Each item is an imperfect window onto the same construct. Every item gets its own independent error:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n_items <span class="ot">&lt;-</span> <span class="dv">5</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>error_sd <span class="ot">&lt;-</span> <span class="dv">1</span></span>
@@ -521,12 +545,13 @@ window.Quarto = {
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,] -1.64  2.11  0.20 -1.74  1.18</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3,]  0.16 -2.69 -1.71  0.78 -0.73</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This is <span class="math inline">\(X = T + E\)</span>, written as a matrix. Each row is one respondent; each column is one item. The true score is constant along a row, and what varies is the error.</p>
-<p><code>error_sd</code> is the single most consequential argument in the function. It is the size of <span class="math inline">\(E\)</span>, and therefore it controls reliability: everything <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a> says about noisy instruments is, mechanically, a statement about this number.</p>
+<p>Each row is one respondent; each column is one item. The construct is constant along a row, and what varies is the error.</p>
+<p>This <em>looks</em> like CTT’s <span class="math inline">\(X = T + E\)</span>, and at this level it is: each value is <span class="math inline">\(T\)</span> plus independent, zero-mean error. But notice what these numbers are. They are each respondent’s <strong>latent response</strong> to an item — the continuous impression in their head — and nobody ever records them. The observed score comes later, after step 3, and by then <span class="math inline">\(X = T + E\)</span> no longer holds exactly.</p>
+<p><code>error_sd</code> is the main dial on reliability: more error, less reliable scale. But it is not reliability itself, and the function never takes a reliability value as input. Reliability is something you <em>estimate</em> on what the function returns, as <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a> does.</p>
 </section>
 <section id="step-3-the-ordinal-response-process" class="level3">
 <h3 class="anchored" data-anchor-id="step-3-the-ordinal-response-process">Step 3: the ordinal response process</h3>
-<p>Here is the step that matters most, and the one that is invisible in real data.</p>
+<p>Here is the step that matters most, and the one that is invisible in real data. This is Stevens’ rule.</p>
 <p>A respondent does not report a latent quantity. They pick a category. Somewhere in their head, a continuous impression gets converted into one of five boxes, and the conversion happens at <strong>thresholds</strong> — the points at which they switch from choosing “3” to choosing “4”.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>thresholds <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">/</span> <span class="dv">5</span>) <span class="sc">*</span> <span class="fl">1.3</span> <span class="sc">-</span> <span class="fl">0.85</span></span>
@@ -556,7 +581,7 @@ window.Quarto = {
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1   2   3   4   5 </span></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 111  61  62  46 120</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Identical people. Identical true scores. Identical measurement error. Completely different-looking data, because the response process differs. <a href="#fig-thresholds" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> shows what the two sets of cut points do to the same latent distribution.</p>
+<p>Identical people. Identical latent positions. Identical noise. Completely different-looking data, because the rule that assigns the numerals differs. <a href="#fig-thresholds" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> shows what the two sets of cut points do to the same latent distribution.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-thresholds" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -571,6 +596,7 @@ Figure&nbsp;2.1: The same latent distribution, cut into response categories two 
 </div>
 </div>
 </div>
+<p>In both panels the numerals are correctly <em>ordered</em>: a higher latent value never produces a lower response. That is all an ordinal scale promises. Only the evenly spaced rule also makes the distances between numerals roughly comparable, and even that is an idealisation.</p>
 </section>
 <section id="step-4-the-total" class="level3">
 <h3 class="anchored" data-anchor-id="step-4-the-total">Step 4: the total</h3>
@@ -580,7 +606,7 @@ Figure&nbsp;2.1: The same latent distribution, cut into response categories two 
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(total)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 12 18 15 24 23 18</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Summing is itself an assumption worth noticing. It treats all five items as equally important and as equally spaced, which is the interval assumption arriving through the back door.</p>
+<p>Summing is itself an assumption worth noticing. It treats all five items as equally important and as equally spaced, which is the interval assumption arriving through the back door: you are adding numerals that, by Stevens’ classification, only license ordering.</p>
 </section>
 <section id="checking-against-the-package" class="level3">
 <h3 class="anchored" data-anchor-id="checking-against-the-package">Checking against the package</h3>
@@ -605,48 +631,161 @@ Figure&nbsp;2.1: The same latent distribution, cut into response categories two 
 </div>
 <p>I would encourage you to do that, in the spirit of the point made in Part 1 about AI-assisted code: you are responsible for analyses built on code you have not read.</p>
 </section>
-<section id="what-the-arguments-do" class="level3">
-<h3 class="anchored" data-anchor-id="what-the-arguments-do">What the arguments do</h3>
-<p>A compact summary of the two dials that carry the teaching load:</p>
+<section id="retesting-the-same-people" class="level3">
+<h3 class="anchored" data-anchor-id="retesting-the-same-people">Retesting the same people</h3>
+<p><code>true_score</code> is both returned and accepted as an argument. That is what makes a retest expressible: the same people, the same construct, a new occasion with fresh noise.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cronbach_alpha <span class="ot">&lt;-</span> <span class="cf">function</span>(items) {</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="fu">ncol</span>(items)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  k <span class="sc">/</span> (k <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">apply</span>(items, <span class="dv">2</span>, var)) <span class="sc">/</span> <span class="fu">var</span>(<span class="fu">rowSums</span>(items)))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (e <span class="cf">in</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)) {</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">error_sd =</span> e, <span class="at">seed =</span> <span class="dv">3</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  its <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(d[, <span class="fu">paste0</span>(<span class="st">"item_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)])</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"error_sd = %.1f  -&gt;  alpha = %.2f,  cor(total, true) = %.2f</span><span class="sc">\n</span><span class="st">"</span>,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>              e, <span class="fu">cronbach_alpha</span>(its), <span class="fu">cor</span>(d<span class="sc">$</span>total, d<span class="sc">$</span>true_score)))</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 0.5  -&gt;  alpha = 0.93,  cor(total, true) = 0.90</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 1.0  -&gt;  alpha = 0.80,  cor(total, true) = 0.85</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 2.0  -&gt;  alpha = 0.52,  cor(total, true) = 0.68</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 3.0  -&gt;  alpha = 0.33,  cor(total, true) = 0.53</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>And <code>true_score</code>, which is both returned and accepted as an argument. That is what makes a retest expressible: the same people, the same construct, a new occasion.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">300</span>, <span class="at">seed =</span> <span class="dv">21</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">300</span>, <span class="at">true_score =</span> t1<span class="sc">$</span>true_score, <span class="at">seed =</span> <span class="dv">22</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(t1<span class="sc">$</span>true_score, t2<span class="sc">$</span>true_score)   <span class="co"># same people, same construct</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(t1<span class="sc">$</span>total, t2<span class="sc">$</span>total)                   <span class="co"># but not the same scores</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.817</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">300</span>, <span class="at">seed =</span> <span class="dv">21</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">300</span>, <span class="at">true_score =</span> t1<span class="sc">$</span>true_score, <span class="at">seed =</span> <span class="dv">22</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(t1<span class="sc">$</span>true_score, t2<span class="sc">$</span>true_score)   <span class="co"># same people, same construct</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(t1<span class="sc">$</span>total, t2<span class="sc">$</span>total)                   <span class="co"># but not the same scores</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.817</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
-<section id="building-your-own" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="building-your-own"><span class="header-section-number">2.3</span> Building your own</h2>
-<p>The function is deliberately small, and the point of this chapter is that you could have written it. If you want to explore a measurement question that it does not cover, the pattern is the same one <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a> describes in words:</p>
+<section id="sec-is-it-ctt" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="sec-is-it-ctt"><span class="header-section-number">2.4</span> Is this Classical Test Theory?</h2>
+<p>Not quite, and it is worth being precise about why, because the simulator uses the same letters CTT uses.</p>
+<p>In CTT, <span class="math inline">\(X = T + E\)</span> is a statement about the <strong>observed score</strong> — here, the total. <span class="math inline">\(T\)</span> is defined as the average total a person would get over infinitely many administrations, and <span class="math inline">\(E\)</span> is whatever is left over. Reliability is the share of the variance of <span class="math inline">\(X\)</span> that is due to <span class="math inline">\(T\)</span>:</p>
+<p><span class="math display">\[\text{reliability} = \frac{\sigma^2_T}{\sigma^2_T + \sigma^2_E}\]</span></p>
+<p><code>simulate_likert()</code> puts <span class="math inline">\(T + E\)</span> in a different place: on each item’s <em>latent</em> response, before the response rule is applied. Three things follow.</p>
 <ol type="1">
+<li><strong>The observed total is not the latent <span class="math inline">\(T\)</span> plus random error.</strong> Between the two sits the response rule, which cuts, bounds and sums. The CTT true score of the total — the average total over many retests — is a curved function of the latent <span class="math inline">\(T\)</span>, not a copy of it. <a href="#fig-total-vs-latent" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> shows the curve: it flattens at the top, where the scale runs out of room.</li>
+<li><strong>The error in the total depends on <span class="math inline">\(T\)</span>.</strong> For a respondent near the ceiling, the error can pull the total down but hardly push it up. This is exactly the CTT limitation flagged in <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>: on a bounded scale, <span class="math inline">\(T\)</span> and <span class="math inline">\(E\)</span> stop being independent.</li>
+<li><strong>Reliability is never set.</strong> It emerges from <code>error_sd</code>, the thresholds and the number of items. You find it by analysing the output, as with a real instrument.</li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-total-vs-latent" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-total-vs-latent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="simulating-measurement_files/figure-html/fig-total-vs-latent-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-total-vs-latent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Observed totals of 1,000 simulated respondents (default settings) against their latent position on the construct. The line is the average total at each latent value — roughly what CTT would call the true score of the total. It is not a straight line: it bends and flattens at the top, because the scale has a ceiling at 25.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We can measure the gap. If we could record the latent responses and sum them, CTT would hold exactly, and the reliability of that latent total would be <span class="math inline">\(k / (k + \sigma^2_E)\)</span> for <span class="math inline">\(k\)</span> items and a latent <span class="math inline">\(T\)</span> with SD 1. Compare it with what you actually get from the recorded responses: Cronbach’s <span class="math inline">\(\alpha\)</span>, and the squared correlation between the total and the latent <span class="math inline">\(T\)</span>, which under pure CTT would both equal the reliability.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cronbach_alpha <span class="ot">&lt;-</span> <span class="cf">function</span>(items) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="fu">ncol</span>(items)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  k <span class="sc">/</span> (k <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">apply</span>(items, <span class="dv">2</span>, var)) <span class="sc">/</span> <span class="fu">var</span>(<span class="fu">rowSums</span>(items)))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (e <span class="cf">in</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)) {</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">5000</span>, <span class="at">error_sd =</span> e, <span class="at">seed =</span> <span class="dv">3</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  its <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(d[, <span class="fu">paste0</span>(<span class="st">"item_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)])</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"error_sd = %.1f   latent CTT rel = %.2f   alpha = %.2f   cor(total, true)^2 = %.2f</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>              e, <span class="dv">5</span> <span class="sc">/</span> (<span class="dv">5</span> <span class="sc">+</span> e<span class="sc">^</span><span class="dv">2</span>), <span class="fu">cronbach_alpha</span>(its),</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>              <span class="fu">cor</span>(d<span class="sc">$</span>total, d<span class="sc">$</span>true_score)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 0.5   latent CTT rel = 0.95   alpha = 0.93   cor(total, true)^2 = 0.85</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 1.0   latent CTT rel = 0.83   alpha = 0.80   cor(total, true)^2 = 0.75</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 2.0   latent CTT rel = 0.56   alpha = 0.49   cor(total, true)^2 = 0.48</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 3.0   latent CTT rel = 0.36   alpha = 0.30   cor(total, true)^2 = 0.29</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The three columns move together, and the bigger <code>error_sd</code> is, the lower they all are. That is why the simulator works well for the demonstrations in <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>: retest correlations, <span class="math inline">\(\alpha\)</span> and the correction for attenuation all behave approximately as CTT says they should. But the columns are not equal. Turning a latent impression into a category loses information of its own, so the recorded scale is somewhat less reliable than the latent one, and the total tracks the latent <span class="math inline">\(T\)</span> less well than <span class="math inline">\(\alpha\)</span> would suggest.</p>
+<p>None of this is a defect. It is what the simulator is for: it shows what the response rule does to your numbers. It is just not the tool for illustrating CTT in its pure form.</p>
+</section>
+<section id="simulating-ctt-directly" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="simulating-ctt-directly"><span class="header-section-number">2.5</span> Simulating CTT directly</h2>
+<p>If what you want is CTT itself — an observed score that is exactly a true score plus independent error, with a reliability you choose — the simulation is simpler, and it starts from the reliability rather than from the error.</p>
+<p>Rearrange the definition of reliability to find how much error you need:</p>
+<p><span class="math display">\[\text{rel} = \frac{\sigma^2_T}{\sigma^2_T + \sigma^2_E} \quad\Longrightarrow\quad \sigma_E = \sigma_T \sqrt{\frac{1 - \text{rel}}{\text{rel}}}\]</span></p>
+<p>Then draw true scores, draw errors with that SD, and add them:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>simulate_ctt <span class="ot">&lt;-</span> <span class="cf">function</span>(n, rel, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">true_score =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (rel <span class="sc">&lt;=</span> <span class="dv">0</span> <span class="sc">||</span> rel <span class="sc">&gt;=</span> <span class="dv">1</span>) <span class="fu">stop</span>(<span class="st">"rel must be between 0 and 1."</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  sd_error <span class="ot">&lt;-</span> sd <span class="sc">*</span> <span class="fu">sqrt</span>((<span class="dv">1</span> <span class="sc">-</span> rel) <span class="sc">/</span> rel)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(true_score)) true_score <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> mu, <span class="at">sd =</span> sd)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  observed <span class="ot">&lt;-</span> true_score <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> sd_error)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">true_score =</span> true_score, <span class="at">observed =</span> observed)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>ctt <span class="ot">&lt;-</span> <span class="fu">simulate_ctt</span>(<span class="at">n =</span> <span class="dv">5000</span>, <span class="at">rel =</span> <span class="fl">0.7</span>, <span class="at">mu =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">round</span>(ctt, <span class="dv">1</span>))</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   true_score observed</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       41.6     34.5</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       63.8     64.1</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       37.4     29.8</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       50.7     44.9</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       67.1     59.8</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       44.0     49.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here the reliability is an input, so you can check that it comes back out. Under CTT, the squared correlation between observed and true scores equals the reliability, and so does the correlation between two administrations to the same people:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (r <span class="cf">in</span> <span class="fu">c</span>(<span class="fl">0.9</span>, <span class="fl">0.7</span>, <span class="fl">0.5</span>, <span class="fl">0.3</span>)) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> <span class="fu">simulate_ctt</span>(<span class="at">n =</span> <span class="dv">5000</span>, <span class="at">rel =</span> r, <span class="at">mu =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> <span class="fu">simulate_ctt</span>(<span class="at">n =</span> <span class="dv">5000</span>, <span class="at">rel =</span> r, <span class="at">sd =</span> <span class="dv">10</span>, <span class="at">true_score =</span> x1<span class="sc">$</span>true_score)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"rel = %.1f   cor(observed, true)^2 = %.2f   retest r = %.2f</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>              r, <span class="fu">cor</span>(x1<span class="sc">$</span>observed, x1<span class="sc">$</span>true_score)<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>              <span class="fu">cor</span>(x1<span class="sc">$</span>observed, x2<span class="sc">$</span>observed)))</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; rel = 0.9   cor(observed, true)^2 = 0.90   retest r = 0.90</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; rel = 0.7   cor(observed, true)^2 = 0.69   retest r = 0.70</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; rel = 0.5   cor(observed, true)^2 = 0.51   retest r = 0.49</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; rel = 0.3   cor(observed, true)^2 = 0.30   retest r = 0.31</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Both columns land on the reliability you asked for, give or take sampling error. That is CTT working exactly — because we wrote its assumptions into the code.</p>
+<p>That is also its limit. The observed scores are continuous and unbounded: nothing stops one from being 112 on a test whose maximum is 100. There are no response categories, no thresholds and no ceiling, and the error is independent of <span class="math inline">\(T\)</span> by construction. Stevens’ question — what the numerals can be used for — does not even arise. This simulator cannot show you the problems of Likert data, because it has no Likert data in it.</p>
+</section>
+<section id="two-simulators-two-questions" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="two-simulators-two-questions"><span class="header-section-number">2.6</span> Two simulators, two questions</h2>
+<p>The two simulators answer different questions, and it helps to pick the one that matches yours.</p>
+<div id="tbl-which-sim" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-which-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.1: Which simulation to use for which measurement question.
+</figcaption>
+<div aria-describedby="tbl-which-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Your question is about…</th>
+<th>Use</th>
+<th>Because</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>reliability, the standard error of measurement, attenuation, retest</td>
+<td>a direct CTT simulation</td>
+<td>reliability is an input, and CTT holds exactly</td>
+</tr>
+<tr class="even">
+<td>response categories, ceilings, ordinal vs interval, sum scores</td>
+<td><code>simulate_likert()</code></td>
+<td>the response rule is explicit, and you can change it</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a> uses <code>simulate_likert()</code> throughout, also for reliability and attenuation, because one running example is easier to follow than two. The CTT results it shows there hold approximately, for the reasons given in <a href="#sec-is-it-ctt" class="quarto-xref"><span>Section 2.4</span></a>.</p>
+</section>
+<section id="building-your-own" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="building-your-own"><span class="header-section-number">2.7</span> Building your own</h2>
+<p>Neither function is complicated, and the point of this chapter is that you could have written both. If you want to explore a measurement question that they do not cover, the pattern is the same one <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a> describes in words:</p>
+<ol type="1">
+<li>Decide which question the simulation is for, and therefore which model you need.</li>
 <li>Generate the construct.</li>
 <li>Add whatever contaminates the observation of it.</li>
 <li>Apply whatever process turns that observation into a recorded value.</li>
-<li>Analyse the result <em>as if</em> you did not know steps 1 to 3 — then check your answer against them.</li>
+<li>Analyse the result <em>as if</em> you did not know steps 2 to 4 — then check your answer against them.</li>
 </ol>
-<p>Step 4 is the one people skip, and it is the only one that tells you whether your analysis works.</p>
+<p>Step 5 is the one people skip, and it is the only one that tells you whether your analysis works.</p>
 
 
 </section>

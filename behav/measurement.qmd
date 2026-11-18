@@ -291,6 +291,8 @@ Now the more serious question: can this assumption change what you *conclude*? I
 ### A running example
 
 We will use a simulated 5-item app-satisfaction scale, administered to users of two versions of an interface. Simulation is the right tool here for one specific reason: it hands us the true score $T$, which no real dataset ever will. Simulating data is a powerful way to learn, because we know the real underlying properties and we can check if the analyses are able to reconstruct them (with some caveats). The generating machinery is explained in @sec-simulating-measurement.
+<!-- 18 Nov 2026 (Claude): next sentence added because simulate_likert() is a latent-threshold model, not a pure CTT simulation. To review. -->
+One of those caveats matters here: the simulator adds error to each item's *latent* response and only then converts it into a 1–5 answer, so $X = T + E$ holds before that conversion, and the recorded total follows CTT only approximately.
 
 ```{r}
 #| label: satisfaction-sim
@@ -585,7 +587,7 @@ cronbach_alpha(items)
 
 About `r round(cronbach_alpha(items), 2)` — "adequate", by @tbl-reliability.
 
-Test–retest is where simulation earns its keep. We administer the scale a second time to the *same people*, with the *same true scores*, and fresh measurement error — which is exactly what $X = T + E$ says a retest is:
+Test–retest is where simulation earns its keep. We administer the scale a second time to the *same people*, with the *same true scores*, and fresh measurement error — which is what a retest means under CTT: the same $T$, a fresh $E$:<!-- 18 Nov 2026 (Claude): was "which is exactly what X = T + E says a retest is". To review. -->
 
 ```{r}
 #| label: test-retest
@@ -646,6 +648,8 @@ for (e in c(0.5, 1, 2, 3)) {
 ```
 
 The construct is identical in all four rows. The people are identical. Only the quality of the instrument changes, and the relationship you could detect falls from 0.92 to 0.55.
+<!-- 18 Nov 2026 (Claude): next sentence added. To review. -->
+Under pure CTT, the correlation between observed and true score would be exactly $\sqrt{\text{reliability}}$. Here it comes out a little lower than $\sqrt{\alpha}$, because turning latent responses into 1–5 categories distorts the scores in a way that depends on $T$, on top of $E$ (see @sec-is-it-ctt).
 
 The practical moral is worth stating baldly: **before concluding that there is no effect, ask how reliably you measured things.** A null result from a pair of noisy instruments is not evidence of absence; it may only be evidence that you were measuring badly.
 
@@ -698,7 +702,7 @@ r_corrected <- r_observed / sqrt(alpha_x * alpha_y)
 r_corrected
 ```
 
-The corrected value lands close to the true construct-level correlation, recovering most of what the measurement error had hidden. That is the payoff of the whole chapter: reliability is not an administrative number. It is the quantity that tells you how much of your result your instrument ate.
+The corrected value lands close to, though not exactly on, the true construct-level correlation, recovering most of what the measurement error had hidden. The remaining gap is partly sampling error and partly the fact that the simulator is not a pure CTT model.<!-- 18 Nov 2026 (Claude): "though not exactly on" and the sentence on the gap added. To review. --> That is the payoff of the whole chapter: reliability is not an administrative number. It is the quantity that tells you how much of your result your instrument ate.
 
 ::: {.callout-warning}
 ## Four cautions about the correction

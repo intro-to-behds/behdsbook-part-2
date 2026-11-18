@@ -1,6 +1,13 @@
 # Behind the Simulations {#sec-simulating-measurement}
 
-_Written for this book by Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
+_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+
+:::{.callout-warning}
+## Draft
+This chapter is a **draft**, revised with an AI assistant (Claude) on 18 November 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
+:::
+
+<!-- 18 Nov 2026 (Claude): revised at G. Arcara's request. The chapter used to present simulate_likert() as a Classical Test Theory simulation; it is a latent-threshold (ordinal) model, so it is now framed around Stevens' "assignment of numerals according to rules", with a new section on why it is not CTT and a direct CTT simulation (modelled on ONDAutils::simulate_scores()). To review. -->
 
 ```{r}
 #| label: sim-setup
@@ -19,15 +26,23 @@ Real data never hands you the true score. That is the entire problem @sec-measur
 
 In a simulation, you generate $T$ yourself. That makes it the only setting in which you can *check* whether those techniques work — where you can compute a disattenuated correlation and then look up the answer. It is the difference between being told that Cronbach's $\alpha$ estimates reliability and watching it do so.
 
-The cost is that simulated data is only as realistic as the model that produced it. So it is worth being able to read that model.
+The cost is that simulated data is only as realistic as the model that produced it. So it is worth being able to read that model — and being clear about *which* model it is.
+
+## What the Likert simulator models
+
+Recall Stevens' definition of measurement from @sec-measurement: "the assignment of numerals to objects or events according to rules". A Likert scale is a very literal case. A respondent has some position on a construct, and the questionnaire turns that position into one of the numerals 1 to 5. The interesting part is the **rule** that does the turning, because the rule decides what the numerals can be used for (@tbl-scales).
+
+`simulate_likert()` is a model of that rule. It has a latent construct, some noise, and a set of cut points that convert a continuous impression into an ordered category. It is designed to show what happens to your numbers when the rule is not the interval-scale ideal — which is the question about Likert data that @sec-measurement cares most about.
+
+It borrows the language of Classical Test Theory (CTT) for one of its steps, but it is **not a CTT simulation**. We come back to this after building it, in @sec-is-it-ctt.
 
 ## The Likert simulator
 
 `simulate_likert()` generates responses to a multi-item scale in four steps. We will build each one by hand, then check the result against the package function.
 
-### Step 1: the true score
+### Step 1: the latent construct
 
-Every respondent gets a position on the latent construct, on a standardised scale. This is $T$.
+Every respondent gets a position on the latent construct, on a standardised scale. The function calls it the `true_score`; we write it $T$.
 
 ```{r}
 #| label: step-true-score
@@ -51,9 +66,9 @@ tapply(true_grouped, group, mean)
 
 Keeping those two knobs separate matters. Two groups can share a mean and differ in spread — some populations really are more homogeneous than others — and @sec-measurement uses exactly that case to show that a difference in *scores* is not always a difference in the construct.
 
-### Step 2: measurement error, one item at a time
+### Step 2: noise in each item's latent response
 
-Each item is an imperfect window onto the same true score. Every item gets its own independent error:
+Each item is an imperfect window onto the same construct. Every item gets its own independent error:
 
 ```{r}
 #| label: step-error
@@ -67,13 +82,15 @@ latent <- matrix(true_score, nrow = n, ncol = n_items) +
 round(latent[1:3, ], 2)
 ```
 
-This is $X = T + E$, written as a matrix. Each row is one respondent; each column is one item. The true score is constant along a row, and what varies is the error.
+Each row is one respondent; each column is one item. The construct is constant along a row, and what varies is the error.
 
-`error_sd` is the single most consequential argument in the function. It is the size of $E$, and therefore it controls reliability: everything @sec-measurement says about noisy instruments is, mechanically, a statement about this number.
+This *looks* like CTT's $X = T + E$, and at this level it is: each value is $T$ plus independent, zero-mean error. But notice what these numbers are. They are each respondent's **latent response** to an item — the continuous impression in their head — and nobody ever records them. The observed score comes later, after step 3, and by then $X = T + E$ no longer holds exactly.
+
+`error_sd` is the main dial on reliability: more error, less reliable scale. But it is not reliability itself, and the function never takes a reliability value as input. Reliability is something you *estimate* on what the function returns, as @sec-measurement does.
 
 ### Step 3: the ordinal response process
 
-Here is the step that matters most, and the one that is invisible in real data.
+Here is the step that matters most, and the one that is invisible in real data. This is Stevens' rule.
 
 A respondent does not report a latent quantity. They pick a category. Somewhere in their head, a continuous impression gets converted into one of five boxes, and the conversion happens at **thresholds** — the points at which they switch from choosing "3" to choosing "4".
 
@@ -106,7 +123,7 @@ items_even <- matrix(findInterval(latent, thresholds_even) + 1L,
 table(items_even[, 1])
 ```
 
-Identical people. Identical true scores. Identical measurement error. Completely different-looking data, because the response process differs. @fig-thresholds shows what the two sets of cut points do to the same latent distribution.
+Identical people. Identical latent positions. Identical noise. Completely different-looking data, because the rule that assigns the numerals differs. @fig-thresholds shows what the two sets of cut points do to the same latent distribution.
 
 ```{r}
 #| label: fig-thresholds
@@ -141,6 +158,8 @@ ggplot(curve_df, aes(x, y)) +
         strip.text = element_text(face = "bold", size = 9.5))
 ```
 
+In both panels the numerals are correctly *ordered*: a higher latent value never produces a lower response. That is all an ordinal scale promises. Only the evenly spaced rule also makes the distances between numerals roughly comparable, and even that is an idealisation.
+
 ### Step 4: the total
 
 Finally the items are summed, which is what almost every scale does:
@@ -151,7 +170,7 @@ total <- rowSums(items)
 head(total)
 ```
 
-Summing is itself an assumption worth noticing. It treats all five items as equally important and as equally spaced, which is the interval assumption arriving through the back door.
+Summing is itself an assumption worth noticing. It treats all five items as equally important and as equally spaced, which is the interval assumption arriving through the back door: you are adding numerals that, by Stevens' classification, only license ordering.
 
 ### Checking against the package
 
@@ -182,26 +201,9 @@ behdslabs:::.simulate_likert
 
 I would encourage you to do that, in the spirit of the point made in Part 1 about AI-assisted code: you are responsible for analyses built on code you have not read.
 
-### What the arguments do
+### Retesting the same people
 
-A compact summary of the two dials that carry the teaching load:
-
-```{r}
-#| label: arg-effects
-cronbach_alpha <- function(items) {
-  k <- ncol(items)
-  k / (k - 1) * (1 - sum(apply(items, 2, var)) / var(rowSums(items)))
-}
-
-for (e in c(0.5, 1, 2, 3)) {
-  d <- simulate_likert(n = 500, error_sd = e, seed = 3)
-  its <- as.matrix(d[, paste0("item_", 1:5)])
-  cat(sprintf("error_sd = %.1f  ->  alpha = %.2f,  cor(total, true) = %.2f\n",
-              e, cronbach_alpha(its), cor(d$total, d$true_score)))
-}
-```
-
-And `true_score`, which is both returned and accepted as an argument. That is what makes a retest expressible: the same people, the same construct, a new occasion.
+`true_score` is both returned and accepted as an argument. That is what makes a retest expressible: the same people, the same construct, a new occasion with fresh noise.
 
 ```{r}
 #| label: arg-retest
@@ -212,13 +214,124 @@ identical(t1$true_score, t2$true_score)   # same people, same construct
 cor(t1$total, t2$total)                   # but not the same scores
 ```
 
+## Is this Classical Test Theory? {#sec-is-it-ctt}
+
+Not quite, and it is worth being precise about why, because the simulator uses the same letters CTT uses.
+
+In CTT, $X = T + E$ is a statement about the **observed score** — here, the total. $T$ is defined as the average total a person would get over infinitely many administrations, and $E$ is whatever is left over. Reliability is the share of the variance of $X$ that is due to $T$:
+
+$$\text{reliability} = \frac{\sigma^2_T}{\sigma^2_T + \sigma^2_E}$$
+
+`simulate_likert()` puts $T + E$ in a different place: on each item's *latent* response, before the response rule is applied. Three things follow.
+
+1. **The observed total is not the latent $T$ plus random error.** Between the two sits the response rule, which cuts, bounds and sums. The CTT true score of the total — the average total over many retests — is a curved function of the latent $T$, not a copy of it. @fig-total-vs-latent shows the curve: it flattens at the top, where the scale runs out of room.
+2. **The error in the total depends on $T$.** For a respondent near the ceiling, the error can pull the total down but hardly push it up. This is exactly the CTT limitation flagged in @sec-measurement: on a bounded scale, $T$ and $E$ stop being independent.
+3. **Reliability is never set.** It emerges from `error_sd`, the thresholds and the number of items. You find it by analysing the output, as with a real instrument.
+
+```{r}
+#| label: fig-total-vs-latent
+#| echo: false
+#| fig-cap: "Observed totals of 1,000 simulated respondents (default settings) against their latent position on the construct. The line is the average total at each latent value — roughly what CTT would call the true score of the total. It is not a straight line: it bends and flattens at the top, because the scale has a ceiling at 25."
+#| fig-width: 6.5
+#| fig-height: 3.6
+
+d_curve <- simulate_likert(n = 1000, seed = 8)
+
+ggplot(d_curve, aes(true_score, total)) +
+  geom_jitter(width = 0, height = 0.25, alpha = 0.25, size = 1) +
+  geom_smooth(method = "loess", se = FALSE, colour = "steelblue",
+              linewidth = 1.1, formula = y ~ x) +
+  geom_hline(yintercept = 25, linetype = "dashed", colour = "grey40") +
+  labs(x = "latent position (true_score)", y = "observed total") +
+  theme_minimal(base_size = 11) +
+  theme(panel.grid.minor = element_blank())
+```
+
+We can measure the gap. If we could record the latent responses and sum them, CTT would hold exactly, and the reliability of that latent total would be $k / (k + \sigma^2_E)$ for $k$ items and a latent $T$ with SD 1. Compare it with what you actually get from the recorded responses: Cronbach's $\alpha$, and the squared correlation between the total and the latent $T$, which under pure CTT would both equal the reliability.
+
+```{r}
+#| label: is-it-ctt
+cronbach_alpha <- function(items) {
+  k <- ncol(items)
+  k / (k - 1) * (1 - sum(apply(items, 2, var)) / var(rowSums(items)))
+}
+
+for (e in c(0.5, 1, 2, 3)) {
+  d <- simulate_likert(n = 5000, error_sd = e, seed = 3)
+  its <- as.matrix(d[, paste0("item_", 1:5)])
+  cat(sprintf("error_sd = %.1f   latent CTT rel = %.2f   alpha = %.2f   cor(total, true)^2 = %.2f\n",
+              e, 5 / (5 + e^2), cronbach_alpha(its),
+              cor(d$total, d$true_score)^2))
+}
+```
+
+The three columns move together, and the bigger `error_sd` is, the lower they all are. That is why the simulator works well for the demonstrations in @sec-measurement: retest correlations, $\alpha$ and the correction for attenuation all behave approximately as CTT says they should. But the columns are not equal. Turning a latent impression into a category loses information of its own, so the recorded scale is somewhat less reliable than the latent one, and the total tracks the latent $T$ less well than $\alpha$ would suggest.
+
+None of this is a defect. It is what the simulator is for: it shows what the response rule does to your numbers. It is just not the tool for illustrating CTT in its pure form.
+
+## Simulating CTT directly
+
+If what you want is CTT itself — an observed score that is exactly a true score plus independent error, with a reliability you choose — the simulation is simpler, and it starts from the reliability rather than from the error.
+
+Rearrange the definition of reliability to find how much error you need:
+
+$$\text{rel} = \frac{\sigma^2_T}{\sigma^2_T + \sigma^2_E} \quad\Longrightarrow\quad \sigma_E = \sigma_T \sqrt{\frac{1 - \text{rel}}{\text{rel}}}$$
+
+Then draw true scores, draw errors with that SD, and add them:
+
+```{r}
+#| label: simulate-ctt
+simulate_ctt <- function(n, rel, mu = 0, sd = 1, true_score = NULL) {
+  if (rel <= 0 || rel >= 1) stop("rel must be between 0 and 1.")
+  sd_error <- sd * sqrt((1 - rel) / rel)
+  if (is.null(true_score)) true_score <- rnorm(n, mean = mu, sd = sd)
+  observed <- true_score + rnorm(n, mean = 0, sd = sd_error)
+  data.frame(true_score = true_score, observed = observed)
+}
+
+set.seed(5)
+ctt <- simulate_ctt(n = 5000, rel = 0.7, mu = 50, sd = 10)
+head(round(ctt, 1))
+```
+
+Here the reliability is an input, so you can check that it comes back out. Under CTT, the squared correlation between observed and true scores equals the reliability, and so does the correlation between two administrations to the same people:
+
+```{r}
+#| label: ctt-check
+for (r in c(0.9, 0.7, 0.5, 0.3)) {
+  x1 <- simulate_ctt(n = 5000, rel = r, mu = 50, sd = 10)
+  x2 <- simulate_ctt(n = 5000, rel = r, sd = 10, true_score = x1$true_score)
+  cat(sprintf("rel = %.1f   cor(observed, true)^2 = %.2f   retest r = %.2f\n",
+              r, cor(x1$observed, x1$true_score)^2,
+              cor(x1$observed, x2$observed)))
+}
+```
+
+Both columns land on the reliability you asked for, give or take sampling error. That is CTT working exactly — because we wrote its assumptions into the code.
+
+That is also its limit. The observed scores are continuous and unbounded: nothing stops one from being 112 on a test whose maximum is 100. There are no response categories, no thresholds and no ceiling, and the error is independent of $T$ by construction. Stevens' question — what the numerals can be used for — does not even arise. This simulator cannot show you the problems of Likert data, because it has no Likert data in it.
+
+## Two simulators, two questions
+
+The two simulators answer different questions, and it helps to pick the one that matches yours.
+
+| Your question is about… | Use | Because |
+|---|---|---|
+| reliability, the standard error of measurement, attenuation, retest | a direct CTT simulation | reliability is an input, and CTT holds exactly |
+| response categories, ceilings, ordinal vs interval, sum scores | `simulate_likert()` | the response rule is explicit, and you can change it |
+
+: Which simulation to use for which measurement question. {#tbl-which-sim}
+
+@sec-measurement uses `simulate_likert()` throughout, also for reliability and attenuation, because one running example is easier to follow than two. The CTT results it shows there hold approximately, for the reasons given in @sec-is-it-ctt.
+
 ## Building your own
 
-The function is deliberately small, and the point of this chapter is that you could have written it. If you want to explore a measurement question that it does not cover, the pattern is the same one @sec-measurement describes in words:
+Neither function is complicated, and the point of this chapter is that you could have written both. If you want to explore a measurement question that they do not cover, the pattern is the same one @sec-measurement describes in words:
 
-1. Generate the construct.
-2. Add whatever contaminates the observation of it.
-3. Apply whatever process turns that observation into a recorded value.
-4. Analyse the result *as if* you did not know steps 1 to 3 — then check your answer against them.
+1. Decide which question the simulation is for, and therefore which model you need.
+2. Generate the construct.
+3. Add whatever contaminates the observation of it.
+4. Apply whatever process turns that observation into a recorded value.
+5. Analyse the result *as if* you did not know steps 2 to 4 — then check your answer against them.
 
-Step 4 is the one people skip, and it is the only one that tells you whether your analysis works.
+Step 5 is the one people skip, and it is the only one that tells you whether your analysis works.
