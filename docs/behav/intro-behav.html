@@ -8,7 +8,7 @@
 
 <meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
 
-<title>Behavioural Measurement – Introduction to Behavioural Data Science</title>
+<title>Foundations of Behavioural Research – Introduction to Behavioural Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -84,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../behav/intro-behav.html">Behavioural Measurement</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../behav/intro-behav.html">Foundations of Behavioural Research</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -134,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Behavioural Measurement</span></a>
+ <span class="menu-text">Foundations of Behavioural Research</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -346,6 +346,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/credible-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -367,7 +373,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Behavioural Measurement</h1>
+<h1 class="title">Foundations of Behavioural Research</h1>
 </div>
 
 
@@ -387,7 +393,8 @@ ul.task-list li input[type="checkbox"] {
 <p><em>Written for this book by Giorgio Arcara. This part is not in Irizarry’s <em>Introduction to Data Science</em>.</em></p>
 <p>Everything else in this book assumes the numbers you are working with mean something. We import them, reshape them, plot them, summarise them, and fit models to them, and at no point does the code ask where they came from or whether they deserve the interpretation we are about to put on them. For a great deal of data science that assumption is harmless: a timestamp is a timestamp, a count of clicks is a count of clicks.</p>
 <p>Behavioural data is different, and the difference is not a technicality. When we record how satisfied a user is with an interface, how much attention a task demanded, or how stressed somebody felt during a session, we are not recording the thing itself. We are recording something we can observe — an answer on a five-point scale, a response time, a button press — and treating it as a stand-in for something we cannot. The gap between the two is where most of the interesting mistakes in behavioural research live, and no amount of statistical sophistication further down the pipeline will close it.</p>
-<p>This part of the book is about that gap. It is deliberately placed before the statistics: the questions it raises — what is this number a number <em>of</em>, how precisely was it measured, what else could explain it — are ones you should be able to ask of any dataset before you start analysing it, and they do not require anything from the chapters that follow. The tools involved are mostly arithmetic. The hard part is knowing which question to ask.</p>
+<!-- 18 Nov 2026 (Claude): part renamed from "Behavioural Measurement" at the instructor's request; the last paragraph was rewritten to cover all four chapters (it used to cover measurement only). To review. -->
+<p>The first two chapters of this part are about that gap: what a score is a score <em>of</em>, and how precisely it was measured (<a href="measurement.html" class="quarto-xref"><span>1&nbsp; Measurement in Psychology</span></a>, <a href="simulating-measurement.html" class="quarto-xref"><span>2&nbsp; Behind the Simulations</span></a>). The other two move from the number to the study and to the people behind it. <a href="research-ethics.html" class="quarto-xref"><span>3&nbsp; Research Ethics and Data Privacy</span></a> asks what we owe the people who give us their data: what we may collect, how we store and share it, and how we analyse and report it honestly. <a href="experimental-designs.html" class="quarto-xref"><span>4&nbsp; Experimental Designs in Psychology</span></a> asks how the data were produced and what the design can support: what was manipulated, who was compared with whom, and what else could explain a difference. Together, measurement, ethics and design are the foundations of behavioural research. This part is deliberately placed before the statistics: its questions are ones you should be able to ask of any dataset before you start analysing it, and they do not require anything from the chapters that follow. The tools involved are mostly arithmetic. The hard part is knowing which question to ask.</p>
 
 
 

@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../work-in-progress.html" rel="next">
+<link href="../basic-stats/credible-evidence.html" rel="next">
 <link href="../basic-stats/missing-data.html" rel="prev">
 <link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -169,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Behavioural Measurement</span></a>
+ <span class="menu-text">Foundations of Behavioural Research</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -381,6 +381,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/credible-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -417,7 +423,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#read-the-numbers-together" id="toc-read-the-numbers-together" class="nav-link" data-scroll-target="#read-the-numbers-together">Read the numbers together</a></li>
   <li><a href="#non-significant-is-not-no-effect" id="toc-non-significant-is-not-no-effect" class="nav-link" data-scroll-target="#non-significant-is-not-no-effect">Non-significant is not “no effect”</a></li>
   <li><a href="#missing-data-and-analytic-choices" id="toc-missing-data-and-analytic-choices" class="nav-link" data-scroll-target="#missing-data-and-analytic-choices">Missing data and analytic choices</a></li>
-  <li><a href="#why-this-matters-the-replication-crisis" id="toc-why-this-matters-the-replication-crisis" class="nav-link" data-scroll-target="#why-this-matters-the-replication-crisis">Why this matters: the replication crisis</a></li>
   </ul></li>
   <li><a href="#common-interpretation-mistakes" id="toc-common-interpretation-mistakes" class="nav-link" data-scroll-target="#common-interpretation-mistakes"><span class="header-section-number">24.6</span> Common interpretation mistakes</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">24.7</span> Further reading</a></li>
@@ -448,25 +453,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><em>Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry’s <em>Introduction to Data Science</em>.</em></p>
-<div class="callout callout-style-simple callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Draft
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This chapter is a <strong>draft</strong>, written with an AI assistant (Claude) on 17 November 2026 from the instructor’s plan for the course week on design and interpretation, and not yet reviewed by the instructor. It may be substantially rewritten or removed.</p>
-</div>
-</div>
 <!-- 17 Nov 2026 (Claude): drafted from Course Slides/SLIDES_PLANS/Week09-Experimental Design and Intepretation/Global-Plan.md and Book-slides-alignment.md. Parts adapted from the hidden linear-models/association-not-causation.qmd (stress-app simulation, app_task_completion / Simpson's paradox, other sources of bias), rewritten without lm(). References to verify. -->
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(behdslabs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Running a statistical test is the easy part of an analysis. R computes a p-value, a confidence interval and an effect size in a fraction of a second. What R cannot do is say what those numbers mean: whether the effect is causal, whom it applies to, and how much we should trust it. That step is <em>interpretation</em>, and it is the analyst’s job.</p>
+<p>Running a statistical test is the easy part of an analysis, especially if you use LLMs as support to scaffold or write your code. With R you compute a p-value, a confidence interval and an effect size in a fraction of a second. What R cannot do is say what those numbers mean: whether the effect is causal, whom it applies to, how much we should trust it, if this is relevant. That step is <em>interpretation</em>, and it is the analyst’s job.</p>
 <p>Interpretation does not mean that any reading of the results is as good as another. A good interpretation brings together all the available evidence: how the data were collected (<a href="../behav/experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>), how well the variables were measured (<a href="../behav/measurement.html" class="quarto-xref"><span>Chapter 1</span></a>), what the estimates and their uncertainty say (<a href="../inference/estimates-confidence-intervals.html" class="quarto-xref"><span>Chapter 13</span></a>, <a href="effect-size.html" class="quarto-xref"><span>Chapter 21</span></a>), what is missing (<a href="missing-data.html" class="quarto-xref"><span>Chapter 23</span></a>), and how the analysis was done (<a href="../behav/research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>). Some interpretations are better than others because they account for more of this evidence.</p>
 <p>This chapter is about the step from results to conclusions. The first half is about causal claims: when an association can be read as a cause, and what else can produce it. The second half is about interpreting a result in general, and ends with a list of common mistakes.</p>
 <section id="explanation-and-prediction" class="level2" data-number="24.1">
@@ -515,7 +507,7 @@ Draft
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(stress <span class="sc">~</span> app, <span class="at">data =</span> stress_app)<span class="sc">$</span>p.value</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4.19e-15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>App users are clearly more stressed than non-users, and the difference is highly significant. Reading it causally would be backwards: it would say that the app increases stress, when we built the data so that it lowers it. Nothing is wrong with the test or the code; the interpretation is wrong. Only a design that compares the same people before and after, with a control group, or that assigns the app at random, could estimate its effect.</p>
+<p>App users are clearly more stressed than non-users, and the difference is highly significant. Reading it causally would be backwards: it would say that the app increases stress, when we built the data so that it lowers it. Note that nothing is wrong with the test or the code: it’s the interpretation that is wrong. Only a design that compares the same people before and after, with a control group, or that assigns the app at random, could estimate its effect.</p>
 </section>
 <section id="confounding" class="level3">
 <h3 class="anchored" data-anchor-id="confounding">Confounding</h3>
@@ -563,7 +555,7 @@ Draft
 </section>
 <section id="selection" class="level3">
 <h3 class="anchored" data-anchor-id="selection">Selection</h3>
-<p>The people in a dataset are rarely a random sample of the population we care about. Only some people agree to take part in a study, only some users leave a review, and only some participants stay until the end. If the process that brings people into the data is related to the variables we study, it can create, hide or distort associations. This is <strong>selection bias</strong>.</p>
+<p>The people in a dataset are rarely a random sample of the population we are interested in. Only some people agree to take part in a study, only some users leave a review, and only some participants stay until the end. If the process that brings people into the data is related to the variables we study, it can create, hide or distort associations. This is <strong>selection bias</strong>.</p>
 <p>A subtle form of selection occurs when the selection depends on two variables at once. Suppose an app store features an app if it has either an excellent design or excellent marketing. In the simulated data below, design quality and marketing quality are unrelated across all apps. Among the featured apps, they are negatively correlated: a featured app with poor marketing must have an excellent design, and vice versa.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
@@ -698,10 +690,6 @@ Table&nbsp;24.1: Four questions for interpreting a study, and the kind of validi
 <h3 class="anchored" data-anchor-id="missing-data-and-analytic-choices">Missing data and analytic choices</h3>
 <p>Two further questions concern how the final numbers were obtained. <strong>Who is in the analysis?</strong> If participants dropped out or skipped questions for reasons related to the outcome, the remaining sample may be optimistic (<a href="missing-data.html" class="quarto-xref"><span>Chapter 23</span></a>). <strong>How many choices were made, and when?</strong> Exclusion rules, outcome measures and covariates can be chosen in many reasonable ways. When they are chosen after seeing the data, a significant result is much easier to obtain, and much less informative (<a href="../behav/research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>).</p>
 </section>
-<section id="why-this-matters-the-replication-crisis" class="level3">
-<h3 class="anchored" data-anchor-id="why-this-matters-the-replication-crisis">Why this matters: the replication crisis</h3>
-<p>Many published findings in psychology could not be replicated by later studies (see <a href="../behav/research-ethics.html#sec-replication-crisis" class="quarto-xref"><span>Section 3.9.1</span></a>). The causes were not mainly fraud, but ordinary practices: small studies with low power, flexible analyses, and the preference of journals for significant results. Each of these leads to results that are interpreted with more confidence than the evidence supports. Careful interpretation, which reads the design, the estimates and the analytic choices together, is the first defence.</p>
-</section>
 </section>
 <section id="common-interpretation-mistakes" class="level2" data-number="24.6">
 <h2 data-number="24.6" class="anchored" data-anchor-id="common-interpretation-mistakes"><span class="header-section-number">24.6</span> Common interpretation mistakes</h2>
@@ -759,6 +747,8 @@ Table&nbsp;24.2: A ladder of wording, from associational to causal.
 <p><strong>“We controlled for it”.</strong> Adjusting for a confounder removes its influence only as far as the confounder is well measured. A covariate measured with error leaves part of the confounding in place (see <em>Measurement error and its consequences</em> in <a href="../behav/measurement.html" class="quarto-xref"><span>Chapter 1</span></a>), and confounders that were not measured are not controlled at all.</p>
 <p><strong>Going beyond the data.</strong> Results apply to the people, tasks, settings and range of values that were studied. A laboratory effect in students may not hold for older adults using their own phones at home.</p>
 <p><strong>Exploratory results presented as confirmatory.</strong> A pattern found while exploring the data is a hypothesis for the next study, not a confirmed finding (see <em>Two ways of exploring</em> in <a href="../behav/research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>).</p>
+<!-- 18 Nov 2026 (Claude): replaces the subsection "Why this matters: the replication crisis", moved to the next chapter -->
+<p>All these questions concern a single study. The next chapter, <a href="credible-evidence.html" class="quarto-xref"><span>Chapter 25</span></a>, asks them of a whole body of evidence: whether published results can be trusted, and why many of them could not be replicated.</p>
 </section>
 <section id="further-reading" class="level2" data-number="24.7">
 <h2 data-number="24.7" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">24.7</span> Further reading</h2>
@@ -1190,8 +1180,8 @@ Table&nbsp;24.2: A ladder of wording, from associational to causal.
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../work-in-progress.html" class="pagination-link" aria-label="Work in Progress">
-        <span class="nav-page-text">Work in Progress</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../basic-stats/credible-evidence.html" class="pagination-link" aria-label="Can We Trust the Evidence? Replication and Open Science">
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

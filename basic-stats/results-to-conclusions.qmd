@@ -2,11 +2,6 @@
 
 _Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
 
-:::{.callout-warning}
-## Draft
-This chapter is a **draft**, written with an AI assistant (Claude) on 17 November 2026 from the instructor's plan for the course week on design and interpretation, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
-:::
-
 <!-- 17 Nov 2026 (Claude): drafted from Course Slides/SLIDES_PLANS/Week09-Experimental Design and Intepretation/Global-Plan.md and Book-slides-alignment.md. Parts adapted from the hidden linear-models/association-not-causation.qmd (stress-app simulation, app_task_completion / Simpson's paradox, other sources of bias), rewritten without lm(). References to verify. -->
 
 ```{r, message=FALSE, warning=FALSE}
@@ -20,7 +15,7 @@ library(behdslabs)
 navy <- "#001238"
 ```
 
-Running a statistical test is the easy part of an analysis. R computes a p-value, a confidence interval and an effect size in a fraction of a second. What R cannot do is say what those numbers mean: whether the effect is causal, whom it applies to, and how much we should trust it. That step is *interpretation*, and it is the analyst's job.
+Running a statistical test is the easy part of an analysis, especially if you use LLMs as support to scaffold or write your code. With R you compute a p-value, a confidence interval and an effect size in a fraction of a second. What R cannot do is say what those numbers mean: whether the effect is causal, whom it applies to, how much we should trust it, if this is relevant. That step is *interpretation*, and it is the analyst's job.
 
 Interpretation does not mean that any reading of the results is as good as another. A good interpretation brings together all the available evidence: how the data were collected (@sec-experimental-designs), how well the variables were measured (@sec-measurement), what the estimates and their uncertainty say (@sec-estimates-and-ci, @sec-effect-size), what is missing (@sec-missing-data), and how the analysis was done (@sec-research-ethics). Some interpretations are better than others because they account for more of this evidence.
 
@@ -72,7 +67,7 @@ stress_app |>
 t.test(stress ~ app, data = stress_app)$p.value
 ```
 
-App users are clearly more stressed than non-users, and the difference is highly significant. Reading it causally would be backwards: it would say that the app increases stress, when we built the data so that it lowers it. Nothing is wrong with the test or the code; the interpretation is wrong. Only a design that compares the same people before and after, with a control group, or that assigns the app at random, could estimate its effect.
+App users are clearly more stressed than non-users, and the difference is highly significant. Reading it causally would be backwards: it would say that the app increases stress, when we built the data so that it lowers it. Note that nothing is wrong with the test or the code: it's the interpretation that is wrong. Only a design that compares the same people before and after, with a control group, or that assigns the app at random, could estimate its effect.
 
 ### Confounding
 
@@ -104,13 +99,13 @@ Task by task, the two devices are similar, and for task A desktop is better. The
 
 :::{.callout-note}
 This dataset has the same structure as a classic real example: graduate admissions by sex at the University of California, Berkeley, in 1973 (P. J. Bickel, E. A. Hammel & J. W. O'Connell, *Science*, 1975).
-:::
+::: 
 
 Stratifying works only for confounders that we thought of and measured. In an observational study, there may always be others.
 
 ### Selection
 
-The people in a dataset are rarely a random sample of the population we care about. Only some people agree to take part in a study, only some users leave a review, and only some participants stay until the end. If the process that brings people into the data is related to the variables we study, it can create, hide or distort associations. This is **selection bias**.
+The people in a dataset are rarely a random sample of the population we are interested in. Only some people agree to take part in a study, only some users leave a review, and only some participants stay until the end. If the process that brings people into the data is related to the variables we study, it can create, hide or distort associations. This is **selection bias**.
 
 A subtle form of selection occurs when the selection depends on two variables at once. Suppose an app store features an app if it has either an excellent design or excellent marketing. In the simulated data below, design quality and marketing quality are unrelated across all apps. Among the featured apps, they are negatively correlated: a featured app with poor marketing must have an excellent design, and vice versa.
 
@@ -236,10 +231,6 @@ A p-value above 0.05 does not show that there is no effect (@sec-hypothesis-test
 
 Two further questions concern how the final numbers were obtained. **Who is in the analysis?** If participants dropped out or skipped questions for reasons related to the outcome, the remaining sample may be optimistic (@sec-missing-data). **How many choices were made, and when?** Exclusion rules, outcome measures and covariates can be chosen in many reasonable ways. When they are chosen after seeing the data, a significant result is much easier to obtain, and much less informative (@sec-research-ethics).
 
-### Why this matters: the replication crisis
-
-Many published findings in psychology could not be replicated by later studies (see @sec-replication-crisis). The causes were not mainly fraud, but ordinary practices: small studies with low power, flexible analyses, and the preference of journals for significant results. Each of these leads to results that are interpreted with more confidence than the evidence supports. Careful interpretation, which reads the design, the estimates and the analytic choices together, is the first defence.
-
 ## Common interpretation mistakes
 
 The following mistakes are frequent in papers, reports and the press. Most of them follow from forgetting one of the three questions above.
@@ -273,6 +264,9 @@ The following mistakes are frequent in papers, reports and the press. Most of th
 **Going beyond the data.** Results apply to the people, tasks, settings and range of values that were studied. A laboratory effect in students may not hold for older adults using their own phones at home.
 
 **Exploratory results presented as confirmatory.** A pattern found while exploring the data is a hypothesis for the next study, not a confirmed finding (see *Two ways of exploring* in @sec-research-ethics).
+
+<!-- 18 Nov 2026 (Claude): replaces the subsection "Why this matters: the replication crisis", moved to the next chapter -->
+All these questions concern a single study. The next chapter, @sec-credible-evidence, asks them of a whole body of evidence: whether published results can be trusted, and why many of them could not be replicated.
 
 ## Further reading
 

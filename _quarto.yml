@@ -81,6 +81,7 @@ book:
         - basic-stats/power.qmd
         - basic-stats/missing-data.qmd
         - basic-stats/results-to-conclusions.qmd
+        - basic-stats/credible-evidence.qmd
 
     # [hidden until reflavoured]
     # - part: linear-models/intro-to-linear-models.qmd
