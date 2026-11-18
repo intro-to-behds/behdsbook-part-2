@@ -2,6 +2,8 @@
 
 _Written for this book by Cristiano Costa, with Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
 
+<!-- 18 Nov 2026 (Claude): cross-references to other chapters added; to review -->
+
 
 Imagine we want to know whether frequent smartphone notifications make it harder to concentrate. We could ask people how many notifications they normally receive and compare this with their performance on an attention task. Alternatively, we could actively manipulate the number of notifications they receive while they complete the task. These two studies may produce very similar-looking datasets. In both cases, we could end up with one column containing the number of notifications and another containing reaction times or accuracy. Yet the conclusions we can draw from the two datasets are not the same.
 
@@ -17,7 +19,7 @@ The process of translating a theoretical construct into a measurable variable is
 
 ### Measurement quality
 
-Operationalising a construct is only the first step: the resulting measure must also be reliable and valid for the interpretation we want to make. Reliability, validity, and the consequences of measurement error are covered in @sec-measurement. Here we add only what matters for design: measurement quality can become a design problem. Measurement error that differs across conditions is not just noise. If a sensor estimates heart rate differently depending on device model, and one experimental condition happens to contain more users of one model, a technical measurement difference becomes a methodological confound. For behavioural technologies, the questions to ask at the design stage therefore include:
+Operationalising a construct is only the first step: the resulting measure must also be reliable and valid for the interpretation we want to make. Reliability, validity, and the consequences of measurement error are covered in @sec-measurement, and simulated in @sec-simulating-measurement. Here we add only what matters for design: measurement quality can become a design problem. Measurement error that differs across conditions is not just noise. If a sensor estimates heart rate differently depending on device model, and one experimental condition happens to contain more users of one model, a technical measurement difference becomes a methodological confound. For behavioural technologies, the questions to ask at the design stage therefore include:
 
 - What exactly does the device or algorithm output?
 - How was that output validated?
@@ -46,9 +48,9 @@ Suppose we monitor 200 participants for one month. Their smartphones record how 
 
 ### Observational research
 
-In an observational study, variables are measured without the researcher directly assigning the exposure of interest. Such studies are extremely useful. They allow us to investigate behaviour in natural settings, sometimes for long periods of time, and may capture phenomena that would be difficult, impractical, or unethical to manipulate experimentally. The problem is that an observed association may have several explanations. People may receive more notifications on particularly demanding working days, while also reporting more stress. In this case, workload could influence both variables. Perhaps stressed people also check their phones more often, generating more digital interactions. Or another unmeasured factor could influence both phone use and stress.
+In an observational study, variables are measured without the researcher directly assigning the exposure of interest. Such studies are extremely useful. They allow us to investigate behaviour in natural settings, sometimes for long periods of time, and may capture phenomena that would be difficult, impractical, or unethical to manipulate experimentally (@sec-research-ethics). The problem is that an observed association may have several explanations. People may receive more notifications on particularly demanding working days, while also reporting more stress. In this case, workload could influence both variables. Perhaps stressed people also check their phones more often, generating more digital interactions. Or another unmeasured factor could influence both phone use and stress.
 
-A **confounding variable** is a variable that provides an alternative explanation for an observed relationship because it is related to both the exposure and the outcome. The familiar statement that *correlation does not imply causation* is therefore not a criticism of correlational research. It is a statement about what kind of inference the design permits.
+A **confounding variable** is a variable that provides an alternative explanation for an observed relationship because it is related to both the exposure and the outcome. The familiar statement that *correlation does not imply causation* is therefore not a criticism of correlational research. It is a statement about what kind of inference the design permits (correlation itself is covered in @sec-correlation; confounding and the other alternative explanations in @sec-results-to-conclusions).
 
 ### Experimental research
 
@@ -163,7 +165,7 @@ The related term **ecological validity** is often used when asking how well a ta
 
 ### Statistical conclusion validity
 
-A final question concerns whether the data and analysis support the statistical conclusion being drawn. Very noisy measurements, very small samples, inappropriate treatment of dependent observations, or highly flexible analyses can all make an estimated effect unstable or misleading. This is sometimes discussed as **statistical conclusion validity**. The four ideas are connected. A study can be strong in one respect and weaker in another. A carefully randomised laboratory experiment may have excellent internal validity but uncertain generalisability. A large naturalistic dataset may describe everyday behaviour very well but provide weaker causal identification. Thinking about validity therefore means asking not simply “Is this study valid?”, but **valid for which inference?**
+A final question concerns whether the data and analysis support the statistical conclusion being drawn. Very noisy measurements, very small samples, inappropriate treatment of dependent observations, or highly flexible analyses can all make an estimated effect unstable or misleading (on small samples, see @sec-power; on flexible analyses, @sec-replication-crisis). This is sometimes discussed as **statistical conclusion validity**. The four ideas are connected. A study can be strong in one respect and weaker in another. A carefully randomised laboratory experiment may have excellent internal validity but uncertain generalisability. A large naturalistic dataset may describe everyday behaviour very well but provide weaker causal identification. Thinking about validity therefore means asking not simply “Is this study valid?”, but **valid for which inference?**
 
 ## Cross-sectional, longitudinal, and intensive longitudinal designs
 
@@ -175,7 +177,7 @@ In a **cross-sectional design**, variables are measured at one point in time, or
 
 ### Longitudinal designs
 
-In a **longitudinal design**, the same individuals are measured across time. We might measure smartphone use and stress once per month for a year, or assess cognitive performance before and after the introduction of a new digital intervention. Repeated measurement makes it possible to study **change**. It can also establish temporal ordering more clearly: we can ask whether one variable measured earlier predicts another variable measured later. But longitudinal data are not automatically causal. A variable that precedes another may still be associated with an unmeasured cause of both. Longitudinal studies also introduce practical problems such as attrition, repeated-measurement effects, changes in devices or software, and changes in the broader environment during the study.
+In a **longitudinal design**, the same individuals are measured across time. We might measure smartphone use and stress once per month for a year, or assess cognitive performance before and after the introduction of a new digital intervention. Repeated measurement makes it possible to study **change**. It can also establish temporal ordering more clearly: we can ask whether one variable measured earlier predicts another variable measured later. But longitudinal data are not automatically causal. A variable that precedes another may still be associated with an unmeasured cause of both. Longitudinal studies also introduce practical problems such as attrition (@sec-missing-data), repeated-measurement effects, changes in devices or software, and changes in the broader environment during the study.
 
 ### Intensive longitudinal data
 
@@ -278,7 +280,7 @@ Sometimes researchers know in advance that a characteristic is especially import
 
 ## Between-subjects designs
 
-In a **between-subjects design**, different participants take part in different experimental conditions. Suppose we recruit 120 participants for an attention experiment. Sixty receive frequent notifications while completing a sustained-attention task, and sixty complete exactly the same task without notifications. Each participant experiences only one condition.
+In a **between-subjects design**, different participants take part in different experimental conditions. Suppose we recruit 120 participants for an attention experiment. Sixty receive frequent notifications while completing a sustained-attention task, and sixty complete exactly the same task without notifications. Each participant experiences only one condition, and the conditions are compared with tests for independent groups (@sec-two-groups).
 
 ### Advantages
 
@@ -286,7 +288,7 @@ The major advantage is that performance in one condition cannot influence perfor
 
 ### Disadvantages
 
-The main cost is **inter-individual variability**. People differ in baseline cognitive performance, motivation, sleep, technology use, personality, and many other characteristics. These differences contribute noise to comparisons between conditions. Random assignment protects against systematic bias, but it does not remove individual variability from the outcome. As a consequence, between-subjects studies often require larger samples than comparable within-subjects studies in which each participant serves as their own control.
+The main cost is **inter-individual variability**. People differ in baseline cognitive performance, motivation, sleep, technology use, personality, and many other characteristics. These differences contribute noise to comparisons between conditions. Random assignment protects against systematic bias, but it does not remove individual variability from the outcome. As a consequence, between-subjects studies often require larger samples than comparable within-subjects studies in which each participant serves as their own control (@sec-power).
 
 ## Within-subjects designs
 
@@ -380,7 +382,7 @@ Behaviour rarely depends on only one factor. Suppose we suspect that smartphone 
 | No notifications | 1 | 2 |
 | Frequent notifications | 3 | 4 |
 
-The notation *2 × 2* indicates that there are two factors and each has two levels.
+The notation *2 × 2* indicates that there are two factors and each has two levels. Such designs are usually analysed with a two-way ANOVA (@sec-anova).
 
 ### Main effects
 
@@ -434,7 +436,7 @@ Interactions are important because they prevent us from reducing a result to a s
 
 A **mixed design** combines between-subjects and within-subjects factors. Suppose we compare habitual users and non-users of smartwatches. User group is a between-subjects factor because each person belongs to one group. Every participant then completes a cognitive task with and without real-time physiological feedback from the watch. Feedback condition is a within-subjects factor. A mixed design allows us to examine whether the within-person effect of feedback differs between the two groups. <!-- added by Claude, 17 Nov 2026; to review --> Note that the feedback condition is manipulated, but user group is not: participants arrive already being users or non-users, so a difference between the groups is a comparison of pre-existing groups, with all the alternative explanations that this implies.
 
-Mixed designs are common in behavioural science because they reflect the structure of many substantive questions: people belong to different groups, but are also measured repeatedly across tasks, sessions, or conditions.
+Mixed designs are common in behavioural science because they reflect the structure of many substantive questions: people belong to different groups, but are also measured repeatedly across tasks, sessions, or conditions. Their analysis combines the between-subjects and repeated-measures ANOVA of @sec-anova.
 
 ## Bias and control procedures
 
@@ -442,7 +444,7 @@ Randomisation addresses some threats to inference, but not all of them. Research
 
 ### Participant expectations and demand characteristics
 
-Suppose participants are told that an app has been designed to reduce stress. Their expectations may influence how they later rate their emotions, even if the app has little direct effect. Similarly, participants who complete both a “high distraction” and “low distraction” condition may infer the hypothesis and consciously or unconsciously change their behaviour. These are examples of **demand characteristics**: features of the study that reveal expectations about how participants are supposed to respond.
+Suppose participants are told that an app has been designed to reduce stress. Their expectations may influence how they later rate their emotions, even if the app has little direct effect. Similarly, participants who complete both a “high distraction” and “low distraction” condition may infer the hypothesis and consciously or unconsciously change their behaviour. These are examples of **demand characteristics**: features of the study that reveal expectations about how participants are supposed to respond. Withholding the hypothesis to limit them raises the ethical questions of deception and debriefing discussed in @sec-research-ethics.
 
 ### Experimenter expectancy
 
@@ -464,7 +466,7 @@ Many of the decisions that determine whether a study will be informative occur b
 
 ### Sample size and precision
 
-One decision concerns **sample size**. A study should not ideally recruit a particular number of participants only because that number is convenient or because another paper used the same number. The amount of information required depends on the design, the variability of the measurements, the size of the effect that would be scientifically meaningful, and the precision required from the estimates. The concept of **statistical power** captures one part of this problem. Roughly speaking, power concerns the probability that a study will detect an effect of a given size when such an effect is present.
+One decision concerns **sample size**. A study should not ideally recruit a particular number of participants only because that number is convenient or because another paper used the same number. The amount of information required depends on the design, the variability of the measurements, the size of the effect that would be scientifically meaningful (@sec-effect-size), and the precision required from the estimates (@sec-estimates-and-ci). The concept of **statistical power** captures one part of this problem (@sec-power). Roughly speaking, power concerns the probability that a study will detect an effect of a given size when such an effect is present.
 
 A small study may fail to detect a meaningful effect because its estimates are too imprecise. But simply collecting a huge number of repeated measurements from a few individuals does not necessarily solve the problem, because repeated observations do not provide the same information as independent participants. This brings us back to the importance of understanding the experimental unit.
 
@@ -476,7 +478,7 @@ There may be several defensible choices. The methodological problem arises when 
 
 ### Outcomes and stopping rules
 
-The same logic applies to **outcomes**. A smartphone study may generate dozens of variables: screen time, unlock frequency, notification count, app categories, mobility, sleep estimates, typing patterns, and subjective ratings. If one primary hypothesis is being tested, the corresponding primary outcome should ideally be identified before the analysis. Researchers should also decide when data collection will stop. Repeatedly analysing the data and ending recruitment as soon as a desired result becomes statistically significant changes the behaviour of conventional statistical tests. If sequential monitoring is planned, it should be incorporated into the design and analysis.
+The same logic applies to **outcomes**. A smartphone study may generate dozens of variables: screen time, unlock frequency, notification count, app categories, mobility, sleep estimates, typing patterns, and subjective ratings. If one primary hypothesis is being tested, the corresponding primary outcome should ideally be identified before the analysis: testing many outcomes and reporting the significant ones inflates false positives (@sec-multiple-comparisons). Researchers should also decide when data collection will stop. Repeatedly analysing the data and ending recruitment as soon as a desired result becomes statistically significant changes the behaviour of conventional statistical tests (@sec-hypothesis-testing). If sequential monitoring is planned, it should be incorporated into the design and analysis.
 
 ### Missing data and data completeness
 
@@ -487,7 +489,7 @@ Technology-based studies often produce missing data for reasons that are scienti
 - How will technical failures be distinguished from participant non-adherence?
 - When is a participant considered to have insufficient data for a planned analysis?
 
-The statistical treatment of missing data is covered elsewhere. At the design stage, the key point is that **missing data can reflect the process being studied** and should be anticipated where possible.
+The statistical treatment of missing data is covered in @sec-missing-data. At the design stage, the key point is that **missing data can reflect the process being studied** and should be anticipated where possible.
 
 ### Pilot and feasibility studies
 
@@ -497,7 +499,7 @@ A small pilot should not usually be treated as a miniature definitive hypothesis
 
 ### Preregistration and transparency
 
-**Preregistration** provides one way of documenting decisions before the results are known. A preregistration can specify hypotheses, primary outcomes, sample-size rationale, exclusion criteria, experimental procedures, and planned analyses. Preregistration does not prevent exploration. Behavioural datasets are often rich, and unexpected patterns can be scientifically valuable. The important distinction is between **confirmatory analyses**, which test predictions specified in advance, and **exploratory analyses**, which are motivated by patterns discovered after observing the data. Both can be useful. They answer different questions.
+**Preregistration** provides one way of documenting decisions before the results are known (why this matters is explained in @sec-replication-crisis). A preregistration can specify hypotheses, primary outcomes, sample-size rationale, exclusion criteria, experimental procedures, and planned analyses. Preregistration does not prevent exploration. Behavioural datasets are often rich, and unexpected patterns can be scientifically valuable. The important distinction is between **confirmatory analyses**, which test predictions specified in advance, and **exploratory analyses**, which are motivated by patterns discovered after observing the data. Both can be useful. They answer different questions.
 
 ### From design to conclusion
 
@@ -506,6 +508,8 @@ Let us return to the question that opened this chapter: **Do smartphone notifica
 We could simultaneously manipulate cognitive load, allowing us to test whether the effect of notifications depends on task difficulty. Or we could measure attention repeatedly in daily life, producing a multilevel dataset in which moments are nested within individuals. None of these designs is universally “best”. Each design trades some advantages for others. The appropriate design depends on the research question, the population, the practical and ethical constraints, the measurement technology, and the type of inference we want to make. Before asking which statistical model to apply to a dataset, it is therefore worth asking a more basic question:
 
 > **What does the way these data were collected actually allow us to conclude?**
+
+How to answer this question once the results are in is the topic of @sec-results-to-conclusions.
 
 ---
 
