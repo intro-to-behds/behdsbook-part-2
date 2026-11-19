@@ -2,11 +2,6 @@
 
 _Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
 
-:::{.callout-warning}
-## Draft
-This chapter is a **draft**, revised with an AI assistant (Claude) on 18 November 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
-:::
-
 <!-- 18 Nov 2026 (Claude): revised at G. Arcara's request. The chapter used to present simulate_likert() as a Classical Test Theory simulation; it is a latent-threshold (ordinal) model, so it is now framed around Stevens' "assignment of numerals according to rules", with a new section on why it is not CTT and a direct CTT simulation (modelled on ONDAutils::simulate_scores()). To review. -->
 
 ```{r}
@@ -16,17 +11,17 @@ library(ggplot2)
 library(behdslabs)
 ```
 
-@sec-measurement used a simulated five-item satisfaction scale. This chapter explains how it is generated. You can skip it and lose nothing from the argument of that chapter — but if you want to understand *why* the simulations behave the way they do, or you want to build your own, this is where the machinery is.
+@sec-measurement used a simulated five-item satisfaction scale. This chapter explains how it is generated. You can skip it and lose nothing from the argument of that chaptet, but if you want to understand *why* the simulations behave the way they do, or you want to build your own, this is where the machinery is explained.
 
 ## Why simulate at all
 
-There is one specific reason, and it is not convenience.
+There is one specific reason, and it is not just convenience.
 
-Real data never hands you the true score. That is the entire problem @sec-measurement is about: you observe $X$, you want to know about $T$, and $T$ is permanently out of reach. Every reliability coefficient, every validity argument, every correction for attenuation is an attempt to reason about a quantity nobody can see.
+Real data never hands you the actual "ground truth" of what's happening or, in the case of psychological measurement, the true score. That is the entire problem @sec-measurement is about: you observe $X$, you want to know about $T$, and $T$ is permanently out of reach. Every reliability coefficient, every validity argument, every correction for attenuation is an attempt to reason about a quantity nobody can see.
 
-In a simulation, you generate $T$ yourself. That makes it the only setting in which you can *check* whether those techniques work — where you can compute a disattenuated correlation and then look up the answer. It is the difference between being told that Cronbach's $\alpha$ estimates reliability and watching it do so.
+In a simulation, you start from a different perspective: you generate $T$ yourself, and you see how well the methods are able to capture a known ground truth. That makes it the only setting in which you can *check* whether those techniques work, where you can compute a disattenuated correlation and then look up the answer. It is the difference between being told that Cronbach's $\alpha$ estimates reliability and watching it do so.
 
-The cost is that simulated data is only as realistic as the model that produced it. So it is worth being able to read that model — and being clear about *which* model it is.
+The cost is that simulated data is only as realistic as the model that produced it. So it is worth being able to read that model, and being clear about *which* model it is. Very often, you simulate scores with the same, or similar, generative model you use to test the hytpothesis, and this creates a sort of circularity: the method may work because you created data in the way the method expects. 
 
 ## What the Likert simulator models
 
@@ -174,7 +169,7 @@ Summing is itself an assumption worth noticing. It treats all five items as equa
 
 ### Checking against the package
 
-The four steps above are exactly what the function does. To prove it, let us run them again in one block — in the order the function uses them, so that the random draws line up — and compare:
+The four steps above are exactly what the function does. To prove it, let us run them again in one block, in the order the function uses them, so that the random draws line up, and compare:
 
 ```{r}
 #| label: check-against-package
