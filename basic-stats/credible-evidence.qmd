@@ -7,7 +7,7 @@ _Written for this book by Giorgio Arcara, with an AI assistant (Claude). This ch
 This chapter is a **draft**, written with an AI assistant (Claude) on 18 November 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
 :::
 
-<!-- 18 Nov 2026 (Claude): new chapter. The replication-crisis section (text, fig-osc, OSC 2015 and Simmons et al. 2011) was moved here from behav/research-ethics.qmd (Scientific integrity), and the short "Why this matters" subsection of results-to-conclusions.qmd was removed. The rest is new. References to verify. -->
+<!-- 18 Nov 2026 (Claude): new chapter. The replication-crisis section (text, fig-osc, OSC 2015 and Simmons et al. 2011) was moved here from behav/research-ethics.qmd (Scientific integrity), and the short "Why this matters" subsection of results-to-conclusions.qmd was removed. The rest is new. References to verify. 20 Nov 2026 (Claude): added Tyner et al. (2026, SCORE) to the replication-crisis section, with fig-score, at the instructor's request. -->
 
 ```{r, message=FALSE, warning=FALSE}
 #| cache: false
@@ -38,7 +38,7 @@ Robustness is less obvious. In a *many-analysts* study, Silberzahn and colleague
 ## The replication crisis {#sec-replication-crisis}
 
 <!-- moved from behav/research-ethics.qmd on 18 Nov 2026; OSC 2015 figures checked against the PubMed abstract (14 Nov 2026) -->
-In the early 2010s psychology went through what is now called the **replication crisis**. The largest test came in 2015, when the Open Science Collaboration repeated 100 studies published in three leading psychology journals. Ninety-seven percent of the original studies had reported statistically significant results; only thirty-six percent of the replications did, and the effects found in the replications were on average half the size of the original ones (@fig-osc). Similar problems have since been documented in other fields, including medicine and economics.
+In the early 2010s psychology went through what is now called the **replication crisis**. The largest test came in 2015, when the Open Science Collaboration repeated 100 studies published in three leading psychology journals. Ninety-seven percent of the original studies had reported statistically significant results; only thirty-six percent of the replications did, and the effects found in the replications were on average half the size of the original ones (@fig-osc).
 
 ```{r}
 #| label: fig-osc
@@ -62,6 +62,39 @@ ggplot(osc, aes(set, pct, fill = set)) +
   theme(panel.grid.major.x = element_blank(),
         panel.grid.minor = element_blank())
 ```
+
+<!-- 20 Nov 2026 (Claude): SCORE paragraph and fig-score added. Figures checked against the peer-reviewed manuscript (King's College London repository): abstract, Table 3 (rates weighted by paper), Discussion. -->
+A decade later, the largest test so far extended the question beyond psychology. Tyner and colleagues (2026) repeated 274 findings from 164 papers, published between 2009 and 2018 in 54 journals of six social and behavioural sciences: business, economics, education, political science, psychology and sociology. The replications used the original materials where possible, their protocols were reviewed before the data were collected, and they were large: their median power to detect the original effect was above 99%. Even so, only about half of the findings replicated: 55% of the claims, 49% of the papers, and 49% of the 58 psychology papers (@fig-score). The effects shrank too: the median correlation went from 0.25 in the original studies to 0.10 in the replications. The rates in the six fields were similar; the differences between them could easily be due to chance. Similar problems have also been documented in other fields, including medicine.
+
+```{r}
+#| label: fig-score
+#| echo: false
+#| fig-cap: "Percentage of papers whose findings replicated (significant, in the same direction as the original), in six social and behavioural sciences; the number of papers is in brackets. The dashed line is the overall rate, 49%. Data from Tyner et al. (2026), Table 3."
+#| fig-width: 6
+#| fig-height: 3
+
+score <- tibble(field = c("Business", "Economics", "Education",
+                          "Political science", "Psychology", "Sociology"),
+                n = c(36, 24, 13, 15, 58, 18),
+                pct = c(47.2, 42.5, 63.1, 52.0, 49.0, 51.1)) |>
+  mutate(label = paste0(field, " (", n, ")"),
+         label = fct_reorder(label, pct))
+
+ggplot(score, aes(pct, label, fill = field == "Psychology")) +
+  geom_col(width = 0.6, show.legend = FALSE) +
+  geom_vline(xintercept = 49.3, linetype = "dashed") +
+  geom_text(aes(x = 2, label = paste0(sprintf("%.1f", pct), "%")),
+            hjust = 0, colour = "white", size = 3.5) +
+  scale_fill_manual(values = c("FALSE" = "grey60", "TRUE" = navy)) +
+  scale_x_continuous(limits = c(0, 100), breaks = seq(0, 100, 25),
+                     labels = function(x) paste0(x, "%")) +
+  labs(x = "papers that replicated", y = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.major.y = element_blank(),
+        panel.grid.minor = element_blank())
+```
+
+Two details of this study matter for what follows. First, the replications were so large that their failures cannot be blamed on low power: they could easily detect the original effects, if those effects were real and as large as reported. Second, the authors note that some shrinkage is expected whenever only significant findings are followed up, a point that the section *Small studies and exaggerated effects* below makes with a simulation. Their results also depend on how success is defined: thirteen different criteria gave replication rates from 29% to 75%. There is no single "replication rate", but every criterion tells the same story: many published findings are weaker than they first appeared.
 
 A failed replication does not prove that the original effect is false. The replication is a study too, with its own sampling error, and it may differ from the original in small ways (the participants, the country, the year). But when most original studies are significant and most replications are not, and the replicated effects are systematically smaller, chance alone cannot explain the pattern. Something in the way the original studies were done, or selected for publication, made them look stronger than they were.
 
@@ -162,6 +195,7 @@ These practices also give us a short list of questions to ask of any published r
 ## Further reading
 
 - Open Science Collaboration (2015), *Estimating the reproducibility of psychological science*, Science, 349(6251), aac4716, <https://doi.org/10.1126/science.aac4716>.
+- A. H. Tyner et al. (2026), *Investigating the replicability of the social and behavioural sciences*, Nature, 652, 143–150, <https://doi.org/10.1038/s41586-025-10078-y>. The SCORE project; open access.
 - J. P. Simmons, L. D. Nelson & U. Simonsohn (2011), *False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant*, Psychological Science, 22(11), 1359–1366, <https://doi.org/10.1177/0956797611417632>.
 - R. Silberzahn et al. (2018), *Many analysts, one data set: Making transparent how variations in analytic choices affect results*, Advances in Methods and Practices in Psychological Science, 1(3), 337–356, <https://doi.org/10.1177/2515245917747646>.
 - K. S. Button et al. (2013), *Power failure: Why small sample size undermines the reliability of neuroscience*, Nature Reviews Neuroscience, 14(5), 365–376, <https://doi.org/10.1038/nrn3475>.
