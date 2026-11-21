@@ -44,7 +44,9 @@ draw_flow <- function(nodes, edges, notes = NULL, xlim, ylim) {
 
 Imagine we want to know whether frequent smartphone notifications make it harder to concentrate. We could ask people how many notifications they normally receive and compare this with their performance on an attention task. Alternatively, we could actively manipulate the number of notifications they receive while they complete the task. These two studies may produce very similar-looking datasets. In both cases, we could end up with one column containing the number of notifications and another containing reaction times or accuracy. Yet the conclusions we can draw from the two datasets are not the same.
 
-The reason is the **study design**. A statistical analysis can describe patterns in the data, estimate relationships, and quantify uncertainty. But the way the data were generated determines what those patterns mean. Before choosing a statistical test, fitting a model, or interpreting a coefficient, we therefore need to understand where the data came from.
+<PLACEHOLDER: Claude, add an example of R dataset here, with about 6 rows.)>
+
+The reason for this is the different **study design**. A statistical analysis can describe patterns in the data, estimate relationships, and quantify uncertainty. But the way the data were generated determines what those patterns mean and how they can be interpreted. Before choosing a statistical test, fitting a model, or interpreting a coefficient, we therefore need to understand where the data came from.
 
 <!-- 20 Nov 2026 (Claude): paragraph added at the instructor's request (the design shapes the analysis, link to Basic Statistics); to review -->
 The design also shapes the analysis itself, and so the code we write. It decides the **type of analysis**: two independent groups call for a different test from the same people measured twice (@sec-two-groups, @sec-anova). It decides which **additional checks** make sense: whether the groups were similar before the study began, and whether the manipulation worked (see *Manipulation checks* below). It decides which **control analyses** are needed to see whether a result survives other explanations, and so which **variables are relevant** and must be measured from the start: a variable we never collected cannot be accounted for later. It even decides what **missing data** mean: participants who drop out of one condition more than the other can change the comparison (@sec-missing-data). The chapters of the *Basic Statistics* part describe the tests; this chapter explains why the choice among them starts with the design, and @sec-results-to-conclusions comes back to it when we interpret a result.
@@ -66,7 +68,7 @@ Operationalising a construct is only the first step: the resulting measure must 
 - Is measurement quality similar across participants, devices, and contexts? (This is the question of *measurement invariance*, see @sec-measurement.)
 - Are software or firmware versions held constant or documented?
 
-Large datasets do not compensate for poor measurement. A million observations of the wrong quantity do not answer the intended research question.
+Note that large datasets of big data do not compensate for poor measurement. A million observations of the wrong quantity do not answer the intended research question. This underline a _quality over quantity_ principle, that is relevant also for behavioral data science.
 
 ### Units matter
 
@@ -80,7 +82,9 @@ rows of data. But we do not suddenly have 3,500 independent participants. The **
 
 The **unit of analysis** is the level at which the statistical analysis is carried out. This must be compatible with the design and with the dependence structure of the observations. Repeated measurements from the same person are usually more similar to one another than measurements from different people. Treating all 3,500 EMA responses as though they came from 3,500 unrelated participants would therefore exaggerate the amount of independent information in the dataset.
 
-Smartphones, wearables, eye trackers, computer tasks, and online platforms can all generate repeated or nested observations. The design that produced those observations needs to be represented in the analysis.
+Smartphones, wearables, eye trackers, computer tasks, and online platforms can all generate repeated or nested observations. The design that produced those observations needs to be represented in the analysis and taken properly into account.
+
+<CLAUDE: not clear this paragraph and the relation with others and with the book, suggest potential connections>
 
 ## Association and causality {#sec-association-causality}
 
@@ -88,13 +92,15 @@ Suppose we monitor 200 participants for one month. Their smartphones record how 
 
 ### Observational research
 
-In an observational study, variables are measured without the researcher directly assigning the exposure of interest. Such studies are extremely useful. They allow us to investigate behaviour in natural settings, sometimes for long periods of time, and may capture phenomena that would be difficult, impractical, or unethical to manipulate experimentally (@sec-research-ethics). The problem is that an observed association may have several explanations. People may receive more notifications on particularly demanding working days, while also reporting more stress. In this case, workload could influence both variables. Perhaps stressed people also check their phones more often, generating more digital interactions. Or another unmeasured factor could influence both phone use and stress.
+In an observational study, variables are measured without the researcher directly assigning the exposure of interest. Such studies are extremely useful: they allow us to investigate behaviour in natural settings, sometimes for long periods of time, and may capture phenomena that would be difficult, impractical, or unethical to manipulate experimentally (@sec-research-ethics). The problem is that an observed association may have several explanations that can be different from the ones on which we are focusing our attention or that we recorded. People may receive more notifications on particularly demanding working days, while also reporting more stress. In this case, workload could influence both variables. Perhaps stressed people also check their phones more often, generating more digital interactions. Or another unmeasured factor could influence both phone use and stress. We don't have a direct way to disentangle between these different interpretations of the same results.
 
-A **confounding variable** is a variable that provides an alternative explanation for an observed relationship because it is related to both the exposure and the outcome. The familiar statement that *correlation does not imply causation* is therefore not a criticism of correlational research. It is a statement about what kind of inference the design permits (correlation itself is covered in @sec-correlation; confounding and the other alternative explanations in @sec-results-to-conclusions).
+A **confounding variable** is a variable that provides an alternative explanation for an observed relationship because it is related to both the exposure and the outcome. 
+
+All these considerations are related to the familiar statement that *correlation does not imply causation* that should not be interpreted criticism of correlational research (or even worse of correlation analysis). It is a statement about what kind of inference the design permits. (correlation itself is covered in @sec-correlation; confounding and the other alternative explanations in @sec-results-to-conclusions).
 
 ### Experimental research
 
-In an experiment, the researcher deliberately manipulates one or more variables and observes their consequences. Instead of recording the number of notifications that participants naturally receive, we might randomly assign them to receive either frequent or infrequent notifications while completing the same cognitive task. A causal interpretation typically requires three ideas:
+In an experiment, the researcher deliberately **manipulates** one or more variables and observes their consequences. Instead of recording the number of notifications that participants naturally receive, we might **randomly** assign them to receive either frequent or infrequent notifications while completing the same cognitive task. A causal interpretation typically requires three ideas:
 
 1. the putative cause and outcome **covary**;
 2. the cause occurs **before** the outcome;
