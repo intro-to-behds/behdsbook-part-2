@@ -1,7 +1,5 @@
 # From Results to Conclusions {#sec-results-to-conclusions}
 
-_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
-
 <!-- 17 Nov 2026 (Claude): drafted from Course Slides/SLIDES_PLANS/Week09-Experimental Design and Intepretation/Global-Plan.md and Book-slides-alignment.md. Parts adapted from the hidden linear-models/association-not-causation.qmd (stress-app simulation, app_task_completion / Simpson's paradox, other sources of bias), rewritten without lm(). References to verify. -->
 
 ```{r, message=FALSE, warning=FALSE}
@@ -15,7 +13,7 @@ library(behdslabs)
 navy <- "#001238"
 ```
 
-Running a statistical test is the easy part of an analysis, especially if you use LLMs as support to scaffold or write your code. With R you compute a p-value, a confidence interval and an effect size in a fraction of a second. What R cannot do is say what those numbers mean: whether the effect is causal, whom it applies to, how much we should trust it, if this is relevant. That step is *interpretation*, and it is the analyst's job.
+Running a statistical test is the easy part of an analysis, especially if you use LLMs as support to scaffold or write your code. With R you compute a p-value, a confidence interval and an effect size in a fraction of a second. What R cannot do is say what those numbers mean: whether a variable is causing a modification to another variable, whom it applies to, how much we should trust it, if this is relevant. That step is *interpretation*, and it is the analyst's job.
 
 Interpretation does not mean that any reading of the results is as good as another. A good interpretation brings together all the available evidence: how the data were collected (@sec-experimental-designs), how well the variables were measured (@sec-measurement), what the estimates and their uncertainty say (@sec-estimates-and-ci, @sec-effect-size), what is missing (@sec-missing-data), and how the analysis was done (@sec-research-ethics). Some interpretations are better than others because they account for more of this evidence.
 
@@ -67,7 +65,7 @@ stress_app |>
 t.test(stress ~ app, data = stress_app)$p.value
 ```
 
-App users are clearly more stressed than non-users, and the difference is highly significant. Reading it causally would be backwards: it would say that the app increases stress, when we built the data so that it lowers it. Note that nothing is wrong with the test or the code: it's the interpretation that is wrong. Only a design that compares the same people before and after, with a control group, or that assigns the app at random, could estimate its effect.
+App users are clearly more stressed than non-users, and the difference is significant. Reading it causally would be backwards: it would say that the app increases stress, when we built the data so that it lowers it. Note that nothing is wrong with the test or the code: it's the interpretation that is wrong. Only a design that compares the same people before and after, with a control group, or that assigns the app at random, could estimate its effect.
 
 ### Confounding
 
@@ -105,7 +103,7 @@ Stratifying works only for confounders that we thought of and measured. In an ob
 
 ### Selection
 
-The people in a dataset are rarely a random sample of the population we are interested in. Only some people agree to take part in a study, only some users leave a review, and only some participants stay until the end. If the process that brings people into the data is related to the variables we study, it can create, hide or distort associations. This is **selection bias**.
+The people in a dataset are rarely a random sample of the population we are interested in. Only some people agree to take part in a study (and sign the informed consent), only some users leave a review, and only some participants stay until the end. If the process that brings people into the data is related to the variables we study, it can create, hide or distort associations. This is **selection bias**.
 
 <!-- 21 Nov 2026 (Claude): "featured" renamed "recommended" at the instructor's request (here, in the chunk and in exercise 3) -->
 A subtle form of selection occurs when the selection depends on two variables at once. Suppose an app store recommends an app if it has either an excellent design or excellent marketing. In the simulated data below, design quality and marketing quality are unrelated across all apps. Among the recommended apps, they are negatively correlated: a recommended app with poor marketing must have an excellent design, and vice versa.
@@ -278,6 +276,7 @@ All these questions concern a single study. The next chapter, @sec-credible-evid
 - P. W. Holland (1986), *Statistics and causal inference*, Journal of the American Statistical Association, 81(396), 945–960.
 - A. Bradford Hill (1965), *The environment and disease: association or causation?*, Proceedings of the Royal Society of Medicine, 58, 295–300, <https://doi.org/10.1177/003591576505800503>.
 - J. Henrich, S. J. Heine & A. Norenzayan (2010), *The weirdest people in the world?*, Behavioral and Brain Sciences, 33(2–3), 61–83.
+
 
 ## Exercises
 
