@@ -422,7 +422,7 @@ A different question is whether the **same person** reports more stress than usu
 
 ### Pre-post designs and baseline measurements
 
-A common longitudinal structure is the **pre-post design**. Participants are measured before an intervention and again afterwards. For example, stress might be measured before and after one week of using an app that suppresses non-essential notifications. The baseline measurement is useful because it tells us where participants started. But a single-group pre–post study does not by itself establish that the intervention caused the change. Stress might decline because a busy examination week ended. Participants may become familiar with the questionnaire. Extreme baseline scores may move closer to typical values on a second measurement, a phenomenon known as **regression to the mean**.
+A common longitudinal structure is the **pre-post design**. Participants are measured before an intervention and again afterwards. For example, stress might be measured before and after one week of using an app that suppresses non-essential notifications. The baseline measurement is useful because it tells us where participants started. But a single-group pre–post study does not by itself establish that the intervention caused the change. Stress might decline because a busy examination week ended. Participants may become familiar with the questionnaire. Extreme baseline scores may move closer to typical values on a second measurement, a phenomenon known as **regression to the mean**. More simply, we cannot exclude that values are changed because time passed and some natural changes (unrelated to the variable of our interest) occurred.
 
 A concurrent control group makes the comparison stronger because both groups experience the passage of time while only one receives the intervention. The basic question then changes from:
 
@@ -469,6 +469,8 @@ ggplot(prepost_data,
 
 This logic is closely related to the interactions introduced later in the chapter: in many pre-post experiments, the scientifically interesting effect is whether **change over time differs between groups**.
 
+<PLACE HOLDER: Claude, add cross ref to quasi-experimental design>
+
 ## Variables and experimental control
 
 In a simple experiment, the variable deliberately manipulated by the researcher is usually called the **independent variable** (IV), whereas the outcome measured in response is the **dependent variable** (DV). Suppose participants perform a sustained-attention task while receiving either no smartphone notifications or one notification every two minutes. Notification condition is the independent variable. Reaction time, accuracy, or both might be dependent variables.
@@ -477,7 +479,7 @@ In a simple experiment, the variable deliberately manipulated by the researcher 
 
 The choice of dependent variable matters because different outcomes can describe different aspects of performance. In cognitive tasks, **reaction time** and **accuracy** are often analysed together. Looking at only one can be misleading because participants can trade speed for accuracy. A participant may respond more slowly precisely because they are trying to avoid errors. Conversely, very fast responses can come at the cost of reduced accuracy. This is known as the **speed-accuracy trade-off**.
 
-Other outcomes, such as confidence ratings, eye movements, physiological responses, or computational-model parameters, may capture still other aspects of behaviour. A good design therefore specifies which outcome is most directly linked to the hypothesis rather than choosing among many measures after seeing which produces the clearest result. The terminology is useful, but real studies often contain more variables than this simple pair suggests. Participants may differ in age, sleep duration, baseline anxiety, familiarity with the task, habitual smartphone use, or many other characteristics. Variables measured because they may help explain variation in the outcome are often called **covariates**.
+Other outcomes, such as confidence ratings, eye movements, physiological responses, or computational-model parameters, may capture still other aspects of behaviour. A good design therefore specifies which outcome is most directly linked to the hypothesis rather than choosing among many measures after seeing which produces the clearest result. The terminology is useful, but real studies often contain more variables than this simple pair suggests. Participants may differ in age, sleep duration, baseline anxiety, familiarity with the task, habitual smartphone use, or many other characteristics. Variables measured because they may help explain variation (beside the independent variable) in the outcome are often called **covariates**.
 
 Other variables may simply introduce unwanted variation. A variable becomes particularly problematic when it varies systematically with the experimental manipulation and offers an alternative explanation for an observed effect. This is **confounding**. Imagine that everyone in the high-notification condition performs the experiment in the afternoon, while everyone in the low-notification condition is tested in the morning. If the groups differ in performance, notification condition is now perfectly confounded with time of day. The goal of **experimental control** is to make such alternative explanations less plausible.
 
@@ -499,10 +501,10 @@ Two concepts that sound very similar solve two different problems: **random assi
 
 ### Random assignment
 
-Random assignment concerns what happens after participants enter a study. Participants are allocated to experimental conditions using a random mechanism. Suppose we recruit 100 participants and randomly assign 50 to a high-notification condition and 50 to a low-notification condition. Individual differences will still exist. Some people will be better at the attention task. Some will have slept badly. Some may be heavy smartphone users. But because allocation is random, these characteristics should not systematically favour one condition over the other, especially as sample size increases.
+Random assignment concerns what happens after participants enter a study and sign the informed consent <PLACEHOLDER create link to informed consent section>. Participants are allocated to experimental conditions using a random mechanism. Suppose we recruit 100 participants and randomly assign 50 to a high-notification condition and 50 to a low-notification condition. Individual differences will still exist. Some people will be better at the attention task. Some will have slept badly. Some may be heavy smartphone users. But because allocation is random, these characteristics should not systematically favour one condition over the other, especially as sample size increases.
 
 <!-- 21 Nov 2026 (Claude): moved from behav/randomised-trials.qmd ("Why randomise?"); from deck 09-02, slide "Why randomise?" (same simulation, seed 9); to review -->
-To see why, suppose we want to know whether a stress-management app reduces stress. The simplest study would compare people who chose to use the app with people who did not. The problem is that the people who choose an app differ from those who do not: they may be more motivated to reduce their stress, and motivated people may do many other things that reduce stress too. If the app users end the study less stressed, we cannot tell whether this is the app or the motivation.
+To see why, suppose we want to know whether a stress-management app reduces stress. The simplest study would compare people who chose to use the app with people who did not. The problem is that the people who choose an app may differ from those who do not: they may be more motivated to reduce their stress, and motivated people may do many other things that reduce stress too. If the app users end the study less stressed, we cannot tell whether this is the app or the motivation.
 
 We can see the problem with a small simulation. We give 40 simulated people a level of motivation between 0 and 1, which in a real study we would not measure. In the first scheme, people choose whether to use the app, and the more motivated they are, the more likely they are to choose it. In the second, a coin decides: we shuffle 20 "app" and 20 "no app" labels and hand them out.
 
@@ -558,9 +560,11 @@ Random sampling asks a different question: how did participants enter the study 
 
 A study can have strong internal validity and limited generalisability. Conversely, a large and representative observational dataset may generalise well to a population while offering weaker causal identification. In psychological research, true probability sampling is relatively uncommon. Convenience samples are common because they are feasible and inexpensive. This is not automatically a fatal flaw, but the target population should be described honestly.
 
+<PLACEHOLDER: create links to sample population and other relevant part of the book, e.g. confidence intervals>
+
 ### Matching, blocking, and stratification
 
-Sometimes researchers know in advance that a characteristic is especially important. Suppose habitual smartphone use strongly predicts susceptibility to notifications. A completely unrestricted random allocation could, by chance, place more heavy users in one condition. A **blocked** or **stratified randomisation** procedure could first group participants according to habitual smartphone use and then randomise within those groups. **Matching** uses a related idea by pairing or grouping participants who are similar on selected characteristics. These methods do not replace randomisation, but can improve balance on variables judged important before the experiment begins. <!-- 21 Nov 2026 (Claude): sentence added; to review --> Matching is also used when groups cannot be randomised at all, as with patients and controls (@fig-matching); there it balances only the characteristics we matched on.
+Sometimes researchers know in advance that a characteristic is especially important. Suppose habitual smartphone use strongly predicts susceptibility to notifications. A completely unrestricted random allocation could, by chance, place more heavy users in one condition. A **blocked** or **stratified randomisation** procedure could first group participants according to habitual smartphone use and then randomise within those groups. **Matching** uses a related idea by pairing or grouping participants who are similar on selected characteristics. These methods do not replace randomisation, but can improve balance on variables judged important before the experiment begins. <!-- 21 Nov 2026 (Claude): sentence added; to review --> Matching is also used (and useful) when groups cannot be randomised at all, as with patients and controls (@fig-matching). It is important to make the comparison meaningful, but it is intrinsically limited:it balances only the characteristics we matched on and we may never know if we missed some important variables.
 
 ## Between-subjects designs
 
@@ -759,6 +763,8 @@ Cognitive research often aims to generalise not only beyond the participants who
 
 This issue appears in many areas: words in language experiments, faces in emotion research, sounds in auditory experiments, images in memory tasks, and prompts or notifications in digital studies. Where possible, stimulus sets should be sampled, balanced, or counterbalanced so that a condition is not represented by a single unique item. In more advanced analyses, both participants and stimuli can be treated as sources of variability. The important design principle is already simple:
 
+<PLACEHOLDER; cite paper for language as fixed effect fallacy)>
+
 > We usually want our conclusion to generalise beyond both the people and the particular items that happened to be sampled.
 
 ### Participants versus trials
@@ -877,13 +883,17 @@ Where possible, **single-blind** or **double-blind** procedures reduce access to
 
 The goal is not to apply the label “double blind” at all costs. The goal is to identify where expectations might influence the measurement process and limit that influence where feasible.
 
+<PLACEHOLDER: expand with a paragraph on blinding for participants, with parallelism with placebo but also an example a new device vs old device, knowing it can affect , a section with blining for assessor, with examples with expecation in favour of something (e.g. the new device), finally on analyist, link to flexibility and could see things in a different way, e.g., outliers, etc.)
+
 ### Standardisation
 
 **Standardisation** means making procedures as consistent as possible across participants and conditions. In a laboratory study, this may involve identical instructions, testing rooms, task durations, and equipment. In technology-based behavioural research, standardisation can be more complicated. Smartphone operating systems may handle notifications differently. Screen sizes vary. Wearable devices may have different sensor sampling frequencies. A software update may change the way an app logs events halfway through data collection. These details can become methodological variables if they differ systematically across conditions or participants. A technically functioning dataset is therefore not automatically a methodologically comparable dataset.
 
 ## Planning before collecting data
 
-Many of the decisions that determine whether a study will be informative occur before the first participant is tested.
+Many of the decisions that determine whether a study will be informative occur before the first participant is tested. 
+
+<PLACEHOLDER, this is also related to preregistration, create link>
 
 ### Sample size and precision
 
@@ -916,7 +926,7 @@ The statistical treatment of missing data is covered in @sec-missing-data. At th
 
 Before launching a full experiment, researchers often conduct a **pilot** or **feasibility study**. A pilot can answer practical questions: Does the app log the intended events? Are notifications delivered consistently across devices? Is the task too long? Do participants understand the instructions? Is an EMA schedule so burdensome that response rates collapse after a few days? Pilot work is also useful for checking whether a manipulation produces the intended contrast and whether the data pipeline works from collection to analysis.
 
-A small pilot should not usually be treated as a miniature definitive hypothesis test. Small samples provide unstable estimates of effect size. The main purpose of pilot work is often to discover design problems while they are still inexpensive to fix.
+A small pilot should not usually be treated as a miniature definitive hypothesis test. Small samples provide unstable estimates of effect size <PLACEHOLDER add here citation with section on sampling and on power>. The main purpose of pilot work is often to discover design problems while they are still inexpensive to fix.
 
 ### Preregistration and transparency
 
