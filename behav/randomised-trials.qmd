@@ -9,14 +9,14 @@ This chapter is a **draft**, written with an AI assistant (Claude) on 21 Novembe
 
 <!-- 21 Nov 2026 (Claude): new chapter, at the instructor's request. Built on the Week 9 deck 09-02-Experiments-and-RCTs (behds-course-slides/Week09/), whose figures are redrawn here in ggplot2 (the slides use TikZ); the "Why randomise?" simulation and the pre-post numbers are the slides' own. On 21 Nov 2026, fig-experiment and fig-why-randomise moved to behav/experimental-designs.qmd, and a short recap replaces them here. It expands the short subsection "Randomised controlled trials and A/B tests" of behav/experimental-designs.qmd, which now points here. The image in fig-two-apps is the AI-generated illustration Figures/week06-two-apps-comparison.png of the slides repo. To review. -->
 
-```{r, message=FALSE, warning=FALSE}
-#| cache: false
-library(tidyverse)
-navy <- "#001238"
-```
-
 ```{r flow-helper}
 #| include: false
+#| cache: false
+#| message: false
+#| warning: false
+library(tidyverse)
+navy <- "#001238"
+
 # Draws the box-and-arrow diagrams of this chapter. `nodes`: x, y, label,
 # key ("yes" = highlighted box); `edges`: x, y, xend, yend; `notes`: x, y, label.
 draw_flow <- function(nodes, edges, notes = NULL, xlim, ylim) {

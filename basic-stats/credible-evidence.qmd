@@ -9,12 +9,6 @@ This chapter is a **draft**, written with an AI assistant (Claude) on 18 Novembe
 
 <!-- 18 Nov 2026 (Claude): new chapter. The replication-crisis section (text, fig-osc, OSC 2015 and Simmons et al. 2011) was moved here from behav/research-ethics.qmd (Scientific integrity), and the short "Why this matters" subsection of results-to-conclusions.qmd was removed. The rest is new. References to verify. 20 Nov 2026 (Claude): added Tyner et al. (2026, SCORE) to the replication-crisis section, with fig-score, at the instructor's request. -->
 
-```{r, message=FALSE, warning=FALSE}
-#| cache: false
-library(tidyverse)
-navy <- "#001238"
-```
-
 The previous chapter was about interpreting a single result. But a single study is rarely the last word. A theory in psychology, a clinical guideline, or the decision to launch a new version of an app usually rests on several studies, many of them done by other people. Before building on them, we need to ask a different question: **can we trust the evidence?** If the same study were run again, would it find the same result?
 
 Psychology had to face this question in the 2010s, and the answer was uncomfortable. This chapter explains what went wrong and why, shows with two small simulations how ordinary research practices produce unreliable results, and describes the practices that make evidence more credible. None of it is specific to academic research: the same problems appear in any analysis of behavioural data, including A/B tests and product dashboards.
@@ -46,6 +40,11 @@ In the early 2010s psychology went through what is now called the **replication 
 #| fig-cap: "Percentage of studies with a statistically significant result, in 100 original psychology studies and in their replications. Data from Open Science Collaboration (2015)."
 #| fig-width: 5
 #| fig-height: 3
+#| cache: false
+#| message: false
+#| warning: false
+library(tidyverse)
+navy <- "#001238"
 
 osc <- tibble(set = factor(c("Original studies", "Replications"),
                            levels = c("Original studies", "Replications")),
@@ -141,7 +140,7 @@ studies |>
   ggplot(aes(estimate, fill = result)) +
   geom_histogram(binwidth = 0.05, boundary = 0) +
   geom_vline(xintercept = 0.3, linetype = "dashed") +
-  scale_fill_manual(values = c("not significant" = "grey75", "significant" = navy)) +
+  scale_fill_manual(values = c("not significant" = "grey75", "significant" = "#001238")) +
   labs(x = "estimated difference (SD units)", y = "number of studies", fill = NULL) +
   theme_minimal(base_size = 12)
 ```
