@@ -1,6 +1,6 @@
 # Experimental Designs in Psychology {#sec-experimental-designs}
 
-_Written for this book by Cristiano Costa, with Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
+_Written for this book by Cristiano Costa and Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
 
 <!-- 18 Nov 2026 (Claude): cross-references to other chapters added; to review -->
 <!-- 21 Nov 2026 (Claude): figures from the Week 9 decks 09-01, 09-03 and 09-04 redrawn in ggplot2 (the slides use TikZ), each with its own introduction; fig-experiment and fig-why-randomise moved here from behav/randomised-trials.qmd (deck 09-02). Every addition is marked by a source comment; to review. -->
@@ -932,16 +932,20 @@ A small pilot should not usually be treated as a miniature definitive hypothesis
 
 **Preregistration** provides one way of documenting decisions before the results are known (why this matters is explained in @sec-replication-crisis). A preregistration can specify hypotheses, primary outcomes, sample-size rationale, exclusion criteria, experimental procedures, and planned analyses. Preregistration does not prevent exploration. Behavioural datasets are often rich, and unexpected patterns can be scientifically valuable. The important distinction is between **confirmatory analyses**, which test predictions specified in advance, and **exploratory analyses**, which are motivated by patterns discovered after observing the data. Both can be useful. They answer different questions.
 
-### From design to conclusion
+### Starting from design to reach a conclusion
 
 Let us return to the question that opened this chapter: **Do smartphone notifications interfere with attention?** We could observe people's natural notification behaviour and relate it to cognitive performance. This may provide a realistic picture of everyday life, but causal interpretations will remain vulnerable to confounding. We could randomly assign participants to different notification conditions. This improves control over alternative explanations. We could expose every participant to both conditions. This may increase statistical efficiency but creates order and carryover effects.
 
-We could simultaneously manipulate cognitive load, allowing us to test whether the effect of notifications depends on task difficulty. Or we could measure attention repeatedly in daily life, producing a multilevel dataset in which moments are nested within individuals. None of these designs is universally “best”. Each design trades some advantages for others. The appropriate design depends on the research question, the population, the practical and ethical constraints, the measurement technology, and the type of inference we want to make. Before asking which statistical model to apply to a dataset, it is therefore worth asking a more basic question:
+We could simultaneously manipulate cognitive load, allowing us to test whether the effect of notifications depends on task difficulty. Or we could measure attention repeatedly in daily life, producing a multilevel dataset in which moments are nested within individuals. None of these designs is universally “best”. 
+
+<PLACEHOLDER add a callout with None of the design is unversally best: depending on the research question, availability of data, pros and cons, one design could be more suited. 
+
+In another sentence add that Often different converging evidence from different design is desirable>
+
+Each design trades some advantages for others. The appropriate design depends on the research question, the population, the practical and ethical constraints, the measurement technology, and the type of inference we want to make. Before asking which statistical model to apply to a dataset, it is therefore worth asking a more basic question:
 
 > **What does the way these data were collected actually allow us to conclude?**
 
 How to answer this question once the results are in is the topic of @sec-results-to-conclusions.
 
 ---
-
-_All chapters were drafted and written by C. Costa; topics and content were agreed and discussed with G. Arcara._
