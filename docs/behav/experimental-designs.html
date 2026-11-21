@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,7 +66,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../summaries/intro-summaries.html" rel="next">
+<link href="../behav/randomised-trials.html" rel="next">
 <link href="../behav/research-ethics.html" rel="prev">
 <link href="../cover.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -84,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../behav/intro-behav.html">Behavioural Measurement</a></li><li class="breadcrumb-item"><a href="../behav/experimental-designs.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Experimental Designs in Psychology</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../behav/intro-behav.html">Foundations of Behavioural Research</a></li><li class="breadcrumb-item"><a href="../behav/experimental-designs.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Experimental Designs in Psychology</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -134,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Behavioural Measurement</span></a>
+ <span class="menu-text">Foundations of Behavioural Research</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -164,6 +199,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Experimental Designs in Psychology</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/randomised-trials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Randomised Controlled Trials</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -178,19 +219,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -213,31 +254,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -260,13 +301,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -289,55 +330,67 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../basic-stats/central-tendency-dispersion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Central Tendency and Dispersion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Central Tendency and Dispersion</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../basic-stats/correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../basic-stats/comparing-two-groups.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Comparing Two Groups: the t-test and the Wilcoxon Test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Comparing Two Groups: the t-test and the Wilcoxon Test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../basic-stats/anova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Comparing More Than Two Groups: ANOVA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Comparing More Than Two Groups: ANOVA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../basic-stats/multiple-comparisons.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple Comparisons</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multiple Comparisons</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../basic-stats/chi-square.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Two Categorical Variables: the Chi-square Test</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Two Categorical Variables: the Chi-square Test</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../basic-stats/effect-size.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Effect Size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Effect Size</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../basic-stats/power.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Statistical Power</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Statistical Power</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../basic-stats/missing-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Missing Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Missing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/results-to-conclusions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/credible-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span></a>
   </div>
 </li>
       </ul>
@@ -360,13 +413,14 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#from-a-research-question-to-a-study-design" id="toc-from-a-research-question-to-a-study-design" class="nav-link active" data-scroll-target="#from-a-research-question-to-a-study-design"><span class="header-section-number">4.1</span> From a research question to a study design</a>
   <ul class="collapse">
-  <li><a href="#measurement-quality-reliability-and-validity" id="toc-measurement-quality-reliability-and-validity" class="nav-link" data-scroll-target="#measurement-quality-reliability-and-validity">Measurement quality: reliability and validity</a></li>
+  <li><a href="#measurement-quality" id="toc-measurement-quality" class="nav-link" data-scroll-target="#measurement-quality">Measurement quality</a></li>
   <li><a href="#units-matter" id="toc-units-matter" class="nav-link" data-scroll-target="#units-matter">Units matter</a></li>
   </ul></li>
-  <li><a href="#association-and-causality" id="toc-association-and-causality" class="nav-link" data-scroll-target="#association-and-causality"><span class="header-section-number">4.2</span> Association and causality</a>
+  <li><a href="#sec-association-causality" id="toc-sec-association-causality" class="nav-link" data-scroll-target="#sec-association-causality"><span class="header-section-number">4.2</span> Association and causality</a>
   <ul class="collapse">
   <li><a href="#observational-research" id="toc-observational-research" class="nav-link" data-scroll-target="#observational-research">Observational research</a></li>
   <li><a href="#experimental-research" id="toc-experimental-research" class="nav-link" data-scroll-target="#experimental-research">Experimental research</a></li>
+  <li><a href="#randomised-controlled-trials-and-ab-tests" id="toc-randomised-controlled-trials-and-ab-tests" class="nav-link" data-scroll-target="#randomised-controlled-trials-and-ab-tests">Randomised controlled trials and A/B tests</a></li>
   <li><a href="#the-counterfactual-idea" id="toc-the-counterfactual-idea" class="nav-link" data-scroll-target="#the-counterfactual-idea">The counterfactual idea</a></li>
   <li><a href="#quasi-experimental-research" id="toc-quasi-experimental-research" class="nav-link" data-scroll-target="#quasi-experimental-research">Quasi-experimental research</a></li>
   <li><a href="#a-visual-example-association-can-be-misleading" id="toc-a-visual-example-association-can-be-misleading" class="nav-link" data-scroll-target="#a-visual-example-association-can-be-misleading">A visual example: association can be misleading</a></li>
@@ -389,7 +443,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#choosing-an-outcome" id="toc-choosing-an-outcome" class="nav-link" data-scroll-target="#choosing-an-outcome">Choosing an outcome</a></li>
   <li><a href="#experimental-and-control-conditions" id="toc-experimental-and-control-conditions" class="nav-link" data-scroll-target="#experimental-and-control-conditions">Experimental and control conditions</a></li>
-  <li><a href="#passive-and-active-controls" id="toc-passive-and-active-controls" class="nav-link" data-scroll-target="#passive-and-active-controls">Passive, and active controls</a></li>
+  <li><a href="#passive-and-active-controls" id="toc-passive-and-active-controls" class="nav-link" data-scroll-target="#passive-and-active-controls">Passive and active controls</a></li>
   <li><a href="#manipulation-checks" id="toc-manipulation-checks" class="nav-link" data-scroll-target="#manipulation-checks">Manipulation checks</a></li>
   </ul></li>
   <li><a href="#random-assignment-and-random-sampling" id="toc-random-assignment-and-random-sampling" class="nav-link" data-scroll-target="#random-assignment-and-random-sampling"><span class="header-section-number">4.6</span> Random assignment and random sampling</a>
@@ -436,7 +490,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#missing-data-and-data-completeness" id="toc-missing-data-and-data-completeness" class="nav-link" data-scroll-target="#missing-data-and-data-completeness">Missing data and data completeness</a></li>
   <li><a href="#pilot-and-feasibility-studies" id="toc-pilot-and-feasibility-studies" class="nav-link" data-scroll-target="#pilot-and-feasibility-studies">Pilot and feasibility studies</a></li>
   <li><a href="#preregistration-and-transparency" id="toc-preregistration-and-transparency" class="nav-link" data-scroll-target="#preregistration-and-transparency">Preregistration and transparency</a></li>
-  <li><a href="#from-design-to-conclusion" id="toc-from-design-to-conclusion" class="nav-link" data-scroll-target="#from-design-to-conclusion">From design to conclusion</a></li>
+  <li><a href="#starting-from-design-to-reach-a-conclusion" id="toc-starting-from-design-to-reach-a-conclusion" class="nav-link" data-scroll-target="#starting-from-design-to-reach-a-conclusion">Starting from design to reach a conclusion</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/behav/experimental-designs.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -444,7 +498,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../behav/intro-behav.html">Behavioural Measurement</a></li><li class="breadcrumb-item"><a href="../behav/experimental-designs.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Experimental Designs in Psychology</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../behav/intro-behav.html">Foundations of Behavioural Research</a></li><li class="breadcrumb-item"><a href="../behav/experimental-designs.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Experimental Designs in Psychology</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span id="sec-experimental-designs" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Experimental Designs in Psychology</span></span></h1>
 </div>
@@ -463,25 +517,48 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><em>Written for this book by Cristiano Costa, with Giorgio Arcara. This chapter is not in Irizarry’s <em>Introduction to Data Science</em>.</em></p>
+<p><em>Written for this book by Cristiano Costa and Giorgio Arcara. This chapter is not in Irizarry’s <em>Introduction to Data Science</em>.</em></p>
+<!-- 18 Nov 2026 (Claude): cross-references to other chapters added; to review -->
+<!-- 21 Nov 2026 (Claude): figures from the Week 9 decks 09-01, 09-03 and 09-04 redrawn in ggplot2 (the slides use TikZ), each with its own introduction; fig-experiment and fig-why-randomise moved here from behav/randomised-trials.qmd (deck 09-02). Every addition is marked by a source comment; to review. -->
 <p>Imagine we want to know whether frequent smartphone notifications make it harder to concentrate. We could ask people how many notifications they normally receive and compare this with their performance on an attention task. Alternatively, we could actively manipulate the number of notifications they receive while they complete the task. These two studies may produce very similar-looking datasets. In both cases, we could end up with one column containing the number of notifications and another containing reaction times or accuracy. Yet the conclusions we can draw from the two datasets are not the same.</p>
-<p>The reason is the <strong>study design</strong>. A statistical analysis can describe patterns in the data, estimate relationships, and quantify uncertainty. But the way the data were generated determines what those patterns mean. Before choosing a statistical test, fitting a model, or interpreting a coefficient, we therefore need to understand where the data came from.</p>
+<!-- 21 Nov 2026 (Claude): example dataset added at the instructor's request; to review -->
+<p>Here are the first six rows of such a dataset, with the number of notifications each participant received during a 10-minute attention task and their mean reaction time:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>notifications_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">participant =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">notifications =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">25</span>, <span class="dv">12</span>, <span class="dv">30</span>, <span class="dv">8</span>, <span class="dv">18</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">rt_ms =</span> <span class="fu">c</span>(<span class="dv">452</span>, <span class="dv">538</span>, <span class="dv">489</span>, <span class="dv">561</span>, <span class="dv">470</span>, <span class="dv">512</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>notifications_data</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   participant notifications rt_ms</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;int&gt;         &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1           1             4   452</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2           2            25   538</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3           3            12   489</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4           4            30   561</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5           5             8   470</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 1 more row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nothing in these rows tells us whether the 25 notifications of participant 2 were the ones they normally receive, or the ones the researcher decided to send them.</p>
+<p>The reason is the difference in <strong>study design</strong>. A statistical analysis can describe patterns in the data, estimate relationships, and quantify uncertainty. But the way the data were generated determines what those patterns mean and how they can be interpreted. Before choosing a statistical test, fitting a model, or interpreting a coefficient, we therefore need to understand where the data came from.</p>
+<!-- 20 Nov 2026 (Claude): paragraph added at the instructor's request (the design shapes the analysis, link to Basic Statistics); to review -->
+<p>The design also shapes the analysis itself, and so the code we write. It decides the <strong>type of analysis</strong>: two independent groups call for a different test from the same people measured twice (<a href="../basic-stats/comparing-two-groups.html" class="quarto-xref"><span>Chapter 18</span></a>, <a href="../basic-stats/anova.html" class="quarto-xref"><span>Chapter 19</span></a>). It decides which <strong>additional checks</strong> make sense: whether the groups were similar before the study began, and whether the manipulation worked (see <em>Manipulation checks</em> below). It decides which <strong>control analyses</strong> are needed to see whether a result survives other explanations, and so which <strong>variables are relevant</strong> and must be measured from the start: a variable we never collected cannot be accounted for later. It even decides what <strong>missing data</strong> mean: participants who drop out of one condition more than the other can change the comparison (<a href="../basic-stats/missing-data.html" class="quarto-xref"><span>Chapter 24</span></a>). The chapters of the <em>Basic Statistics</em> part describe the tests; this chapter explains why the choice among them starts with the design, and <a href="../basic-stats/results-to-conclusions.html" class="quarto-xref"><span>Chapter 25</span></a> comes back to it when we interpret a result.</p>
 <section id="from-a-research-question-to-a-study-design" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="from-a-research-question-to-a-study-design"><span class="header-section-number">4.1</span> From a research question to a study design</h2>
 <p>A <strong>study design</strong> is the set of decisions that connects a research question to the observations used to answer it. These decisions include what we measure, whom we measure, when measurements are taken, whether something is manipulated, how participants are allocated to conditions, and how often observations are collected. Suppose we are interested in <strong>stress during everyday life</strong>. Stress is a theoretical construct: we cannot observe it directly in the same way that we can observe height, age, or time of day. Instead, we need to decide how to measure it.</p>
 <p>We might ask participants to report how stressed they feel several times per day using an <em>Ecological Momentary Assessment</em> (EMA) app. We could also collect heart rate or heart-rate variability from a smartwatch, record physical activity, or administer a questionnaire at the end of each day. These measures may all be related to stress, but they are not interchangeable. An EMA rating captures a participant’s subjective experience at a particular moment. Heart rate, in contrast, may change because of stress, physical activity, caffeine, temperature, illness, or many other factors. A daily questionnaire may capture a more general retrospective judgement, but it may miss short-lived fluctuations.</p>
-<p>The process of translating a theoretical construct into a measurable variable is called <strong>operationalisation</strong>. Operationalisation matters because the way a construct is measured helps define the question the study can actually answer.</p>
-<section id="measurement-quality-reliability-and-validity" class="level3">
-<h3 class="anchored" data-anchor-id="measurement-quality-reliability-and-validity">Measurement quality: reliability and validity</h3>
-<p>Operationalising a construct is only the first step. We also need to ask whether the resulting measure behaves in a useful way. A <strong>reliable</strong> measure produces reasonably consistent information when the underlying quantity has not changed. A measure that fluctuates dramatically from one moment to the next because of sensor noise, unstable scoring, or inconsistent administration will make genuine effects harder to detect. <strong>Validity</strong> asks a different question: does the measure support the interpretation we want to make from it?</p>
-<p>The distinction matters because a measure can be reliable without being valid. Imagine a wearable that produces a very stable proprietary “stress score”. The score may be highly reproducible, but if it largely reflects movement or heart rate rather than the psychological construct we mean by stress, consistency alone does not make it a valid measure of stress. Measurement error can also be <strong>random</strong> or <strong>systematic</strong>. Random noise tends to reduce precision. Systematic measurement error can be more problematic because it may bias comparisons. For example, if a sensor estimates heart rate differently depending on device model, and one experimental condition happens to contain more users of one model, a technical measurement difference may become a methodological confound. For behavioural technologies, measurement quality therefore includes questions such as:</p>
+<p>The process of translating a theoretical construct into a measurable variable is called <strong>operationalisation</strong> (the distinction between a construct and its proxy, see <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>). Operationalisation matters because the way a construct is measured helps define the question the study can actually answer.</p>
+<section id="measurement-quality" class="level3">
+<h3 class="anchored" data-anchor-id="measurement-quality">Measurement quality</h3>
+<p>Operationalising a construct is only the first step: the resulting measure must also be reliable and valid for the interpretation we want to make. Reliability, validity, and the consequences of measurement error are covered in <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>, and simulated in <a href="simulating-measurement.html" class="quarto-xref"><span>Chapter 2</span></a>. Here we add only what matters for design: measurement quality can become a design problem. Measurement error that differs across conditions is not just noise. If a sensor estimates heart rate differently depending on device model, and one experimental condition happens to contain more users of one model, a technical measurement difference becomes a methodological confound. For behavioural technologies, the questions to ask at the design stage therefore include:</p>
 <ul>
 <li>What exactly does the device or algorithm output?</li>
 <li>How was that output validated?</li>
-<li>Is measurement quality similar across participants, devices, and contexts?</li>
+<li>Is measurement quality similar across participants, devices, and contexts? (This is the question of <em>measurement invariance</em>, see <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>.)</li>
 <li>Are software or firmware versions held constant or documented?</li>
 </ul>
-<p>Large datasets do not compensate for poor measurement. A million observations of the wrong quantity do not answer the intended research question.</p>
+<p>Note that large datasets (“big data”) do not compensate for poor measurement. A million observations of the wrong quantity do not answer the intended research question. This underlines a <em>quality over quantity</em> principle, which is relevant for behavioural data science too.</p>
 </section>
 <section id="units-matter" class="level3">
 <h3 class="anchored" data-anchor-id="units-matter">Units matter</h3>
@@ -489,26 +566,52 @@ ul.task-list li input[type="checkbox"] {
 <p>[ 50 = 3500 ]</p>
 <p>rows of data. But we do not suddenly have 3,500 independent participants. The <strong>unit of observation</strong> is the entity on which a single measurement is recorded. In this example, that may be one EMA response at one point in time. The <strong>experimental unit</strong> is the smallest unit that can independently receive an experimental condition. If an intervention is assigned to each person, then the participant is the experimental unit. If entire classrooms, clinics, or workplaces are assigned to conditions, then the experimental unit may instead be the group.</p>
 <p>The <strong>unit of analysis</strong> is the level at which the statistical analysis is carried out. This must be compatible with the design and with the dependence structure of the observations. Repeated measurements from the same person are usually more similar to one another than measurements from different people. Treating all 3,500 EMA responses as though they came from 3,500 unrelated participants would therefore exaggerate the amount of independent information in the dataset.</p>
-<p>Smartphones, wearables, eye trackers, computer tasks, and online platforms can all generate repeated or nested observations. The design that produced those observations needs to be represented in the analysis.</p>
+<p>Smartphones, wearables, eye trackers, computer tasks, and online platforms can all generate repeated or nested observations. The design that produced those observations needs to be represented in the analysis and taken properly into account. <!-- 21 Nov 2026 (Claude): connections to the rest of the book added at the instructor's request; to review --> The tests of the <em>Basic Statistics</em> part assume that observations are independent, and independence cannot be checked on the data: it follows from the design (see <em>Checking the assumptions</em> in <a href="../basic-stats/comparing-two-groups.html" class="quarto-xref"><span>Chapter 18</span></a>). When the same participants are measured more than once, the analysis has to say so, for example with a paired test (<a href="../basic-stats/comparing-two-groups.html" class="quarto-xref"><span>Chapter 18</span></a>) or with a repeated-measures ANOVA, which works on one value per participant and condition, usually an average over many trials (<a href="../basic-stats/anova.html" class="quarto-xref"><span>Chapter 19</span></a>). Models that keep every single observation and represent the nesting explicitly (<em>multilevel</em> or <em>mixed-effects</em> models) are beyond this book. The same question comes back several times in this chapter: in intensive longitudinal data, in within-subjects designs, in the many trials of cognitive experiments (see <em>Participants versus trials</em> below), and when planning the sample size (see <em>Sample size and precision</em> below).</p>
 </section>
 </section>
-<section id="association-and-causality" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="association-and-causality"><span class="header-section-number">4.2</span> Association and causality</h2>
+<section id="sec-association-causality" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="sec-association-causality"><span class="header-section-number">4.2</span> Association and causality</h2>
 <p>Suppose we monitor 200 participants for one month. Their smartphones record how many notifications they receive, and an EMA app asks them to report their current level of stress several times per day. At the end of the study, periods with more notifications are associated with higher reported stress. What can we conclude? We can conclude that notification frequency and reported stress are <strong>associated</strong>. We cannot yet conclude that notifications cause stress. This distinction is central to the difference between <strong>observational</strong> and <strong>experimental</strong> research.</p>
 <section id="observational-research" class="level3">
 <h3 class="anchored" data-anchor-id="observational-research">Observational research</h3>
-<p>In an observational study, variables are measured without the researcher directly assigning the exposure of interest. Such studies are extremely useful. They allow us to investigate behaviour in natural settings, sometimes for long periods of time, and may capture phenomena that would be difficult, impractical, or unethical to manipulate experimentally. The problem is that an observed association may have several explanations. People may receive more notifications on particularly demanding working days, while also reporting more stress. In this case, workload could influence both variables. Perhaps stressed people also check their phones more often, generating more digital interactions. Or another unmeasured factor could influence both phone use and stress.</p>
-<p>A <strong>confounding variable</strong> is a variable that provides an alternative explanation for an observed relationship because it is related to both the exposure and the outcome. The familiar statement that <em>correlation does not imply causation</em> is therefore not a criticism of correlational research. It is a statement about what kind of inference the design permits.</p>
+<p>In an observational study, variables are measured without the researcher directly assigning the exposure of interest. Such studies are extremely useful: they allow us to investigate behaviour in natural settings, sometimes for long periods of time, and may capture phenomena that would be difficult, impractical, or unethical to manipulate experimentally (<a href="research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>). The problem is that an observed association may have explanations other than the one we are focusing on, including variables we did not record. People may receive more notifications on particularly demanding working days, while also reporting more stress. In this case, workload could influence both variables. Perhaps stressed people also check their phones more often, generating more digital interactions. Or another unmeasured factor could influence both phone use and stress. With observational data alone, we have no direct way to tell these interpretations apart.</p>
+<p>A <strong>confounding variable</strong> is a variable that provides an alternative explanation for an observed relationship because it is related to both the exposure and the outcome.</p>
+<p>All these considerations are related to the familiar statement that <em>correlation does not imply causation</em>, which should not be read as a criticism of correlational research (or, even worse, of correlation analysis). It is a statement about what kind of inference the design permits (correlation itself is covered in <a href="../basic-stats/correlation.html" class="quarto-xref"><span>Chapter 17</span></a>; confounding and the other alternative explanations in <a href="../basic-stats/results-to-conclusions.html" class="quarto-xref"><span>Chapter 25</span></a>).</p>
 </section>
 <section id="experimental-research" class="level3">
 <h3 class="anchored" data-anchor-id="experimental-research">Experimental research</h3>
-<p>In an experiment, the researcher deliberately manipulates one or more variables and observes their consequences. Instead of recording the number of notifications that participants naturally receive, we might randomly assign them to receive either frequent or infrequent notifications while completing the same cognitive task. A causal interpretation typically requires three ideas:</p>
+<p>In an experiment, the researcher deliberately <strong>manipulates</strong> one or more variables and observes their consequences. Instead of recording the number of notifications that participants naturally receive, we might <strong>randomly</strong> assign them to receive either frequent or infrequent notifications while completing the same cognitive task. A causal interpretation typically requires three ideas:</p>
 <ol type="1">
 <li>the putative cause and outcome <strong>covary</strong>;</li>
 <li>the cause occurs <strong>before</strong> the outcome;</li>
 <li>plausible <strong>alternative explanations</strong> have been sufficiently controlled.</li>
 </ol>
 <p>Experimental manipulation and random assignment are powerful because they directly address the third requirement.</p>
+<!-- 21 Nov 2026 (Claude): moved from behav/randomised-trials.qmd; from deck 09-02, slide "What makes an experiment" (redrawn in ggplot2); to review -->
+<p>Two features turn a study into an experiment (<a href="#fig-experiment" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>). First, the researcher <strong>manipulates</strong> something: they decide who receives frequent notifications and who does not, instead of observing who happens to receive them. Second, <strong>chance decides</strong> who gets what. This second feature is called <em>random assignment</em> (see <em>Random assignment</em> below), and it is what makes the comparison between conditions fair. The manipulation guarantees that the cause comes before the outcome; random assignment deals with the alternative explanations.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-experiment" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-experiment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-experiment-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-experiment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: The structure of an experiment. Participants are assigned at random to one of two conditions that the researcher manipulates, and the outcome is compared between the conditions.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- added by Claude, 17 Nov 2026, from the Week 9 slides; to review -->
+</section>
+<section id="randomised-controlled-trials-and-ab-tests" class="level3">
+<h3 class="anchored" data-anchor-id="randomised-controlled-trials-and-ab-tests">Randomised controlled trials and A/B tests</h3>
+<p>When an experiment tests an intervention, such as a training programme, a therapy, or an app, it is often called a <strong>randomised controlled trial</strong> (RCT). In the most common form, a <em>parallel-arm</em> trial, participants are randomly assigned to the intervention or to a control condition and followed over the same period, usually with measurements before and after. In a <em>crossover</em> trial, each participant receives both conditions in a random order, which is a within-subjects design (see <em>Within-subjects designs</em> below).</p>
+<p>The technology industry runs randomised experiments on a very large scale under the name of <strong>A/B tests</strong>: users are randomly shown version A or version B of an interface, and the versions are compared on behaviour such as clicks, completed tasks, or retention. The logic is the same as in any randomised experiment. The outcomes are usually logged behaviour, and the question of what that behaviour measures still applies (<a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>).</p>
+<p>Two problems are especially common in trials that last weeks or months. Participants <strong>drop out</strong>, and those who drop out may differ from those who stay: the most stressed users may stop answering. Analysing only those who completed the study can therefore favour the intervention. A common safeguard is to analyse all participants in the group to which they were randomised, called an <em>intention-to-treat</em> analysis, which requires a plan for the missing outcomes (<a href="../basic-stats/missing-data.html" class="quarto-xref"><span>Chapter 24</span></a>). The second problem is the <strong>novelty effect</strong>: a new app or interface may be rated better, or used more, simply because it is new, and the advantage may fade over time. A longer follow-up and an active control condition (see below) help to separate novelty from a lasting effect.</p>
+<!-- 21 Nov 2026 (Claude): pointer to the new chapter on RCTs; to review -->
+<p><a href="randomised-trials.html" class="quarto-xref"><span>Chapter 5</span></a> describes randomised trials in more detail: how they are built, why the control condition matters, how participants are randomised, which trial designs exist beyond two parallel arms, and what to do when participants drop out.</p>
 </section>
 <section id="the-counterfactual-idea" class="level3">
 <h3 class="anchored" data-anchor-id="the-counterfactual-idea">The counterfactual idea</h3>
@@ -517,10 +620,92 @@ ul.task-list li input[type="checkbox"] {
 <p>What would have happened to the same participant, at the same time, if they had not received the manipulation?</p>
 </blockquote>
 <p>For any individual at a given moment, we can observe only one of these possibilities. We cannot simultaneously observe the same person both receiving and not receiving the same notification. Experimental design is therefore an attempt to construct a credible comparison for this missing counterfactual. Different design choices solve this problem in different ways.</p>
+<!-- 21 Nov 2026 (Claude): from deck 09-01, slide "The missing comparison" (redrawn in ggplot2); to review -->
+<p><a href="#fig-counterfactual" class="quarto-xref">Figure&nbsp;<span>4.2</span></a> shows the problem for one person. Anna used a stress-management app for a month, and at the end she reports a stress level of 4. Did the app help her? To answer, we would need her stress level at the end of the same month, had she not used the app. That value is not missing because of a mistake in data collection: it cannot be observed at all, because Anna lived only one of the two months. No dataset, however large, contains both branches for the same person.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-counterfactual" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-counterfactual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-counterfactual-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-counterfactual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: The missing comparison. For Anna we observe her stress with the app; her stress over the same month without the app is never observed, so the effect of the app on her cannot be computed directly.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>What we can do is change the question: from the effect of the app on Anna to the average effect of the app on a group of people. If two groups are alike on average in everything except the app, the group without the app tells us what would have happened, on average, to the group with it. Random assignment is the most reliable way to build two such groups (see <em>Random assignment</em> below, and <a href="#fig-why-randomise" class="quarto-xref">Figure&nbsp;<span>4.7</span></a>). A within-subjects design takes another route: it measures the same people in both conditions, at different times (see <em>Within-subjects designs</em> below).</p>
 </section>
 <section id="quasi-experimental-research" class="level3">
 <h3 class="anchored" data-anchor-id="quasi-experimental-research">Quasi-experimental research</h3>
 <p>Between purely observational research and fully randomised experiments are <strong>quasi-experimental designs</strong>. Here, researchers study an intervention, policy, technological change, or naturally occurring event but do not have complete control over assignment. Imagine that one university introduces an app that limits notifications during lectures while another does not. Comparing students before and after the intervention may provide valuable evidence, even though students were not individually randomised. Quasi-experiments can support stronger causal arguments than simple observational associations when the design creates a credible comparison. However, alternative explanations generally require more careful consideration than in a well-randomised experiment.</p>
+<!-- 21 Nov 2026 (Claude): from deck 09-04, slide "Quasi-experiments" (same illustrative numbers); to review -->
+<p><a href="#fig-quasi" class="quarto-xref">Figure&nbsp;<span>4.3</span></a> shows what such a study might find, with illustrative numbers. Distraction during lectures goes down at the university that introduced the limiter, but it also goes down a little at the other university, perhaps because the end of the semester is approaching. Without the second university, we would attribute the whole decrease to the limiter. With it, the question becomes the one we will meet again in pre-post designs: did the students of the first university change <em>more</em> than those of the second? The comparison makes the argument much stronger, but it does not make it as strong as an experiment. The students were not randomised to the two universities, which may differ in their students, their exam calendars, their teaching, or in other changes introduced in the same semester.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-quasi" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-quasi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-quasi-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-quasi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.3: Illustrative quasi-experiment. Mean distraction in lectures before and after one university introduced a notification limiter, compared with a university that changed nothing. Both decrease; the question is whether the first decreased more.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- 21 Nov 2026 (Claude): from deck 09-04, slide "Can I assign? Can I randomise?" (the instructor's decision tree, redrawn in ggplot2); to review -->
+<p>Two questions are enough to place a study among the three kinds of research we have seen (<a href="#fig-design-tree" class="quarto-xref">Figure&nbsp;<span>4.4</span></a>). The first is whether the researcher can decide who receives the exposure X (the notifications, the app, the limiter). If not, the study is observational: X is measured as it comes. If yes, the second question is whether the researcher can decide <em>at random</em>. If yes, the study is an experiment; if the researcher decides, but not at random (for example, one class gets the limiter because its teacher volunteered), it is a quasi-experiment. Studies of policies and natural events, in which someone else assigns the exposure (a university, a law, an operating-system update), are usually treated as quasi-experiments too, because the assignment can be described and a comparison group can often be found.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-design-tree" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-design-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-design-tree-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-design-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.4: Two questions that place a study among the three kinds of research. Can the researcher decide who receives X? Can they decide at random?
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- added by Claude, 17 Nov 2026, from the Week 9 slides; to review. 21 Nov 2026 (Claude): aligned with fig-design-tree; terminology to confirm at review (pre-existing groups as observational vs quasi-experimental) -->
+<p>A very common case is the comparison of <strong>pre-existing groups</strong>: patients and healthy controls, heavy and light smartphone users, older and younger adults. In terms of <a href="#fig-design-tree" class="quarto-xref">Figure&nbsp;<span>4.4</span></a>, nobody decides who is a patient, so these comparisons are observational in design, even though they are often grouped with quasi-experiments. The analysis looks like that of an experiment, often a t-test between two groups, but nobody assigned participants to the groups, and the groups may differ in many other ways (<a href="#fig-groups-differ" class="quarto-xref">Figure&nbsp;<span>4.5</span></a>). <a href="../basic-stats/results-to-conclusions.html" class="quarto-xref"><span>Chapter 25</span></a> discusses how to interpret such comparisons.</p>
+<!-- 21 Nov 2026 (Claude): from deck 09-04, slide "Groups differ in many ways" (redrawn in ggplot2); to review -->
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-groups-differ" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-groups-differ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-groups-differ-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-groups-differ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.5: Pre-existing groups differ in many ways. If patients and controls differ on a cognitive task, any of the characteristics around them could explain the difference, alone or together with the condition itself.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- 21 Nov 2026 (Claude): from deck 09-04, slide "Matching helps, partly" (redrawn in ggplot2); to review -->
+<p>A common remedy is <strong>matching</strong>: for each patient, we recruit a control of the same age and with the same years of education (<a href="#fig-matching" class="quarto-xref">Figure&nbsp;<span>4.6</span></a>). Matching helps, but only partly. The matched groups are now alike on age and education, but they can still differ on everything we did not match on, such as motivation, sleep, or medication, and on everything we never measured. This is the key difference from random assignment, which balances unmeasured characteristics too.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-matching" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-matching-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-matching-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-matching-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.6: Matching. Each patient is paired with a control of the same age and years of education. The pairs are alike on what we matched on, not on what we did not.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="a-visual-example-association-can-be-misleading" class="level3">
 <h3 class="anchored" data-anchor-id="a-visual-example-association-can-be-misleading">A visual example: association can be misleading</h3>
@@ -541,6 +726,26 @@ ul.task-list li input[type="checkbox"] {
 <section id="validity-what-makes-a-design-convincing" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="validity-what-makes-a-design-convincing"><span class="header-section-number">4.3</span> Validity: what makes a design convincing?</h2>
 <p>The word <strong>validity</strong> appears frequently in research methods, but it refers to several related questions rather than one single property of a study.</p>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Two meanings of validity
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You have already met validity in <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>. There, validity concerns the <strong>interpretation of an instrument’s scores</strong>: does this score reflect the construct, for this use, in this population? Following the <em>Standards for Educational and Psychological Testing</em>, it is a single concept supported by five sources of evidence (<a href="measurement.html#tbl-validity" class="quarto-xref">Table&nbsp;<span>1.2</span></a>).</p>
+<p>In this chapter, the same word refers to the <strong>conclusions of a study</strong>: does this design support this inference? Following the tradition of Shadish, Cook and Campbell,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> it is usually split into four kinds: internal, external, construct, and statistical conclusion validity.</p>
+<p>The two uses share one idea: validity is never a property of an object (a test, a study), but of a specific inference drawn from it. The two classifications, however, use two labels with different meanings:</p>
+<ul>
+<li><strong>Construct validity.</strong> In <a href="measurement.html#tbl-validity" class="quarto-xref">Table&nbsp;<span>1.2</span></a> it is a classical label for one source of evidence about a <em>measure</em>. Here it is broader: it asks whether both the measures and the <em>manipulations</em> of a study represent the constructs in the hypothesis.</li>
+<li><strong>Ecological validity.</strong> In <a href="measurement.html#tbl-validity" class="quarto-xref">Table&nbsp;<span>1.2</span></a> it is evidence that scores predict behaviour outside the laboratory. Here it describes how well a task or setting reflects everyday life.</li>
+</ul>
+<p>When you read or write that something is “valid”, make clear which kind of validity is meant.</p>
+</div>
+</div>
 <section id="internal-validity" class="level3">
 <h3 class="anchored" data-anchor-id="internal-validity">Internal validity</h3>
 <p><strong>Internal validity</strong> concerns whether an observed effect can plausibly be attributed to the factor we think produced it. If participants in a notification experiment differ not only in notification frequency but also in time of day, device type, instructions, or baseline ability, these alternative explanations weaken internal validity. Randomisation, appropriate control conditions, standardised procedures, blinding where possible, and careful measurement all help strengthen internal validity. Internal validity does not mean that every possible source of variation has been eliminated. Rather, it asks whether the design supports the specific comparison required for the causal claim.</p>
@@ -552,11 +757,11 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="construct-validity" class="level3">
 <h3 class="anchored" data-anchor-id="construct-validity">Construct validity</h3>
-<p><strong>Construct validity</strong> concerns whether the variables and manipulations adequately represent the theoretical constructs of interest. If we claim to manipulate “social distraction” but compare frequent social notifications with complete silence, several things change at once: social content, notification frequency, auditory stimulation, and interruption. The manipulation may therefore be broader than the construct named in the hypothesis. Similarly, if we describe a smartwatch-derived physiological index as “stress”, we need evidence that the measure captures the intended construct rather than simply physiological arousal more generally. Construct validity connects directly to operationalisation: good experimental control cannot rescue a study if the variables do not represent the concepts the theory is about.</p>
+<p><strong>Construct validity</strong> concerns whether the variables and manipulations adequately represent the theoretical constructs of interest. If we claim to manipulate “social distraction” but compare frequent social notifications with complete silence, several things change at once: social content, notification frequency, auditory stimulation, and interruption. The manipulation may therefore be broader than the construct named in the hypothesis. For the measures themselves, the question is the measurement validity discussed in <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>. Construct validity connects directly to operationalisation: good experimental control cannot rescue a study if the variables do not represent the concepts the theory is about.</p>
 </section>
 <section id="statistical-conclusion-validity" class="level3">
 <h3 class="anchored" data-anchor-id="statistical-conclusion-validity">Statistical conclusion validity</h3>
-<p>A final question concerns whether the data and analysis support the statistical conclusion being drawn. Very noisy measurements, very small samples, inappropriate treatment of dependent observations, or highly flexible analyses can all make an estimated effect unstable or misleading. This is sometimes discussed as <strong>statistical conclusion validity</strong>. The four ideas are connected. A study can be strong in one respect and weaker in another. A carefully randomised laboratory experiment may have excellent internal validity but uncertain generalisability. A large naturalistic dataset may describe everyday behaviour very well but provide weaker causal identification. Thinking about validity therefore means asking not simply “Is this study valid?”, but <strong>valid for which inference?</strong></p>
+<p>A final question concerns whether the data and analysis support the statistical conclusion being drawn. Very noisy measurements, very small samples, inappropriate treatment of dependent observations, or highly flexible analyses can all make an estimated effect unstable or misleading (on small samples, see <a href="../basic-stats/power.html" class="quarto-xref"><span>Chapter 23</span></a>; on flexible analyses, <a href="../basic-stats/credible-evidence.html#sec-replication-crisis" class="quarto-xref"><span>Section 26.2</span></a>). This is sometimes discussed as <strong>statistical conclusion validity</strong>. The four ideas are connected. A study can be strong in one respect and weaker in another. A carefully randomised laboratory experiment may have excellent internal validity but uncertain generalisability. A large naturalistic dataset may describe everyday behaviour very well but provide weaker causal identification. Thinking about validity therefore means asking not simply “Is this study valid?”, but <strong>valid for which inference?</strong></p>
 </section>
 </section>
 <section id="cross-sectional-longitudinal-and-intensive-longitudinal-designs" class="level2" data-number="4.4">
@@ -568,7 +773,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="longitudinal-designs" class="level3">
 <h3 class="anchored" data-anchor-id="longitudinal-designs">Longitudinal designs</h3>
-<p>In a <strong>longitudinal design</strong>, the same individuals are measured across time. We might measure smartphone use and stress once per month for a year, or assess cognitive performance before and after the introduction of a new digital intervention. Repeated measurement makes it possible to study <strong>change</strong>. It can also establish temporal ordering more clearly: we can ask whether one variable measured earlier predicts another variable measured later. But longitudinal data are not automatically causal. A variable that precedes another may still be associated with an unmeasured cause of both. Longitudinal studies also introduce practical problems such as attrition, repeated-measurement effects, changes in devices or software, and changes in the broader environment during the study.</p>
+<p>In a <strong>longitudinal design</strong>, the same individuals are measured across time. We might measure smartphone use and stress once per month for a year, or assess cognitive performance before and after the introduction of a new digital intervention. Repeated measurement makes it possible to study <strong>change</strong>. It can also establish temporal ordering more clearly: we can ask whether one variable measured earlier predicts another variable measured later. But longitudinal data are not automatically causal. A variable that precedes another may still be associated with an unmeasured cause of both. Longitudinal studies also introduce practical problems such as attrition (<a href="../basic-stats/missing-data.html" class="quarto-xref"><span>Chapter 24</span></a>), repeated-measurement effects, changes in devices or software, and changes in the broader environment during the study.</p>
 </section>
 <section id="intensive-longitudinal-data" class="level3">
 <h3 class="anchored" data-anchor-id="intensive-longitudinal-data">Intensive longitudinal data</h3>
@@ -577,7 +782,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="pre-post-designs-and-baseline-measurements" class="level3">
 <h3 class="anchored" data-anchor-id="pre-post-designs-and-baseline-measurements">Pre-post designs and baseline measurements</h3>
-<p>A common longitudinal structure is the <strong>pre-post design</strong>. Participants are measured before an intervention and again afterwards. For example, stress might be measured before and after one week of using an app that suppresses non-essential notifications. The baseline measurement is useful because it tells us where participants started. But a single-group pre–post study does not by itself establish that the intervention caused the change. Stress might decline because a busy examination week ended. Participants may become familiar with the questionnaire. Extreme baseline scores may move closer to typical values on a second measurement, a phenomenon known as <strong>regression to the mean</strong>.</p>
+<p>A common longitudinal structure is the <strong>pre-post design</strong>. Participants are measured before an intervention and again afterwards. For example, stress might be measured before and after one week of using an app that suppresses non-essential notifications. The baseline measurement is useful because it tells us where participants started. But a single-group pre-post study does not by itself establish that the intervention caused the change. Stress might decline because a busy examination week ended. Participants may become familiar with the questionnaire. Extreme baseline scores may move closer to typical values on a second measurement, a phenomenon known as <strong>regression to the mean</strong>. More simply, we cannot exclude that the values changed simply because time passed, bringing changes unrelated to the variable of interest.</p>
 <p>A concurrent control group makes the comparison stronger because both groups experience the passage of time while only one receives the intervention. The basic question then changes from:</p>
 <blockquote class="blockquote">
 <p>Did the intervention group change?</p>
@@ -597,7 +802,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>This logic is closely related to the interactions introduced later in the chapter: in many pre-post experiments, the scientifically interesting effect is whether <strong>change over time differs between groups</strong>.</p>
+<p>This logic is closely related to the interactions introduced later in the chapter: in many pre-post experiments, the scientifically interesting effect is whether <strong>change over time differs between groups</strong>. <!-- 21 Nov 2026 (Claude): cross-references added at the instructor's request; to review --> The same logic is behind the quasi-experiment of <a href="#fig-quasi" class="quarto-xref">Figure&nbsp;<span>4.3</span></a> (see <em>Quasi-experimental research</em> above), where the question was whether the university that introduced the limiter changed more than the one that did not.</p>
 </section>
 </section>
 <section id="variables-and-experimental-control" class="level2" data-number="4.5">
@@ -606,7 +811,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="choosing-an-outcome" class="level3">
 <h3 class="anchored" data-anchor-id="choosing-an-outcome">Choosing an outcome</h3>
 <p>The choice of dependent variable matters because different outcomes can describe different aspects of performance. In cognitive tasks, <strong>reaction time</strong> and <strong>accuracy</strong> are often analysed together. Looking at only one can be misleading because participants can trade speed for accuracy. A participant may respond more slowly precisely because they are trying to avoid errors. Conversely, very fast responses can come at the cost of reduced accuracy. This is known as the <strong>speed-accuracy trade-off</strong>.</p>
-<p>Other outcomes, such as confidence ratings, eye movements, physiological responses, or computational-model parameters, may capture still other aspects of behaviour. A good design therefore specifies which outcome is most directly linked to the hypothesis rather than choosing among many measures after seeing which produces the clearest result. The terminology is useful, but real studies often contain more variables than this simple pair suggests. Participants may differ in age, sleep duration, baseline anxiety, familiarity with the task, habitual smartphone use, or many other characteristics. Variables measured because they may help explain variation in the outcome are often called <strong>covariates</strong>.</p>
+<p>Other outcomes, such as confidence ratings, eye movements, physiological responses, or computational-model parameters, may capture still other aspects of behaviour. A good design therefore specifies which outcome is most directly linked to the hypothesis rather than choosing among many measures after seeing which produces the clearest result. The terminology is useful, but real studies often contain more variables than this simple pair suggests. Participants may differ in age, sleep duration, baseline anxiety, familiarity with the task, habitual smartphone use, or many other characteristics. Variables measured because they may help explain variation in the outcome (besides the independent variable) are often called <strong>covariates</strong>.</p>
 <p>Other variables may simply introduce unwanted variation. A variable becomes particularly problematic when it varies systematically with the experimental manipulation and offers an alternative explanation for an observed effect. This is <strong>confounding</strong>. Imagine that everyone in the high-notification condition performs the experiment in the afternoon, while everyone in the low-notification condition is tested in the morning. If the groups differ in performance, notification condition is now perfectly confounded with time of day. The goal of <strong>experimental control</strong> is to make such alternative explanations less plausible.</p>
 </section>
 <section id="experimental-and-control-conditions" class="level3">
@@ -614,7 +819,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Experiments often include an <strong>experimental condition</strong> and a <strong>control condition</strong>. The control condition provides a reference against which the manipulation can be evaluated. What counts as an appropriate control depends on the scientific question. If we want to know whether notifications disrupt attention compared with uninterrupted task performance, a no-notification condition is a sensible control. If we want to know whether <em>social</em> notifications are especially distracting, a stronger control might involve equally frequent non-social system notifications. Control is therefore not synonymous with “nothing happens”; rather, a control condition should isolate the part of the manipulation that is relevant to the hypothesis.</p>
 </section>
 <section id="passive-and-active-controls" class="level3">
-<h3 class="anchored" data-anchor-id="passive-and-active-controls">Passive, and active controls</h3>
+<h3 class="anchored" data-anchor-id="passive-and-active-controls">Passive and active controls</h3>
 <p>Control conditions can take different forms. A <strong>passive control</strong> may simply involve the absence of an intervention. For example, one group might use a stress-management app while another group continues their normal routine. An <strong>active control</strong> receives an alternative activity designed to match features such as time, attention, contact, or expectancy without including the component thought to produce the specific effect. If an intervention app sends daily exercises, an active control might use an app with equally frequent neutral activities. The more closely the control condition matches these non-specific features, the more specifically the experiment can isolate the component of theoretical interest.</p>
 </section>
 <section id="manipulation-checks" class="level3">
@@ -627,34 +832,99 @@ ul.task-list li input[type="checkbox"] {
 <p>Two concepts that sound very similar solve two different problems: <strong>random assignment</strong> and <strong>random sampling</strong>.</p>
 <section id="random-assignment" class="level3">
 <h3 class="anchored" data-anchor-id="random-assignment">Random assignment</h3>
-<p>Random assignment concerns what happens after participants enter a study. Participants are allocated to experimental conditions using a random mechanism. Suppose we recruit 100 participants and randomly assign 50 to a high-notification condition and 50 to a low-notification condition. Individual differences will still exist. Some people will be better at the attention task. Some will have slept badly. Some may be heavy smartphone users. But because allocation is random, these characteristics should not systematically favour one condition over the other, especially as sample size increases.</p>
-<p>Randomisation is therefore a key tool for <strong>internal validity</strong>: it helps support the claim that differences between conditions were produced by the manipulation rather than by pre-existing group differences. Randomisation does not guarantee that two finite groups will be identical. Chance imbalances can still occur. Its strength is that the assignment mechanism itself does not systematically create them.</p>
+<p>Random assignment concerns what happens after participants enter a study and sign the informed consent form (see <em>Ethical approval and informed consent</em> in <a href="research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>). Participants are allocated to experimental conditions using a random mechanism. Suppose we recruit 100 participants and randomly assign 50 to a high-notification condition and 50 to a low-notification condition. Individual differences will still exist. Some people will be better at the attention task. Some will have slept badly. Some may be heavy smartphone users. But because allocation is random, these characteristics should not systematically favour one condition over the other, especially as sample size increases.</p>
+<!-- 21 Nov 2026 (Claude): moved from behav/randomised-trials.qmd ("Why randomise?"); from deck 09-02, slide "Why randomise?" (same simulation, seed 9); to review -->
+<p>To see why, suppose we want to know whether a stress-management app reduces stress. The simplest study would compare people who chose to use the app with people who did not. The problem is that the people who choose an app may differ from those who do not: they may be more motivated to reduce their stress, and motivated people may do many other things that reduce stress too. If the app users end the study less stressed, we cannot tell whether this is the app or the motivation.</p>
+<p>We can see the problem with a small simulation. We give 40 simulated people a level of motivation between 0 and 1, which in a real study we would not measure. In the first scheme, people choose whether to use the app, and the more motivated they are, the more likely they are to choose it. In the second, a coin decides: we shuffle 20 “app” and 20 “no app” labels and hand them out.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>motivation <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># people choose: the probability of using the app grows with motivation</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>chose <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fu">plogis</span>(<span class="sc">-</span><span class="dv">3</span> <span class="sc">+</span> <span class="dv">6</span> <span class="sc">*</span> motivation))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># random assignment: 20 of each, in random order</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>random <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rep</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">each =</span> n <span class="sc">/</span> <span class="dv">2</span>))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>rand_d <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">scheme =</span> <span class="st">"people chose the app"</span>, <span class="at">app =</span> chose, motivation),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">scheme =</span> <span class="st">"assigned at random"</span>, <span class="at">app =</span> random, motivation)) <span class="sc">|&gt;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">app =</span> <span class="fu">factor</span>(app, <span class="at">levels =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"no app"</span>, <span class="st">"app"</span>)),</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">scheme =</span> <span class="fu">fct_inorder</span>(scheme))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>rand_d <span class="sc">|&gt;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(scheme, app) <span class="sc">|&gt;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean_motivation =</span> <span class="fu">mean</span>(motivation))</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 4</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Groups:   scheme [2]</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   scheme               app        n mean_motivation</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;                &lt;fct&gt;  &lt;int&gt;           &lt;dbl&gt;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 people chose the app no app    21           0.304</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 people chose the app app       19           0.704</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 assigned at random   no app    20           0.571</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 assigned at random   app       20           0.417</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When people choose, the app group is much more motivated than the no-app group, by about 0.4, and the difference is built into the way the groups were formed: repeat the study and it will be there again. When a coin decides, the groups still differ, by about 0.15, but in the other direction, and only by chance: repeat the randomisation and the difference will change size and sign, averaging zero over many repetitions (<a href="#fig-why-randomise" class="quarto-xref">Figure&nbsp;<span>4.7</span></a>).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-why-randomise" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-why-randomise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-why-randomise-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-why-randomise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.7: The same 40 simulated people, split into an app group and a no-app group in two ways. Each point is a person, and darker points are more motivated; the horizontal bars are the group means. When people choose, the motivated ones end up in the app group. When the groups are assigned at random, the difference that remains is due to chance alone, and motivation is balanced on average, even though it was never measured.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This is the key point of randomisation: it balances not only the variables we measured but also the ones we did not, such as motivation, sleep, or the number of exams that month. Because chance decides who gets the app, no characteristic of the participants can systematically push them into one group. Any remaining difference between the groups at the end of the study is either the effect of the app or chance, and chance is exactly what the statistical methods of the <em>Basic Statistics</em> part are designed to quantify.</p>
+<!-- 21 Nov 2026 (Claude): paragraph merged with the "Two caveats" paragraph of behav/randomised-trials.qmd; to review -->
+<p>Randomisation is therefore a key tool for <strong>internal validity</strong>: it helps support the claim that differences between conditions were produced by the manipulation rather than by pre-existing group differences. It has two limits. First, it balances the groups <em>on average</em>: it does not guarantee that two finite groups will be identical, and in a single small study they can still differ by chance, as they do in our simulation (run it again with other seeds to see the difference change). Its strength is that the assignment mechanism itself does not systematically create imbalances. Larger samples make large chance imbalances less likely, and blocked or stratified randomisation can balance a few important variables by design (see <em>Matching, blocking, and stratification</em> below). Second, randomisation only protects the comparison between the groups; it says nothing about whether the result applies to people unlike those in the study, which is the question of random sampling.</p>
 </section>
 <section id="random-sampling" class="level3">
 <h3 class="anchored" data-anchor-id="random-sampling">Random sampling</h3>
-<p>Random sampling asks a different question: how did participants enter the study in the first place? Suppose our 100 participants are all psychology students aged 18-25 who own recent smartphones. We may have conducted an excellent randomised experiment, but this does not guarantee that the result generalises to older adults, children, shift workers, or people who interact with technology in very different ways. Sampling therefore concerns <strong>external validity</strong> and generalisability.</p>
+<p>Random sampling asks a different question: how did participants enter the study in the first place? Suppose our 100 participants are all psychology students aged 18–25 who own recent smartphones. We may have conducted an excellent randomised experiment, but this does not guarantee that the result generalises to older adults, children, shift workers, or people who interact with technology in very different ways. Sampling therefore concerns <strong>external validity</strong> and generalisability.</p>
 <p>A study can have strong internal validity and limited generalisability. Conversely, a large and representative observational dataset may generalise well to a population while offering weaker causal identification. In psychological research, true probability sampling is relatively uncommon. Convenience samples are common because they are feasible and inexpensive. This is not automatically a fatal flaw, but the target population should be described honestly.</p>
+<!-- 21 Nov 2026 (Claude): links to the inference chapters added at the instructor's request; to review -->
+<p>The distinction between a population and a sample is introduced in <a href="../inference/estimates-confidence-intervals.html" class="quarto-xref"><span>Chapter 14</span></a> (see <em>Populations, samples, parameters, and estimates</em>). The standard errors and confidence intervals of that chapter describe our uncertainty about the population from which the sample was <em>randomly</em> drawn. With a convenience sample, which population the results refer to is no longer settled by the sampling procedure: it becomes a matter of judgement, and it should be argued explicitly. How the way participants enter a study can distort a comparison is discussed under <em>Selection</em> in <a href="../basic-stats/results-to-conclusions.html" class="quarto-xref"><span>Chapter 25</span></a>.</p>
 </section>
 <section id="matching-blocking-and-stratification" class="level3">
 <h3 class="anchored" data-anchor-id="matching-blocking-and-stratification">Matching, blocking, and stratification</h3>
-<p>Sometimes researchers know in advance that a characteristic is especially important. Suppose habitual smartphone use strongly predicts susceptibility to notifications. A completely unrestricted random allocation could, by chance, place more heavy users in one condition. A <strong>blocked</strong> or <strong>stratified randomisation</strong> procedure could first group participants according to habitual smartphone use and then randomise within those groups. <strong>Matching</strong> uses a related idea by pairing or grouping participants who are similar on selected characteristics. These methods do not replace randomisation, but can improve balance on variables judged important before the experiment begins.</p>
+<p>Sometimes researchers know in advance that a characteristic is especially important. Suppose habitual smartphone use strongly predicts susceptibility to notifications. A completely unrestricted random allocation could, by chance, place more heavy users in one condition. A <strong>blocked</strong> or <strong>stratified randomisation</strong> procedure could first group participants according to habitual smartphone use and then randomise within those groups. <strong>Matching</strong> uses a related idea by pairing or grouping participants who are similar on selected characteristics. These methods do not replace randomisation, but can improve balance on variables judged important before the experiment begins. <!-- 21 Nov 2026 (Claude): sentence added; to review --> Matching is also used (and useful) when groups cannot be randomised at all, as with patients and controls (<a href="#fig-matching" class="quarto-xref">Figure&nbsp;<span>4.6</span></a>). It helps to make the comparison meaningful, but it has an intrinsic limit: it balances only the characteristics we matched on, and we may never know whether we missed some important variables.</p>
 </section>
 </section>
 <section id="between-subjects-designs" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="between-subjects-designs"><span class="header-section-number">4.7</span> Between-subjects designs</h2>
-<p>In a <strong>between-subjects design</strong>, different participants take part in different experimental conditions. Suppose we recruit 120 participants for an attention experiment. Sixty receive frequent notifications while completing a sustained-attention task, and sixty complete exactly the same task without notifications. Each participant experiences only one condition.</p>
+<p>In a <strong>between-subjects design</strong>, different participants take part in different experimental conditions. Suppose we recruit 120 participants for an attention experiment. Sixty receive frequent notifications while completing a sustained-attention task, and sixty complete exactly the same task without notifications. Each participant experiences only one condition, and the conditions are compared with tests for independent groups (<a href="../basic-stats/comparing-two-groups.html" class="quarto-xref"><span>Chapter 18</span></a>).</p>
+<!-- 21 Nov 2026 (Claude): from deck 09-03, slide "Two ways to compare" (redrawn in ggplot2); to review -->
+<p><a href="#fig-between-within" class="quarto-xref">Figure&nbsp;<span>4.8</span></a> contrasts this design with the alternative discussed in the next section. In a between-subjects design (left), the people in condition A and the people in condition B are different people, so the comparison between conditions is also a comparison between people. In a within-subjects design (right), the same people appear in both conditions, and each line joins the two measurements of one person.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-between-within" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-between-within-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-between-within-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-between-within-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.8: Two ways to compare conditions A and B. Left: in a between-subjects design, different people (1-4 and 5-8) take part in each condition. Right: in a within-subjects design, the same people (1-4) take part in both conditions; each line joins the two measurements of one person.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <section id="advantages" class="level3">
 <h3 class="anchored" data-anchor-id="advantages">Advantages</h3>
 <p>The major advantage is that performance in one condition cannot influence performance in another. Participants cannot learn the task in condition A and carry that learning into condition B. They cannot become tired because they have already completed another version of the same task. The effect of a manipulation cannot persist into a later condition. Between-subjects designs are therefore particularly useful when an intervention has long-lasting or irreversible effects. Imagine evaluating a week-long digital-detox intervention. Once a participant has spent a week with restricted smartphone access, it may be impossible to return them immediately to the psychological state they would have had without that experience. A between-subjects design may be more appropriate than exposing the same participant to both interventions in sequence.</p>
 </section>
 <section id="disadvantages" class="level3">
 <h3 class="anchored" data-anchor-id="disadvantages">Disadvantages</h3>
-<p>The main cost is <strong>inter-individual variability</strong>. People differ in baseline cognitive performance, motivation, sleep, technology use, personality, and many other characteristics. These differences contribute noise to comparisons between conditions. Random assignment protects against systematic bias, but it does not remove individual variability from the outcome. As a consequence, between-subjects studies often require larger samples than comparable within-subjects studies in which each participant serves as their own control.</p>
+<p>The main cost is <strong>inter-individual variability</strong>. People differ in baseline cognitive performance, motivation, sleep, technology use, personality, and many other characteristics. These differences contribute noise to comparisons between conditions. Random assignment protects against systematic bias, but it does not remove individual variability from the outcome. As a consequence, between-subjects studies often require larger samples than comparable within-subjects studies in which each participant serves as their own control (<a href="../basic-stats/power.html" class="quarto-xref"><span>Chapter 23</span></a>).</p>
 </section>
 </section>
 <section id="within-subjects-designs" class="level2" data-number="4.8">
 <h2 data-number="4.8" class="anchored" data-anchor-id="within-subjects-designs"><span class="header-section-number">4.8</span> Within-subjects designs</h2>
-<p>In a <strong>within-subjects design</strong>, the same participants are observed in more than one condition. Instead of assigning different groups to notification and no-notification conditions, every participant might complete the attention task twice: once with frequent notifications and once without them. Each participant now acts, to some extent, as their own control.</p>
+<p>In a <strong>within-subjects design</strong>, the same participants are observed in more than one condition. Instead of assigning different groups to notification and no-notification conditions, every participant might complete the attention task twice: once with frequent notifications and once without them. Each participant now acts, to some extent, as their own control (the right half of <a href="#fig-between-within" class="quarto-xref">Figure&nbsp;<span>4.8</span></a>).</p>
 <section id="why-within-subjects-designs-can-be-efficient" class="level3">
 <h3 class="anchored" data-anchor-id="why-within-subjects-designs-can-be-efficient">Why within-subjects designs can be efficient</h3>
 <p>Suppose participant A is naturally fast, participant B is naturally slow, and participant C is somewhere in between. In a between-subjects design, these baseline differences contribute to the variation between the two groups. In a within-subjects design, however, we are interested in how each participant changes across conditions. Stable individual differences are shared across both measurements. This can substantially improve statistical efficiency when repeated measurements within the same participant are correlated. The following simulated data illustrate the idea.</p>
@@ -668,7 +938,23 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Notice how participants differ substantially in their absolute reaction times, but many show a change in the same direction. A paired design can focus directly on these within-person differences.</p>
+<p>Notice how participants differ substantially in their absolute reaction times, but many show a change in the same direction. A paired design can focus directly on these within-person differences. <!-- added by Claude, 17 Nov 2026; to review --> The design also determines the analysis: two conditions measured on the same participants are compared with paired tests, not with tests for independent groups (see <em>Paired designs</em> in <a href="../basic-stats/comparing-two-groups.html" class="quarto-xref"><span>Chapter 18</span></a>), and the effect size and the power of paired designs are computed differently (<a href="../basic-stats/effect-size.html" class="quarto-xref"><span>Chapter 22</span></a>, <a href="../basic-stats/power.html" class="quarto-xref"><span>Chapter 23</span></a>).</p>
+<!-- 21 Nov 2026 (Claude): from deck 09-03, slide "Within designs need fewer people" (same computation, base R power.t.test()); to review -->
+<p>The gain in efficiency can be large. <a href="#fig-within-n" class="quarto-xref">Figure&nbsp;<span>4.9</span></a> shows how many participants are needed to detect a medium effect (d = 0.5) with 80% power. A between-subjects design needs 128 participants, half in each group. A within-subjects design needs fewer, and how many fewer depends on the correlation r between the two measurements of the same person: 65 participants when r = 0, 34 when r = 0.5, and only 15 when r = 0.8. Even with r = 0 the within design needs about half the people, because each person contributes two measurements; the rest of the gain comes from the stable differences between people, which drop out of the comparison. How the correlation enters the calculation is shown in <em>Paired designs</em> in <a href="../basic-stats/power.html" class="quarto-xref"><span>Chapter 23</span></a>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-within-n" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-within-n-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-within-n-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-within-n-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.9: Participants needed to detect an effect of d = 0.5 with 80% power (alpha = 0.05, two-sided), in a between-subjects design and in within-subjects designs with increasing correlation r between a person’s two measurements.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="order-effects" class="level3">
 <h3 class="anchored" data-anchor-id="order-effects">Order effects</h3>
@@ -677,6 +963,22 @@ ul.task-list li input[type="checkbox"] {
 <section id="counterbalancing" class="level3">
 <h3 class="anchored" data-anchor-id="counterbalancing">Counterbalancing</h3>
 <p>A common strategy is <strong>counterbalancing</strong>. With two conditions, half the participants can complete A followed by B, while the other half completes B followed by A. If practice improves performance in the second session, both experimental conditions now occur in the second position for some participants. Experimental condition is no longer perfectly confounded with order. With more conditions, complete counterbalancing may become impractical because the number of possible orders grows rapidly. A <strong>Latin square</strong> can distribute conditions across ordinal positions using only a subset of possible sequences.</p>
+<!-- 21 Nov 2026 (Claude): from deck 09-03, slides "Order effects" and "Counterbalancing" (same simulation, seed 5); to review -->
+<p><a href="#fig-order-effects" class="quarto-xref">Figure&nbsp;<span>4.10</span></a> shows why this works, with simulated data. Forty participants complete a task under two conditions, A and B, which are in fact equally good: the simulation gives them the same true score. But everybody scores about 6 points higher in the second session, because of practice. Half the participants do A first, the other half B first. In the observed data, the second session is better by 5.9 points. If we had run only the order A then B, condition B would look 5.4 points better than A, an effect produced entirely by its position. With both orders, each condition is in the second position for half the participants, and averaging over everyone, the difference between the two conditions shrinks to 0.4 points, which is just noise. The practice effect is still there, in both orders: counterbalancing has balanced it across the conditions, not removed it.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-order-effects" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-order-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-order-effects-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-order-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.10: Order effects and counterbalancing (simulated data). Conditions A and B are equally good, but every participant scores higher in the second session. Half the participants do A then B, the other half B then A, so each condition benefits from the second session equally often.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>Counterbalancing does not make order effects disappear. Instead, it aims to prevent those effects from systematically favouring one condition. Other solutions may also be useful: increasing the delay between conditions, including washout periods, using parallel task versions, modelling order statistically, or choosing a between-subjects design when carryover would be too strong.</p>
 </section>
 </section>
@@ -694,6 +996,8 @@ ul.task-list li input[type="checkbox"] {
 <blockquote class="blockquote">
 <p>We usually want our conclusion to generalise beyond both the people and the particular items that happened to be sampled.</p>
 </blockquote>
+<!-- 21 Nov 2026 (Claude): references added at the instructor's request; to review -->
+<p>Analysing the items as if they were the only ones of interest, and then generalising to the whole category, is what Clark called the <strong>language-as-fixed-effect fallacy</strong>, after its frequency in language research.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The same problem affects any field that samples stimuli, such as faces, images, or messages.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 </section>
 <section id="participants-versus-trials" class="level3">
 <h3 class="anchored" data-anchor-id="participants-versus-trials">Participants versus trials</h3>
@@ -724,7 +1028,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>The notation <em>2 × 2</em> indicates that there are two factors and each has two levels.</p>
+<p>The notation <em>2 × 2</em> indicates that there are two factors and each has two levels. Such designs are usually analysed with a two-way ANOVA (<a href="../basic-stats/anova.html" class="quarto-xref"><span>Chapter 19</span></a>).</p>
 <section id="main-effects" class="level3">
 <h3 class="anchored" data-anchor-id="main-effects">Main effects</h3>
 <p>A factorial design allows us to ask whether there is an overall effect of notification condition, averaging across levels of task difficulty. This is a <strong>main effect</strong> of notifications. We can also ask whether difficult tasks lead to worse performance overall, averaging across notification conditions. This is a main effect of task difficulty.</p>
@@ -746,8 +1050,25 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="mixed-designs" class="level3">
 <h3 class="anchored" data-anchor-id="mixed-designs">Mixed designs</h3>
-<p>A <strong>mixed design</strong> combines between-subjects and within-subjects factors. Suppose we compare habitual users and non-users of smartwatches. User group is a between-subjects factor because each person belongs to one group. Every participant then completes a cognitive task with and without real-time physiological feedback from the watch. Feedback condition is a within-subjects factor. A mixed design allows us to examine whether the within-person effect of feedback differs between the two groups.</p>
-<p>Mixed designs are common in behavioural science because they reflect the structure of many substantive questions: people belong to different groups, but are also measured repeatedly across tasks, sessions, or conditions.</p>
+<p>A <strong>mixed design</strong> combines between-subjects and within-subjects factors. Suppose we compare habitual users and non-users of smartwatches. User group is a between-subjects factor because each person belongs to one group. Every participant then completes a cognitive task with and without real-time physiological feedback from the watch. Feedback condition is a within-subjects factor. A mixed design allows us to examine whether the within-person effect of feedback differs between the two groups (<a href="#fig-mixed" class="quarto-xref">Figure&nbsp;<span>4.11</span></a>).</p>
+<!-- 21 Nov 2026 (Claude): from deck 09-03, slide "Mixed designs" (redrawn in ggplot2); to review -->
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-mixed" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-mixed-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.11: A 2 × 2 mixed design. Feedback (on or off) is a within-subjects factor: every participant does the task in both conditions, and the researcher decides which. User group is a between-subjects factor: each participant belongs to one group, and nobody assigned it.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- added by Claude, 17 Nov 2026; to review -->
+<p>Note that the feedback condition is manipulated, but user group is not: participants arrive already being users or non-users, so a difference between the groups is a comparison of pre-existing groups, with all the alternative explanations that this implies.</p>
+<p>Mixed designs are common in behavioural science because they reflect the structure of many substantive questions: people belong to different groups, but are also measured repeatedly across tasks, sessions, or conditions. Their analysis combines the between-subjects and repeated-measures ANOVA of <a href="../basic-stats/anova.html" class="quarto-xref"><span>Chapter 19</span></a>.</p>
 </section>
 </section>
 <section id="bias-and-control-procedures" class="level2" data-number="4.11">
@@ -755,7 +1076,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Randomisation addresses some threats to inference, but not all of them. Research participants may change their behaviour because of what they believe the study is testing. Researchers may unintentionally behave differently toward participants in different conditions. Technology itself may behave differently across participants or conditions.</p>
 <section id="participant-expectations-and-demand-characteristics" class="level3">
 <h3 class="anchored" data-anchor-id="participant-expectations-and-demand-characteristics">Participant expectations and demand characteristics</h3>
-<p>Suppose participants are told that an app has been designed to reduce stress. Their expectations may influence how they later rate their emotions, even if the app has little direct effect. Similarly, participants who complete both a “high distraction” and “low distraction” condition may infer the hypothesis and consciously or unconsciously change their behaviour. These are examples of <strong>demand characteristics</strong>: features of the study that reveal expectations about how participants are supposed to respond.</p>
+<p>Suppose participants are told that an app has been designed to reduce stress. Their expectations may influence how they later rate their emotions, even if the app has little direct effect. Similarly, participants who complete both a “high distraction” and “low distraction” condition may infer the hypothesis and consciously or unconsciously change their behaviour. These are examples of <strong>demand characteristics</strong>: features of the study that reveal expectations about how participants are supposed to respond. Withholding the hypothesis to limit them raises the ethical questions of deception and debriefing discussed in <a href="research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>.</p>
 </section>
 <section id="experimenter-expectancy" class="level3">
 <h3 class="anchored" data-anchor-id="experimenter-expectancy">Experimenter expectancy</h3>
@@ -764,7 +1085,10 @@ ul.task-list li input[type="checkbox"] {
 <section id="blinding" class="level3">
 <h3 class="anchored" data-anchor-id="blinding">Blinding</h3>
 <p>Where possible, <strong>single-blind</strong> or <strong>double-blind</strong> procedures reduce access to information about condition assignment. In behavioural research, complete blinding is not always possible. Participants will obviously notice whether their smartphone is producing frequent notifications. However, other parts of the process can still be blinded or automated. The researcher administering a post-test may be unaware of condition. Data may be analysed under neutral condition labels. Instructions can be delivered by computer rather than by an experimenter who knows the hypothesis.</p>
-<p>The goal is not to apply the label “double blind” at all costs. The goal is to identify where expectations might influence the measurement process and limit that influence where feasible.</p>
+<p>The goal is not to apply the label “double blind” at all costs. The goal is to identify where expectations might influence the measurement process and limit that influence where feasible. Three people in a study can be blinded, and each protects against a different bias. <!-- 21 Nov 2026 (Claude): three paragraphs on who can be blinded, added at the instructor's request; to review --></p>
+<p><strong>Blinding participants.</strong> In drug trials, the control group receives a <em>placebo</em>, a pill that looks identical to the drug but has no active ingredient, so that both groups expect the same benefit. Expectations matter outside medicine too. Suppose we compare a new wearable device for stress monitoring with the old one. Participants who know they are using the new device may expect it to work better, pay more attention to its feedback, or rate their experience more positively, and the new device would look better even if it were not. Where possible, the two versions can look identical, a <em>sham</em> version can be used (one that looks and behaves the same but lacks the component under test), or participants can simply not be told which version is the new one.</p>
+<p><strong>Blinding assessors.</strong> The person who measures the outcome may expect something too. An assessor who knows which participants used the new device, and hopes it works, may score borderline responses, open answers, or observed behaviour slightly in its favour, without any intention to cheat. An assessor who does not know the condition, or an automated scoring procedure, removes this possibility.</p>
+<p><strong>Blinding analysts.</strong> Even the analysis involves decisions: which observations count as outliers, which participants to exclude, which transformation to apply. An analyst who knows which group is which may, again without intending to, see the data in a different way and take the decisions that favour the expected result. Analysing the data with neutral condition labels, and fixing these rules before seeing the data, limits this flexibility (see <em>Flexibility in the analysis</em> in <a href="../basic-stats/credible-evidence.html" class="quarto-xref"><span>Chapter 26</span></a>, and <em>Preregistration and transparency</em> below).</p>
 </section>
 <section id="standardisation" class="level3">
 <h3 class="anchored" data-anchor-id="standardisation">Standardisation</h3>
@@ -773,10 +1097,10 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="planning-before-collecting-data" class="level2" data-number="4.12">
 <h2 data-number="4.12" class="anchored" data-anchor-id="planning-before-collecting-data"><span class="header-section-number">4.12</span> Planning before collecting data</h2>
-<p>Many of the decisions that determine whether a study will be informative occur before the first participant is tested.</p>
+<p>Many of the decisions that determine whether a study will be informative occur before the first participant is tested. <!-- 21 Nov 2026 (Claude): link to preregistration added at the instructor's request; to review --> Many of them can also be written down, before the data are collected, in a preregistration (see <em>Preregistration and transparency</em> below, and <em>Preregistration</em> in <a href="research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>).</p>
 <section id="sample-size-and-precision" class="level3">
 <h3 class="anchored" data-anchor-id="sample-size-and-precision">Sample size and precision</h3>
-<p>One decision concerns <strong>sample size</strong>. A study should not ideally recruit a particular number of participants only because that number is convenient or because another paper used the same number. The amount of information required depends on the design, the variability of the measurements, the size of the effect that would be scientifically meaningful, and the precision required from the estimates. The concept of <strong>statistical power</strong> captures one part of this problem. Roughly speaking, power concerns the probability that a study will detect an effect of a given size when such an effect is present.</p>
+<p>One decision concerns <strong>sample size</strong>. Ideally, a study should not recruit a particular number of participants only because that number is convenient or because another paper used the same number. The amount of information required depends on the design, the variability of the measurements, the size of the effect that would be scientifically meaningful (<a href="../basic-stats/effect-size.html" class="quarto-xref"><span>Chapter 22</span></a>), and the precision required from the estimates (<a href="../inference/estimates-confidence-intervals.html" class="quarto-xref"><span>Chapter 14</span></a>). The concept of <strong>statistical power</strong> captures one part of this problem (<a href="../basic-stats/power.html" class="quarto-xref"><span>Chapter 23</span></a>). Roughly speaking, power concerns the probability that a study will detect an effect of a given size when such an effect is present.</p>
 <p>A small study may fail to detect a meaningful effect because its estimates are too imprecise. But simply collecting a huge number of repeated measurements from a few individuals does not necessarily solve the problem, because repeated observations do not provide the same information as independent participants. This brings us back to the importance of understanding the experimental unit.</p>
 </section>
 <section id="inclusion-and-exclusion-criteria" class="level3">
@@ -786,7 +1110,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="outcomes-and-stopping-rules" class="level3">
 <h3 class="anchored" data-anchor-id="outcomes-and-stopping-rules">Outcomes and stopping rules</h3>
-<p>The same logic applies to <strong>outcomes</strong>. A smartphone study may generate dozens of variables: screen time, unlock frequency, notification count, app categories, mobility, sleep estimates, typing patterns, and subjective ratings. If one primary hypothesis is being tested, the corresponding primary outcome should ideally be identified before the analysis. Researchers should also decide when data collection will stop. Repeatedly analysing the data and ending recruitment as soon as a desired result becomes statistically significant changes the behaviour of conventional statistical tests. If sequential monitoring is planned, it should be incorporated into the design and analysis.</p>
+<p>The same logic applies to <strong>outcomes</strong>. A smartphone study may generate dozens of variables: screen time, unlock frequency, notification count, app categories, mobility, sleep estimates, typing patterns, and subjective ratings. If one primary hypothesis is being tested, the corresponding primary outcome should ideally be identified before the analysis: testing many outcomes and reporting the significant ones inflates false positives (<a href="../basic-stats/multiple-comparisons.html" class="quarto-xref"><span>Chapter 20</span></a>). Researchers should also decide when data collection will stop. Repeatedly analysing the data and ending recruitment as soon as a desired result becomes statistically significant changes the behaviour of conventional statistical tests (<a href="../inference/hypothesis-testing.html" class="quarto-xref"><span>Chapter 15</span></a>). If sequential monitoring is planned, it should be incorporated into the design and analysis.</p>
 </section>
 <section id="missing-data-and-data-completeness" class="level3">
 <h3 class="anchored" data-anchor-id="missing-data-and-data-completeness">Missing data and data completeness</h3>
@@ -797,29 +1121,52 @@ ul.task-list li input[type="checkbox"] {
 <li>How will technical failures be distinguished from participant non-adherence?</li>
 <li>When is a participant considered to have insufficient data for a planned analysis?</li>
 </ul>
-<p>The statistical treatment of missing data is covered elsewhere. At the design stage, the key point is that <strong>missing data can reflect the process being studied</strong> and should be anticipated where possible.</p>
+<p>The statistical treatment of missing data is covered in <a href="../basic-stats/missing-data.html" class="quarto-xref"><span>Chapter 24</span></a>. At the design stage, the key point is that <strong>missing data can reflect the process being studied</strong> and should be anticipated where possible.</p>
 </section>
 <section id="pilot-and-feasibility-studies" class="level3">
 <h3 class="anchored" data-anchor-id="pilot-and-feasibility-studies">Pilot and feasibility studies</h3>
 <p>Before launching a full experiment, researchers often conduct a <strong>pilot</strong> or <strong>feasibility study</strong>. A pilot can answer practical questions: Does the app log the intended events? Are notifications delivered consistently across devices? Is the task too long? Do participants understand the instructions? Is an EMA schedule so burdensome that response rates collapse after a few days? Pilot work is also useful for checking whether a manipulation produces the intended contrast and whether the data pipeline works from collection to analysis.</p>
-<p>A small pilot should not usually be treated as a miniature definitive hypothesis test. Small samples provide unstable estimates of effect size. The main purpose of pilot work is often to discover design problems while they are still inexpensive to fix.</p>
+<p>A small pilot should not usually be treated as a miniature definitive hypothesis test. Small samples provide unstable estimates of effect size: their standard error is large (<a href="../inference/estimates-confidence-intervals.html" class="quarto-xref"><span>Chapter 14</span></a>), and the significant ones tend to overestimate the true effect (see <em>Small studies and exaggerated effects</em> in <a href="../basic-stats/credible-evidence.html" class="quarto-xref"><span>Chapter 26</span></a>). For the same reason, planning the main study with the effect size of a pilot usually gives a sample that is too small (see <em>Pitfalls</em> in <a href="../basic-stats/power.html" class="quarto-xref"><span>Chapter 23</span></a>). <!-- 21 Nov 2026 (Claude): references added at the instructor's request; to review --> The main purpose of pilot work is often to discover design problems while they are still inexpensive to fix.</p>
 </section>
 <section id="preregistration-and-transparency" class="level3">
 <h3 class="anchored" data-anchor-id="preregistration-and-transparency">Preregistration and transparency</h3>
-<p><strong>Preregistration</strong> provides one way of documenting decisions before the results are known. A preregistration can specify hypotheses, primary outcomes, sample-size rationale, exclusion criteria, experimental procedures, and planned analyses. Preregistration does not prevent exploration. Behavioural datasets are often rich, and unexpected patterns can be scientifically valuable. The important distinction is between <strong>confirmatory analyses</strong>, which test predictions specified in advance, and <strong>exploratory analyses</strong>, which are motivated by patterns discovered after observing the data. Both can be useful. They answer different questions.</p>
+<p><strong>Preregistration</strong> provides one way of documenting decisions before the results are known (why this matters is explained in <a href="../basic-stats/credible-evidence.html#sec-replication-crisis" class="quarto-xref"><span>Section 26.2</span></a>). A preregistration can specify hypotheses, primary outcomes, sample-size rationale, exclusion criteria, experimental procedures, and planned analyses. Preregistration does not prevent exploration. Behavioural datasets are often rich, and unexpected patterns can be scientifically valuable. The important distinction is between <strong>confirmatory analyses</strong>, which test predictions specified in advance, and <strong>exploratory analyses</strong>, which are motivated by patterns discovered after observing the data. Both can be useful. They answer different questions.</p>
 </section>
-<section id="from-design-to-conclusion" class="level3">
-<h3 class="anchored" data-anchor-id="from-design-to-conclusion">From design to conclusion</h3>
+<section id="starting-from-design-to-reach-a-conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="starting-from-design-to-reach-a-conclusion">Starting from design to reach a conclusion</h3>
 <p>Let us return to the question that opened this chapter: <strong>Do smartphone notifications interfere with attention?</strong> We could observe people’s natural notification behaviour and relate it to cognitive performance. This may provide a realistic picture of everyday life, but causal interpretations will remain vulnerable to confounding. We could randomly assign participants to different notification conditions. This improves control over alternative explanations. We could expose every participant to both conditions. This may increase statistical efficiency but creates order and carryover effects.</p>
-<p>We could simultaneously manipulate cognitive load, allowing us to test whether the effect of notifications depends on task difficulty. Or we could measure attention repeatedly in daily life, producing a multilevel dataset in which moments are nested within individuals. None of these designs is universally “best”. Each design trades some advantages for others. The appropriate design depends on the research question, the population, the practical and ethical constraints, the measurement technology, and the type of inference we want to make. Before asking which statistical model to apply to a dataset, it is therefore worth asking a more basic question:</p>
+<p>We could simultaneously manipulate cognitive load, allowing us to test whether the effect of notifications depends on task difficulty. Or we could measure attention repeatedly in daily life, producing a multilevel dataset in which moments are nested within individuals.</p>
+<!-- 21 Nov 2026 (Claude): callout added at the instructor's request; to review -->
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+No design is universally best
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each of these designs answers a slightly different question, and each has its own strengths and weaknesses. Which one is more suited depends on the research question, on the data that can realistically be collected, and on the practical and ethical constraints of the study. Often the most convincing evidence does not come from a single study, but from several studies with different designs, and so with different weaknesses, that point to the same conclusion: an observational study in daily life, a randomised experiment in the laboratory, a longitudinal study following people over time.</p>
+</div>
+</div>
+<p>Each design trades some advantages for others. The appropriate design depends on the research question, the population, the practical and ethical constraints, the measurement technology, and the type of inference we want to make. Before asking which statistical model to apply to a dataset, it is therefore worth asking a more basic question:</p>
 <blockquote class="blockquote">
 <p><strong>What does the way these data were collected actually allow us to conclude?</strong></p>
 </blockquote>
+<p>How to answer this question once the results are in is the topic of <a href="../basic-stats/results-to-conclusions.html" class="quarto-xref"><span>Chapter 25</span></a>.</p>
 <hr>
-<p><em>All chapters were drafted and written by C. Costa; topics and content were agreed and discussed with G. Arcara.</em></p>
 
 
 </section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>W. R. Shadish, T. D. Cook &amp; D. T. Campbell (2002), <strong>Experimental and Quasi-Experimental Designs for Generalized Causal Inference</strong>. Boston: Houghton Mifflin.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>H. H. Clark (1973), The language-as-fixed-effect fallacy: A critique of language statistics in psychological research. <em>Journal of Verbal Learning and Verbal Behavior</em>, 12, 335–359.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>C. M. Judd, J. Westfall &amp; D. A. Kenny (2012), Treating stimuli as a random factor in social psychology: A new and comprehensive solution to a pervasive but largely ignored problem. <em>Journal of Personality and Social Psychology</em>, 103, 54–69.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1229,8 +1576,8 @@ ul.task-list li input[type="checkbox"] {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../summaries/intro-summaries.html" class="pagination-link" aria-label="Summary Statistics">
-        <span class="nav-page-text">Summary Statistics</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../behav/randomised-trials.html" class="pagination-link" aria-label="Randomised Controlled Trials">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Randomised Controlled Trials</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

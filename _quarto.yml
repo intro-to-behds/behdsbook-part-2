@@ -42,6 +42,7 @@ book:
         - behav/simulating-measurement.qmd
         - behav/research-ethics.qmd
         - behav/experimental-designs.qmd
+        - behav/randomised-trials.qmd
 
     - part: summaries/intro-summaries.qmd
       chapters:
@@ -80,6 +81,8 @@ book:
         - basic-stats/effect-size.qmd
         - basic-stats/power.qmd
         - basic-stats/missing-data.qmd
+        - basic-stats/results-to-conclusions.qmd
+        - basic-stats/credible-evidence.qmd
 
     # [hidden until reflavoured]
     # - part: linear-models/intro-to-linear-models.qmd
