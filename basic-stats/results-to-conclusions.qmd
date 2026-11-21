@@ -107,18 +107,19 @@ Stratifying works only for confounders that we thought of and measured. In an ob
 
 The people in a dataset are rarely a random sample of the population we are interested in. Only some people agree to take part in a study, only some users leave a review, and only some participants stay until the end. If the process that brings people into the data is related to the variables we study, it can create, hide or distort associations. This is **selection bias**.
 
-A subtle form of selection occurs when the selection depends on two variables at once. Suppose an app store features an app if it has either an excellent design or excellent marketing. In the simulated data below, design quality and marketing quality are unrelated across all apps. Among the featured apps, they are negatively correlated: a featured app with poor marketing must have an excellent design, and vice versa.
+<!-- 21 Nov 2026 (Claude): "featured" renamed "recommended" at the instructor's request (here, in the chunk and in exercise 3) -->
+A subtle form of selection occurs when the selection depends on two variables at once. Suppose an app store recommends an app if it has either an excellent design or excellent marketing. In the simulated data below, design quality and marketing quality are unrelated across all apps. Among the recommended apps, they are negatively correlated: a recommended app with poor marketing must have an excellent design, and vice versa.
 
 ```{r collider-simulation}
 set.seed(2026)
 apps <- tibble(design = rnorm(1000), marketing = rnorm(1000)) |>
-  mutate(featured = design + marketing > 1.5)
+  mutate(recommended = design + marketing > 1.5)
 
 cor(apps$design, apps$marketing)
-apps |> filter(featured) |> summarise(r = cor(design, marketing), n = n())
+apps |> filter(recommended) |> summarise(r = cor(design, marketing), n = n())
 ```
 
-Looking only at the featured apps, we could conclude that good marketing comes at the cost of design. The association was created by the selection. A variable that is influenced by two others, like *featured* here, is called a **collider**, and selecting or adjusting on it creates spurious associations. The same mechanism operates when a study includes only participants who completed it, or only patients who were referred to a clinic.
+Looking only at the recommended apps, we could conclude that good marketing comes at the cost of design. The association was created by the selection. A variable that is influenced by two others, like *recommended* here, is called a **collider**, and selecting or adjusting on it creates spurious associations. The same mechanism operates when a study includes only participants who completed it, or only patients who were referred to a clinic.
 
 ### Drawing the alternatives
 
@@ -284,7 +285,7 @@ All these questions concern a single study. The next chapter, @sec-credible-evid
 
 2\. Using `app_task_completion`, compute the overall completion rate by device, and then the completion rate by device for tasks C to F only. Explain the difference in your own words.
 
-3\. Run the app-store simulation again with a threshold of 0 instead of 1.5, and then of 2.5. How does the correlation among featured apps change? Why?
+3\. Run the app-store simulation again with a threshold of 0 instead of 1.5, and then of 2.5. How does the correlation among recommended apps change? Why?
 
 4\. Find a news article or a press release that reports a study on technology use and wellbeing. Which wording does it use (@tbl-causal-language)? Is the wording supported by the design? Rewrite the headline so that it matches the design.
 
