@@ -2,11 +2,6 @@
 
 _Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
 
-:::{.callout-warning}
-## Draft
-This chapter is a **draft**, written with an AI assistant (Claude) on 18 November 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
-:::
-
 <!-- 18 Nov 2026 (Claude): new chapter. The replication-crisis section (text, fig-osc, OSC 2015 and Simmons et al. 2011) was moved here from behav/research-ethics.qmd (Scientific integrity), and the short "Why this matters" subsection of results-to-conclusions.qmd was removed. The rest is new. References to verify. 20 Nov 2026 (Claude): added Tyner et al. (2026, SCORE) to the replication-crisis section, with fig-score, at the instructor's request. -->
 
 The previous chapter was about interpreting a single result. But a single study is rarely the last word. A theory in psychology, a clinical guideline, or the decision to launch a new version of an app usually rests on several studies, many of them done by other people. Before building on them, we need to ask a different question: **can we trust the evidence?** If the same study were run again, would it find the same result?
@@ -172,7 +167,7 @@ The planned analysis gives a false positive 5% of the time, as it should. The fl
 
 ## The same problems outside academia
 
-The replication crisis is usually told as a story about psychology journals, but the mechanisms are general. They appear in any setting where many analyses are possible and some results are more welcome than others.
+The replication crisis is usually told as a story about psychology journals, but the mechanisms are general. They may appear in any setting where many analyses are possible and some results are more welcome than others.
 
 - **Peeking at an A/B test.** Checking the dashboard every day and stopping the test as soon as the new version is significantly better is the optional stopping of the simulation above. It inflates the false-positive rate in the same way.
 - **Many metrics.** A product team that tracks twenty metrics in each experiment will, on average, see one of them significant even when the change does nothing.

@@ -478,19 +478,6 @@ window.Quarto = {
 
 
 <p><em>Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry’s <em>Introduction to Data Science</em>.</em></p>
-<div class="callout callout-style-simple callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Draft
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This chapter is a <strong>draft</strong>, written with an AI assistant (Claude) on 18 November 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.</p>
-</div>
-</div>
 <!-- 18 Nov 2026 (Claude): new chapter. The replication-crisis section (text, fig-osc, OSC 2015 and Simmons et al. 2011) was moved here from behav/research-ethics.qmd (Scientific integrity), and the short "Why this matters" subsection of results-to-conclusions.qmd was removed. The rest is new. References to verify. 20 Nov 2026 (Claude): added Tyner et al. (2026, SCORE) to the replication-crisis section, with fig-score, at the instructor's request. -->
 <p>The previous chapter was about interpreting a single result. But a single study is rarely the last word. A theory in psychology, a clinical guideline, or the decision to launch a new version of an app usually rests on several studies, many of them done by other people. Before building on them, we need to ask a different question: <strong>can we trust the evidence?</strong> If the same study were run again, would it find the same result?</p>
 <p>Psychology had to face this question in the 2010s, and the answer was uncomfortable. This chapter explains what went wrong and why, shows with two small simulations how ordinary research practices produce unreliable results, and describes the practices that make evidence more credible. None of it is specific to academic research: the same problems appear in any analysis of behavioural data, including A/B tests and product dashboards.</p>
@@ -658,7 +645,7 @@ Figure&nbsp;26.3: Estimated differences in 5,000 simulated studies with 20 parti
 </section>
 <section id="the-same-problems-outside-academia" class="level2" data-number="26.4">
 <h2 data-number="26.4" class="anchored" data-anchor-id="the-same-problems-outside-academia"><span class="header-section-number">26.4</span> The same problems outside academia</h2>
-<p>The replication crisis is usually told as a story about psychology journals, but the mechanisms are general. They appear in any setting where many analyses are possible and some results are more welcome than others.</p>
+<p>The replication crisis is usually told as a story about psychology journals, but the mechanisms are general. They may appear in any setting where many analyses are possible and some results are more welcome than others.</p>
 <ul>
 <li><strong>Peeking at an A/B test.</strong> Checking the dashboard every day and stopping the test as soon as the new version is significantly better is the optional stopping of the simulation above. It inflates the false-positive rate in the same way.</li>
 <li><strong>Many metrics.</strong> A product team that tracks twenty metrics in each experiment will, on average, see one of them significant even when the change does nothing.</li>
