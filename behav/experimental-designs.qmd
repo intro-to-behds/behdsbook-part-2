@@ -162,7 +162,7 @@ The technology industry runs randomised experiments on a very large scale under 
 Two problems are especially common in trials that last weeks or months. Participants **drop out**, and those who drop out may differ from those who stay: the most stressed users may stop answering. Analysing only those who completed the study can therefore favour the intervention. A common safeguard is to analyse all participants in the group to which they were randomised, called an *intention-to-treat* analysis, which requires a plan for the missing outcomes (@sec-missing-data). The second problem is the **novelty effect**: a new app or interface may be rated better, or used more, simply because it is new, and the advantage may fade over time. A longer follow-up and an active control condition (see below) help to separate novelty from a lasting effect.
 
 <!-- 21 Nov 2026 (Claude): pointer to the new chapter on RCTs; to review -->
-@sec-rcts describes randomised trials in more detail: how they are built, why the control condition matters, why a change from before to after is not enough, and what to do when participants drop out.
+@sec-rcts describes randomised trials in more detail: how they are built, why the control condition matters, how participants are randomised, which trial designs exist beyond two parallel arms, and what to do when participants drop out.
 
 ### The counterfactual idea
 
@@ -477,7 +477,7 @@ ggplot(prepost_data,
   theme_minimal()
 ```
 
-This logic is closely related to the interactions introduced later in the chapter: in many pre-post experiments, the scientifically interesting effect is whether **change over time differs between groups**. <!-- 21 Nov 2026 (Claude): cross-references added at the instructor's request; to review --> The same logic is behind the quasi-experiment of @fig-quasi (see *Quasi-experimental research* above), where the question was whether the university that introduced the limiter changed more than the one that did not, and @sec-rcts applies it to randomised trials (see *Before and after is not enough*).
+This logic is closely related to the interactions introduced later in the chapter: in many pre-post experiments, the scientifically interesting effect is whether **change over time differs between groups**. <!-- 21 Nov 2026 (Claude): cross-references added at the instructor's request; to review --> The same logic is behind the quasi-experiment of @fig-quasi (see *Quasi-experimental research* above), where the question was whether the university that introduced the limiter changed more than the one that did not.
 
 ## Variables and experimental control
 

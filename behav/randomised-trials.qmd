@@ -7,7 +7,8 @@ _Written for this book by Giorgio Arcara, with an AI assistant (Claude). This ch
 This chapter is a **draft**, written with an AI assistant (Claude) on 21 November 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
 :::
 
-<!-- 21 Nov 2026 (Claude): new chapter, at the instructor's request. Built on the Week 9 deck 09-02-Experiments-and-RCTs (behds-course-slides/Week09/), whose figures are redrawn here in ggplot2 (the slides use TikZ); the "Why randomise?" simulation and the pre-post numbers are the slides' own. On 21 Nov 2026, fig-experiment and fig-why-randomise moved to behav/experimental-designs.qmd, and a short recap replaces them here. It expands the short subsection "Randomised controlled trials and A/B tests" of behav/experimental-designs.qmd, which now points here. The image in fig-two-apps is the AI-generated illustration Figures/week06-two-apps-comparison.png of the slides repo. To review. -->
+<!-- 21 Nov 2026 (Claude): new chapter, at the instructor's request. Built on the Week 9 deck 09-02-Experiments-and-RCTs (behds-course-slides/Week09/), whose figures are redrawn here in ggplot2 (the slides use TikZ); the "Why randomise?" simulation is the slides' own. On 21 Nov 2026, fig-experiment and fig-why-randomise moved to behav/experimental-designs.qmd, and a short recap replaces them here. It expands the short subsection "Randomised controlled trials and A/B tests" of behav/experimental-designs.qmd, which now points here. The image in fig-two-apps is the AI-generated illustration Figures/week06-two-apps-comparison.png of the slides repo. To review. -->
+<!-- 21 Nov 2026 (Claude): at the instructor's request, the section "Before and after is not enough" (with fig-prepost) was removed, because it repeated "Pre-post designs and baseline measurements" in behav/experimental-designs.qmd; the sections "How to randomise" and "Beyond two parallel arms" were added from the instructor's deck 11-Disegni di Ricerca Clinica (course Metodologia della Ricerca Clinica, section 1.3). To review. -->
 
 ```{r flow-helper}
 #| include: false
@@ -39,7 +40,7 @@ draw_flow <- function(nodes, edges, notes = NULL, xlim, ylim) {
 
 In @sec-association-causality we saw that an association between two variables, such as notifications and stress, does not tell us whether one causes the other. Workload, or some variable nobody measured, could produce both. We also saw that a causal claim needs three things: the cause and the outcome covary, the cause comes first, and the alternative explanations have been ruled out. Experiments are the design that deals most directly with the third requirement.
 
-This chapter is about one family of experiments that you will meet constantly in behavioural research and in technology: the **randomised controlled trial** (RCT). An RCT is an experiment that tests an *intervention*, such as a therapy, a training programme, or an app, by randomly assigning people to receive it or to receive something else, and comparing what happens to the two groups. It is the design behind the question "does it work?", whether "it" is a new drug, a mindfulness app, or a new version of a screen. We briefly recall what makes an experiment and why randomisation matters (both are discussed in @sec-experimental-designs), then look at how a trial is built, and finally at the problems that are common in trials: the comparison with the baseline, dropout, and the novelty effect. The industry version of the RCT, the A/B test, closes the chapter.
+This chapter is about one family of experiments that you will meet constantly in behavioural research and in technology: the **randomised controlled trial** (RCT). An RCT is an experiment that tests an *intervention*, such as a therapy, a training programme, or an app, by randomly assigning people to receive it or to receive something else, and comparing what happens to the two groups. It is the design behind the question "does it work?", whether "it" is a new drug, a mindfulness app, or a new version of a screen. We briefly recall what makes an experiment and why randomisation matters (both are discussed in @sec-experimental-designs), then look at how a trial is built, how participants are randomised, which designs exist beyond the simple comparison of two groups, and finally at two problems that are common in trials: dropout and the novelty effect. The industry version of the RCT, the A/B test, closes the chapter.
 
 ## Experiments and randomisation, in brief
 
@@ -86,42 +87,215 @@ edges <- tribble(
 draw_flow(nodes, edges, xlim = c(-0.6, 10.7), ylim = c(-1.3, 1.3))
 ```
 
-In a parallel-arm trial, each person receives one condition only, which is a between-subjects design. In a **crossover** trial, each person receives both conditions, one after the other, in a random order: half use the app first and the control second, half the reverse. This is a within-subjects design, with its advantages (each person is compared with themselves, so fewer participants are needed) and its problems (the first condition can leave traces that carry over into the second, so a crossover only works when the effect wears off between the two periods). The random order is a form of the counterbalancing described in *Within-subjects designs* in @sec-experimental-designs.
+<!-- 21 Nov 2026 (Claude): replaces the removed section "Before and after is not enough"; to review -->
+The comparison that answers the question of the trial is the one *between the arms* at the end, not the change from before to after within the intervention arm: the control arm also changes over time, for reasons that have nothing to do with the intervention. Why a change from baseline is not enough on its own is explained in *Pre-post designs and baseline measurements* in @sec-experimental-designs. Whether the difference between the arms could be due to chance is a question for the comparison of two groups (@sec-two-groups), and how many participants are needed to detect it reliably is a question of power (@sec-power).
 
-## Before and after is not enough
+## How to randomise
 
-Since a trial measures people before and after the intervention, it is tempting to look only at the change in the intervention group. Suppose the average stress of the people who used the app went from 5.9 to 4.5. Did the app work? Not necessarily. Without a control group, the change could have many other causes:
+<!-- 21 Nov 2026 (Claude): from deck 11-Disegni di Ricerca Clinica (Metodologia della Ricerca Clinica), slide "Tipologie di randomizzazione"; code and figure new; to review -->
+"Assign at random" sounds like one thing, but there are several ways to do it, and the choice affects how balanced the arms will be. In practice, the allocation of every participant is decided *before* the trial starts, in a randomisation list generated by software, and participants receive the next allocation on the list as they enrol. In R, generating such a list takes one or two lines. Suppose we plan a trial of a stress-management app with 40 participants.
 
-- something changed in everyone's life: the study started in the exam week, and the exams ended;
-- people got used to the questionnaire and answered it differently the second time;
-- people who joined because they were very stressed at that moment would have been less stressed a few weeks later anyway, a phenomenon called **regression to the mean**.
+### Simple randomisation
 
-A control group experiences all of these too. @fig-prepost shows the means of the two groups at the two assessments: the control group also improved, from 5.8 to 5.4, without any app.
+The simplest scheme is the equivalent of tossing a coin for each participant:
+
+```{r simple-randomisation}
+set.seed(1)
+simple <- sample(c("app", "control"), 40, replace = TRUE)
+table(simple)
+```
+
+Every participant has the same probability of ending up in either arm, but nothing guarantees that the arms will have the same size: here, `r sum(simple == "app")` participants would use the app and `r sum(simple == "control")` would be controls. With hundreds of participants the imbalance becomes negligible in proportion, but in a small trial it wastes power, and if the trial is stopped early the arms can be very unequal.
+
+### Block randomisation
+
+**Block randomisation** solves this problem by shuffling the allocations within small blocks. With blocks of four, each block contains two "app" and two "control", in a random order:
+
+```{r block-randomisation}
+block <- c("app", "app", "control", "control")
+blocked <- as.vector(replicate(10, sample(block)))
+head(blocked, 8)
+table(blocked)
+```
+
+`replicate()` shuffles the block 10 times, and `as.vector()` puts the 10 shuffled blocks one after the other. The two arms are now equal after every fourth participant, so they stay balanced however many participants are enrolled (@fig-allocation-balance).
 
 ```{r}
-#| label: fig-prepost
+#| label: fig-allocation-balance
 #| echo: false
-#| fig-cap: "Illustrative mean stress of an app group and a control group, before and after the intervention period. Both groups improve; the question is whether the app group improved more."
-#| fig-width: 5
-#| fig-height: 3.4
-#| out-width: 60%
-prepost <- tribble(
-  ~time, ~group, ~stress,
-  "before", "control", 5.8,
-  "after", "control", 5.4,
-  "before", "app", 5.9,
-  "after", "app", 4.5) |>
-  mutate(time = factor(time, levels = c("before", "after")))
-ggplot(prepost, aes(time, stress, group = group, colour = group)) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 3) +
-  scale_colour_manual(values = c(app = navy, control = "grey60")) +
-  labs(x = NULL, y = "mean stress", colour = NULL) +
+#| fig-cap: "Difference between the number of participants in the app arm and in the control arm, as participants enrol, with the two randomisation lists generated above. With simple randomisation the difference wanders away from zero; with blocks of four it returns to zero after every block."
+#| fig-width: 6.5
+#| fig-height: 3
+#| out-width: 85%
+balance <- tibble(
+  participant = rep(1:40, 2),
+  scheme = rep(c("simple", "blocks of four"), each = 40),
+  difference = c(cumsum(if_else(simple == "app", 1, -1)),
+                 cumsum(if_else(blocked == "app", 1, -1)))
+) |>
+  mutate(scheme = fct_inorder(scheme))
+ggplot(balance, aes(participant, difference, colour = scheme)) +
+  geom_hline(yintercept = 0, colour = "grey70") +
+  geom_step(linewidth = 0.9) +
+  scale_colour_manual(values = c(simple = "grey55", `blocks of four` = navy)) +
+  labs(x = "participants enrolled", y = "app minus control", colour = NULL) +
   theme_minimal() +
   theme(panel.grid.minor = element_blank(), legend.position = "top")
 ```
 
-The question a trial answers is therefore not "did the app group change?" but "**did the app group change more than the control group?**". Here, the app group improved by 1.4 points and the control group by 0.4, so the part of the improvement we can attribute to the app is about 1 point, not 1.4. Whether a difference of this size could be due to chance is a question for the comparison of two groups (@sec-two-groups), and how many participants are needed to detect it reliably is a question of power (@sec-power). The pre-post comparison is also discussed in *Pre-post designs and baseline measurements* in @sec-experimental-designs.
+Blocks have a weak point. If the people who enrol participants know the list, or can guess it, they can influence who goes where, for example by delaying a participant they think would do badly until a "control" turns up. With blocks of four, after three allocations the fourth is certain. This is why the list must be kept away from the people who enrol participants, a safeguard called **allocation concealment**, and why trials often use blocks of varying size (for example, a random mix of blocks of four and of six).
+
+### Stratified randomisation
+
+Sometimes a variable is known to matter so much that we do not want to leave its balance to chance, for example baseline stress in a trial of a stress-management app. **Stratified randomisation** divides the participants into groups, or *strata*, according to that variable, and randomises separately within each stratum:
+
+```{r stratified-randomisation}
+participants <- tibble(
+  id = 1:40,
+  stress = sample(c("high", "low"), 40, replace = TRUE, prob = c(0.3, 0.7))
+)
+stratified <- participants |>
+  group_by(stress) |>
+  mutate(group = sample(rep(c("app", "control"), length.out = n()))) |>
+  ungroup()
+count(stratified, stress, group)
+```
+
+Within each stratum, the arms differ by at most one participant (when a stratum has an odd number of participants), so the two arms have almost the same proportion of highly stressed people. Here we know all 40 participants in advance; in a real trial participants arrive one at a time, and each stratum has its own block-randomised list. Stratification works well for one or two variables: with many, the strata become too small. It is the randomised version of the blocking and matching described in *Matching, blocking, and stratification* in @sec-experimental-designs.
+
+Sometimes it is not individuals that are randomised, but whole groups of people, such as classes or clinics. This is the cluster randomised trial of the next section.
+
+## Beyond two parallel arms
+
+<!-- 21 Nov 2026 (Claude): from deck 11-Disegni di Ricerca Clinica (Metodologia della Ricerca Clinica), slides "Tipi di Disegno RCT", "Disegno RCT Crossover" and "Disegno crossover: Note" (figures redrawn in ggplot2, examples adapted); to review -->
+The parallel-arm trial is the most common design, and the simplest to run, analyse and interpret. But it is not the only one. @fig-rct-designs summarises the designs described in this section.
+
+```{r}
+#| label: fig-rct-designs
+#| echo: false
+#| fig-cap: "Six designs of randomised controlled trials."
+#| fig-width: 7.5
+#| fig-height: 3.4
+#| out-width: 100%
+designs <- tibble(
+  x = rep(c(0, 3.3, 6.6), 2),
+  y = rep(c(1.4, 0), each = 3),
+  name = c("Parallel arms", "Crossover", "Factorial",
+           "Cluster", "Stepped-wedge", "Adaptive"),
+  what = c("each person receives\none condition",
+           "each person receives both\nconditions, in random order",
+           "two or more interventions\ntested in one trial",
+           "groups (classes, clinics)\nare randomised, not people",
+           "every group receives the\nintervention, at a random time",
+           "pre-planned changes based\non interim results")
+)
+ggplot(designs) +
+  geom_tile(aes(x, y), width = 3.05, height = 1.2, fill = "grey95",
+            colour = navy, linewidth = 0.6) +
+  geom_text(aes(x, y + 0.3, label = name), fontface = "bold", colour = navy,
+            size = 3.8) +
+  geom_text(aes(x, y - 0.15, label = what), size = 3, lineheight = 0.9,
+            colour = "grey25") +
+  coord_cartesian(xlim = c(-1.6, 8.2), ylim = c(-0.65, 2.05)) +
+  theme_void()
+```
+
+### Crossover trials
+
+In a **crossover** trial, each person receives both conditions, one after the other, in a random order: half use the app first and the control second, half the reverse (@fig-crossover). Between the two periods there is often a **washout**: a period without any intervention, long enough for the effect of the first condition to disappear.
+
+```{r}
+#| label: fig-crossover
+#| echo: false
+#| fig-cap: "A crossover trial. Participants are randomised to one of two sequences: condition A then condition B, or B then A, with a washout period in between. Each participant is measured after each period."
+#| fig-width: 8
+#| fig-height: 2.4
+#| out-width: 100%
+nodes <- tribble(
+  ~x, ~y, ~label, ~key,
+  0, 0, "participants", "no",
+  2.4, 0, "randomised", "yes",
+  4.8, 0.8, "A", "no",
+  4.8, -0.8, "B", "no",
+  6.9, 0, "washout", "no",
+  9, 0.8, "B", "no",
+  9, -0.8, "A", "no"
+)
+edges <- tribble(
+  ~x, ~y, ~xend, ~yend,
+  0.8, 0, 1.55, 0,
+  3.25, 0.15, 4.45, 0.75,
+  3.25, -0.15, 4.45, -0.75,
+  5.15, 0.75, 6.1, 0.2,
+  5.15, -0.75, 6.1, -0.2,
+  7.7, 0.2, 8.65, 0.75,
+  7.7, -0.2, 8.65, -0.75
+)
+notes <- tribble(
+  ~x, ~y, ~label,
+  4.8, 1.55, "period 1",
+  9, 1.55, "period 2"
+)
+draw_flow(nodes, edges, notes, xlim = c(-0.8, 9.8), ylim = c(-1.3, 1.9))
+```
+
+A crossover is a within-subjects design. Its main advantage is that each person is compared with themselves, so the stable differences between people drop out of the comparison and far fewer participants are needed (see *Within-subjects designs* in @sec-experimental-designs). It also has an ethical advantage: every participant receives the intervention, whichever turns out to be better. Its problems are those of any within-subjects design, with specific names in the trial literature:
+
+- **period effect**: outcomes can differ between the first and the second period for reasons unrelated to the conditions, for example because participants become familiar with the questionnaires or because the season changes;
+- **sequence effect**: the order matters, so that A followed by B does not give the same results as B followed by A;
+- **carryover effect**: the first condition is still working during the second.
+
+Randomising the order balances the period effect between the conditions, as counterbalancing does (see *Counterbalancing* in @sec-experimental-designs), and the washout limits carryover. But a washout is not always possible. The effect of a sleeping pill wears off in a few days; a skill learned in a cognitive-training programme, or a coping strategy learned with a stress-management app, does not. When the effect of the intervention is meant to last, a crossover is not the right design.
+
+### Factorial trials
+
+<!-- 21 Nov 2026 (Claude): from deck 11-Disegni di Ricerca Clinica, slide "Tipi di Disegno RCT" (Factorial, Cluster RCT, Stepped-Wedge, Adaptive); examples adapted, figure new; to review -->
+A **factorial** trial tests two or more interventions at the same time. Suppose we want to evaluate both a stress-management app and a weekly exercise programme. Instead of running two trials, we randomise participants to the four combinations:
+
+| | No exercise programme | Exercise programme |
+|---|---|---|
+| **No app** | neither | exercise only |
+| **App** | app only | both |
+
+: Arms of a 2 × 2 factorial trial. {#tbl-factorial-trial}
+
+Each intervention is compared using all participants: the effect of the app is the comparison of the bottom row with the top row, whatever the exercise condition. The design also tells us whether the two interventions **interact**: whether the app works better, or worse, in people who also exercise. This is the factorial design of *Factorial and mixed designs* in @sec-experimental-designs, applied to interventions, and it is analysed with a two-way ANOVA (@sec-anova).
+
+### Cluster randomised trials
+
+In a **cluster randomised** trial, the units randomised are not individuals but groups of people: classes, schools, clinics, workplaces. Suppose a university wants to test a programme that teaches students to manage their phone notifications during lectures. If students of the same class are randomised to different arms, they will talk to each other, and some controls will learn the strategies from their classmates: the control arm is *contaminated*. Randomising whole classes avoids the problem. Cluster trials are also the natural choice when the intervention is delivered to a group, such as a training for all the teachers of a school.
+
+The price is statistical. People in the same cluster resemble each other: they share teachers, schedules and habits. The experimental unit is the cluster (see *Units matter* in @sec-experimental-designs), so 20 classes of 30 students do not carry the information of 600 independently randomised students, and a cluster trial needs more participants than an individually randomised one to reach the same power. Cluster trials also need enough clusters: with only two classes, one per arm, any difference between the classes is confounded with the intervention.
+
+### Stepped-wedge trials
+
+A **stepped-wedge** trial is a cluster trial in which every cluster eventually receives the intervention, but at different times (@fig-stepped-wedge). All clusters start in the control condition, and at each step one or more clusters, chosen at random, switch to the intervention, until all of them have it. The design is useful when an intervention will be rolled out to everyone anyway, for practical or ethical reasons, and it can be introduced gradually: the order of the roll-out is randomised, and the clusters still waiting serve as controls.
+
+```{r}
+#| label: fig-stepped-wedge
+#| echo: false
+#| fig-cap: "A stepped-wedge trial with five clusters (for example, five clinics) and six periods. All clusters start in the control condition; at each step one cluster, chosen at random, switches to the intervention, until all of them have it."
+#| fig-width: 6.5
+#| fig-height: 2.8
+#| out-width: 85%
+wedge <- expand_grid(cluster = 1:5, period = 1:6) |>
+  mutate(condition = if_else(period > cluster, "intervention", "control"),
+         cluster = factor(paste("cluster", cluster),
+                          levels = paste("cluster", 5:1)))
+ggplot(wedge, aes(period, cluster, fill = condition)) +
+  geom_tile(colour = "white", linewidth = 1.2) +
+  scale_fill_manual(values = c(control = "grey88", intervention = navy)) +
+  scale_x_continuous(breaks = 1:6, expand = c(0, 0)) +
+  labs(x = "period", y = NULL, fill = NULL) +
+  theme_minimal() +
+  theme(panel.grid = element_blank(), legend.position = "top")
+```
+
+The weak point is time. Because the intervention is introduced over time, later periods have more clusters with the intervention, and anything else that changes over time (the season, the workload, a new version of the operating system) is partly confounded with it. The analysis must account for the period, which makes stepped-wedge trials more complex to analyse than parallel ones.
+
+### Adaptive trials
+
+In the designs seen so far, everything is fixed before the trial starts. An **adaptive** trial allows some features to change while the trial is running, on the basis of *interim analyses* of the data collected so far: an arm that is clearly not working can be dropped, more participants can be allocated to the more promising arm, or the sample size can be recalculated. The essential point is that the rules for these changes are specified *before* the trial starts. Looking at the data repeatedly and changing the trial whenever the results look interesting is exactly the analytic flexibility that inflates false positives (see *Outcomes and stopping rules* in @sec-experimental-designs, and @sec-credible-evidence). An adaptive trial makes these looks part of the design, and its analysis corrects for them.
 
 ## Who drops out matters
 
@@ -207,8 +381,9 @@ An A/B test is a randomised experiment, and everything in this chapter applies t
 - A randomised controlled trial tests an intervention by **manipulating** it and letting **chance** decide who receives it.
 - Randomisation balances the groups on average, on what we measured and on what we did not, so that a difference at the end can be attributed to the intervention or to chance.
 - The **control condition** decides the question: a passive control asks whether the intervention is better than nothing, an active control whether its specific component works.
-- In a **parallel-arm** trial each person receives one condition; in a **crossover** trial each receives both, in random order.
-- A change from before to after is not enough: the question is whether the intervention group changed **more** than the control group.
+- **Simple randomisation** can give arms of different sizes; **block randomisation** keeps them balanced, and **stratified randomisation** balances a few important variables. The allocation list must be concealed from the people who enrol participants.
+- In a **parallel-arm** trial each person receives one condition; in a **crossover** trial each receives both, in random order, which needs fewer participants but only works when the effect wears off.
+- **Factorial** trials test several interventions at once; **cluster** trials randomise groups of people, at a statistical price; **stepped-wedge** trials roll the intervention out to every cluster at random times; **adaptive** trials change in pre-planned ways during the trial.
 - **Dropout** can undo randomisation; analyse everyone as randomised (intention-to-treat) and plan for the missing outcomes.
 - **A/B tests** are randomised experiments on logged behaviour, with the same strengths and the same problems.
 
@@ -223,3 +398,8 @@ A trial does not solve every problem. It tells us what the intervention did, on 
 3\. A trial compares a stress-management app with a passive control and finds that the app group improves more. A colleague says the trial shows that the app's exercises reduce stress. What else could explain the result? Which control condition would make the conclusion more specific?
 
 4\. In a 12-week trial, 30% of the app group and 10% of the control group drop out. The researchers analyse only the participants who completed the study and find a clear advantage for the app. Explain why this result may be misleading, and what they should have done instead.
+
+<!-- 21 Nov 2026 (Claude): exercises 5 and 6 added with the sections "How to randomise" and "Beyond two parallel arms"; to review -->
+5\. Generate a randomisation list for 48 participants using blocks of six (three "app" and three "control" in each block), and check with `table()` that the arms are balanced. Then add to the `participants` tibble of *Stratified randomisation* a second variable, `gender`, and randomise within the strata defined by both variables. How many strata are there, and how many participants does the smallest one contain?
+
+6\. For each of the following studies, say whether you would use a parallel-arm, crossover, cluster, or stepped-wedge trial, and why: (a) comparing two versions of a relaxation audio track, each listened to for one evening; (b) testing a six-week cognitive-training programme for older adults; (c) testing a programme that trains all the teachers of a school to reduce phone use in class; (d) evaluating a new triage app that a hospital network has decided to introduce in all its ten emergency departments within a year.
