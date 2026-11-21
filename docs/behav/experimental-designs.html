@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -484,6 +519,7 @@ ul.task-list li input[type="checkbox"] {
 
 <p><em>Written for this book by Cristiano Costa, with Giorgio Arcara. This chapter is not in Irizarry’s <em>Introduction to Data Science</em>.</em></p>
 <!-- 18 Nov 2026 (Claude): cross-references to other chapters added; to review -->
+<!-- 21 Nov 2026 (Claude): figures from the Week 9 decks 09-01, 09-03 and 09-04 redrawn in ggplot2 (the slides use TikZ), each with its own introduction; fig-experiment and fig-why-randomise moved here from behav/randomised-trials.qmd (deck 09-02). Every addition is marked by a source comment; to review. -->
 <p>Imagine we want to know whether frequent smartphone notifications make it harder to concentrate. We could ask people how many notifications they normally receive and compare this with their performance on an attention task. Alternatively, we could actively manipulate the number of notifications they receive while they complete the task. These two studies may produce very similar-looking datasets. In both cases, we could end up with one column containing the number of notifications and another containing reaction times or accuracy. Yet the conclusions we can draw from the two datasets are not the same.</p>
 <p>The reason is the <strong>study design</strong>. A statistical analysis can describe patterns in the data, estimate relationships, and quantify uncertainty. But the way the data were generated determines what those patterns mean. Before choosing a statistical test, fitting a model, or interpreting a coefficient, we therefore need to understand where the data came from.</p>
 <!-- 20 Nov 2026 (Claude): paragraph added at the instructor's request (the design shapes the analysis, link to Basic Statistics); to review -->
@@ -530,6 +566,22 @@ ul.task-list li input[type="checkbox"] {
 <li>plausible <strong>alternative explanations</strong> have been sufficiently controlled.</li>
 </ol>
 <p>Experimental manipulation and random assignment are powerful because they directly address the third requirement.</p>
+<!-- 21 Nov 2026 (Claude): moved from behav/randomised-trials.qmd; from deck 09-02, slide "What makes an experiment" (redrawn in ggplot2); to review -->
+<p>Two features turn a study into an experiment (<a href="#fig-experiment" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>). First, the researcher <strong>manipulates</strong> something: they decide who receives frequent notifications and who does not, instead of observing who happens to receive them. Second, <strong>chance decides</strong> who gets what. This second feature is called <em>random assignment</em> (see <em>Random assignment</em> below), and it is what makes the comparison between conditions fair. The manipulation guarantees that the cause comes before the outcome; random assignment deals with the alternative explanations.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-experiment" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-experiment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-experiment-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-experiment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: The structure of an experiment. Participants are assigned at random to one of two conditions that the researcher manipulates, and the outcome is compared between the conditions.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <!-- added by Claude, 17 Nov 2026, from the Week 9 slides; to review -->
 </section>
 <section id="randomised-controlled-trials-and-ab-tests" class="level3">
@@ -538,7 +590,7 @@ ul.task-list li input[type="checkbox"] {
 <p>The technology industry runs randomised experiments on a very large scale under the name of <strong>A/B tests</strong>: users are randomly shown version A or version B of an interface, and the versions are compared on behaviour such as clicks, completed tasks, or retention. The logic is the same as in any randomised experiment. The outcomes are usually logged behaviour, and the question of what that behaviour measures still applies (<a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>).</p>
 <p>Two problems are especially common in trials that last weeks or months. Participants <strong>drop out</strong>, and those who drop out may differ from those who stay: the most stressed users may stop answering. Analysing only those who completed the study can therefore favour the intervention. A common safeguard is to analyse all participants in the group to which they were randomised, called an <em>intention-to-treat</em> analysis, which requires a plan for the missing outcomes (<a href="../basic-stats/missing-data.html" class="quarto-xref"><span>Chapter 24</span></a>). The second problem is the <strong>novelty effect</strong>: a new app or interface may be rated better, or used more, simply because it is new, and the advantage may fade over time. A longer follow-up and an active control condition (see below) help to separate novelty from a lasting effect.</p>
 <!-- 21 Nov 2026 (Claude): pointer to the new chapter on RCTs; to review -->
-<p><a href="randomised-trials.html" class="quarto-xref"><span>Chapter 5</span></a> describes randomised trials in more detail: how they are built, why randomisation and the control condition matter, why a change from before to after is not enough, and what to do when participants drop out.</p>
+<p><a href="randomised-trials.html" class="quarto-xref"><span>Chapter 5</span></a> describes randomised trials in more detail: how they are built, why the control condition matters, why a change from before to after is not enough, and what to do when participants drop out.</p>
 </section>
 <section id="the-counterfactual-idea" class="level3">
 <h3 class="anchored" data-anchor-id="the-counterfactual-idea">The counterfactual idea</h3>
@@ -547,12 +599,92 @@ ul.task-list li input[type="checkbox"] {
 <p>What would have happened to the same participant, at the same time, if they had not received the manipulation?</p>
 </blockquote>
 <p>For any individual at a given moment, we can observe only one of these possibilities. We cannot simultaneously observe the same person both receiving and not receiving the same notification. Experimental design is therefore an attempt to construct a credible comparison for this missing counterfactual. Different design choices solve this problem in different ways.</p>
+<!-- 21 Nov 2026 (Claude): from deck 09-01, slide "The missing comparison" (redrawn in ggplot2); to review -->
+<p><a href="#fig-counterfactual" class="quarto-xref">Figure&nbsp;<span>4.2</span></a> shows the problem for one person. Anna used a stress-management app for a month, and at the end she reports a stress level of 4. Did the app help her? To answer, we would need her stress level at the end of the same month, had she not used the app. That value is not missing because of a mistake in data collection: it cannot be observed at all, because Anna lived only one of the two months. No dataset, however large, contains both branches for the same person.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-counterfactual" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-counterfactual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-counterfactual-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-counterfactual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: The missing comparison. For Anna we observe her stress with the app; her stress over the same month without the app is never observed, so the effect of the app on her cannot be computed directly.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>What we can do is change the question: from the effect of the app on Anna to the average effect of the app on a group of people. If two groups are alike on average in everything except the app, the group without the app tells us what would have happened, on average, to the group with it. Random assignment is the most reliable way to build two such groups (see <em>Random assignment</em> below, and <a href="#fig-why-randomise" class="quarto-xref">Figure&nbsp;<span>4.7</span></a>). A within-subjects design takes another route: it measures the same people in both conditions, at different times (see <em>Within-subjects designs</em> below).</p>
 </section>
 <section id="quasi-experimental-research" class="level3">
 <h3 class="anchored" data-anchor-id="quasi-experimental-research">Quasi-experimental research</h3>
 <p>Between purely observational research and fully randomised experiments are <strong>quasi-experimental designs</strong>. Here, researchers study an intervention, policy, technological change, or naturally occurring event but do not have complete control over assignment. Imagine that one university introduces an app that limits notifications during lectures while another does not. Comparing students before and after the intervention may provide valuable evidence, even though students were not individually randomised. Quasi-experiments can support stronger causal arguments than simple observational associations when the design creates a credible comparison. However, alternative explanations generally require more careful consideration than in a well-randomised experiment.</p>
-<!-- added by Claude, 17 Nov 2026, from the Week 9 slides; to review -->
-<p>A very common case is the comparison of <strong>pre-existing groups</strong>: patients and healthy controls, heavy and light smartphone users, older and younger adults. The analysis looks like that of an experiment, often a t-test between two groups, but nobody assigned participants to the groups, and the groups may differ in many other ways (age, education, medication, motivation). Matching participants on some of these characteristics helps, but only for the characteristics that were measured. <a href="../basic-stats/results-to-conclusions.html" class="quarto-xref"><span>Chapter 25</span></a> discusses how to interpret such comparisons.</p>
+<!-- 21 Nov 2026 (Claude): from deck 09-04, slide "Quasi-experiments" (same illustrative numbers); to review -->
+<p><a href="#fig-quasi" class="quarto-xref">Figure&nbsp;<span>4.3</span></a> shows what such a study might find, with illustrative numbers. Distraction during lectures goes down at the university that introduced the limiter, but it also goes down a little at the other university, perhaps because the end of the semester is approaching. Without the second university, we would attribute the whole decrease to the limiter. With it, the question becomes the one we will meet again in pre-post designs: did the students of the first university change <em>more</em> than those of the second? The comparison makes the argument much stronger, but it does not make it as strong as an experiment. The students were not randomised to the two universities, which may differ in their students, their exam calendars, their teaching, or in other changes introduced in the same semester.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-quasi" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-quasi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-quasi-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-quasi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.3: Illustrative quasi-experiment. Mean distraction in lectures before and after one university introduced a notification limiter, compared with a university that changed nothing. Both decrease; the question is whether the first decreased more.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- 21 Nov 2026 (Claude): from deck 09-04, slide "Can I assign? Can I randomise?" (the instructor's decision tree, redrawn in ggplot2); to review -->
+<p>Two questions are enough to place a study among the three kinds of research we have seen (<a href="#fig-design-tree" class="quarto-xref">Figure&nbsp;<span>4.4</span></a>). The first is whether the researcher can decide who receives the exposure X (the notifications, the app, the limiter). If not, the study is observational: X is measured as it comes. If yes, the second question is whether the researcher can decide <em>at random</em>. If yes, the study is an experiment; if the researcher decides, but not at random (for example, one class gets the limiter because its teacher volunteered), it is a quasi-experiment. Studies of policies and natural events, in which someone else assigns the exposure (a university, a law, an operating-system update), are usually treated as quasi-experiments too, because the assignment can be described and a comparison group can often be found.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-design-tree" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-design-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-design-tree-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-design-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.4: Two questions that place a study among the three kinds of research. Can the researcher decide who receives X? Can they decide at random?
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- added by Claude, 17 Nov 2026, from the Week 9 slides; to review. 21 Nov 2026 (Claude): aligned with fig-design-tree; terminology to confirm at review (pre-existing groups as observational vs quasi-experimental) -->
+<p>A very common case is the comparison of <strong>pre-existing groups</strong>: patients and healthy controls, heavy and light smartphone users, older and younger adults. In terms of <a href="#fig-design-tree" class="quarto-xref">Figure&nbsp;<span>4.4</span></a>, nobody decides who is a patient, so these comparisons are observational in design, even though they are often grouped with quasi-experiments. The analysis looks like that of an experiment, often a t-test between two groups, but nobody assigned participants to the groups, and the groups may differ in many other ways (<a href="#fig-groups-differ" class="quarto-xref">Figure&nbsp;<span>4.5</span></a>). <a href="../basic-stats/results-to-conclusions.html" class="quarto-xref"><span>Chapter 25</span></a> discusses how to interpret such comparisons.</p>
+<!-- 21 Nov 2026 (Claude): from deck 09-04, slide "Groups differ in many ways" (redrawn in ggplot2); to review -->
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-groups-differ" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-groups-differ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-groups-differ-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-groups-differ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.5: Pre-existing groups differ in many ways. If patients and controls differ on a cognitive task, any of the characteristics around them could explain the difference, alone or together with the condition itself.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- 21 Nov 2026 (Claude): from deck 09-04, slide "Matching helps, partly" (redrawn in ggplot2); to review -->
+<p>A common remedy is <strong>matching</strong>: for each patient, we recruit a control of the same age and with the same years of education (<a href="#fig-matching" class="quarto-xref">Figure&nbsp;<span>4.6</span></a>). Matching helps, but only partly. The matched groups are now alike on age and education, but they can still differ on everything we did not match on, such as motivation, sleep, or medication, and on everything we never measured. This is the key difference from random assignment, which balances unmeasured characteristics too.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-matching" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-matching-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-matching-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-matching-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.6: Matching. Each patient is paired with a control of the same age and years of education. The pairs are alike on what we matched on, not on what we did not.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="a-visual-example-association-can-be-misleading" class="level3">
 <h3 class="anchored" data-anchor-id="a-visual-example-association-can-be-misleading">A visual example: association can be misleading</h3>
@@ -680,7 +812,54 @@ Two meanings of validity
 <section id="random-assignment" class="level3">
 <h3 class="anchored" data-anchor-id="random-assignment">Random assignment</h3>
 <p>Random assignment concerns what happens after participants enter a study. Participants are allocated to experimental conditions using a random mechanism. Suppose we recruit 100 participants and randomly assign 50 to a high-notification condition and 50 to a low-notification condition. Individual differences will still exist. Some people will be better at the attention task. Some will have slept badly. Some may be heavy smartphone users. But because allocation is random, these characteristics should not systematically favour one condition over the other, especially as sample size increases.</p>
-<p>Randomisation is therefore a key tool for <strong>internal validity</strong>: it helps support the claim that differences between conditions were produced by the manipulation rather than by pre-existing group differences. Randomisation does not guarantee that two finite groups will be identical. Chance imbalances can still occur. Its strength is that the assignment mechanism itself does not systematically create them.</p>
+<!-- 21 Nov 2026 (Claude): moved from behav/randomised-trials.qmd ("Why randomise?"); from deck 09-02, slide "Why randomise?" (same simulation, seed 9); to review -->
+<p>To see why, suppose we want to know whether a stress-management app reduces stress. The simplest study would compare people who chose to use the app with people who did not. The problem is that the people who choose an app differ from those who do not: they may be more motivated to reduce their stress, and motivated people may do many other things that reduce stress too. If the app users end the study less stressed, we cannot tell whether this is the app or the motivation.</p>
+<p>We can see the problem with a small simulation. We give 40 simulated people a level of motivation between 0 and 1, which in a real study we would not measure. In the first scheme, people choose whether to use the app, and the more motivated they are, the more likely they are to choose it. In the second, a coin decides: we shuffle 20 “app” and 20 “no app” labels and hand them out.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>motivation <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># people choose: the probability of using the app grows with motivation</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>chose <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fu">plogis</span>(<span class="sc">-</span><span class="dv">3</span> <span class="sc">+</span> <span class="dv">6</span> <span class="sc">*</span> motivation))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># random assignment: 20 of each, in random order</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>random <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rep</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">each =</span> n <span class="sc">/</span> <span class="dv">2</span>))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>rand_d <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">scheme =</span> <span class="st">"people chose the app"</span>, <span class="at">app =</span> chose, motivation),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">scheme =</span> <span class="st">"assigned at random"</span>, <span class="at">app =</span> random, motivation)) <span class="sc">|&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">app =</span> <span class="fu">factor</span>(app, <span class="at">levels =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"no app"</span>, <span class="st">"app"</span>)),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">scheme =</span> <span class="fu">fct_inorder</span>(scheme))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>rand_d <span class="sc">|&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(scheme, app) <span class="sc">|&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean_motivation =</span> <span class="fu">mean</span>(motivation))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 4</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Groups:   scheme [2]</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   scheme               app        n mean_motivation</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;                &lt;fct&gt;  &lt;int&gt;           &lt;dbl&gt;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 people chose the app no app    21           0.304</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 people chose the app app       19           0.704</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 assigned at random   no app    20           0.571</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 assigned at random   app       20           0.417</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When people choose, the app group is much more motivated than the no-app group, by about 0.4, and the difference is built into the way the groups were formed: repeat the study and it will be there again. When a coin decides, the groups still differ, by about 0.15, but in the other direction, and only by chance: repeat the randomisation and the difference will change size and sign, averaging zero over many repetitions (<a href="#fig-why-randomise" class="quarto-xref">Figure&nbsp;<span>4.7</span></a>).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-why-randomise" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-why-randomise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-why-randomise-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-why-randomise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.7: The same 40 simulated people, split into an app group and a no-app group in two ways. Each point is a person, and darker points are more motivated; the horizontal bars are the group means. When people choose, the motivated ones end up in the app group. When the groups are assigned at random, the difference that remains is due to chance alone, and motivation is balanced on average, even though it was never measured.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This is the key point of randomisation: it balances not only the variables we measured but also the ones we did not, such as motivation, sleep, or the number of exams that month. Because chance decides who gets the app, no characteristic of the participants can systematically push them into one group. Any remaining difference between the groups at the end of the study is either the effect of the app or chance, and chance is exactly what the statistical methods of the <em>Basic Statistics</em> part are designed to quantify.</p>
+<!-- 21 Nov 2026 (Claude): paragraph merged with the "Two caveats" paragraph of behav/randomised-trials.qmd; to review -->
+<p>Randomisation is therefore a key tool for <strong>internal validity</strong>: it helps support the claim that differences between conditions were produced by the manipulation rather than by pre-existing group differences. It has two limits. First, it balances the groups <em>on average</em>: it does not guarantee that two finite groups will be identical, and in a single small study they can still differ by chance, as they do in our simulation (run it again with other seeds to see the difference change). Its strength is that the assignment mechanism itself does not systematically create imbalances. Larger samples make large chance imbalances less likely, and blocked or stratified randomisation can balance a few important variables by design (see <em>Matching, blocking, and stratification</em> below). Second, randomisation only protects the comparison between the groups; it says nothing about whether the result applies to people unlike those in the study, which is the question of random sampling.</p>
 </section>
 <section id="random-sampling" class="level3">
 <h3 class="anchored" data-anchor-id="random-sampling">Random sampling</h3>
@@ -689,12 +868,28 @@ Two meanings of validity
 </section>
 <section id="matching-blocking-and-stratification" class="level3">
 <h3 class="anchored" data-anchor-id="matching-blocking-and-stratification">Matching, blocking, and stratification</h3>
-<p>Sometimes researchers know in advance that a characteristic is especially important. Suppose habitual smartphone use strongly predicts susceptibility to notifications. A completely unrestricted random allocation could, by chance, place more heavy users in one condition. A <strong>blocked</strong> or <strong>stratified randomisation</strong> procedure could first group participants according to habitual smartphone use and then randomise within those groups. <strong>Matching</strong> uses a related idea by pairing or grouping participants who are similar on selected characteristics. These methods do not replace randomisation, but can improve balance on variables judged important before the experiment begins.</p>
+<p>Sometimes researchers know in advance that a characteristic is especially important. Suppose habitual smartphone use strongly predicts susceptibility to notifications. A completely unrestricted random allocation could, by chance, place more heavy users in one condition. A <strong>blocked</strong> or <strong>stratified randomisation</strong> procedure could first group participants according to habitual smartphone use and then randomise within those groups. <strong>Matching</strong> uses a related idea by pairing or grouping participants who are similar on selected characteristics. These methods do not replace randomisation, but can improve balance on variables judged important before the experiment begins. <!-- 21 Nov 2026 (Claude): sentence added; to review --> Matching is also used when groups cannot be randomised at all, as with patients and controls (<a href="#fig-matching" class="quarto-xref">Figure&nbsp;<span>4.6</span></a>); there it balances only the characteristics we matched on.</p>
 </section>
 </section>
 <section id="between-subjects-designs" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="between-subjects-designs"><span class="header-section-number">4.7</span> Between-subjects designs</h2>
 <p>In a <strong>between-subjects design</strong>, different participants take part in different experimental conditions. Suppose we recruit 120 participants for an attention experiment. Sixty receive frequent notifications while completing a sustained-attention task, and sixty complete exactly the same task without notifications. Each participant experiences only one condition, and the conditions are compared with tests for independent groups (<a href="../basic-stats/comparing-two-groups.html" class="quarto-xref"><span>Chapter 18</span></a>).</p>
+<!-- 21 Nov 2026 (Claude): from deck 09-03, slide "Two ways to compare" (redrawn in ggplot2); to review -->
+<p><a href="#fig-between-within" class="quarto-xref">Figure&nbsp;<span>4.8</span></a> contrasts this design with the alternative discussed in the next section. In a between-subjects design (left), the people in condition A and the people in condition B are different people, so the comparison between conditions is also a comparison between people. In a within-subjects design (right), the same people appear in both conditions, and each line joins the two measurements of one person.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-between-within" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-between-within-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-between-within-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-between-within-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.8: Two ways to compare conditions A and B. Left: in a between-subjects design, different people (1-4 and 5-8) take part in each condition. Right: in a within-subjects design, the same people (1-4) take part in both conditions; each line joins the two measurements of one person.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <section id="advantages" class="level3">
 <h3 class="anchored" data-anchor-id="advantages">Advantages</h3>
 <p>The major advantage is that performance in one condition cannot influence performance in another. Participants cannot learn the task in condition A and carry that learning into condition B. They cannot become tired because they have already completed another version of the same task. The effect of a manipulation cannot persist into a later condition. Between-subjects designs are therefore particularly useful when an intervention has long-lasting or irreversible effects. Imagine evaluating a week-long digital-detox intervention. Once a participant has spent a week with restricted smartphone access, it may be impossible to return them immediately to the psychological state they would have had without that experience. A between-subjects design may be more appropriate than exposing the same participant to both interventions in sequence.</p>
@@ -706,7 +901,7 @@ Two meanings of validity
 </section>
 <section id="within-subjects-designs" class="level2" data-number="4.8">
 <h2 data-number="4.8" class="anchored" data-anchor-id="within-subjects-designs"><span class="header-section-number">4.8</span> Within-subjects designs</h2>
-<p>In a <strong>within-subjects design</strong>, the same participants are observed in more than one condition. Instead of assigning different groups to notification and no-notification conditions, every participant might complete the attention task twice: once with frequent notifications and once without them. Each participant now acts, to some extent, as their own control.</p>
+<p>In a <strong>within-subjects design</strong>, the same participants are observed in more than one condition. Instead of assigning different groups to notification and no-notification conditions, every participant might complete the attention task twice: once with frequent notifications and once without them. Each participant now acts, to some extent, as their own control (the right half of <a href="#fig-between-within" class="quarto-xref">Figure&nbsp;<span>4.8</span></a>).</p>
 <section id="why-within-subjects-designs-can-be-efficient" class="level3">
 <h3 class="anchored" data-anchor-id="why-within-subjects-designs-can-be-efficient">Why within-subjects designs can be efficient</h3>
 <p>Suppose participant A is naturally fast, participant B is naturally slow, and participant C is somewhere in between. In a between-subjects design, these baseline differences contribute to the variation between the two groups. In a within-subjects design, however, we are interested in how each participant changes across conditions. Stable individual differences are shared across both measurements. This can substantially improve statistical efficiency when repeated measurements within the same participant are correlated. The following simulated data illustrate the idea.</p>
@@ -721,6 +916,22 @@ Two meanings of validity
 </div>
 </div>
 <p>Notice how participants differ substantially in their absolute reaction times, but many show a change in the same direction. A paired design can focus directly on these within-person differences. <!-- added by Claude, 17 Nov 2026; to review --> The design also determines the analysis: two conditions measured on the same participants are compared with paired tests, not with tests for independent groups (see <em>Paired designs</em> in <a href="../basic-stats/comparing-two-groups.html" class="quarto-xref"><span>Chapter 18</span></a>), and the effect size and the power of paired designs are computed differently (<a href="../basic-stats/effect-size.html" class="quarto-xref"><span>Chapter 22</span></a>, <a href="../basic-stats/power.html" class="quarto-xref"><span>Chapter 23</span></a>).</p>
+<!-- 21 Nov 2026 (Claude): from deck 09-03, slide "Within designs need fewer people" (same computation, base R power.t.test()); to review -->
+<p>The gain in efficiency can be large. <a href="#fig-within-n" class="quarto-xref">Figure&nbsp;<span>4.9</span></a> shows how many participants are needed to detect a medium effect (d = 0.5) with 80% power. A between-subjects design needs 128 participants, half in each group. A within-subjects design needs fewer, and how many fewer depends on the correlation r between the two measurements of the same person: 65 participants when r = 0, 34 when r = 0.5, and only 15 when r = 0.8. Even with r = 0 the within design needs about half the people, because each person contributes two measurements; the rest of the gain comes from the stable differences between people, which drop out of the comparison. How the correlation enters the calculation is shown in <em>Paired designs</em> in <a href="../basic-stats/power.html" class="quarto-xref"><span>Chapter 23</span></a>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-within-n" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-within-n-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-within-n-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-within-n-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.9: Participants needed to detect an effect of d = 0.5 with 80% power (alpha = 0.05, two-sided), in a between-subjects design and in within-subjects designs with increasing correlation r between a person’s two measurements.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="order-effects" class="level3">
 <h3 class="anchored" data-anchor-id="order-effects">Order effects</h3>
@@ -729,6 +940,22 @@ Two meanings of validity
 <section id="counterbalancing" class="level3">
 <h3 class="anchored" data-anchor-id="counterbalancing">Counterbalancing</h3>
 <p>A common strategy is <strong>counterbalancing</strong>. With two conditions, half the participants can complete A followed by B, while the other half completes B followed by A. If practice improves performance in the second session, both experimental conditions now occur in the second position for some participants. Experimental condition is no longer perfectly confounded with order. With more conditions, complete counterbalancing may become impractical because the number of possible orders grows rapidly. A <strong>Latin square</strong> can distribute conditions across ordinal positions using only a subset of possible sequences.</p>
+<!-- 21 Nov 2026 (Claude): from deck 09-03, slides "Order effects" and "Counterbalancing" (same simulation, seed 5); to review -->
+<p><a href="#fig-order-effects" class="quarto-xref">Figure&nbsp;<span>4.10</span></a> shows why this works, with simulated data. Forty participants complete a task under two conditions, A and B, which are in fact equally good: the simulation gives them the same true score. But everybody scores about 6 points higher in the second session, because of practice. Half the participants do A first, the other half B first. In the observed data, the second session is better by 5.9 points. If we had run only the order A then B, condition B would look 5.4 points better than A, an effect produced entirely by its position. With both orders, each condition is in the second position for half the participants, and averaging over everyone, the difference between the two conditions shrinks to 0.4 points, which is just noise. The practice effect is still there, in both orders: counterbalancing has balanced it across the conditions, not removed it.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-order-effects" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-order-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-order-effects-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-order-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.10: Order effects and counterbalancing (simulated data). Conditions A and B are equally good, but every participant scores higher in the second session. Half the participants do A then B, the other half B then A, so each condition benefits from the second session equally often.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>Counterbalancing does not make order effects disappear. Instead, it aims to prevent those effects from systematically favouring one condition. Other solutions may also be useful: increasing the delay between conditions, including washout periods, using parallel task versions, modelling order statistically, or choosing a between-subjects design when carryover would be too strong.</p>
 </section>
 </section>
@@ -798,7 +1025,24 @@ Two meanings of validity
 </section>
 <section id="mixed-designs" class="level3">
 <h3 class="anchored" data-anchor-id="mixed-designs">Mixed designs</h3>
-<p>A <strong>mixed design</strong> combines between-subjects and within-subjects factors. Suppose we compare habitual users and non-users of smartwatches. User group is a between-subjects factor because each person belongs to one group. Every participant then completes a cognitive task with and without real-time physiological feedback from the watch. Feedback condition is a within-subjects factor. A mixed design allows us to examine whether the within-person effect of feedback differs between the two groups. <!-- added by Claude, 17 Nov 2026; to review --> Note that the feedback condition is manipulated, but user group is not: participants arrive already being users or non-users, so a difference between the groups is a comparison of pre-existing groups, with all the alternative explanations that this implies.</p>
+<p>A <strong>mixed design</strong> combines between-subjects and within-subjects factors. Suppose we compare habitual users and non-users of smartwatches. User group is a between-subjects factor because each person belongs to one group. Every participant then completes a cognitive task with and without real-time physiological feedback from the watch. Feedback condition is a within-subjects factor. A mixed design allows us to examine whether the within-person effect of feedback differs between the two groups (<a href="#fig-mixed" class="quarto-xref">Figure&nbsp;<span>4.11</span></a>).</p>
+<!-- 21 Nov 2026 (Claude): from deck 09-03, slide "Mixed designs" (redrawn in ggplot2); to review -->
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-mixed" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="experimental-designs_files/figure-html/fig-mixed-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.11: A 2 × 2 mixed design. Feedback (on or off) is a within-subjects factor: every participant does the task in both conditions, and the researcher decides which. User group is a between-subjects factor: each participant belongs to one group, and nobody assigned it.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- added by Claude, 17 Nov 2026; to review -->
+<p>Note that the feedback condition is manipulated, but user group is not: participants arrive already being users or non-users, so a difference between the groups is a comparison of pre-existing groups, with all the alternative explanations that this implies.</p>
 <p>Mixed designs are common in behavioural science because they reflect the structure of many substantive questions: people belong to different groups, but are also measured repeatedly across tasks, sessions, or conditions. Their analysis combines the between-subjects and repeated-measures ANOVA of <a href="../basic-stats/anova.html" class="quarto-xref"><span>Chapter 19</span></a>.</p>
 </section>
 </section>

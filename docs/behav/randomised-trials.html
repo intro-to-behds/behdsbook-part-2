@@ -411,15 +411,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-makes-an-experiment" id="toc-what-makes-an-experiment" class="nav-link active" data-scroll-target="#what-makes-an-experiment"><span class="header-section-number">5.1</span> What makes an experiment</a></li>
-  <li><a href="#why-randomise" id="toc-why-randomise" class="nav-link" data-scroll-target="#why-randomise"><span class="header-section-number">5.2</span> Why randomise?</a></li>
-  <li><a href="#what-do-we-compare-with" id="toc-what-do-we-compare-with" class="nav-link" data-scroll-target="#what-do-we-compare-with"><span class="header-section-number">5.3</span> What do we compare with?</a></li>
-  <li><a href="#anatomy-of-a-trial" id="toc-anatomy-of-a-trial" class="nav-link" data-scroll-target="#anatomy-of-a-trial"><span class="header-section-number">5.4</span> Anatomy of a trial</a></li>
-  <li><a href="#before-and-after-is-not-enough" id="toc-before-and-after-is-not-enough" class="nav-link" data-scroll-target="#before-and-after-is-not-enough"><span class="header-section-number">5.5</span> Before and after is not enough</a></li>
-  <li><a href="#who-drops-out-matters" id="toc-who-drops-out-matters" class="nav-link" data-scroll-target="#who-drops-out-matters"><span class="header-section-number">5.6</span> Who drops out matters</a></li>
-  <li><a href="#which-version-do-users-like-more-ab-tests" id="toc-which-version-do-users-like-more-ab-tests" class="nav-link" data-scroll-target="#which-version-do-users-like-more-ab-tests"><span class="header-section-number">5.7</span> Which version do users like more? A/B tests</a></li>
-  <li><a href="#in-short" id="toc-in-short" class="nav-link" data-scroll-target="#in-short"><span class="header-section-number">5.8</span> In short</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">5.9</span> Exercises</a></li>
+  <li><a href="#experiments-and-randomisation-in-brief" id="toc-experiments-and-randomisation-in-brief" class="nav-link active" data-scroll-target="#experiments-and-randomisation-in-brief"><span class="header-section-number">5.1</span> Experiments and randomisation, in brief</a></li>
+  <li><a href="#what-do-we-compare-with" id="toc-what-do-we-compare-with" class="nav-link" data-scroll-target="#what-do-we-compare-with"><span class="header-section-number">5.2</span> What do we compare with?</a></li>
+  <li><a href="#anatomy-of-a-trial" id="toc-anatomy-of-a-trial" class="nav-link" data-scroll-target="#anatomy-of-a-trial"><span class="header-section-number">5.3</span> Anatomy of a trial</a></li>
+  <li><a href="#before-and-after-is-not-enough" id="toc-before-and-after-is-not-enough" class="nav-link" data-scroll-target="#before-and-after-is-not-enough"><span class="header-section-number">5.4</span> Before and after is not enough</a></li>
+  <li><a href="#who-drops-out-matters" id="toc-who-drops-out-matters" class="nav-link" data-scroll-target="#who-drops-out-matters"><span class="header-section-number">5.5</span> Who drops out matters</a></li>
+  <li><a href="#which-version-do-users-like-more-ab-tests" id="toc-which-version-do-users-like-more-ab-tests" class="nav-link" data-scroll-target="#which-version-do-users-like-more-ab-tests"><span class="header-section-number">5.6</span> Which version do users like more? A/B tests</a></li>
+  <li><a href="#in-short" id="toc-in-short" class="nav-link" data-scroll-target="#in-short"><span class="header-section-number">5.7</span> In short</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">5.8</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/behav/randomised-trials.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -459,89 +458,27 @@ Draft
 <p>This chapter is a <strong>draft</strong>, written with an AI assistant (Claude) on 21 November 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.</p>
 </div>
 </div>
-<!-- 21 Nov 2026 (Claude): new chapter, at the instructor's request. Built on the Week 9 deck 09-02-Experiments-and-RCTs (behds-course-slides/Week09/), whose figures are redrawn here in ggplot2 (the slides use TikZ); the "Why randomise?" simulation and the pre-post numbers are the slides' own. It expands the short subsection "Randomised controlled trials and A/B tests" of behav/experimental-designs.qmd, which now points here. The image in fig-two-apps is the AI-generated illustration Figures/week06-two-apps-comparison.png of the slides repo. To review. -->
+<!-- 21 Nov 2026 (Claude): new chapter, at the instructor's request. Built on the Week 9 deck 09-02-Experiments-and-RCTs (behds-course-slides/Week09/), whose figures are redrawn here in ggplot2 (the slides use TikZ); the "Why randomise?" simulation and the pre-post numbers are the slides' own. On 21 Nov 2026, fig-experiment and fig-why-randomise moved to behav/experimental-designs.qmd, and a short recap replaces them here. It expands the short subsection "Randomised controlled trials and A/B tests" of behav/experimental-designs.qmd, which now points here. The image in fig-two-apps is the AI-generated illustration Figures/week06-two-apps-comparison.png of the slides repo. To review. -->
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>navy <span class="ot">&lt;-</span> <span class="st">"#001238"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In <a href="experimental-designs.html#sec-association-causality" class="quarto-xref"><span>Section 4.2</span></a> we saw that an association between two variables, such as notifications and stress, does not tell us whether one causes the other. Workload, or some variable nobody measured, could produce both. We also saw that a causal claim needs three things: the cause and the outcome covary, the cause comes first, and the alternative explanations have been ruled out. Experiments are the design that deals most directly with the third requirement.</p>
-<p>This chapter is about one family of experiments that you will meet constantly in behavioural research and in technology: the <strong>randomised controlled trial</strong> (RCT). An RCT is an experiment that tests an <em>intervention</em>, such as a therapy, a training programme, or an app, by randomly assigning people to receive it or to receive something else, and comparing what happens to the two groups. It is the design behind the question “does it work?”, whether “it” is a new drug, a mindfulness app, or a new version of a screen. We first look at what makes an experiment and why randomisation matters, then at how a trial is built, and finally at the problems that are common in trials: the comparison with the baseline, dropout, and the novelty effect. The industry version of the RCT, the A/B test, closes the chapter.</p>
-<section id="what-makes-an-experiment" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="what-makes-an-experiment"><span class="header-section-number">5.1</span> What makes an experiment</h2>
-<p>Two features turn a study into an experiment (<a href="#fig-experiment" class="quarto-xref">Figure&nbsp;<span>5.1</span></a>). First, the researcher <strong>manipulates</strong> something: they decide who uses the app and who does not, instead of observing who happens to use it. Second, <strong>chance decides</strong> who gets what. This second feature is called <em>random assignment</em> (see <em>Random assignment</em> in <a href="experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>), and it is what makes the comparison between conditions fair.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-experiment" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-experiment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="randomised-trials_files/figure-html/fig-experiment-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-experiment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.1: The structure of an experiment. Participants are assigned at random to one of two conditions that the researcher manipulates, and the outcome is compared between the conditions.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>The manipulation guarantees that the cause comes before the outcome. Random assignment deals with the alternative explanations, and it deserves a closer look.</p>
+<p>This chapter is about one family of experiments that you will meet constantly in behavioural research and in technology: the <strong>randomised controlled trial</strong> (RCT). An RCT is an experiment that tests an <em>intervention</em>, such as a therapy, a training programme, or an app, by randomly assigning people to receive it or to receive something else, and comparing what happens to the two groups. It is the design behind the question “does it work?”, whether “it” is a new drug, a mindfulness app, or a new version of a screen. We briefly recall what makes an experiment and why randomisation matters (both are discussed in <a href="experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>), then look at how a trial is built, and finally at the problems that are common in trials: the comparison with the baseline, dropout, and the novelty effect. The industry version of the RCT, the A/B test, closes the chapter.</p>
+<section id="experiments-and-randomisation-in-brief" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="experiments-and-randomisation-in-brief"><span class="header-section-number">5.1</span> Experiments and randomisation, in brief</h2>
+<!-- 21 Nov 2026 (Claude): the sections "What makes an experiment" and "Why randomise?", with fig-experiment and fig-why-randomise, moved to behav/experimental-designs.qmd at the instructor's request; this recap replaces them. To review. -->
+<p>Two features turn a study into an experiment (<a href="experimental-designs.html#fig-experiment" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>): the researcher <strong>manipulates</strong> something, deciding who uses the app and who does not, and <strong>chance decides</strong> who gets what. The manipulation guarantees that the cause comes before the outcome. Random assignment deals with the alternative explanations: because a coin, not the participants, decides who gets the app, no characteristic of the participants can systematically push them into one group. Randomisation balances the groups on average, on the variables we measured and on those we did not, such as motivation (<a href="experimental-designs.html#fig-why-randomise" class="quarto-xref">Figure&nbsp;<span>4.7</span></a>). Any remaining difference at the end of a trial is therefore either the effect of the intervention or chance, and chance is what the statistical methods of the <em>Basic Statistics</em> part quantify.</p>
+<p>Randomisation has two limits. In a single small trial the groups can still differ by chance, and randomisation only protects the comparison between the groups, not the generalisation to people unlike those in the trial. <em>Random assignment</em> and <em>Random sampling</em> in <a href="experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a> explain both points, with the simulation behind <a href="experimental-designs.html#fig-why-randomise" class="quarto-xref">Figure&nbsp;<span>4.7</span></a>.</p>
 </section>
-<section id="why-randomise" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="why-randomise"><span class="header-section-number">5.2</span> Why randomise?</h2>
-<p>Suppose we want to know whether a stress-management app reduces stress. The simplest study would compare people who chose to use the app with people who did not. The problem is that the people who choose an app differ from those who do not: they may be more motivated to reduce their stress, and motivated people may do many other things that reduce stress too. If the app users end the study less stressed, we cannot tell whether this is the app or the motivation.</p>
-<p>We can see the problem with a small simulation. We give 40 simulated people a level of motivation between 0 and 1, which in a real study we would not measure. In the first scheme, people choose whether to use the app, and the more motivated they are, the more likely they are to choose it. In the second, a coin decides: we shuffle 20 “app” and 20 “no app” labels and hand them out.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">40</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>motivation <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># people choose: the probability of using the app grows with motivation</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>chose <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fu">plogis</span>(<span class="sc">-</span><span class="dv">3</span> <span class="sc">+</span> <span class="dv">6</span> <span class="sc">*</span> motivation))</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># random assignment: 20 of each, in random order</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>random <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rep</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">each =</span> n <span class="sc">/</span> <span class="dv">2</span>))</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>rand_d <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">scheme =</span> <span class="st">"people chose the app"</span>, <span class="at">app =</span> chose, motivation),</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">scheme =</span> <span class="st">"assigned at random"</span>, <span class="at">app =</span> random, motivation)) <span class="sc">|&gt;</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">app =</span> <span class="fu">factor</span>(app, <span class="at">levels =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"no app"</span>, <span class="st">"app"</span>)),</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">scheme =</span> <span class="fu">fct_inorder</span>(scheme))</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>rand_d <span class="sc">|&gt;</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(scheme, app) <span class="sc">|&gt;</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean_motivation =</span> <span class="fu">mean</span>(motivation))</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 4</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Groups:   scheme [2]</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   scheme               app        n mean_motivation</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;                &lt;fct&gt;  &lt;int&gt;           &lt;dbl&gt;</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 people chose the app no app    21           0.304</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 people chose the app app       19           0.704</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 assigned at random   no app    20           0.571</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 assigned at random   app       20           0.417</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>When people choose, the app group is much more motivated than the no-app group, by about 0.4, and the difference is built into the way the groups were formed: repeat the study and it will be there again. When a coin decides, the groups still differ, by about 0.15, but in the other direction, and only by chance: repeat the randomisation and the difference will change size and sign, averaging zero over many repetitions (<a href="#fig-why-randomise" class="quarto-xref">Figure&nbsp;<span>5.2</span></a>).</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-why-randomise" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-why-randomise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="randomised-trials_files/figure-html/fig-why-randomise-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-why-randomise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.2: The same 40 simulated people, split into an app group and a no-app group in two ways. Each point is a person, and darker points are more motivated; the horizontal bars are the group means. When people choose, the motivated ones end up in the app group. When the groups are assigned at random, the difference that remains is due to chance alone, and motivation is balanced on average, even though it was never measured.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>This is the key point of randomisation: it balances not only the variables we measured but also the ones we did not, such as motivation, sleep, or the number of exams that month. Because chance decides who gets the app, no characteristic of the participants can systematically push them into one group. Any remaining difference between the groups at the end of the study is either the effect of the app or chance, and chance is exactly what the statistical methods of the following chapters are designed to quantify.</p>
-<p>Two caveats. Randomisation balances the groups <em>on average</em>: in a single small study, the two groups can still differ by chance, as they do in our simulation (run it again with other seeds to see the difference change). Larger samples make large chance imbalances less likely, and blocked or stratified randomisation can balance a few important variables by design (see <em>Matching, blocking, and stratification</em> in <a href="experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>). And randomisation only protects the comparison between the groups; it says nothing about whether the result applies to people unlike those in the study (see <em>Random sampling</em> in <a href="experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>).</p>
-</section>
-<section id="what-do-we-compare-with" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="what-do-we-compare-with"><span class="header-section-number">5.3</span> What do we compare with?</h2>
+<section id="what-do-we-compare-with" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="what-do-we-compare-with"><span class="header-section-number">5.2</span> What do we compare with?</h2>
 <p>A trial compares the intervention with a <strong>control condition</strong>, and the choice of control decides what question the trial answers. In a <strong>passive control</strong>, participants receive nothing new and continue their usual routine. A difference from a passive control tells us that using the app is better than doing nothing, but the app brings many things at once: daily attention to one’s stress, notifications, the expectation of feeling better. In an <strong>active control</strong>, participants receive something that matches these non-specific features without the component thought to work, such as a neutral app with the same number of notifications. A difference from an active control is much more specific: it is about what the app does, not about the fact that it is an app.</p>
 <p>Whatever the control, it helps to <strong>blind</strong> whoever can be blinded: the participants, who may report what they think the study expects (<em>demand characteristics</em>), the people who assess the outcome, and the analysts. In app trials, participants usually know which app they are using, but the assessor and the analyst can often be kept unaware of the group. The section <em>Variables and experimental control</em> and the section <em>Bias and control procedures</em> of <a href="experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a> discuss controls, manipulation checks and blinding in more detail.</p>
 </section>
-<section id="anatomy-of-a-trial" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="anatomy-of-a-trial"><span class="header-section-number">5.4</span> Anatomy of a trial</h2>
-<p><a href="#fig-rct-flow" class="quarto-xref">Figure&nbsp;<span>5.3</span></a> shows the most common form of RCT, the <strong>parallel-arm</strong> trial. People are recruited and assessed at the start (the <em>baseline</em>); then they are randomised to one of the arms (here, the app or an active control); after the intervention period, everyone is assessed again and the arms are compared. Note that randomisation comes <em>after</em> the baseline assessment: this way, the assessment cannot be influenced by knowing which group a person is in, and the baseline can be used to check that the groups started from similar values.</p>
+<section id="anatomy-of-a-trial" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="anatomy-of-a-trial"><span class="header-section-number">5.3</span> Anatomy of a trial</h2>
+<p><a href="#fig-rct-flow" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> shows the most common form of RCT, the <strong>parallel-arm</strong> trial. People are recruited and assessed at the start (the <em>baseline</em>); then they are randomised to one of the arms (here, the app or an active control); after the intervention period, everyone is assessed again and the arms are compared. Note that randomisation comes <em>after</em> the baseline assessment: this way, the assessment cannot be influenced by knowing which group a person is in, and the baseline can be used to check that the groups started from similar values.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-rct-flow" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -550,7 +487,7 @@ Figure&nbsp;5.2: The same 40 simulated people, split into an app group and a no-
 <img src="randomised-trials_files/figure-html/fig-rct-flow-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rct-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.3: A parallel-arm randomised controlled trial. Participants are assessed at baseline, randomised to the intervention or to a control condition, and assessed again at the end; the two arms are then compared.
+Figure&nbsp;5.1: A parallel-arm randomised controlled trial. Participants are assessed at baseline, randomised to the intervention or to a control condition, and assessed again at the end; the two arms are then compared.
 </figcaption>
 </figure>
 </div>
@@ -558,15 +495,15 @@ Figure&nbsp;5.3: A parallel-arm randomised controlled trial. Participants are as
 </div>
 <p>In a parallel-arm trial, each person receives one condition only, which is a between-subjects design. In a <strong>crossover</strong> trial, each person receives both conditions, one after the other, in a random order: half use the app first and the control second, half the reverse. This is a within-subjects design, with its advantages (each person is compared with themselves, so fewer participants are needed) and its problems (the first condition can leave traces that carry over into the second, so a crossover only works when the effect wears off between the two periods). The random order is a form of the counterbalancing described in <em>Within-subjects designs</em> in <a href="experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>.</p>
 </section>
-<section id="before-and-after-is-not-enough" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="before-and-after-is-not-enough"><span class="header-section-number">5.5</span> Before and after is not enough</h2>
+<section id="before-and-after-is-not-enough" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="before-and-after-is-not-enough"><span class="header-section-number">5.4</span> Before and after is not enough</h2>
 <p>Since a trial measures people before and after the intervention, it is tempting to look only at the change in the intervention group. Suppose the average stress of the people who used the app went from 5.9 to 4.5. Did the app work? Not necessarily. Without a control group, the change could have many other causes:</p>
 <ul>
 <li>something changed in everyone’s life: the study started in the exam week, and the exams ended;</li>
 <li>people got used to the questionnaire and answered it differently the second time;</li>
 <li>people who joined because they were very stressed at that moment would have been less stressed a few weeks later anyway, a phenomenon called <strong>regression to the mean</strong>.</li>
 </ul>
-<p>A control group experiences all of these too. <a href="#fig-prepost" class="quarto-xref">Figure&nbsp;<span>5.4</span></a> shows the means of the two groups at the two assessments: the control group also improved, from 5.8 to 5.4, without any app.</p>
+<p>A control group experiences all of these too. <a href="#fig-prepost" class="quarto-xref">Figure&nbsp;<span>5.2</span></a> shows the means of the two groups at the two assessments: the control group also improved, from 5.8 to 5.4, without any app.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-prepost" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -575,7 +512,7 @@ Figure&nbsp;5.3: A parallel-arm randomised controlled trial. Participants are as
 <img src="randomised-trials_files/figure-html/fig-prepost-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prepost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.4: Illustrative mean stress of an app group and a control group, before and after the intervention period. Both groups improve; the question is whether the app group improved more.
+Figure&nbsp;5.2: Illustrative mean stress of an app group and a control group, before and after the intervention period. Both groups improve; the question is whether the app group improved more.
 </figcaption>
 </figure>
 </div>
@@ -583,9 +520,9 @@ Figure&nbsp;5.4: Illustrative mean stress of an app group and a control group, b
 </div>
 <p>The question a trial answers is therefore not “did the app group change?” but “<strong>did the app group change more than the control group?</strong>”. Here, the app group improved by 1.4 points and the control group by 0.4, so the part of the improvement we can attribute to the app is about 1 point, not 1.4. Whether a difference of this size could be due to chance is a question for the comparison of two groups (<a href="../basic-stats/comparing-two-groups.html" class="quarto-xref"><span>Chapter 18</span></a>), and how many participants are needed to detect it reliably is a question of power (<a href="../basic-stats/power.html" class="quarto-xref"><span>Chapter 23</span></a>). The pre-post comparison is also discussed in <em>Pre-post designs and baseline measurements</em> in <a href="experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>.</p>
 </section>
-<section id="who-drops-out-matters" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="who-drops-out-matters"><span class="header-section-number">5.6</span> Who drops out matters</h2>
-<p>Trials that last weeks or months lose participants along the way: people stop using the app, stop answering the questionnaires, or leave the study. Dropout would be a minor problem if it happened at random. It rarely does. In <a href="#fig-dropout" class="quarto-xref">Figure&nbsp;<span>5.5</span></a>, each dot is a participant, and darker dots are more stressed. In the control group one person, with average stress, dropped out. In the app group the three most stressed participants dropped out, perhaps because the app did not help them, or because they had too much on their plate to keep using it.</p>
+<section id="who-drops-out-matters" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="who-drops-out-matters"><span class="header-section-number">5.5</span> Who drops out matters</h2>
+<p>Trials that last weeks or months lose participants along the way: people stop using the app, stop answering the questionnaires, or leave the study. Dropout would be a minor problem if it happened at random. It rarely does. In <a href="#fig-dropout" class="quarto-xref">Figure&nbsp;<span>5.3</span></a>, each dot is a participant, and darker dots are more stressed. In the control group one person, with average stress, dropped out. In the app group the three most stressed participants dropped out, perhaps because the app did not help them, or because they had too much on their plate to keep using it.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-dropout" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -594,7 +531,7 @@ Figure&nbsp;5.4: Illustrative mean stress of an app group and a control group, b
 <img src="randomised-trials_files/figure-html/fig-dropout-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dropout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.5: Illustrative dropout in a trial. Each dot is a participant; darker dots are more stressed. In the app group, the three most stressed participants dropped out before the end (dashed circles), so the participants who completed the study look less stressed than the group that was randomised.
+Figure&nbsp;5.3: Illustrative dropout in a trial. Each dot is a participant; darker dots are more stressed. In the app group, the three most stressed participants dropped out before the end (dashed circles), so the participants who completed the study look less stressed than the group that was randomised.
 </figcaption>
 </figure>
 </div>
@@ -603,21 +540,21 @@ Figure&nbsp;5.5: Illustrative dropout in a trial. Each dot is a participant; dar
 <p>If we analyse only the people who completed the study, the app group looks less stressed at the end, partly because the most stressed people left it. The comparison is no longer between two randomised groups: dropout has undone part of what randomisation achieved. The usual safeguard is the <strong>intention-to-treat</strong> analysis: everyone is analysed in the group they were randomised to, whether or not they completed the intervention. This keeps the comparison fair, but it means that the outcomes of the people who dropped out are missing and need a plan, decided before the data are in (<a href="../basic-stats/missing-data.html" class="quarto-xref"><span>Chapter 24</span></a>). The alternative, analysing only those who completed the intervention as planned (a <em>per-protocol</em> analysis), answers a different question and is usually reported as a secondary analysis.</p>
 <p>Dropout is also a result in itself. A trial report should say how many people dropped out of each arm and why, if known: an app that half the participants abandon after a week has a problem, whatever its effect on those who stayed.</p>
 </section>
-<section id="which-version-do-users-like-more-ab-tests" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="which-version-do-users-like-more-ab-tests"><span class="header-section-number">5.7</span> Which version do users like more? A/B tests</h2>
-<p>Not every trial is about health. A team developing a relaxation app has two versions of the home screen and wants to know which one users prefer (<a href="#fig-two-apps" class="quarto-xref">Figure&nbsp;<span>5.6</span></a>).</p>
+<section id="which-version-do-users-like-more-ab-tests" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="which-version-do-users-like-more-ab-tests"><span class="header-section-number">5.6</span> Which version do users like more? A/B tests</h2>
+<p>Not every trial is about health. A team developing a relaxation app has two versions of the home screen and wants to know which one users prefer (<a href="#fig-two-apps" class="quarto-xref">Figure&nbsp;<span>5.4</span></a>).</p>
 <div id="fig-two-apps" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-two-apps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="img/two-apps-comparison.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-two-apps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.6: Which version do users like more? (AI-generated illustration.)
+Figure&nbsp;5.4: Which version do users like more? (AI-generated illustration.)
 </figcaption>
 </figure>
 </div>
 <p>The logic is the same as in any trial. In the lab, we can assign each participant to one version at random (a between-subjects design), or let each participant try both, with the order randomised (a within-subjects design with counterbalancing): if everyone saw version A first, any preference for B could be due to its coming second. A specific problem of comparisons between an old and a new version is the <strong>novelty effect</strong>: a new design can be liked, or used more, simply because it is new, and the advantage may fade within weeks. A longer follow-up, and comparing two new versions rather than a new one with a familiar one, help to separate novelty from a lasting improvement.</p>
-<p>The technology industry runs this kind of experiment on a very large scale, under the name of <strong>A/B tests</strong> (<a href="#fig-ab-test" class="quarto-xref">Figure&nbsp;<span>5.7</span></a>). Users of an app or a website are randomly shown version A or version B of a screen, and the versions are compared on logged behaviour: clicks, completed tasks, how many users come back after a week.</p>
+<p>The technology industry runs this kind of experiment on a very large scale, under the name of <strong>A/B tests</strong> (<a href="#fig-ab-test" class="quarto-xref">Figure&nbsp;<span>5.5</span></a>). Users of an app or a website are randomly shown version A or version B of a screen, and the versions are compared on logged behaviour: clicks, completed tasks, how many users come back after a week.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-ab-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -626,7 +563,7 @@ Figure&nbsp;5.6: Which version do users like more? (AI-generated illustration.)
 <img src="randomised-trials_files/figure-html/fig-ab-test-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ab-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.7: An A/B test. Users are assigned at random to one of two versions of a screen, and the versions are compared on logged behaviour.
+Figure&nbsp;5.5: An A/B test. Users are assigned at random to one of two versions of a screen, and the versions are compared on logged behaviour.
 </figcaption>
 </figure>
 </div>
@@ -634,8 +571,8 @@ Figure&nbsp;5.7: An A/B test. Users are assigned at random to one of two version
 </div>
 <p>An A/B test is a randomised experiment, and everything in this chapter applies to it: randomisation makes the comparison fair, the novelty effect can inflate the advantage of a new version, and users who stop using the app are a form of dropout. Two points deserve attention. First, logged behaviour is still a proxy: a click is not satisfaction, and a longer session can mean engagement or confusion (<a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>). Second, with thousands of users even tiny differences become statistically significant, and running many tests and stopping each one when it looks good produces false discoveries, exactly as in academic research (see <em>The same problems outside academia</em> in <a href="../basic-stats/credible-evidence.html" class="quarto-xref"><span>Chapter 26</span></a>).</p>
 </section>
-<section id="in-short" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="in-short"><span class="header-section-number">5.8</span> In short</h2>
+<section id="in-short" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="in-short"><span class="header-section-number">5.7</span> In short</h2>
 <ul>
 <li>A randomised controlled trial tests an intervention by <strong>manipulating</strong> it and letting <strong>chance</strong> decide who receives it.</li>
 <li>Randomisation balances the groups on average, on what we measured and on what we did not, so that a difference at the end can be attributed to the intervention or to chance.</li>
@@ -647,10 +584,10 @@ Figure&nbsp;5.7: An A/B test. Users are assigned at random to one of two version
 </ul>
 <p>A trial does not solve every problem. It tells us what the intervention did, on average, to the kind of people who took part, as measured by the outcome we chose. Whether the result applies to other people, and whether the outcome measures what we care about, are the questions of external validity and measurement discussed in <a href="experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a> and <a href="measurement.html" class="quarto-xref"><span>Chapter 1</span></a>.</p>
 </section>
-<section id="exercises" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5.9</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5.8</span> Exercises</h2>
 <p>1. A university offers a free mindfulness app to its students. At the end of the year, the students who used it report less stress than those who did not. Give two explanations of this difference other than an effect of the app. How would you design a study that rules them out?</p>
-<p>2. Re-run the simulation of <em>Why randomise?</em> with five different seeds, and each time compute the difference in mean motivation between the app and the no-app group under random assignment. How large can the difference get? Now set <code>n &lt;- 400</code> and repeat. What changes, and why?</p>
+<p>2. Re-run the simulation of <em>Random assignment</em> in <a href="experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a> (the one behind <a href="experimental-designs.html#fig-why-randomise" class="quarto-xref">Figure&nbsp;<span>4.7</span></a>) with five different seeds, and each time compute the difference in mean motivation between the app and the no-app group under random assignment. How large can the difference get? Now set <code>n &lt;- 400</code> and repeat. What changes, and why?</p>
 <p>3. A trial compares a stress-management app with a passive control and finds that the app group improves more. A colleague says the trial shows that the app’s exercises reduce stress. What else could explain the result? Which control condition would make the conclusion more specific?</p>
 <p>4. In a 12-week trial, 30% of the app group and 10% of the control group drop out. The researchers analyse only the participants who completed the study and find a clear advantage for the app. Explain why this result may be misleading, and what they should have done instead.</p>
 

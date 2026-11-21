@@ -3,6 +3,43 @@
 _Written for this book by Cristiano Costa, with Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
 
 <!-- 18 Nov 2026 (Claude): cross-references to other chapters added; to review -->
+<!-- 21 Nov 2026 (Claude): figures from the Week 9 decks 09-01, 09-03 and 09-04 redrawn in ggplot2 (the slides use TikZ), each with its own introduction; fig-experiment and fig-why-randomise moved here from behav/randomised-trials.qmd (deck 09-02). Every addition is marked by a source comment; to review. -->
+
+```{r, message=FALSE, warning=FALSE}
+#| cache: false
+#| include: false
+library(tidyverse)
+navy <- "#001238"
+```
+
+```{r flow-helper}
+#| include: false
+# Draws the box-and-arrow diagrams of this chapter (a copy of the helper of
+# behav/randomised-trials.qmd, with a "faded" box and an optional `lty` column
+# for dashed arrows). `nodes`: x, y, label, key ("yes" = highlighted box,
+# "no" = plain, "faded" = greyed out); `edges`: x, y, xend, yend, optional lty;
+# `notes`: x, y, label.
+draw_flow <- function(nodes, edges, notes = NULL, xlim, ylim) {
+  if (!"lty" %in% names(edges)) edges$lty <- "solid"
+  p <- ggplot() +
+    geom_segment(data = edges, aes(x, y, xend = xend, yend = yend, linetype = lty),
+                 arrow = arrow(length = unit(0.16, "cm"), type = "closed"),
+                 colour = "grey40", linewidth = 0.5) +
+    geom_label(data = nodes, aes(x, y, label = label, fill = key, colour = key),
+               size = 3.6, lineheight = 0.9, label.padding = unit(0.5, "lines"),
+               label.r = unit(0.2, "lines")) +
+    scale_linetype_identity() +
+    scale_fill_manual(values = c(yes = navy, no = "grey95", faded = "white"),
+                      guide = "none") +
+    scale_colour_manual(values = c(yes = "white", no = "black", faded = "grey60"),
+                        guide = "none")
+  if (!is.null(notes)) {
+    p <- p + geom_text(data = notes, aes(x, y, label = label), size = 3.3,
+                       fontface = "italic", colour = "grey35", lineheight = 0.9)
+  }
+  p + coord_cartesian(xlim = xlim, ylim = ylim) + theme_void()
+}
+```
 
 
 Imagine we want to know whether frequent smartphone notifications make it harder to concentrate. We could ask people how many notifications they normally receive and compare this with their performance on an attention task. Alternatively, we could actively manipulate the number of notifications they receive while they complete the task. These two studies may produce very similar-looking datasets. In both cases, we could end up with one column containing the number of notifications and another containing reaction times or accuracy. Yet the conclusions we can draw from the two datasets are not the same.
@@ -65,6 +102,40 @@ In an experiment, the researcher deliberately manipulates one or more variables 
 
 Experimental manipulation and random assignment are powerful because they directly address the third requirement.
 
+<!-- 21 Nov 2026 (Claude): moved from behav/randomised-trials.qmd; from deck 09-02, slide "What makes an experiment" (redrawn in ggplot2); to review -->
+Two features turn a study into an experiment (@fig-experiment). First, the researcher **manipulates** something: they decide who receives frequent notifications and who does not, instead of observing who happens to receive them. Second, **chance decides** who gets what. This second feature is called *random assignment* (see *Random assignment* below), and it is what makes the comparison between conditions fair. The manipulation guarantees that the cause comes before the outcome; random assignment deals with the alternative explanations.
+
+```{r}
+#| label: fig-experiment
+#| echo: false
+#| fig-cap: "The structure of an experiment. Participants are assigned at random to one of two conditions that the researcher manipulates, and the outcome is compared between the conditions."
+#| fig-width: 7
+#| fig-height: 2.6
+#| out-width: 95%
+nodes <- tribble(
+  ~x, ~y, ~label, ~key,
+  0, 0, "participants", "no",
+  3, 0, "random\nassignment", "yes",
+  6, 0.9, "condition A", "no",
+  6, -0.9, "condition B", "no",
+  9, 0, "outcome", "no"
+)
+edges <- tribble(
+  ~x, ~y, ~xend, ~yend,
+  0.85, 0, 2.15, 0,
+  3.85, 0.2, 5.05, 0.8,
+  3.85, -0.2, 5.05, -0.8,
+  6.95, 0.8, 8.3, 0.2,
+  6.95, -0.8, 8.3, -0.2
+)
+notes <- tribble(
+  ~x, ~y, ~label,
+  6, 1.7, "the researcher manipulates",
+  3, -1.05, "chance decides\nwho gets what"
+)
+draw_flow(nodes, edges, notes, xlim = c(-0.6, 9.6), ylim = c(-1.5, 2))
+```
+
 <!-- added by Claude, 17 Nov 2026, from the Week 9 slides; to review -->
 ### Randomised controlled trials and A/B tests
 
@@ -75,7 +146,7 @@ The technology industry runs randomised experiments on a very large scale under 
 Two problems are especially common in trials that last weeks or months. Participants **drop out**, and those who drop out may differ from those who stay: the most stressed users may stop answering. Analysing only those who completed the study can therefore favour the intervention. A common safeguard is to analyse all participants in the group to which they were randomised, called an *intention-to-treat* analysis, which requires a plan for the missing outcomes (@sec-missing-data). The second problem is the **novelty effect**: a new app or interface may be rated better, or used more, simply because it is new, and the advantage may fade over time. A longer follow-up and an active control condition (see below) help to separate novelty from a lasting effect.
 
 <!-- 21 Nov 2026 (Claude): pointer to the new chapter on RCTs; to review -->
-@sec-rcts describes randomised trials in more detail: how they are built, why randomisation and the control condition matter, why a change from before to after is not enough, and what to do when participants drop out.
+@sec-rcts describes randomised trials in more detail: how they are built, why the control condition matters, why a change from before to after is not enough, and what to do when participants drop out.
 
 ### The counterfactual idea
 
@@ -85,12 +156,164 @@ Causal inference can also be understood through a counterfactual question:
 
 For any individual at a given moment, we can observe only one of these possibilities. We cannot simultaneously observe the same person both receiving and not receiving the same notification. Experimental design is therefore an attempt to construct a credible comparison for this missing counterfactual. Different design choices solve this problem in different ways.
 
+<!-- 21 Nov 2026 (Claude): from deck 09-01, slide "The missing comparison" (redrawn in ggplot2); to review -->
+@fig-counterfactual shows the problem for one person. Anna used a stress-management app for a month, and at the end she reports a stress level of 4. Did the app help her? To answer, we would need her stress level at the end of the same month, had she not used the app. That value is not missing because of a mistake in data collection: it cannot be observed at all, because Anna lived only one of the two months. No dataset, however large, contains both branches for the same person.
+
+```{r}
+#| label: fig-counterfactual
+#| echo: false
+#| fig-cap: "The missing comparison. For Anna we observe her stress with the app; her stress over the same month without the app is never observed, so the effect of the app on her cannot be computed directly."
+#| fig-width: 6
+#| fig-height: 2.4
+#| out-width: 80%
+nodes <- tribble(
+  ~x, ~y, ~label, ~key,
+  0, 0, "Anna", "yes",
+  4.5, 0.8, "with the app: stress 4", "no",
+  4.5, -0.8, "without the app: ?", "faded"
+)
+edges <- tribble(
+  ~x, ~y, ~xend, ~yend, ~lty,
+  0.45, 0.1, 3.05, 0.75, "solid",
+  0.45, -0.1, 3.05, -0.75, "dashed"
+)
+notes <- tribble(~x, ~y, ~label, 4.5, -1.45, "never observed")
+draw_flow(nodes, edges, notes, xlim = c(-0.6, 6.4), ylim = c(-1.8, 1.3))
+```
+
+What we can do is change the question: from the effect of the app on Anna to the average effect of the app on a group of people. If two groups are alike on average in everything except the app, the group without the app tells us what would have happened, on average, to the group with it. Random assignment is the most reliable way to build two such groups (see *Random assignment* below, and @fig-why-randomise). A within-subjects design takes another route: it measures the same people in both conditions, at different times (see *Within-subjects designs* below).
+
 ### Quasi-experimental research
 
 Between purely observational research and fully randomised experiments are **quasi-experimental designs**. Here, researchers study an intervention, policy, technological change, or naturally occurring event but do not have complete control over assignment. Imagine that one university introduces an app that limits notifications during lectures while another does not. Comparing students before and after the intervention may provide valuable evidence, even though students were not individually randomised. Quasi-experiments can support stronger causal arguments than simple observational associations when the design creates a credible comparison. However, alternative explanations generally require more careful consideration than in a well-randomised experiment.
 
-<!-- added by Claude, 17 Nov 2026, from the Week 9 slides; to review -->
-A very common case is the comparison of **pre-existing groups**: patients and healthy controls, heavy and light smartphone users, older and younger adults. The analysis looks like that of an experiment, often a t-test between two groups, but nobody assigned participants to the groups, and the groups may differ in many other ways (age, education, medication, motivation). Matching participants on some of these characteristics helps, but only for the characteristics that were measured. @sec-results-to-conclusions discusses how to interpret such comparisons.
+<!-- 21 Nov 2026 (Claude): from deck 09-04, slide "Quasi-experiments" (same illustrative numbers); to review -->
+@fig-quasi shows what such a study might find, with illustrative numbers. Distraction during lectures goes down at the university that introduced the limiter, but it also goes down a little at the other university, perhaps because the end of the semester is approaching. Without the second university, we would attribute the whole decrease to the limiter. With it, the question becomes the one we will meet again in pre-post designs: did the students of the first university change *more* than those of the second? The comparison makes the argument much stronger, but it does not make it as strong as an experiment. The students were not randomised to the two universities, which may differ in their students, their exam calendars, their teaching, or in other changes introduced in the same semester.
+
+```{r}
+#| label: fig-quasi
+#| echo: false
+#| fig-cap: "Illustrative quasi-experiment. Mean distraction in lectures before and after one university introduced a notification limiter, compared with a university that changed nothing. Both decrease; the question is whether the first decreased more."
+#| fig-width: 5.5
+#| fig-height: 3.4
+#| out-width: 65%
+quasi <- tribble(
+  ~time, ~university, ~distraction,
+  "Before", "Limiter introduced", 6.1,
+  "After", "Limiter introduced", 4.8,
+  "Before", "No change", 5.7,
+  "After", "No change", 5.4
+) |>
+  mutate(time = factor(time, levels = c("Before", "After")))
+
+ggplot(quasi, aes(time, distraction, group = university, colour = university)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 3) +
+  scale_colour_manual(values = c(`Limiter introduced` = navy, `No change` = "grey60")) +
+  labs(x = NULL, y = "Mean distraction in lectures", colour = "University") +
+  theme_minimal() +
+  theme(panel.grid.minor = element_blank())
+```
+
+<!-- 21 Nov 2026 (Claude): from deck 09-04, slide "Can I assign? Can I randomise?" (the instructor's decision tree, redrawn in ggplot2); to review -->
+Two questions are enough to place a study among the three kinds of research we have seen (@fig-design-tree). The first is whether the researcher can decide who receives the exposure X (the notifications, the app, the limiter). If not, the study is observational: X is measured as it comes. If yes, the second question is whether the researcher can decide *at random*. If yes, the study is an experiment; if the researcher decides, but not at random (for example, one class gets the limiter because its teacher volunteered), it is a quasi-experiment. Studies of policies and natural events, in which someone else assigns the exposure (a university, a law, an operating-system update), are usually treated as quasi-experiments too, because the assignment can be described and a comparison group can often be found.
+
+```{r}
+#| label: fig-design-tree
+#| echo: false
+#| fig-cap: "Two questions that place a study among the three kinds of research. Can the researcher decide who receives X? Can they decide at random?"
+#| fig-width: 6.5
+#| fig-height: 3.2
+#| out-width: 85%
+nodes <- tribble(
+  ~x, ~y, ~label, ~key,
+  0, 1.4, "Can I decide\nwho gets X?", "no",
+  -2.8, -0.1, "observational", "yes",
+  2.4, -0.1, "Can I decide\nat random?", "no",
+  0.6, -1.6, "experiment", "yes",
+  4.2, -1.6, "quasi-experiment", "yes"
+)
+edges <- tribble(
+  ~x, ~y, ~xend, ~yend,
+  -0.7, 1.05, -2.4, 0.2,
+  0.7, 1.05, 2.0, 0.35,
+  1.9, -0.55, 0.9, -1.3,
+  2.9, -0.55, 3.9, -1.3
+)
+notes <- tribble(
+  ~x, ~y, ~label,
+  -1.8, 0.8, "no",
+  1.6, 0.85, "yes",
+  1.1, -0.85, "yes",
+  3.7, -0.85, "no"
+)
+draw_flow(nodes, edges, notes, xlim = c(-3.9, 5.6), ylim = c(-2, 1.9))
+```
+
+<!-- added by Claude, 17 Nov 2026, from the Week 9 slides; to review. 21 Nov 2026 (Claude): aligned with fig-design-tree; terminology to confirm at review (pre-existing groups as observational vs quasi-experimental) -->
+A very common case is the comparison of **pre-existing groups**: patients and healthy controls, heavy and light smartphone users, older and younger adults. In terms of @fig-design-tree, nobody decides who is a patient, so these comparisons are observational in design, even though they are often grouped with quasi-experiments. The analysis looks like that of an experiment, often a t-test between two groups, but nobody assigned participants to the groups, and the groups may differ in many other ways (@fig-groups-differ). @sec-results-to-conclusions discusses how to interpret such comparisons.
+
+<!-- 21 Nov 2026 (Claude): from deck 09-04, slide "Groups differ in many ways" (redrawn in ggplot2); to review -->
+```{r}
+#| label: fig-groups-differ
+#| echo: false
+#| fig-cap: "Pre-existing groups differ in many ways. If patients and controls differ on a cognitive task, any of the characteristics around them could explain the difference, alone or together with the condition itself."
+#| fig-width: 6.5
+#| fig-height: 2.8
+#| out-width: 85%
+groups <- tibble(x = c(2, 6), y = 0, label = c("patients", "controls"))
+factors <- tribble(
+  ~x, ~y, ~label,
+  0.3, 1.2, "age",
+  4, 1.45, "education",
+  7.8, 1.15, "motivation",
+  0.2, -1.15, "medication",
+  4, -1.4, "fatigue",
+  7.9, -1.15, "sleep"
+)
+ggplot() +
+  geom_point(data = groups, aes(x, y, fill = label), shape = 21, size = 30,
+             stroke = 1.2, show.legend = FALSE) +
+  geom_text(data = groups, aes(x, y, label = label, colour = label),
+            fontface = "bold", size = 4, show.legend = FALSE) +
+  scale_fill_manual(values = c(patients = navy, controls = "grey90")) +
+  scale_colour_manual(values = c(patients = "white", controls = "black")) +
+  annotate("text", x = 4, y = 0, label = "≠ ?", size = 5, colour = "grey40") +
+  geom_label(data = factors, aes(x, y, label = label), size = 3.3,
+             colour = "grey25", fill = "grey97", label.r = unit(0.2, "lines")) +
+  coord_cartesian(xlim = c(-0.5, 8.6), ylim = c(-1.8, 1.8)) +
+  theme_void()
+```
+
+<!-- 21 Nov 2026 (Claude): from deck 09-04, slide "Matching helps, partly" (redrawn in ggplot2); to review -->
+A common remedy is **matching**: for each patient, we recruit a control of the same age and with the same years of education (@fig-matching). Matching helps, but only partly. The matched groups are now alike on age and education, but they can still differ on everything we did not match on, such as motivation, sleep, or medication, and on everything we never measured. This is the key difference from random assignment, which balances unmeasured characteristics too.
+
+```{r}
+#| label: fig-matching
+#| echo: false
+#| fig-cap: "Matching. Each patient is paired with a control of the same age and years of education. The pairs are alike on what we matched on, not on what we did not."
+#| fig-width: 6.5
+#| fig-height: 2.4
+#| out-width: 85%
+pairs <- tibble(
+  y = c(0.8, 0, -0.8),
+  label = c("62 years, 13 years of education",
+            "48 years, 8 years of education",
+            "71 years, 18 years of education")
+)
+ggplot(pairs) +
+  geom_segment(aes(x = 1.75, xend = 3.25, y = y, yend = y),
+               colour = "grey50", linewidth = 0.5,
+               arrow = arrow(length = unit(0.14, "cm"), type = "closed", ends = "both")) +
+  geom_label(aes(0, y, label = label), fill = navy, colour = "white",
+             size = 3.2, label.r = unit(0.2, "lines")) +
+  geom_label(aes(5, y, label = label), fill = "grey95", colour = "black",
+             size = 3.2, label.r = unit(0.2, "lines")) +
+  annotate("text", x = c(0, 5), y = 1.5, label = c("patients", "controls"),
+           fontface = "bold", size = 4) +
+  coord_cartesian(xlim = c(-1.9, 6.9), ylim = c(-1.2, 1.8)) +
+  theme_void()
+```
 
 ### A visual example: association can be misleading
 
@@ -272,7 +495,56 @@ Two concepts that sound very similar solve two different problems: **random assi
 
 Random assignment concerns what happens after participants enter a study. Participants are allocated to experimental conditions using a random mechanism. Suppose we recruit 100 participants and randomly assign 50 to a high-notification condition and 50 to a low-notification condition. Individual differences will still exist. Some people will be better at the attention task. Some will have slept badly. Some may be heavy smartphone users. But because allocation is random, these characteristics should not systematically favour one condition over the other, especially as sample size increases.
 
-Randomisation is therefore a key tool for **internal validity**: it helps support the claim that differences between conditions were produced by the manipulation rather than by pre-existing group differences. Randomisation does not guarantee that two finite groups will be identical. Chance imbalances can still occur. Its strength is that the assignment mechanism itself does not systematically create them.
+<!-- 21 Nov 2026 (Claude): moved from behav/randomised-trials.qmd ("Why randomise?"); from deck 09-02, slide "Why randomise?" (same simulation, seed 9); to review -->
+To see why, suppose we want to know whether a stress-management app reduces stress. The simplest study would compare people who chose to use the app with people who did not. The problem is that the people who choose an app differ from those who do not: they may be more motivated to reduce their stress, and motivated people may do many other things that reduce stress too. If the app users end the study less stressed, we cannot tell whether this is the app or the motivation.
+
+We can see the problem with a small simulation. We give 40 simulated people a level of motivation between 0 and 1, which in a real study we would not measure. In the first scheme, people choose whether to use the app, and the more motivated they are, the more likely they are to choose it. In the second, a coin decides: we shuffle 20 "app" and 20 "no app" labels and hand them out.
+
+```{r why-randomise-data}
+set.seed(9)
+n <- 40
+motivation <- runif(n)
+# people choose: the probability of using the app grows with motivation
+chose <- rbinom(n, 1, plogis(-3 + 6 * motivation))
+# random assignment: 20 of each, in random order
+random <- sample(rep(0:1, each = n / 2))
+
+rand_d <- bind_rows(
+  tibble(scheme = "people chose the app", app = chose, motivation),
+  tibble(scheme = "assigned at random", app = random, motivation)) |>
+  mutate(app = factor(app, levels = 0:1, labels = c("no app", "app")),
+         scheme = fct_inorder(scheme))
+
+rand_d |>
+  group_by(scheme, app) |>
+  summarise(n = n(), mean_motivation = mean(motivation))
+```
+
+When people choose, the app group is much more motivated than the no-app group, by about 0.4, and the difference is built into the way the groups were formed: repeat the study and it will be there again. When a coin decides, the groups still differ, by about 0.15, but in the other direction, and only by chance: repeat the randomisation and the difference will change size and sign, averaging zero over many repetitions (@fig-why-randomise).
+
+```{r}
+#| label: fig-why-randomise
+#| echo: false
+#| fig-cap: "The same 40 simulated people, split into an app group and a no-app group in two ways. Each point is a person, and darker points are more motivated; the horizontal bars are the group means. When people choose, the motivated ones end up in the app group. When the groups are assigned at random, the difference that remains is due to chance alone, and motivation is balanced on average, even though it was never measured."
+#| fig-width: 7
+#| fig-height: 3.2
+ggplot(rand_d, aes(app, motivation, colour = motivation)) +
+  geom_jitter(width = 0.15, height = 0, size = 2.4) +
+  stat_summary(fun = mean, geom = "crossbar", width = 0.5,
+               colour = "grey30", linewidth = 0.4) +
+  facet_wrap(~scheme) +
+  scale_colour_gradient(low = "grey85", high = navy, guide = "none") +
+  labs(x = NULL, y = "motivation (not measured)") +
+  theme_minimal() +
+  theme(panel.grid.minor = element_blank(),
+        strip.text = element_text(face = "bold", size = 11),
+        axis.text.y = element_blank())
+```
+
+This is the key point of randomisation: it balances not only the variables we measured but also the ones we did not, such as motivation, sleep, or the number of exams that month. Because chance decides who gets the app, no characteristic of the participants can systematically push them into one group. Any remaining difference between the groups at the end of the study is either the effect of the app or chance, and chance is exactly what the statistical methods of the *Basic Statistics* part are designed to quantify.
+
+<!-- 21 Nov 2026 (Claude): paragraph merged with the "Two caveats" paragraph of behav/randomised-trials.qmd; to review -->
+Randomisation is therefore a key tool for **internal validity**: it helps support the claim that differences between conditions were produced by the manipulation rather than by pre-existing group differences. It has two limits. First, it balances the groups *on average*: it does not guarantee that two finite groups will be identical, and in a single small study they can still differ by chance, as they do in our simulation (run it again with other seeds to see the difference change). Its strength is that the assignment mechanism itself does not systematically create imbalances. Larger samples make large chance imbalances less likely, and blocked or stratified randomisation can balance a few important variables by design (see *Matching, blocking, and stratification* below). Second, randomisation only protects the comparison between the groups; it says nothing about whether the result applies to people unlike those in the study, which is the question of random sampling.
 
 ### Random sampling
 
@@ -282,11 +554,46 @@ A study can have strong internal validity and limited generalisability. Converse
 
 ### Matching, blocking, and stratification
 
-Sometimes researchers know in advance that a characteristic is especially important. Suppose habitual smartphone use strongly predicts susceptibility to notifications. A completely unrestricted random allocation could, by chance, place more heavy users in one condition. A **blocked** or **stratified randomisation** procedure could first group participants according to habitual smartphone use and then randomise within those groups. **Matching** uses a related idea by pairing or grouping participants who are similar on selected characteristics. These methods do not replace randomisation, but can improve balance on variables judged important before the experiment begins.
+Sometimes researchers know in advance that a characteristic is especially important. Suppose habitual smartphone use strongly predicts susceptibility to notifications. A completely unrestricted random allocation could, by chance, place more heavy users in one condition. A **blocked** or **stratified randomisation** procedure could first group participants according to habitual smartphone use and then randomise within those groups. **Matching** uses a related idea by pairing or grouping participants who are similar on selected characteristics. These methods do not replace randomisation, but can improve balance on variables judged important before the experiment begins. <!-- 21 Nov 2026 (Claude): sentence added; to review --> Matching is also used when groups cannot be randomised at all, as with patients and controls (@fig-matching); there it balances only the characteristics we matched on.
 
 ## Between-subjects designs
 
 In a **between-subjects design**, different participants take part in different experimental conditions. Suppose we recruit 120 participants for an attention experiment. Sixty receive frequent notifications while completing a sustained-attention task, and sixty complete exactly the same task without notifications. Each participant experiences only one condition, and the conditions are compared with tests for independent groups (@sec-two-groups).
+
+<!-- 21 Nov 2026 (Claude): from deck 09-03, slide "Two ways to compare" (redrawn in ggplot2); to review -->
+@fig-between-within contrasts this design with the alternative discussed in the next section. In a between-subjects design (left), the people in condition A and the people in condition B are different people, so the comparison between conditions is also a comparison between people. In a within-subjects design (right), the same people appear in both conditions, and each line joins the two measurements of one person.
+
+```{r}
+#| label: fig-between-within
+#| echo: false
+#| fig-cap: "Two ways to compare conditions A and B. Left: in a between-subjects design, different people (1-4 and 5-8) take part in each condition. Right: in a within-subjects design, the same people (1-4) take part in both conditions; each line joins the two measurements of one person."
+#| fig-width: 6.5
+#| fig-height: 3.2
+#| out-width: 85%
+bw <- bind_rows(
+  tibble(x = 0.8, y = 4:1, id = 1:4),
+  tibble(x = 3.2, y = 4:1, id = 5:8),
+  tibble(x = 6.4, y = 4:1, id = 1:4),
+  tibble(x = 8.8, y = 4:1, id = 1:4)
+)
+ggplot(bw, aes(x, y)) +
+  geom_segment(data = tibble(y = 4:1), aes(x = 6.4, xend = 8.8, y = y, yend = y),
+               colour = "grey55", linewidth = 0.6) +
+  geom_point(aes(fill = id > 4), shape = 21, size = 8, stroke = 0.8,
+             show.legend = FALSE) +
+  geom_text(aes(label = id), size = 3.4) +
+  scale_fill_manual(values = c(`FALSE` = "grey92", `TRUE` = "#B3B8C3")) +
+  annotate("text", x = c(0.8, 3.2, 6.4, 8.8), y = 4.8,
+           label = c("A", "B", "A", "B"), fontface = "bold", size = 4) +
+  annotate("text", x = c(2, 7.6), y = 5.5,
+           label = c("Between-subjects", "Within-subjects"),
+           fontface = "bold", size = 4.4, colour = c("black", navy)) +
+  annotate("text", x = c(2, 7.6), y = 0.25,
+           label = c("different people in A and B", "the same people in A and B"),
+           size = 3.4, colour = "grey35", fontface = "italic") +
+  coord_cartesian(xlim = c(-0.2, 9.8), ylim = c(0, 5.8)) +
+  theme_void()
+```
 
 ### Advantages
 
@@ -298,7 +605,7 @@ The main cost is **inter-individual variability**. People differ in baseline cog
 
 ## Within-subjects designs
 
-In a **within-subjects design**, the same participants are observed in more than one condition. Instead of assigning different groups to notification and no-notification conditions, every participant might complete the attention task twice: once with frequent notifications and once without them. Each participant now acts, to some extent, as their own control.
+In a **within-subjects design**, the same participants are observed in more than one condition. Instead of assigning different groups to notification and no-notification conditions, every participant might complete the attention task twice: once with frequent notifications and once without them. Each participant now acts, to some extent, as their own control (the right half of @fig-between-within).
 
 ### Why within-subjects designs can be efficient
 
@@ -349,6 +656,38 @@ ggplot(paired_data,
 
 Notice how participants differ substantially in their absolute reaction times, but many show a change in the same direction. A paired design can focus directly on these within-person differences. <!-- added by Claude, 17 Nov 2026; to review --> The design also determines the analysis: two conditions measured on the same participants are compared with paired tests, not with tests for independent groups (see *Paired designs* in @sec-two-groups), and the effect size and the power of paired designs are computed differently (@sec-effect-size, @sec-power).
 
+<!-- 21 Nov 2026 (Claude): from deck 09-03, slide "Within designs need fewer people" (same computation, base R power.t.test()); to review -->
+```{r within-n-data}
+#| echo: false
+n_between <- 2 * ceiling(power.t.test(delta = 0.5, sd = 1, power = 0.8)$n)
+n_within <- tibble(r = c(0, 0.3, 0.5, 0.7, 0.8)) |>
+  mutate(n = map_dbl(r, \(r) ceiling(power.t.test(delta = 0.5 / sqrt(2 * (1 - r)),
+                                                  sd = 1, power = 0.8,
+                                                  type = "paired")$n)),
+         design = paste0("within, r = ", r))
+```
+
+The gain in efficiency can be large. @fig-within-n shows how many participants are needed to detect a medium effect (d = 0.5) with 80% power. A between-subjects design needs `r n_between` participants, half in each group. A within-subjects design needs fewer, and how many fewer depends on the correlation r between the two measurements of the same person: `r n_within$n[n_within$r == 0]` participants when r = 0, `r n_within$n[n_within$r == 0.5]` when r = 0.5, and only `r n_within$n[n_within$r == 0.8]` when r = 0.8. Even with r = 0 the within design needs about half the people, because each person contributes two measurements; the rest of the gain comes from the stable differences between people, which drop out of the comparison. How the correlation enters the calculation is shown in *Paired designs* in @sec-power.
+
+```{r}
+#| label: fig-within-n
+#| echo: false
+#| fig-cap: "Participants needed to detect an effect of d = 0.5 with 80% power (alpha = 0.05, two-sided), in a between-subjects design and in within-subjects designs with increasing correlation r between a person's two measurements."
+#| fig-width: 6.5
+#| fig-height: 3
+#| out-width: 85%
+need <- bind_rows(tibble(design = "between", n = n_between), n_within) |>
+  mutate(design = fct_rev(fct_inorder(design)))
+ggplot(need, aes(n, design)) +
+  geom_col(aes(fill = design == "between"), width = 0.6, show.legend = FALSE) +
+  scale_fill_manual(values = c(`TRUE` = "grey60", `FALSE` = navy)) +
+  geom_text(aes(label = n), hjust = -0.2, size = 3.6) +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.1))) +
+  labs(x = "Participants needed (d = 0.5, power 80%)", y = NULL) +
+  theme_minimal() +
+  theme(panel.grid.minor = element_blank(), panel.grid.major.y = element_blank())
+```
+
 ### Order effects
 
 The same feature that makes within-subjects designs efficient also creates problems: participants experience more than one condition. They may improve through **practice**. They may become tired or bored. Exposure to one condition may alter their response to a later condition. This is known as a **carryover effect**. Participants may also become more aware of the research question after experiencing multiple conditions, increasing **demand characteristics**. Imagine an EMA study in which people complete one week with normal smartphone use and one week with notification restrictions. Experiences during the first week may change how they use their phone during the second. The two periods are not necessarily independent episodes.
@@ -356,6 +695,47 @@ The same feature that makes within-subjects designs efficient also creates probl
 ### Counterbalancing
 
 A common strategy is **counterbalancing**. With two conditions, half the participants can complete A followed by B, while the other half completes B followed by A. If practice improves performance in the second session, both experimental conditions now occur in the second position for some participants. Experimental condition is no longer perfectly confounded with order. With more conditions, complete counterbalancing may become impractical because the number of possible orders grows rapidly. A **Latin square** can distribute conditions across ordinal positions using only a subset of possible sequences.
+
+<!-- 21 Nov 2026 (Claude): from deck 09-03, slides "Order effects" and "Counterbalancing" (same simulation, seed 5); to review -->
+```{r order-effects-data}
+#| echo: false
+set.seed(5)
+order_d <- expand_grid(id = 1:40, session = 1:2) |>
+  mutate(order = if_else(id <= 20, "A then B", "B then A"),
+         condition = case_when(order == "A then B" ~ c("A", "B")[session],
+                               TRUE ~ c("B", "A")[session]),
+         score = 70 + 6 * (session == 2) + rnorm(n(), 0, 4))
+order_means <- order_d |>
+  group_by(order, session, condition) |>
+  summarise(score = mean(score), .groups = "drop")
+m <- function(d) round(mean(d$score), 1)
+session_gain <- m(filter(order_d, session == 2)) - m(filter(order_d, session == 1))
+ab_one_order <- m(filter(order_d, order == "A then B", condition == "B")) -
+  m(filter(order_d, order == "A then B", condition == "A"))
+ab_both <- m(filter(order_d, condition == "B")) - m(filter(order_d, condition == "A"))
+```
+
+@fig-order-effects shows why this works, with simulated data. Forty participants complete a task under two conditions, A and B, which are in fact equally good: the simulation gives them the same true score. But everybody scores about 6 points higher in the second session, because of practice. Half the participants do A first, the other half B first. In the observed data, the second session is better by `r session_gain` points. If we had run only the order A then B, condition B would look `r ab_one_order` points better than A, an effect produced entirely by its position. With both orders, each condition is in the second position for half the participants, and averaging over everyone, the difference between the two conditions shrinks to `r abs(ab_both)` points, which is just noise. The practice effect is still there, in both orders: counterbalancing has balanced it across the conditions, not removed it.
+
+```{r}
+#| label: fig-order-effects
+#| echo: false
+#| fig-cap: "Order effects and counterbalancing (simulated data). Conditions A and B are equally good, but every participant scores higher in the second session. Half the participants do A then B, the other half B then A, so each condition benefits from the second session equally often."
+#| fig-width: 5.5
+#| fig-height: 3.4
+#| out-width: 70%
+ggplot(order_means, aes(session + if_else(order == "A then B", -0.03, 0.03), score,
+                        colour = order, group = order)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 7, colour = "white") +
+  geom_text(aes(label = condition), size = 4.2, fontface = "bold", show.legend = FALSE) +
+  scale_x_continuous(breaks = 1:2, labels = c("Session 1", "Session 2"),
+                     expand = expansion(add = 0.3)) +
+  scale_colour_manual(values = c(`A then B` = navy, `B then A` = "grey55")) +
+  labs(x = NULL, y = "Mean score", colour = "Order") +
+  theme_minimal() +
+  theme(panel.grid.minor = element_blank())
+```
 
 Counterbalancing does not make order effects disappear. Instead, it aims to prevent those effects from systematically favouring one condition. Other solutions may also be useful: increasing the delay between conditions, including washout periods, using parallel task versions, modelling order statistically, or choosing a between-subjects design when carryover would be too strong.
 
@@ -440,7 +820,36 @@ Interactions are important because they prevent us from reducing a result to a s
 
 ### Mixed designs
 
-A **mixed design** combines between-subjects and within-subjects factors. Suppose we compare habitual users and non-users of smartwatches. User group is a between-subjects factor because each person belongs to one group. Every participant then completes a cognitive task with and without real-time physiological feedback from the watch. Feedback condition is a within-subjects factor. A mixed design allows us to examine whether the within-person effect of feedback differs between the two groups. <!-- added by Claude, 17 Nov 2026; to review --> Note that the feedback condition is manipulated, but user group is not: participants arrive already being users or non-users, so a difference between the groups is a comparison of pre-existing groups, with all the alternative explanations that this implies.
+A **mixed design** combines between-subjects and within-subjects factors. Suppose we compare habitual users and non-users of smartwatches. User group is a between-subjects factor because each person belongs to one group. Every participant then completes a cognitive task with and without real-time physiological feedback from the watch. Feedback condition is a within-subjects factor. A mixed design allows us to examine whether the within-person effect of feedback differs between the two groups (@fig-mixed).
+
+<!-- 21 Nov 2026 (Claude): from deck 09-03, slide "Mixed designs" (redrawn in ggplot2); to review -->
+```{r}
+#| label: fig-mixed
+#| echo: false
+#| fig-cap: "A 2 × 2 mixed design. Feedback (on or off) is a within-subjects factor: every participant does the task in both conditions, and the researcher decides which. User group is a between-subjects factor: each participant belongs to one group, and nobody assigned it."
+#| fig-width: 6.5
+#| fig-height: 2.4
+#| out-width: 85%
+cells <- expand_grid(group = c("users", "non-users"), feedback = c("on", "off")) |>
+  mutate(x = if_else(feedback == "on", 0, 2.6),
+         y = if_else(group == "users", 0, -1),
+         label = paste0(group, ", feedback ", feedback))
+ggplot(cells, aes(x, y)) +
+  geom_tile(width = 2.6, height = 1, fill = "grey95", colour = "black", linewidth = 0.6) +
+  geom_text(aes(label = label), size = 3.5) +
+  annotate("text", x = 1.3, y = 0.95, label = "feedback: within-subjects",
+           fontface = "bold", colour = navy, size = 3.8) +
+  annotate("text", x = 1.3, y = 0.7, label = "manipulated",
+           colour = navy, size = 3.3, fontface = "italic") +
+  annotate("text", x = -1.45, y = -0.38, label = "user group: between-subjects",
+           fontface = "bold", hjust = 1, size = 3.8) +
+  annotate("text", x = -1.45, y = -0.66, label = "not manipulated",
+           hjust = 1, colour = "grey40", size = 3.3, fontface = "italic") +
+  coord_cartesian(xlim = c(-5.2, 4.1), ylim = c(-1.6, 1.15)) +
+  theme_void()
+```
+
+<!-- added by Claude, 17 Nov 2026; to review --> Note that the feedback condition is manipulated, but user group is not: participants arrive already being users or non-users, so a difference between the groups is a comparison of pre-existing groups, with all the alternative explanations that this implies.
 
 Mixed designs are common in behavioural science because they reflect the structure of many substantive questions: people belong to different groups, but are also measured repeatedly across tasks, sessions, or conditions. Their analysis combines the between-subjects and repeated-measures ANOVA of @sec-anova.
 

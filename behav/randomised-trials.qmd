@@ -7,7 +7,7 @@ _Written for this book by Giorgio Arcara, with an AI assistant (Claude). This ch
 This chapter is a **draft**, written with an AI assistant (Claude) on 21 November 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
 :::
 
-<!-- 21 Nov 2026 (Claude): new chapter, at the instructor's request. Built on the Week 9 deck 09-02-Experiments-and-RCTs (behds-course-slides/Week09/), whose figures are redrawn here in ggplot2 (the slides use TikZ); the "Why randomise?" simulation and the pre-post numbers are the slides' own. It expands the short subsection "Randomised controlled trials and A/B tests" of behav/experimental-designs.qmd, which now points here. The image in fig-two-apps is the AI-generated illustration Figures/week06-two-apps-comparison.png of the slides repo. To review. -->
+<!-- 21 Nov 2026 (Claude): new chapter, at the instructor's request. Built on the Week 9 deck 09-02-Experiments-and-RCTs (behds-course-slides/Week09/), whose figures are redrawn here in ggplot2 (the slides use TikZ); the "Why randomise?" simulation and the pre-post numbers are the slides' own. On 21 Nov 2026, fig-experiment and fig-why-randomise moved to behav/experimental-designs.qmd, and a short recap replaces them here. It expands the short subsection "Randomised controlled trials and A/B tests" of behav/experimental-designs.qmd, which now points here. The image in fig-two-apps is the AI-generated illustration Figures/week06-two-apps-comparison.png of the slides repo. To review. -->
 
 ```{r, message=FALSE, warning=FALSE}
 #| cache: false
@@ -39,95 +39,14 @@ draw_flow <- function(nodes, edges, notes = NULL, xlim, ylim) {
 
 In @sec-association-causality we saw that an association between two variables, such as notifications and stress, does not tell us whether one causes the other. Workload, or some variable nobody measured, could produce both. We also saw that a causal claim needs three things: the cause and the outcome covary, the cause comes first, and the alternative explanations have been ruled out. Experiments are the design that deals most directly with the third requirement.
 
-This chapter is about one family of experiments that you will meet constantly in behavioural research and in technology: the **randomised controlled trial** (RCT). An RCT is an experiment that tests an *intervention*, such as a therapy, a training programme, or an app, by randomly assigning people to receive it or to receive something else, and comparing what happens to the two groups. It is the design behind the question "does it work?", whether "it" is a new drug, a mindfulness app, or a new version of a screen. We first look at what makes an experiment and why randomisation matters, then at how a trial is built, and finally at the problems that are common in trials: the comparison with the baseline, dropout, and the novelty effect. The industry version of the RCT, the A/B test, closes the chapter.
+This chapter is about one family of experiments that you will meet constantly in behavioural research and in technology: the **randomised controlled trial** (RCT). An RCT is an experiment that tests an *intervention*, such as a therapy, a training programme, or an app, by randomly assigning people to receive it or to receive something else, and comparing what happens to the two groups. It is the design behind the question "does it work?", whether "it" is a new drug, a mindfulness app, or a new version of a screen. We briefly recall what makes an experiment and why randomisation matters (both are discussed in @sec-experimental-designs), then look at how a trial is built, and finally at the problems that are common in trials: the comparison with the baseline, dropout, and the novelty effect. The industry version of the RCT, the A/B test, closes the chapter.
 
-## What makes an experiment
+## Experiments and randomisation, in brief
 
-Two features turn a study into an experiment (@fig-experiment). First, the researcher **manipulates** something: they decide who uses the app and who does not, instead of observing who happens to use it. Second, **chance decides** who gets what. This second feature is called *random assignment* (see *Random assignment* in @sec-experimental-designs), and it is what makes the comparison between conditions fair.
+<!-- 21 Nov 2026 (Claude): the sections "What makes an experiment" and "Why randomise?", with fig-experiment and fig-why-randomise, moved to behav/experimental-designs.qmd at the instructor's request; this recap replaces them. To review. -->
+Two features turn a study into an experiment (@fig-experiment): the researcher **manipulates** something, deciding who uses the app and who does not, and **chance decides** who gets what. The manipulation guarantees that the cause comes before the outcome. Random assignment deals with the alternative explanations: because a coin, not the participants, decides who gets the app, no characteristic of the participants can systematically push them into one group. Randomisation balances the groups on average, on the variables we measured and on those we did not, such as motivation (@fig-why-randomise). Any remaining difference at the end of a trial is therefore either the effect of the intervention or chance, and chance is what the statistical methods of the *Basic Statistics* part quantify.
 
-```{r}
-#| label: fig-experiment
-#| echo: false
-#| fig-cap: "The structure of an experiment. Participants are assigned at random to one of two conditions that the researcher manipulates, and the outcome is compared between the conditions."
-#| fig-width: 7
-#| fig-height: 2.6
-#| out-width: 95%
-nodes <- tribble(
-  ~x, ~y, ~label, ~key,
-  0, 0, "participants", "no",
-  3, 0, "random\nassignment", "yes",
-  6, 0.9, "condition A", "no",
-  6, -0.9, "condition B", "no",
-  9, 0, "outcome", "no"
-)
-edges <- tribble(
-  ~x, ~y, ~xend, ~yend,
-  0.85, 0, 2.15, 0,
-  3.85, 0.2, 5.05, 0.8,
-  3.85, -0.2, 5.05, -0.8,
-  6.95, 0.8, 8.3, 0.2,
-  6.95, -0.8, 8.3, -0.2
-)
-notes <- tribble(
-  ~x, ~y, ~label,
-  6, 1.7, "the researcher manipulates",
-  3, -1.05, "chance decides\nwho gets what"
-)
-draw_flow(nodes, edges, notes, xlim = c(-0.6, 9.6), ylim = c(-1.5, 2))
-```
-
-The manipulation guarantees that the cause comes before the outcome. Random assignment deals with the alternative explanations, and it deserves a closer look.
-
-## Why randomise?
-
-Suppose we want to know whether a stress-management app reduces stress. The simplest study would compare people who chose to use the app with people who did not. The problem is that the people who choose an app differ from those who do not: they may be more motivated to reduce their stress, and motivated people may do many other things that reduce stress too. If the app users end the study less stressed, we cannot tell whether this is the app or the motivation.
-
-We can see the problem with a small simulation. We give 40 simulated people a level of motivation between 0 and 1, which in a real study we would not measure. In the first scheme, people choose whether to use the app, and the more motivated they are, the more likely they are to choose it. In the second, a coin decides: we shuffle 20 "app" and 20 "no app" labels and hand them out.
-
-```{r why-randomise-data}
-set.seed(9)
-n <- 40
-motivation <- runif(n)
-# people choose: the probability of using the app grows with motivation
-chose <- rbinom(n, 1, plogis(-3 + 6 * motivation))
-# random assignment: 20 of each, in random order
-random <- sample(rep(0:1, each = n / 2))
-
-rand_d <- bind_rows(
-  tibble(scheme = "people chose the app", app = chose, motivation),
-  tibble(scheme = "assigned at random", app = random, motivation)) |>
-  mutate(app = factor(app, levels = 0:1, labels = c("no app", "app")),
-         scheme = fct_inorder(scheme))
-
-rand_d |>
-  group_by(scheme, app) |>
-  summarise(n = n(), mean_motivation = mean(motivation))
-```
-
-When people choose, the app group is much more motivated than the no-app group, by about 0.4, and the difference is built into the way the groups were formed: repeat the study and it will be there again. When a coin decides, the groups still differ, by about 0.15, but in the other direction, and only by chance: repeat the randomisation and the difference will change size and sign, averaging zero over many repetitions (@fig-why-randomise).
-
-```{r}
-#| label: fig-why-randomise
-#| echo: false
-#| fig-cap: "The same 40 simulated people, split into an app group and a no-app group in two ways. Each point is a person, and darker points are more motivated; the horizontal bars are the group means. When people choose, the motivated ones end up in the app group. When the groups are assigned at random, the difference that remains is due to chance alone, and motivation is balanced on average, even though it was never measured."
-#| fig-width: 7
-#| fig-height: 3.2
-ggplot(rand_d, aes(app, motivation, colour = motivation)) +
-  geom_jitter(width = 0.15, height = 0, size = 2.4) +
-  stat_summary(fun = mean, geom = "crossbar", width = 0.5,
-               colour = "grey30", linewidth = 0.4) +
-  facet_wrap(~scheme) +
-  scale_colour_gradient(low = "grey85", high = navy, guide = "none") +
-  labs(x = NULL, y = "motivation (not measured)") +
-  theme_minimal() +
-  theme(panel.grid.minor = element_blank(),
-        strip.text = element_text(face = "bold", size = 11),
-        axis.text.y = element_blank())
-```
-
-This is the key point of randomisation: it balances not only the variables we measured but also the ones we did not, such as motivation, sleep, or the number of exams that month. Because chance decides who gets the app, no characteristic of the participants can systematically push them into one group. Any remaining difference between the groups at the end of the study is either the effect of the app or chance, and chance is exactly what the statistical methods of the following chapters are designed to quantify.
-
-Two caveats. Randomisation balances the groups *on average*: in a single small study, the two groups can still differ by chance, as they do in our simulation (run it again with other seeds to see the difference change). Larger samples make large chance imbalances less likely, and blocked or stratified randomisation can balance a few important variables by design (see *Matching, blocking, and stratification* in @sec-experimental-designs). And randomisation only protects the comparison between the groups; it says nothing about whether the result applies to people unlike those in the study (see *Random sampling* in @sec-experimental-designs).
+Randomisation has two limits. In a single small trial the groups can still differ by chance, and randomisation only protects the comparison between the groups, not the generalisation to people unlike those in the trial. *Random assignment* and *Random sampling* in @sec-experimental-designs explain both points, with the simulation behind @fig-why-randomise.
 
 ## What do we compare with?
 
@@ -299,7 +218,7 @@ A trial does not solve every problem. It tells us what the intervention did, on 
 
 1\. A university offers a free mindfulness app to its students. At the end of the year, the students who used it report less stress than those who did not. Give two explanations of this difference other than an effect of the app. How would you design a study that rules them out?
 
-2\. Re-run the simulation of *Why randomise?* with five different seeds, and each time compute the difference in mean motivation between the app and the no-app group under random assignment. How large can the difference get? Now set `n <- 400` and repeat. What changes, and why?
+2\. Re-run the simulation of *Random assignment* in @sec-experimental-designs (the one behind @fig-why-randomise) with five different seeds, and each time compute the difference in mean motivation between the app and the no-app group under random assignment. How large can the difference get? Now set `n <- 400` and repeat. What changes, and why?
 
 3\. A trial compares a stress-management app with a passive control and finds that the app group improves more. A colleague says the trial shows that the app's exercises reduce stress. What else could explain the result? Which control condition would make the conclusion more specific?
 
