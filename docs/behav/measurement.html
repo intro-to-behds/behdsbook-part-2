@@ -555,9 +555,6 @@ Definitions
 <p>The second is that a great many variables that we do not care about can change the relationship between indicator and construct. Motivation, mood, fatigue, time pressure, the device being used, how clearly the instructions were phrased, all of these can move the indicator without moving the construct at all.</p>
 <p><a href="#fig-construct-score" class="quarto-xref">Figure&nbsp;<span>1.1</span></a> draws the basic situation, and <a href="#fig-other-variables" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> adds the complication.</p>
 <div class="cell" data-layout-align="center">
-<pre><code>#&gt; Warning in geom_curve(aes(x = 1, xend = 6.4, y = h + 0.05, yend = h + 0.05), : All aesthetics have length 1, but the data has 3 rows.
-#&gt; ℹ Please consider using `annotate()` or provide this layer with data
-#&gt;   containing a single row.</code></pre>
 <div class="cell-output-display">
 <div id="fig-construct-score" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -572,9 +569,6 @@ Figure&nbsp;1.1: The relationship between a construct, an observable behaviour, 
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<pre><code>#&gt; Warning in geom_curve(aes(x = 1, xend = 6.4, y = h + 0.05, yend = h + 0.05), : All aesthetics have length 1, but the data has 3 rows.
-#&gt; ℹ Please consider using `annotate()` or provide this layer with data
-#&gt;   containing a single row.</code></pre>
 <div class="cell-output-display">
 <div id="fig-other-variables" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -768,16 +762,16 @@ Other measurement models exist
 <h3 class="anchored" data-anchor-id="what-the-assumption-actually-costs">What the assumption actually costs</h3>
 <p>Start with some realistic data. <code>daily_mood_ratings</code> records daily mood on a 1–7 scale.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(daily_mood_ratings, <span class="at">useNA =</span> <span class="st">"always"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; daily_mood_ratings</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1    2    3    4    5    6    7 &lt;NA&gt; </span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  266  270  175   98   33   11    2  145</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(daily_mood_ratings, <span class="at">useNA =</span> <span class="st">"always"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; daily_mood_ratings</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1    2    3    4    5    6    7 &lt;NA&gt; </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  266  270  175   98   33   11    2  145</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(daily_mood_ratings, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.3</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(daily_mood_ratings, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(daily_mood_ratings, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.3</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(daily_mood_ratings, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The mean is about 2.3. Now ask what that number denotes. It is not a response anybody could have given — there is no such thing as a mood of 2.3 on this scale. It is the “centre of gravity” of a set of category labels, and it only means something if the gaps between those labels are equal, which is exactly what we have no evidence for. The median, 2, makes a weaker claim and needs a weaker assumption.</p>
 <p>(Notice also the 145 missing days. We will come back to those.)</p>
@@ -787,68 +781,68 @@ Other measurement models exist
 <h3 class="anchored" data-anchor-id="a-running-example">A running example</h3>
 <p>We will use a simulated 5-item app-satisfaction scale, administered to users of two versions of an interface. Simulation is the right tool here for one specific reason: it hands us the true score <span class="math inline">\(T\)</span>, which no real dataset ever will. Simulating data is a powerful way to learn, because we know the real underlying properties and we can check if the analyses are able to reconstruct them (with some caveats). The generating machinery is explained in <a href="simulating-measurement.html" class="quarto-xref"><span>Chapter 2</span></a>. <!-- 18 Nov 2026 (Claude): next sentence added because simulate_likert() is a latent-threshold model, not a pure CTT simulation. To review. --> One of those caveats matters here: the simulator adds error to each item’s <em>latent</em> response and only then converts it into a 1–5 answer, so <span class="math inline">\(X = T + E\)</span> holds before that conversion, and the recorded total follows CTT only approximately.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>satisfaction <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">200</span>,</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">group =</span> <span class="fu">c</span>(<span class="st">"standard"</span>, <span class="st">"redesigned"</span>),</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">seed =</span> <span class="dv">2026</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(satisfaction)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   respondent      group item_1 item_2 item_3 item_4 item_5 total</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       R001   standard      4      5      5      3      5    22</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       R002 redesigned      4      4      3      3      5    19</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       R003   standard      4      3      4      3      5    19</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       R004 redesigned      2      4      5      3      4    18</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       R005   standard      3      2      3      4      5    17</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       R006 redesigned      4      1      1      1      1     8</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   true_score</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1      0.521</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     -0.580</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3      0.139</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4      0.415</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5     -0.667</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6     -2.016</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>satisfaction <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">200</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">group =</span> <span class="fu">c</span>(<span class="st">"standard"</span>, <span class="st">"redesigned"</span>),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">seed =</span> <span class="dv">2026</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(satisfaction)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   respondent      group item_1 item_2 item_3 item_4 item_5 total</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       R001   standard      4      5      5      3      5    22</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       R002 redesigned      4      4      3      3      5    19</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       R003   standard      4      3      4      3      5    19</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       R004 redesigned      2      4      5      3      4    18</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       R005   standard      3      2      3      4      5    17</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       R006 redesigned      4      1      1      1      1     8</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   true_score</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1      0.521</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     -0.580</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3      0.139</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4      0.415</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5     -0.667</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6     -2.016</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Each row is a user: five item responses, their total, and — the main advantage of simulation — the true satisfaction that generated them.</p>
 <p>Now for the demonstration. Consider a <em>different</em> pair of groups, constructed so that the two groups have <strong>exactly the same average satisfaction</strong> and differ only in how spread out they are. Some populations are more homogeneous than others; that is not a difference in satisfaction.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ceiling_effect <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">300</span>,</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group =</span> <span class="fu">c</span>(<span class="st">"standard"</span>, <span class="st">"redesigned"</span>),</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group_effect =</span> <span class="dv">0</span>,     <span class="co"># same mean</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group_sd =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">2.5</span>), <span class="co"># different spread</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">seed =</span> <span class="dv">41</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The truth, which only simulation lets us check:</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(ceiling_effect<span class="sc">$</span>true_score, ceiling_effect<span class="sc">$</span>group, mean)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   standard redesigned </span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      0.110     -0.032</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ceiling_effect <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">300</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group =</span> <span class="fu">c</span>(<span class="st">"standard"</span>, <span class="st">"redesigned"</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group_effect =</span> <span class="dv">0</span>,     <span class="co"># same mean</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">group_sd =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">2.5</span>), <span class="co"># different spread</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">seed =</span> <span class="dv">41</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The truth, which only simulation lets us check:</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(ceiling_effect<span class="sc">$</span>true_score, ceiling_effect<span class="sc">$</span>group, mean)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   standard redesigned </span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      0.110     -0.032</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The two groups are, as designed, equally satisfied. Let us now analyse their scores the two ways.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Treating the total as an interval-scale measurement:</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(total <span class="sc">~</span> group, <span class="at">data =</span> ceiling_effect)<span class="sc">$</span>p.value</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.00417</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Treating it as ordinal:</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(total <span class="sc">~</span> group, <span class="at">data =</span> ceiling_effect)<span class="sc">$</span>p.value</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.445</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Treating the total as an interval-scale measurement:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(total <span class="sc">~</span> group, <span class="at">data =</span> ceiling_effect)<span class="sc">$</span>p.value</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.00417</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Treating it as ordinal:</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(total <span class="sc">~</span> group, <span class="at">data =</span> ceiling_effect)<span class="sc">$</span>p.value</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.445</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <span class="math inline">\(t\)</span>-test reports a difference, convincingly. The rank-based test does not.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> And we know, because we built the data, that <strong>there is no difference in satisfaction to find</strong>.</p>
 <p>What went wrong? The scale has a ceiling: most responses pile up at the top, which is what satisfaction scales actually do.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ceiling_effect<span class="sc">$</span>item_1)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1   2   3   4   5 </span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  45  37  29  44 145</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ceiling_effect<span class="sc">$</span>item_1)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1   2   3   4   5 </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  45  37  29  44 145</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With a ceiling, the wider group loses more of its distribution off the top of the scale than the narrower group does, and that asymmetry shows up as a difference in mean total. The arithmetic is not wrong — those group means really do differ. The <em>interpretation</em> is wrong: “the redesigned group is less satisfied” does not follow, and it happens not to be true.</p>
 <p>The clinching test is to change nothing except the response process. Keep the same people and the same true scores, but make the response categories evenly spaced, so the item behaves like an interval measure:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>even <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">300</span>, <span class="at">group =</span> <span class="fu">c</span>(<span class="st">"standard"</span>, <span class="st">"redesigned"</span>),</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">group_effect =</span> <span class="dv">0</span>, <span class="at">group_sd =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">2.5</span>),</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">equal_spacing =</span> <span class="cn">TRUE</span>, <span class="at">seed =</span> <span class="dv">41</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(total <span class="sc">~</span> group, <span class="at">data =</span> even)<span class="sc">$</span>p.value</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.502</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(total <span class="sc">~</span> group, <span class="at">data =</span> even)<span class="sc">$</span>p.value</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.615</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>even <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">300</span>, <span class="at">group =</span> <span class="fu">c</span>(<span class="st">"standard"</span>, <span class="st">"redesigned"</span>),</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">group_effect =</span> <span class="dv">0</span>, <span class="at">group_sd =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">2.5</span>),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">equal_spacing =</span> <span class="cn">TRUE</span>, <span class="at">seed =</span> <span class="dv">41</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(total <span class="sc">~</span> group, <span class="at">data =</span> even)<span class="sc">$</span>p.value</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.502</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(total <span class="sc">~</span> group, <span class="at">data =</span> even)<span class="sc">$</span>p.value</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.615</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Both tests now agree that there is nothing there. The data did not change. The people did not change. The construct did not change. Only the assumption about what the numbers mean did.</p>
 </section>
@@ -859,30 +853,30 @@ Other measurement models exist
 <p>Reaction time is genuinely ratio-scaled: it has a meaningful zero, the intervals are equal, and 400 ms really is twice 200 ms. On the scale question, RT is above reproach — which makes it a good illustration that a well-behaved scale does not hand you a well-behaved measure.</p>
 <p>Consider <code>reported_daily_screen_time</code>, self-reported hours of daily screen use:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reported_daily_screen_time)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    10.0    11.2    11.5    12.2    11.8   360.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reported_daily_screen_time)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    10.0    11.2    11.5    12.2    11.8   360.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>One value is 360 — somebody entered minutes into a field expecting hours. Watch what a single bad entry does:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(reported_daily_screen_time)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 12.2</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(reported_daily_screen_time)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(reported_daily_screen_time)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 12.2</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(reported_daily_screen_time)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>clean <span class="ot">&lt;-</span> reported_daily_screen_time[reported_daily_screen_time <span class="sc">&lt;</span> <span class="dv">50</span>]</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(clean)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11.5</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(clean)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>clean <span class="ot">&lt;-</span> reported_daily_screen_time[reported_daily_screen_time <span class="sc">&lt;</span> <span class="dv">50</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(clean)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11.5</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(clean)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The mean moves by about 0.7 hours because of one observation out of 500. The median barely notices. This is the standard reason to prefer the median for duration and latency measures, and it is a <em>measurement</em> decision, made before any model is fitted.</p>
 <p>Real reaction-time data adds a further complication: they are strongly <strong>right-skewed</strong>. There is a hard floor below which nobody can respond, most responses cluster a little above it, and a long tail of slow responses stretches out to the right. <code>reaction_times</code> in <code>behdslabs</code> contains the mean simple reaction time of 1050 participants, simulated to have exactly these properties:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(reaction_times, <span class="fu">c</span>(<span class="at">mean =</span> <span class="fu">mean</span>(rt_ms), <span class="at">median =</span> <span class="fu">median</span>(rt_ms)))</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   mean median </span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    319    303</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(reaction_times, <span class="fu">c</span>(<span class="at">mean =</span> <span class="fu">mean</span>(rt_ms), <span class="at">median =</span> <span class="fu">median</span>(rt_ms)))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   mean median </span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    319    303</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -1079,46 +1073,46 @@ Table&nbsp;1.3: Conventional interpretation of reliability coefficients. For dec
 <h3 class="anchored" data-anchor-id="computing-reliability">Computing reliability</h3>
 <p>None of these require a specialised package. Here is split-half on our running example:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>items <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(satisfaction[, <span class="fu">paste0</span>(<span class="st">"item_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)])</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>odd <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(items[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)])</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>even <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(items[, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)])</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>r_half <span class="ot">&lt;-</span> <span class="fu">cor</span>(odd, even)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>r_half</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.627</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>items <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(satisfaction[, <span class="fu">paste0</span>(<span class="st">"item_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)])</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>odd <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(items[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)])</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>even <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(items[, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)])</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>r_half <span class="ot">&lt;-</span> <span class="fu">cor</span>(odd, even)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>r_half</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.627</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Each half is shorter than the whole instrument, and shorter instruments are less reliable, so this <em>underestimates</em> the reliability of the full scale. The Spearman–Brown correction adjusts for that:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> r_half <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> r_half)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.771</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> r_half <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> r_half)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.771</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And Cronbach’s <span class="math inline">\(\alpha\)</span>, written out from its definition rather than called from a package, so you can see there is nothing mysterious in it — it compares the variance of the individual items to the variance of the total:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>cronbach_alpha <span class="ot">&lt;-</span> <span class="cf">function</span>(items) {</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="fu">ncol</span>(items)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  k <span class="sc">/</span> (k <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">apply</span>(items, <span class="dv">2</span>, var)) <span class="sc">/</span> <span class="fu">var</span>(<span class="fu">rowSums</span>(items)))</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cronbach_alpha</span>(items)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.798</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>cronbach_alpha <span class="ot">&lt;-</span> <span class="cf">function</span>(items) {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="fu">ncol</span>(items)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  k <span class="sc">/</span> (k <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">apply</span>(items, <span class="dv">2</span>, var)) <span class="sc">/</span> <span class="fu">var</span>(<span class="fu">rowSums</span>(items)))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cronbach_alpha</span>(items)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.798</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>About 0.8 — “adequate”, by <a href="#tbl-reliability" class="quarto-xref">Table&nbsp;<span>1.3</span></a>.</p>
 <p>Test–retest is where simulation earns its keep. We administer the scale a second time to the <em>same people</em>, with the <em>same true scores</em>, and fresh measurement error — which is what a retest means under CTT: the same <span class="math inline">\(T\)</span>, a fresh <span class="math inline">\(E\)</span>:<!-- 18 Nov 2026 (Claude): was "which is exactly what X = T + E says a retest is". To review. --></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>retest <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">200</span>, <span class="at">true_score =</span> satisfaction<span class="sc">$</span>true_score,</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> satisfaction<span class="sc">$</span>group, <span class="at">seed =</span> <span class="dv">99</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(satisfaction<span class="sc">$</span>total, retest<span class="sc">$</span>total)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.777</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>retest <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">200</span>, <span class="at">true_score =</span> satisfaction<span class="sc">$</span>true_score,</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> satisfaction<span class="sc">$</span>group, <span class="at">seed =</span> <span class="dv">99</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(satisfaction<span class="sc">$</span>total, retest<span class="sc">$</span>total)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.777</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now watch what happens when the instrument is noisier. Nothing about the people changes — only the size of <span class="math inline">\(E\)</span>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>t1_noisy <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">200</span>, <span class="at">error_sd =</span> <span class="dv">3</span>, <span class="at">seed =</span> <span class="dv">11</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>t2_noisy <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">200</span>, <span class="at">true_score =</span> t1_noisy<span class="sc">$</span>true_score,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">error_sd =</span> <span class="dv">3</span>, <span class="at">seed =</span> <span class="dv">12</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(t1_noisy<span class="sc">$</span>total, t2_noisy<span class="sc">$</span>total)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.249</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>t1_noisy <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">200</span>, <span class="at">error_sd =</span> <span class="dv">3</span>, <span class="at">seed =</span> <span class="dv">11</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>t2_noisy <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">200</span>, <span class="at">true_score =</span> t1_noisy<span class="sc">$</span>true_score,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">error_sd =</span> <span class="dv">3</span>, <span class="at">seed =</span> <span class="dv">12</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(t1_noisy<span class="sc">$</span>total, t2_noisy<span class="sc">$</span>total)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.249</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The same people, measured twice, barely agree with themselves. That is what a low-reliability instrument does, and it is why reliability matters even when you only ever administer something once: a single score from an instrument like this tells you very little about the person’s standing on the construct.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -1134,14 +1128,14 @@ Measurement invariance
 <p>A question that sits between validity and reliability: does the instrument measure <em>the same thing</em> in different groups? Not “do the groups score differently” — do the scores mean the same thing?</p>
 <p><code>ui_redesign_surveys</code> contains a real example. The same question was asked by unmoderated remote survey and in moderated lab sessions:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ui_redesign_surveys <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(method) <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_margin =</span> <span class="fu">mean</span>(margin), <span class="at">n =</span> <span class="fu">n</span>())</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 3</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   method mean_margin     n</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;        &lt;dbl&gt; &lt;int&gt;</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 remote    -0.00459    85</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 lab        0.07       42</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ui_redesign_surveys <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(method) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_margin =</span> <span class="fu">mean</span>(margin), <span class="at">n =</span> <span class="fu">n</span>())</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 3</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   method mean_margin     n</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;        &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 remote    -0.00459    85</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 lab        0.07       42</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The two methods give systematically different answers. Is that a genuine difference between the people who take part remotely and those who come to a lab? Or is it the same construct, measured differently — people being more reluctant to criticise a design to a researcher’s face? The data cannot settle it, and the question is called <strong>measurement invariance</strong>.</p>
 </div>
@@ -1154,16 +1148,16 @@ Measurement invariance
 <p>The effect is called <strong>attenuation</strong>: measurement error in a variable shrinks the correlations you can observe involving it. Spearman worked this out in 1904, in the paper that also gave the correction.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
 <p>Watch it happen. Here is how well the observed total tracks the true score, as the instrument gets noisier:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (e <span class="cf">in</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)) {</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">400</span>, <span class="at">error_sd =</span> e, <span class="at">seed =</span> <span class="dv">7</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"error_sd = %.1f   alpha = %.2f   cor(total, true) = %.2f</span><span class="sc">\n</span><span class="st">"</span>,</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>              e, <span class="fu">cronbach_alpha</span>(<span class="fu">as.matrix</span>(d[, <span class="fu">paste0</span>(<span class="st">"item_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)])),</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">cor</span>(d<span class="sc">$</span>total, d<span class="sc">$</span>true_score)))</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 0.5   alpha = 0.93   cor(total, true) = 0.92</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 1.0   alpha = 0.80   cor(total, true) = 0.86</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 2.0   alpha = 0.48   cor(total, true) = 0.70</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 3.0   alpha = 0.30   cor(total, true) = 0.55</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (e <span class="cf">in</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)) {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">400</span>, <span class="at">error_sd =</span> e, <span class="at">seed =</span> <span class="dv">7</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"error_sd = %.1f   alpha = %.2f   cor(total, true) = %.2f</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>              e, <span class="fu">cronbach_alpha</span>(<span class="fu">as.matrix</span>(d[, <span class="fu">paste0</span>(<span class="st">"item_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)])),</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">cor</span>(d<span class="sc">$</span>total, d<span class="sc">$</span>true_score)))</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 0.5   alpha = 0.93   cor(total, true) = 0.92</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 1.0   alpha = 0.80   cor(total, true) = 0.86</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 2.0   alpha = 0.48   cor(total, true) = 0.70</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; error_sd = 3.0   alpha = 0.30   cor(total, true) = 0.55</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The construct is identical in all four rows. The people are identical. Only the quality of the instrument changes, and the relationship you could detect falls from 0.92 to 0.55. <!-- 18 Nov 2026 (Claude): next sentence added. To review. --> Under pure CTT, the correlation between observed and true score would be exactly <span class="math inline">\(\sqrt{\text{reliability}}\)</span>. Here it comes out a little lower than <span class="math inline">\(\sqrt{\alpha}\)</span>, because turning latent responses into 1–5 categories distorts the scores in a way that depends on <span class="math inline">\(T\)</span>, on top of <span class="math inline">\(E\)</span> (see <a href="simulating-measurement.html#sec-is-it-ctt" class="quarto-xref"><span>Section 2.4</span></a>).</p>
 <p>The practical moral is worth stating baldly: <strong>before concluding that there is no effect, ask how reliably you measured things.</strong> A null result from a pair of noisy instruments is not evidence of absence; it may only be evidence that you were measuring badly.</p>
@@ -1174,37 +1168,37 @@ Measurement invariance
 <p>Here <span class="math inline">\(r_{xy}\)</span> is what you observe, <span class="math inline">\(r_{xx}\)</span> and <span class="math inline">\(r_{yy}\)</span> are the reliabilities of the two instruments, and <span class="math inline">\(r_{x_ty_t}\)</span> is the estimated correlation between the underlying <em>constructs</em>.</p>
 <p>Let us test it. We build a second construct — call it perceived ease of use — correlated with satisfaction at a known value, and measure both with imperfect scales:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4242</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.6</span>   <span class="co"># the true correlation between the two constructs</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>satisfaction2 <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">400</span>, <span class="at">seed =</span> <span class="dv">100</span>)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>ease_true <span class="ot">&lt;-</span> rho <span class="sc">*</span> satisfaction2<span class="sc">$</span>true_score <span class="sc">+</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(<span class="dv">400</span>)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>ease <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">400</span>, <span class="at">true_score =</span> ease_true, <span class="at">seed =</span> <span class="dv">101</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4242</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.6</span>   <span class="co"># the true correlation between the two constructs</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>satisfaction2 <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">400</span>, <span class="at">seed =</span> <span class="dv">100</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>ease_true <span class="ot">&lt;-</span> rho <span class="sc">*</span> satisfaction2<span class="sc">$</span>true_score <span class="sc">+</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(<span class="dv">400</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>ease <span class="ot">&lt;-</span> <span class="fu">simulate_likert</span>(<span class="at">n =</span> <span class="dv">400</span>, <span class="at">true_score =</span> ease_true, <span class="at">seed =</span> <span class="dv">101</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The constructs really are related at about <code>rho</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(satisfaction2<span class="sc">$</span>true_score, ease_true)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.567</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(satisfaction2<span class="sc">$</span>true_score, ease_true)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.567</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>But that is not what our instruments report:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>r_observed <span class="ot">&lt;-</span> <span class="fu">cor</span>(satisfaction2<span class="sc">$</span>total, ease<span class="sc">$</span>total)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>r_observed</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.453</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>r_observed <span class="ot">&lt;-</span> <span class="fu">cor</span>(satisfaction2<span class="sc">$</span>total, ease<span class="sc">$</span>total)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>r_observed</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.453</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The observed correlation is substantially smaller. Now estimate each scale’s reliability and apply the correction:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>alpha_x <span class="ot">&lt;-</span> <span class="fu">cronbach_alpha</span>(<span class="fu">as.matrix</span>(satisfaction2[, <span class="fu">paste0</span>(<span class="st">"item_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)]))</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>alpha_y <span class="ot">&lt;-</span> <span class="fu">cronbach_alpha</span>(<span class="fu">as.matrix</span>(ease[, <span class="fu">paste0</span>(<span class="st">"item_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)]))</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">alpha_x =</span> alpha_x, <span class="at">alpha_y =</span> alpha_y)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alpha_x alpha_y </span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   0.759   0.791</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>r_corrected <span class="ot">&lt;-</span> r_observed <span class="sc">/</span> <span class="fu">sqrt</span>(alpha_x <span class="sc">*</span> alpha_y)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>r_corrected</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.585</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>alpha_x <span class="ot">&lt;-</span> <span class="fu">cronbach_alpha</span>(<span class="fu">as.matrix</span>(satisfaction2[, <span class="fu">paste0</span>(<span class="st">"item_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)]))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>alpha_y <span class="ot">&lt;-</span> <span class="fu">cronbach_alpha</span>(<span class="fu">as.matrix</span>(ease[, <span class="fu">paste0</span>(<span class="st">"item_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)]))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">alpha_x =</span> alpha_x, <span class="at">alpha_y =</span> alpha_y)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alpha_x alpha_y </span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   0.759   0.791</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>r_corrected <span class="ot">&lt;-</span> r_observed <span class="sc">/</span> <span class="fu">sqrt</span>(alpha_x <span class="sc">*</span> alpha_y)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>r_corrected</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.585</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The corrected value lands close to, though not exactly on, the true construct-level correlation, recovering most of what the measurement error had hidden. The remaining gap is partly sampling error and partly the fact that the simulator is not a pure CTT model.<!-- 18 Nov 2026 (Claude): "though not exactly on" and the sentence on the gap added. To review. --> That is the payoff of the whole chapter: reliability is not an administrative number. It is the quantity that tells you how much of your result your instrument ate.</p>
 <div class="callout callout-style-simple callout-warning callout-titled">

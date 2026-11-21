@@ -71,6 +71,7 @@ The second is that a great many variables that we do not care about can change t
 
 ```{r}
 #| label: fig-construct-score
+#| warning: false
 #| echo: false
 #| fig-cap: "The relationship between a construct, an observable behaviour, and a test score. The construct is not observable; what we see is a behaviour, which determines the score. The dashed arc marks the relationship we actually care about — and it is indirect."
 #| fig-width: 7
@@ -104,6 +105,7 @@ ggplot(boxes) +
 
 ```{r}
 #| label: fig-other-variables
+#| warning: false
 #| echo: false
 #| fig-cap: "The same three elements, with the variables nobody asked for. Motivation, mood, fatigue, the device, time pressure — all of these influence the observed behaviour, and therefore the score, without touching the construct we set out to measure. An ideal instrument would be one where the arrow from the construct is the one that matters most."
 #| fig-width: 7
