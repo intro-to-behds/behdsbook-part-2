@@ -45,7 +45,7 @@ The **unit of analysis** is the level at which the statistical analysis is carri
 
 Smartphones, wearables, eye trackers, computer tasks, and online platforms can all generate repeated or nested observations. The design that produced those observations needs to be represented in the analysis.
 
-## Association and causality
+## Association and causality {#sec-association-causality}
 
 Suppose we monitor 200 participants for one month. Their smartphones record how many notifications they receive, and an EMA app asks them to report their current level of stress several times per day. At the end of the study, periods with more notifications are associated with higher reported stress. What can we conclude? We can conclude that notification frequency and reported stress are **associated**. We cannot yet conclude that notifications cause stress. This distinction is central to the difference between **observational** and **experimental** research.
 
@@ -73,6 +73,9 @@ When an experiment tests an intervention, such as a training programme, a therap
 The technology industry runs randomised experiments on a very large scale under the name of **A/B tests**: users are randomly shown version A or version B of an interface, and the versions are compared on behaviour such as clicks, completed tasks, or retention. The logic is the same as in any randomised experiment. The outcomes are usually logged behaviour, and the question of what that behaviour measures still applies (@sec-measurement).
 
 Two problems are especially common in trials that last weeks or months. Participants **drop out**, and those who drop out may differ from those who stay: the most stressed users may stop answering. Analysing only those who completed the study can therefore favour the intervention. A common safeguard is to analyse all participants in the group to which they were randomised, called an *intention-to-treat* analysis, which requires a plan for the missing outcomes (@sec-missing-data). The second problem is the **novelty effect**: a new app or interface may be rated better, or used more, simply because it is new, and the advantage may fade over time. A longer follow-up and an active control condition (see below) help to separate novelty from a lasting effect.
+
+<!-- 21 Nov 2026 (Claude): pointer to the new chapter on RCTs; to review -->
+@sec-rcts describes randomised trials in more detail: how they are built, why randomisation and the control condition matter, why a change from before to after is not enough, and what to do when participants drop out.
 
 ### The counterfactual idea
 
