@@ -44,9 +44,21 @@ draw_flow <- function(nodes, edges, notes = NULL, xlim, ylim) {
 
 Imagine we want to know whether frequent smartphone notifications make it harder to concentrate. We could ask people how many notifications they normally receive and compare this with their performance on an attention task. Alternatively, we could actively manipulate the number of notifications they receive while they complete the task. These two studies may produce very similar-looking datasets. In both cases, we could end up with one column containing the number of notifications and another containing reaction times or accuracy. Yet the conclusions we can draw from the two datasets are not the same.
 
-<PLACEHOLDER: Claude, add an example of R dataset here, with about 6 rows.)>
+<!-- 21 Nov 2026 (Claude): example dataset added at the instructor's request; to review -->
+Here are the first six rows of such a dataset, with the number of notifications each participant received during a 10-minute attention task and their mean reaction time:
 
-The reason for this is the different **study design**. A statistical analysis can describe patterns in the data, estimate relationships, and quantify uncertainty. But the way the data were generated determines what those patterns mean and how they can be interpreted. Before choosing a statistical test, fitting a model, or interpreting a coefficient, we therefore need to understand where the data came from.
+```{r notifications-data}
+notifications_data <- tibble(
+  participant = 1:6,
+  notifications = c(4, 25, 12, 30, 8, 18),
+  rt_ms = c(452, 538, 489, 561, 470, 512)
+)
+notifications_data
+```
+
+Nothing in these rows tells us whether the 25 notifications of participant 2 were the ones they normally receive, or the ones the researcher decided to send them.
+
+The reason is the difference in **study design**. A statistical analysis can describe patterns in the data, estimate relationships, and quantify uncertainty. But the way the data were generated determines what those patterns mean and how they can be interpreted. Before choosing a statistical test, fitting a model, or interpreting a coefficient, we therefore need to understand where the data came from.
 
 <!-- 20 Nov 2026 (Claude): paragraph added at the instructor's request (the design shapes the analysis, link to Basic Statistics); to review -->
 The design also shapes the analysis itself, and so the code we write. It decides the **type of analysis**: two independent groups call for a different test from the same people measured twice (@sec-two-groups, @sec-anova). It decides which **additional checks** make sense: whether the groups were similar before the study began, and whether the manipulation worked (see *Manipulation checks* below). It decides which **control analyses** are needed to see whether a result survives other explanations, and so which **variables are relevant** and must be measured from the start: a variable we never collected cannot be accounted for later. It even decides what **missing data** mean: participants who drop out of one condition more than the other can change the comparison (@sec-missing-data). The chapters of the *Basic Statistics* part describe the tests; this chapter explains why the choice among them starts with the design, and @sec-results-to-conclusions comes back to it when we interpret a result.
@@ -68,7 +80,7 @@ Operationalising a construct is only the first step: the resulting measure must 
 - Is measurement quality similar across participants, devices, and contexts? (This is the question of *measurement invariance*, see @sec-measurement.)
 - Are software or firmware versions held constant or documented?
 
-Note that large datasets of big data do not compensate for poor measurement. A million observations of the wrong quantity do not answer the intended research question. This underline a _quality over quantity_ principle, that is relevant also for behavioral data science.
+Note that large datasets ("big data") do not compensate for poor measurement. A million observations of the wrong quantity do not answer the intended research question. This underlines a _quality over quantity_ principle, which is relevant for behavioural data science too.
 
 ### Units matter
 
@@ -82,9 +94,7 @@ rows of data. But we do not suddenly have 3,500 independent participants. The **
 
 The **unit of analysis** is the level at which the statistical analysis is carried out. This must be compatible with the design and with the dependence structure of the observations. Repeated measurements from the same person are usually more similar to one another than measurements from different people. Treating all 3,500 EMA responses as though they came from 3,500 unrelated participants would therefore exaggerate the amount of independent information in the dataset.
 
-Smartphones, wearables, eye trackers, computer tasks, and online platforms can all generate repeated or nested observations. The design that produced those observations needs to be represented in the analysis and taken properly into account.
-
-<CLAUDE: not clear this paragraph and the relation with others and with the book, suggest potential connections>
+Smartphones, wearables, eye trackers, computer tasks, and online platforms can all generate repeated or nested observations. The design that produced those observations needs to be represented in the analysis and taken properly into account. <!-- 21 Nov 2026 (Claude): connections to the rest of the book added at the instructor's request; to review --> The tests of the *Basic Statistics* part assume that observations are independent, and independence cannot be checked on the data: it follows from the design (see *Checking the assumptions* in @sec-two-groups). When the same participants are measured more than once, the analysis has to say so, for example with a paired test (@sec-two-groups) or with a repeated-measures ANOVA, which works on one value per participant and condition, usually an average over many trials (@sec-anova). Models that keep every single observation and represent the nesting explicitly (*multilevel* or *mixed-effects* models) are beyond this book. The same question comes back several times in this chapter: in intensive longitudinal data, in within-subjects designs, in the many trials of cognitive experiments (see *Participants versus trials* below), and when planning the sample size (see *Sample size and precision* below).
 
 ## Association and causality {#sec-association-causality}
 
@@ -92,11 +102,11 @@ Suppose we monitor 200 participants for one month. Their smartphones record how 
 
 ### Observational research
 
-In an observational study, variables are measured without the researcher directly assigning the exposure of interest. Such studies are extremely useful: they allow us to investigate behaviour in natural settings, sometimes for long periods of time, and may capture phenomena that would be difficult, impractical, or unethical to manipulate experimentally (@sec-research-ethics). The problem is that an observed association may have several explanations that can be different from the ones on which we are focusing our attention or that we recorded. People may receive more notifications on particularly demanding working days, while also reporting more stress. In this case, workload could influence both variables. Perhaps stressed people also check their phones more often, generating more digital interactions. Or another unmeasured factor could influence both phone use and stress. We don't have a direct way to disentangle between these different interpretations of the same results.
+In an observational study, variables are measured without the researcher directly assigning the exposure of interest. Such studies are extremely useful: they allow us to investigate behaviour in natural settings, sometimes for long periods of time, and may capture phenomena that would be difficult, impractical, or unethical to manipulate experimentally (@sec-research-ethics). The problem is that an observed association may have explanations other than the one we are focusing on, including variables we did not record. People may receive more notifications on particularly demanding working days, while also reporting more stress. In this case, workload could influence both variables. Perhaps stressed people also check their phones more often, generating more digital interactions. Or another unmeasured factor could influence both phone use and stress. With observational data alone, we have no direct way to tell these interpretations apart.
 
 A **confounding variable** is a variable that provides an alternative explanation for an observed relationship because it is related to both the exposure and the outcome. 
 
-All these considerations are related to the familiar statement that *correlation does not imply causation* that should not be interpreted criticism of correlational research (or even worse of correlation analysis). It is a statement about what kind of inference the design permits. (correlation itself is covered in @sec-correlation; confounding and the other alternative explanations in @sec-results-to-conclusions).
+All these considerations are related to the familiar statement that *correlation does not imply causation*, which should not be read as a criticism of correlational research (or, even worse, of correlation analysis). It is a statement about what kind of inference the design permits (correlation itself is covered in @sec-correlation; confounding and the other alternative explanations in @sec-results-to-conclusions).
 
 ### Experimental research
 
@@ -422,13 +432,13 @@ A different question is whether the **same person** reports more stress than usu
 
 ### Pre-post designs and baseline measurements
 
-A common longitudinal structure is the **pre-post design**. Participants are measured before an intervention and again afterwards. For example, stress might be measured before and after one week of using an app that suppresses non-essential notifications. The baseline measurement is useful because it tells us where participants started. But a single-group pre–post study does not by itself establish that the intervention caused the change. Stress might decline because a busy examination week ended. Participants may become familiar with the questionnaire. Extreme baseline scores may move closer to typical values on a second measurement, a phenomenon known as **regression to the mean**. More simply, we cannot exclude that values are changed because time passed and some natural changes (unrelated to the variable of our interest) occurred.
+A common longitudinal structure is the **pre-post design**. Participants are measured before an intervention and again afterwards. For example, stress might be measured before and after one week of using an app that suppresses non-essential notifications. The baseline measurement is useful because it tells us where participants started. But a single-group pre-post study does not by itself establish that the intervention caused the change. Stress might decline because a busy examination week ended. Participants may become familiar with the questionnaire. Extreme baseline scores may move closer to typical values on a second measurement, a phenomenon known as **regression to the mean**. More simply, we cannot exclude that the values changed simply because time passed, bringing changes unrelated to the variable of interest.
 
 A concurrent control group makes the comparison stronger because both groups experience the passage of time while only one receives the intervention. The basic question then changes from:
 
 > Did the intervention group change?
 
- to:
+to:
 
 > Did the intervention group change differently from an appropriate comparison group?
 
@@ -467,9 +477,7 @@ ggplot(prepost_data,
   theme_minimal()
 ```
 
-This logic is closely related to the interactions introduced later in the chapter: in many pre-post experiments, the scientifically interesting effect is whether **change over time differs between groups**.
-
-<PLACE HOLDER: Claude, add cross ref to quasi-experimental design>
+This logic is closely related to the interactions introduced later in the chapter: in many pre-post experiments, the scientifically interesting effect is whether **change over time differs between groups**. <!-- 21 Nov 2026 (Claude): cross-references added at the instructor's request; to review --> The same logic is behind the quasi-experiment of @fig-quasi (see *Quasi-experimental research* above), where the question was whether the university that introduced the limiter changed more than the one that did not, and @sec-rcts applies it to randomised trials (see *Before and after is not enough*).
 
 ## Variables and experimental control
 
@@ -479,7 +487,7 @@ In a simple experiment, the variable deliberately manipulated by the researcher 
 
 The choice of dependent variable matters because different outcomes can describe different aspects of performance. In cognitive tasks, **reaction time** and **accuracy** are often analysed together. Looking at only one can be misleading because participants can trade speed for accuracy. A participant may respond more slowly precisely because they are trying to avoid errors. Conversely, very fast responses can come at the cost of reduced accuracy. This is known as the **speed-accuracy trade-off**.
 
-Other outcomes, such as confidence ratings, eye movements, physiological responses, or computational-model parameters, may capture still other aspects of behaviour. A good design therefore specifies which outcome is most directly linked to the hypothesis rather than choosing among many measures after seeing which produces the clearest result. The terminology is useful, but real studies often contain more variables than this simple pair suggests. Participants may differ in age, sleep duration, baseline anxiety, familiarity with the task, habitual smartphone use, or many other characteristics. Variables measured because they may help explain variation (beside the independent variable) in the outcome are often called **covariates**.
+Other outcomes, such as confidence ratings, eye movements, physiological responses, or computational-model parameters, may capture still other aspects of behaviour. A good design therefore specifies which outcome is most directly linked to the hypothesis rather than choosing among many measures after seeing which produces the clearest result. The terminology is useful, but real studies often contain more variables than this simple pair suggests. Participants may differ in age, sleep duration, baseline anxiety, familiarity with the task, habitual smartphone use, or many other characteristics. Variables measured because they may help explain variation in the outcome (besides the independent variable) are often called **covariates**.
 
 Other variables may simply introduce unwanted variation. A variable becomes particularly problematic when it varies systematically with the experimental manipulation and offers an alternative explanation for an observed effect. This is **confounding**. Imagine that everyone in the high-notification condition performs the experiment in the afternoon, while everyone in the low-notification condition is tested in the morning. If the groups differ in performance, notification condition is now perfectly confounded with time of day. The goal of **experimental control** is to make such alternative explanations less plausible.
 
@@ -487,7 +495,7 @@ Other variables may simply introduce unwanted variation. A variable becomes part
 
 Experiments often include an **experimental condition** and a **control condition**. The control condition provides a reference against which the manipulation can be evaluated. What counts as an appropriate control depends on the scientific question. If we want to know whether notifications disrupt attention compared with uninterrupted task performance, a no-notification condition is a sensible control. If we want to know whether *social* notifications are especially distracting, a stronger control might involve equally frequent non-social system notifications. Control is therefore not synonymous with “nothing happens”; rather, a control condition should isolate the part of the manipulation that is relevant to the hypothesis.
 
-### Passive, and active controls
+### Passive and active controls
 
 Control conditions can take different forms. A **passive control** may simply involve the absence of an intervention. For example, one group might use a stress-management app while another group continues their normal routine. An **active control** receives an alternative activity designed to match features such as time, attention, contact, or expectancy without including the component thought to produce the specific effect. If an intervention app sends daily exercises, an active control might use an app with equally frequent neutral activities. The more closely the control condition matches these non-specific features, the more specifically the experiment can isolate the component of theoretical interest.
 
@@ -501,7 +509,7 @@ Two concepts that sound very similar solve two different problems: **random assi
 
 ### Random assignment
 
-Random assignment concerns what happens after participants enter a study and sign the informed consent <PLACEHOLDER create link to informed consent section>. Participants are allocated to experimental conditions using a random mechanism. Suppose we recruit 100 participants and randomly assign 50 to a high-notification condition and 50 to a low-notification condition. Individual differences will still exist. Some people will be better at the attention task. Some will have slept badly. Some may be heavy smartphone users. But because allocation is random, these characteristics should not systematically favour one condition over the other, especially as sample size increases.
+Random assignment concerns what happens after participants enter a study and sign the informed consent form (see *Ethical approval and informed consent* in @sec-research-ethics). Participants are allocated to experimental conditions using a random mechanism. Suppose we recruit 100 participants and randomly assign 50 to a high-notification condition and 50 to a low-notification condition. Individual differences will still exist. Some people will be better at the attention task. Some will have slept badly. Some may be heavy smartphone users. But because allocation is random, these characteristics should not systematically favour one condition over the other, especially as sample size increases.
 
 <!-- 21 Nov 2026 (Claude): moved from behav/randomised-trials.qmd ("Why randomise?"); from deck 09-02, slide "Why randomise?" (same simulation, seed 9); to review -->
 To see why, suppose we want to know whether a stress-management app reduces stress. The simplest study would compare people who chose to use the app with people who did not. The problem is that the people who choose an app may differ from those who do not: they may be more motivated to reduce their stress, and motivated people may do many other things that reduce stress too. If the app users end the study less stressed, we cannot tell whether this is the app or the motivation.
@@ -556,15 +564,16 @@ Randomisation is therefore a key tool for **internal validity**: it helps suppor
 
 ### Random sampling
 
-Random sampling asks a different question: how did participants enter the study in the first place? Suppose our 100 participants are all psychology students aged 18-25 who own recent smartphones. We may have conducted an excellent randomised experiment, but this does not guarantee that the result generalises to older adults, children, shift workers, or people who interact with technology in very different ways. Sampling therefore concerns **external validity** and generalisability.
+Random sampling asks a different question: how did participants enter the study in the first place? Suppose our 100 participants are all psychology students aged 18–25 who own recent smartphones. We may have conducted an excellent randomised experiment, but this does not guarantee that the result generalises to older adults, children, shift workers, or people who interact with technology in very different ways. Sampling therefore concerns **external validity** and generalisability.
 
 A study can have strong internal validity and limited generalisability. Conversely, a large and representative observational dataset may generalise well to a population while offering weaker causal identification. In psychological research, true probability sampling is relatively uncommon. Convenience samples are common because they are feasible and inexpensive. This is not automatically a fatal flaw, but the target population should be described honestly.
 
-<PLACEHOLDER: create links to sample population and other relevant part of the book, e.g. confidence intervals>
+<!-- 21 Nov 2026 (Claude): links to the inference chapters added at the instructor's request; to review -->
+The distinction between a population and a sample is introduced in @sec-estimates-and-ci (see *Populations, samples, parameters, and estimates*). The standard errors and confidence intervals of that chapter describe our uncertainty about the population from which the sample was *randomly* drawn. With a convenience sample, which population the results refer to is no longer settled by the sampling procedure: it becomes a matter of judgement, and it should be argued explicitly. How the way participants enter a study can distort a comparison is discussed under *Selection* in @sec-results-to-conclusions.
 
 ### Matching, blocking, and stratification
 
-Sometimes researchers know in advance that a characteristic is especially important. Suppose habitual smartphone use strongly predicts susceptibility to notifications. A completely unrestricted random allocation could, by chance, place more heavy users in one condition. A **blocked** or **stratified randomisation** procedure could first group participants according to habitual smartphone use and then randomise within those groups. **Matching** uses a related idea by pairing or grouping participants who are similar on selected characteristics. These methods do not replace randomisation, but can improve balance on variables judged important before the experiment begins. <!-- 21 Nov 2026 (Claude): sentence added; to review --> Matching is also used (and useful) when groups cannot be randomised at all, as with patients and controls (@fig-matching). It is important to make the comparison meaningful, but it is intrinsically limited:it balances only the characteristics we matched on and we may never know if we missed some important variables.
+Sometimes researchers know in advance that a characteristic is especially important. Suppose habitual smartphone use strongly predicts susceptibility to notifications. A completely unrestricted random allocation could, by chance, place more heavy users in one condition. A **blocked** or **stratified randomisation** procedure could first group participants according to habitual smartphone use and then randomise within those groups. **Matching** uses a related idea by pairing or grouping participants who are similar on selected characteristics. These methods do not replace randomisation, but can improve balance on variables judged important before the experiment begins. <!-- 21 Nov 2026 (Claude): sentence added; to review --> Matching is also used (and useful) when groups cannot be randomised at all, as with patients and controls (@fig-matching). It helps to make the comparison meaningful, but it has an intrinsic limit: it balances only the characteristics we matched on, and we may never know whether we missed some important variables.
 
 ## Between-subjects designs
 
@@ -763,9 +772,14 @@ Cognitive research often aims to generalise not only beyond the participants who
 
 This issue appears in many areas: words in language experiments, faces in emotion research, sounds in auditory experiments, images in memory tasks, and prompts or notifications in digital studies. Where possible, stimulus sets should be sampled, balanced, or counterbalanced so that a condition is not represented by a single unique item. In more advanced analyses, both participants and stimuli can be treated as sources of variability. The important design principle is already simple:
 
-<PLACEHOLDER; cite paper for language as fixed effect fallacy)>
-
 > We usually want our conclusion to generalise beyond both the people and the particular items that happened to be sampled.
+
+<!-- 21 Nov 2026 (Claude): references added at the instructor's request; to review -->
+Analysing the items as if they were the only ones of interest, and then generalising to the whole category, is what Clark called the **language-as-fixed-effect fallacy**, after its frequency in language research.[^clark] The same problem affects any field that samples stimuli, such as faces, images, or messages.[^judd]
+
+[^clark]: H. H. Clark (1973), The language-as-fixed-effect fallacy: A critique of language statistics in psychological research. *Journal of Verbal Learning and Verbal Behavior*, 12, 335–359.
+
+[^judd]: C. M. Judd, J. Westfall & D. A. Kenny (2012), Treating stimuli as a random factor in social psychology: A new and comprehensive solution to a pervasive but largely ignored problem. *Journal of Personality and Social Psychology*, 103, 54–69.
 
 ### Participants versus trials
 
@@ -881,9 +895,13 @@ Researchers can introduce bias as well. If an experimenter knows who received an
 
 Where possible, **single-blind** or **double-blind** procedures reduce access to information about condition assignment. In behavioural research, complete blinding is not always possible. Participants will obviously notice whether their smartphone is producing frequent notifications. However, other parts of the process can still be blinded or automated. The researcher administering a post-test may be unaware of condition. Data may be analysed under neutral condition labels. Instructions can be delivered by computer rather than by an experimenter who knows the hypothesis.
 
-The goal is not to apply the label “double blind” at all costs. The goal is to identify where expectations might influence the measurement process and limit that influence where feasible.
+The goal is not to apply the label “double blind” at all costs. The goal is to identify where expectations might influence the measurement process and limit that influence where feasible. Three people in a study can be blinded, and each protects against a different bias. <!-- 21 Nov 2026 (Claude): three paragraphs on who can be blinded, added at the instructor's request; to review -->
 
-<PLACEHOLDER: expand with a paragraph on blinding for participants, with parallelism with placebo but also an example a new device vs old device, knowing it can affect , a section with blining for assessor, with examples with expecation in favour of something (e.g. the new device), finally on analyist, link to flexibility and could see things in a different way, e.g., outliers, etc.)
+**Blinding participants.** In drug trials, the control group receives a *placebo*, a pill that looks identical to the drug but has no active ingredient, so that both groups expect the same benefit. Expectations matter outside medicine too. Suppose we compare a new wearable device for stress monitoring with the old one. Participants who know they are using the new device may expect it to work better, pay more attention to its feedback, or rate their experience more positively, and the new device would look better even if it were not. Where possible, the two versions can look identical, a *sham* version can be used (one that looks and behaves the same but lacks the component under test), or participants can simply not be told which version is the new one.
+
+**Blinding assessors.** The person who measures the outcome may expect something too. An assessor who knows which participants used the new device, and hopes it works, may score borderline responses, open answers, or observed behaviour slightly in its favour, without any intention to cheat. An assessor who does not know the condition, or an automated scoring procedure, removes this possibility.
+
+**Blinding analysts.** Even the analysis involves decisions: which observations count as outliers, which participants to exclude, which transformation to apply. An analyst who knows which group is which may, again without intending to, see the data in a different way and take the decisions that favour the expected result. Analysing the data with neutral condition labels, and fixing these rules before seeing the data, limits this flexibility (see *Flexibility in the analysis* in @sec-credible-evidence, and *Preregistration and transparency* below).
 
 ### Standardisation
 
@@ -891,13 +909,11 @@ The goal is not to apply the label “double blind” at all costs. The goal is 
 
 ## Planning before collecting data
 
-Many of the decisions that determine whether a study will be informative occur before the first participant is tested. 
-
-<PLACEHOLDER, this is also related to preregistration, create link>
+Many of the decisions that determine whether a study will be informative occur before the first participant is tested. <!-- 21 Nov 2026 (Claude): link to preregistration added at the instructor's request; to review --> Many of them can also be written down, before the data are collected, in a preregistration (see *Preregistration and transparency* below, and *Preregistration* in @sec-research-ethics).
 
 ### Sample size and precision
 
-One decision concerns **sample size**. A study should not ideally recruit a particular number of participants only because that number is convenient or because another paper used the same number. The amount of information required depends on the design, the variability of the measurements, the size of the effect that would be scientifically meaningful (@sec-effect-size), and the precision required from the estimates (@sec-estimates-and-ci). The concept of **statistical power** captures one part of this problem (@sec-power). Roughly speaking, power concerns the probability that a study will detect an effect of a given size when such an effect is present.
+One decision concerns **sample size**. Ideally, a study should not recruit a particular number of participants only because that number is convenient or because another paper used the same number. The amount of information required depends on the design, the variability of the measurements, the size of the effect that would be scientifically meaningful (@sec-effect-size), and the precision required from the estimates (@sec-estimates-and-ci). The concept of **statistical power** captures one part of this problem (@sec-power). Roughly speaking, power concerns the probability that a study will detect an effect of a given size when such an effect is present.
 
 A small study may fail to detect a meaningful effect because its estimates are too imprecise. But simply collecting a huge number of repeated measurements from a few individuals does not necessarily solve the problem, because repeated observations do not provide the same information as independent participants. This brings us back to the importance of understanding the experimental unit.
 
@@ -926,7 +942,7 @@ The statistical treatment of missing data is covered in @sec-missing-data. At th
 
 Before launching a full experiment, researchers often conduct a **pilot** or **feasibility study**. A pilot can answer practical questions: Does the app log the intended events? Are notifications delivered consistently across devices? Is the task too long? Do participants understand the instructions? Is an EMA schedule so burdensome that response rates collapse after a few days? Pilot work is also useful for checking whether a manipulation produces the intended contrast and whether the data pipeline works from collection to analysis.
 
-A small pilot should not usually be treated as a miniature definitive hypothesis test. Small samples provide unstable estimates of effect size <PLACEHOLDER add here citation with section on sampling and on power>. The main purpose of pilot work is often to discover design problems while they are still inexpensive to fix.
+A small pilot should not usually be treated as a miniature definitive hypothesis test. Small samples provide unstable estimates of effect size: their standard error is large (@sec-estimates-and-ci), and the significant ones tend to overestimate the true effect (see *Small studies and exaggerated effects* in @sec-credible-evidence). For the same reason, planning the main study with the effect size of a pilot usually gives a sample that is too small (see *Pitfalls* in @sec-power). <!-- 21 Nov 2026 (Claude): references added at the instructor's request; to review --> The main purpose of pilot work is often to discover design problems while they are still inexpensive to fix.
 
 ### Preregistration and transparency
 
@@ -936,11 +952,14 @@ A small pilot should not usually be treated as a miniature definitive hypothesis
 
 Let us return to the question that opened this chapter: **Do smartphone notifications interfere with attention?** We could observe people's natural notification behaviour and relate it to cognitive performance. This may provide a realistic picture of everyday life, but causal interpretations will remain vulnerable to confounding. We could randomly assign participants to different notification conditions. This improves control over alternative explanations. We could expose every participant to both conditions. This may increase statistical efficiency but creates order and carryover effects.
 
-We could simultaneously manipulate cognitive load, allowing us to test whether the effect of notifications depends on task difficulty. Or we could measure attention repeatedly in daily life, producing a multilevel dataset in which moments are nested within individuals. None of these designs is universally “best”. 
+We could simultaneously manipulate cognitive load, allowing us to test whether the effect of notifications depends on task difficulty. Or we could measure attention repeatedly in daily life, producing a multilevel dataset in which moments are nested within individuals.
 
-<PLACEHOLDER add a callout with None of the design is unversally best: depending on the research question, availability of data, pros and cons, one design could be more suited. 
+<!-- 21 Nov 2026 (Claude): callout added at the instructor's request; to review -->
+::: {.callout-note}
+## No design is universally best
 
-In another sentence add that Often different converging evidence from different design is desirable>
+Each of these designs answers a slightly different question, and each has its own strengths and weaknesses. Which one is more suited depends on the research question, on the data that can realistically be collected, and on the practical and ethical constraints of the study. Often the most convincing evidence does not come from a single study, but from several studies with different designs, and so with different weaknesses, that point to the same conclusion: an observational study in daily life, a randomised experiment in the laboratory, a longitudinal study following people over time.
+:::
 
 Each design trades some advantages for others. The appropriate design depends on the research question, the population, the practical and ethical constraints, the measurement technology, and the type of inference we want to make. Before asking which statistical model to apply to a dataset, it is therefore worth asking a more basic question:
 
