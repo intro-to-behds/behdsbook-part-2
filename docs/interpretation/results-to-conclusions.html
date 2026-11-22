@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
+
+<title>28&nbsp; From Results to Conclusions – Introduction to Behavioural Data Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../interpretation/credible-evidence.html" rel="next">
+<link href="../interpretation/intro-interpretation.html" rel="prev">
+<link href="../cover.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8f18353b6674da201bf96e4b700cba6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../interpretation/intro-interpretation.html">Interpreting Evidence</a></li><li class="breadcrumb-item"><a href="../interpretation/results-to-conclusions.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introduction to Behavioural Data Science</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/intro-to-behds/behdsbook-part-2/releases/download/book-pdf/Introduction-to-Behavioural-Data-Science.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="https://github.com/intro-to-behds/behdsbook-part-2/releases/download/book-pdf/Introduction-to-Behavioural-Data-Science.epub" title="Download EPUB" class="quarto-navigation-tool px-1" aria-label="Download EPUB"><i class="bi bi-book"></i></a>
+    <a href="https://github.com/intro-to-behds/behdsbook-part-2" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../behav/intro-behav.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Foundations of Behavioural Research</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Measurement in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/simulating-measurement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Behind the Simulations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/research-ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Research Ethics and Data Privacy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/experimental-designs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Experimental Designs in Psychology</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/randomised-trials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Randomised Controlled Trials</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../behav/association-causation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Association Is Not Causation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../summaries/intro-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../summaries/distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Distributions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../summaries/numerical-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical Summaries</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../summaries/comparing-groups.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Comparing Groups</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../summaries/reading-summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recommended Reading</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../prob/intro-to-prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/connecting-data-and-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Connecting Data and Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/discrete-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Discrete Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/continuous-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Continuous Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/random-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/sampling-models-and-clt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Sampling Models and the Central Limit Theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prob/reading-prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recommended Reading</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../inference/intro-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Inference</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../inference/estimates-confidence-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Estimates and Confidence Intervals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../inference/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../inference/reading-inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recommended Reading</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../basic-stats/intro-basic-stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basic Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/comparing-two-groups.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Comparing Two Groups: the t-test and the Wilcoxon Test</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Comparing More Than Two Groups: ANOVA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/multiple-comparisons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Multiple Comparisons</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/chi-square.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Two Categorical Variables: the Chi-square Test</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/effect-size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Effect Size</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/power.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Statistical Power</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basic-stats/missing-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Missing Data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../linear-models/intro-to-linear-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linear-models/regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Introduction to Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linear-models/linear-model-framework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">The Linear Model Framework</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linear-models/treatment-effect-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Treatment Effect Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linear-models/reading-lm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recommended Reading</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../interpretation/intro-interpretation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpreting Evidence</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../interpretation/results-to-conclusions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../interpretation/credible-evidence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../work-in-progress.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Work in Progress</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-results-vs-interpretation" id="toc-sec-results-vs-interpretation" class="nav-link active" data-scroll-target="#sec-results-vs-interpretation"><span class="header-section-number">28.1</span> Results and interpretation</a></li>
+  <li><a href="#interpreting-a-result" id="toc-interpreting-a-result" class="nav-link" data-scroll-target="#interpreting-a-result"><span class="header-section-number">28.2</span> Interpreting a result</a>
+  <ul class="collapse">
+  <li><a href="#three-questions" id="toc-three-questions" class="nav-link" data-scroll-target="#three-questions">Three questions</a></li>
+  <li><a href="#read-the-numbers-together" id="toc-read-the-numbers-together" class="nav-link" data-scroll-target="#read-the-numbers-together">Read the numbers together</a></li>
+  <li><a href="#non-significant-is-not-no-effect" id="toc-non-significant-is-not-no-effect" class="nav-link" data-scroll-target="#non-significant-is-not-no-effect">Non-significant is not “no effect”</a></li>
+  <li><a href="#missing-data-and-analytic-choices" id="toc-missing-data-and-analytic-choices" class="nav-link" data-scroll-target="#missing-data-and-analytic-choices">Missing data and analytic choices</a></li>
+  </ul></li>
+  <li><a href="#common-interpretation-mistakes" id="toc-common-interpretation-mistakes" class="nav-link" data-scroll-target="#common-interpretation-mistakes"><span class="header-section-number">28.3</span> Common interpretation mistakes</a></li>
+  <li><a href="#sec-several-predictors" id="toc-sec-several-predictors" class="nav-link" data-scroll-target="#sec-several-predictors"><span class="header-section-number">28.4</span> When the model has several predictors</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">28.5</span> Further reading</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">28.6</span> Exercises</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/interpretation/results-to-conclusions.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../interpretation/intro-interpretation.html">Interpreting Evidence</a></li><li class="breadcrumb-item"><a href="../interpretation/results-to-conclusions.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-results-to-conclusions" class="quarto-section-identifier"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry’s <em>Introduction to Data Science</em>.</em></p>
+<!-- 17 Nov 2026 (Claude): drafted from Course Slides/SLIDES_PLANS/Week09-Experimental Design and Intepretation/Global-Plan.md and Book-slides-alignment.md. Parts adapted from the hidden linear-models/association-not-causation.qmd (stress-app simulation, app_task_completion / Simpson's paradox, other sources of bias), rewritten without lm(). References to verify. 22 Nov 2026 (Claude), at the instructor's request: the sections on causal claims (Explanation and prediction, Correlational designs, Alternative explanations, Towards causal claims) and exercises 1-3 moved to the new chapter behav/association-causation.qmd (sec-association-not-causation); this chapter keeps the interpretation part. -->
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(behdslabs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Running a statistical test is the easy part of an analysis, especially if you use LLMs as support to scaffold or write your code. With R you compute a p-value, a confidence interval and an effect size in a fraction of a second. What R cannot do is say what those numbers mean: whether a variable is causing a modification to another variable, whom it applies to, how much we should trust it, if this is relevant. That step is <em>interpretation</em>, and it is the analyst’s job.</p>
+<p>Interpretation does not mean that any reading of the results is as good as another. A good interpretation brings together all the available evidence: how the data were collected (<a href="../behav/experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>), how well the variables were measured (<a href="../behav/measurement.html" class="quarto-xref"><span>Chapter 1</span></a>), what the estimates and their uncertainty say (<a href="../inference/estimates-confidence-intervals.html" class="quarto-xref"><span>Chapter 15</span></a>, <a href="../basic-stats/effect-size.html" class="quarto-xref"><span>Chapter 22</span></a>), what is missing (<a href="../basic-stats/missing-data.html" class="quarto-xref"><span>Chapter 24</span></a>), and how the analysis was done (<a href="../behav/research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>). Some interpretations are better than others because they account for more of this evidence.</p>
+<p>This chapter is about the step from results to conclusions. It starts by separating results from their interpretation, then offers a few questions for interpreting any result, and ends with a list of common mistakes. When an association can be read as a cause, and what else can produce it, is the topic of <a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a>, in the first part of the book.</p>
+<!-- 22 Nov 2026 (Claude), at the instructor's request: results vs interpretation, three examples. To review. -->
+<section id="sec-results-vs-interpretation" class="level2" data-number="28.1">
+<h2 data-number="28.1" class="anchored" data-anchor-id="sec-results-vs-interpretation"><span class="header-section-number">28.1</span> Results and interpretation</h2>
+<p>Interpreting means turning numbers into verbal claims, such as “the training app improves memory”, and putting them in a report: usually a scientific article, but also a technical report or the document behind a product decision. These claims are what other people read, cite and build on. They are the basis for future studies, for new lines of research, and for applications: a company, for example, may start the long process of having its app certified as a medical device on the strength of a study that seemed to show that it works. An error of interpretation therefore travels much further than an error in a single number.</p>
+<p>This is why it is important to distinguish the results from their interpretation, and why scientific articles keep them in separate sections. The <em>Results</em> section reports what was found, as neutrally as possible and without explanations: descriptive statistics, estimates with their confidence intervals, tests and effect sizes. The <em>Discussion</em> section interprets these results: what they mean, why they may have come out this way, and what follows from them. The separation lets readers check the results on their own and judge the interpretation separately, and perhaps reach a different one.</p>
+<p>Results and interpretation are separable because <strong>the same results can support several interpretations</strong>. This is true for every design, randomised experiments included. Imagine three studies.</p>
+<p><strong>A randomised trial.</strong> Older adults attending a memory clinic are randomly assigned to eight weeks with a new cognitive-training app, built around game-like memory exercises, or with an active control app that has the same session length and the same number of reminders, but only offers short quizzes on news articles. At the end, the training group improves more on a memory test, and the confidence interval for the difference excludes zero. The obvious interpretation is that the training exercises improve memory. But suppose that participants found the control app dull. They used it less, more of them dropped out, they expected less from it, and they came to the final test less motivated. The difference may then reflect engagement and expectations rather than the training itself. Randomisation balances <em>who</em> is in each arm, not <em>what happens</em> to them once they are there. Usage logs, ratings of enjoyment and expectations, and dropout by arm help to tell the two readings apart; a control condition matched on these features is the best protection (<em>What do we compare with?</em> in <a href="../behav/randomised-trials.html" class="quarto-xref"><span>Chapter 5</span></a>).</p>
+<p><strong>A comparison of pre-existing groups</strong> (often called quasi-experimental). Patients with a chronic neurological condition, such as epilepsy, are on average about 60 ms slower than healthy controls on a simple reaction-time task. The obvious interpretation is that the condition slows processing speed. But many patients take several medications every day, and some of these have sedative effects that slow responses. The slowing may come from the drugs rather than from the condition, or from both. Nobody assigned participants to the groups, so the medication comes together with the group. Recording drugs and doses, and comparing patients on different treatments, helps; it does not settle the question, because the treatment also depends on how severe the condition is (see <em>Correlational designs and correlation analyses</em> in <a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a>).</p>
+<p><strong>An observational study.</strong> In a survey of university students, those who use a study-planning app, available only with a paid subscription, have higher exam grades than those who do not. The obvious interpretation is that the app helps students study. But the app is costly, so its users tend to come from families with a higher socioeconomic status. They are more likely to have a quiet room and a good laptop, not to need a part-time job, and to sleep better and feel well, and each of these can raise grades on its own. Socioeconomic status is then a <em>confounder</em> (see <em>Confounding</em> in <a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a>). Moreover, students who are already well organised may be the ones who choose a planning app in the first place (<em>Selection</em>, in the same chapter).</p>
+<div id="tbl-one-result-many-readings" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-one-result-many-readings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;28.1: The same result, two interpretations, in three designs (hypothetical examples).
+</figcaption>
+<div aria-describedby="tbl-one-result-many-readings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Design</th>
+<th>Result</th>
+<th>First interpretation</th>
+<th>Alternative interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Randomised trial</td>
+<td>The training group improves more on a memory test</td>
+<td>The training exercises improve memory</td>
+<td>The control app was boring: less use, more dropout, lower motivation</td>
+</tr>
+<tr class="even">
+<td>Pre-existing groups</td>
+<td>Patients are slower than controls</td>
+<td>The condition slows processing</td>
+<td>Many patients take medications that slow responses</td>
+</tr>
+<tr class="odd">
+<td>Observational study</td>
+<td>App users have higher grades</td>
+<td>The app helps students study</td>
+<td>App users have a higher socioeconomic status, with better conditions for studying</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>In each example the result stays the same; what changes is the interpretation. A good Discussion does not stop at the first interpretation: it names the alternatives and says which of them the design rules out and which it leaves open. <a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a> goes through the most common alternatives; the rest of this chapter is about how to weigh them.</p>
+</section>
+<section id="interpreting-a-result" class="level2" data-number="28.2">
+<h2 data-number="28.2" class="anchored" data-anchor-id="interpreting-a-result"><span class="header-section-number">28.2</span> Interpreting a result</h2>
+<section id="three-questions" class="level3">
+<h3 class="anchored" data-anchor-id="three-questions">Three questions</h3>
+<p>Whatever the design, three questions help to interpret a result:</p>
+<ol type="1">
+<li><strong>What was the design?</strong> Was anything manipulated? Were participants randomly assigned? Who took part, and who was left out?</li>
+<li><strong>What do the results actually support?</strong> How large is the effect, how precise is the estimate, and which conclusions are compatible with it?</li>
+<li><strong>What are the alternative explanations?</strong> Chance, reverse causation, confounding, selection, measurement problems (<a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a>).</li>
+</ol>
+<p>The four kinds of study validity introduced in <a href="../behav/experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a> (see the callout <em>Two meanings of validity</em> there) turn these questions into a checklist:</p>
+<div id="tbl-validity-checklist" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-validity-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;28.2: Four questions for interpreting a study, and the kind of validity each concerns.
+</figcaption>
+<div aria-describedby="tbl-validity-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Kind of validity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Does the design support the causal claim, or are there alternative explanations?</td>
+<td>Internal validity</td>
+</tr>
+<tr class="even">
+<td>Did we manipulate and measure what we meant to?</td>
+<td>Construct validity (and the measurement validity of <a href="../behav/measurement.html" class="quarto-xref"><span>Chapter 1</span></a>)</td>
+</tr>
+<tr class="odd">
+<td>To whom, where and when does the result apply?</td>
+<td>External validity</td>
+</tr>
+<tr class="even">
+<td>How sure can we be of the statistical result?</td>
+<td>Statistical conclusion validity</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="read-the-numbers-together" class="level3">
+<h3 class="anchored" data-anchor-id="read-the-numbers-together">Read the numbers together</h3>
+<p>A p-value alone says little. The same p-value can come from a large effect estimated imprecisely in a small study, or from a tiny effect estimated precisely in a very large one. In the simulated example below, both studies give a p-value between 0.01 and 0.02:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">30</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>small_study <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">group =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="at">each =</span> <span class="dv">15</span>),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">score =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="fl">1.05</span>, <span class="dv">1</span>)))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>large_study <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">group =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="at">each =</span> <span class="dv">2000</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">score =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">2000</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">2000</span>, <span class="fl">0.08</span>, <span class="dv">1</span>)))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>summarise_test <span class="ot">&lt;-</span> <span class="cf">function</span>(d) {</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  tt <span class="ot">&lt;-</span> <span class="fu">t.test</span>(score <span class="sc">~</span> group, <span class="at">data =</span> d)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">n_per_group =</span> <span class="fu">nrow</span>(d) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">difference =</span> <span class="fu">unname</span>(<span class="fu">diff</span>(tt<span class="sc">$</span>estimate)),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">ci_low =</span> <span class="sc">-</span>tt<span class="sc">$</span>conf.int[<span class="dv">2</span>], <span class="at">ci_high =</span> <span class="sc">-</span>tt<span class="sc">$</span>conf.int[<span class="dv">1</span>],</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">p =</span> tt<span class="sc">$</span>p.value)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(<span class="at">small =</span> <span class="fu">summarise_test</span>(small_study),</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">large =</span> <span class="fu">summarise_test</span>(large_study), <span class="at">.id =</span> <span class="st">"study"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 6</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   study n_per_group difference ci_low ci_high      p</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 small          15     0.963  0.219    1.71  0.0131</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 large        2000     0.0770 0.0146   0.139 0.0155</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The small study suggests a large difference, about one standard deviation, but its confidence interval is wide: the data are compatible with effects from small to very large. The large study estimates a difference of less than a tenth of a standard deviation, precisely: the effect is almost certainly real, and almost certainly small. Reporting the estimate, its confidence interval and an effect size (<a href="../inference/estimates-confidence-intervals.html" class="quarto-xref"><span>Chapter 15</span></a>, <a href="../basic-stats/effect-size.html" class="quarto-xref"><span>Chapter 22</span></a>) next to the p-value makes the difference visible.</p>
+</section>
+<section id="non-significant-is-not-no-effect" class="level3">
+<h3 class="anchored" data-anchor-id="non-significant-is-not-no-effect">Non-significant is not “no effect”</h3>
+<p>A p-value above 0.05 does not show that there is no effect (<a href="../inference/hypothesis-testing.html" class="quarto-xref"><span>Chapter 16</span></a>). A study with low power (<a href="../basic-stats/power.html" class="quarto-xref"><span>Chapter 23</span></a>) can easily miss a real effect. Look at the confidence interval: if it includes both zero and effects that would matter, the study is inconclusive, not negative.</p>
+</section>
+<section id="missing-data-and-analytic-choices" class="level3">
+<h3 class="anchored" data-anchor-id="missing-data-and-analytic-choices">Missing data and analytic choices</h3>
+<p>Two further questions concern how the final numbers were obtained. <strong>Who is in the analysis?</strong> If participants dropped out or skipped questions for reasons related to the outcome, the remaining sample may be optimistic (<a href="../basic-stats/missing-data.html" class="quarto-xref"><span>Chapter 24</span></a>). <strong>How many choices were made, and when?</strong> Exclusion rules, outcome measures and covariates can be chosen in many reasonable ways. When they are chosen after seeing the data, a significant result is much easier to obtain, and much less informative (<a href="../behav/research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>).</p>
+</section>
+</section>
+<section id="common-interpretation-mistakes" class="level2" data-number="28.3">
+<h2 data-number="28.3" class="anchored" data-anchor-id="common-interpretation-mistakes"><span class="header-section-number">28.3</span> Common interpretation mistakes</h2>
+<p>The following mistakes are frequent in papers, reports and the press. Most of them follow from forgetting one of the three questions above.</p>
+<p><strong>Hidden causal claims.</strong> Causal claims are often made without the word <em>cause</em>. Verbs such as <em>leads to</em>, <em>boosts</em>, <em>elicits</em>, <em>protects</em> or <em>improves</em> all describe causal effects. With observational data, the defensible wording is at the top of the following ladder:</p>
+<div id="tbl-causal-language" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-causal-language-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;28.3: A ladder of wording, from associational to causal.
+</figcaption>
+<div aria-describedby="tbl-causal-language-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Wording</th>
+<th>What it claims</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X <em>is associated with</em> Y</td>
+<td>an association</td>
+</tr>
+<tr class="even">
+<td>X <em>predicts</em> Y</td>
+<td>an association useful for prediction (sometimes read as causal)</td>
+</tr>
+<tr class="odd">
+<td>X <em>is linked to</em>, <em>is a risk factor for</em> Y</td>
+<td>ambiguous; often read as causal</td>
+</tr>
+<tr class="even">
+<td>X <em>leads to</em>, <em>boosts</em>, <em>protects against</em>, <em>improves</em> Y</td>
+<td>a causal effect</td>
+</tr>
+<tr class="odd">
+<td>X <em>causes</em> Y</td>
+<td>a causal effect</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Forgetting confounders.</strong> “Users of the meditation app sleep better” invites the question: who installs a meditation app? Probably people who already care about their health.</p>
+<p><strong>Forgetting who took part.</strong> Only some people consent to a study, only motivated users answer a satisfaction survey, and most participants in psychology studies come from a narrow range of countries and backgrounds (Henrich et al., 2010). A result holds for the people who could have been in the data.</p>
+<p><strong>“Significant in one group, not in the other”.</strong> Suppose an app reduces stress significantly in women (p = 0.03) but not in men (p = 0.20). It is tempting to conclude that the app works for women and not for men. But the two estimates can be very similar; the difference between them must be tested directly, as an interaction (see <a href="../basic-stats/anova.html" class="quarto-xref"><span>Chapter 19</span></a>). The difference between “significant” and “not significant” is not itself statistically significant (Gelman &amp; Stern, 2006).</p>
+<p><strong>Forgetting the strength of the evidence.</strong> One small study with p = 0.04 is weak evidence, however interesting the result. Effect size, precision, power and replication all matter.</p>
+<p><strong>Averages are not individuals.</strong> A difference between group means does not mean that every individual differs in the same way. And an association between people (people who use their phone more are more stressed) need not hold within people (on days when I use my phone more, I am more stressed), as discussed in <a href="../behav/experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>.</p>
+<p><strong>Regression to the mean.</strong> Participants selected because of extreme scores, such as the most stressed users, will on average score less extremely the next time, with or without an intervention. A single-group pre–post study cannot separate this from a real effect.</p>
+<p><strong>Going beyond the data.</strong> Results apply to the people, tasks, settings and range of values that were studied. A laboratory effect in students may not hold for older adults using their own phones at home.</p>
+<p><strong>Exploratory results presented as confirmatory.</strong> A pattern found while exploring the data is a hypothesis for the next study, not a confirmed finding (see <em>Two ways of exploring</em> in <a href="../behav/research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>).</p>
+</section>
+<section id="sec-several-predictors" class="level2" data-number="28.4">
+<h2 data-number="28.4" class="anchored" data-anchor-id="sec-several-predictors"><span class="header-section-number">28.4</span> When the model has several predictors</h2>
+<!-- 22 Nov 2026 (Claude), at the instructor's request: new section, read after the regression weeks; "We controlled for it" moved here from Common interpretation mistakes. To review. -->
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This section assumes the <em>Linear Models</em> part, and in particular <a href="../linear-models/linear-model-framework.html#sec-adjusting-confounder" class="quarto-xref"><span>Section 26.6</span></a>. You can skip it on a first reading and come back to it after the chapters on regression.</p>
+</div>
+</div>
+</div>
+<p>Regression models with several predictors are the most common way to analyse observational data, and they bring their own interpretation mistakes.</p>
+<p><strong>“We controlled for it”.</strong> Adjusting for a confounder removes its influence only as far as the confounder is well measured. A covariate measured with error leaves part of the confounding in place (see <em>Measurement error and its consequences</em> in <a href="../behav/measurement.html" class="quarto-xref"><span>Chapter 1</span></a>), and confounders that were not measured are not controlled at all.</p>
+<p><strong>An adjusted coefficient is not a causal effect.</strong> A coefficient “adjusted for age and sex” is still an association: the association among people of the same age and sex. It can be read causally only if the design and the arguments of <a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a> rule out the other explanations, including the confounders that were not in the model.</p>
+<p><strong>Which variables, and why?</strong> Adjusting for a mediator removes part of the effect we want to estimate, and adjusting for a collider creates an association that was not there (<em>Adjusting is not free</em> in <a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a>). A good report says why each covariate was included, and whether the choice was made before seeing the data (<a href="credible-evidence.html" class="quarto-xref"><span>Chapter 29</span></a>).</p>
+<p><strong>R² is not importance.</strong> <span class="math inline">\(R^2\)</span> is the proportion of variance in the outcome that the model explains in this sample (see <em>Variance explained</em> in <a href="../linear-models/regression.html" class="quarto-xref"><span>Chapter 25</span></a>). A small <span class="math inline">\(R^2\)</span> can go with an effect that matters a great deal, for example a small average benefit of an intervention given to millions of people, and a large <span class="math inline">\(R^2\)</span> can come from predictors that are of no practical interest. Nor does a high <span class="math inline">\(R^2\)</span> mean that the model is the right one for a causal question: a model can predict well without identifying causes (<em>Explanation and prediction</em> in <a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a>).</p>
+<p><strong>Going beyond the range of the data.</strong> A regression line describes the data within the range of values that were observed. The intercept of a model, for example, is the prediction for a value of 0 of every predictor, which may not exist (a consistency index of 0, an age of 0). Predictions outside the observed range, <em>extrapolations</em>, rest on the assumption that the line continues, which the data cannot check.</p>
+<!-- 18 Nov 2026 (Claude): replaces the subsection "Why this matters: the replication crisis", moved to the next chapter -->
+<p>All these questions concern a single study. The next chapter, <a href="credible-evidence.html" class="quarto-xref"><span>Chapter 29</span></a>, asks them of a whole body of evidence: whether published results can be trusted, and why many of them could not be replicated.</p>
+</section>
+<section id="further-reading" class="level2" data-number="28.5">
+<h2 data-number="28.5" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">28.5</span> Further reading</h2>
+<ul>
+<li>W. R. Shadish, T. D. Cook &amp; D. T. Campbell (2002), <em>Experimental and Quasi-Experimental Designs for Generalized Causal Inference</em>. Boston: Houghton Mifflin. The classic reference on the four kinds of study validity and their threats.</li>
+<li>A. Gelman &amp; H. Stern (2006), <em>The difference between “significant” and “not significant” is not itself statistically significant</em>, The American Statistician, 60(4), 328–331.</li>
+<li>J. Henrich, S. J. Heine &amp; A. Norenzayan (2010), <em>The weirdest people in the world?</em>, Behavioral and Brain Sciences, 33(2–3), 61–83.</li>
+</ul>
+</section>
+<section id="exercises" class="level2" data-number="28.6">
+<h2 data-number="28.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">28.6</span> Exercises</h2>
+<p>1. Find a news article or a press release that reports a study on technology use and wellbeing. Which wording does it use (<a href="#tbl-causal-language" class="quarto-xref">Table&nbsp;<span>28.3</span></a>)? Is the wording supported by the design? Rewrite the headline so that it matches the design.</p>
+<p>2. Run the <code>same-p</code> example again with 50 participants per group in the small study. How do the confidence interval and the p-value change? Which of the two studies would you rather cite to claim that the effect is important, and why?</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/intro-to-behds\.github\.io\/behdsbook-part-2\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../interpretation/intro-interpretation.html" class="pagination-link" aria-label="Interpreting Evidence">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Interpreting Evidence</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../interpretation/credible-evidence.html" class="pagination-link" aria-label="Can We Trust the Evidence? Replication and Open Science">
+        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Introduction to Behavioural Data Science, adapted from Rafael A. Irizarry’s Introduction to Data Science</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/interpretation/results-to-conclusions.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
