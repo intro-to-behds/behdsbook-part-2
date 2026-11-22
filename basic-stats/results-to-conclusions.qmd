@@ -1,6 +1,8 @@
 # From Results to Conclusions {#sec-results-to-conclusions}
 
-<!-- 17 Nov 2026 (Claude): drafted from Course Slides/SLIDES_PLANS/Week09-Experimental Design and Intepretation/Global-Plan.md and Book-slides-alignment.md. Parts adapted from the hidden linear-models/association-not-causation.qmd (stress-app simulation, app_task_completion / Simpson's paradox, other sources of bias), rewritten without lm(). References to verify. -->
+_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+
+<!-- 17 Nov 2026 (Claude): drafted from Course Slides/SLIDES_PLANS/Week09-Experimental Design and Intepretation/Global-Plan.md and Book-slides-alignment.md. Parts adapted from the hidden linear-models/association-not-causation.qmd (stress-app simulation, app_task_completion / Simpson's paradox, other sources of bias), rewritten without lm(). References to verify. 22 Nov 2026 (Claude), at the instructor's request: the sections on causal claims (Explanation and prediction, Correlational designs, Alternative explanations, Towards causal claims) and exercises 1-3 moved to the new chapter behav/association-causation.qmd (sec-association-not-causation); this chapter keeps the interpretation part. -->
 
 ```{r, message=FALSE, warning=FALSE}
 #| cache: false
@@ -17,7 +19,7 @@ Running a statistical test is the easy part of an analysis, especially if you us
 
 Interpretation does not mean that any reading of the results is as good as another. A good interpretation brings together all the available evidence: how the data were collected (@sec-experimental-designs), how well the variables were measured (@sec-measurement), what the estimates and their uncertainty say (@sec-estimates-and-ci, @sec-effect-size), what is missing (@sec-missing-data), and how the analysis was done (@sec-research-ethics). Some interpretations are better than others because they account for more of this evidence.
 
-This chapter is about the step from results to conclusions. It starts by separating results from their interpretation. The first half is then about causal claims: when an association can be read as a cause, and what else can produce it. The second half is about interpreting a result in general, and ends with a list of common mistakes.
+This chapter is about the step from results to conclusions. It starts by separating results from their interpretation, then offers a few questions for interpreting any result, and ends with a list of common mistakes. When an association can be read as a cause, and what else can produce it, is the topic of @sec-association-not-causation, in the first part of the book.
 
 <!-- 22 Nov 2026 (Claude), at the instructor's request: results vs interpretation, three examples. To review. -->
 
@@ -31,9 +33,9 @@ Results and interpretation are separable because **the same results can support 
 
 **A randomised trial.** Older adults attending a memory clinic are randomly assigned to eight weeks with a new cognitive-training app, built around game-like memory exercises, or with an active control app that has the same session length and the same number of reminders, but only offers short quizzes on news articles. At the end, the training group improves more on a memory test, and the confidence interval for the difference excludes zero. The obvious interpretation is that the training exercises improve memory. But suppose that participants found the control app dull. They used it less, more of them dropped out, they expected less from it, and they came to the final test less motivated. The difference may then reflect engagement and expectations rather than the training itself. Randomisation balances *who* is in each arm, not *what happens* to them once they are there. Usage logs, ratings of enjoyment and expectations, and dropout by arm help to tell the two readings apart; a control condition matched on these features is the best protection (*What do we compare with?* in @sec-rcts).
 
-**A comparison of pre-existing groups** (often called quasi-experimental). Patients with a chronic neurological condition, such as epilepsy, are on average about 60 ms slower than healthy controls on a simple reaction-time task. The obvious interpretation is that the condition slows processing speed. But many patients take several medications every day, and some of these have sedative effects that slow responses. The slowing may come from the drugs rather than from the condition, or from both. Nobody assigned participants to the groups, so the medication comes together with the group. Recording drugs and doses, and comparing patients on different treatments, helps; it does not settle the question, because the treatment also depends on how severe the condition is (see *Correlational designs and correlation analyses* below).
+**A comparison of pre-existing groups** (often called quasi-experimental). Patients with a chronic neurological condition, such as epilepsy, are on average about 60 ms slower than healthy controls on a simple reaction-time task. The obvious interpretation is that the condition slows processing speed. But many patients take several medications every day, and some of these have sedative effects that slow responses. The slowing may come from the drugs rather than from the condition, or from both. Nobody assigned participants to the groups, so the medication comes together with the group. Recording drugs and doses, and comparing patients on different treatments, helps; it does not settle the question, because the treatment also depends on how severe the condition is (see *Correlational designs and correlation analyses* in @sec-association-not-causation).
 
-**An observational study.** In a survey of university students, those who use a study-planning app, available only with a paid subscription, have higher exam grades than those who do not. The obvious interpretation is that the app helps students study. But the app is costly, so its users tend to come from families with a higher socioeconomic status. They are more likely to have a quiet room and a good laptop, not to need a part-time job, and to sleep better and feel well, and each of these can raise grades on its own. Socioeconomic status is then a *confounder* (see *Confounding* below). Moreover, students who are already well organised may be the ones who choose a planning app in the first place (*Selection* below).
+**An observational study.** In a survey of university students, those who use a study-planning app, available only with a paid subscription, have higher exam grades than those who do not. The obvious interpretation is that the app helps students study. But the app is costly, so its users tend to come from families with a higher socioeconomic status. They are more likely to have a quiet room and a good laptop, not to need a part-time job, and to sleep better and feel well, and each of these can raise grades on its own. Socioeconomic status is then a *confounder* (see *Confounding* in @sec-association-not-causation). Moreover, students who are already well organised may be the ones who choose a planning app in the first place (*Selection*, in the same chapter).
 
 | Design | Result | First interpretation | Alternative interpretation |
 |---|---|---|---|
@@ -43,165 +45,7 @@ Results and interpretation are separable because **the same results can support 
 
 : The same result, two interpretations, in three designs (hypothetical examples). {#tbl-one-result-many-readings}
 
-In each example the result stays the same; what changes is the interpretation. A good Discussion does not stop at the first interpretation: it names the alternatives and says which of them the design rules out and which it leaves open. The rest of this chapter goes through the most common alternatives, and how to weigh them.
-
-## Explanation and prediction
-
-Data analysis can answer two different kinds of question.
-
-- **Prediction**: *which* users are likely to stop using an app next month? A model that predicts well is useful even if we do not know why it works. The number of days since the last login may predict dropout very well, without being its cause.
-- **Explanation**: *why* do users stop using the app? Here we want to know the causes.
-
-The difference matters because we usually want causes for a practical reason: **a cause tells us what to change**. Knowing that users who open a stress app more often report more stress may help us predict who is stressed. It does not tell us whether *giving people the app* would reduce their stress. Only a causal relationship tells us what would happen if we intervened. Most questions in behavioural research and in the design of technologies are, in the end, questions about interventions: should we change the interface, send fewer notifications, offer the training? These need causal answers.
-
-As discussed in @sec-experimental-designs, a causal claim is about a comparison we can never fully observe: what would have happened to the same person, at the same time, without the intervention. Randomised experiments solve this problem on average, across groups. Without randomisation, we must argue that the groups we compare are comparable, and this argument can fail in several ways.
-
-## Correlational designs and correlation analyses
-
-The phrase *correlation does not imply causation* is often misread as a statement about a statistical technique. It is a statement about the **design**. A correlation coefficient computed on data from a randomised experiment can support a causal conclusion; a t-test computed on data from an observational study cannot, on its own.
-
-Consider a study comparing patients with a neurological condition and healthy controls on a reaction-time task, or heavy and light smartphone users on an attention test. The analysis is a comparison of two groups, with a t-test or a Wilcoxon test (@sec-two-groups). It looks like an experiment, but nobody assigned participants to the groups: they arrived already belonging to one of them. Such **pre-existing groups** differ in many ways besides the one that names them. Patients and controls may differ in age, education, medication, fatigue and motivation; heavy smartphone users may differ in age, sleep and job. The study is correlational in design, whatever test is used to analyse it.
-
-Matching participants on some characteristics, such as age and education, makes the groups more comparable on those characteristics, but not on the ones that were not measured. This is why randomisation, which also balances unmeasured characteristics on average, is so valuable.
-
-## Alternative explanations
-
-When two variables are associated, the causal reading (*X causes Y*) is only one of several explanations. A good interpretation lists the others and asks whether the design rules them out. The main ones are chance, reverse causation, confounding, and selection.
-
-### Chance
-
-Any association can arise by chance in a sample. The p-value (@sec-hypothesis-testing) quantifies how surprising the data would be if there were no association, and the risk grows when many associations are tested and only the significant ones are reported (@sec-multiple-comparisons). Chance is the alternative that statistics handles best; the others are not addressed by any p-value.
-
-### Reverse causation
-
-Sometimes the effect causes the putative cause. People who feel stressed are the ones most likely to install a stress-reduction app. The following data are simulated so that we know the truth: the probability of using the app increases with a person's baseline stress, and using the app *reduces* stress by 0.5 points on a 10-point scale.
-
-```{r stress-app-simulation}
-set.seed(1983)
-n <- 500
-baseline <- rnorm(n, 5, 1.5)
-app <- rbinom(n, 1, plogis(-6 + 1.1 * baseline))
-stress <- baseline - 0.5 * app + rnorm(n, 0, 0.5)
-stress_app <- tibble(app = factor(app, labels = c("non-user", "user")),
-                     stress)
-
-stress_app |>
-  group_by(app) |>
-  summarise(mean_stress = mean(stress), n = n())
-t.test(stress ~ app, data = stress_app)$p.value
-```
-
-App users are clearly more stressed than non-users, and the difference is significant. Reading it causally would be backwards: it would say that the app increases stress, when we built the data so that it lowers it. Note that nothing is wrong with the test or the code: it's the interpretation that is wrong. Only a design that compares the same people before and after, with a control group, or that assigns the app at random, could estimate its effect.
-
-### Confounding
-
-A **confounder** is a variable that influences both the putative cause and the outcome, creating an association between them. @sec-experimental-designs shows an example: workload increases both app use and stress.
-
-Confounding can even reverse an association. The `app_task_completion` dataset records, for six in-app tasks (A to F), how many attempts users made on mobile and on desktop, and the percentage of attempts that were completed. Overall, mobile attempts are completed more often:
-
-```{r}
-app_task_completion |>
-  group_by(device) |>
-  summarise(completion = sum(completion_rate * n_attempts) / sum(n_attempts),
-            attempts = sum(n_attempts))
-```
-
-Mobile looks about 14 points better. Now look at each task separately, a technique called **stratifying**:
-
-```{r completion-by-task}
-#| fig-cap: "Completion rate by task and device in `app_task_completion`. The size of each point is the number of attempts."
-#| fig-width: 6
-#| fig-height: 3.5
-app_task_completion |>
-  ggplot(aes(task, completion_rate, colour = device, size = n_attempts)) +
-  geom_point(alpha = 0.8) +
-  labs(x = "Task", y = "Completion rate (%)", size = "Attempts") +
-  theme_minimal()
-```
-
-Task by task, the two devices are similar, and for task A desktop is better. The overall difference comes from the tasks: tasks A and B are easy, and most of their attempts were made on mobile, while desktop users spent most of their attempts on the hard tasks C to F. Task difficulty influences both the device used and the chance of completing the task. When the overall comparison and the stratified ones point in different directions, the result is called **Simpson's paradox**.
-
-:::{.callout-note}
-This dataset has the same structure as a classic real example: graduate admissions by sex at the University of California, Berkeley, in 1973 (P. J. Bickel, E. A. Hammel & J. W. O'Connell, *Science*, 1975).
-::: 
-
-Stratifying works only for confounders that we thought of and measured. In an observational study, there may always be others.
-
-### Selection
-
-The people in a dataset are rarely a random sample of the population we are interested in. Only some people agree to take part in a study (and sign the informed consent), only some users leave a review, and only some participants stay until the end. If the process that brings people into the data is related to the variables we study, it can create, hide or distort associations. This is **selection bias**.
-
-<!-- 21 Nov 2026 (Claude): "featured" renamed "recommended" at the instructor's request (here, in the chunk and in exercise 3) -->
-A subtle form of selection occurs when the selection depends on two variables at once. Suppose an app store recommends an app if it has either an excellent design or excellent marketing. In the simulated data below, design quality and marketing quality are unrelated across all apps. Among the recommended apps, they are negatively correlated: a recommended app with poor marketing must have an excellent design, and vice versa.
-
-```{r collider-simulation}
-set.seed(2026)
-apps <- tibble(design = rnorm(1000), marketing = rnorm(1000)) |>
-  mutate(recommended = design + marketing > 1.5)
-
-cor(apps$design, apps$marketing)
-apps |> filter(recommended) |> summarise(r = cor(design, marketing), n = n())
-```
-
-Looking only at the recommended apps, we could conclude that good marketing comes at the cost of design. The association was created by the selection. A variable that is influenced by two others, like *recommended* here, is called a **collider**, and selecting or adjusting on it creates spurious associations. The same mechanism operates when a study includes only participants who completed it, or only patients who were referred to a clinic.
-
-### Drawing the alternatives
-
-Confounders, colliders and a third structure, the **mediator** (a variable through which the cause acts, such as app use → fewer notifications → less stress), can be drawn as diagrams in which arrows point from causes to effects:
-
-```{r causal-structures}
-#| echo: false
-#| fig-cap: "Three causal structures. Left: Z is a confounder of X and Y. Centre: M is a mediator between X and Y. Right: C is a collider, influenced by both X and Y."
-#| fig-width: 7
-#| fig-height: 2.4
-nodes <- tibble(
-  structure = rep(c("Confounder", "Mediator", "Collider"), each = 3),
-  name = c("X", "Y", "Z", "X", "Y", "M", "X", "Y", "C"),
-  x = rep(c(0, 2, 1), 3),
-  y = c(0, 0, 1, 0, 0, 1, 0, 0, -1)
-)
-edges <- tribble(
-  ~structure, ~x, ~y, ~xend, ~yend,
-  "Confounder", 1, 1, 0, 0,
-  "Confounder", 1, 1, 2, 0,
-  "Mediator", 0, 0, 1, 1,
-  "Mediator", 1, 1, 2, 0,
-  "Collider", 0, 0, 1, -1,
-  "Collider", 2, 0, 1, -1
-) |>
-  mutate(xend = x + 0.82 * (xend - x), yend = y + 0.82 * (yend - y),
-         x = x + 0.18 * (xend - x) / 0.82, y = y + 0.18 * (yend - y) / 0.82)
-nodes$structure <- factor(nodes$structure, levels = c("Confounder", "Mediator", "Collider"))
-edges$structure <- factor(edges$structure, levels = levels(nodes$structure))
-ggplot() +
-  geom_segment(data = edges, aes(x, y, xend = xend, yend = yend),
-               arrow = arrow(length = unit(0.18, "cm"), type = "closed"),
-               colour = "grey40") +
-  geom_label(data = nodes, aes(x, y, label = name),
-             fill = navy, colour = "white", size = 4) +
-  facet_wrap(~structure) +
-  coord_cartesian(xlim = c(-0.3, 2.3), ylim = c(-1.3, 1.3)) +
-  theme_void() +
-  theme(strip.text = element_text(size = 11))
-```
-
-Such diagrams are called *directed acyclic graphs* (DAGs). They are a formal tool for deciding which variables must be taken into account to estimate a causal effect, and which must not. They are beyond the scope of this book; Rohrer (2018), in the further reading, is an accessible introduction.
-
-### Adjusting is not free
-
-A common reaction to confounding is to include in the analysis every variable that might matter. This is not always safe. Adjusting for a confounder removes a spurious association, but adjusting for a mediator removes part of the effect we want to estimate, and adjusting for a collider creates an association that was not there, as in the app-store example. Which variables to include in a model is therefore a causal decision, not only a statistical one. The question returns when we fit models with several predictors, in the chapters on regression. <!-- @sec-multivariable-regression -->
-
-## Towards causal claims from observational data
-
-When an experiment is impossible, because it would be unethical, too expensive, or because the causes cannot be manipulated, causal questions must be studied with observational data. No single observational study settles a causal question, but some features make a causal reading more plausible. A classic list comes from the epidemiologist Austin Bradford Hill (1965), who discussed smoking and lung cancer. Among his criteria:
-
-- **Temporality**: the cause comes before the effect. Longitudinal designs can show this; cross-sectional designs usually cannot.
-- **Strength and dose–response**: a strong association, which increases with the amount of exposure.
-- **Consistency**: the association is found by different studies, in different samples, with different methods.
-- **Plausibility**: there is a credible mechanism linking cause and effect.
-- **Experiment**: when the exposure is changed, the outcome changes.
-
-None of these is a proof. They are a way of organising the evidence, and they are useful questions to ask of any causal claim based on observational data.
+In each example the result stays the same; what changes is the interpretation. A good Discussion does not stop at the first interpretation: it names the alternatives and says which of them the design rules out and which it leaves open. @sec-association-not-causation goes through the most common alternatives; the rest of this chapter is about how to weigh them.
 
 ## Interpreting a result
 
@@ -211,7 +55,7 @@ Whatever the design, three questions help to interpret a result:
 
 1. **What was the design?** Was anything manipulated? Were participants randomly assigned? Who took part, and who was left out?
 2. **What do the results actually support?** How large is the effect, how precise is the estimate, and which conclusions are compatible with it?
-3. **What are the alternative explanations?** Chance, reverse causation, confounding, selection, measurement problems.
+3. **What are the alternative explanations?** Chance, reverse causation, confounding, selection, measurement problems (@sec-association-not-causation).
 
 The four kinds of study validity introduced in @sec-experimental-designs (see the callout *Two meanings of validity* there) turn these questions into a checklist:
 
@@ -296,22 +140,12 @@ All these questions concern a single study. The next chapter, @sec-credible-evid
 ## Further reading
 
 - W. R. Shadish, T. D. Cook & D. T. Campbell (2002), *Experimental and Quasi-Experimental Designs for Generalized Causal Inference*. Boston: Houghton Mifflin. The classic reference on the four kinds of study validity and their threats.
-- J. M. Rohrer (2018), *Thinking clearly about correlations and causation: Graphical causal models for observational data*, Advances in Methods and Practices in Psychological Science, 1(1), 27–42, <https://doi.org/10.1177/2515245917745629>.
-- M. A. Hernán & J. M. Robins (2020), *Causal Inference: What If*. Boca Raton: Chapman & Hall/CRC. Freely available from the authors' website.
 - A. Gelman & H. Stern (2006), *The difference between "significant" and "not significant" is not itself statistically significant*, The American Statistician, 60(4), 328–331.
-- P. W. Holland (1986), *Statistics and causal inference*, Journal of the American Statistical Association, 81(396), 945–960.
-- A. Bradford Hill (1965), *The environment and disease: association or causation?*, Proceedings of the Royal Society of Medicine, 58, 295–300, <https://doi.org/10.1177/003591576505800503>.
 - J. Henrich, S. J. Heine & A. Norenzayan (2010), *The weirdest people in the world?*, Behavioral and Brain Sciences, 33(2–3), 61–83.
 
 
 ## Exercises
 
-1\. For each of the following studies, say whether the design is experimental, quasi-experimental or observational, and name one alternative explanation for the result. (a) Participants are randomly assigned to complete an attention task with or without notifications; those with notifications are slower. (b) Heavy smartphone users are slower than light users on the same task. (c) After a university introduced a notification-free policy during lectures, students' exam grades rose compared with the previous year.
+1\. Find a news article or a press release that reports a study on technology use and wellbeing. Which wording does it use (@tbl-causal-language)? Is the wording supported by the design? Rewrite the headline so that it matches the design.
 
-2\. Using `app_task_completion`, compute the overall completion rate by device, and then the completion rate by device for tasks C to F only. Explain the difference in your own words.
-
-3\. Run the app-store simulation again with a threshold of 0 instead of 1.5, and then of 2.5. How does the correlation among recommended apps change? Why?
-
-4\. Find a news article or a press release that reports a study on technology use and wellbeing. Which wording does it use (@tbl-causal-language)? Is the wording supported by the design? Rewrite the headline so that it matches the design.
-
-5\. Run the `same-p` example again with 50 participants per group in the small study. How do the confidence interval and the p-value change? Which of the two studies would you rather cite to claim that the effect is important, and why?
+2\. Run the `same-p` example again with 50 participants per group in the small study. How do the confidence interval and the p-value change? Which of the two studies would you rather cite to claim that the effect is important, and why?

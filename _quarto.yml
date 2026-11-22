@@ -45,6 +45,7 @@ book:
         - behav/research-ethics.qmd
         - behav/experimental-designs.qmd
         - behav/randomised-trials.qmd
+        - behav/association-causation.qmd
 
     - part: summaries/intro-summaries.qmd
       chapters:
@@ -92,7 +93,6 @@ book:
         # - linear-models/linear-model-framework.qmd
         # - linear-models/treatment-effect-models.qmd
         # - linear-models/glm.qmd
-        # - linear-models/association-not-causation.qmd
         # - linear-models/multivariable-regression.qmd
         # - linear-models/reading-lm.qmd
         

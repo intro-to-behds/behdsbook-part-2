@@ -34,7 +34,7 @@ The same assumption appears in machine learning. When we train a model, we use o
 
 Despite this, such models and analyses often work remarkably well and have provided valuable insights. For example, studies using observational data have convincingly shown that smoking harms health and that regular exercise and a good diet extend life. But when data come from convenience samples, extra care is needed. The assumptions behind our probability models become especially important. Treating a convenience sample as if it were a simple random sample can lead to biased and misleading conclusions.
 
-These biases can sometimes be corrected with statistical techniques, but doing so requires making additional assumptions. Understanding what those assumptions are, and thinking critically about whether they are reasonable, is essential for sound data analysis. In a later chapter<!-- @sec-association-not-causation --> we will revisit this topic and show concrete examples of how unexamined assumptions about randomness can distort results.
+These biases can sometimes be corrected with statistical techniques, but doing so requires making additional assumptions. Understanding what those assumptions are, and thinking critically about whether they are reasonable, is essential for sound data analysis. In @sec-association-not-causation we revisit this topic and show concrete examples of how unexamined assumptions about randomness can distort results.
 
 ### Measurement error
 
