@@ -1,6 +1,6 @@
 # From Results to Conclusions {#sec-results-to-conclusions}
 
-_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+_Written for this book by Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
 
 <!-- 17 Nov 2026 (Claude): drafted from Course Slides/SLIDES_PLANS/Week09-Experimental Design and Intepretation/Global-Plan.md and Book-slides-alignment.md. Parts adapted from the hidden linear-models/association-not-causation.qmd (stress-app simulation, app_task_completion / Simpson's paradox, other sources of bias), rewritten without lm(). References to verify. 22 Nov 2026 (Claude), at the instructor's request: the sections on causal claims (Explanation and prediction, Correlational designs, Alternative explanations, Towards causal claims) and exercises 1-3 moved to the new chapter behav/association-causation.qmd (sec-association-not-causation); this chapter keeps the interpretation part. -->
 

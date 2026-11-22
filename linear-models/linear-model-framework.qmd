@@ -1,6 +1,6 @@
 # The Linear Model Framework
 
-_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/linear-model-framework.html). Adapted by Giorgio Arcara: Galton's father and son heights (`HistData::GaltonFamilies`) are replaced by users' consistency index and engagement score (`behdslabs::app_engagement_experiment`), in the text and in exercises 10–13; the code uses the tidyverse instead of data.table; new sections *A binary predictor: dummy variables* and *Adjusting for a confounder* (with exercises 14–16), written with an AI assistant (Claude); the section on measurement error models is marked as optional; the text is otherwise Irizarry's, with small edits to fit the new examples._
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/linear-model-framework.html). Adapted by Giorgio Arcara: Galton's father and son heights (`HistData::GaltonFamilies`) are replaced by users' consistency index and engagement score (`behdslabs::app_engagement_experiment`), in the text and in exercises 10–13; the code uses the tidyverse instead of data.table; new sections *A binary predictor: dummy variables* and *Adjusting for a confounder* (with exercises 14–16); the section on measurement error models is marked as optional; the text is otherwise Irizarry's, with small edits to fit the new examples._
 
 <!-- 22 Nov 2026 (Claude): reflavoured with /reflavour-chapter (Pass A, dataset swap only), instructor decision of 22 Nov 2026 (same data as Ch. 15). The measurement-error section (rfalling_object, base R co2 in exercises 1-5) is left as it is. -->
 
@@ -253,7 +253,7 @@ At the end of this chapter, and in @sec-treatment-effect-models, we introduce da
 
 :::{.callout-warning}
 ## Draft
-This section and the next were written for this book with an AI assistant (Claude) on 22 November 2026, and are not yet reviewed by the instructor.
+This section and the next were written for this book on 22 November 2026, and are not yet reviewed by the instructor.
 :::
 
 So far, the predictor $x$ has been a number. Many predictors in behavioural research are categories instead: sex, the version of an interface, the device used, the condition of an experiment. The linear model handles them with a simple trick. Suppose we want to predict engagement from sex. We define a new variable

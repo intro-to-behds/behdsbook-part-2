@@ -1,6 +1,6 @@
 # Interpreting Evidence {.unnumbered}
 
-_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This part is not in Irizarry's *Introduction to Data Science*._
+_Written for this book by Giorgio Arcara. This part is not in Irizarry's *Introduction to Data Science*._
 
 <!-- 22 Nov 2026 (Claude): new closing part, at the instructor's request. It holds the two interpretation chapters, moved from Basic Statistics. In the course they are read in Week 9, with the design topics, before the regression weeks. To review. -->
 

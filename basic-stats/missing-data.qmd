@@ -1,6 +1,6 @@
 # Missing Data {#sec-missing-data}
 
-_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+_Written for this book by Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
 
 <!-- 15 Nov 2026 (Claude): updated from deck 08-05 (diary tile plot, mechanisms figure, the four strategies, median imputation, multiple-imputation diagram, migraine example, reporting example); moved from behav/ to basic-stats/. Reviewed by G. Arcara and published, 17 Nov 2026. -->
 

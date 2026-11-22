@@ -1,10 +1,10 @@
 # Comparing More Than Two Groups: ANOVA {#sec-anova}
 
-_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+_Written for this book by Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
 
 :::{.callout-warning}
 ## Draft
-This chapter is a **draft**, written with an AI assistant (Claude) on 29 October 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
+This chapter is a **draft**, written on 29 October 2026 and not yet reviewed by the instructor. It may be substantially rewritten or removed.
 :::
 
 The t-test (@sec-two-groups) compares two groups. Many experiments have more: three distractor conditions, four levels of task difficulty, or two factors crossed with each other, such as interface version and sex. We could run a t-test for every pair of groups, but with three groups that is already three tests, and the more tests we run, the more likely it is that at least one gives a small p-value by chance (@sec-multiple-comparisons). The *analysis of variance* (ANOVA) answers a first, global question with a single test: are there any differences among the group means?
