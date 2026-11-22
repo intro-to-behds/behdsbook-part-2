@@ -1,6 +1,6 @@
 # Treatment Effect Models {#sec-treatment-effect-models}
 
-_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/treatment-effect-models.html). Adapted by Giorgio Arcara: the mouse diet experiment (`mice_weights`) is replaced by an app interface experiment (`app_engagement_experiment`), and the election polls of the exercises (`polls_us_election_2016`) by product-preference survey panels (`product_launch_forecast`); the text is otherwise Irizarry's, with small edits to fit the new examples._
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/treatment-effect-models.html). Adapted by Giorgio Arcara: the mouse diet experiment (`mice_weights`) is replaced by an app interface experiment (`app_engagement_experiment`), and the election polls of the exercises (`polls_us_election_2016`) by product-preference survey panels (`product_launch_forecast`); the section *Comparing group means* is replaced by a link to *Comparing Two Groups*, and the sections on contrasts and ANOVA are rewritten, with an AI assistant (Claude), as *Factors with more than two levels*, *Contrasts and estimated means* and *Analysis of variance (ANOVA)*, linked to the *Basic Statistics* chapters; the text is otherwise Irizarry's, with small edits to fit the new examples._
 
 <!-- 22 Nov 2026 (Claude): reflavoured with /reflavour-chapter (Pass A, dataset swap only). Mapping from behdslabs/REFLAVORING_PLAN.md: body_weight -> engagement_score, bone_density -> consistency_index, percent_fat -> error_rate_pct, diet (chow/hf) -> ui_version (standard/redesigned), gen -> cohort, litter -> test_batch. ui_version is releveled so that "standard" is the reference level, as chow was. Pollsters -> panels: Rasmussen -> Panel 136, Times-Picayune/Lucid -> Panel 168 (checked row by row against dslabs). -->
 
@@ -36,81 +36,13 @@ A boxplot shows that the users of the redesigned interface are, on average, more
 with(experiment, boxplot(engagement_score ~ ui_version))
 ```
 
-However, given that we divided the users randomly, is it possible that the observed difference is simply due to chance? 
+However, given that we divided the users randomly, is it possible that the observed difference is simply due to chance? We could answer with a t-test (@sec-two-groups). In this chapter, we answer with a linear model, which gives the same answer for two groups and extends to designs with more groups and more factors.
 
-Before making the connection to linear models, in the next section, we perform statistical inference on the difference of these means, using the approach described in @sec-hypothesis-testing.
-
-## Comparing group means
-
-The sample averages for the two groups, redesigned and standard interfaces, are different:
-
-```{r}
-library(tidyverse)
-experiment |> group_by(ui_version) |> summarize(average = mean(engagement_score))
-```
-
-We now use hypothesis testing, first described in @sec-hypothesis-testing, to assess whether this difference is statistically significant.
-
-Let $\mu_1$ and $\sigma_1$ represent the average engagement and standard deviation, respectively, that we would observe if the entire population of users had the redesigned interface. Define $\mu_0$ and $\sigma_0$ similarly, but for the standard interface. Define $N_1$ and $N_0$ as the sample sizes, and $\bar{X}_1$ and $\bar{X}_0$ the sample averages, for the redesigned and standard interfaces, respectively. 
-
-Since the data come from a random sample, the central limit theorem tells us that, if the sample is large enough, the distribution of the difference in averages $\bar{X}_1 - \bar{X}_0$ can be approximated by a standard normal distribution, with expected value $\mu_1-\mu_0$ and standard error $\sqrt{\frac{\sigma_1^2}{N_1} + \frac{\sigma_0^2}{N_0}}$. 
-
-If we define the null hypothesis as the redesign having no effect, or $\mu_1 - \mu_0 = 0$, this implies that 
-
-$$
-\frac{\bar{X}_1 - \bar{X}_0}{\sqrt{\frac{\sigma_1^2}{N_1} + \frac{\sigma_0^2}{N_0}}}
-$$
-
-has expected value 0 and standard error 1 and therefore approximately follows a standard normal distribution.
-
-Note that we can't compute this quantity in practice because the $\sigma_1$ and $\sigma_0$ are unknown. However, if we estimate them with the sample standard deviations, denote them $s_1$ and $s_0$ for the redesigned and standard interfaces, respectively, the central limit theorem still holds and tells us that 
-
-
-$$
-t = \frac{\bar{X}_1 - \bar{X}_0}{\sqrt{\frac{s_1^2}{N_1} + \frac{s_0^2}{N_0}}}
-$$
-
-is approximately standard normal when the null hypothesis is true.
-This implies that we can easily compute the probability of observing a value as large as the one we obtained: 
-
-```{r}
-stats <- experiment |>
-  group_by(ui_version) |>
-  summarize(xbar = mean(engagement_score), s = sd(engagement_score), n = n()) 
-t_stat <- with(stats, (xbar[2] - xbar[1])/sqrt(s[2]^2/n[2] + s[1]^2/n[1]))
-t_stat
-```
-
-We can also use the R function to perform the calculation in one line:
-
-```{r}
-#| eval: false
-with(experiment,
-  t.test(engagement_score[ui_version == "redesigned"], engagement_score[ui_version == "standard"]))
-```
-
-Here $t$ is well over 3, so we don't really need to compute the p-value `1-pnorm(t_stat)` as we know it will be very small.
-
-Note that when $N_0$ and $N_1$ are not large enough, the CLT does not apply. However, as we explained in @sec-t-dist,
-if the outcome data, in this case engagement, follows an approximately normal distribution, then the $t$, defined above, follows a t-distribution.
-So the calculation of the p-value is the same except that we use `pt` instead of `pnorm`.
-
-::: {.callout-note}
-For the two-sample *t*-test used in this chapter, the appropriate degrees of freedom are not straightforward to compute when the two groups have different variances. In this setting, standard statistical texts derive an approximation based on the Welch–Satterthwaite equation. 
-
-In practice, there is no need to carry out this calculation by hand. The `t.test` function in R automatically uses this approximation  and computes the appropriate degrees of freedom and p-value for us.
-:::
-
-Differences in means are commonly examined in scientific studies. As a result, this _t-statistic_ is one of the most widely reported summaries. When used to determine if an observed difference is _statistically significant_, we refer to the procedure as "performing a _t-test_". 
-
-
-:::{.callout-warning}
-In the computation above, we calculated the probability of observing a $t$ value at least as large as the one obtained. However, when our interest includes deviations in both directions--for example, either an increase or a decrease in engagement--we must consider the probability of obtaining a value of $t$ as extreme as the one observed, regardless of sign. In that case, we use the absolute value of $t$ and double the one-sided probability: `2*(1 - pnorm(abs(t_stat))` or `2*(1-pt(abs(t_stat), with(stats, n[2]+n[1]-2)))`. 
-:::
+<!-- 22 Nov 2026 (Claude), Pass B: Irizarry's section "Comparing group means" (the derivation of the t-test for the difference of two means) was removed, since @sec-two-groups covers it; the dummy-variable coding is in @sec-dummy-variables. -->
 
 ## One-factor design
 
-Although the t-test is useful for cases in which we compare two treatments, it is common to have other variables affect our outcomes. Linear models permit hypothesis testing in these more general situations. We start the description of the use of linear models for estimating treatment effects by demonstrating how they can be used to perform t-tests.
+In @sec-dummy-variables we saw that a linear model with a dummy variable compares the averages of two groups, exactly like Student's t-test. In an experiment, this model has a special interpretation: the coefficient of the dummy variable is the *treatment effect*. Linear models also permit hypothesis testing in more general situations, in which other variables affect our outcomes.
 
 If we assume that the engagement distributions for users with the standard and the redesigned interfaces are normally distributed, we can write the following linear model to represent the data:
 
@@ -138,8 +70,7 @@ coefficients(summary(fit))
 
 If we look at the `ui_versionredesigned` row, the `t value` computed here is the estimate divided by its estimated standard error: $\hat{\beta}_1 / \widehat{\mathrm{SE}}[\hat{\beta}_1]$. The `Pr(>|t|)` is the p-value when testing the null hypothesis that $\beta_1=0$.
 
-In the case of the simple one-factor model, we can show that this is almost equivalent to the t-statistics computed in the previous section, `t_stat`. Intuitively, it makes sense, as both $\hat{\beta}_1$ and the numerator of the t-test are estimates of the treatment effect. 
-The one minor difference is that the linear model does not assume a different standard deviation for each population. Instead, both populations share $\mathrm{SD}[\varepsilon]$ as a standard deviation. Note that, although we don't demonstrate it with R here, we can redefine the linear model to have different standard errors for each group. Also note that you can set `var.equal = TRUE` in the `t.test` function and get exactly the same result.
+In the case of the simple one-factor model, this is the t-test of @sec-two-groups. Intuitively, it makes sense, as both $\hat{\beta}_1$ and the numerator of the t-test are estimates of the treatment effect. The linear model does not assume a different standard deviation for each population. Instead, both populations share $\mathrm{SD}[\varepsilon]$ as a standard deviation, as in Student's t-test: `t.test(..., var.equal = TRUE)` gives exactly the same result, while Welch's version, the default of `t.test`, gives a slightly different one.
 
 :::{.callout-note}
 In the linear model description provided here, we assumed $\varepsilon$ follows a normal distribution. This assumption permits us to show that the statistics formed by dividing estimates by their estimated standard errors follow a t-distribution, which in turn allows us to estimate p-values or confidence intervals. However, note that we do not need this assumption to compute the expected value and standard error of the least squares estimates. Furthermore, if the number of observations is large enough, then the central limit theorem applies, and we can obtain p-values and confidence intervals even without the normal distribution assumption for the errors.
@@ -251,179 +182,122 @@ abline(h = 0, lty = 2)
 Scientific studies, particularly within epidemiology and social sciences, frequently omit interaction terms from models due to the high number of variables. Adding interactions necessitates numerous parameters, which in extreme cases may prevent the model from fitting. However, leaving interactions out implicitly assumes that they are 0, which can lead to models that do not describe the data well and hence are not suitable for use. Conversely, when we can defend the assumption that there are no interaction effects, models excluding interactions are simpler to interpret, as parameters are typically viewed as the extent to which the outcome increases with the assigned treatment.
 
 ::: {.callout-tip}
-Linear models are flexible and widely applicable. See the recommended reading section for further resources, including material on `lm`, `contrasts`, and `model.matrix`.
+Linear models are flexible and widely applicable. The next sections show how `lm` codes factors with more than two levels, and how to obtain the comparisons we are interested in, the *contrasts*.
 :::
 
-## Contrasts
+<!-- 22 Nov 2026 (Claude), Pass B, at the instructor's request: Irizarry's sections "Contrasts" and "Analysis of variance (ANOVA)" rewritten in practical terms (dummy variables for k levels, emmeans, pairwise comparisons, a planned contrast; ANOVA as a linear model, linked to the ANOVA chapter of Basic Statistics); the identifiability argument moved to a callout; "Array representation" removed. Anchor sec-anova renamed sec-anova-lm (sec-anova is the Basic Statistics chapter). Draft, to review. -->
 
-In the examples we have examined, each treatment had only two groups: interface version had standard/redesigned, and sex had female/male. However, variables of interest often have more than one level. For example, we might have tested a third interface. In statistics textbooks, these variables are referred to as a _factor_, and the groups in each factor are called its _levels_. 
+## Factors with more than two levels {#sec-factors-more-levels}
 
-When a factor is included in the formula, the default behavior for `lm` is to define the intercept term as the expected value for the first level, and the other coefficients are to represent the difference, or _contrast_, between the other levels and the first. We can see when we estimate the sex effect with `lm` like this:
-
-
-```{r}
-fit <- lm(engagement_score ~ sex, data = experiment)
-coefficients(fit)
-```
-
-To recover the expected mean for men, we can simply add the two coefficients:
-
-```{r}
-sum(fit$coefficients[1:2])
-```
-
-The package **emmeans** simplifies the calculation and also calculates standard errors:
-
-```{r}
-#| message: false
-#| warning: false
-library(emmeans)
-emmeans(fit, ~sex)
-```
-
-Now, what if we really didn't want to define a reference level? What if we wanted a parameter to represent the difference from each group to the overall mean? Can we write a model like this:
-
-
-$$
-Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \varepsilon_i
-$$
-with $x_{i1} = 1$, if observation $i$ is a woman and 0 otherwise, and $x_{i2}=1$, if observation $i$ is a man and 0 otherwise? 
-
-Unfortunately, this representation has a problem. Note that the means for women and men are represented by $\beta_0 + \beta_1$ and $\beta_0 + \beta_2$, respectively. This is a problem because the expected value for each group is just one number, say $\mu_f$ and $\mu_m$, and there is an infinite number of ways $\beta_0 + \beta_1 = \mu_f$ and $\beta_0 +\beta_2 = \mu_m$ (three unknowns with two equations). This implies that we can't obtain a unique least squares estimate. When this happens, we say the model, or parameters, are _unidentifiable_. The default behavior in R solves this problem by requiring $\beta_1 = 0$, forcing $\beta_0 = \mu_m$, which permits us to solve the system of equations. 
-
-Keep in mind that this is not the only constraint that permits estimation of the parameters. Any linear constraint will do, as it adds a third equation to our system. A widely used constraint is to require $\beta_1 + \beta_2 = 0$. To achieve this in R, we can use the argument `contrasts` in the following way:
-
-
-```{r}
-fit <- lm(engagement_score ~ sex, data = experiment, 
-  contrasts = list(sex=contr.sum))
-coefficients(fit)
-```
-
-We see that the intercept is now larger, reflecting the overall mean rather than just the mean for women. The other coefficient, $\beta_1$, represents the contrast between women and the overall mean in our model. The coefficient for men is not shown because it is redundant: $\beta_1= -\beta_2$. 
-
-If we want to see all the estimates, the **emmeans** package also makes the calculations for us:
-
-```{r}
-contrast(emmeans(fit, ~sex))
-```
-
-The use of this alternative constraint is more practical when a factor has more than one level, and choosing a baseline becomes less convenient. Furthermore, we might be more interested in the variance of the coefficients rather than the contrasts between groups and the reference level.
-
-As an example, consider that the users in our dataset actually joined the app in several cohorts: 
+In the examples we have examined, each factor had only two groups, or *levels*: interface version had standard/redesigned, and sex had female/male. However, variables of interest often have more levels. For example, the users in our dataset joined the app in five different cohorts:
 
 ```{r}
 table(experiment$cohort)
 ```
 
-
-To estimate the variability due to the different cohorts, a convenient model is:
-
-$$
-Y_i = \beta_0 + \sum_{j=1}^J \beta_j x_{ij} + \varepsilon_i
-$$
-
-with $x_{ij}$ indicator variables: $x_{ij}=1$ if user $i$ is in level $j$ and 0 otherwise, $J$ representing the number of levels, in our example `r length(unique(experiment$cohort))` cohorts, and the level effects constrained with 
-
-$$
-\frac{1}{J} \sum_{j=1}^J \beta_j = 0 \implies \sum_{j=1}^J \beta_j = 0. 
-$$
-
-This constraint makes the model identifiable and also allows us to quantify the variability due to cohorts with:
-
-$$
-\sigma^2_{\text{cohort}} \equiv \frac{1}{J}\sum_{j=1}^J \beta_j^2
-$$
-
-We can see the estimated coefficients using the following:
+A factor with two levels needs one dummy variable (@sec-dummy-variables). A factor with $J$ levels needs $J - 1$: one for each level except the reference level, which is the first one. With five cohorts, `lm` creates four dummy variables:
 
 ```{r}
-fit <- lm(engagement_score ~ cohort,  data = experiment, 
-  contrasts = list(cohort=contr.sum))
-contrast(emmeans(fit, ~cohort)) 
+fit <- lm(engagement_score ~ cohort, data = experiment)
+head(model.matrix(fit))
+coefficients(fit)
 ```
 
-In the next section, we briefly describe a technique useful for studying the variability associated with this factor.
+The model is
 
-## Analysis of variance (ANOVA) {#sec-anova}
+$$
+Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i3} + \beta_4 x_{i4} + \varepsilon_i
+$$
 
-When a factor has more than one level, it is common to want to determine if there is significant variability across the levels rather than a specific difference between any given pair of levels. Analysis of variance (ANOVA) provides tools to do this.
+with $x_{ij} = 1$ if user $i$ belongs to the $j$-th cohort after the reference one, and 0 otherwise. The intercept $\beta_0$ is the average engagement of the reference cohort (cohort 4), and each other coefficient is the difference between one cohort and the reference cohort. Why not five dummy variables, one per cohort? Because together with the intercept they would be redundant: for every user, the five dummies would add up to 1, the value of the intercept column, and the model would have more parameters than group averages to estimate them from (see the callout at the end of the next section).
 
+## Contrasts and estimated means {#sec-contrasts}
 
-ANOVA provides an estimate of $\sigma^2_{\text{cohort}}$ and a statistical test for the null hypothesis that the factor contributes no variability:  $\sigma^2_{\text{cohort}} =0$.
-
-Once a linear model is fit using one or more factors, the `aov` function can be used to perform ANOVA. Specifically, the estimate of the factor variability is computed along with a statistic that can be used for hypothesis testing:
+The differences between each level and the reference level, which `lm` reports by default, are one set of *contrasts*: comparisons between groups. They are not always the comparisons we want. The **emmeans** package makes it easy to obtain others from the same fitted model. Its first step is to compute the estimated average of each group, with standard errors and confidence intervals:
 
 ```{r}
-summary(aov(fit))
+#| message: false
+#| warning: false
+library(emmeans)
+emm <- emmeans(fit, ~ cohort)
+emm
 ```
 
-Keep in mind that `aov` can take the output of a fitted `lm` model or, alternatively, a model formula directly. When given a formula, `aov` will fit the model itself, so the results above can be obtained directly like this:
+In this one-factor model, these are simply the five cohort averages; in models with several factors, they are averages adjusted for the other factors (*estimated marginal means*).
+
+**All pairwise comparisons.** If we have no specific hypothesis, we can compare every pair of cohorts. With five levels, that is ten comparisons, so the p-values must be corrected for multiple comparisons (@sec-multiple-comparisons); here we use Holm's correction:
 
 ```{r}
-#| eval: false
-summary(aov(engagement_score ~ cohort, data = experiment))
+pairs(emm, adjust = "holm")
 ```
+
+None of the differences between cohorts is statistically significant.
+
+**A planned contrast.** If, *before* looking at the data, we had a specific hypothesis, we can test only that comparison (see *Planned contrasts* in @sec-anova and @sec-multiple-comparisons). Suppose that the first cohort, cohort 4, joined the app before an onboarding tutorial was introduced, and we wanted to compare it with the average of the four later cohorts. A contrast is a set of weights, one per group, that add up to zero:
+
 ```{r}
-#| eval: false
-summary(aov(engagement_score ~ cohort, data = experiment))
+contrast(emm, list("cohort 4 vs later cohorts" = c(1, -1/4, -1/4, -1/4, -1/4)))
 ```
 
-We do not need to specify the constraint because ANOVA needs to constrain the sum to be 0 for the results to be interpretable.
+The estimate is the average of cohort 4 minus the average of the four later cohort averages: the data show no difference.
 
-This analysis indicates that the effect of cohort is not statistically significant.
+**Treatment and sum coding.** The default coding of R, in which each coefficient compares a level with the reference level, is called *treatment coding*. It is convenient in an experiment with a control condition, but other codings exist. A widely used one is *sum coding*, in which each coefficient compares a level with the overall mean of the levels:
+
+```{r}
+fit_sum <- lm(engagement_score ~ cohort, data = experiment, 
+  contrasts = list(cohort = contr.sum))
+coefficients(fit_sum)
+```
+
+The intercept is now the average of the five cohort averages, and each coefficient is the difference between one cohort and that overall mean; the coefficient of the last cohort is not shown, because it is minus the sum of the others. The fitted values, and the estimated means given by **emmeans**, are the same with both codings: the coding changes what the coefficients mean, not the model. Sum coding matters most in models with interactions, as we see in the next section.
 
 :::{.callout-note}
-We do not include many details, for example, on how the summary statistics and p-values shown by `aov` are defined and motivated. There are several books dedicated to the analysis of variance, and textbooks on linear models often include chapters on this topic. Those interested in learning more about these topics can consult one of the textbooks listed in the Recommended Reading section.
+## Why one dummy variable per level is one too many
+
+Suppose we fit the model $Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \varepsilon_i$ with $x_{i1} = 1$ for women and $x_{i2} = 1$ for men. The means for women and men are $\beta_0 + \beta_1$ and $\beta_0 + \beta_2$. The data give us two averages, but there are three unknowns, and an infinite number of values of $\beta_0, \beta_1, \beta_2$ give the same two means. The model, or its parameters, are then said to be _unidentifiable_. Each coding solves the problem with one constraint: treatment coding sets the coefficient of the reference level to 0, and sum coding requires the coefficients to add up to 0. Any linear constraint would do, and each gives coefficients with a different interpretation.
 :::
 
+## Analysis of variance (ANOVA) {#sec-anova-lm}
+
+When a factor has more than two levels, we often want to know first whether there is *any* difference among the levels, rather than a specific difference between two of them. This is the question of the analysis of variance (ANOVA), introduced in @sec-anova with the **afex** package. ANOVA is a linear model: the F test of a one-way ANOVA tests the null hypothesis that all the coefficients of the dummy variables are 0, that is, that all the group means are equal. The `anova` function applied to an `lm` fit gives the ANOVA table:
+
+```{r}
+anova(fit)
+```
+
+The function `aov_ez` of **afex**, used in @sec-anova, gives the same F statistic and p-value. It needs a column that identifies each participant:
+
+```{r}
+#| message: false
+library(afex)
+experiment <- experiment |> mutate(id = row_number())
+aov_ez(id = "id", dv = "engagement_score", data = experiment, between = "cohort")
+```
+
+This analysis indicates that the effect of cohort is not statistically significant. The same result can be obtained with `summary(aov(engagement_score ~ cohort, data = experiment))`: `aov` fits the linear model and prints the ANOVA table.
 
 ### Multiple factors
 
-ANOVA was developed to analyze agricultural data, which typically included several factors such as fertilizers, blocks of land, and plant breeds. 
-
-Note that we can perform ANOVA with multiple factors:
+ANOVA was developed to analyze agricultural data, which typically included several factors such as fertilizers, blocks of land, and plant breeds. Behavioural experiments often have several factors too. With two factors and their interaction, `anova` and `aov_ez` no longer give exactly the same numbers:
 
 ```{r}
-summary(aov(engagement_score ~ sex + ui_version + cohort,  data = experiment))
+anova(lm(engagement_score ~ ui_version * sex, data = experiment))
+aov_ez(id = "id", dv = "engagement_score", data = experiment,
+       between = c("ui_version", "sex"))
 ```
 
-This analysis suggests that sex is the biggest source of variability, which is consistent with previously made exploratory plots.
+The F statistics of the interaction are the same, but those of the two main effects differ slightly. There are two reasons, and they explain the message "Contrasts set to contr.sum" that **afex** prints:
+
+- **Coding.** With treatment coding and an interaction in the model, the coefficient of `ui_version` is the effect of the redesign *for women*, the reference level of sex (see *Two-factor designs* above). An ANOVA main effect should be the effect averaged over women and men. Sum coding gives this average, which is why **afex** sets it for every factor.
+- **Unbalanced designs.** `anova` tests the factors in the order in which they appear in the formula (*Type I* or *sequential* sums of squares): `ui_version` first, then `sex` after `ui_version`, then the interaction. **afex** tests each effect after all the others (*Type III* sums of squares). When every combination of levels has the same number of participants, a *balanced* design, the two give the same results. Our design is slightly unbalanced:
+
+```{r}
+table(experiment$ui_version, experiment$sex)
+```
 
 :::{.callout-warning}
-One of the key aspects of ANOVA (Analysis of Variance) is its ability to decompose the total variance in the data, represented by $\sum_{i=1}^N y_i^2$, into individual contributions attributable to each factor in the study. However, for the mathematical underpinnings of ANOVA to be valid, the experimental design must be balanced. This means that for every level of any given factor, there must be an equal representation of the levels of all other factors. In our study of app users, the design is unbalanced, requiring a cautious approach in the interpretation of the ANOVA results.
+One of the key aspects of ANOVA (Analysis of Variance) is its ability to decompose the total variance in the data into individual contributions attributable to each factor in the study. This decomposition is unique only when the design is balanced. In unbalanced designs, such as our study of app users, the results depend on the order of the factors or on the type of sums of squares, and they require a more cautious interpretation. In psychology, the convention is to report Type III tests with sum coding, as **afex** does by default.
 :::
-
-### Array representation 
-
-When the model includes more than one factor, writing down linear models can become cumbersome. For example, in our two-factor model, we would have to include indicator variables for both factors:
-
-
-$$
-Y_i = \beta_0 + \sum_{j=1}^J \beta_j x_{i,j} + \sum_{k=1}^K \beta_{J+k} x_{i,J+k} + \varepsilon_i \mbox{ with }\sum_{j=1}^J \beta_j=0 \mbox{ and } \sum_{k=1}^K \beta_{J+k} = 0,
-$$
-
-with $x_{i,1},\dots,x_{i,J}$ as indicator variables for the $J$ levels in the first factor and $x_{i,J+1},\dots,x_{i,J+K}$ as indicator variables for the $K$ levels in the second factor.
-
-An alternative approach widely used in ANOVA to avoid indicator variables is to save the data in an array, using different Greek letters to denote factors and indices to denote levels:
-
-$$
-Y_{ijk} = \mu + \alpha_j + \beta_k + \varepsilon_{ijk}, \mbox{ with } i = 1,\dots,I, \, j = 1,\dots,J, \mbox{ and } k= 1,\dots,K
-$$
-
-with $\mu$ the overall mean, $\alpha_j$ the effect of level $j$ in the first factor, and $\beta_k$ the effect of level $k$ in the second factor. The constraint can now be written as: 
-
-$$
-\sum_{j=1}^J \alpha_j = 0 \text{ and } \sum_{k=1}^K \beta_k = 0
-$$
-
-
-This array notation naturally leads to estimating effects by computing means across dimensions of the array.
-
-Note that, here, we are implicitly assuming a *balanced design*, meaning that for every combination of factor levels $j$ and $k$ we observe the same number of replicates indexed by $i$. For example, if the factors are sex and interface version, a balanced design would include the same number of users in each sex–interface combination. In this setting, there is a value $Y_{ijk}$ for each triplet $(i,j,k)$, and each cell of the design has the same sample size. This ensures that the group means are well defined and that the model parameters can be estimated directly using simple averages.
-
-If the design is *unbalanced*, meaning that some level combinations have more observations than others, we can still write the model in the same form, but the number of replicates becomes $I_{jk}$, varying across level pairs. In that case, some of the convenient interpretations of ANOVA summaries no longer hold directly, because the cell means contribute unequally to the estimates.
-
 
 ## Exercises
 
@@ -458,7 +332,7 @@ Compute the average and standard deviation of `engagement_score` for groups with
 
 6\.  Fit a linear model and conduct a separate test for the effect of the redesign on consistency for each sex. Note that the effect is statistically significant for women but not for men. Then fit the model to the entire dataset that includes interface version, sex, and their interaction. Notice that the effect of the redesign is significant, yet the interaction effect is not. Explain how this can happen. Hint: To fit a model to the entire dataset with a separate effect for women and men, you can use the formula `~ sex + ui_version:sex`
 
-7\. Survey panels that measure the same quantity can disagree systematically: each panel may have a *bias*, for example because of how it recruits respondents. In @sec-models, we used visualization to motivate the presence of such bias. Here we will give it a more rigorous treatment. The `product_launch_forecast` dataset records surveys, run by many panels, asking people whether they prefer the new or the current version of a product. We will consider two panels that ran daily national surveys in the last weeks before the launch:
+7\. Survey panels that measure the same quantity can disagree systematically: each panel may have a *bias*, for example because of how it recruits respondents. A plot of the survey results can suggest such a bias; here we will give it a more rigorous treatment. The `product_launch_forecast` dataset records surveys, run by many panels, asking people whether they prefer the new or the current version of a product. We will consider two panels that ran daily national surveys in the last weeks before the launch:
 
 ```{r, eval=FALSE}
 library(behdslabs)
