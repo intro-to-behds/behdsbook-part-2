@@ -174,6 +174,53 @@ The replication crisis is usually told as a story about psychology journals, but
 - **The winner's curse after launch.** The versions that are launched are those that looked best in their test. Their effect in the test was, on average, overestimated, so it tends to shrink after launch. The novelty effect (*Randomised controlled trials and A/B tests* in @sec-experimental-designs) makes it shrink further.
 - **Many analyses at no cost.** An LLM can produce ten versions of an analysis in a minute. That makes it easy to keep the one that "works" without noticing that we are doing so (see [*AI and responsible coding*](https://intro-to-behds.github.io/behdsbook-part-1/productivity/ai-assisted-coding.html) in Part 1).
 
+## Combining studies: the pyramid of evidence
+
+<!-- 22 Nov 2026 (Claude): pyramid of evidence and meta-analysis, at the instructor's request. Hagger et al. 2010 (83 studies), Carter & McCullough 2014 (d = 0.62, corrected estimate not different from zero), Hagger et al. 2016 (23 labs, N = 2,141, d = 0.04) and Kvarven et al. 2020 (15 pairs, almost three times as large, corrections do not substantively improve) checked against the PubMed and Crossref abstracts. To review. -->
+When many studies address the same question, they are not all worth the same. A common way to rank them is the **pyramid of evidence** (@fig-evidence-pyramid), which orders kinds of evidence by how well they protect against bias. At the bottom are expert opinion and single case reports. Above them are observational studies (@sec-experimental-designs), then randomised controlled trials (@sec-rcts). At the top are **systematic reviews and meta-analyses**. A *systematic review* searches for all the studies on a question, with a method fixed in advance, so that the choice of studies does not depend on their results. A *meta-analysis* then combines their estimates into a single weighted average effect size, with a confidence interval (@sec-effect-size), which is more precise than any single study. The pyramid is a simplification: a large, well-run observational study can be more informative than a tiny, badly run trial, and the quality of a study matters as well as its design.
+
+```{r}
+#| label: fig-evidence-pyramid
+#| echo: false
+#| fig-cap: "The pyramid of evidence. Kinds of evidence are ordered by how well they protect against bias, with systematic reviews and meta-analyses at the top. It is a simplification: the quality of each study matters as well as its design, and a meta-analysis is only as good as the studies it combines."
+#| fig-width: 7
+#| fig-height: 4
+#| out-width: 85%
+apex <- 6.8
+half_width <- function(y) 5 * (1 - y / apex)
+pyramid <- tibble(
+  level = 1:4,
+  label = c("Expert opinion, case reports",
+            "Observational studies\n(cross-sectional, case-control, cohort)",
+            "Randomised controlled trials",
+            "Systematic reviews\nand meta-analyses"),
+  y0 = c(0, 1.1, 2.2, 3.3),
+  y1 = c(1, 2.1, 3.2, 4.4)
+)
+polys <- pyramid |>
+  rowwise() |>
+  reframe(level,
+          x = c(-half_width(y0), half_width(y0), half_width(y1), -half_width(y1)),
+          y = c(y0, y0, y1, y1))
+ggplot() +
+  geom_polygon(data = polys, aes(x, y, group = level, fill = factor(level)),
+               colour = "white", linewidth = 0.8, show.legend = FALSE) +
+  geom_text(data = pyramid, aes(0, (y0 + y1) / 2, label = label, colour = level == 4),
+            size = 3.4, lineheight = 0.9, show.legend = FALSE) +
+  scale_fill_manual(values = c("grey92", "grey84", "grey72", navy)) +
+  scale_colour_manual(values = c(`FALSE` = "black", `TRUE` = "white")) +
+  annotate("segment", x = 5.6, xend = 5.6, y = 0.1, yend = 4.3, colour = "grey40",
+           linewidth = 0.6, arrow = arrow(length = unit(0.18, "cm"), type = "closed")) +
+  annotate("text", x = 5.85, y = 2.2, label = "more protection against bias",
+           angle = 90, size = 3.3, fontface = "italic", colour = "grey35") +
+  coord_cartesian(xlim = c(-5.2, 6.1), ylim = c(-0.05, 4.5)) +
+  theme_void()
+```
+
+A meta-analysis, however, is only as good as the studies it combines: it inherits their biases. If non-significant studies stayed in the drawer (*Publication bias*, above), or significant ones were obtained through flexible analyses (*Flexibility in the analysis*, above), the average of the published effects is too large, however precise its confidence interval looks. For this reason, much of the work in a modern meta-analysis goes into detecting these biases and, where possible, correcting for them: searching for unpublished studies and preregistrations, rating the risk of bias of each study, and looking for warning signs, such as a literature with many small studies reporting large effects and almost none reporting null effects, a pattern made visible by a *funnel plot*. Statistical corrections exist (trim-and-fill, PET-PEESE, selection models), but they are beyond this book, and none of them can fully recover studies that were never published.
+
+Ego depletion, the idea that exerting self-control uses up a limited resource, is a well-known example. A meta-analysis of 83 studies found a medium-sized effect, d = 0.62 (Hagger et al., 2010). When Carter and McCullough (2014) applied corrections for small-study effects to the same data, they found strong signs of publication bias, and a corrected effect not different from zero. A preregistered replication in 23 laboratories, with 2,141 participants, then found d = 0.04, with a 95% confidence interval from −0.07 to 0.15 (Hagger et al., 2016). The case is not isolated: comparing 15 meta-analyses with large preregistered multi-laboratory replications of the same effects, Kvarven, Strømland and Johannesson (2020) found that the meta-analytic effects were on average almost three times as large, and that three common correction methods did not substantively improve them. Meta-analyses remain the best way to summarise a literature, provided that we ask what went into them.
+
 ## What helps
 
 The response of the research community is known as **Open Science**: a set of practices that make research easier to check. Most of them have direct equivalents in industry.
@@ -183,8 +230,9 @@ The response of the research community is known as **Open Science**: a set of pr
 - **Report everything, and report estimates.** All conditions, outcomes and exclusions, not only the ones that worked. Effect sizes with confidence intervals (@sec-effect-size) show how precise a result is, which a p-value alone does not.
 - **Make it reproducible.** Share the code, the materials and, as far as privacy allows, the data (see *Open materials, data, and code* in @sec-research-ethics). A project organised as in Part 1 is already most of the way there.
 - **Replicate.** A result that has been found again, by different people with new data, deserves much more confidence than a single study. Consistency across studies is also one of Bradford Hill's criteria (@sec-results-to-conclusions).
+- **Rely on combined evidence.** <!-- 22 Nov 2026 (Claude): bullet added at the instructor's request; to review --> Base conclusions and decisions on the body of evidence, ideally a recent systematic review or meta-analysis that assessed bias, rather than on a single striking study, however prestigious the journal (@fig-evidence-pyramid). In industry, the equivalent is to look at the history of similar experiments, not only at the latest test.
 
-These practices also give us a short list of questions to ask of any published result before relying on it. Was the analysis planned in advance? Was the sample large enough to detect a plausible effect? Is the effect implausibly large for what was manipulated? Are the data and code available? Has anyone replicated it?
+These practices also give us a short list of questions to ask of any published result before relying on it. Was the analysis planned in advance? Was the sample large enough to detect a plausible effect? Is the effect implausibly large for what was manipulated? Are the data and code available? Has anyone replicated it? And if it comes from a meta-analysis, were publication bias and the quality of the included studies assessed?
 
 ## Further reading
 
@@ -194,6 +242,8 @@ These practices also give us a short list of questions to ask of any published r
 - R. Silberzahn et al. (2018), *Many analysts, one data set: Making transparent how variations in analytic choices affect results*, Advances in Methods and Practices in Psychological Science, 1(3), 337–356, <https://doi.org/10.1177/2515245917747646>.
 - K. S. Button et al. (2013), *Power failure: Why small sample size undermines the reliability of neuroscience*, Nature Reviews Neuroscience, 14(5), 365–376, <https://doi.org/10.1038/nrn3475>.
 - A. Gelman & J. Carlin (2014), *Beyond power calculations: Assessing Type S (sign) and Type M (magnitude) errors*, Perspectives on Psychological Science, 9(6), 641–651, <https://doi.org/10.1177/1745691614551642>. On the exaggerated estimates of small studies.
+- M. S. Hagger et al. (2016), *A multilab preregistered replication of the ego-depletion effect*, Perspectives on Psychological Science, 11(4), 546–573, <https://doi.org/10.1177/1745691616652873>. With the meta-analyses that preceded it (Hagger et al., 2010, <https://doi.org/10.1037/a0019486>; Carter & McCullough, 2014, <https://doi.org/10.3389/fpsyg.2014.00823>), a case study of a meta-analytic effect that did not replicate.
+- A. Kvarven, E. Strømland & M. Johannesson (2020), *Comparing meta-analyses and preregistered multiple-laboratory replication projects*, Nature Human Behaviour, 4(4), 423–434, <https://doi.org/10.1038/s41562-019-0787-z>.
 - M. R. Munafò et al. (2017), *A manifesto for reproducible science*, Nature Human Behaviour, 1, 0021, <https://doi.org/10.1038/s41562-016-0021>.
 - B. A. Nosek et al. (2022), *Replicability, robustness, and reproducibility in psychological science*, Annual Review of Psychology, 73, 719–748, <https://doi.org/10.1146/annurev-psych-020821-114157>.
 - R. Kohavi, D. Tang & Y. Xu (2020), *Trustworthy Online Controlled Experiments: A Practical Guide to A/B Testing*. Cambridge: Cambridge University Press.
