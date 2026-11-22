@@ -1,6 +1,6 @@
 # Introduction {.unnumbered}
 
-_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/intro.html). Adapted by Giorgio Arcara: the opening examples are about people and technology, and a paragraph presents the parts added in this edition; the text is otherwise Irizarry's, with small edits to fit the new examples._
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/intro.html). Adapted by Giorgio Arcara: the examples are replaced with behavioural ones; a new paragraph presents the parts added in this edition; the text is otherwise Irizarry's. Details in the [CHANGELOG](https://github.com/intro-to-behds/behdsbook-part-2/blob/main/CHANGELOG.md)._
 
 The phrase *data science* began gaining significant popularity around 2012, thanks in part to the publication titled *"Data Scientist: The Most Alluring Profession of the 21st Century"*^[https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century](https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century). This coincided with the rise of a new kind of endeavor in the technology sector and in academic projects during the 2000s: extracting insights from messy, complex, and large datasets, which had become increasingly prevalent with the advent of digital data storage.
 

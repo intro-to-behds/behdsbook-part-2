@@ -1,6 +1,6 @@
 # Association Is Not Causation {#sec-association-not-causation}
 
-_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/association-not-causation.html). Adapted by Giorgio Arcara: the datasets are replaced with behavioural ones, the chapter is rewritten without linear models, and new sections on causal claims are added, from @sec-results-to-conclusions; the text is otherwise Irizarry's. Details in the [CHANGELOG](https://github.com/intro-to-behds/behdsbook-part-2/blob/main/CHANGELOG.md)._
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/association-not-causation.html). Adapted by Giorgio Arcara: the datasets are replaced with behavioural ones; new sections on causal claims, moved from @sec-results-to-conclusions; some passages are rewritten without linear models; the text is otherwise Irizarry's. Details in the [CHANGELOG](https://github.com/intro-to-behds/behdsbook-part-2/blob/main/CHANGELOG.md)._
 
 :::{.callout-warning}
 ## Draft

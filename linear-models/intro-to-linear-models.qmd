@@ -1,6 +1,6 @@
 # Linear Models {#sec-intro-linear-models .unnumbered}
 
-_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/intro-to-linear-models.html). Adapted by Giorgio Arcara: the case studies are the ones of this edition, and the chapters not included are no longer listed._
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/intro-to-linear-models.html). Adapted by Giorgio Arcara: the examples are replaced with behavioural ones; some passages are shortened; the text is otherwise Irizarry's. Details in the [CHANGELOG](https://github.com/intro-to-behds/behdsbook-part-2/blob/main/CHANGELOG.md)._
 
 <!-- 22 Nov 2026 (Claude): part restored to the build with Ch. 15-17; the chapters on association tests and generalized linear models (Ch. 18) and on multivariable regression (Ch. 20) are still hidden, and Ch. 19 moved to Foundations of Behavioural Research. -->
 
