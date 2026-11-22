@@ -1,6 +1,6 @@
 # Multiple Comparisons {#sec-multiple-comparisons}
 
-_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+_Written for this book by Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
 
 
 A p-value below 0.05 is meant to be a rare event when there is no effect: it happens by chance only 5% of the time. But this holds for *one* test. When we run many tests, rare events become common: if we look at enough comparisons, some will be "significant" just by chance. This chapter explains the problem and the main corrections, without the mathematics behind them.
@@ -78,7 +78,7 @@ Six of the original p-values are below 0.05. After correction, Bonferroni, Holm 
 
 Corrections are needed when we look at many comparisons without having said in advance which ones matter. A better strategy, when theory allows it, is to decide *before* collecting the data which few comparisons answer the research question, write them down (ideally in a preregistration), and test only those. These *planned contrasts* keep the family small, so the tests keep their power. For example, in the attention experiment of @sec-anova, the hypothesis "any distractor increases errors" can be tested with one contrast (no distractor vs the average of the two distractor conditions) instead of three post-hoc tests.
 
-Good open sources on planned contrasts:
+@sec-contrasts shows how to compute a planned contrast, and all pairwise comparisons with a correction, with the `emmeans` package. Good open sources on planned contrasts:
 
 - D. J. Schad, S. Vasishth, S. Hohenstein, and R. Kliegl (2020), *How to capitalize on a priori contrasts in linear (mixed) models: A tutorial*, Journal of Memory and Language, 110, 104038, <https://doi.org/10.1016/j.jml.2019.104038>; freely available on [arXiv](https://arxiv.org/abs/1807.10451).
 - The `emmeans` vignette [*Comparisons and contrasts*](https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html), which works directly with models fitted with `afex`.

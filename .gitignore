@@ -37,3 +37,4 @@ basic-stats/*_files
 
 # stray upstream build output: the site is built into docs/
 /site_libs/
+interpretation/*_files

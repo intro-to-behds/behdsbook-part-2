@@ -1,0 +1,382 @@
+# Association Is Not Causation {#sec-association-not-causation}
+
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/association-not-causation.html). Adapted by Giorgio Arcara: the datasets are replaced with behavioural ones; new sections on causal claims, moved from @sec-results-to-conclusions; some passages are rewritten without linear models; the text is otherwise Irizarry's. Details in the [CHANGELOG](https://github.com/intro-to-behds/behdsbook-part-2/blob/main/CHANGELOG.md)._
+
+:::{.callout-warning}
+## Draft
+This chapter is a **draft**, assembled on 22 November 2026 from Irizarry's chapter *Association Is Not Causation* and from the causal sections of *From Results to Conclusions*, and not yet reviewed by the instructor. It may be substantially rewritten.
+:::
+
+<!-- 22 Nov 2026 (Claude), at the instructor's request: new chapter in Foundations of Behavioural Research. Sources: linear-models/association-not-causation.qmd (Irizarry Ch. 19, reflavoured 14 Oct 2026, commit a09fab9; spurious correlation, data dredging, homework example, ease/stratifying, simulated Simpson's paradox, other sources of bias, grant exercises), and basic-stats/results-to-conclusions.qmd (explanation vs prediction, correlational designs, chance, stress-app simulation, confounding, selection/collider, three structures, adjusting is not free, Bradford Hill, exercises 1-3). The Outliers section of Ch. 19 was dropped (see "What a correlation does not tell you" in sec-correlation). No lm(). To review. -->
+
+```{r, message=FALSE, warning=FALSE}
+#| cache: false
+library(tidyverse)
+library(behdslabs)
+```
+
+```{r}
+#| echo: false
+navy <- "#001238"
+```
+
+Correlation coefficients, group comparisons and the models in the later parts of this book all describe *associations*: how changes in one variable go together with changes in another. It is tempting to read such results as evidence of cause and effect, especially when they seem intuitive or match what we expected. This is one of the most common mistakes in data analysis: *association is not causation*.
+
+@sec-experimental-designs showed why: a causal claim is about a comparison we can never fully observe, what would have happened to the same people without the intervention, and randomised experiments are the most reliable way to approximate it (@sec-rcts). Yet much behavioural research, and most analyses of data collected by apps and devices, rely on *observational* data, where nobody assigned anything at random. This chapter is about what can produce an association when the causal reading is wrong. It starts from the reason we care about causes at all, separates the design of a study from the technique used to analyse it, and then goes through the main alternative explanations: chance, reverse causation, confounding, selection and measurement bias. It ends with what can make a causal reading of observational data more plausible.
+
+The tools in this chapter are simple: averages, proportions, scatterplots and correlation coefficients (@sec-correlation). Correcting for an alternative explanation with a statistical model is the topic of the chapters on regression.
+
+## Explanation and prediction
+
+Data analysis can answer two different kinds of question.
+
+- **Prediction**: *which* users are likely to stop using an app next month? A model that predicts well is useful even if we do not know why it works. The number of days since the last login may predict dropout very well, without being its cause.
+- **Explanation**: *why* do users stop using the app? Here we want to know the causes.
+
+The difference matters because we usually want causes for a practical reason: **a cause tells us what to change**. Knowing that users who open a stress app more often report more stress may help us predict who is stressed. It does not tell us whether *giving people the app* would reduce their stress. Only a causal relationship tells us what would happen if we intervened. Most questions in behavioural research and in the design of technologies are, in the end, questions about interventions: should we change the interface, send fewer notifications, offer the training? These need causal answers.
+
+As discussed in @sec-experimental-designs, randomised experiments answer causal questions on average, across groups. Without randomisation, we must argue that the groups we compare are comparable, and this argument can fail in several ways.
+
+## Correlational designs and correlation analyses
+
+The phrase *correlation does not imply causation* is often misread as a statement about a statistical technique. It is a statement about the **design**. A correlation coefficient computed on data from a randomised experiment can support a causal conclusion; a t-test computed on data from an observational study cannot, on its own.
+
+Consider a study comparing patients with a neurological condition and healthy controls on a reaction-time task, or heavy and light smartphone users on an attention test. The analysis is a comparison of two groups, with a t-test or a Wilcoxon test (@sec-two-groups). It looks like an experiment, but nobody assigned participants to the groups: they arrived already belonging to one of them. Such **pre-existing groups** differ in many ways besides the one that names them. Patients and controls may differ in age, education, medication, fatigue and motivation; heavy smartphone users may differ in age, sleep and job. The study is correlational in design, whatever test is used to analyse it.
+
+Matching participants on some characteristics, such as age and education, makes the groups more comparable on those characteristics, but not on the ones that were not measured. This is why randomisation, which also balances unmeasured characteristics on average, is so valuable.
+
+## Alternative explanations
+
+When two variables are associated, the causal reading (*X causes Y*) is only one of several explanations. A good interpretation lists the others and asks whether the design rules them out. The main ones are chance, reverse causation, confounding, selection and measurement bias.
+
+### Chance
+
+Any association can arise by chance in a sample. The p-value (@sec-hypothesis-testing) quantifies how surprising the data would be if there were no association. Chance is the alternative that statistics handles best, but only if we are honest about how many associations we looked at.
+
+#### Spurious correlations
+
+The following plot shows a very strong correlation between average daily screen time and an index of smart-speaker sales, over ten consecutive years.
+
+```{r screen-time-versus-smart-speakers, echo=FALSE, message=FALSE, warning=FALSE}
+#| fig-width: 5
+#| fig-height: 3.5
+the_title <- paste("Correlation =",
+                   round(with(screen_time_vs_smart_speaker_trend,
+                              cor(smart_speaker_sales_index, avg_daily_screen_time_hours)), 2))
+screen_time_vs_smart_speaker_trend |>
+  ggplot(aes(smart_speaker_sales_index, avg_daily_screen_time_hours)) +
+  geom_point(cex = 3, colour = navy) +
+  ggtitle(the_title) +
+  xlab("Smart-speaker sales index") +
+  ylab("Average daily screen time (hours)") +
+  theme_minimal()
+```
+
+Does this mean that buying fewer smart speakers makes people spend less time on screens? Or that spending less time on screens makes people buy fewer smart speakers? Of course not: both series simply decline over the same ten years. This is an example of what we call a *spurious correlation*. You can see many more absurd examples on the Spurious Correlations website[^association-causation-1].
+
+[^association-causation-1]: http://tylervigen.com/spurious-correlations
+
+#### Data dredging
+
+The cases presented on that website are all instances of what is generally called *data dredging*, *data fishing*, or *data snooping*, a form of *cherry picking*: looking through many results produced by a random process and picking the one that shows a relationship that supports a theory we want to defend.
+
+A Monte Carlo simulation shows how data dredging finds high correlations among uncorrelated variables. We generate 10,000 groups, and for each group a pair of independent variables, $X$ and $Y$, with 25 observations each. Because we built the simulation, we know that $X$ and $Y$ are not correlated:
+
+```{r dredging-simulation}
+set.seed(2026)
+n_obs <- 25
+n_groups <- 10000
+sim <- tibble(group = rep(1:n_groups, each = n_obs),
+              x = rnorm(n_obs * n_groups),
+              y = rnorm(n_obs * n_groups))
+res <- sim |>
+  group_by(group) |>
+  summarise(r = cor(x, y)) |>
+  arrange(desc(r))
+max(res$r)
+```
+
+The largest correlation is `r round(max(res$r), 2)`. If we plot only the data of the group with this correlation, the plot is convincing:
+
+```{r dredging}
+#| fig-width: 4
+#| fig-height: 3.5
+sim |>
+  filter(group == res$group[1]) |>
+  ggplot(aes(x, y)) +
+  geom_point(colour = navy) +
+  theme_minimal()
+```
+
+Remember that a sample correlation is a random variable. Here is its distribution across the 10,000 groups:
+
+```{r null-corr-hist}
+#| fig-width: 5
+#| fig-height: 3
+res |>
+  ggplot(aes(r)) +
+  geom_histogram(binwidth = 0.05, colour = "black", fill = "grey80") +
+  theme_minimal()
+```
+
+If we observe `r prettyNum(n_groups, big.mark = ",")` correlations whose true value is 0 but whose standard error is about `r round(sd(res$r), 2)`, some of them will be large by chance alone. A test on the selected group alone would give a very small p-value (try `cor.test()` on it, @sec-correlation), and we would wrongly claim a significant association.
+
+Selecting the analysis with the most interesting result is known as *p-hacking*. An analyst might explore associations between an outcome and many variables and report only the one with a small p-value, try several ways of excluding participants or of adjusting for other variables and keep the one that gives the strongest result, or repeat a study and report only the "successful" run. Such practices are not always intentional misconduct; they often come from limited statistical understanding or wishful thinking. @sec-multiple-comparisons shows how to correct for the number of tests, and @sec-credible-evidence how these practices contributed to the replication crisis.
+
+### Reverse causation
+
+Sometimes the effect causes the putative cause. A claim of this kind appeared in an op-ed in the New York Times titled *Parental Involvement Is Overrated*[^association-causation-2]:
+
+[^association-causation-2]: https://opinionator.blogs.nytimes.com/2014/04/12/parental-involvement-is-overrated
+
+> When we examined whether regular help with homework had a positive impact on children's academic performance, we were quite startled by what we found. Regardless of a family's social class, racial or ethnic background, or a child's grade level, consistent homework help almost never improved test scores or grades... Even more surprising to us was that when parents regularly helped with homework, kids usually performed worse.
+
+A very likely possibility is that the children who need regular help receive it because they don't perform well in school.
+
+The same happens with technology. People who feel stressed are the ones most likely to install a stress-reduction app. The following data are simulated so that we know the truth: the probability of using the app increases with a person's baseline stress, and using the app *reduces* stress by 0.5 points on a 10-point scale.
+
+```{r stress-app-simulation}
+set.seed(1983)
+n <- 500
+baseline <- rnorm(n, 5, 1.5)
+app <- rbinom(n, 1, plogis(-6 + 1.1 * baseline))
+stress <- baseline - 0.5 * app + rnorm(n, 0, 0.5)
+stress_app <- tibble(app = factor(app, labels = c("non-user", "user")),
+                     stress)
+
+stress_app |>
+  group_by(app) |>
+  summarise(mean_stress = mean(stress), n = n())
+t.test(stress ~ app, data = stress_app)$p.value
+```
+
+App users are clearly more stressed than non-users, and the difference is significant. Reading it causally would be backwards: it would say that the app increases stress, when we built the data so that it lowers it. Nothing is wrong with the test or the code: it is the interpretation that is wrong. Only a design that compares the same people before and after, with a control group, or that assigns the app at random, could estimate its effect.
+
+### Confounding
+
+Confounders are perhaps the most common reason why associations are misinterpreted. If $X$ and $Y$ are associated, we call $Z$ a **confounder** if it, or some factor associated with it, causes both $X$ and $Y$, creating an association between them unless we properly account for $Z$. @sec-experimental-designs shows an example: workload increases both app use and stress.
+
+Confounding can even reverse an association. The `app_task_completion` dataset records, for six in-app tasks (A to F), how many attempts users made on mobile and on desktop, and the percentage of attempts that were completed. Overall, mobile attempts are completed more often:
+
+```{r completion-overall}
+app_task_completion |>
+  group_by(device) |>
+  summarise(completion = sum(completion_rate * n_attempts) / sum(n_attempts),
+            attempts = sum(n_attempts))
+```
+
+Mobile looks about 14 points better. But here are the completion rates task by task:
+
+```{r completion-by-task-table}
+app_task_completion |>
+  select(task, device, completion_rate) |>
+  pivot_wider(names_from = "device", values_from = "completion_rate") |>
+  mutate(desktop_minus_mobile = desktop - mobile)
+```
+
+For five of the six tasks the differences are small, and task A clearly favours desktop. All these differences are much smaller than the 14-point difference in favour of mobile in the overall totals. What is going on?
+
+Discovering confounders often requires exploratory data analysis and critical thinking. The table shows that completion rates vary a lot across tasks: some tasks are much harder than others. Could this explain the overall result? We add an *ease* column, the overall completion rate of each task, and look at how many attempts each device made at tasks of different ease:
+
+```{r attempts-vs-ease}
+#| fig-width: 6
+#| fig-height: 3
+app_task_completion <- app_task_completion |>
+  group_by(task) |>
+  summarise(ease = sum(completion_rate * n_attempts / 100) / sum(n_attempts)) |>
+  right_join(app_task_completion, by = "task")
+
+app_task_completion |>
+  ggplot(aes(ease, n_attempts, label = task)) +
+  geom_text() +
+  facet_wrap(~device) +
+  labs(x = "Ease of the task (overall completion rate)", y = "Attempts") +
+  theme_minimal()
+```
+
+Desktop users make far fewer attempts at the easy tasks (A and B) and spend most of their attempts on the hard ones. Task difficulty influences both which device is used for which task and the chance of completing it: it is a confounder.
+
+#### Stratifying
+
+The first hint that the overall comparison was misleading came from looking at each task separately. This technique is called **stratifying**: we examine the relationship between two variables within groups (*strata*) that have the same value of a known or potential confounder. Stratification helps detect how a confounder distorts an analysis, and suggests how to adjust for it.
+
+```{r completion-by-task}
+#| fig-cap: "Completion rate by task and device in `app_task_completion`. The size of each point is the number of attempts."
+#| fig-width: 6
+#| fig-height: 3.5
+app_task_completion |>
+  ggplot(aes(task, completion_rate, colour = device, size = n_attempts)) +
+  geom_point(alpha = 0.8) +
+  labs(x = "Task", y = "Completion rate (%)", size = "Attempts") +
+  theme_minimal()
+```
+
+Task by task, the two devices are similar. The large number of mobile attempts at tasks A and B, which are completed more than 60% of the time, makes mobile look better overall.
+
+:::{.callout-note}
+This dataset has the same structure as a classic real example: graduate admissions by sex at the University of California, Berkeley, in 1973 (P. J. Bickel, E. A. Hammel & J. W. O'Connell, *Science*, 1975)[^association-causation-3].
+:::
+
+[^association-causation-3]: https://pubmed.ncbi.nlm.nih.gov/17835295/
+
+#### Simpson's paradox
+
+When the overall comparison and the stratified ones point in different directions, the result is called **Simpson's paradox**. It is called a paradox because the sign of the association flips when we move from the whole population to the strata. Here is an illustration with three simulated variables, $X$, $Y$ and $Z$:
+
+```{r simpsons-paradox, echo=FALSE}
+#| fig-width: 4.5
+#| fig-height: 3.5
+N <- 100
+Sigma <- matrix(c(1, 0.75, 0.75, 1), 2, 2) * 1.5
+means <- list(c(x = 11, y = 3),
+              c(x = 9, y = 5),
+              c(x = 7, y = 7),
+              c(x = 5, y = 9),
+              c(x = 3, y = 11))
+set.seed(1985)
+dat <- lapply(means, function(mu) {
+  res <- MASS::mvrnorm(N, mu, Sigma)
+  colnames(res) <- c("x", "y")
+  res
+})
+dat <- do.call(rbind, dat) |>
+  as_tibble() |>
+  mutate(z = as.character(rep(seq_along(means), each = N)))
+
+dat |> ggplot(aes(x, y)) + geom_point(alpha = 0.5) +
+  ggtitle(paste("Correlation =", round(cor(dat$x, dat$y), 2))) +
+  theme_minimal()
+```
+
+$X$ and $Y$ are negatively correlated. Once we stratify by $Z$ (shown in colour below), another pattern emerges:
+
+```{r simpsons-paradox-explained, echo=FALSE}
+#| fig-width: 4.5
+#| fig-height: 3.5
+means <- do.call(rbind, means) |>
+  as_tibble() |>
+  mutate(z = as.character(seq_along(means)))
+corrs <- dat |> group_by(z) |> summarise(cor = cor(x, y)) |> pull(cor)
+
+dat |> ggplot(aes(x, y, colour = z)) +
+  geom_point(show.legend = FALSE, alpha = 0.5) +
+  ggtitle(paste("Correlations =", paste(signif(corrs, 2), collapse = " "))) +
+  annotate("text", x = means$x, y = means$y, label = paste("z =", means$z), cex = 5) +
+  theme_minimal()
+```
+
+It is $Z$ that is negatively associated with $X$ and positively associated with $Y$, inducing a negative overall correlation between $X$ and $Y$. Within each stratum of $Z$, $X$ and $Y$ are positively correlated.
+
+Stratifying works only for confounders that we thought of and measured. In an observational study, there may always be others.
+
+### Selection
+
+The people in a dataset are rarely a random sample of the population we are interested in. Only some people agree to take part in a study (and sign the informed consent), only some users leave a review, and only some participants stay until the end. If the process that brings people into the data is related to the variables we study, it can create, hide or distort associations. This is **selection bias**. For example, comparing the outcomes of two clinics might suggest that clinic A provides worse care than clinic B. But if clinic A is a specialised centre that receives the most severe patients, while clinic B handles mostly routine cases, the difference reflects who is admitted, not the quality of care.
+
+<!-- 21 Nov 2026 (Claude): "featured" renamed "recommended" at the instructor's request (here, in the chunk and in the exercises) -->
+A subtle form of selection occurs when the selection depends on two variables at once. Suppose an app store recommends an app if it has either an excellent design or excellent marketing. In the simulated data below, design quality and marketing quality are unrelated across all apps. Among the recommended apps, they are negatively correlated: a recommended app with poor marketing must have an excellent design, and vice versa.
+
+```{r collider-simulation}
+set.seed(2026)
+apps <- tibble(design = rnorm(1000), marketing = rnorm(1000)) |>
+  mutate(recommended = design + marketing > 1.5)
+
+cor(apps$design, apps$marketing)
+apps |> filter(recommended) |> summarise(r = cor(design, marketing), n = n())
+```
+
+Looking only at the recommended apps, we could conclude that good marketing comes at the cost of design. The association was created by the selection. A variable that is influenced by two others, like *recommended* here, is called a **collider**, and selecting or adjusting on it creates spurious associations. The same mechanism operates when a study includes only participants who completed it, or only patients who were referred to a clinic: two unrelated conditions may appear associated among hospital patients simply because each of them increases the chance of being hospitalised.
+
+### Measurement bias
+
+**Measurement bias** (or *misclassification*) occurs when variables are measured with error, especially when the errors differ across groups. Suppose a study relates self-reported daily smartphone use to sleep problems. If everybody underestimates their use by a similar amount, the bias is *nondifferential*, and it tends to weaken the observed association (see *Measurement error and its consequences* in @sec-measurement). If the error differs between groups, for example if people with sleep problems, who have thought about their habits, report their phone use more accurately, the bias is *differential*, and it can exaggerate or even reverse the association.
+
+### Drawing the alternatives
+
+Confounders, colliders and a third structure, the **mediator** (a variable through which the cause acts, such as app use → fewer notifications → less stress), can be drawn as diagrams in which arrows point from causes to effects:
+
+```{r causal-structures}
+#| echo: false
+#| fig-cap: "Three causal structures. Left: Z is a confounder of X and Y. Centre: M is a mediator between X and Y. Right: C is a collider, influenced by both X and Y."
+#| fig-width: 7
+#| fig-height: 2.4
+nodes <- tibble(
+  structure = rep(c("Confounder", "Mediator", "Collider"), each = 3),
+  name = c("X", "Y", "Z", "X", "Y", "M", "X", "Y", "C"),
+  x = rep(c(0, 2, 1), 3),
+  y = c(0, 0, 1, 0, 0, 1, 0, 0, -1)
+)
+edges <- tribble(
+  ~structure, ~x, ~y, ~xend, ~yend,
+  "Confounder", 1, 1, 0, 0,
+  "Confounder", 1, 1, 2, 0,
+  "Mediator", 0, 0, 1, 1,
+  "Mediator", 1, 1, 2, 0,
+  "Collider", 0, 0, 1, -1,
+  "Collider", 2, 0, 1, -1
+) |>
+  mutate(xend = x + 0.82 * (xend - x), yend = y + 0.82 * (yend - y),
+         x = x + 0.18 * (xend - x) / 0.82, y = y + 0.18 * (yend - y) / 0.82)
+nodes$structure <- factor(nodes$structure, levels = c("Confounder", "Mediator", "Collider"))
+edges$structure <- factor(edges$structure, levels = levels(nodes$structure))
+ggplot() +
+  geom_segment(data = edges, aes(x, y, xend = xend, yend = yend),
+               arrow = arrow(length = unit(0.18, "cm"), type = "closed"),
+               colour = "grey40") +
+  geom_label(data = nodes, aes(x, y, label = name),
+             fill = navy, colour = "white", size = 4) +
+  facet_wrap(~structure) +
+  coord_cartesian(xlim = c(-0.3, 2.3), ylim = c(-1.3, 1.3)) +
+  theme_void() +
+  theme(strip.text = element_text(size = 11))
+```
+
+Such diagrams are called *directed acyclic graphs* (DAGs). They are a formal tool for deciding which variables must be taken into account to estimate a causal effect, and which must not. They are beyond the scope of this book; Rohrer (2018), in the further reading, is an accessible introduction.
+
+### Adjusting is not free
+
+A common reaction to confounding is to include in the analysis every variable that might matter. This is not always safe. Adjusting for a confounder removes a spurious association, but adjusting for a mediator removes part of the effect we want to estimate, and adjusting for a collider creates an association that was not there, as in the app-store example. Which variables to include in a model is therefore a causal decision, not only a statistical one. How to adjust for a confounder with a regression model, and what such an adjustment cannot do, is shown in @sec-adjusting-confounder.
+
+## Towards causal claims from observational data
+
+When an experiment is impossible, because it would be unethical, too expensive, or because the causes cannot be manipulated, causal questions must be studied with observational data. No single observational study settles a causal question, but some features make a causal reading more plausible. A classic list comes from the epidemiologist Austin Bradford Hill (1965), who discussed smoking and lung cancer. Among his criteria:
+
+- **Temporality**: the cause comes before the effect. Longitudinal designs can show this; cross-sectional designs usually cannot.
+- **Strength and dose–response**: a strong association, which increases with the amount of exposure.
+- **Consistency**: the association is found by different studies, in different samples, with different methods.
+- **Plausibility**: there is a credible mechanism linking cause and effect.
+- **Experiment**: when the exposure is changed, the outcome changes.
+
+To these we can add the condition this chapter has been about: the **alternative explanations** (chance, reverse causation, confounding, selection, measurement bias) have been considered and, as far as possible, ruled out. None of these criteria is a proof. They are a way of organising the evidence, and useful questions to ask of any causal claim based on observational data. How to weigh them when interpreting a result is the topic of @sec-results-to-conclusions.
+
+## Further reading
+
+- J. M. Rohrer (2018), *Thinking clearly about correlations and causation: Graphical causal models for observational data*, Advances in Methods and Practices in Psychological Science, 1(1), 27–42, <https://doi.org/10.1177/2515245917745629>.
+- M. A. Hernán & J. M. Robins (2020), *Causal Inference: What If*. Boca Raton: Chapman & Hall/CRC. Freely available from the authors' website.
+- P. W. Holland (1986), *Statistics and causal inference*, Journal of the American Statistical Association, 81(396), 945–960.
+- A. Bradford Hill (1965), *The environment and disease: association or causation?*, Proceedings of the Royal Society of Medicine, 58, 295–300, <https://doi.org/10.1177/003591576505800503>.
+
+## Exercises
+
+1\. For each of the following studies, say whether the design is experimental, quasi-experimental or observational, and name one alternative explanation for the result. (a) Participants are randomly assigned to complete an attention task with or without notifications; those with notifications are slower. (b) Heavy smartphone users are slower than light users on the same task. (c) After a university introduced a notification-free policy during lectures, students' exam grades rose compared with the previous year.
+
+2\. Using `app_task_completion`, compute the overall completion rate by device, and then the completion rate by device for tasks C to F only. Explain the difference in your own words.
+
+3\. Run the app-store simulation again with a threshold of 0 instead of 1.5, and then of 2.5. How does the correlation among recommended apps change? Why?
+
+4\. Run the data-dredging simulation again with 50 observations per group instead of 25. How does the largest correlation change? Why?
+
+For the next exercises, we examine success rates of applications to a technology research-grant programme, by applicant gender and by technology domain. Imagine that a report on the programme concluded that the review process favours men, because men's applications succeed more often than women's. A response argued that this could be a case of Simpson's paradox: if a higher percentage of women apply in more competitive domains (with low success rates for both men and women), an analysis across all domains could incorrectly show evidence of gender bias. (The data have the same structure as a real debate about research funding in the Netherlands, published in *PNAS* in 2015.) Who is correct here, the report or the response? The data are in:
+
+```{r, eval=FALSE}
+library(behdslabs)
+tech_grant_funding_gender_gap
+```
+
+5\. Construct the two-by-two table (gender × awarded or not) used for the report's conclusion, and compute the difference in success rates between men and women.
+
+6\. Create a dataset with the number of applications, awards and success rate for each gender and domain. Re-order the technology domains by their overall success rate. Hint: use `reorder()` first, then `pivot_longer()`, `separate()` and `pivot_wider()`.
+
+7\. Plot the success rates against the technology domains, ordered by overall success, with colour for gender and size for the number of applications. Compare the plot with the task-completion example. Is there a clear confounder? Are women more likely to apply in the domains with the lowest success rates, as the response claims? Do some domains favour men and others women?
+
+8\. After reading @sec-chi-square: is the overall difference in exercise 5 statistically significant? Test each domain separately as well. We performed nine tests: could the significant ones be spurious (@sec-multiple-comparisons)?

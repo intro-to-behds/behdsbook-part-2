@@ -1,6 +1,6 @@
 # Behind the Simulations {#sec-simulating-measurement}
 
-_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+_Written for this book by Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
 
 <!-- 18 Nov 2026 (Claude): revised at G. Arcara's request. The chapter used to present simulate_likert() as a Classical Test Theory simulation; it is a latent-threshold (ordinal) model, so it is now framed around Stevens' "assignment of numerals according to rules", with a new section on why it is not CTT and a direct CTT simulation (modelled on cnp::simulate_scores()). To review. -->
 

@@ -1,6 +1,6 @@
 # Can We Trust the Evidence? Replication and Open Science {#sec-credible-evidence}
 
-_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+_Written for this book by Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
 
 <!-- 18 Nov 2026 (Claude): new chapter. The replication-crisis section (text, fig-osc, OSC 2015 and Simmons et al. 2011) was moved here from behav/research-ethics.qmd (Scientific integrity), and the short "Why this matters" subsection of results-to-conclusions.qmd was removed. The rest is new. References to verify. 20 Nov 2026 (Claude): added Tyner et al. (2026, SCORE) to the replication-crisis section, with fig-score, at the instructor's request. -->
 
@@ -165,6 +165,9 @@ rowMeans(replicate(5000, flexible_study()))
 
 The planned analysis gives a false positive 5% of the time, as it should. The flexible one does so about 13% of the time, more than twice as often, with only two choices. Real studies offer many more: exclusion rules, covariates, subgroups, transformations. Each choice is defensible on its own; the problem is that it is made after seeing which option gives a significant result. This is the multiple-comparisons problem (@sec-multiple-comparisons) in a form that is invisible to the reader.
 
+<!-- 22 Nov 2026 (Claude), at the instructor's request: paragraph on covariates added; to review. -->
+Regression models add one more choice: which variables to adjust for (@sec-adjusting-confounder). With a handful of candidate covariates there are dozens of possible models, and the coefficient of interest can change sign, size and significance from one to the next. Adjusting for a variable should be justified by its causal role, a confounder and not a mediator or a collider (@sec-association-not-causation), and decided before seeing the results. When several sets of covariates are defensible, reporting the results for all of them, a form of *robustness check*, shows the reader how much the conclusion depends on the choice.
+
 ## The same problems outside academia
 
 The replication crisis is usually told as a story about psychology journals, but the mechanisms are general. They may appear in any setting where many analyses are possible and some results are more welcome than others.
@@ -229,7 +232,7 @@ The response of the research community is known as **Open Science**: a set of pr
 - **Plan the sample size.** A power analysis (@sec-power) protects against both missed effects and exaggerated estimates.
 - **Report everything, and report estimates.** All conditions, outcomes and exclusions, not only the ones that worked. Effect sizes with confidence intervals (@sec-effect-size) show how precise a result is, which a p-value alone does not.
 - **Make it reproducible.** Share the code, the materials and, as far as privacy allows, the data (see *Open materials, data, and code* in @sec-research-ethics). A project organised as in Part 1 is already most of the way there.
-- **Replicate.** A result that has been found again, by different people with new data, deserves much more confidence than a single study. Consistency across studies is also one of Bradford Hill's criteria (@sec-results-to-conclusions).
+- **Replicate.** A result that has been found again, by different people with new data, deserves much more confidence than a single study. Consistency across studies is also one of Bradford Hill's criteria (@sec-association-not-causation).
 - **Rely on combined evidence.** <!-- 22 Nov 2026 (Claude): bullet added at the instructor's request; to review --> Base conclusions and decisions on the body of evidence, ideally a recent systematic review or meta-analysis that assessed bias, rather than on a single striking study, however prestigious the journal (@fig-evidence-pyramid). In industry, the equivalent is to look at the history of similar experiments, not only at the latest test.
 
 These practices also give us a short list of questions to ask of any published result before relying on it. Was the analysis planned in advance? Was the sample large enough to detect a plausible effect? Is the effect implausibly large for what was manipulated? Are the data and code available? Has anyone replicated it? And if it comes from a meta-analysis, were publication bias and the quality of the included studies assessed?

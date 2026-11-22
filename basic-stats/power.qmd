@@ -1,6 +1,6 @@
 # Statistical Power {#sec-power}
 
-_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+_Written for this book by Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
 
 A p-value above 0.05 does not show that there is no effect: a real difference can easily be missed by a study that is too small (@sec-hypothesis-testing). In @sec-two-groups, a lab study with 15 users per device missed a difference that was obvious with the full sample. The probability that a study detects an effect that is really there is called its *power*. Power is decided before the data are collected, mostly by choosing how many participants to test, and this is why it belongs to the planning of a study (see *Sample size and precision* in @sec-experimental-designs).
 

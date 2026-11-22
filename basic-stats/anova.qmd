@@ -1,10 +1,10 @@
 # Comparing More Than Two Groups: ANOVA {#sec-anova}
 
-_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+_Written for this book by Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
 
 :::{.callout-warning}
 ## Draft
-This chapter is a **draft**, written with an AI assistant (Claude) on 29 October 2026, and not yet reviewed by the instructor. It may be substantially rewritten or removed.
+This chapter is a **draft**, written on 29 October 2026 and not yet reviewed by the instructor. It may be substantially rewritten or removed.
 :::
 
 The t-test (@sec-two-groups) compares two groups. Many experiments have more: three distractor conditions, four levels of task difficulty, or two factors crossed with each other, such as interface version and sex. We could run a t-test for every pair of groups, but with three groups that is already three tests, and the more tests we run, the more likely it is that at least one gives a small p-value by chance (@sec-multiple-comparisons). The *analysis of variance* (ANOVA) answers a first, global question with a single test: are there any differences among the group means?
@@ -60,7 +60,7 @@ fit1 <- aov_ez(id = "id", dv = "errors", data = attention, between = "condition"
 fit1
 ```
 
-`afex` first tells us that it set "sum contrasts" for the factor. This is a technical setting that makes the results of designs with more than one factor easier to interpret; you can ignore the message. The table has one row per effect:
+`afex` first tells us that it set "sum contrasts" for the factor. This is a technical setting that makes the results of designs with more than one factor easier to interpret; you can ignore the message for now. What it means is explained in *Analysis of variance (ANOVA)* in @sec-treatment-effect-models, where ANOVA is presented as a linear model. <!-- 22 Nov 2026 (Claude): forward link to the linear-models chapter added --> The table has one row per effect:
 
 - `df`: the degrees of freedom, here 2 (three groups minus one) and 57 (participants minus groups). They are reported with the F value, as in *F*(2, 57) = `r round(fit1$anova_table$F, 2)`.
 - `F`: the test statistic. Values near 1 are what we expect with no effect.
@@ -83,7 +83,7 @@ Here we used Holm's correction, the default of `pairwise.t.test()`. Several corr
 
 :::{.callout-tip}
 ## Planned contrasts
-If, *before* collecting the data, you had a specific hypothesis, for example "any distractor increases errors compared with no distractor", you do not need to test every pair. Testing only the comparisons you planned (*planned contrasts*), ideally written down in a preregistration, means fewer tests and more power. See the open sources listed in @sec-multiple-comparisons.
+If, *before* collecting the data, you had a specific hypothesis, for example "any distractor increases errors compared with no distractor", you do not need to test every pair. Testing only the comparisons you planned (*planned contrasts*), ideally written down in a preregistration, means fewer tests and more power. See the open sources listed in @sec-multiple-comparisons, and @sec-contrasts for an example with the `emmeans` package.
 :::
 
 ## Two factors, between subjects

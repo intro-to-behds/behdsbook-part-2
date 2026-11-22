@@ -3,6 +3,8 @@ project:
   output-dir: docs
   resources:
     - basic-stats/central-tendency-dispersion.html
+    - basic-stats/results-to-conclusions.html
+    - basic-stats/credible-evidence.html
 
 execute:
   cache: true
@@ -45,6 +47,7 @@ book:
         - behav/research-ethics.qmd
         - behav/experimental-designs.qmd
         - behav/randomised-trials.qmd
+        - behav/association-causation.qmd
 
     - part: summaries/intro-summaries.qmd
       chapters:
@@ -82,19 +85,20 @@ book:
         - basic-stats/effect-size.qmd
         - basic-stats/power.qmd
         - basic-stats/missing-data.qmd
-        - basic-stats/results-to-conclusions.qmd
-        - basic-stats/credible-evidence.qmd
 
-    # [hidden until reflavoured]
-    # - part: linear-models/intro-to-linear-models.qmd
-      # chapters:
-        # - linear-models/regression.qmd
-        # - linear-models/linear-model-framework.qmd
-        # - linear-models/treatment-effect-models.qmd
-        # - linear-models/glm.qmd
-        # - linear-models/association-not-causation.qmd
-        # - linear-models/multivariable-regression.qmd
-        # - linear-models/reading-lm.qmd
+    - part: linear-models/intro-to-linear-models.qmd
+      chapters:
+        - linear-models/regression.qmd
+        - linear-models/linear-model-framework.qmd
+        - linear-models/treatment-effect-models.qmd
+        # [hidden until reflavoured] - linear-models/glm.qmd
+        # [out of course scope] - linear-models/multivariable-regression.qmd
+        - linear-models/reading-lm.qmd
+
+    - part: interpretation/intro-interpretation.qmd
+      chapters:
+        - interpretation/results-to-conclusions.qmd
+        - interpretation/credible-evidence.qmd
         
     # [hidden until reflavoured]
     # - part: highdim/intro-highdim.qmd

@@ -1,6 +1,6 @@
 # Comparing Two Groups: the t-test and the Wilcoxon Test {#sec-two-groups}
 
-_Written for this book by Giorgio Arcara, with an AI assistant (Claude). This chapter is not in Irizarry's *Introduction to Data Science*._
+_Written for this book by Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
 
 Many questions in behavioural research compare two groups or two conditions. Do users rate an app differently on desktop and on mobile? Is engagement higher with a redesigned interface than with the standard one? Are responses slower when the colour of a word conflicts with its meaning? In each case, we have a continuous outcome measured in two groups, and we want to know whether the difference we see in our sample reflects a real difference in the population or could have been produced by chance.
 

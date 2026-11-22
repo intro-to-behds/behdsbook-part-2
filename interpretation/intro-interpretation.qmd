@@ -1,0 +1,7 @@
+# Interpreting Evidence {.unnumbered}
+
+_Written for this book by Giorgio Arcara. This part is not in Irizarry's *Introduction to Data Science*._
+
+<!-- 22 Nov 2026 (Claude): new closing part, at the instructor's request. It holds the two interpretation chapters, moved from Basic Statistics. In the course they are read in Week 9, with the design topics, before the regression weeks. To review. -->
+
+The earlier parts of this book are about producing results: describing data, estimating quantities with their uncertainty, testing hypotheses, comparing groups and fitting models. This last part is about what comes after: turning those results into conclusions that other people can read, trust and build on. @sec-results-to-conclusions separates the results of a study from their interpretation, offers a few questions for interpreting any result, and lists the most common interpretation mistakes. @sec-credible-evidence moves from a single study to a whole body of evidence: whether published results can be trusted, why many of them could not be replicated, and which practices make evidence more credible. Both chapters build on the design questions of the first part of the book, and in particular on @sec-association-not-causation, which discusses when an association can be read as a cause. They come last because interpretation applies to every analysis, from a t-test to a regression model. Most of this part can be read right after *Basic Statistics*; the passages about models with several predictors assume the *Linear Models* part.

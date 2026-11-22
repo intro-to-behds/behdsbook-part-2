@@ -1,0 +1,168 @@
+# From Results to Conclusions {#sec-results-to-conclusions}
+
+_Written for this book by Giorgio Arcara. This chapter is not in Irizarry's *Introduction to Data Science*._
+
+<!-- 17 Nov 2026 (Claude): drafted from Course Slides/SLIDES_PLANS/Week09-Experimental Design and Intepretation/Global-Plan.md and Book-slides-alignment.md. Parts adapted from the hidden linear-models/association-not-causation.qmd (stress-app simulation, app_task_completion / Simpson's paradox, other sources of bias), rewritten without lm(). References to verify. 22 Nov 2026 (Claude), at the instructor's request: the sections on causal claims (Explanation and prediction, Correlational designs, Alternative explanations, Towards causal claims) and exercises 1-3 moved to the new chapter behav/association-causation.qmd (sec-association-not-causation); this chapter keeps the interpretation part. -->
+
+```{r, message=FALSE, warning=FALSE}
+#| cache: false
+library(tidyverse)
+library(behdslabs)
+```
+
+```{r}
+#| echo: false
+navy <- "#001238"
+```
+
+Running a statistical test is the easy part of an analysis, especially if you use LLMs as support to scaffold or write your code. With R you compute a p-value, a confidence interval and an effect size in a fraction of a second. What R cannot do is say what those numbers mean: whether a variable is causing a modification to another variable, whom it applies to, how much we should trust it, if this is relevant. That step is *interpretation*, and it is the analyst's job.
+
+Interpretation does not mean that any reading of the results is as good as another. A good interpretation brings together all the available evidence: how the data were collected (@sec-experimental-designs), how well the variables were measured (@sec-measurement), what the estimates and their uncertainty say (@sec-estimates-and-ci, @sec-effect-size), what is missing (@sec-missing-data), and how the analysis was done (@sec-research-ethics). Some interpretations are better than others because they account for more of this evidence.
+
+This chapter is about the step from results to conclusions. It starts by separating results from their interpretation, then offers a few questions for interpreting any result, and ends with a list of common mistakes. When an association can be read as a cause, and what else can produce it, is the topic of @sec-association-not-causation, in the first part of the book.
+
+<!-- 22 Nov 2026 (Claude), at the instructor's request: results vs interpretation, three examples. To review. -->
+
+## Results and interpretation {#sec-results-vs-interpretation}
+
+Interpreting means turning numbers into verbal claims, such as "the training app improves memory", and putting them in a report: usually a scientific article, but also a technical report or the document behind a product decision. These claims are what other people read, cite and build on. They are the basis for future studies, for new lines of research, and for applications: a company, for example, may start the long process of having its app certified as a medical device on the strength of a study that seemed to show that it works. An error of interpretation therefore travels much further than an error in a single number.
+
+This is why it is important to distinguish the results from their interpretation, and why scientific articles keep them in separate sections. The *Results* section reports what was found, as neutrally as possible and without explanations: descriptive statistics, estimates with their confidence intervals, tests and effect sizes. The *Discussion* section interprets these results: what they mean, why they may have come out this way, and what follows from them. The separation lets readers check the results on their own and judge the interpretation separately, and perhaps reach a different one.
+
+Results and interpretation are separable because **the same results can support several interpretations**. This is true for every design, randomised experiments included. Imagine three studies.
+
+**A randomised trial.** Older adults attending a memory clinic are randomly assigned to eight weeks with a new cognitive-training app, built around game-like memory exercises, or with an active control app that has the same session length and the same number of reminders, but only offers short quizzes on news articles. At the end, the training group improves more on a memory test, and the confidence interval for the difference excludes zero. The obvious interpretation is that the training exercises improve memory. But suppose that participants found the control app dull. They used it less, more of them dropped out, they expected less from it, and they came to the final test less motivated. The difference may then reflect engagement and expectations rather than the training itself. Randomisation balances *who* is in each arm, not *what happens* to them once they are there. Usage logs, ratings of enjoyment and expectations, and dropout by arm help to tell the two readings apart; a control condition matched on these features is the best protection (*What do we compare with?* in @sec-rcts).
+
+**A comparison of pre-existing groups** (often called quasi-experimental). Patients with a chronic neurological condition, such as epilepsy, are on average about 60 ms slower than healthy controls on a simple reaction-time task. The obvious interpretation is that the condition slows processing speed. But many patients take several medications every day, and some of these have sedative effects that slow responses. The slowing may come from the drugs rather than from the condition, or from both. Nobody assigned participants to the groups, so the medication comes together with the group. Recording drugs and doses, and comparing patients on different treatments, helps; it does not settle the question, because the treatment also depends on how severe the condition is (see *Correlational designs and correlation analyses* in @sec-association-not-causation).
+
+**An observational study.** In a survey of university students, those who use a study-planning app, available only with a paid subscription, have higher exam grades than those who do not. The obvious interpretation is that the app helps students study. But the app is costly, so its users tend to come from families with a higher socioeconomic status. They are more likely to have a quiet room and a good laptop, not to need a part-time job, and to sleep better and feel well, and each of these can raise grades on its own. Socioeconomic status is then a *confounder* (see *Confounding* in @sec-association-not-causation). Moreover, students who are already well organised may be the ones who choose a planning app in the first place (*Selection*, in the same chapter).
+
+| Design | Result | First interpretation | Alternative interpretation |
+|---|---|---|---|
+| Randomised trial | The training group improves more on a memory test | The training exercises improve memory | The control app was boring: less use, more dropout, lower motivation |
+| Pre-existing groups | Patients are slower than controls | The condition slows processing | Many patients take medications that slow responses |
+| Observational study | App users have higher grades | The app helps students study | App users have a higher socioeconomic status, with better conditions for studying |
+
+: The same result, two interpretations, in three designs (hypothetical examples). {#tbl-one-result-many-readings}
+
+In each example the result stays the same; what changes is the interpretation. A good Discussion does not stop at the first interpretation: it names the alternatives and says which of them the design rules out and which it leaves open. @sec-association-not-causation goes through the most common alternatives; the rest of this chapter is about how to weigh them.
+
+## Interpreting a result
+
+### Three questions
+
+Whatever the design, three questions help to interpret a result:
+
+1. **What was the design?** Was anything manipulated? Were participants randomly assigned? Who took part, and who was left out?
+2. **What do the results actually support?** How large is the effect, how precise is the estimate, and which conclusions are compatible with it?
+3. **What are the alternative explanations?** Chance, reverse causation, confounding, selection, measurement problems (@sec-association-not-causation).
+
+The four kinds of study validity introduced in @sec-experimental-designs (see the callout *Two meanings of validity* there) turn these questions into a checklist:
+
+| Question | Kind of validity |
+|---|---|
+| Does the design support the causal claim, or are there alternative explanations? | Internal validity |
+| Did we manipulate and measure what we meant to? | Construct validity (and the measurement validity of @sec-measurement) |
+| To whom, where and when does the result apply? | External validity |
+| How sure can we be of the statistical result? | Statistical conclusion validity |
+
+: Four questions for interpreting a study, and the kind of validity each concerns. {#tbl-validity-checklist}
+
+### Read the numbers together
+
+A p-value alone says little. The same p-value can come from a large effect estimated imprecisely in a small study, or from a tiny effect estimated precisely in a very large one. In the simulated example below, both studies give a p-value between 0.01 and 0.02:
+
+```{r same-p}
+set.seed(30)
+small_study <- tibble(group = rep(c("A", "B"), each = 15),
+                      score = c(rnorm(15, 0, 1), rnorm(15, 1.05, 1)))
+large_study <- tibble(group = rep(c("A", "B"), each = 2000),
+                      score = c(rnorm(2000, 0, 1), rnorm(2000, 0.08, 1)))
+
+summarise_test <- function(d) {
+  tt <- t.test(score ~ group, data = d)
+  tibble(n_per_group = nrow(d) / 2,
+         difference = unname(diff(tt$estimate)),
+         ci_low = -tt$conf.int[2], ci_high = -tt$conf.int[1],
+         p = tt$p.value)
+}
+bind_rows(small = summarise_test(small_study),
+          large = summarise_test(large_study), .id = "study")
+```
+
+The small study suggests a large difference, about one standard deviation, but its confidence interval is wide: the data are compatible with effects from small to very large. The large study estimates a difference of less than a tenth of a standard deviation, precisely: the effect is almost certainly real, and almost certainly small. Reporting the estimate, its confidence interval and an effect size (@sec-estimates-and-ci, @sec-effect-size) next to the p-value makes the difference visible.
+
+### Non-significant is not "no effect"
+
+A p-value above 0.05 does not show that there is no effect (@sec-hypothesis-testing). A study with low power (@sec-power) can easily miss a real effect. Look at the confidence interval: if it includes both zero and effects that would matter, the study is inconclusive, not negative.
+
+### Missing data and analytic choices
+
+Two further questions concern how the final numbers were obtained. **Who is in the analysis?** If participants dropped out or skipped questions for reasons related to the outcome, the remaining sample may be optimistic (@sec-missing-data). **How many choices were made, and when?** Exclusion rules, outcome measures and covariates can be chosen in many reasonable ways. When they are chosen after seeing the data, a significant result is much easier to obtain, and much less informative (@sec-research-ethics).
+
+## Common interpretation mistakes
+
+The following mistakes are frequent in papers, reports and the press. Most of them follow from forgetting one of the three questions above.
+
+**Hidden causal claims.** Causal claims are often made without the word *cause*. Verbs such as *leads to*, *boosts*, *elicits*, *protects* or *improves* all describe causal effects. With observational data, the defensible wording is at the top of the following ladder:
+
+| Wording | What it claims |
+|---|---|
+| X *is associated with* Y | an association |
+| X *predicts* Y | an association useful for prediction (sometimes read as causal) |
+| X *is linked to*, *is a risk factor for* Y | ambiguous; often read as causal |
+| X *leads to*, *boosts*, *protects against*, *improves* Y | a causal effect |
+| X *causes* Y | a causal effect |
+
+: A ladder of wording, from associational to causal. {#tbl-causal-language}
+
+**Forgetting confounders.** "Users of the meditation app sleep better" invites the question: who installs a meditation app? Probably people who already care about their health.
+
+**Forgetting who took part.** Only some people consent to a study, only motivated users answer a satisfaction survey, and most participants in psychology studies come from a narrow range of countries and backgrounds (Henrich et al., 2010). A result holds for the people who could have been in the data.
+
+**"Significant in one group, not in the other".** Suppose an app reduces stress significantly in women (p = 0.03) but not in men (p = 0.20). It is tempting to conclude that the app works for women and not for men. But the two estimates can be very similar; the difference between them must be tested directly, as an interaction (see @sec-anova). The difference between "significant" and "not significant" is not itself statistically significant (Gelman & Stern, 2006).
+
+**Forgetting the strength of the evidence.** One small study with p = 0.04 is weak evidence, however interesting the result. Effect size, precision, power and replication all matter.
+
+**Averages are not individuals.** A difference between group means does not mean that every individual differs in the same way. And an association between people (people who use their phone more are more stressed) need not hold within people (on days when I use my phone more, I am more stressed), as discussed in @sec-experimental-designs.
+
+**Regression to the mean.** Participants selected because of extreme scores, such as the most stressed users, will on average score less extremely the next time, with or without an intervention. A single-group pre–post study cannot separate this from a real effect.
+
+**Going beyond the data.** Results apply to the people, tasks, settings and range of values that were studied. A laboratory effect in students may not hold for older adults using their own phones at home.
+
+**Exploratory results presented as confirmatory.** A pattern found while exploring the data is a hypothesis for the next study, not a confirmed finding (see *Two ways of exploring* in @sec-research-ethics).
+
+## When the model has several predictors {#sec-several-predictors}
+
+<!-- 22 Nov 2026 (Claude), at the instructor's request: new section, read after the regression weeks; "We controlled for it" moved here from Common interpretation mistakes. To review. -->
+:::{.callout-note}
+This section assumes the *Linear Models* part, and in particular @sec-adjusting-confounder. You can skip it on a first reading and come back to it after the chapters on regression.
+:::
+
+Regression models with several predictors are the most common way to analyse observational data, and they bring their own interpretation mistakes.
+
+**"We controlled for it".** Adjusting for a confounder removes its influence only as far as the confounder is well measured. A covariate measured with error leaves part of the confounding in place (see *Measurement error and its consequences* in @sec-measurement), and confounders that were not measured are not controlled at all.
+
+**An adjusted coefficient is not a causal effect.** A coefficient "adjusted for age and sex" is still an association: the association among people of the same age and sex. It can be read causally only if the design and the arguments of @sec-association-not-causation rule out the other explanations, including the confounders that were not in the model.
+
+**Which variables, and why?** Adjusting for a mediator removes part of the effect we want to estimate, and adjusting for a collider creates an association that was not there (*Adjusting is not free* in @sec-association-not-causation). A good report says why each covariate was included, and whether the choice was made before seeing the data (@sec-credible-evidence).
+
+**R² is not importance.** $R^2$ is the proportion of variance in the outcome that the model explains in this sample (see *Variance explained* in @sec-regression). A small $R^2$ can go with an effect that matters a great deal, for example a small average benefit of an intervention given to millions of people, and a large $R^2$ can come from predictors that are of no practical interest. Nor does a high $R^2$ mean that the model is the right one for a causal question: a model can predict well without identifying causes (*Explanation and prediction* in @sec-association-not-causation).
+
+**Going beyond the range of the data.** A regression line describes the data within the range of values that were observed. The intercept of a model, for example, is the prediction for a value of 0 of every predictor, which may not exist (a consistency index of 0, an age of 0). Predictions outside the observed range, *extrapolations*, rest on the assumption that the line continues, which the data cannot check.
+
+<!-- 18 Nov 2026 (Claude): replaces the subsection "Why this matters: the replication crisis", moved to the next chapter -->
+All these questions concern a single study. The next chapter, @sec-credible-evidence, asks them of a whole body of evidence: whether published results can be trusted, and why many of them could not be replicated.
+
+## Further reading
+
+- W. R. Shadish, T. D. Cook & D. T. Campbell (2002), *Experimental and Quasi-Experimental Designs for Generalized Causal Inference*. Boston: Houghton Mifflin. The classic reference on the four kinds of study validity and their threats.
+- A. Gelman & H. Stern (2006), *The difference between "significant" and "not significant" is not itself statistically significant*, The American Statistician, 60(4), 328–331.
+- J. Henrich, S. J. Heine & A. Norenzayan (2010), *The weirdest people in the world?*, Behavioral and Brain Sciences, 33(2–3), 61–83.
+
+
+## Exercises
+
+1\. Find a news article or a press release that reports a study on technology use and wellbeing. Which wording does it use (@tbl-causal-language)? Is the wording supported by the design? Rewrite the headline so that it matches the design.
+
+2\. Run the `same-p` example again with 50 participants per group in the small study. How do the confidence interval and the p-value change? Which of the two studies would you rather cite to claim that the effect is important, and why?

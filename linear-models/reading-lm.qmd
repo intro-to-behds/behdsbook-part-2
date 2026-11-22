@@ -1,5 +1,7 @@
 # Recommended Reading  {.unnumbered}
 
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/reading-lm.html). Unchanged in this edition._
+
 - **Montgomery, D. C. (2017). _Design and Analysis of Experiments_ (9th ed.). Wiley.**  
   The standard reference for experimental design, randomization, and treatment effect estimation, from randomized blocks to factorial designs.
 

@@ -107,7 +107,7 @@ In an observational study, variables are measured without the researcher directl
 
 A **confounding variable** is a variable that provides an alternative explanation for an observed relationship because it is related to both the exposure and the outcome. 
 
-All these considerations are related to the familiar statement that *correlation does not imply causation*, which should not be read as a criticism of correlational research (or, even worse, of correlation analysis). It is a statement about what kind of inference the design permits (correlation itself is covered in @sec-correlation; confounding and the other alternative explanations in @sec-results-to-conclusions).
+All these considerations are related to the familiar statement that *correlation does not imply causation*, which should not be read as a criticism of correlational research (or, even worse, of correlation analysis). It is a statement about what kind of inference the design permits (correlation itself is covered in @sec-correlation; confounding and the other alternative explanations in @sec-association-not-causation).
 
 ### Experimental research
 
@@ -268,7 +268,7 @@ draw_flow(nodes, edges, notes, xlim = c(-3.9, 5.6), ylim = c(-2, 1.9))
 ```
 
 <!-- added by Claude, 17 Nov 2026, from the Week 9 slides; to review. 21 Nov 2026 (Claude): aligned with fig-design-tree; terminology to confirm at review (pre-existing groups as observational vs quasi-experimental) -->
-A very common case is the comparison of **pre-existing groups**: patients and healthy controls, heavy and light smartphone users, older and younger adults. In terms of @fig-design-tree, nobody decides who is a patient, so these comparisons are observational in design, even though they are often grouped with quasi-experiments. The analysis looks like that of an experiment, often a t-test between two groups, but nobody assigned participants to the groups, and the groups may differ in many other ways (@fig-groups-differ). @sec-results-to-conclusions discusses how to interpret such comparisons.
+A very common case is the comparison of **pre-existing groups**: patients and healthy controls, heavy and light smartphone users, older and younger adults. In terms of @fig-design-tree, nobody decides who is a patient, so these comparisons are observational in design, even though they are often grouped with quasi-experiments. The analysis looks like that of an experiment, often a t-test between two groups, but nobody assigned participants to the groups, and the groups may differ in many other ways (@fig-groups-differ). @sec-association-not-causation discusses how to interpret such comparisons.
 
 <!-- 21 Nov 2026 (Claude): from deck 09-04, slide "Groups differ in many ways" (redrawn in ggplot2); to review -->
 ```{r}
@@ -571,7 +571,7 @@ Random sampling asks a different question: how did participants enter the study 
 A study can have strong internal validity and limited generalisability. Conversely, a large and representative observational dataset may generalise well to a population while offering weaker causal identification. In psychological research, true probability sampling is relatively uncommon. Convenience samples are common because they are feasible and inexpensive. This is not automatically a fatal flaw, but the target population should be described honestly.
 
 <!-- 21 Nov 2026 (Claude): links to the inference chapters added at the instructor's request; to review -->
-The distinction between a population and a sample is introduced in @sec-estimates-and-ci (see *Populations, samples, parameters, and estimates*). The standard errors and confidence intervals of that chapter describe our uncertainty about the population from which the sample was *randomly* drawn. With a convenience sample, which population the results refer to is no longer settled by the sampling procedure: it becomes a matter of judgement, and it should be argued explicitly. How the way participants enter a study can distort a comparison is discussed under *Selection* in @sec-results-to-conclusions.
+The distinction between a population and a sample is introduced in @sec-estimates-and-ci (see *Populations, samples, parameters, and estimates*). The standard errors and confidence intervals of that chapter describe our uncertainty about the population from which the sample was *randomly* drawn. With a convenience sample, which population the results refer to is no longer settled by the sampling procedure: it becomes a matter of judgement, and it should be argued explicitly. How the way participants enter a study can distort a comparison is discussed under *Selection* in @sec-association-not-causation.
 
 ### Matching, blocking, and stratification
 

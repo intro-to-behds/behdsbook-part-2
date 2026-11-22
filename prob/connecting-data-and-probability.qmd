@@ -1,6 +1,6 @@
 # Connecting Data and Probability
 
-_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/prob/connecting-data-and-probability.html). Adapted by Giorgio Arcara: the examples are behavioural, and the subsection *Measurement error* was added (draft, see the box below); the text is otherwise Irizarry's, with small edits to fit the new examples._
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/prob/connecting-data-and-probability.html). Adapted by Giorgio Arcara: the examples are replaced with behavioural ones; new subsection *Measurement error* (draft, see the box below); the text is otherwise Irizarry's. Details in the [CHANGELOG](https://github.com/intro-to-behds/behdsbook-part-2/blob/main/CHANGELOG.md)._
 
 In this part of the book, we use games of chance and other simple random devices---tossing coins, drawing beads, an app that shows a randomly chosen image---to illustrate the principles of probability. These examples are valuable because the probabilistic mechanism is perfectly known. We can compute exact probabilities, repeat experiments as many times as we like, and verify the results mathematically or by simulation.
 
@@ -34,13 +34,13 @@ The same assumption appears in machine learning. When we train a model, we use o
 
 Despite this, such models and analyses often work remarkably well and have provided valuable insights. For example, studies using observational data have convincingly shown that smoking harms health and that regular exercise and a good diet extend life. But when data come from convenience samples, extra care is needed. The assumptions behind our probability models become especially important. Treating a convenience sample as if it were a simple random sample can lead to biased and misleading conclusions.
 
-These biases can sometimes be corrected with statistical techniques, but doing so requires making additional assumptions. Understanding what those assumptions are, and thinking critically about whether they are reasonable, is essential for sound data analysis. In a later chapter<!-- @sec-association-not-causation --> we will revisit this topic and show concrete examples of how unexamined assumptions about randomness can distort results.
+These biases can sometimes be corrected with statistical techniques, but doing so requires making additional assumptions. Understanding what those assumptions are, and thinking critically about whether they are reasonable, is essential for sound data analysis. In @sec-association-not-causation we revisit this topic and show concrete examples of how unexamined assumptions about randomness can distort results.
 
 ### Measurement error
 
 :::{.callout-warning}
 ## Draft addition
-This subsection is not in Irizarry's original chapter. It was added in this adaptation, written with an AI assistant (Claude) on 30 October 2026, and not yet reviewed by the instructor. Its connection with @sec-measurement will be developed.
+This subsection is not in Irizarry's original chapter. It was added in this adaptation on 30 October 2026, and is not yet reviewed by the instructor. Its connection with @sec-measurement will be developed.
 :::
 
 Even when we know exactly who was measured, and their behaviour does not change, the instrument adds variability of its own. A participant may read the same questionnaire item slightly differently each time they answer it; in an online reaction time task, the browser and the keyboard add a few milliseconds of timing noise to every response. Classical Test Theory writes this as $X = T + E$: the observed score $X$ is the true score $T$ plus an error $E$, and we use probability to model $E$ as a random quantity, positive or negative, averaging zero (see @sec-measurement).

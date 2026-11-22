@@ -1,6 +1,6 @@
 # Hypothesis Testing {#sec-hypothesis-testing}
 
-_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/inference/hypothesis-testing.html). Adapted by Giorgio Arcara: the bead urn is replaced by a participant who may be guessing in a two-choice task, and the subsections *A p-value without the normal approximation*, *p-values and confidence intervals* and *What a p-value is not*, a note on power and one exercise were added; the text is otherwise Irizarry's, with small edits to fit the new examples._
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/inference/hypothesis-testing.html). Adapted by Giorgio Arcara: the examples are replaced with behavioural ones; new subsections *A p-value without the normal approximation*, *p-values and confidence intervals* and *What a p-value is not*; the text is otherwise Irizarry's. Details in the [CHANGELOG](https://github.com/intro-to-behds/behdsbook-part-2/blob/main/CHANGELOG.md)._
 
 In scientific studies, you'll often see phrases like "the results are statistically significant". This points to a technique called hypothesis testing, where we use _p-values_, a type of probability, to test our initial assumption or hypothesis.
 
