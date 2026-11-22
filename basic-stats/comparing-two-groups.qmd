@@ -232,7 +232,7 @@ The paired confidence interval, from `r round(tp$conf.int[1])` to `r round(tp$co
 
 ## When the data are not normal: the Wilcoxon test
 
-The t-test compares means, and means are sensitive to skewed distributions and outliers (@sec-central-dispersion). Reaction times are a typical case: there is a floor below which no one can respond, and a long tail of slow responses, including occasional lapses of attention. Let's take a small sample of 20 participants per group from `reaction_times`:
+The t-test compares means, and means are sensitive to skewed distributions and outliers (@sec-robust-summaries). Reaction times are a typical case: there is a floor below which no one can respond, and a long tail of slow responses, including occasional lapses of attention. Let's take a small sample of 20 participants per group from `reaction_times`:
 
 ```{r}
 set.seed(3)
