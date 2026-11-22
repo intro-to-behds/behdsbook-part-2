@@ -1,6 +1,6 @@
 # Introduction to Regression {#sec-regression}
 
-_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/regression.html). Adapted by Giorgio Arcara: Galton's father and son heights (`HistData::GaltonFamilies`) are replaced by users' consistency index and engagement score (`behdslabs::app_engagement_experiment`), and the baseball sophomore slump (`Lahman`) by a simulated memory game played in two consecutive weeks; the code uses the tidyverse instead of data.table; the text is otherwise Irizarry's, with small edits to fit the new examples._
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/regression.html). Adapted by Giorgio Arcara: Galton's father and son heights (`HistData::GaltonFamilies`) are replaced by users' consistency index and engagement score (`behdslabs::app_engagement_experiment`), and the baseball sophomore slump (`Lahman`) by a simulated memory game played in two consecutive weeks; the code uses the tidyverse instead of data.table; the definition of the correlation is shortened to a recap of the *Basic Statistics* chapter, and the regression fallacy is linked to measurement error and to the design of pre–post studies; the text is otherwise Irizarry's, with small edits to fit the new examples._
 
 <!-- 22 Nov 2026 (Claude): reflavoured with /reflavour-chapter (Pass A, dataset swap only), following the instructor's decision of 22 Nov 2026: GaltonFamilies -> app_engagement_experiment (consistency_index -> engagement_score, the question of Week 6), Lahman -> a simulated test-retest of a memory game. Course adaptations (shorter correlation section, links to Basic Statistics) are a separate commit. -->
 
@@ -42,49 +42,19 @@ We will learn that the correlation coefficient is an informative summary of how 
 
 ## The correlation coefficient {#sec-corr-coef}
 
-The correlation coefficient is defined for a list of pairs $(x_1, y_1), \dots, (x_n,y_n)$ as the average of the product of the standardized values:
+<!-- 22 Nov 2026 (Claude), Pass B: Irizarry's definition of the correlation, its R code and the six example panels are shortened to a recap, since @sec-correlation (Basic Statistics) covers them; the formula is kept because the rest of the chapter uses its notation. -->
+We met the correlation coefficient in @sec-correlation: the average product of the two variables in standard units, a number between -1 and 1 that summarizes how strongly two variables go together along a straight line. For a list of pairs $(x_1, y_1), \dots, (x_n,y_n)$, the correlation is:
 
 $$
 \rho = \frac{1}{n} \sum_{i=1}^n \left( \frac{x_i-\mu_x}{\sigma_x} \right)\left( \frac{y_i-\mu_y}{\sigma_y} \right)
-$$
+$$ 
 
-with $\mu_x, \mu_y$ the averages of $x_1,\dots, x_n$ and $y_1, \dots, y_n$, respectively, and $\sigma_x, \sigma_y$ the standard deviations. The Greek letter for $r$, $\rho$, is commonly used in statistics books to denote the correlation. It is not a coincidence that $r$ is the first letter in _regression_. Soon, we learn about the connection between correlation and regression.
+with $\mu_x, \mu_y$ the averages of $x_1,\dots, x_n$ and $y_1, \dots, y_n$, respectively, and $\sigma_x, \sigma_y$ the standard deviations. The Greek letter for $r$, $\rho$, is commonly used in statistics books to denote the correlation. It is not a coincidence that $r$ is the first letter in _regression_. Soon, we learn about the connection between correlation and regression. (The function `cor()` divides by $n-1$ instead of $n$, as `sd()` does; see @sec-correlation.)
 
-We can represent the formula above with R code using:
-
-```{r, eval=FALSE}
-rho <- mean(scale(x) * scale(y))
-```
-
-To see why this equation captures how two variables move together, note that each term $\frac{x_i - \mu_x}{\sigma_x}$ represents how many standard deviations the value $x_i$ is from the mean of $x$, and $\frac{y_i - \mu_y}{\sigma_y}$ does the same for $y_i$ relative to the mean of $y$. If $x$ and $y$ are unrelated, the product of these standardized values, $\left(\frac{x_i - \mu_x}{\sigma_x}\right)\left(\frac{y_i - \mu_y}{\sigma_y}\right)$, will be positive (positive times positive or negative times negative) about as often as it is negative (positive times negative or negative times positive). When averaged, these products cancel out, giving a correlation near zero. If $x$ and $y$ tend to increase or decrease together, most products will be positive, resulting in a positive correlation. If one increases when the other decreases, most products will be negative, resulting in a negative correlation.
-
-The correlation coefficient is always between -1 and 1. We can show this mathematically, and we include it as an exercise for you to prove.
-
-The correlation, computed with the function `cor`, between consistency and engagement is about `r round(cor(engagement$consistency, engagement$engagement), 2)`:
+The correlation between consistency and engagement is about `r round(cor(engagement$consistency, engagement$engagement), 2)`:
 
 ```{r}
 cor(engagement$consistency, engagement$engagement)
-```
-
-:::{.callout-warning}
-The function `cor(x, y)` computes the sample correlation, which divides the sum of products by `length(x)-1` rather than `length(x)`. The rationale for this is similar to the reason we divide by `length(x)-1` when computing the sample standard deviation, `sd(x)`. Namely, this adjustment helps account for the loss of one degree of freedom due to estimating the sample means, which is necessary for unbiased estimates.
-:::
-
-To see what data looks like for different values of $\rho$, here are six examples of pairs with correlations ranging from -0.9 to 0.99:
-
-```{r what-correlation-looks-like, echo=FALSE}
-n <- 250
-cors <- c(-0.9,-0.5,0,0.5,0.9,0.99)
-sim_data <- lapply(cors,function(r) MASS::mvrnorm(n,c(0,0), matrix(c(1,r,r,1),2,2)))
-sim_data <- Reduce(rbind, sim_data)
-sim_data <- cbind( rep(cors, each = n), sim_data)
-colnames(sim_data) <- c("r","x","y")
-as.data.frame(sim_data) |>
-  ggplot(aes(x,y)) +
-  facet_wrap(~r) +
-  geom_point(alpha = 0.5) +
-  geom_vline(xintercept = 0,lty = 2) +
-  geom_hline(yintercept = 0,lty = 2)
 ```
 
 ### Sample correlation is a random variable
@@ -156,9 +126,9 @@ To understand when correlation is meaningful as a summary statistic, we return t
 
 ## Conditional expectations {#sec-conditional-expectation}
 
-Galton wanted to understand how well we can predict a child's height from the parents' heights. We ask the same kind of question about our users: how well can we predict a user's engagement from their consistency? To begin, we frame this as a prediction problem.
+Galton wanted to understand how well we can predict a child's height from the parents' heights. We ask the same kind of question about our users: how well can we predict a user's engagement from their consistency? To begin, we frame this as a prediction problem. Note that it is a question of *prediction*, not of *explanation* (see *Explanation and prediction* in @sec-association-not-causation): a good prediction does not tell us whether making users more consistent would make them more engaged.
 
-Suppose we are asked to guess the engagement score of a randomly selected user, but we are not told the user's consistency. The most reasonable single-number prediction is the population mean, $\mu_y$, since this is the value around which the data are most concentrated. Later, in @sec-ml-conditionals, we explain that the mean also has desirable mathematical properties for prediction: it minimizes expected squared error.
+Suppose we are asked to guess the engagement score of a randomly selected user, but we are not told the user's consistency. The most reasonable single-number prediction is the population mean, $\mu_y$, since this is the value around which the data are most concentrated. The mean also has desirable mathematical properties for prediction: it minimizes the expected squared error.
 
 Therefore, without any information about consistency, our best prediction for the user's engagement is simply the average engagement in the population. In practice, we approximate this using the sample average, $\hat{\mu}_y =$ `r round(mean(engagement$engagement), 1)`.
 
@@ -238,7 +208,7 @@ Note that while we divided the data into groups 0.1 wide, the sample size in eac
 The fact that these conditional averages follow a line is not a coincidence. In the next section, we explain that this line, known as the *regression line*, improves the precision of our estimates. However, it is not always appropriate to estimate conditional expectations with the regression line, so we also describe Galton's theoretical justification that helps us understand when to use it.
 
 :::{.callout-note}
-Conditional expectations are not only useful when the relationship between variables is linear. In fact, much of what we call machine learning can be understood as the task of estimating conditional expectations for complex relationships that go well beyond a straight line. We explore this idea in more detail in the machine learning part of the book, including @sec-ml-conditionals, which covers conditional expectations and probabilities.
+Conditional expectations are not only useful when the relationship between variables is linear. In fact, much of what we call machine learning can be understood as the task of estimating conditional expectations for complex relationships that go well beyond a straight line. Machine learning is not covered in this edition of the book; Irizarry's original book discusses it in detail.
 :::
 
 ## The regression line
@@ -339,11 +309,15 @@ So why not always use the regression line for prediction? Because it is not alwa
 
 ### The bivariate normal distribution justification
 
+:::{.callout-note}
+This section is more technical than the rest of the chapter, and you can skip it on a first reading. The main message is in its last paragraph: the regression line gives the conditional expectation when the data are approximately bivariate normal.
+:::
+
 Correlation and the regression slope are widely used summary statistics, but they are often misused or misinterpreted. Anscombe's examples provide over-simplified cases in which the correlation is not a useful summary. But there are many real-life examples.
 
 The main way we motivate appropriate use of correlation as a summary involves the *bivariate normal distribution*.
 
-When a pair of random variables is approximated by the bivariate normal distribution, scatterplots look like ovals. As we saw in @sec-corr-coef, they can be thin (high correlation) or circle-shaped (no correlation).
+When a pair of random variables is approximated by the bivariate normal distribution, scatterplots look like ovals. As we saw in @sec-correlation, they can be thin (high correlation) or circle-shaped (no correlation).
 
 A more technical way to define the bivariate normal distribution is the following: if
 
@@ -493,6 +467,8 @@ The correlation is `r round(g$r, 2)` and the data look very much like a bivariat
 $$ \frac{\hat{y} - `r round(g$my, 1)`}{`r round(g$sy, 1)`} = `r round(g$r, 2)` \left( \frac{x - `r round(g$mx, 1)`}{`r round(g$sx, 1)`}\right) $$
 
 Because the correlation is not perfect, regression tells us that, on average, we should expect the top players of week 1 to do a bit worse in week 2. It's not a jinx; it's just due to chance: a top score in week 1 is partly high ability and partly a lucky week, and the luck is not repeated. The badge winners are selected from the top values of $x$, so it is expected that $y$ will regress to the mean.
+
+The less reliable a measure, the stronger this regression: the larger the error $E$ compared with the stable part $T$, the lower the correlation between two measurements of the same people (see @sec-measurement and @sec-simulating-measurement). This is why regression to the mean is one of the common interpretation mistakes discussed in @sec-results-to-conclusions: participants selected because of extreme scores, such as the most stressed users of an app, will on average score less extremely the next time, with or without an intervention. A study that measures only them, before and after, cannot separate this regression from a real effect; a control group selected in the same way can (@sec-experimental-designs).
 
 ## Exercises
 
