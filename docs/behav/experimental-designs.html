@@ -565,16 +565,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-association-causality" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="sec-association-causality"><span class="header-section-number">4.2</span> Association and causality</h2>
-<p>Suppose we monitor 200 participants for one month. Their smartphones record how many notifications they receive, and an EMA app asks them to report their current level of stress several times per day. At the end of the study, periods with more notifications are associated with higher reported stress. What can we conclude? We can conclude that notification frequency and reported stress are <strong>associated</strong>. We cannot yet conclude that notifications cause stress. This distinction is central to the difference between <strong>observational</strong> and <strong>experimental</strong> research.</p>
+<!-- 22 Nov 2026 (Claude): observational example changed from phone notifications to app use at the instructor's request; to review -->
+<p>Suppose we monitor 200 participants for one month. A stress-management app records how many times a day each participant opens it, and asks them several times a day how stressed they feel (an EMA design). At the end of the study, days on which people open the app more often go with higher reported stress. What can we conclude? We can conclude that app use and reported stress are <strong>associated</strong>. We cannot yet conclude that using the app causes stress. This distinction is central to the difference between <strong>observational</strong> and <strong>experimental</strong> research.</p>
 <section id="observational-research" class="level3">
 <h3 class="anchored" data-anchor-id="observational-research">Observational research</h3>
-<p>In an observational study, variables are measured without the researcher directly assigning the exposure of interest. Such studies are extremely useful: they allow us to investigate behaviour in natural settings, sometimes for long periods of time, and may capture phenomena that would be difficult, impractical, or unethical to manipulate experimentally (<a href="research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>). The problem is that an observed association may have explanations other than the one we are focusing on, including variables we did not record. People may receive more notifications on particularly demanding working days, while also reporting more stress. In this case, workload could influence both variables. Perhaps stressed people also check their phones more often, generating more digital interactions. Or another unmeasured factor could influence both phone use and stress. With observational data alone, we have no direct way to tell these interpretations apart.</p>
+<p>In an observational study, variables are measured without the researcher directly assigning the exposure of interest. Such studies are extremely useful: they allow us to investigate behaviour in natural settings, sometimes for long periods of time, and may capture phenomena that would be difficult, impractical, or unethical to manipulate experimentally (<a href="research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>). The problem is that an observed association may have explanations other than the one we are focusing on, including variables we did not record. People may open the app more on particularly demanding working days, while also reporting more stress: in this case, workload could influence both variables. Perhaps stressed people open the app precisely because they feel stressed, so the arrow goes from stress to app use. Or another unmeasured factor could influence both app use and stress. With observational data alone, we have no direct way to tell these interpretations apart.</p>
 <p>A <strong>confounding variable</strong> is a variable that provides an alternative explanation for an observed relationship because it is related to both the exposure and the outcome.</p>
 <p>All these considerations are related to the familiar statement that <em>correlation does not imply causation</em>, which should not be read as a criticism of correlational research (or, even worse, of correlation analysis). It is a statement about what kind of inference the design permits (correlation itself is covered in <a href="../basic-stats/correlation.html" class="quarto-xref"><span>Chapter 16</span></a>; confounding and the other alternative explanations in <a href="../basic-stats/results-to-conclusions.html" class="quarto-xref"><span>Chapter 24</span></a>).</p>
 </section>
 <section id="experimental-research" class="level3">
 <h3 class="anchored" data-anchor-id="experimental-research">Experimental research</h3>
-<p>In an experiment, the researcher deliberately <strong>manipulates</strong> one or more variables and observes their consequences. Instead of recording the number of notifications that participants naturally receive, we might <strong>randomly</strong> assign them to receive either frequent or infrequent notifications while completing the same cognitive task. A causal interpretation typically requires three ideas:</p>
+<p>In an experiment, the researcher deliberately <strong>manipulates</strong> one or more variables and observes their consequences. Instead of recording how often participants choose to open the app, we might <strong>randomly</strong> assign them to use it or not for the same month. A causal interpretation typically requires three ideas:</p>
 <ol type="1">
 <li>the putative cause and outcome <strong>covary</strong>;</li>
 <li>the cause occurs <strong>before</strong> the outcome;</li>
@@ -582,7 +583,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Experimental manipulation and random assignment are powerful because they directly address the third requirement.</p>
 <!-- 21 Nov 2026 (Claude): moved from behav/randomised-trials.qmd; from deck 09-02, slide "What makes an experiment" (redrawn in ggplot2); to review -->
-<p>Two features turn a study into an experiment (<a href="#fig-experiment" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>). First, the researcher <strong>manipulates</strong> something: they decide who receives frequent notifications and who does not, instead of observing who happens to receive them. Second, <strong>chance decides</strong> who gets what. This second feature is called <em>random assignment</em> (see <em>Random assignment</em> below), and it is what makes the comparison between conditions fair. The manipulation guarantees that the cause comes before the outcome; random assignment deals with the alternative explanations.</p>
+<p>Two features turn a study into an experiment (<a href="#fig-experiment" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>). First, the researcher <strong>manipulates</strong> something: they decide who uses the app and who does not, instead of observing who chooses to. Second, <strong>chance decides</strong> who gets what. This second feature is called <em>random assignment</em> (see <em>Random assignment</em> below), and it is what makes the comparison between conditions fair. The manipulation guarantees that the cause comes before the outcome; random assignment deals with the alternative explanations.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-experiment" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -613,7 +614,7 @@ Figure&nbsp;4.1: The structure of an experiment. Participants are assigned at ra
 <blockquote class="blockquote">
 <p>What would have happened to the same participant, at the same time, if they had not received the manipulation?</p>
 </blockquote>
-<p>For any individual at a given moment, we can observe only one of these possibilities. We cannot simultaneously observe the same person both receiving and not receiving the same notification. Experimental design is therefore an attempt to construct a credible comparison for this missing counterfactual. Different design choices solve this problem in different ways.</p>
+<p>For any individual at a given moment, we can observe only one of these possibilities. We cannot observe the same person both using and not using the app over the same month. Experimental design is therefore an attempt to construct a credible comparison for this missing counterfactual. Different design choices solve this problem in different ways.</p>
 <!-- 21 Nov 2026 (Claude): from deck 09-01, slide "The missing comparison" (redrawn in ggplot2); to review -->
 <p><a href="#fig-counterfactual" class="quarto-xref">Figure&nbsp;<span>4.2</span></a> shows the problem for one person. Anna used a stress-management app for a month, and at the end she reports a stress level of 4. Did the app help her? To answer, we would need her stress level at the end of the same month, had she not used the app. That value is not missing because of a mistake in data collection: it cannot be observed at all, because Anna lived only one of the two months. No dataset, however large, contains both branches for the same person.</p>
 <div class="cell" data-layout-align="center">
@@ -703,13 +704,14 @@ Figure&nbsp;4.6: Matching. Each patient is paired with a control of the same age
 </section>
 <section id="a-visual-example-association-can-be-misleading" class="level3">
 <h3 class="anchored" data-anchor-id="a-visual-example-association-can-be-misleading">A visual example: association can be misleading</h3>
-<p>The following simulated example illustrates why an overall relationship can partly reflect a third variable. Here, both notification frequency and stress increase with workload.</p>
+<!-- 22 Nov 2026 (Claude): observational example changed from phone notifications to app use at the instructor's request; to review -->
+<p>The following simulated example illustrates why an overall relationship can partly reflect a third variable. Here, both app use and stress increase with workload.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="experimental-designs_files/figure-html/confounding-example-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Illustrative simulated data. An overall association between notifications and stress can partly reflect a third variable, such as workload.</figcaption>
+<figcaption>Illustrative simulated data. An overall association between app use and stress can partly reflect a third variable, such as workload.</figcaption>
 </figure>
 </div>
 </div>

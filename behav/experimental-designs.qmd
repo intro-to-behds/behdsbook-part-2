@@ -98,11 +98,12 @@ Smartphones, wearables, eye trackers, computer tasks, and online platforms can a
 
 ## Association and causality {#sec-association-causality}
 
-Suppose we monitor 200 participants for one month. Their smartphones record how many notifications they receive, and an EMA app asks them to report their current level of stress several times per day. At the end of the study, periods with more notifications are associated with higher reported stress. What can we conclude? We can conclude that notification frequency and reported stress are **associated**. We cannot yet conclude that notifications cause stress. This distinction is central to the difference between **observational** and **experimental** research.
+<!-- 22 Nov 2026 (Claude): observational example changed from phone notifications to app use at the instructor's request; to review -->
+Suppose we monitor 200 participants for one month. A stress-management app records how many times a day each participant opens it, and asks them several times a day how stressed they feel (an EMA design). At the end of the study, days on which people open the app more often go with higher reported stress. What can we conclude? We can conclude that app use and reported stress are **associated**. We cannot yet conclude that using the app causes stress. This distinction is central to the difference between **observational** and **experimental** research.
 
 ### Observational research
 
-In an observational study, variables are measured without the researcher directly assigning the exposure of interest. Such studies are extremely useful: they allow us to investigate behaviour in natural settings, sometimes for long periods of time, and may capture phenomena that would be difficult, impractical, or unethical to manipulate experimentally (@sec-research-ethics). The problem is that an observed association may have explanations other than the one we are focusing on, including variables we did not record. People may receive more notifications on particularly demanding working days, while also reporting more stress. In this case, workload could influence both variables. Perhaps stressed people also check their phones more often, generating more digital interactions. Or another unmeasured factor could influence both phone use and stress. With observational data alone, we have no direct way to tell these interpretations apart.
+In an observational study, variables are measured without the researcher directly assigning the exposure of interest. Such studies are extremely useful: they allow us to investigate behaviour in natural settings, sometimes for long periods of time, and may capture phenomena that would be difficult, impractical, or unethical to manipulate experimentally (@sec-research-ethics). The problem is that an observed association may have explanations other than the one we are focusing on, including variables we did not record. People may open the app more on particularly demanding working days, while also reporting more stress: in this case, workload could influence both variables. Perhaps stressed people open the app precisely because they feel stressed, so the arrow goes from stress to app use. Or another unmeasured factor could influence both app use and stress. With observational data alone, we have no direct way to tell these interpretations apart.
 
 A **confounding variable** is a variable that provides an alternative explanation for an observed relationship because it is related to both the exposure and the outcome. 
 
@@ -110,7 +111,7 @@ All these considerations are related to the familiar statement that *correlation
 
 ### Experimental research
 
-In an experiment, the researcher deliberately **manipulates** one or more variables and observes their consequences. Instead of recording the number of notifications that participants naturally receive, we might **randomly** assign them to receive either frequent or infrequent notifications while completing the same cognitive task. A causal interpretation typically requires three ideas:
+In an experiment, the researcher deliberately **manipulates** one or more variables and observes their consequences. Instead of recording how often participants choose to open the app, we might **randomly** assign them to use it or not for the same month. A causal interpretation typically requires three ideas:
 
 1. the putative cause and outcome **covary**;
 2. the cause occurs **before** the outcome;
@@ -119,7 +120,7 @@ In an experiment, the researcher deliberately **manipulates** one or more variab
 Experimental manipulation and random assignment are powerful because they directly address the third requirement.
 
 <!-- 21 Nov 2026 (Claude): moved from behav/randomised-trials.qmd; from deck 09-02, slide "What makes an experiment" (redrawn in ggplot2); to review -->
-Two features turn a study into an experiment (@fig-experiment). First, the researcher **manipulates** something: they decide who receives frequent notifications and who does not, instead of observing who happens to receive them. Second, **chance decides** who gets what. This second feature is called *random assignment* (see *Random assignment* below), and it is what makes the comparison between conditions fair. The manipulation guarantees that the cause comes before the outcome; random assignment deals with the alternative explanations.
+Two features turn a study into an experiment (@fig-experiment). First, the researcher **manipulates** something: they decide who uses the app and who does not, instead of observing who chooses to. Second, **chance decides** who gets what. This second feature is called *random assignment* (see *Random assignment* below), and it is what makes the comparison between conditions fair. The manipulation guarantees that the cause comes before the outcome; random assignment deals with the alternative explanations.
 
 ```{r}
 #| label: fig-experiment
@@ -170,7 +171,7 @@ Causal inference can also be understood through a counterfactual question:
 
 > What would have happened to the same participant, at the same time, if they had not received the manipulation?
 
-For any individual at a given moment, we can observe only one of these possibilities. We cannot simultaneously observe the same person both receiving and not receiving the same notification. Experimental design is therefore an attempt to construct a credible comparison for this missing counterfactual. Different design choices solve this problem in different ways.
+For any individual at a given moment, we can observe only one of these possibilities. We cannot observe the same person both using and not using the app over the same month. Experimental design is therefore an attempt to construct a credible comparison for this missing counterfactual. Different design choices solve this problem in different ways.
 
 <!-- 21 Nov 2026 (Claude): from deck 09-01, slide "The missing comparison" (redrawn in ggplot2); to review -->
 @fig-counterfactual shows the problem for one person. Anna used a stress-management app for a month, and at the end she reports a stress level of 4. Did the app help her? To answer, we would need her stress level at the end of the same month, had she not used the app. That value is not missing because of a mistake in data collection: it cannot be observed at all, because Anna lived only one of the two months. No dataset, however large, contains both branches for the same person.
@@ -333,13 +334,14 @@ ggplot(pairs) +
 
 ### A visual example: association can be misleading
 
-The following simulated example illustrates why an overall relationship can partly reflect a third variable. Here, both notification frequency and stress increase with workload.
+<!-- 22 Nov 2026 (Claude): observational example changed from phone notifications to app use at the instructor's request; to review -->
+The following simulated example illustrates why an overall relationship can partly reflect a third variable. Here, both app use and stress increase with workload.
 
 ```{r confounding-example}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Illustrative simulated data. An overall association between notifications and stress can partly reflect a third variable, such as workload."
+#| fig-cap: "Illustrative simulated data. An overall association between app use and stress can partly reflect a third variable, such as workload."
 #| fig-width: 7
 #| fig-height: 4.5
 
@@ -349,22 +351,22 @@ set.seed(123)
 
 confounding_data <- tibble(
   workload = rep(c("Lower workload", "Higher workload"), each = 70),
-  notifications = c(
-    rnorm(70, 35, 10),
-    rnorm(70, 75, 12)
+  app_accesses = c(
+    rnorm(70, 3.5, 1),
+    rnorm(70, 7.5, 1.2)
   ),
   stress = c(
-    2.5 + 0.012 * notifications[1:70] + rnorm(70, 0, 0.45),
-    4.3 + 0.012 * notifications[71:140] + rnorm(70, 0, 0.45)
+    2.5 + 0.12 * app_accesses[1:70] + rnorm(70, 0, 0.45),
+    4.3 + 0.12 * app_accesses[71:140] + rnorm(70, 0, 0.45)
   )
 )
 
 ggplot(confounding_data,
-       aes(x = notifications, y = stress, shape = workload)) +
+       aes(x = app_accesses, y = stress, shape = workload)) +
   geom_point(alpha = 0.7, size = 2.2) +
   geom_smooth(method = "lm", se = FALSE) +
   labs(
-    x = "Notifications per day",
+    x = "App accesses per day",
     y = "Reported stress",
     shape = "Workload"
   ) +

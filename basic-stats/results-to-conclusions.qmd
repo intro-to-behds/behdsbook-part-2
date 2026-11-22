@@ -26,7 +26,7 @@ Data analysis can answer two different kinds of question.
 - **Prediction**: *which* users are likely to stop using an app next month? A model that predicts well is useful even if we do not know why it works. The number of days since the last login may predict dropout very well, without being its cause.
 - **Explanation**: *why* do users stop using the app? Here we want to know the causes.
 
-The difference matters because we usually want causes for a practical reason: **a cause tells us what to change**. Knowing that users with many notifications report more stress may help us predict who is stressed. It does not tell us whether *reducing* notifications would reduce stress. Only a causal relationship tells us what would happen if we intervened. Most questions in behavioural research and in the design of technologies are, in the end, questions about interventions: should we change the interface, send fewer notifications, offer the training? These need causal answers.
+The difference matters because we usually want causes for a practical reason: **a cause tells us what to change**. Knowing that users who open a stress app more often report more stress may help us predict who is stressed. It does not tell us whether *giving people the app* would reduce their stress. Only a causal relationship tells us what would happen if we intervened. Most questions in behavioural research and in the design of technologies are, in the end, questions about interventions: should we change the interface, send fewer notifications, offer the training? These need causal answers.
 
 As discussed in @sec-experimental-designs, a causal claim is about a comparison we can never fully observe: what would have happened to the same person, at the same time, without the intervention. Randomised experiments solve this problem on average, across groups. Without randomisation, we must argue that the groups we compare are comparable, and this argument can fail in several ways.
 
@@ -69,7 +69,7 @@ App users are clearly more stressed than non-users, and the difference is signif
 
 ### Confounding
 
-A **confounder** is a variable that influences both the putative cause and the outcome, creating an association between them. @sec-experimental-designs shows an example: workload increases both the number of notifications and stress.
+A **confounder** is a variable that influences both the putative cause and the outcome, creating an association between them. @sec-experimental-designs shows an example: workload increases both app use and stress.
 
 Confounding can even reverse an association. The `app_task_completion` dataset records, for six in-app tasks (A to F), how many attempts users made on mobile and on desktop, and the percentage of attempts that were completed. Overall, mobile attempts are completed more often:
 
