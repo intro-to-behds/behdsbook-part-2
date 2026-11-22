@@ -17,7 +17,33 @@ Running a statistical test is the easy part of an analysis, especially if you us
 
 Interpretation does not mean that any reading of the results is as good as another. A good interpretation brings together all the available evidence: how the data were collected (@sec-experimental-designs), how well the variables were measured (@sec-measurement), what the estimates and their uncertainty say (@sec-estimates-and-ci, @sec-effect-size), what is missing (@sec-missing-data), and how the analysis was done (@sec-research-ethics). Some interpretations are better than others because they account for more of this evidence.
 
-This chapter is about the step from results to conclusions. The first half is about causal claims: when an association can be read as a cause, and what else can produce it. The second half is about interpreting a result in general, and ends with a list of common mistakes.
+This chapter is about the step from results to conclusions. It starts by separating results from their interpretation. The first half is then about causal claims: when an association can be read as a cause, and what else can produce it. The second half is about interpreting a result in general, and ends with a list of common mistakes.
+
+<!-- 22 Nov 2026 (Claude), at the instructor's request: results vs interpretation, three examples. To review. -->
+
+## Results and interpretation {#sec-results-vs-interpretation}
+
+Interpreting means turning numbers into verbal claims, such as "the training app improves memory", and putting them in a report: usually a scientific article, but also a technical report or the document behind a product decision. These claims are what other people read, cite and build on. They are the basis for future studies, for new lines of research, and for applications: a company, for example, may start the long process of having its app certified as a medical device on the strength of a study that seemed to show that it works. An error of interpretation therefore travels much further than an error in a single number.
+
+This is why it is important to distinguish the results from their interpretation, and why scientific articles keep them in separate sections. The *Results* section reports what was found, as neutrally as possible and without explanations: descriptive statistics, estimates with their confidence intervals, tests and effect sizes. The *Discussion* section interprets these results: what they mean, why they may have come out this way, and what follows from them. The separation lets readers check the results on their own and judge the interpretation separately, and perhaps reach a different one.
+
+Results and interpretation are separable because **the same results can support several interpretations**. This is true for every design, randomised experiments included. Imagine three studies.
+
+**A randomised trial.** Older adults attending a memory clinic are randomly assigned to eight weeks with a new cognitive-training app, built around game-like memory exercises, or with an active control app that has the same session length and the same number of reminders, but only offers short quizzes on news articles. At the end, the training group improves more on a memory test, and the confidence interval for the difference excludes zero. The obvious interpretation is that the training exercises improve memory. But suppose that participants found the control app dull. They used it less, more of them dropped out, they expected less from it, and they came to the final test less motivated. The difference may then reflect engagement and expectations rather than the training itself. Randomisation balances *who* is in each arm, not *what happens* to them once they are there. Usage logs, ratings of enjoyment and expectations, and dropout by arm help to tell the two readings apart; a control condition matched on these features is the best protection (*What do we compare with?* in @sec-rcts).
+
+**A comparison of pre-existing groups** (often called quasi-experimental). Patients with a chronic neurological condition, such as epilepsy, are on average about 60 ms slower than healthy controls on a simple reaction-time task. The obvious interpretation is that the condition slows processing speed. But many patients take several medications every day, and some of these have sedative effects that slow responses. The slowing may come from the drugs rather than from the condition, or from both. Nobody assigned participants to the groups, so the medication comes together with the group. Recording drugs and doses, and comparing patients on different treatments, helps; it does not settle the question, because the treatment also depends on how severe the condition is (see *Correlational designs and correlation analyses* below).
+
+**An observational study.** In a survey of university students, those who use a study-planning app, available only with a paid subscription, have higher exam grades than those who do not. The obvious interpretation is that the app helps students study. But the app is costly, so its users tend to come from families with a higher socioeconomic status. They are more likely to have a quiet room and a good laptop, not to need a part-time job, and to sleep better and feel well, and each of these can raise grades on its own. Socioeconomic status is then a *confounder* (see *Confounding* below). Moreover, students who are already well organised may be the ones who choose a planning app in the first place (*Selection* below).
+
+| Design | Result | First interpretation | Alternative interpretation |
+|---|---|---|---|
+| Randomised trial | The training group improves more on a memory test | The training exercises improve memory | The control app was boring: less use, more dropout, lower motivation |
+| Pre-existing groups | Patients are slower than controls | The condition slows processing | Many patients take medications that slow responses |
+| Observational study | App users have higher grades | The app helps students study | App users have a higher socioeconomic status, with better conditions for studying |
+
+: The same result, two interpretations, in three designs (hypothetical examples). {#tbl-one-result-many-readings}
+
+In each example the result stays the same; what changes is the interpretation. A good Discussion does not stop at the first interpretation: it names the alternatives and says which of them the design rules out and which it leaves open. The rest of this chapter goes through the most common alternatives, and how to weigh them.
 
 ## Explanation and prediction
 

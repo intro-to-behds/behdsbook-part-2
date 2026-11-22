@@ -405,9 +405,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#explanation-and-prediction" id="toc-explanation-and-prediction" class="nav-link active" data-scroll-target="#explanation-and-prediction"><span class="header-section-number">24.1</span> Explanation and prediction</a></li>
-  <li><a href="#correlational-designs-and-correlation-analyses" id="toc-correlational-designs-and-correlation-analyses" class="nav-link" data-scroll-target="#correlational-designs-and-correlation-analyses"><span class="header-section-number">24.2</span> Correlational designs and correlation analyses</a></li>
-  <li><a href="#alternative-explanations" id="toc-alternative-explanations" class="nav-link" data-scroll-target="#alternative-explanations"><span class="header-section-number">24.3</span> Alternative explanations</a>
+  <li><a href="#sec-results-vs-interpretation" id="toc-sec-results-vs-interpretation" class="nav-link active" data-scroll-target="#sec-results-vs-interpretation"><span class="header-section-number">24.1</span> Results and interpretation</a></li>
+  <li><a href="#explanation-and-prediction" id="toc-explanation-and-prediction" class="nav-link" data-scroll-target="#explanation-and-prediction"><span class="header-section-number">24.2</span> Explanation and prediction</a></li>
+  <li><a href="#correlational-designs-and-correlation-analyses" id="toc-correlational-designs-and-correlation-analyses" class="nav-link" data-scroll-target="#correlational-designs-and-correlation-analyses"><span class="header-section-number">24.3</span> Correlational designs and correlation analyses</a></li>
+  <li><a href="#alternative-explanations" id="toc-alternative-explanations" class="nav-link" data-scroll-target="#alternative-explanations"><span class="header-section-number">24.4</span> Alternative explanations</a>
   <ul class="collapse">
   <li><a href="#chance" id="toc-chance" class="nav-link" data-scroll-target="#chance">Chance</a></li>
   <li><a href="#reverse-causation" id="toc-reverse-causation" class="nav-link" data-scroll-target="#reverse-causation">Reverse causation</a></li>
@@ -416,17 +417,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#drawing-the-alternatives" id="toc-drawing-the-alternatives" class="nav-link" data-scroll-target="#drawing-the-alternatives">Drawing the alternatives</a></li>
   <li><a href="#adjusting-is-not-free" id="toc-adjusting-is-not-free" class="nav-link" data-scroll-target="#adjusting-is-not-free">Adjusting is not free</a></li>
   </ul></li>
-  <li><a href="#towards-causal-claims-from-observational-data" id="toc-towards-causal-claims-from-observational-data" class="nav-link" data-scroll-target="#towards-causal-claims-from-observational-data"><span class="header-section-number">24.4</span> Towards causal claims from observational data</a></li>
-  <li><a href="#interpreting-a-result" id="toc-interpreting-a-result" class="nav-link" data-scroll-target="#interpreting-a-result"><span class="header-section-number">24.5</span> Interpreting a result</a>
+  <li><a href="#towards-causal-claims-from-observational-data" id="toc-towards-causal-claims-from-observational-data" class="nav-link" data-scroll-target="#towards-causal-claims-from-observational-data"><span class="header-section-number">24.5</span> Towards causal claims from observational data</a></li>
+  <li><a href="#interpreting-a-result" id="toc-interpreting-a-result" class="nav-link" data-scroll-target="#interpreting-a-result"><span class="header-section-number">24.6</span> Interpreting a result</a>
   <ul class="collapse">
   <li><a href="#three-questions" id="toc-three-questions" class="nav-link" data-scroll-target="#three-questions">Three questions</a></li>
   <li><a href="#read-the-numbers-together" id="toc-read-the-numbers-together" class="nav-link" data-scroll-target="#read-the-numbers-together">Read the numbers together</a></li>
   <li><a href="#non-significant-is-not-no-effect" id="toc-non-significant-is-not-no-effect" class="nav-link" data-scroll-target="#non-significant-is-not-no-effect">Non-significant is not “no effect”</a></li>
   <li><a href="#missing-data-and-analytic-choices" id="toc-missing-data-and-analytic-choices" class="nav-link" data-scroll-target="#missing-data-and-analytic-choices">Missing data and analytic choices</a></li>
   </ul></li>
-  <li><a href="#common-interpretation-mistakes" id="toc-common-interpretation-mistakes" class="nav-link" data-scroll-target="#common-interpretation-mistakes"><span class="header-section-number">24.6</span> Common interpretation mistakes</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">24.7</span> Further reading</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">24.8</span> Exercises</a></li>
+  <li><a href="#common-interpretation-mistakes" id="toc-common-interpretation-mistakes" class="nav-link" data-scroll-target="#common-interpretation-mistakes"><span class="header-section-number">24.7</span> Common interpretation mistakes</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">24.8</span> Further reading</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">24.9</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/basic-stats/results-to-conclusions.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -459,9 +460,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Running a statistical test is the easy part of an analysis, especially if you use LLMs as support to scaffold or write your code. With R you compute a p-value, a confidence interval and an effect size in a fraction of a second. What R cannot do is say what those numbers mean: whether a variable is causing a modification to another variable, whom it applies to, how much we should trust it, if this is relevant. That step is <em>interpretation</em>, and it is the analyst’s job.</p>
 <p>Interpretation does not mean that any reading of the results is as good as another. A good interpretation brings together all the available evidence: how the data were collected (<a href="../behav/experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>), how well the variables were measured (<a href="../behav/measurement.html" class="quarto-xref"><span>Chapter 1</span></a>), what the estimates and their uncertainty say (<a href="../inference/estimates-confidence-intervals.html" class="quarto-xref"><span>Chapter 14</span></a>, <a href="effect-size.html" class="quarto-xref"><span>Chapter 21</span></a>), what is missing (<a href="missing-data.html" class="quarto-xref"><span>Chapter 23</span></a>), and how the analysis was done (<a href="../behav/research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>). Some interpretations are better than others because they account for more of this evidence.</p>
-<p>This chapter is about the step from results to conclusions. The first half is about causal claims: when an association can be read as a cause, and what else can produce it. The second half is about interpreting a result in general, and ends with a list of common mistakes.</p>
-<section id="explanation-and-prediction" class="level2" data-number="24.1">
-<h2 data-number="24.1" class="anchored" data-anchor-id="explanation-and-prediction"><span class="header-section-number">24.1</span> Explanation and prediction</h2>
+<p>This chapter is about the step from results to conclusions. It starts by separating results from their interpretation. The first half is then about causal claims: when an association can be read as a cause, and what else can produce it. The second half is about interpreting a result in general, and ends with a list of common mistakes.</p>
+<!-- 22 Nov 2026 (Claude), at the instructor's request: results vs interpretation, three examples. To review. -->
+<section id="sec-results-vs-interpretation" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="sec-results-vs-interpretation"><span class="header-section-number">24.1</span> Results and interpretation</h2>
+<p>Interpreting means turning numbers into verbal claims, such as “the training app improves memory”, and putting them in a report: usually a scientific article, but also a technical report or the document behind a product decision. These claims are what other people read, cite and build on. They are the basis for future studies, for new lines of research, and for applications: a company, for example, may start the long process of having its app certified as a medical device on the strength of a study that seemed to show that it works. An error of interpretation therefore travels much further than an error in a single number.</p>
+<p>This is why it is important to distinguish the results from their interpretation, and why scientific articles keep them in separate sections. The <em>Results</em> section reports what was found, as neutrally as possible and without explanations: descriptive statistics, estimates with their confidence intervals, tests and effect sizes. The <em>Discussion</em> section interprets these results: what they mean, why they may have come out this way, and what follows from them. The separation lets readers check the results on their own and judge the interpretation separately, and perhaps reach a different one.</p>
+<p>Results and interpretation are separable because <strong>the same results can support several interpretations</strong>. This is true for every design, randomised experiments included. Imagine three studies.</p>
+<p><strong>A randomised trial.</strong> Older adults attending a memory clinic are randomly assigned to eight weeks with a new cognitive-training app, built around game-like memory exercises, or with an active control app that has the same session length and the same number of reminders, but only offers short quizzes on news articles. At the end, the training group improves more on a memory test, and the confidence interval for the difference excludes zero. The obvious interpretation is that the training exercises improve memory. But suppose that participants found the control app dull. They used it less, more of them dropped out, they expected less from it, and they came to the final test less motivated. The difference may then reflect engagement and expectations rather than the training itself. Randomisation balances <em>who</em> is in each arm, not <em>what happens</em> to them once they are there. Usage logs, ratings of enjoyment and expectations, and dropout by arm help to tell the two readings apart; a control condition matched on these features is the best protection (<em>What do we compare with?</em> in <a href="../behav/randomised-trials.html" class="quarto-xref"><span>Chapter 5</span></a>).</p>
+<p><strong>A comparison of pre-existing groups</strong> (often called quasi-experimental). Patients with a chronic neurological condition, such as epilepsy, are on average about 60 ms slower than healthy controls on a simple reaction-time task. The obvious interpretation is that the condition slows processing speed. But many patients take several medications every day, and some of these have sedative effects that slow responses. The slowing may come from the drugs rather than from the condition, or from both. Nobody assigned participants to the groups, so the medication comes together with the group. Recording drugs and doses, and comparing patients on different treatments, helps; it does not settle the question, because the treatment also depends on how severe the condition is (see <em>Correlational designs and correlation analyses</em> below).</p>
+<p><strong>An observational study.</strong> In a survey of university students, those who use a study-planning app, available only with a paid subscription, have higher exam grades than those who do not. The obvious interpretation is that the app helps students study. But the app is costly, so its users tend to come from families with a higher socioeconomic status. They are more likely to have a quiet room and a good laptop, not to need a part-time job, and to sleep better and feel well, and each of these can raise grades on its own. Socioeconomic status is then a <em>confounder</em> (see <em>Confounding</em> below). Moreover, students who are already well organised may be the ones who choose a planning app in the first place (<em>Selection</em> below).</p>
+<div id="tbl-one-result-many-readings" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-one-result-many-readings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;24.1: The same result, two interpretations, in three designs (hypothetical examples).
+</figcaption>
+<div aria-describedby="tbl-one-result-many-readings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Design</th>
+<th>Result</th>
+<th>First interpretation</th>
+<th>Alternative interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Randomised trial</td>
+<td>The training group improves more on a memory test</td>
+<td>The training exercises improve memory</td>
+<td>The control app was boring: less use, more dropout, lower motivation</td>
+</tr>
+<tr class="even">
+<td>Pre-existing groups</td>
+<td>Patients are slower than controls</td>
+<td>The condition slows processing</td>
+<td>Many patients take medications that slow responses</td>
+</tr>
+<tr class="odd">
+<td>Observational study</td>
+<td>App users have higher grades</td>
+<td>The app helps students study</td>
+<td>App users have a higher socioeconomic status, with better conditions for studying</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>In each example the result stays the same; what changes is the interpretation. A good Discussion does not stop at the first interpretation: it names the alternatives and says which of them the design rules out and which it leaves open. The rest of this chapter goes through the most common alternatives, and how to weigh them.</p>
+</section>
+<section id="explanation-and-prediction" class="level2" data-number="24.2">
+<h2 data-number="24.2" class="anchored" data-anchor-id="explanation-and-prediction"><span class="header-section-number">24.2</span> Explanation and prediction</h2>
 <p>Data analysis can answer two different kinds of question.</p>
 <ul>
 <li><strong>Prediction</strong>: <em>which</em> users are likely to stop using an app next month? A model that predicts well is useful even if we do not know why it works. The number of days since the last login may predict dropout very well, without being its cause.</li>
@@ -470,14 +527,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The difference matters because we usually want causes for a practical reason: <strong>a cause tells us what to change</strong>. Knowing that users who open a stress app more often report more stress may help us predict who is stressed. It does not tell us whether <em>giving people the app</em> would reduce their stress. Only a causal relationship tells us what would happen if we intervened. Most questions in behavioural research and in the design of technologies are, in the end, questions about interventions: should we change the interface, send fewer notifications, offer the training? These need causal answers.</p>
 <p>As discussed in <a href="../behav/experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>, a causal claim is about a comparison we can never fully observe: what would have happened to the same person, at the same time, without the intervention. Randomised experiments solve this problem on average, across groups. Without randomisation, we must argue that the groups we compare are comparable, and this argument can fail in several ways.</p>
 </section>
-<section id="correlational-designs-and-correlation-analyses" class="level2" data-number="24.2">
-<h2 data-number="24.2" class="anchored" data-anchor-id="correlational-designs-and-correlation-analyses"><span class="header-section-number">24.2</span> Correlational designs and correlation analyses</h2>
+<section id="correlational-designs-and-correlation-analyses" class="level2" data-number="24.3">
+<h2 data-number="24.3" class="anchored" data-anchor-id="correlational-designs-and-correlation-analyses"><span class="header-section-number">24.3</span> Correlational designs and correlation analyses</h2>
 <p>The phrase <em>correlation does not imply causation</em> is often misread as a statement about a statistical technique. It is a statement about the <strong>design</strong>. A correlation coefficient computed on data from a randomised experiment can support a causal conclusion; a t-test computed on data from an observational study cannot, on its own.</p>
 <p>Consider a study comparing patients with a neurological condition and healthy controls on a reaction-time task, or heavy and light smartphone users on an attention test. The analysis is a comparison of two groups, with a t-test or a Wilcoxon test (<a href="comparing-two-groups.html" class="quarto-xref"><span>Chapter 17</span></a>). It looks like an experiment, but nobody assigned participants to the groups: they arrived already belonging to one of them. Such <strong>pre-existing groups</strong> differ in many ways besides the one that names them. Patients and controls may differ in age, education, medication, fatigue and motivation; heavy smartphone users may differ in age, sleep and job. The study is correlational in design, whatever test is used to analyse it.</p>
 <p>Matching participants on some characteristics, such as age and education, makes the groups more comparable on those characteristics, but not on the ones that were not measured. This is why randomisation, which also balances unmeasured characteristics on average, is so valuable.</p>
 </section>
-<section id="alternative-explanations" class="level2" data-number="24.3">
-<h2 data-number="24.3" class="anchored" data-anchor-id="alternative-explanations"><span class="header-section-number">24.3</span> Alternative explanations</h2>
+<section id="alternative-explanations" class="level2" data-number="24.4">
+<h2 data-number="24.4" class="anchored" data-anchor-id="alternative-explanations"><span class="header-section-number">24.4</span> Alternative explanations</h2>
 <p>When two variables are associated, the causal reading (<em>X causes Y</em>) is only one of several explanations. A good interpretation lists the others and asks whether the design rules them out. The main ones are chance, reverse causation, confounding, and selection.</p>
 <section id="chance" class="level3">
 <h3 class="anchored" data-anchor-id="chance">Chance</h3>
@@ -592,8 +649,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A common reaction to confounding is to include in the analysis every variable that might matter. This is not always safe. Adjusting for a confounder removes a spurious association, but adjusting for a mediator removes part of the effect we want to estimate, and adjusting for a collider creates an association that was not there, as in the app-store example. Which variables to include in a model is therefore a causal decision, not only a statistical one. The question returns when we fit models with several predictors, in the chapters on regression. <!-- @sec-multivariable-regression --></p>
 </section>
 </section>
-<section id="towards-causal-claims-from-observational-data" class="level2" data-number="24.4">
-<h2 data-number="24.4" class="anchored" data-anchor-id="towards-causal-claims-from-observational-data"><span class="header-section-number">24.4</span> Towards causal claims from observational data</h2>
+<section id="towards-causal-claims-from-observational-data" class="level2" data-number="24.5">
+<h2 data-number="24.5" class="anchored" data-anchor-id="towards-causal-claims-from-observational-data"><span class="header-section-number">24.5</span> Towards causal claims from observational data</h2>
 <p>When an experiment is impossible, because it would be unethical, too expensive, or because the causes cannot be manipulated, causal questions must be studied with observational data. No single observational study settles a causal question, but some features make a causal reading more plausible. A classic list comes from the epidemiologist Austin Bradford Hill (1965), who discussed smoking and lung cancer. Among his criteria:</p>
 <ul>
 <li><strong>Temporality</strong>: the cause comes before the effect. Longitudinal designs can show this; cross-sectional designs usually cannot.</li>
@@ -604,8 +661,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>None of these is a proof. They are a way of organising the evidence, and they are useful questions to ask of any causal claim based on observational data.</p>
 </section>
-<section id="interpreting-a-result" class="level2" data-number="24.5">
-<h2 data-number="24.5" class="anchored" data-anchor-id="interpreting-a-result"><span class="header-section-number">24.5</span> Interpreting a result</h2>
+<section id="interpreting-a-result" class="level2" data-number="24.6">
+<h2 data-number="24.6" class="anchored" data-anchor-id="interpreting-a-result"><span class="header-section-number">24.6</span> Interpreting a result</h2>
 <section id="three-questions" class="level3">
 <h3 class="anchored" data-anchor-id="three-questions">Three questions</h3>
 <p>Whatever the design, three questions help to interpret a result:</p>
@@ -618,7 +675,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="tbl-validity-checklist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-validity-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;24.1: Four questions for interpreting a study, and the kind of validity each concerns.
+Table&nbsp;24.2: Four questions for interpreting a study, and the kind of validity each concerns.
 </figcaption>
 <div aria-describedby="tbl-validity-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -691,14 +748,14 @@ Table&nbsp;24.1: Four questions for interpreting a study, and the kind of validi
 <p>Two further questions concern how the final numbers were obtained. <strong>Who is in the analysis?</strong> If participants dropped out or skipped questions for reasons related to the outcome, the remaining sample may be optimistic (<a href="missing-data.html" class="quarto-xref"><span>Chapter 23</span></a>). <strong>How many choices were made, and when?</strong> Exclusion rules, outcome measures and covariates can be chosen in many reasonable ways. When they are chosen after seeing the data, a significant result is much easier to obtain, and much less informative (<a href="../behav/research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>).</p>
 </section>
 </section>
-<section id="common-interpretation-mistakes" class="level2" data-number="24.6">
-<h2 data-number="24.6" class="anchored" data-anchor-id="common-interpretation-mistakes"><span class="header-section-number">24.6</span> Common interpretation mistakes</h2>
+<section id="common-interpretation-mistakes" class="level2" data-number="24.7">
+<h2 data-number="24.7" class="anchored" data-anchor-id="common-interpretation-mistakes"><span class="header-section-number">24.7</span> Common interpretation mistakes</h2>
 <p>The following mistakes are frequent in papers, reports and the press. Most of them follow from forgetting one of the three questions above.</p>
 <p><strong>Hidden causal claims.</strong> Causal claims are often made without the word <em>cause</em>. Verbs such as <em>leads to</em>, <em>boosts</em>, <em>elicits</em>, <em>protects</em> or <em>improves</em> all describe causal effects. With observational data, the defensible wording is at the top of the following ladder:</p>
 <div id="tbl-causal-language" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-causal-language-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;24.2: A ladder of wording, from associational to causal.
+Table&nbsp;24.3: A ladder of wording, from associational to causal.
 </figcaption>
 <div aria-describedby="tbl-causal-language-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -750,8 +807,8 @@ Table&nbsp;24.2: A ladder of wording, from associational to causal.
 <!-- 18 Nov 2026 (Claude): replaces the subsection "Why this matters: the replication crisis", moved to the next chapter -->
 <p>All these questions concern a single study. The next chapter, <a href="credible-evidence.html" class="quarto-xref"><span>Chapter 25</span></a>, asks them of a whole body of evidence: whether published results can be trusted, and why many of them could not be replicated.</p>
 </section>
-<section id="further-reading" class="level2" data-number="24.7">
-<h2 data-number="24.7" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">24.7</span> Further reading</h2>
+<section id="further-reading" class="level2" data-number="24.8">
+<h2 data-number="24.8" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">24.8</span> Further reading</h2>
 <ul>
 <li>W. R. Shadish, T. D. Cook &amp; D. T. Campbell (2002), <em>Experimental and Quasi-Experimental Designs for Generalized Causal Inference</em>. Boston: Houghton Mifflin. The classic reference on the four kinds of study validity and their threats.</li>
 <li>J. M. Rohrer (2018), <em>Thinking clearly about correlations and causation: Graphical causal models for observational data</em>, Advances in Methods and Practices in Psychological Science, 1(1), 27–42, <a href="https://doi.org/10.1177/2515245917745629" class="uri">https://doi.org/10.1177/2515245917745629</a>.</li>
@@ -762,12 +819,12 @@ Table&nbsp;24.2: A ladder of wording, from associational to causal.
 <li>J. Henrich, S. J. Heine &amp; A. Norenzayan (2010), <em>The weirdest people in the world?</em>, Behavioral and Brain Sciences, 33(2–3), 61–83.</li>
 </ul>
 </section>
-<section id="exercises" class="level2" data-number="24.8">
-<h2 data-number="24.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">24.8</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="24.9">
+<h2 data-number="24.9" class="anchored" data-anchor-id="exercises"><span class="header-section-number">24.9</span> Exercises</h2>
 <p>1. For each of the following studies, say whether the design is experimental, quasi-experimental or observational, and name one alternative explanation for the result. (a) Participants are randomly assigned to complete an attention task with or without notifications; those with notifications are slower. (b) Heavy smartphone users are slower than light users on the same task. (c) After a university introduced a notification-free policy during lectures, students’ exam grades rose compared with the previous year.</p>
 <p>2. Using <code>app_task_completion</code>, compute the overall completion rate by device, and then the completion rate by device for tasks C to F only. Explain the difference in your own words.</p>
 <p>3. Run the app-store simulation again with a threshold of 0 instead of 1.5, and then of 2.5. How does the correlation among recommended apps change? Why?</p>
-<p>4. Find a news article or a press release that reports a study on technology use and wellbeing. Which wording does it use (<a href="#tbl-causal-language" class="quarto-xref">Table&nbsp;<span>24.2</span></a>)? Is the wording supported by the design? Rewrite the headline so that it matches the design.</p>
+<p>4. Find a news article or a press release that reports a study on technology use and wellbeing. Which wording does it use (<a href="#tbl-causal-language" class="quarto-xref">Table&nbsp;<span>24.3</span></a>)? Is the wording supported by the design? Rewrite the headline so that it matches the design.</p>
 <p>5. Run the <code>same-p</code> example again with 50 participants per group in the small study. How do the confidence interval and the p-value change? Which of the two studies would you rather cite to claim that the effect is important, and why?</p>
 
 
