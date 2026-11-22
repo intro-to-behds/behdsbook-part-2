@@ -533,7 +533,7 @@ window.Quarto = {
 </header>
 
 
-<p><em>Original chapter by Rafael A. Irizarry, from <a href="https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/linear-model-framework.html"><em>Introduction to Data Science</em></a>. Adapted by Giorgio Arcara: Galton’s father and son heights (<code>HistData::GaltonFamilies</code>) are replaced by users’ consistency index and engagement score (<code>behdslabs::app_engagement_experiment</code>), in the text and in exercises 10–13; the code uses the tidyverse instead of data.table; new sections <em>A binary predictor: dummy variables</em> and <em>Adjusting for a confounder</em> (with exercises 14–16), written with an AI assistant (Claude); the section on measurement error models is marked as optional; the text is otherwise Irizarry’s, with small edits to fit the new examples.</em></p>
+<p><em>Original chapter by Rafael A. Irizarry, from <a href="https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/linear-model-framework.html"><em>Introduction to Data Science</em></a>. Adapted by Giorgio Arcara: the datasets are replaced with behavioural ones and the code uses the tidyverse; new sections <em>A binary predictor: dummy variables</em> and <em>Adjusting for a confounder</em>; the text is otherwise Irizarry’s. Details in the <a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/CHANGELOG.md">CHANGELOG</a>.</em></p>
 <!-- 22 Nov 2026 (Claude): reflavoured with /reflavour-chapter (Pass A, dataset swap only), instructor decision of 22 Nov 2026 (same data as Ch. 15). The measurement-error section (rfalling_object, base R co2 in exercises 1-5) is left as it is. -->
 <p>We are now ready to understand the title of this part of the book, and specifically the connection between regression and <em>linear models</em>. In the previous chapter, we showed that if two variables follow a bivariate normal distribution, then the conditional expectation of one given the other lies on a straight line, the <em>regression line</em>. In that setting, the linear relationship was not an assumption, but a mathematical consequence of the probability model.</p>
 <p>In practice, however, we often adopt the linear relationship as a modeling strategy, even when the underlying distributions are not exactly bivariate normal. To work with such models, we need a general mathematical approach for estimating the unknown coefficients. In this chapter, we introduce the <em>least squares estimator</em> (LSE), the standard method used to estimate these parameters. The LSE provides a unified way to fit linear models across a wide range of applications.</p>
@@ -761,7 +761,7 @@ Draft
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This section and the next were written for this book with an AI assistant (Claude) on 22 November 2026, and are not yet reviewed by the instructor.</p>
+<p>This section and the next were written for this book on 22 November 2026, and are not yet reviewed by the instructor.</p>
 </div>
 </div>
 <p>So far, the predictor <span class="math inline">\(x\)</span> has been a number. Many predictors in behavioural research are categories instead: sex, the version of an interface, the device used, the condition of an experiment. The linear model handles them with a simple trick. Suppose we want to predict engagement from sex. We define a new variable</p>
