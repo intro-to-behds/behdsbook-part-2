@@ -335,7 +335,7 @@ Such diagrams are called *directed acyclic graphs* (DAGs). They are a formal too
 
 ### Adjusting is not free
 
-A common reaction to confounding is to include in the analysis every variable that might matter. This is not always safe. Adjusting for a confounder removes a spurious association, but adjusting for a mediator removes part of the effect we want to estimate, and adjusting for a collider creates an association that was not there, as in the app-store example. Which variables to include in a model is therefore a causal decision, not only a statistical one. How to adjust for a confounder with a regression model is shown in the chapters on regression. <!-- @sec-adjusting-confounder -->
+A common reaction to confounding is to include in the analysis every variable that might matter. This is not always safe. Adjusting for a confounder removes a spurious association, but adjusting for a mediator removes part of the effect we want to estimate, and adjusting for a collider creates an association that was not there, as in the app-store example. Which variables to include in a model is therefore a causal decision, not only a statistical one. How to adjust for a confounder with a regression model, and what such an adjustment cannot do, is shown in @sec-adjusting-confounder.
 
 ## Towards causal claims from observational data
 

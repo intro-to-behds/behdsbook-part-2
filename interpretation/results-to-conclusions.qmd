@@ -128,11 +128,28 @@ The following mistakes are frequent in papers, reports and the press. Most of th
 
 **Regression to the mean.** Participants selected because of extreme scores, such as the most stressed users, will on average score less extremely the next time, with or without an intervention. A single-group pre–post study cannot separate this from a real effect.
 
-**"We controlled for it".** Adjusting for a confounder removes its influence only as far as the confounder is well measured. A covariate measured with error leaves part of the confounding in place (see *Measurement error and its consequences* in @sec-measurement), and confounders that were not measured are not controlled at all.
-
 **Going beyond the data.** Results apply to the people, tasks, settings and range of values that were studied. A laboratory effect in students may not hold for older adults using their own phones at home.
 
 **Exploratory results presented as confirmatory.** A pattern found while exploring the data is a hypothesis for the next study, not a confirmed finding (see *Two ways of exploring* in @sec-research-ethics).
+
+## When the model has several predictors {#sec-several-predictors}
+
+<!-- 22 Nov 2026 (Claude), at the instructor's request: new section, read after the regression weeks; "We controlled for it" moved here from Common interpretation mistakes. To review. -->
+:::{.callout-note}
+This section assumes the *Linear Models* part, and in particular @sec-adjusting-confounder. You can skip it on a first reading and come back to it after the chapters on regression.
+:::
+
+Regression models with several predictors are the most common way to analyse observational data, and they bring their own interpretation mistakes.
+
+**"We controlled for it".** Adjusting for a confounder removes its influence only as far as the confounder is well measured. A covariate measured with error leaves part of the confounding in place (see *Measurement error and its consequences* in @sec-measurement), and confounders that were not measured are not controlled at all.
+
+**An adjusted coefficient is not a causal effect.** A coefficient "adjusted for age and sex" is still an association: the association among people of the same age and sex. It can be read causally only if the design and the arguments of @sec-association-not-causation rule out the other explanations, including the confounders that were not in the model.
+
+**Which variables, and why?** Adjusting for a mediator removes part of the effect we want to estimate, and adjusting for a collider creates an association that was not there (*Adjusting is not free* in @sec-association-not-causation). A good report says why each covariate was included, and whether the choice was made before seeing the data (@sec-credible-evidence).
+
+**R² is not importance.** $R^2$ is the proportion of variance in the outcome that the model explains in this sample (see *Variance explained* in @sec-regression). A small $R^2$ can go with an effect that matters a great deal, for example a small average benefit of an intervention given to millions of people, and a large $R^2$ can come from predictors that are of no practical interest. Nor does a high $R^2$ mean that the model is the right one for a causal question: a model can predict well without identifying causes (*Explanation and prediction* in @sec-association-not-causation).
+
+**Going beyond the range of the data.** A regression line describes the data within the range of values that were observed. The intercept of a model, for example, is the prediction for a value of 0 of every predictor, which may not exist (a consistency index of 0, an age of 0). Predictions outside the observed range, *extrapolations*, rest on the assumption that the line continues, which the data cannot check.
 
 <!-- 18 Nov 2026 (Claude): replaces the subsection "Why this matters: the replication crisis", moved to the next chapter -->
 All these questions concern a single study. The next chapter, @sec-credible-evidence, asks them of a whole body of evidence: whether published results can be trusted, and why many of them could not be replicated.

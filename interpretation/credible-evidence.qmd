@@ -165,6 +165,9 @@ rowMeans(replicate(5000, flexible_study()))
 
 The planned analysis gives a false positive 5% of the time, as it should. The flexible one does so about 13% of the time, more than twice as often, with only two choices. Real studies offer many more: exclusion rules, covariates, subgroups, transformations. Each choice is defensible on its own; the problem is that it is made after seeing which option gives a significant result. This is the multiple-comparisons problem (@sec-multiple-comparisons) in a form that is invisible to the reader.
 
+<!-- 22 Nov 2026 (Claude), at the instructor's request: paragraph on covariates added; to review. -->
+Regression models add one more choice: which variables to adjust for (@sec-adjusting-confounder). With a handful of candidate covariates there are dozens of possible models, and the coefficient of interest can change sign, size and significance from one to the next. Adjusting for a variable should be justified by its causal role, a confounder and not a mediator or a collider (@sec-association-not-causation), and decided before seeing the results. When several sets of covariates are defensible, reporting the results for all of them, a form of *robustness check*, shows the reader how much the conclusion depends on the choice.
+
 ## The same problems outside academia
 
 The replication crisis is usually told as a story about psychology journals, but the mechanisms are general. They may appear in any setting where many analyses are possible and some results are more welcome than others.
