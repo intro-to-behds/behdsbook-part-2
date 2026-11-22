@@ -1,10 +1,14 @@
 # The Linear Model Framework
 
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/linear-model-framework.html). Adapted by Giorgio Arcara: Galton's father and son heights (`HistData::GaltonFamilies`) are replaced by users' consistency index and engagement score (`behdslabs::app_engagement_experiment`), in the text and in exercises 10–13; the code uses the tidyverse instead of data.table; the text is otherwise Irizarry's, with small edits to fit the new examples._
+
+<!-- 22 Nov 2026 (Claude): reflavoured with /reflavour-chapter (Pass A, dataset swap only), instructor decision of 22 Nov 2026 (same data as Ch. 15). The measurement-error section (rfalling_object, base R co2 in exercises 1-5) is left as it is. -->
+
 We are now ready to understand the title of this part of the book, and specifically the connection between regression and *linear models*. In the previous chapter, we showed that if two variables follow a bivariate normal distribution, then the conditional expectation of one given the other lies on a straight line, the *regression line*. In that setting, the linear relationship was not an assumption, but a mathematical consequence of the probability model.
 
 In practice, however, we often adopt the linear relationship as a modeling strategy, even when the underlying distributions are not exactly bivariate normal. To work with such models, we need a general mathematical approach for estimating the unknown coefficients. In this chapter, we introduce the *least squares estimator* (LSE), the standard method used to estimate these parameters. The LSE provides a unified way to fit linear models across a wide range of applications.
 
-We end the chapter by presenting one example in which the linear model was historically motivated: *measurement error models*. This example is different from the height data we studied earlier, but the same linear model framework, the same least squares mathematics, and even the same R functions can be used to fit it. Later chapters will introduce additional examples in which linear models play a central role.
+We end the chapter by presenting one example in which the linear model was historically motivated: *measurement error models*. This example is different from the engagement data we studied earlier, but the same linear model framework, the same least squares mathematics, and even the same R functions can be used to fit it. Later chapters will introduce additional examples in which linear models play a central role.
 
 ## The linear model representation
 
@@ -19,39 +23,39 @@ $$
 and assume $\varepsilon$ follows a normal distribution with expected value 0 and fixed standard deviation. Then $Y$ has the same properties as the regression setup gave us: $Y$ follows a normal distribution, the expected value is a linear function of $x$, and the standard deviation does not depend on $x$. 
 
 :::{.callout-note}
-In statistical textbooks, the $\varepsilon$ terms are referred to as _errors_. Historically, this reflected the idea that deviations from the model were due to measurement inaccuracies. Today, the term is used more broadly: the $\varepsilon$s represent all variation in the outcome that is not explained by the predictors in the model. This variation may have nothing to do with mistakes. For example, if someone is two inches taller than what we would predict based on their parents' heights, those two inches are not an error; they are simply natural variation. Although the term *error* is not ideal in this sense, it remains standard terminology, and we will use it to denote the unexplained variability in the model.
+In statistical textbooks, the $\varepsilon$ terms are referred to as _errors_. Historically, this reflected the idea that deviations from the model were due to measurement inaccuracies. Today, the term is used more broadly: the $\varepsilon$s represent all variation in the outcome that is not explained by the predictors in the model. This variation may have nothing to do with mistakes. For example, if a user's engagement is ten points higher than what we would predict from their consistency, those ten points are not an error; they are simply natural variation among people. Although the term *error* is not ideal in this sense, it remains standard terminology, and we will use it to denote the unexplained variability in the model.
 :::
 
 
-If we were to specify a linear model for Galton's data that was introduced in the previous chapter, we would denote the $N$ observed father heights with $x_1, \dots, x_n$, then we model the $N$ son heights we are trying to predict with:
+If we were to specify a linear model for the consistency and engagement data introduced in the previous chapter, we would denote the $N$ observed consistency indices with $x_1, \dots, x_n$, then we model the $N$ engagement scores we are trying to predict with:
 
 $$ 
 Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i, \, i=1,\dots,N. 
 $$
 
-Here, $x_i$ is the father's height, which is fixed (not random) due to the conditioning, and $Y_i$ is the random son's height that we want to predict. We can further assume that the $\varepsilon_i$ are independent from each other and all have the same standard deviation.
+Here, $x_i$ is the user's consistency index, which is fixed (not random) due to the conditioning, and $Y_i$ is the random engagement score that we want to predict. We can further assume that the $\varepsilon_i$ are independent from each other and all have the same standard deviation.
 
 In the linear model framework, the $x_i$ are referred to as the *explanatory variables*, *covariates*, or *predictors*. 
 
-In the above model, we know the $x_i$, but to have a useful model for prediction, we need $\beta_0$ and $\beta_1$. We estimate these from the data. Once we do this, we can predict a son's height for any father's height $x$. We show how to do this in the next section.
+In the above model, we know the $x_i$, but to have a useful model for prediction, we need $\beta_0$ and $\beta_1$. We estimate these from the data. Once we do this, we can predict a user's engagement for any consistency $x$. We show how to do this in the next section.
 
 Although this model is exactly the same one we derived earlier by assuming bivariate normal data, a somewhat nuanced difference is that, in the first approach, we assumed the data were bivariate normal, and the linear model was derived, not assumed. In practice, linear models are just assumed without necessarily assuming normality: the distribution of the $\varepsilon$s is not necessarily specified. Nevertheless, if your data is bivariate normal, the above linear model holds. If your data is not bivariate normal, then you will need to have other ways of justifying the model.
 
-One reason linear models are popular is that they are easily _interpretable_. In the case of Galton's data, we can interpret the data like this: due to inherited genes, the son's height prediction grows by $\beta_1$ for each inch we increase the father's height $x$. Because not all sons with fathers of height $x$ are of equal height, we need the term $\varepsilon$, which explains the remaining variability. This remaining variability includes the mother's genetic effect, environmental factors, and other biological randomness.
+One reason linear models are popular is that they are easily _interpretable_. In the case of our data, we can interpret the model like this: the predicted engagement grows by $\beta_1$ points for each unit we increase the consistency index $x$. Because not all users with a consistency of $x$ are equally engaged, we need the term $\varepsilon$, which explains the remaining variability. This remaining variability includes motivation, free time, the version of the app each user had, and many other differences between people.
 
-Given how we wrote the model above, the intercept $\beta_0$ is not very interpretable, as it is the predicted height of a son of a father with no height. To make the slope parameter more interpretable, we focus on a slightly different model:
+Given how we wrote the model above, the intercept $\beta_0$ is not very interpretable, as it is the predicted engagement of a user with a consistency index of 0, a value that no user has. To make the slope parameter more interpretable, we focus on a slightly different model:
 
 $$ 
 Y_i = \beta_0 + \beta_1 (x_i - \bar{x}) + \varepsilon_i, \, i=1,\dots,N 
 $$
 
-with $\bar{x} = \sum_{i=1}^N x_i / N$ the average of $x$. The slope $\beta_1$ is unchanged, but $\beta_0$ now represents the height when $x_i = \bar{x}$, which is the height of the son of an average father.
+with $\bar{x} = \sum_{i=1}^N x_i / N$ the average of $x$. The slope $\beta_1$ is unchanged, but $\beta_0$ now represents the height when $x_i = \bar{x}$, which is the engagement of a user of average consistency.
 
 Later, specifically in Chapters [-@sec-treatment-effect-models] and [-@sec-multivariable-regression], we will see how the linear model representation permits us to use the same mathematical frameworks in other contexts and to achieve more complicated goals than predicting one variable from another.
 
 ## Least Squares Estimates  {#sec-lse}
 
-For linear models to be useful, we have to estimate the unknown $\beta$s. The standard approach is to find the values that minimize the distance of the fitted model to the data. Specifically, we find the $\beta$s that minimize the least squares (LS) equation shown below. For Galton's data, the LS equation looks like this:
+For linear models to be useful, we have to estimate the unknown $\beta$s. The standard approach is to find the values that minimize the distance of the fitted model to the data. Specifically, we find the $\beta$s that minimize the least squares (LS) equation shown below. For our data, the LS equation looks like this:
 
 $$ 
 RSS = \sum_{i=1}^n \left\{  y_i - \left(\beta_0 + \beta_1 x_i \right)\right\}^2 
@@ -61,16 +65,15 @@ The quantity we try to minimize is called the residual sum of squares (RSS).
 
 Once we find the values that minimize the RSS, we will call the values the least squares estimates (LSE) and denote them by placing a _hat_ over the parameters. In our example we use $\hat{\beta}_0$ and $\hat{\beta}_1$.
 
-We will demonstrate how we find these values using the previously defined `galton` dataset:
+We will demonstrate how we find these values using the `engagement` dataset defined in the previous chapter:
 
 ```{r, message=FALSE, warning=FALSE, cache = FALSE}
-library(data.table)
-library(HistData)
+library(tidyverse)
+library(behdslabs)
 
-set.seed(1983)
-galton <- as.data.table(GaltonFamilies)
-galton <- galton[gender == "male", .SD[sample(.N, 1)], by = family]
-galton <- galton[, .(father, son = childHeight)]
+engagement <- app_engagement_experiment |>
+  filter(!is.na(consistency_index)) |>
+  select(consistency = consistency_index, engagement = engagement_score)
 ```
 
 
@@ -79,21 +82,21 @@ Let's start by writing a function that computes the RSS for any pair of values $
 
 ```{r}
 rss <- function(beta0, beta1, data){
-  resid <- galton$son - (beta0 + beta1*galton$father)
+  resid <- engagement$engagement - (beta0 + beta1*engagement$consistency)
   return(sum(resid^2))
 }
 ```
 
-So for any pair of values, we get an RSS. Here is a plot of the RSS as a function of $\beta_1$, when we keep the $\beta_0$ fixed at 25.
+So for any pair of values, we get an RSS. Here is a plot of the RSS as a function of $\beta_1$, when we keep the $\beta_0$ fixed at 40.
 
 ```{r rss-versus-estimate}
-beta1 <- seq(0, 1, length = nrow(galton))
-results <- data.frame(beta1 = beta1, rss = sapply(beta1, rss, beta0 = 25))
+beta1 <- seq(0, 50, length = nrow(engagement))
+results <- data.frame(beta1 = beta1, rss = sapply(beta1, rss, beta0 = 40))
 results |> ggplot(aes(beta1, rss)) + geom_line() + 
   geom_line(aes(beta1, rss))
 ```
 
-We can see a clear minimum for $\beta_1$ at around 0.65. However, this minimum for $\beta_1$ is for when $\beta_0 = 25$, a value we arbitrarily picked. We don't know if (25, 0.65) is the pair that minimizes the equation across all possible pairs.
+We can see a clear minimum for $\beta_1$ at around `r round(results$beta1[which.min(results$rss)])`. However, this minimum for $\beta_1$ is for when $\beta_0 = 40$, a value we arbitrarily picked. We don't know if (40, `r round(results$beta1[which.min(results$rss)])`) is the pair that minimizes the equation across all possible pairs.
 
 Trial and error is not going to work in this case. We could search for a minimum within a fine grid of $\beta_0$ and $\beta_1$ values, but this is unnecessarily time-consuming since we can use calculus. Specifically, we take the partial derivatives of the LS equation, set them to 0, and solve for $\beta_0$ and $\beta_1$. Of course, if we have many parameters, these equations can get rather complex. But there are functions in R that do these calculations for us. We will study these next. To learn the mathematics behind this, you can consult one of the books on linear models in the Recommended Reading section.
 
@@ -105,11 +108,11 @@ $$
 Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i
 $$
 
-with $Y_i$ being the son's height and $x_i$ being the father's height, we can use this code:
+with $Y_i$ being the engagement score and $x_i$ being the consistency index, we can use this code:
 
 
 ```{r}
-fit <- lm(son ~ father, data = galton)
+fit <- lm(engagement ~ consistency, data = engagement)
 ```
 
 The most common way we use `lm` is by using the character `~` to let `lm` know which is the variable we are predicting (left of `~`) and which we are using to predict (right of `~`). The intercept is added automatically to the model that will be fit.
@@ -126,13 +129,13 @@ In @sec-multivariable-regression, after describing a more complex case study, we
 
 ### LSE are random variables
 
-The LSE is derived from the data $y_1,\dots,y_N$, which are a realization of random variables $Y_1, \dots, Y_N$. This implies that our estimates are random variables. To see this, we can run a Monte Carlo simulation in which we assume the son and father height data define a population, take a random sample of size $N=50$, and compute the regression slope coefficient for each one:
+The LSE is derived from the data $y_1,\dots,y_N$, which are a realization of random variables $Y_1, \dots, Y_N$. This implies that our estimates are random variables. To see this, we can run a Monte Carlo simulation in which we assume the consistency and engagement data define a population, take a random sample of size $N=25$, and compute the regression slope coefficient for each one:
 
 ```{r}
 N <- 25
 lse <- replicate(10000, {
-  smpl <-  galton[sample(.N, N, replace = TRUE)]
-  coef(lm(son ~ father, data = smpl))
+  smpl <- slice_sample(engagement, n = N, replace = TRUE)
+  coef(lm(engagement ~ consistency, data = smpl))
 })
 ```
 
@@ -142,9 +145,9 @@ We can see the variability of the estimates by plotting their distributions:
 library(gridExtra)
 lse <- data.frame(beta_0 = lse[1,], beta_1 = lse[2,]) 
 p1 <- lse |> ggplot(aes(beta_0)) + 
-  geom_histogram(binwidth = 5, color = "black") 
+  geom_histogram(binwidth = 10, color = "black") 
 p2 <- lse |> ggplot(aes(beta_1)) + 
-  geom_histogram(binwidth = 0.1, color = "black") 
+  geom_histogram(binwidth = 10, color = "black") 
 grid.arrange(p1, p2, ncol = 2)
 ```
 
@@ -153,7 +156,7 @@ These look normal because the central limit theorem applies here as well: for la
 The standard errors are a bit complicated to compute, but mathematical theory does allow us to compute them, and they are included in the summary provided by the `lm` function. The function `summary` shows us the standard error estimates:
 
 ```{r}
-fit <- lm(son ~ father, data = galton[sample(.N, N, replace = TRUE)])
+fit <- lm(engagement ~ consistency, data = slice_sample(engagement, n = N, replace = TRUE))
 summary(fit)$coef
 ```
 
@@ -168,7 +171,7 @@ The `summary` function also reports t-statistics (`t value`) and p-values (`Pr(>
 Remember that, as we described in @sec-t-dist, for large enough $N$, the CLT works and the t-distribution becomes almost the same as the normal distribution. Also, notice that we can construct confidence intervals using the `confint` function:
 
 ```{r}
-confint(fit, "father", level = 0.95)
+confint(fit, "consistency", level = 0.95)
 ```
 
 
@@ -176,7 +179,7 @@ Although we do not show examples in this book, hypothesis testing with regressio
 
 ### Predicted values are random variables
 
-Once we fit our model, we can obtain a prediction of $Y$ by plugging the estimates into the regression model. For example, if the father's height is $x$, then our prediction $\hat{y}$ for the son's height will be:
+Once we fit our model, we can obtain a prediction of $Y$ by plugging the estimates into the regression model. For example, if a user's consistency index is $x$, then our prediction $\hat{y}$ for their engagement will be:
 
 $$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x$$
 
@@ -186,17 +189,17 @@ Keep in mind that the prediction $\hat{y}$ is also a random variable, and mathem
 
 The R function `predict` takes an `lm` object as input and returns the prediction. If requested, the standard errors and other information from which we can construct confidence intervals are provided:
 
-```{r father-son-predictor}
-fit <- lm(son ~ father, data = galton) 
+```{r consistency-engagement-predictor}
+fit <- lm(engagement ~ consistency, data = engagement) 
 y_hat <- predict(fit, se.fit = TRUE)
 names(y_hat)
 ```
 
 In fact, the **ggplot2** layer `geom_smooth(method = "lm")` surrounds the regression line using these confidence intervals:
 
-```{r father-son-regression}
+```{r consistency-engagement-regression}
 #| message: false
-galton |> ggplot(aes(son, father)) + geom_point() + 
+engagement |> ggplot(aes(consistency, engagement)) + geom_point(alpha = 0.5) + 
   geom_smooth(method = "lm")
 ```
 
@@ -249,7 +252,7 @@ In Chapters [-@sec-treatment-effect-models] and [-@sec-multivariable-regression]
 
 
 Historically, writing linear models in the form $Y = \beta_0 + \beta_1 x + \varepsilon$
-originated in contexts where the $\varepsilon$ term represented *measurement error*. Early scientists used least squares to estimate physical constants from repeated measurements affected by instrument noise. Later, Galton and Pearson extended this framework to study relationships between variables, such as the height example we examined earlier.
+originated in contexts where the $\varepsilon$ term represented *measurement error*. Early scientists used least squares to estimate physical constants from repeated measurements affected by instrument noise. Later, Galton and Pearson extended this framework to study relationships between variables, such as the heights of parents and children, and it is the same framework we used for consistency and engagement.
 
 In this section, we briefly present a setting where the measurement-error interpretation is appropriate and show that we can fit the corresponding model using the same mathematics and the same R function. This illustrates one of the key advantages of the linear model framework: a single set of tools applies across many seemingly different situations.
 
@@ -372,30 +375,19 @@ Is this a linear model?
 
 6\. Fit a regression model to each of the datasets in the Anscombe quartet introduced in the previous chapter (`anscombe` dataset) and examine the diagnostic plots.
 
-10\. In a previous chapter, we computed the correlation between heights of mothers and daughters, mothers and sons, fathers and daughters, and fathers and sons. We can compute these correlations using:
+10\. In the previous chapter (exercise 7), we computed the correlation between consistency and engagement separately for women and for men. We can compute these correlations using:
 
 ```{r, eval=FALSE}
-library(HistData)
-set.seed(1)
-galton <- GaltonFamilies |>
-  group_by(family, gender) |>
-  sample_n(1) |>
-  ungroup()
-
-cors <- galton |> 
-  pivot_longer(father:mother) |>
-  mutate(child = ifelse(gender == "female", "daughter", "son")) |>
-  unite(pair, c("name", "child")) |> 
-  group_by(pair) |>
-  summarize(cor = cor(value, childHeight))
+cors <- app_engagement_experiment |>
+  filter(!is.na(consistency_index)) |>
+  group_by(sex) |>
+  summarize(cor = cor(consistency_index, engagement_score))
 ```
 
-We noticed differences. Are these differences statistically significant? To answer this, we will compute the slopes of the regression lines along with their standard errors. Start by using `lm` to compute the LSE of the slopes and the standard errors.
+We noticed a difference. Is this difference statistically significant? To answer this, we will compute the slopes of the regression lines along with their standard errors. Start by using `lm` to compute the LSE of the slopes and the standard errors, separately for women and for men.
 
 11\. Repeat exercise 10, but compute a confidence interval as well.
 
-12\. Plot the confidence intervals and notice that they overlap, which implies that the data are consistent with the inheritance of height being independent of sex.
+12\. Plot the confidence intervals and notice that they overlap, which implies that the data are consistent with the same slope in women and in men. Compare the two slopes with the slope computed on all users. What do you notice? We come back to this when we discuss confounding.
 
-13\. In the code above, we used `sample_n(1)` to randomly select a child of each sex from each family. Because this step introduces randomness, the correlations we compute will vary if we rerun this code chunk. Repeat the computation of correlations 100 times, taking a different sample each time. Examine how much the resulting correlations vary across these repetitions. Hint: Use an approach similar to what we have done for simulations.
-
-
+13\. Repeat exercises 10 to 12 with the error rate (`error_rate_pct`) as the outcome instead of the engagement score.
