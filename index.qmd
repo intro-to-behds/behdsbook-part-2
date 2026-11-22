@@ -21,7 +21,10 @@ The website for the original book are the following:
 
 # Disclaimers
 
+::: {.callout-warning}
+## Please read before using this material
 **The data in this book are not real: do not interpret or cite them as genuine behavioural data.**
+:::
 
 To fit a behavioural-science course, the examples were "reflavoured". The datasets of the original book (election polls, heights, baseball, a mouse diet experiment and others) were replaced with behavioural ones: reaction times, questionnaire scores, app usage, survey data, experiment logs. In most cases the numbers still come from the original real datasets, and only the variable names, the labels and the story around them were changed. Other datasets are simulated around fictional scenarios, with the code shown in the chapter or the exercise (for example the usability study of a hospital check-in tablet app in the exercises of @sec-numeric-summaries). The text was edited to fit the new examples. The changes, chapter by chapter, are listed in the [CHANGELOG](https://github.com/intro-to-behds/behdsbook-part-2/blob/main/CHANGELOG.md).
 
