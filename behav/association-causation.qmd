@@ -1,6 +1,6 @@
 # Association Is Not Causation {#sec-association-not-causation}
 
-_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/association-not-causation.html). Adapted by Giorgio Arcara: moved from the Linear Models part to Foundations of Behavioural Research and rewritten without linear models; `divorce_margarine` → `screen_time_vs_smart_speaker_trend`, `admissions` → `app_task_completion`, `research_funding_rates` → `tech_grant_funding_gender_gap`, Galton's heights → a simulated stress app; merged with the sections on causal claims of @sec-results-to-conclusions (*Explanation and prediction*, *Correlational designs and correlation analyses*, *Selection*, *Drawing the alternatives*, *Adjusting is not free*, *Towards causal claims from observational data*); the text is otherwise Irizarry's, with small edits to fit the new examples._
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/association-not-causation.html). Adapted by Giorgio Arcara: the datasets are replaced with behavioural ones, the chapter is rewritten without linear models, and new sections on causal claims are added, from @sec-results-to-conclusions; the text is otherwise Irizarry's. Details in the [CHANGELOG](https://github.com/intro-to-behds/behdsbook-part-2/blob/main/CHANGELOG.md)._
 
 :::{.callout-warning}
 ## Draft
