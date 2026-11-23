@@ -91,7 +91,7 @@ book:
         - linear-models/regression.qmd
         - linear-models/linear-model-framework.qmd
         - linear-models/treatment-effect-models.qmd
-        # [hidden until reflavoured] - linear-models/glm.qmd
+        - linear-models/glm.qmd
         # [out of course scope] - linear-models/multivariable-regression.qmd
         - linear-models/reading-lm.qmd
 

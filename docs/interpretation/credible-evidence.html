@@ -8,7 +8,7 @@
 
 <meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
 
-<title>29&nbsp; Can We Trust the Evidence? Replication and Open Science – Introduction to Behavioural Data Science</title>
+<title>30&nbsp; Can We Trust the Evidence? Replication and Open Science – Introduction to Behavioural Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -148,7 +148,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../interpretation/intro-interpretation.html">Interpreting Evidence</a></li><li class="breadcrumb-item"><a href="../interpretation/credible-evidence.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../interpretation/intro-interpretation.html">Interpreting Evidence</a></li><li class="breadcrumb-item"><a href="../interpretation/credible-evidence.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -441,6 +441,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../linear-models/reading-lm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Recommended Reading</span></a>
   </div>
@@ -459,13 +465,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../interpretation/results-to-conclusions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../interpretation/credible-evidence.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span></a>
   </div>
 </li>
       </ul>
@@ -486,28 +492,28 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#reproducible-robust-replicable" id="toc-reproducible-robust-replicable" class="nav-link active" data-scroll-target="#reproducible-robust-replicable"><span class="header-section-number">29.1</span> Reproducible, robust, replicable</a></li>
-  <li><a href="#sec-replication-crisis" id="toc-sec-replication-crisis" class="nav-link" data-scroll-target="#sec-replication-crisis"><span class="header-section-number">29.2</span> The replication crisis</a></li>
-  <li><a href="#why-it-happened" id="toc-why-it-happened" class="nav-link" data-scroll-target="#why-it-happened"><span class="header-section-number">29.3</span> Why it happened</a>
+  <li><a href="#reproducible-robust-replicable" id="toc-reproducible-robust-replicable" class="nav-link active" data-scroll-target="#reproducible-robust-replicable"><span class="header-section-number">30.1</span> Reproducible, robust, replicable</a></li>
+  <li><a href="#sec-replication-crisis" id="toc-sec-replication-crisis" class="nav-link" data-scroll-target="#sec-replication-crisis"><span class="header-section-number">30.2</span> The replication crisis</a></li>
+  <li><a href="#why-it-happened" id="toc-why-it-happened" class="nav-link" data-scroll-target="#why-it-happened"><span class="header-section-number">30.3</span> Why it happened</a>
   <ul class="collapse">
   <li><a href="#publication-bias" id="toc-publication-bias" class="nav-link" data-scroll-target="#publication-bias">Publication bias</a></li>
   <li><a href="#small-studies-and-exaggerated-effects" id="toc-small-studies-and-exaggerated-effects" class="nav-link" data-scroll-target="#small-studies-and-exaggerated-effects">Small studies and exaggerated effects</a></li>
   <li><a href="#flexibility-in-the-analysis" id="toc-flexibility-in-the-analysis" class="nav-link" data-scroll-target="#flexibility-in-the-analysis">Flexibility in the analysis</a></li>
   </ul></li>
-  <li><a href="#the-same-problems-outside-academia" id="toc-the-same-problems-outside-academia" class="nav-link" data-scroll-target="#the-same-problems-outside-academia"><span class="header-section-number">29.4</span> The same problems outside academia</a></li>
-  <li><a href="#combining-studies-the-pyramid-of-evidence" id="toc-combining-studies-the-pyramid-of-evidence" class="nav-link" data-scroll-target="#combining-studies-the-pyramid-of-evidence"><span class="header-section-number">29.5</span> Combining studies: the pyramid of evidence</a></li>
-  <li><a href="#what-helps" id="toc-what-helps" class="nav-link" data-scroll-target="#what-helps"><span class="header-section-number">29.6</span> What helps</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">29.7</span> Further reading</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">29.8</span> Exercises</a></li>
+  <li><a href="#the-same-problems-outside-academia" id="toc-the-same-problems-outside-academia" class="nav-link" data-scroll-target="#the-same-problems-outside-academia"><span class="header-section-number">30.4</span> The same problems outside academia</a></li>
+  <li><a href="#combining-studies-the-pyramid-of-evidence" id="toc-combining-studies-the-pyramid-of-evidence" class="nav-link" data-scroll-target="#combining-studies-the-pyramid-of-evidence"><span class="header-section-number">30.5</span> Combining studies: the pyramid of evidence</a></li>
+  <li><a href="#what-helps" id="toc-what-helps" class="nav-link" data-scroll-target="#what-helps"><span class="header-section-number">30.6</span> What helps</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">30.7</span> Further reading</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">30.8</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/interpretation/credible-evidence.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../interpretation/intro-interpretation.html">Interpreting Evidence</a></li><li class="breadcrumb-item"><a href="../interpretation/credible-evidence.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../interpretation/intro-interpretation.html">Interpreting Evidence</a></li><li class="breadcrumb-item"><a href="../interpretation/credible-evidence.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-credible-evidence" class="quarto-section-identifier"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span></h1>
+<h1 class="title"><span id="sec-credible-evidence" class="quarto-section-identifier"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span></h1>
 </div>
 
 
@@ -528,13 +534,13 @@ window.Quarto = {
 <!-- 18 Nov 2026 (Claude): new chapter. The replication-crisis section (text, fig-osc, OSC 2015 and Simmons et al. 2011) was moved here from behav/research-ethics.qmd (Scientific integrity), and the short "Why this matters" subsection of results-to-conclusions.qmd was removed. The rest is new. References to verify. 20 Nov 2026 (Claude): added Tyner et al. (2026, SCORE) to the replication-crisis section, with fig-score, at the instructor's request. -->
 <p>The previous chapter was about interpreting a single result. But a single study is rarely the last word. A theory in psychology, a clinical guideline, or the decision to launch a new version of an app usually rests on several studies, many of them done by other people. Before building on them, we need to ask a different question: <strong>can we trust the evidence?</strong> If the same study were run again, would it find the same result?</p>
 <p>Psychology had to face this question in the 2010s, and the answer was uncomfortable. This chapter explains what went wrong and why, shows with two small simulations how ordinary research practices produce unreliable results, and describes the practices that make evidence more credible. None of it is specific to academic research: the same problems appear in any analysis of behavioural data, including A/B tests and product dashboards.</p>
-<section id="reproducible-robust-replicable" class="level2" data-number="29.1">
-<h2 data-number="29.1" class="anchored" data-anchor-id="reproducible-robust-replicable"><span class="header-section-number">29.1</span> Reproducible, robust, replicable</h2>
+<section id="reproducible-robust-replicable" class="level2" data-number="30.1">
+<h2 data-number="30.1" class="anchored" data-anchor-id="reproducible-robust-replicable"><span class="header-section-number">30.1</span> Reproducible, robust, replicable</h2>
 <p>Three words are often used loosely, and it helps to separate them. Each one asks whether a result survives a different kind of repetition:</p>
 <div id="tbl-three-r" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-three-r-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;29.1: Three ways a result can be repeated.
+Table&nbsp;30.1: Three ways a result can be repeated.
 </figcaption>
 <div aria-describedby="tbl-three-r-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -574,10 +580,10 @@ Table&nbsp;29.1: Three ways a result can be repeated.
 <p>Reproducibility is the minimum: if we cannot get the same numbers from the same data, nothing else can be checked. It is mostly a matter of how the analysis is organised: scripts instead of clicks, a project folder, version control. These are the topics of the <a href="https://intro-to-behds.github.io/behdsbook-part-1/productivity/reproducible-projects.html"><em>Reproducible projects</em></a> and <a href="https://intro-to-behds.github.io/behdsbook-part-1/productivity/git.html"><em>Git and GitHub</em></a> chapters of Part 1.</p>
 <p>Robustness is less obvious. In a <em>many-analysts</em> study, Silberzahn and colleagues (2018) gave the same dataset to 29 teams of researchers and asked the same question: are football referees more likely to give red cards to players with darker skin? The teams chose different, defensible analyses. Their estimates ranged from no effect to a nearly threefold increase; twenty teams found a significant effect and nine did not. Nobody made a mistake. The result depended on choices that, in a normal paper, a single team makes once and the reader never sees.</p>
 </section>
-<section id="sec-replication-crisis" class="level2" data-number="29.2">
-<h2 data-number="29.2" class="anchored" data-anchor-id="sec-replication-crisis"><span class="header-section-number">29.2</span> The replication crisis</h2>
+<section id="sec-replication-crisis" class="level2" data-number="30.2">
+<h2 data-number="30.2" class="anchored" data-anchor-id="sec-replication-crisis"><span class="header-section-number">30.2</span> The replication crisis</h2>
 <!-- moved from behav/research-ethics.qmd on 18 Nov 2026; OSC 2015 figures checked against the PubMed abstract (14 Nov 2026) -->
-<p>In the early 2010s psychology went through what is now called the <strong>replication crisis</strong>. The largest test came in 2015, when the Open Science Collaboration repeated 100 studies published in three leading psychology journals. Ninety-seven percent of the original studies had reported statistically significant results; only thirty-six percent of the replications did, and the effects found in the replications were on average half the size of the original ones (<a href="#fig-osc" class="quarto-xref">Figure&nbsp;<span>29.1</span></a>).</p>
+<p>In the early 2010s psychology went through what is now called the <strong>replication crisis</strong>. The largest test came in 2015, when the Open Science Collaboration repeated 100 studies published in three leading psychology journals. Ninety-seven percent of the original studies had reported statistically significant results; only thirty-six percent of the replications did, and the effects found in the replications were on average half the size of the original ones (<a href="#fig-osc" class="quarto-xref">Figure&nbsp;<span>30.1</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-osc" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -586,14 +592,14 @@ Table&nbsp;29.1: Three ways a result can be repeated.
 <img src="credible-evidence_files/figure-html/fig-osc-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-osc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;29.1: Percentage of studies with a statistically significant result, in 100 original psychology studies and in their replications. Data from Open Science Collaboration (2015).
+Figure&nbsp;30.1: Percentage of studies with a statistically significant result, in 100 original psychology studies and in their replications. Data from Open Science Collaboration (2015).
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <!-- 20 Nov 2026 (Claude): SCORE paragraph and fig-score added. Figures checked against the peer-reviewed manuscript (King's College London repository): abstract, Table 3 (rates weighted by paper), Discussion. -->
-<p>A decade later, the largest test so far extended the question beyond psychology. Tyner and colleagues (2026) repeated 274 findings from 164 papers, published between 2009 and 2018 in 54 journals of six social and behavioural sciences: business, economics, education, political science, psychology and sociology. The replications used the original materials where possible, their protocols were reviewed before the data were collected, and they were large: their median power to detect the original effect was above 99%. Even so, only about half of the findings replicated: 55% of the claims, 49% of the papers, and 49% of the 58 psychology papers (<a href="#fig-score" class="quarto-xref">Figure&nbsp;<span>29.2</span></a>). The effects shrank too: the median correlation went from 0.25 in the original studies to 0.10 in the replications. The rates in the six fields were similar; the differences between them could easily be due to chance. Similar problems have also been documented in other fields, including medicine.</p>
+<p>A decade later, the largest test so far extended the question beyond psychology. Tyner and colleagues (2026) repeated 274 findings from 164 papers, published between 2009 and 2018 in 54 journals of six social and behavioural sciences: business, economics, education, political science, psychology and sociology. The replications used the original materials where possible, their protocols were reviewed before the data were collected, and they were large: their median power to detect the original effect was above 99%. Even so, only about half of the findings replicated: 55% of the claims, 49% of the papers, and 49% of the 58 psychology papers (<a href="#fig-score" class="quarto-xref">Figure&nbsp;<span>30.2</span></a>). The effects shrank too: the median correlation went from 0.25 in the original studies to 0.10 in the replications. The rates in the six fields were similar; the differences between them could easily be due to chance. Similar problems have also been documented in other fields, including medicine.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-score" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -602,7 +608,7 @@ Figure&nbsp;29.1: Percentage of studies with a statistically significant result,
 <img src="credible-evidence_files/figure-html/fig-score-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-score-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;29.2: Percentage of papers whose findings replicated (significant, in the same direction as the original), in six social and behavioural sciences; the number of papers is in brackets. The dashed line is the overall rate, 49%. Data from Tyner et al.&nbsp;(2026), Table 3.
+Figure&nbsp;30.2: Percentage of papers whose findings replicated (significant, in the same direction as the original), in six social and behavioural sciences; the number of papers is in brackets. The dashed line is the overall rate, 49%. Data from Tyner et al.&nbsp;(2026), Table 3.
 </figcaption>
 </figure>
 </div>
@@ -611,8 +617,8 @@ Figure&nbsp;29.2: Percentage of papers whose findings replicated (significant, i
 <p>Two details of this study matter for what follows. First, the replications were so large that their failures cannot be blamed on low power: they could easily detect the original effects, if those effects were real and as large as reported. Second, the authors note that some shrinkage is expected whenever only significant findings are followed up, a point that the section <em>Small studies and exaggerated effects</em> below makes with a simulation. Their results also depend on how success is defined: thirteen different criteria gave replication rates from 29% to 75%. There is no single “replication rate”, but every criterion tells the same story: many published findings are weaker than they first appeared.</p>
 <p>A failed replication does not prove that the original effect is false. The replication is a study too, with its own sampling error, and it may differ from the original in small ways (the participants, the country, the year). But when most original studies are significant and most replications are not, and the replicated effects are systematically smaller, chance alone cannot explain the pattern. Something in the way the original studies were done, or selected for publication, made them look stronger than they were.</p>
 </section>
-<section id="why-it-happened" class="level2" data-number="29.3">
-<h2 data-number="29.3" class="anchored" data-anchor-id="why-it-happened"><span class="header-section-number">29.3</span> Why it happened</h2>
+<section id="why-it-happened" class="level2" data-number="30.3">
+<h2 data-number="30.3" class="anchored" data-anchor-id="why-it-happened"><span class="header-section-number">30.3</span> Why it happened</h2>
 <p>Fraud exists, but it was not the main cause. Three ordinary features of how research was done combined.</p>
 <section id="publication-bias" class="level3">
 <h3 class="anchored" data-anchor-id="publication-bias">Publication bias</h3>
@@ -641,7 +647,7 @@ Figure&nbsp;29.2: Percentage of papers whose findings replicated (significant, i
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt;             &lt;dbl&gt;                     &lt;dbl&gt;</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 0.150             0.294                     0.781</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Only about 15% of the studies are significant. Across all studies, the estimates are centred on the true value, 0.3. But the significant studies estimate, on average, a difference more than twice as large (<a href="#fig-winners-curse" class="quarto-xref">Figure&nbsp;<span>29.3</span></a>). With 20 participants per group, a difference has to be large to cross the threshold, so only the studies that overestimated the effect by chance are significant. If only those are published, the literature reports an effect more than twice as large as the real one, and a replication with the same sample size will usually fail. This is sometimes called the <strong>winner’s curse</strong>.</p>
+<p>Only about 15% of the studies are significant. Across all studies, the estimates are centred on the true value, 0.3. But the significant studies estimate, on average, a difference more than twice as large (<a href="#fig-winners-curse" class="quarto-xref">Figure&nbsp;<span>30.3</span></a>). With 20 participants per group, a difference has to be large to cross the threshold, so only the studies that overestimated the effect by chance are significant. If only those are published, the literature reports an effect more than twice as large as the real one, and a replication with the same sample size will usually fail. This is sometimes called the <strong>winner’s curse</strong>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>studies <span class="sc">|&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">result =</span> <span class="fu">if_else</span>(p <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">"significant"</span>, <span class="st">"not significant"</span>)) <span class="sc">|&gt;</span></span>
@@ -658,7 +664,7 @@ Figure&nbsp;29.2: Percentage of papers whose findings replicated (significant, i
 <img src="credible-evidence_files/figure-html/fig-winners-curse-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-winners-curse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;29.3: Estimated differences in 5,000 simulated studies with 20 participants per group. The true difference is 0.3 (dashed line). The significant studies (dark) are the ones that overestimated it.
+Figure&nbsp;30.3: Estimated differences in 5,000 simulated studies with 20 participants per group. The true difference is 0.3 (dashed line). The significant studies (dark) are the ones that overestimated it.
 </figcaption>
 </figure>
 </div>
@@ -692,8 +698,8 @@ Figure&nbsp;29.3: Estimated differences in 5,000 simulated studies with 20 parti
 <p>Regression models add one more choice: which variables to adjust for (<a href="../linear-models/linear-model-framework.html#sec-adjusting-confounder" class="quarto-xref"><span>Section 26.6</span></a>). With a handful of candidate covariates there are dozens of possible models, and the coefficient of interest can change sign, size and significance from one to the next. Adjusting for a variable should be justified by its causal role, a confounder and not a mediator or a collider (<a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a>), and decided before seeing the results. When several sets of covariates are defensible, reporting the results for all of them, a form of <em>robustness check</em>, shows the reader how much the conclusion depends on the choice.</p>
 </section>
 </section>
-<section id="the-same-problems-outside-academia" class="level2" data-number="29.4">
-<h2 data-number="29.4" class="anchored" data-anchor-id="the-same-problems-outside-academia"><span class="header-section-number">29.4</span> The same problems outside academia</h2>
+<section id="the-same-problems-outside-academia" class="level2" data-number="30.4">
+<h2 data-number="30.4" class="anchored" data-anchor-id="the-same-problems-outside-academia"><span class="header-section-number">30.4</span> The same problems outside academia</h2>
 <p>The replication crisis is usually told as a story about psychology journals, but the mechanisms are general. They may appear in any setting where many analyses are possible and some results are more welcome than others.</p>
 <ul>
 <li><strong>Peeking at an A/B test.</strong> Checking the dashboard every day and stopping the test as soon as the new version is significantly better is the optional stopping of the simulation above. It inflates the false-positive rate in the same way.</li>
@@ -702,10 +708,10 @@ Figure&nbsp;29.3: Estimated differences in 5,000 simulated studies with 20 parti
 <li><strong>Many analyses at no cost.</strong> An LLM can produce ten versions of an analysis in a minute. That makes it easy to keep the one that “works” without noticing that we are doing so (see <a href="https://intro-to-behds.github.io/behdsbook-part-1/productivity/ai-assisted-coding.html"><em>AI and responsible coding</em></a> in Part 1).</li>
 </ul>
 </section>
-<section id="combining-studies-the-pyramid-of-evidence" class="level2" data-number="29.5">
-<h2 data-number="29.5" class="anchored" data-anchor-id="combining-studies-the-pyramid-of-evidence"><span class="header-section-number">29.5</span> Combining studies: the pyramid of evidence</h2>
+<section id="combining-studies-the-pyramid-of-evidence" class="level2" data-number="30.5">
+<h2 data-number="30.5" class="anchored" data-anchor-id="combining-studies-the-pyramid-of-evidence"><span class="header-section-number">30.5</span> Combining studies: the pyramid of evidence</h2>
 <!-- 22 Nov 2026 (Claude): pyramid of evidence and meta-analysis, at the instructor's request. Hagger et al. 2010 (83 studies), Carter & McCullough 2014 (d = 0.62, corrected estimate not different from zero), Hagger et al. 2016 (23 labs, N = 2,141, d = 0.04) and Kvarven et al. 2020 (15 pairs, almost three times as large, corrections do not substantively improve) checked against the PubMed and Crossref abstracts. To review. -->
-<p>When many studies address the same question, they are not all worth the same. A common way to rank them is the <strong>pyramid of evidence</strong> (<a href="#fig-evidence-pyramid" class="quarto-xref">Figure&nbsp;<span>29.4</span></a>), which orders kinds of evidence by how well they protect against bias. At the bottom are expert opinion and single case reports. Above them are observational studies (<a href="../behav/experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>), then randomised controlled trials (<a href="../behav/randomised-trials.html" class="quarto-xref"><span>Chapter 5</span></a>). At the top are <strong>systematic reviews and meta-analyses</strong>. A <em>systematic review</em> searches for all the studies on a question, with a method fixed in advance, so that the choice of studies does not depend on their results. A <em>meta-analysis</em> then combines their estimates into a single weighted average effect size, with a confidence interval (<a href="../basic-stats/effect-size.html" class="quarto-xref"><span>Chapter 22</span></a>), which is more precise than any single study. The pyramid is a simplification: a large, well-run observational study can be more informative than a tiny, badly run trial, and the quality of a study matters as well as its design.</p>
+<p>When many studies address the same question, they are not all worth the same. A common way to rank them is the <strong>pyramid of evidence</strong> (<a href="#fig-evidence-pyramid" class="quarto-xref">Figure&nbsp;<span>30.4</span></a>), which orders kinds of evidence by how well they protect against bias. At the bottom are expert opinion and single case reports. Above them are observational studies (<a href="../behav/experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>), then randomised controlled trials (<a href="../behav/randomised-trials.html" class="quarto-xref"><span>Chapter 5</span></a>). At the top are <strong>systematic reviews and meta-analyses</strong>. A <em>systematic review</em> searches for all the studies on a question, with a method fixed in advance, so that the choice of studies does not depend on their results. A <em>meta-analysis</em> then combines their estimates into a single weighted average effect size, with a confidence interval (<a href="../basic-stats/effect-size.html" class="quarto-xref"><span>Chapter 22</span></a>), which is more precise than any single study. The pyramid is a simplification: a large, well-run observational study can be more informative than a tiny, badly run trial, and the quality of a study matters as well as its design.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-evidence-pyramid" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -714,7 +720,7 @@ Figure&nbsp;29.3: Estimated differences in 5,000 simulated studies with 20 parti
 <img src="credible-evidence_files/figure-html/fig-evidence-pyramid-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-evidence-pyramid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;29.4: The pyramid of evidence. Kinds of evidence are ordered by how well they protect against bias, with systematic reviews and meta-analyses at the top. It is a simplification: the quality of each study matters as well as its design, and a meta-analysis is only as good as the studies it combines.
+Figure&nbsp;30.4: The pyramid of evidence. Kinds of evidence are ordered by how well they protect against bias, with systematic reviews and meta-analyses at the top. It is a simplification: the quality of each study matters as well as its design, and a meta-analysis is only as good as the studies it combines.
 </figcaption>
 </figure>
 </div>
@@ -723,8 +729,8 @@ Figure&nbsp;29.4: The pyramid of evidence. Kinds of evidence are ordered by how 
 <p>A meta-analysis, however, is only as good as the studies it combines: it inherits their biases. If non-significant studies stayed in the drawer (<em>Publication bias</em>, above), or significant ones were obtained through flexible analyses (<em>Flexibility in the analysis</em>, above), the average of the published effects is too large, however precise its confidence interval looks. For this reason, much of the work in a modern meta-analysis goes into detecting these biases and, where possible, correcting for them: searching for unpublished studies and preregistrations, rating the risk of bias of each study, and looking for warning signs, such as a literature with many small studies reporting large effects and almost none reporting null effects, a pattern made visible by a <em>funnel plot</em>. Statistical corrections exist (trim-and-fill, PET-PEESE, selection models), but they are beyond this book, and none of them can fully recover studies that were never published.</p>
 <p>Ego depletion, the idea that exerting self-control uses up a limited resource, is a well-known example. A meta-analysis of 83 studies found a medium-sized effect, d = 0.62 (Hagger et al., 2010). When Carter and McCullough (2014) applied corrections for small-study effects to the same data, they found strong signs of publication bias, and a corrected effect not different from zero. A preregistered replication in 23 laboratories, with 2,141 participants, then found d = 0.04, with a 95% confidence interval from −0.07 to 0.15 (Hagger et al., 2016). The case is not isolated: comparing 15 meta-analyses with large preregistered multi-laboratory replications of the same effects, Kvarven, Strømland and Johannesson (2020) found that the meta-analytic effects were on average almost three times as large, and that three common correction methods did not substantively improve them. Meta-analyses remain the best way to summarise a literature, provided that we ask what went into them.</p>
 </section>
-<section id="what-helps" class="level2" data-number="29.6">
-<h2 data-number="29.6" class="anchored" data-anchor-id="what-helps"><span class="header-section-number">29.6</span> What helps</h2>
+<section id="what-helps" class="level2" data-number="30.6">
+<h2 data-number="30.6" class="anchored" data-anchor-id="what-helps"><span class="header-section-number">30.6</span> What helps</h2>
 <p>The response of the research community is known as <strong>Open Science</strong>: a set of practices that make research easier to check. Most of them have direct equivalents in industry.</p>
 <ul>
 <li><strong>Decide before looking.</strong> A <em>preregistration</em> is a plan, written and timestamped before the data are seen, that fixes the hypotheses, the sample size, the exclusion rules and the analysis (see <em>Preregistration</em> and <em>Two ways of exploring</em> in <a href="../behav/research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>). In a <em>Registered Report</em>, a journal reviews and accepts the study before the data are collected, so publication no longer depends on the result. In an A/B test, the equivalent is to fix the primary metric and the sample size before starting, and not to stop early.</li>
@@ -732,12 +738,12 @@ Figure&nbsp;29.4: The pyramid of evidence. Kinds of evidence are ordered by how 
 <li><strong>Report everything, and report estimates.</strong> All conditions, outcomes and exclusions, not only the ones that worked. Effect sizes with confidence intervals (<a href="../basic-stats/effect-size.html" class="quarto-xref"><span>Chapter 22</span></a>) show how precise a result is, which a p-value alone does not.</li>
 <li><strong>Make it reproducible.</strong> Share the code, the materials and, as far as privacy allows, the data (see <em>Open materials, data, and code</em> in <a href="../behav/research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>). A project organised as in Part 1 is already most of the way there.</li>
 <li><strong>Replicate.</strong> A result that has been found again, by different people with new data, deserves much more confidence than a single study. Consistency across studies is also one of Bradford Hill’s criteria (<a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a>).</li>
-<li><strong>Rely on combined evidence.</strong> <!-- 22 Nov 2026 (Claude): bullet added at the instructor's request; to review --> Base conclusions and decisions on the body of evidence, ideally a recent systematic review or meta-analysis that assessed bias, rather than on a single striking study, however prestigious the journal (<a href="#fig-evidence-pyramid" class="quarto-xref">Figure&nbsp;<span>29.4</span></a>). In industry, the equivalent is to look at the history of similar experiments, not only at the latest test.</li>
+<li><strong>Rely on combined evidence.</strong> <!-- 22 Nov 2026 (Claude): bullet added at the instructor's request; to review --> Base conclusions and decisions on the body of evidence, ideally a recent systematic review or meta-analysis that assessed bias, rather than on a single striking study, however prestigious the journal (<a href="#fig-evidence-pyramid" class="quarto-xref">Figure&nbsp;<span>30.4</span></a>). In industry, the equivalent is to look at the history of similar experiments, not only at the latest test.</li>
 </ul>
 <p>These practices also give us a short list of questions to ask of any published result before relying on it. Was the analysis planned in advance? Was the sample large enough to detect a plausible effect? Is the effect implausibly large for what was manipulated? Are the data and code available? Has anyone replicated it? And if it comes from a meta-analysis, were publication bias and the quality of the included studies assessed?</p>
 </section>
-<section id="further-reading" class="level2" data-number="29.7">
-<h2 data-number="29.7" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">29.7</span> Further reading</h2>
+<section id="further-reading" class="level2" data-number="30.7">
+<h2 data-number="30.7" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">30.7</span> Further reading</h2>
 <ul>
 <li>Open Science Collaboration (2015), <em>Estimating the reproducibility of psychological science</em>, Science, 349(6251), aac4716, <a href="https://doi.org/10.1126/science.aac4716" class="uri">https://doi.org/10.1126/science.aac4716</a>.</li>
 <li>A. H. Tyner et al.&nbsp;(2026), <em>Investigating the replicability of the social and behavioural sciences</em>, Nature, 652, 143–150, <a href="https://doi.org/10.1038/s41586-025-10078-y" class="uri">https://doi.org/10.1038/s41586-025-10078-y</a>. The SCORE project; open access.</li>
@@ -752,12 +758,12 @@ Figure&nbsp;29.4: The pyramid of evidence. Kinds of evidence are ordered by how 
 <li>R. Kohavi, D. Tang &amp; Y. Xu (2020), <em>Trustworthy Online Controlled Experiments: A Practical Guide to A/B Testing</em>. Cambridge: Cambridge University Press.</li>
 </ul>
 </section>
-<section id="exercises" class="level2" data-number="29.8">
-<h2 data-number="29.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">29.8</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="30.8">
+<h2 data-number="30.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">30.8</span> Exercises</h2>
 <p>1. Run the winner’s-curse simulation again with a true difference of 0.8 instead of 0.3, still with 20 participants per group. Then go back to 0.3 with 100 participants per group. In each case, compute the power and the average estimate of the significant studies. When is the exaggeration largest?</p>
 <p>2. Modify <code>flexible_study()</code> so that the researcher uses only one outcome but looks at the data after every 10 participants per group, up to 100, and stops at the first significant result. What is the false-positive rate? Compare it with the planned analysis.</p>
 <p>3. An A/B test compares two versions of an app on 20 unrelated metrics, and the change has no effect on any of them. Simulate 1,000 such experiments, with 500 users per version and normally distributed metrics, and compute the proportion of experiments in which at least one metric is significant. Compare it with <span class="math inline">\(1 - 0.95^{20}\)</span>. How would you correct for this (<a href="../basic-stats/multiple-comparisons.html" class="quarto-xref"><span>Chapter 20</span></a>)?</p>
-<p>4. In your own words, give an example from human–technology research of a result that is reproducible but not robust, and one that is robust but not replicable (<a href="#tbl-three-r" class="quarto-xref">Table&nbsp;<span>29.1</span></a>).</p>
+<p>4. In your own words, give an example from human–technology research of a result that is reproducible but not robust, and one that is robust but not replicable (<a href="#tbl-three-r" class="quarto-xref">Table&nbsp;<span>30.1</span></a>).</p>
 <p>5. Choose a published study, or a press release about one, on technology use and wellbeing. Answer the five questions at the end of <em>What helps</em>. Which of them can you answer from the paper alone?</p>
 
 
@@ -1166,7 +1172,7 @@ Figure&nbsp;29.4: The pyramid of evidence. Kinds of evidence are ordered by how 
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../interpretation/results-to-conclusions.html" class="pagination-link" aria-label="From Results to Conclusions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

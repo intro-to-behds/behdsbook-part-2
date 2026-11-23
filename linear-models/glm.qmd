@@ -1,4 +1,8 @@
-## Generalized Linear Models
+# Generalized Linear Models {#sec-generalized-linear-models}
+
+_Original chapter by Rafael A. Irizarry, from [*Introduction to Data Science*](https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/glm.html). Adapted by Giorgio Arcara: the datasets are replaced with behavioural ones; new sections *One row per participant* and *Several predictors*; some passages are rephrased or shortened; the text is otherwise Irizarry's. Details in the [CHANGELOG](https://github.com/intro-to-behds/behdsbook-part-2/blob/main/CHANGELOG.md)._
+
+<!-- 23 Nov 2026 (Claude): reflavoured with /reflavour-chapter for Week 12 (logistic regression, reading level). Pass A: research_funding_rates -> tech_grant_funding_gender_gap; SAheart and titanic -> real_or_ai (new simulated behdslabs dataset, 0.13.0); InsectSprays -> a simulated proofreading task; exercises on trump_tweets removed. Pass B: pointer to the Chi-square chapter, two new subsections (Draft), ordinal and mixed-model lines. To review. -->
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE, cache=FALSE}
 library(tidyverse)
@@ -9,7 +13,7 @@ library(behdslabs)
 
 The statistical models we have used so far assume that the outcome of interest is continuous. However, in many real applications, the outcomes are binary, categorical, or counts. In these settings, we are often interested in how the outcome changes with one or more explanatory variables.
 
-For example, we may want to study how the probability of developing coronary heart disease varies with age, systolic blood pressure, or other clinical measurements; how the chance of surviving the sinking of the Titanic depends on passenger characteristics; or how different insecticides influence the number of insects observed in agricultural field plots.
+For example, we may want to study how the probability of telling a real photograph from an AI-generated image correctly depends on time pressure or on familiarity with AI tools; how the chance that a grant application is funded depends on the gender of the applicant; or how the number of errors made in a proofreading task changes with the way the text is displayed.
 
 Although these outcomes are no longer continuous, many of the ideas introduced in the linear model framework continue to apply. With a small adaptation, we can extend the mathematical approach used for linear models so that it can be applied in all of these situations, while also continuing to use the same modeling tools in R.
 
@@ -17,27 +21,28 @@ These extended models are known as *generalized* linear models. To motivate them
 
 ## Association Tests {#sec-association-tests}
 
-We start with the simplest case: assessing whether two categorical variables are associated. These methods were developed before GLMs, but they can be understood as special cases of logistic regression. Once we establish this connection, the general GLM framework will follow naturally.
+<!-- 23 Nov 2026 (Claude), Pass B: pointer to the Chi-square chapter, which uses the same data. -->
+We start with the simplest case: assessing whether two categorical variables are associated. The Chi-square test was introduced in @sec-chi-square, with the same grant data we use below; here we revisit it briefly, together with Fisher's exact test, because it leads naturally to logistic regression. These methods were developed before GLMs, but they can be understood as special cases of logistic regression. Once we establish this connection, the general GLM framework will follow naturally.
 
 ### Case study: Funding success rates
 
-A 2014 PNAS paper[^association-tests-1] analyzed success rates from funding agencies in the Netherlands and concluded that their
+Is there a gender gap in research funding? A 2015 PNAS paper[^association-tests-1] analysed the success rates of grant applications in the Netherlands and concluded that its
 
 [^association-tests-1]: http://www.pnas.org/content/112/40/12349.abstract
 
 > results reveal gender bias favoring male applicants over female applicants in the prioritization of their "quality of researcher" (but not "quality of proposal") evaluations and success rates, as well as in the language use in instructional and evaluation materials.
 
-The main evidence supporting this conclusion is based on a comparison of the percentages that we can compute using the data presented in the paper: 
+The `tech_grant_funding_gender_gap` dataset in **behdslabs** has the same structure: for nine technology domains, from AI research to UX and behavioural research, it records how many grant applications men and women submitted and how many were funded. The main evidence for a gender gap is a comparison of the percentages funded:
 
 ```{r}
 library(tidyverse)
 library(behdslabs)
-totals <- research_funding_rates |> select(-discipline) |> 
+totals <- tech_grant_funding_gender_gap |> select(-tech_domain) |>
   summarize_all(sum) |>
-  summarize(yes_men = awards_men, 
-            no_men = applications_men - awards_men, 
-            yes_women = awards_women, 
-            no_women = applications_women - awards_women) 
+  summarize(yes_men = awards_men,
+            no_men = applications_men - awards_men,
+            yes_women = awards_women,
+            no_women = applications_women - awards_women)
 
 totals |> summarize(percent_men = yes_men/(yes_men + no_men),
                     percent_women = yes_women/(yes_women + no_women))
@@ -92,17 +97,17 @@ However, in the Lady Tasting Tea example, we were able to use the hypergeometric
 
 In the funding example, and in most real-world data, this is not the case. Neither the number of funded applications nor the number of male and female applicants is fixed in advance; these totals arise from the data we observe. Because the row and column totals are not fixed, the hypergeometric model is no longer appropriate and rarely used in practice.
 
-In such settings, we instead use the *Chi-squared test*, which provides a way to test for association between two categorical variables without requiring fixed margins. Let's apply it to the funding rates example. 
+In such settings, we instead use the *Chi-squared test*, which provides a way to test for association between two categorical variables without requiring fixed margins. Let's apply it to the funding rates example.
 
 The first step in a Chi-squared test is to create the observed *two-by-two table*:
 
 ```{r}
-o <- with(totals, data.frame(men = c(no_men, yes_men), 
+o <- with(totals, data.frame(men = c(no_men, yes_men),
                              women = c(no_women, yes_women),
                              row.names = c("no", "yes")))
 ```
 
-We then estimate the overall funding rate, which we will use to determine what we expect to see if successful funding was assigned independent of gender: 
+We then estimate the overall funding rate, which we will use to determine what we expect to see if successful funding was assigned independent of gender:
 
 ```{r}
 r <- with(totals, (yes_men + yes_women))/sum(totals)
@@ -145,7 +150,7 @@ The R function `chisq.test` takes a two-by-two table and returns the results fro
 chisq_test <- chisq.test(o, correct = FALSE)
 ```
 
-We see that the p-value is 0.045:
+We see that the p-value is `r signif(chisq_test$p.value, 2)`:
 
 ```{r}
 chisq_test$p.value
@@ -229,14 +234,14 @@ exp(log(or) + c(-1,1) * qnorm(0.975) * se)
 This allows us to assess both the magnitude of the association and the uncertainty around it. The estimated odds ratio is less than 1, indicating that women have lower odds of being funded than men in this dataset. The 95% confidence interval does not include 1, which implies the p-value is less than 0.05.
 
 :::{.callout-note}
-The log odds ratio is not defined if any of the cells of the two-by-two table are 0. This is because if $a$, $b$, $c$, or $d$ are 0, the $\log(\frac{ad}{bc})$ is either the log of 0 or has a 0 in the denominator. For this situation, it is common practice to avoid 0s by adding 0.5 to each cell. This is referred to as the *Haldane-Anscombe correction* and has been shown, both in practice and theory, to work well. 
+The log odds ratio is not defined if any of the cells of the two-by-two table are 0. This is because if $a$, $b$, $c$, or $d$ are 0, the $\log(\frac{ad}{bc})$ is either the log of 0 or has a 0 in the denominator. For this situation, it is common practice to avoid 0s by adding 0.5 to each cell. This is referred to as the *Haldane-Anscombe correction* and has been shown, both in practice and theory, to work well.
 :::
 
 ## Logistic regression {#sec-glm}
 
 We now connect the association tests described above to the linear model framework introduced in @sec-treatment-effect-models. Once we make this connection, the same ideas extend naturally to more complex settings, including models with continuous predictors and multiple explanatory variables.
 
-If we define $Y_i$ to be 1 if applicant $i$ was funded and 0 otherwise, and set $x_i = 1$ for women and $x_i = 0$ for men, we might be tempted to write a linear model:
+If we define $Y_i$ to be 1 if application $i$ was funded and 0 otherwise, and set $x_i = 1$ for women and $x_i = 0$ for men, we might be tempted to write a linear model:
 
 $$
 Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i.
@@ -267,7 +272,7 @@ we get the following useful interpretation of the parameters:
 The parameter $\beta_1$ is thus the *log odds ratio*.
 
 :::{.callout-note}
-The name *logistic regression* comes from the fact that 
+The name *logistic regression* comes from the fact that
 
 $$
 g(p) = \log\frac{p}{1-p}
@@ -295,7 +300,7 @@ Readers interested in a deeper and more general treatment of MLE and logistic re
 
 We can fit the logistic regression model in R using the `glm` function with `family = binomial`.
 
-Although we do not have individual-level records, we *do* have totals for each group. This is sufficient because the sum of the outcomes for men is a binomial random variable with $N_0$ trials (the number of male applicants) and success probability $p_0$, which satisfies
+Although we do not have a record for each application, we *do* have totals for each group. This is sufficient because the sum of the outcomes for men is a binomial random variable with $N_0$ trials (the number of applications by men) and success probability $p_0$, which satisfies
 
 $$
 \log\left(\frac{p_0}{1-p_0}\right) = \beta_0.
@@ -359,7 +364,7 @@ c(tidy(fit)$estimate[2], tidy(fit)$std.error[2])
 ```
 
 :::{.callout-warning}
-The p-values obtained from `chisq.test` and from logistic regression 
+The p-values obtained from `chisq.test` and from logistic regression
 
 ```{r}
 chisq.test(o, correct = FALSE)$p.value
@@ -369,13 +374,51 @@ tidy(fit)$p.value[2]
 differ slightly because they are based on different approximations.
 :::
 
+<!-- 23 Nov 2026 (Claude), Pass B: new subsection for Week 12 (logistic regression on one row per participant, reading summary(glm())). Not in Irizarry's book. Draft, to review. -->
+
+### One row per participant {#sec-logistic-individual}
+
+:::{.callout-warning}
+## Draft
+This subsection and *Several predictors* below were written for this book on 23 November 2026, and are not yet reviewed by the instructor.
+:::
+
+In behavioural data we usually have one row per participant, or per trial, with the outcome coded as 0 or 1, rather than totals for each group. The `real_or_ai` dataset in **behdslabs** is an example. In a simulated online experiment, each of 600 participants saw one image and judged whether it was a real photograph or generated by AI. Half of the participants, chosen at random, had to answer within three seconds (`time_pressure`); half saw a photo-like image and half an illustration (`image_type`), also at random; and each participant rated their familiarity with generative AI tools from 0 to 10 (`ai_familiarity`). The outcome, `correct`, is 1 if the judgement was right:
+
+```{r}
+head(real_or_ai)
+```
+
+Each participant gives a single judgement, so the observations are independent, as the model assumes. We can tabulate the outcome by time pressure:
+
+```{r}
+with(real_or_ai, table(time_pressure, correct))
+```
+
+This is again a two-by-two table, but `glm` does not need it: we can give it the 0/1 outcome directly, with the same formula syntax as `lm`:
+
+```{r}
+fit_pressure <- glm(correct ~ time_pressure, family = binomial, data = real_or_ai)
+summary(fit_pressure)
+```
+
+The output has the same layout as `summary(lm())`, with two differences. The estimates are on the log-odds scale, and the tests use a $z$ statistic instead of a $t$ statistic, because they rely on the normal approximation for maximum likelihood estimates described above. To read the effect of time pressure, we exponentiate the estimate and its confidence interval:
+
+```{r}
+#| message: false
+exp(coef(fit_pressure))
+exp(confint(fit_pressure))
+```
+
+The intercept, `r round(exp(coef(fit_pressure))[1], 2)`, is the odds of a correct answer without time pressure, the reference level: about `r round(exp(coef(fit_pressure))[1])` correct answers for each wrong one. The odds ratio for `time_pressureyes`, `r round(exp(coef(fit_pressure))[2], 2)`, says that time pressure multiplies these odds by about `r round(exp(coef(fit_pressure))[2], 2)`, with a 95% confidence interval from `r round(exp(confint(fit_pressure))[2, 1], 2)` to `r round(exp(confint(fit_pressure))[2, 2], 2)`. Because time pressure was assigned at random, we can read this as the effect of time pressure on accuracy (see *Random assignment* in @sec-experimental-designs).
+
 ## Generalizing the model
 
 At first glance, logistic regression may seem like an unnecessarily complicated way to obtain the same results we derived using the odds ratio and the standard error approximation. So why introduce this more general framework?
 
-The key advantage becomes clear when the explanatory variables are not just two categories. For example, returning to the question of coronary heart disease, age is a continuous variable. There is no simple way to form a two-by-two table for every possible age value. Similarly, if we wish to adjust for several explanatory variables simultaneously (as we did in @sec-treatment-effect-models), we need a model-based approach rather than a table-based one.
+The key advantage becomes clear when the explanatory variables are not just two categories. For example, returning to the `real_or_ai` experiment, familiarity with AI tools is rated from 0 to 10. There is no simple way to form a two-by-two table for every possible value. Similarly, if we wish to adjust for several explanatory variables simultaneously (as we did in @sec-adjusting-confounder), we need a model-based approach rather than a table-based one.
 
-The general strategy is to assume $Y_i$ follows a known distribution, such as binomial or exponential, and 
+The general strategy is to assume $Y_i$ follows a known distribution, such as binomial or exponential, and
 model a *transformation* of the expected value of the outcome using a linear combination of predictors:
 
 $$
@@ -386,86 +429,128 @@ Here $x_{ij}$ is the value of the $j$-th explanatory variable for individual $i$
 
 This framework is known as a **generalized linear model** (GLM). Logistic regression is one special case; Poisson regression is another.
 
-### Logistic regression example: Coronary heart disease
+### Logistic regression example: AI familiarity
 
-The `SAheart` dataset contains observations from a retrospective sample of adult males in a high-risk region of South Africa:
+If we compute the proportion of correct answers at each level of familiarity and examine the log-odds, the relationship appears approximately linear:
 
-```{r}
-data("SAheart", package = "bestglm")
-```
-
-If we compute the proportion of individuals with heart disease at each age and examine the log-odds, the relationship appears approximately linear:
-
-```{r heart-study-eda}
-SAheart |> 
-  group_by(age) |>
-  summarize(chd = mean(chd)) |>
-  ggplot(aes(age, log(chd/(1 - chd)))) + 
+```{r ai-familiarity-eda}
+real_or_ai |>
+  group_by(ai_familiarity) |>
+  summarize(correct = mean(correct)) |>
+  ggplot(aes(ai_familiarity, log(correct/(1 - correct)))) +
   geom_point()
 ```
-The points at the bottom of the plot correspond to ages where the observed proportion of heart disease is 0, which leads to log-odds of $-\infty$. The function `ggplot` has the convention of showing these plots cut off at the bottom of the plot. When the proportion is 1, the log-odds would be $\infty$ and the points would be cut off at the top of the plot.  The points in between suggest a roughly linear relationship between age and log-odds of heart disease, which motivates the logistic regression model:
+
+If at some familiarity level all participants, or none, had answered correctly, the observed proportion would be 1 or 0 and the log-odds $\infty$ or $-\infty$; `ggplot` would then show these points cut off at the top or the bottom of the plot. This does not happen here, but it is common with small groups. The points suggest a roughly linear relationship between familiarity and the log-odds of a correct answer, which motivates the logistic regression model:
 
 $$
 \log\left\{\frac{\Pr(Y_i=1)}{1 - \Pr(Y_i=1)}\right\} = \beta_0 + \beta_1 x_i
 $$
-with $Y_i$ an indicator of coronary heart disease and $x_i$ representing the age of individual $i$. The estimate for $\beta_1$ converts into an *odds ratio*. The quantity $\exp(\beta_1)$ represents the multiplicative increase in the odds of heart disease for each one-year increase in age.
+with $Y_i$ an indicator of a correct answer and $x_i$ representing the familiarity rating of participant $i$. The estimate for $\beta_1$ converts into an *odds ratio*. The quantity $\exp(\beta_1)$ represents the multiplicative increase in the odds of a correct answer for each one-point increase in familiarity.
 
 We can fit the model using:
 
 ```{r}
-fit <- glm(chd ~ age, family = binomial, data = SAheart)
+fit <- glm(correct ~ ai_familiarity, family = binomial, data = real_or_ai)
 tidy(fit)[2,]
 ```
 
 We can then use GLM theory to construct a 95% confidence interval for the odds ratio:
 
 ```{r}
+#| message: false
 exp(confint(fit))[2, ]
 ```
 
-We can also use the fitted model to compute predicted probabilities for specific ages:
+We can also use the fitted model to compute predicted probabilities for specific familiarity ratings:
 
 ```{r}
-predict(fit, data.frame(age = seq(20, 80, 10)), type = "response")
+predict(fit, data.frame(ai_familiarity = seq(0, 10, 2)), type = "response")
 ```
 
 When `type = "response"`, the `predict` function uses the inverse logistic transformation to convert $\hat{\beta}_0 + \hat{\beta}_1 x_i$ to estimated probabilities.
 
+Note that familiarity was measured, not assigned: participants who use AI tools more may also differ in other ways, for example in age or in how much time they spend on images in general. Its odds ratio describes an association, not an effect (@sec-association-not-causation). More generally, we must be cautious when interpreting the coefficients of a logistic regression. A model will always return parameter estimates, p-values, and confidence intervals, but these numbers are only meaningful if the model is a reasonable approximation to the data-generating mechanism. There is rarely a theory guaranteeing that the relationship between a predictor and the log-odds of the outcome is linear. Therefore, model assumptions should be examined critically. This includes exploratory data analysis, such as the plot above, consideration of possible confounding variables, and assessment of model fit through diagnostic tools, rather than accepting the fitted model at face value.
 
-Note that the `SAheart` dataset includes several additional explanatory variables that could plausibly relate to heart disease risk, such as tobacco use, cholesterol level, and family history. With the `glm` function, we can include these predictors in the model simply by adding them to the right-hand side of the formula. However, we must be cautious when interpreting the resulting coefficients. A logistic regression model will always return parameter estimates, p-values, and confidence intervals, but these numbers are only meaningful if the model is a reasonable approximation to the data-generating mechanism. In many biomedical settings, there is no underlying physiological theory guaranteeing that the relationship between predictors and the log-odds of disease is linear. Therefore, model assumptions should be examined critically. This includes exploratory data analysis, consideration of possible confounding variables, and assessment of model fit through diagnostic tools, rather than accepting the fitted model at face value.
+### Several predictors {#sec-logistic-several-predictors}
 
+<!-- 23 Nov 2026 (Claude), Pass B: new subsection for Week 12 (several predictors, predicted probabilities with emmeans, likelihood-ratio test). Draft, to review. -->
 
-### Poisson regression example: Effectiveness of insect sprays
+With the `glm` function, we can include several predictors simply by adding them to the right-hand side of the formula, as with `lm`. Here we model accuracy as a function of both time pressure and familiarity:
 
-The `InsectSprays` dataset records the number of insects found in agricultural field units after treatment with different sprays:
-
-```{r insect-spray-boxplot}
-InsectSprays |>  ggplot(aes(spray, count)) + geom_boxplot() + geom_jitter()
+```{r}
+fit_both <- glm(correct ~ time_pressure + ai_familiarity,
+                family = binomial, data = real_or_ai)
+tidy(fit_both)
 ```
 
-Spray C appears most effective. We could compare mean insect counts across sprays:
+Each coefficient is now the change in the log-odds of a correct answer for one predictor, holding the other constant. As before, we exponentiate to obtain odds ratios:
+
+```{r}
+#| message: false
+exp(cbind(estimate = coef(fit_both), confint(fit_both)))
+```
+
+At the same level of familiarity, time pressure multiplies the odds of a correct answer by about `r round(exp(coef(fit_both))[2], 2)`; at the same level of time pressure, each extra point of familiarity multiplies them by about `r round(exp(coef(fit_both))[3], 2)`. The effect of time pressure is nearly the same as in the model without familiarity, because time pressure was assigned at random and is therefore unrelated to familiarity.
+
+Odds ratios are the standard way to report a logistic regression, but they are hard to communicate. Probabilities are easier. The **emmeans** package, which we used for estimated means in @sec-contrasts, also works with `glm` models; with `type = "response"` it reports the estimated probability of a correct answer in each condition, at the average familiarity:
+
+```{r}
+#| message: false
+library(emmeans)
+emmeans(fit_both, ~ time_pressure, type = "response")
+```
+
+Without time pressure, participants are expected to answer correctly about `r round(100 * summary(emmeans::emmeans(fit_both, ~ time_pressure, type = "response"))$prob[1])`% of the time; with time pressure, about `r round(100 * summary(emmeans::emmeans(fit_both, ~ time_pressure, type = "response"))$prob[2])`%, close to the 50% expected by guessing.
+
+Finally, to test whether a predictor, or a group of predictors, improves the model, we compare two nested models: one without it and one with it. With `lm`, this comparison uses an F test. With `glm`, it uses the *likelihood-ratio test* (LRT), which compares how probable the observed data are under the two models:
+
+```{r}
+fit_familiarity <- glm(correct ~ ai_familiarity, family = binomial, data = real_or_ai)
+anova(fit_familiarity, fit_both, test = "Chisq")
+```
+
+The *deviance* plays the role of the residual sum of squares: the smaller it is, the better the model fits. Adding time pressure reduces the deviance by `r round(anova(fit_familiarity, fit_both, test = "Chisq")$Deviance[2], 1)`, much more than expected by chance, so time pressure improves the model. With a single predictor, the LRT and the $z$ test of its coefficient usually agree; the LRT is preferred when a factor has more than two levels, or to test several terms at once.
+
+### Poisson regression example: Errors in a proofreading task
+
+<!-- 23 Nov 2026 (Claude), Pass A: InsectSprays replaced by a simulated count outcome. -->
+Suppose 36 participants proofread the same text for five minutes, displayed in one of three ways assigned at random: the standard layout, a small font, or low contrast between text and background. The outcome is the number of errors each participant failed to spot, a count. We simulate the data:
+
+```{r proofreading-boxplot}
+set.seed(2026)
+proofreading <- tibble(
+  display = factor(rep(c("standard", "small font", "low contrast"), each = 12),
+                   levels = c("standard", "small font", "low contrast")),
+  errors = rpois(36, lambda = rep(c(4, 7, 10), each = 12))
+)
+proofreading |> ggplot(aes(display, errors)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(width = 0.2, height = 0)
+```
+
+The standard layout appears to lead to the fewest missed errors. We could compare mean counts across displays:
 
 ```{r}
 #| eval: false
-with(InsectSprays, tapply(count, spray, mean))
+with(proofreading, tapply(errors, display, mean))
 ```
 
 But how do we assess uncertainty? Can we construct confidence intervals? Note that counts are small (often under 10), and the sample size per group is only 12, so normal approximations may be unreliable.
 
-A Poisson regression provides an alternative. First, we choose C as the reference group, and then we fit the model:
+A Poisson regression provides an alternative. The standard layout is already the reference group, because it is the first level of `display`, so we can fit the model directly (`relevel` would let us choose another reference):
 
 ```{r}
-InsectSprays$spray <- relevel(InsectSprays$spray, ref = "C") 
-fit <- glm(count ~ spray, family = poisson, data = InsectSprays)
+fit <- glm(errors ~ display, family = poisson, data = proofreading)
 tidy(fit, conf.int = TRUE)
 ```
 
-Here, the parameters measure the log of the multiplicative change in the expected count relative to Spray C. If a spray has the same effectiveness as Spray C, its corresponding parameter estimate would be 0. The estimated coefficients and their confidence intervals indicate that several sprays differ substantially from Spray C, and these differences are too large to be explained by Poisson sampling variability alone. In other words, Spray C’s superior performance is unlikely to be due to chance.
+Here, the parameters measure the log of the multiplicative change in the expected count relative to the standard layout. If a display led to the same number of errors as the standard layout, its parameter estimate would be 0. Exponentiating, a small font multiplies the expected number of missed errors by about `r round(exp(coef(fit))[2], 1)` and low contrast by about `r round(exp(coef(fit))[3], 1)`. The confidence interval for low contrast is far from 0: this difference is too large to be explained by Poisson sampling variability alone. The interval for the small font, instead, only just excludes 0, so the evidence for that difference is weak.
 
 The inference relies on asymptotic approximations similar to the CLT but often performs better than applying the CLT directly to means when counts are small.
 
 :::{.callout-note}
-In this example, a simple comparison of group means would have also worked. The advantage of Poisson regression becomes more evident when the explanatory variable is continuous, e.g., modeling counts as a function of exposure time or concentration levels, where group-by-group averaging is not practical.
+In this example, a simple comparison of group means would have also worked. The advantage of Poisson regression becomes more evident when the explanatory variable is continuous, e.g., modeling counts as a function of time on task or of text length, where group-by-group averaging is not practical.
 :::
 
 ### Beyond logistic and Poisson regression
@@ -475,6 +560,9 @@ Logistic and Poisson regression are the two most widely used GLMs because binary
 * *Negative binomial regression* handles count data for which the variability is larger than what is predicted by the Poisson model.
 * *Gamma regression* is useful for positive continuous outcomes such as reaction times or insurance claim sizes.
 * *Quasi-likelihood GLMs* allow modeling of mean–variance relationships without fully specifying a distribution.
+<!-- 23 Nov 2026 (Claude), Pass B: the next two items are new. -->
+* *Ordinal regression*, for example with the `clm` function of the **ordinal** package, models ordered categories, such as the answers to a Likert item (@sec-measurement), without treating them as equally spaced numbers.
+* *Mixed-effects* (or *multilevel*) GLMs, for example with the `glmer` function of the **lme4** package, are needed when each participant contributes many trials, as in most behavioural experiments: the trials of the same participant are not independent, and the models above would underestimate the uncertainty.
 
 In practice, GLMs require careful model checking. Diagnostic plots and residual analysis are especially important here because, unlike ordinary least squares, we are explicitly assuming a particular outcome distribution.
 
@@ -488,14 +576,14 @@ As mentioned earlier, reporting only p-values is not always a useful way to repo
 Note that the relationship between the odds ratio and the p-value is not one-to-one; it depends on the sample size. Therefore, a very small p-value does not necessarily mean a very large odds ratio. Observe what happens to the p-value if we multiply our two-by-two table by 10, which does not change the odds ratio:
 
 ```{r}
-ox10 <- o |> mutate(men = men*10, women = women*10) 
+ox10 <- o |> mutate(men = men*10, women = women*10)
 c(chisq.test(o)$p.value, chisq.test(ox10)$p.value)
 ```
 
 
 ## Exercises
 
-1\. A famous athlete boasts an impressive career, winning 70% of her 500 career matches. Nevertheless, this athlete is criticized because in important events, such as the Olympics, she has a losing record of 8 wins and 9 losses. Perform a Chi-square test to determine if this losing record can be simply due to chance as opposed to not performing well under pressure.
+1\. A user of a brain-training app answers 70% of their 500 practice items correctly. Nevertheless, the user is criticized because in timed challenges they have a losing record of 8 correct and 9 incorrect answers. Perform a Chi-square test to determine if this losing record can be simply due to chance as opposed to performing worse under time pressure.
 
 2\. Why did we use the Chi-square test instead of Fisher's exact test in the previous exercise?
 
@@ -504,91 +592,50 @@ b.  Fisher's exact and the Chi-square are different names for the same test.
 c.  Because the sums of the rows and columns of the two-by-two table are not fixed, the hypergeometric distribution is not an appropriate assumption for the null hypothesis. For this reason, Fisher's exact test is rarely applicable to observational data.
 d.  Because the Chi-square test runs faster.
 
-3\. Now compute the odds ratio of "losing under pressure" and use the approximation we learned to construct  a 95% confidence interval. What do you say to those critiquing the athlete? Is the criticism fair?
+3\. Now compute the odds ratio of "answering incorrectly under time pressure" and use the approximation we learned to construct  a 95% confidence interval. What do you say to those criticizing the user? Is the criticism fair?
 
 4\. Repeat exercise 3 but using the `glm` function. Compare the results.
 
-5\. Use the `research_funding_rates` data to estimate the log odds ratio  and standard errors comparing women to men for each discipline. Compute a confidence interval for each discipline. Plot the log odds ratios and use error bars to denote 95% confidence intervals 
+5\. Use the `tech_grant_funding_gender_gap` data to estimate the log odds ratio  and standard errors comparing women to men for each technology domain. Compute a confidence interval for each domain. Plot the log odds ratios and use error bars to denote 95% confidence intervals
 
-6\. Report all the disciplines for which one gender appears to be favored over the other.
+6\. Report all the technology domains for which one gender appears to be favored over the other.
 
-7\. Divide the log odds ratio estimates by their respective standard errors and generate a qqplot comparing these to a standard normal. Do any of the disciplines clearly deviate from what is expected by chance? 
+7\. Divide the log odds ratio estimates by their respective standard errors and generate a qqplot comparing these to a standard normal. Do any of the domains clearly deviate from what is expected by chance?
 
-8\. During the 2016 US presidential election, then-candidate Donald J. Trump used his Twitter account as a way to communicate with potential voters. Todd Vaziri hypothesized that "Every non-hyperbolic tweet is from iPhone (his staff). Every hyperbolic tweet is from Android (from him)." We will test this hypothesis using association tests. The **behdslabs** object `sentiment_counts` provides a table with the counts for several sentiments from each source (Android or iPhone):
+8\. Using the `real_or_ai` data, build the two-by-two table of `image_type` by `correct`. Compute the odds ratio comparing illustrations to photos, with a 95% confidence interval, using the approximation for the standard error of the log odds ratio. Then fit `glm(correct ~ image_type, family = binomial, data = real_or_ai)` and compare the results.
 
-```{r}
-#| eval: false
-library(tidyverse)
-library(behdslabs)
-sentiment_counts
-```
+9\. Use `emmeans(fit, ~ image_type, type = "response")` on the model of exercise 8 to estimate the probability of a correct answer for photos and for illustrations. Is accuracy above the 50% expected by guessing for both types of image?
 
-Compute an odds ratio comparing Android to iPhone for each sentiment and add it to the table.
-
-9\. Compute a 95% confidence interval for each odds ratio.
-
-10\. Generate a plot showing the estimated odds ratios along with their confidence intervals.
-
-11\. For each sentiment, test the null hypothesis that there is no difference between tweets from Android and iPhone, and report the sentiments that are more likely to come from Android with p-values less than 0.05.
-
-12\. For each sentiment, find the words assigned to that sentiment, keep words that appear at least 25 times, compute the odds ratio for each, and show a barplot for those with odds ratios larger than 2 or smaller than 1/2.
-
-13\.  The `titanic_train` dataset in the **titanic** package has data for 891 passengers that were on the Titanic:
+10\. Fit a logistic regression model with `correct` as the outcome and `image_type` and `time_pressure` as the predictors:
 
 ```{r}
 #| eval: false
-library(titanic)
-titanic_train
-```
-
-In this dataset:
-
-* `Survived` is a binary variable (`Yes` / `No`)
-* `Sex`, `Age`, and `Class` are explanatory variables
-
-Fit a logistic regression model with survival as the outcome and sex as the predictor.
-
-```{r}
-#| eval: false
-fit <- glm(Survived ~ Sex, family = binomial, data = titanic_train)
+fit <- glm(correct ~ image_type + time_pressure, family = binomial, data = real_or_ai)
 summary(fit)
 ```
 
-a. Interpret the sign of the coefficient for `Sex`.
-b. Compute and interpret the *odds ratio*.
-c. Construct a 95% confidence interval for the odds ratio.
+a. Interpret the sign of the coefficient for `time_pressure`.
+b. Compute and interpret the *odds ratios*, with their 95% confidence intervals.
+c. Compare the coefficient for `image_type` with the one from exercise 8. Why does it barely change after adding time pressure? Hint: think about how the two factors were assigned.
 
-14\. Now fit a model with both `Sex` and `Class`:
+11\. Fit a model with an interaction term:
 
 ```{r}
 #| eval: false
-titanic_train$Pclass <- factor(titanic_train$Pclass)
-fit <- glm(Survived ~ Sex + Pclass, family = binomial, data = titanic_train)
-summary(fit)
+fit_interaction <- glm(correct ~ image_type * time_pressure, family = binomial,
+                       data = real_or_ai)
+summary(fit_interaction)
 ```
 
-a. Which passenger class has the highest odds of survival, based on the estimates?
-b. How does the estimated effect of gender change after adjusting for class? Explain why.
+a. Does the effect of time pressure vary by image type?
+b. Use `emmeans(fit_interaction, ~ time_pressure | image_type, type = "response")` to describe the pattern in terms of probabilities.
+c. Use `anova(fit, fit_interaction, test = "Chisq")` to test the interaction with a likelihood-ratio test.
 
-15\. Fit a model with an interaction term:
-
-```{r}
-#| eval: false
-fit <- glm(Survived ~ Sex * Pclass, family = binomial, data = titanic_train)
-summary(fit)
-```
-
-a. Does the effect of gender vary by class?
-b. Use `exp(coef(fit_interaction))` to interpret interaction patterns in terms of odds ratios.
-
-
-16\. The `InsectSprays` dataset records insect counts for six spray types.
-
-Recall the Poisson regression model:
+12\. Recreate the `proofreading` data with the code in *Poisson regression example* above. Recall the Poisson regression model:
 
 ```{r}
 #| eval: false
-fit_glm <- glm(count ~ spray, family = poisson, data = InsectSprays)
+fit_glm <- glm(errors ~ display, family = poisson, data = proofreading)
 summary(fit_glm)
 ```
 
@@ -596,16 +643,16 @@ Fit a linear regression model to the log-transformed counts (we have to add 0.5 
 
 ```{r}
 #| eval: false
-InsectSprays$log_count <- log(InsectSprays$count + 0.5)
-fit_lm <- lm(log_count ~ spray, data = InsectSprays)
+proofreading$log_errors <- log(proofreading$errors + 0.5)
+fit_lm <- lm(log_errors ~ display, data = proofreading)
 summary(fit_lm)
 ```
 
-a. Compare the estimated spray effects from `fit_glm` and `fit_lm`.
+a. Compare the estimated display effects from `fit_glm` and `fit_lm`.
 b. Discuss the advantages of one model over the other.
 
 
-17\. In GLMs, although there is no separate error term $\varepsilon$, we can still define *residuals* by comparing the observed outcome $y_i$ to the fitted value $\hat{y}_i$. However, unlike in standard linear regression, the variance of $Y_i$ is not constant. For instance:
+13\. In GLMs, although there is no separate error term $\varepsilon$, we can still define *residuals* by comparing the observed outcome $y_i$ to the fitted value $\hat{y}_i$. However, unlike in standard linear regression, the variance of $Y_i$ is not constant. For instance:
 
 * In logistic regression, $\mathrm{Var}[Y_i] = p_i(1 - p_i)$, which depends on the fitted probability $p_i=\Pr(Y_i=1)$.
 * In Poisson regression, $\mathrm{Var}[Y_i]= \mathrm{E}[Y_i]$, so the standard error can be estimated with $\sqrt{\hat{y}_i}$.
@@ -641,15 +688,8 @@ plot(fit_lm, which = 1)
 a. Which model appears to better describe the data?
 b. In what situations might the log-transform approach fail while Poisson regression still works?
 
-18\. Explain in your own words:
+14\. Explain in your own words:
 
 * Why logistic and Poisson regression are useful when modeling binary or count data.
 * Why it is not always appropriate to apply standard linear regression to these outcomes.
 * Why checking model assumptions (for example, plots, fit diagnostics) is critical when using GLMs.
-
-
-
-
-
-
-

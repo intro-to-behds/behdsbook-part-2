@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/measurement.html</loc>
-    <lastmod>2026-11-22T20:04:59.574Z</lastmod>
+    <lastmod>2026-11-23T14:45:25.380Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/simulating-measurement.html</loc>
@@ -34,7 +34,7 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/behav/association-causation.html</loc>
-    <lastmod>2026-11-23T05:18:24.670Z</lastmod>
+    <lastmod>2026-11-23T14:45:25.378Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/summaries/intro-summaries.html</loc>
@@ -138,7 +138,7 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/intro-to-linear-models.html</loc>
-    <lastmod>2026-11-22T19:48:14.893Z</lastmod>
+    <lastmod>2026-11-23T18:32:41.900Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/regression.html</loc>
@@ -151,6 +151,10 @@
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/treatment-effect-models.html</loc>
     <lastmod>2026-11-22T19:48:14.895Z</lastmod>
+  </url>
+  <url>
+    <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/glm.html</loc>
+    <lastmod>2026-11-23T18:43:12.230Z</lastmod>
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/linear-models/reading-lm.html</loc>
@@ -170,6 +174,6 @@
   </url>
   <url>
     <loc>https://intro-to-behds.github.io/behdsbook-part-2/work-in-progress.html</loc>
-    <lastmod>2026-10-18T05:06:30.216Z</lastmod>
+    <lastmod>2026-11-23T18:32:49.429Z</lastmod>
   </url>
 </urlset>
