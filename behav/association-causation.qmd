@@ -39,11 +39,11 @@ As discussed in @sec-experimental-designs, randomised experiments answer causal 
 
 ## Correlational designs and correlation analyses
 
-The phrase *correlation does not imply causation* is often misread as a statement about a statistical technique. It is a statement about the **design**. A correlation coefficient computed on data from a randomised experiment can support a causal conclusion; a t-test computed on data from an observational study cannot, on its own.
+The phrase *association is not causation* is also often found as *correlation is not causation*. The two are nearly equivalent, but the second is insidious, because it is easily misread as a statement about a statistical technique, the correlation coefficient. Both are statements about the relationship between the observed variables, and what we can conclude about that relationship depends on the **design** of the data collection, not on the analysis (@sec-association-causality). A correlation coefficient computed on data from a randomised experiment can support a causal conclusion, because random assignment deals with the alternative explanations (see *Experimental research* and *Random assignment* in @sec-experimental-designs); a t-test computed on data from an observational study cannot, on its own, support a strong causal claim.
 
 Consider a study comparing patients with a neurological condition and healthy controls on a reaction-time task, or heavy and light smartphone users on an attention test. The analysis is a comparison of two groups, with a t-test or a Wilcoxon test (@sec-two-groups). It looks like an experiment, but nobody assigned participants to the groups: they arrived already belonging to one of them. Such **pre-existing groups** differ in many ways besides the one that names them. Patients and controls may differ in age, education, medication, fatigue and motivation; heavy smartphone users may differ in age, sleep and job. The study is correlational in design, whatever test is used to analyse it.
 
-Matching participants on some characteristics, such as age and education, makes the groups more comparable on those characteristics, but not on the ones that were not measured. This is why randomisation, which also balances unmeasured characteristics on average, is so valuable.
+Matching participants on some characteristics, such as age and education, makes the groups more comparable on those characteristics (@fig-matching), but not on the ones that were not measured. This is why randomisation, which also balances unmeasured characteristics on average, is so valuable (see *Random assignment* in @sec-experimental-designs, and @fig-why-randomise).
 
 ## Alternative explanations
 

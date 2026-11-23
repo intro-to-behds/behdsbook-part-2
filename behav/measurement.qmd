@@ -21,7 +21,7 @@ The first one you could, in principle, verify. If you doubted it, you could go t
 
 The second is not. Notice that I did not write "the score on the stress questionnaire". I wrote "stress reduction". The score is a number you obtained; stress is a *psychological concept*, and nobody has ever observed one directly. The number expressing the stress reduction has been obtained through a questionnaire, and more specifically, through the items composing the questionnaire. An observable behavior, i.e., the responses to each items, have been combined and used to express something related to an unobservable concept, in this case the psychological stress.
 
-This distinction is the subject of an entire discipline, **psychometrics**: the study of how psychological attributes can be measured, and of how well a given instrument manages it.[^oip] Psychometrics exists because measurement in psychology is a very peculiar situtation It does not deal with physical properties of physical objects, but with **constructs**: psychological concepts that are not directly observable (in statistical terms, *latent* variables: hidden, inferred from what we can observe).
+This distinction is the subject of an entire discipline, **psychometrics**: the study of how psychological attributes can be measured, and of how well a given instrument manages it.[^oip] Psychometrics exists because measurement in psychology is a very peculiar situtation It does not deal with physical properties of physical objects, but with **constructs**: psychological concepts that are not directly observable (in statistical terms, they are called *latent* variables: hidden, inferred from what we can observe).
 
 [^oip]: This chapter draws heavily on my own book on psychometrics in clinical neuropsychology, G. Arcara, *Oltre i punteggi* (in Italian), where several of these topics are treated at much greater length. The examples here have been re-anchored from clinical assessment to human–technology research, but the underlying problems are the same ones.
 
@@ -54,7 +54,7 @@ We need to introduce two important terms.
 ::: {.callout-note}
 ## Definitions
 
-**Construct** — a psychological concept that is not directly observable (satisfaction, attention, trust, cognitive load). To be measured at all, it has to be tied to one or more *indicators*. Because they are not observed, constructs are also called **latent variables**.
+**Construct** — a psychological concept that is not directly observable (satisfaction, attention, trust, cognitive load). To be measured at all, it has to be tied to one or more *indicators*. Because they are not observed, constructs are often modeled as **latent variables** in statistical analyses.
 
 **Indicator** (or **proxy**) — an observable behaviour which, alone or together with others, we assume is a manifestation of the construct. Answers to the items of a questionnaire are the typical case.
 :::
@@ -721,24 +721,20 @@ A final connection: the same logic explains why measurement error in a *predicto
 
 ## What not to forget
 
-If you remember one thing from this chapter, make it this.
+If you remember one thing from this chapter, it should be this: **A result on a proxy does not allow automatically to make claims about a construct.**. 
 
-::: {.callout-warning}
-**A result on a proxy does not license a claim about the construct.**
+You obtained a score, with a tool, a device, or a psychological test. The effect is on the score. Whether that effect is an effect *on the construct* is a separate question, and it requires a separate argument, and further evidence.
 
-You measured a score. You found an effect on the score. Whether that effect is an effect *on the construct* is a separate question, and it requires a separate argument.
-:::
+Let's go back to the wellbeing app from the opening. Stress scores dropped over the month of app use. The conclusion offers itself: the app reduced stress. But consider what else could produce exactly that pattern.
 
-Go back to the wellbeing app from the opening. Stress scores dropped over the month of app use. The conclusion offers itself: the app reduced stress. But consider what else could produce exactly that pattern.
-
-- Users' general enthusiasm for the technology grew, and they responded more positively to everything, stress questionnaires included — a change in the proxy with no change in the construct.
+- Users' general enthusiasm for the technology grew, and they responded more positively to everything, stress questionnaires included: a change in the proxy with no change in the construct.
 - Users worked out what the questionnaire was for and what a good outcome would look like. Reporting less stress is not the same as having less stress.
 - The most stressed users quietly stopped using the app, and therefore stopped filling in questionnaires. The average improved because the sample changed. Recall the `r sum(is.na(daily_mood_ratings))` missing days in `daily_mood_ratings`: if the missing days are disproportionately the bad ones, every summary computed on the remaining days is optimistic, and nothing in the data will tell you.
 - The month happened to be a calm one.
 
-Every one of these is an arrow in @fig-other-variables — something that moves the observable behaviour without moving the construct. None of them is exotic, and none of them is ruled out by a small p-value.
+Every one of these is an arrow in @fig-other-variables: something that changes the observable behaviour even if the construct is not changed. This is also why psychometric properties (as validity and reliability) are important: they provide evidence about how we can meaningfully interpret test scores.
 
-This family of problems is exactly what Flake and Fried set out to document under the heading of *questionable measurement practices*: not literal frauds, but the ordinary, widespread habits of not asking what a measure is actually measuring.[^flake]
+The kind of problems related listed in the example above is exactly what Flake and Fried set out to document under the heading of *questionable measurement practices*: they are not literal frauds, but the ordinary, widespread habits of not asking what a measure is actually measuring.[^flake]
 
 [^flake]: J. K. Flake & E. I. Fried (2020), *Measurement Schmeasurement: Questionable Measurement Practices and How to Avoid Them*, **Advances in Methods and Practices in Psychological Science**, 3(4), 456–465, <https://doi.org/10.1177/2515245920952393>.
 
@@ -757,7 +753,7 @@ This is the same instinct as the disclosure norms for AI-assisted work discussed
 
 ## Other analyses
 
-The distinction this chapter is built on — between a construct and the indicators we use for it — is not just a conceptual caution. There is a family of statistical methods built directly on it: **exploratory and confirmatory factor analysis**, and more generally **structural equation modelling**. These model the _latent_ construct and the observed indicators as separate objects, which is what makes them the natural tools for asking whether your five items really are measuring one thing, and whether they measure the same thing in different groups.
+The distinction this chapter is built on, between a construct and the indicators we use for it,  is not just a conceptual caution. There is a family of statistical methods built directly on it: **exploratory and confirmatory factor analysis**, and more generally **structural equation modelling**. These model the _latent_ construct and the observed indicators as separate objects, which is what makes them the natural tools for asking whether your five items really are measuring one thing, and whether they measure the same thing in different groups.
 
 One could ask, why don't we use these more appropriate methods for measuring constructs then, if they are available? 
 
@@ -779,7 +775,7 @@ However as Behavioral data scientis you shoule be aware that it will be tempting
 **Behaviour ≠ Construct**
 :::
 
-An effect on the indicator is not automatically an effect on the construct. Whenever you describe a result in construct terms ("users are *more satisfied*", "the app *reduced stress*"), you are adding an assumption that the data alone do not support.
+An effect on the indicator is not automatically an effect on the construct. Whenever you describe a result in construct terms ("users are *more satisfied*", "the app *reduced stress*"), you are adding an assumption that could not be fully supported by the data.
 :::
 
 ## Psychological measurement in behavioural data science: some pragmatic considerations {#sec-measurement-pragmatic}

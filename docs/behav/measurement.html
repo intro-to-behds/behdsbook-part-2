@@ -547,7 +547,7 @@ window.Quarto = {
 <p>Both are numbers. Both will sit in the same data frame, in adjacent columns, and every function in this book will treat them identically. But if you think more about it, we cannot treat them the same way.</p>
 <p>The first one you could, in principle, verify. If you doubted it, you could go to the server logs and count. “Number of app opens” is a description of something that happened, and the number is the thing itself.</p>
 <p>The second is not. Notice that I did not write “the score on the stress questionnaire”. I wrote “stress reduction”. The score is a number you obtained; stress is a <em>psychological concept</em>, and nobody has ever observed one directly. The number expressing the stress reduction has been obtained through a questionnaire, and more specifically, through the items composing the questionnaire. An observable behavior, i.e., the responses to each items, have been combined and used to express something related to an unobservable concept, in this case the psychological stress.</p>
-<p>This distinction is the subject of an entire discipline, <strong>psychometrics</strong>: the study of how psychological attributes can be measured, and of how well a given instrument manages it.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Psychometrics exists because measurement in psychology is a very peculiar situtation It does not deal with physical properties of physical objects, but with <strong>constructs</strong>: psychological concepts that are not directly observable (in statistical terms, <em>latent</em> variables: hidden, inferred from what we can observe).</p>
+<p>This distinction is the subject of an entire discipline, <strong>psychometrics</strong>: the study of how psychological attributes can be measured, and of how well a given instrument manages it.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Psychometrics exists because measurement in psychology is a very peculiar situtation It does not deal with physical properties of physical objects, but with <strong>constructs</strong>: psychological concepts that are not directly observable (in statistical terms, they are called <em>latent</em> variables: hidden, inferred from what we can observe).</p>
 <p>Let me make the point concretely, with data from another example.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>app_engagement_experiment <span class="sc">|&gt;</span></span>
@@ -591,7 +591,7 @@ Definitions
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Construct</strong> — a psychological concept that is not directly observable (satisfaction, attention, trust, cognitive load). To be measured at all, it has to be tied to one or more <em>indicators</em>. Because they are not observed, constructs are also called <strong>latent variables</strong>.</p>
+<p><strong>Construct</strong> — a psychological concept that is not directly observable (satisfaction, attention, trust, cognitive load). To be measured at all, it has to be tied to one or more <em>indicators</em>. Because they are not observed, constructs are often modeled as <strong>latent variables</strong> in statistical analyses.</p>
 <p><strong>Indicator</strong> (or <strong>proxy</strong>) — an observable behaviour which, alone or together with others, we assume is a manifestation of the construct. Answers to the items of a questionnaire are the typical case.</p>
 </div>
 </div>
@@ -1271,27 +1271,17 @@ Four cautions about the correction
 </section>
 <section id="what-not-to-forget" class="level2" data-number="1.8">
 <h2 data-number="1.8" class="anchored" data-anchor-id="what-not-to-forget"><span class="header-section-number">1.8</span> What not to forget</h2>
-<p>If you remember one thing from this chapter, make it this.</p>
-<div class="callout callout-style-simple callout-warning">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>A result on a proxy does not license a claim about the construct.</strong></p>
-<p>You measured a score. You found an effect on the score. Whether that effect is an effect <em>on the construct</em> is a separate question, and it requires a separate argument.</p>
-</div>
-</div>
-</div>
-<p>Go back to the wellbeing app from the opening. Stress scores dropped over the month of app use. The conclusion offers itself: the app reduced stress. But consider what else could produce exactly that pattern.</p>
+<p>If you remember one thing from this chapter, it should be this: <strong>A result on a proxy does not allow automatically to make claims about a construct.</strong>.</p>
+<p>You obtained a score, with a tool, a device, or a psychological test. The effect is on the score. Whether that effect is an effect <em>on the construct</em> is a separate question, and it requires a separate argument, and further evidence.</p>
+<p>Let’s go back to the wellbeing app from the opening. Stress scores dropped over the month of app use. The conclusion offers itself: the app reduced stress. But consider what else could produce exactly that pattern.</p>
 <ul>
-<li>Users’ general enthusiasm for the technology grew, and they responded more positively to everything, stress questionnaires included — a change in the proxy with no change in the construct.</li>
+<li>Users’ general enthusiasm for the technology grew, and they responded more positively to everything, stress questionnaires included: a change in the proxy with no change in the construct.</li>
 <li>Users worked out what the questionnaire was for and what a good outcome would look like. Reporting less stress is not the same as having less stress.</li>
 <li>The most stressed users quietly stopped using the app, and therefore stopped filling in questionnaires. The average improved because the sample changed. Recall the 145 missing days in <code>daily_mood_ratings</code>: if the missing days are disproportionately the bad ones, every summary computed on the remaining days is optimistic, and nothing in the data will tell you.</li>
 <li>The month happened to be a calm one.</li>
 </ul>
-<p>Every one of these is an arrow in <a href="#fig-other-variables" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> — something that moves the observable behaviour without moving the construct. None of them is exotic, and none of them is ruled out by a small p-value.</p>
-<p>This family of problems is exactly what Flake and Fried set out to document under the heading of <em>questionable measurement practices</em>: not literal frauds, but the ordinary, widespread habits of not asking what a measure is actually measuring.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
+<p>Every one of these is an arrow in <a href="#fig-other-variables" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>: something that changes the observable behaviour even if the construct is not changed. This is also why psychometric properties (as validity and reliability) are important: they provide evidence about how we can meaningfully interpret test scores.</p>
+<p>The kind of problems related listed in the example above is exactly what Flake and Fried set out to document under the heading of <em>questionable measurement practices</em>: they are not literal frauds, but the ordinary, widespread habits of not asking what a measure is actually measuring.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
 </section>
 <section id="a-checklist-before-you-measure-anything" class="level2" data-number="1.9">
 <h2 data-number="1.9" class="anchored" data-anchor-id="a-checklist-before-you-measure-anything"><span class="header-section-number">1.9</span> A checklist before you measure anything</h2>
@@ -1308,7 +1298,7 @@ Four cautions about the correction
 </section>
 <section id="other-analyses" class="level2" data-number="1.10">
 <h2 data-number="1.10" class="anchored" data-anchor-id="other-analyses"><span class="header-section-number">1.10</span> Other analyses</h2>
-<p>The distinction this chapter is built on — between a construct and the indicators we use for it — is not just a conceptual caution. There is a family of statistical methods built directly on it: <strong>exploratory and confirmatory factor analysis</strong>, and more generally <strong>structural equation modelling</strong>. These model the <em>latent</em> construct and the observed indicators as separate objects, which is what makes them the natural tools for asking whether your five items really are measuring one thing, and whether they measure the same thing in different groups.</p>
+<p>The distinction this chapter is built on, between a construct and the indicators we use for it, is not just a conceptual caution. There is a family of statistical methods built directly on it: <strong>exploratory and confirmatory factor analysis</strong>, and more generally <strong>structural equation modelling</strong>. These model the <em>latent</em> construct and the observed indicators as separate objects, which is what makes them the natural tools for asking whether your five items really are measuring one thing, and whether they measure the same thing in different groups.</p>
 <p>One could ask, why don’t we use these more appropriate methods for measuring constructs then, if they are available?</p>
 <p>A <strong>first reason</strong> is simple: these methods are actually more difficult to fit, they can require large number of observations or participants, or require the fulfillment of some assumptions about data distribution that could not be met. Also modeling complex interactions or non-linear relationship can be more difficult as compared to other, more widely used, models. For this reason a widespread habit is to use traditional methods and then interpret them.</p>
 <p>To be more precise, you will meet some details on latent factor models and dimension reduction in this book, in a chapter to be added in a later version of this book<!-- @sec-latent-factor-models @sec-dimension-reduction -->. There is, however, an important difference in emphasis. Those chapters use latent factors to <em>predict better</em> — to improve recommendations by discovering structure in ratings. That is a different goal from using them to <em>justify an interpretation</em>, which is what a psychometrician wants. While the machinery overlaps substantially, the questions should be considered as separate.</p>
@@ -1328,7 +1318,7 @@ Beware of interpretations
 <div style="text-align: center; font-size: 1.6em; margin: 0.4em 0;">
 <p><strong>Behaviour ≠ Construct</strong></p>
 </div>
-<p>An effect on the indicator is not automatically an effect on the construct. Whenever you describe a result in construct terms (“users are <em>more satisfied</em>”, “the app <em>reduced stress</em>”), you are adding an assumption that the data alone do not support.</p>
+<p>An effect on the indicator is not automatically an effect on the construct. Whenever you describe a result in construct terms (“users are <em>more satisfied</em>”, “the app <em>reduced stress</em>”), you are adding an assumption that could not be fully supported by the data.</p>
 </div>
 </div>
 </section>
