@@ -8,7 +8,7 @@
 
 <meta name="author" content="Rafael A. Irizarry (original); adapted by Giorgio Arcara for Behavioural Data Science">
 
-<title>28&nbsp; From Results to Conclusions – Introduction to Behavioural Data Science</title>
+<title>29&nbsp; From Results to Conclusions – Introduction to Behavioural Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -148,7 +148,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../interpretation/intro-interpretation.html">Interpreting Evidence</a></li><li class="breadcrumb-item"><a href="../interpretation/results-to-conclusions.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../interpretation/intro-interpretation.html">Interpreting Evidence</a></li><li class="breadcrumb-item"><a href="../interpretation/results-to-conclusions.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -441,6 +441,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../linear-models/reading-lm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Recommended Reading</span></a>
   </div>
@@ -459,13 +465,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../interpretation/results-to-conclusions.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../interpretation/credible-evidence.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span></a>
   </div>
 </li>
       </ul>
@@ -486,27 +492,27 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-results-vs-interpretation" id="toc-sec-results-vs-interpretation" class="nav-link active" data-scroll-target="#sec-results-vs-interpretation"><span class="header-section-number">28.1</span> Results and interpretation</a></li>
-  <li><a href="#interpreting-a-result" id="toc-interpreting-a-result" class="nav-link" data-scroll-target="#interpreting-a-result"><span class="header-section-number">28.2</span> Interpreting a result</a>
+  <li><a href="#sec-results-vs-interpretation" id="toc-sec-results-vs-interpretation" class="nav-link active" data-scroll-target="#sec-results-vs-interpretation"><span class="header-section-number">29.1</span> Results and interpretation</a></li>
+  <li><a href="#interpreting-a-result" id="toc-interpreting-a-result" class="nav-link" data-scroll-target="#interpreting-a-result"><span class="header-section-number">29.2</span> Interpreting a result</a>
   <ul class="collapse">
   <li><a href="#three-questions" id="toc-three-questions" class="nav-link" data-scroll-target="#three-questions">Three questions</a></li>
   <li><a href="#read-the-numbers-together" id="toc-read-the-numbers-together" class="nav-link" data-scroll-target="#read-the-numbers-together">Read the numbers together</a></li>
   <li><a href="#non-significant-is-not-no-effect" id="toc-non-significant-is-not-no-effect" class="nav-link" data-scroll-target="#non-significant-is-not-no-effect">Non-significant is not “no effect”</a></li>
   <li><a href="#missing-data-and-analytic-choices" id="toc-missing-data-and-analytic-choices" class="nav-link" data-scroll-target="#missing-data-and-analytic-choices">Missing data and analytic choices</a></li>
   </ul></li>
-  <li><a href="#common-interpretation-mistakes" id="toc-common-interpretation-mistakes" class="nav-link" data-scroll-target="#common-interpretation-mistakes"><span class="header-section-number">28.3</span> Common interpretation mistakes</a></li>
-  <li><a href="#sec-several-predictors" id="toc-sec-several-predictors" class="nav-link" data-scroll-target="#sec-several-predictors"><span class="header-section-number">28.4</span> When the model has several predictors</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">28.5</span> Further reading</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">28.6</span> Exercises</a></li>
+  <li><a href="#common-interpretation-mistakes" id="toc-common-interpretation-mistakes" class="nav-link" data-scroll-target="#common-interpretation-mistakes"><span class="header-section-number">29.3</span> Common interpretation mistakes</a></li>
+  <li><a href="#sec-several-predictors" id="toc-sec-several-predictors" class="nav-link" data-scroll-target="#sec-several-predictors"><span class="header-section-number">29.4</span> When the model has several predictors</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">29.5</span> Further reading</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">29.6</span> Exercises</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/interpretation/results-to-conclusions.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/intro-to-behds/behdsbook-part-2/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../interpretation/intro-interpretation.html">Interpreting Evidence</a></li><li class="breadcrumb-item"><a href="../interpretation/results-to-conclusions.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../interpretation/intro-interpretation.html">Interpreting Evidence</a></li><li class="breadcrumb-item"><a href="../interpretation/results-to-conclusions.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-results-to-conclusions" class="quarto-section-identifier"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span></h1>
+<h1 class="title"><span id="sec-results-to-conclusions" class="quarto-section-identifier"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span></h1>
 </div>
 
 
@@ -533,8 +539,8 @@ window.Quarto = {
 <p>Interpretation does not mean that any reading of the results is as good as another. A good interpretation brings together all the available evidence: how the data were collected (<a href="../behav/experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>), how well the variables were measured (<a href="../behav/measurement.html" class="quarto-xref"><span>Chapter 1</span></a>), what the estimates and their uncertainty say (<a href="../inference/estimates-confidence-intervals.html" class="quarto-xref"><span>Chapter 15</span></a>, <a href="../basic-stats/effect-size.html" class="quarto-xref"><span>Chapter 22</span></a>), what is missing (<a href="../basic-stats/missing-data.html" class="quarto-xref"><span>Chapter 24</span></a>), and how the analysis was done (<a href="../behav/research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>). Some interpretations are better than others because they account for more of this evidence.</p>
 <p>This chapter is about the step from results to conclusions. It starts by separating results from their interpretation, then offers a few questions for interpreting any result, and ends with a list of common mistakes. When an association can be read as a cause, and what else can produce it, is the topic of <a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a>, in the first part of the book.</p>
 <!-- 22 Nov 2026 (Claude), at the instructor's request: results vs interpretation, three examples. To review. -->
-<section id="sec-results-vs-interpretation" class="level2" data-number="28.1">
-<h2 data-number="28.1" class="anchored" data-anchor-id="sec-results-vs-interpretation"><span class="header-section-number">28.1</span> Results and interpretation</h2>
+<section id="sec-results-vs-interpretation" class="level2" data-number="29.1">
+<h2 data-number="29.1" class="anchored" data-anchor-id="sec-results-vs-interpretation"><span class="header-section-number">29.1</span> Results and interpretation</h2>
 <p>Interpreting means turning numbers into verbal claims, such as “the training app improves memory”, and putting them in a report: usually a scientific article, but also a technical report or the document behind a product decision. These claims are what other people read, cite and build on. They are the basis for future studies, for new lines of research, and for applications: a company, for example, may start the long process of having its app certified as a medical device on the strength of a study that seemed to show that it works. An error of interpretation therefore travels much further than an error in a single number.</p>
 <p>This is why it is important to distinguish the results from their interpretation, and why scientific articles keep them in separate sections. The <em>Results</em> section reports what was found, as neutrally as possible and without explanations: descriptive statistics, estimates with their confidence intervals, tests and effect sizes. The <em>Discussion</em> section interprets these results: what they mean, why they may have come out this way, and what follows from them. The separation lets readers check the results on their own and judge the interpretation separately, and perhaps reach a different one.</p>
 <p>Results and interpretation are separable because <strong>the same results can support several interpretations</strong>. This is true for every design, randomised experiments included. Imagine three studies.</p>
@@ -544,7 +550,7 @@ window.Quarto = {
 <div id="tbl-one-result-many-readings" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-one-result-many-readings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;28.1: The same result, two interpretations, in three designs (hypothetical examples).
+Table&nbsp;29.1: The same result, two interpretations, in three designs (hypothetical examples).
 </figcaption>
 <div aria-describedby="tbl-one-result-many-readings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -588,8 +594,8 @@ Table&nbsp;28.1: The same result, two interpretations, in three designs (hypothe
 </div>
 <p>In each example the result stays the same; what changes is the interpretation. A good Discussion does not stop at the first interpretation: it names the alternatives and says which of them the design rules out and which it leaves open. <a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a> goes through the most common alternatives; the rest of this chapter is about how to weigh them.</p>
 </section>
-<section id="interpreting-a-result" class="level2" data-number="28.2">
-<h2 data-number="28.2" class="anchored" data-anchor-id="interpreting-a-result"><span class="header-section-number">28.2</span> Interpreting a result</h2>
+<section id="interpreting-a-result" class="level2" data-number="29.2">
+<h2 data-number="29.2" class="anchored" data-anchor-id="interpreting-a-result"><span class="header-section-number">29.2</span> Interpreting a result</h2>
 <section id="three-questions" class="level3">
 <h3 class="anchored" data-anchor-id="three-questions">Three questions</h3>
 <p>Whatever the design, three questions help to interpret a result:</p>
@@ -602,7 +608,7 @@ Table&nbsp;28.1: The same result, two interpretations, in three designs (hypothe
 <div id="tbl-validity-checklist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-validity-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;28.2: Four questions for interpreting a study, and the kind of validity each concerns.
+Table&nbsp;29.2: Four questions for interpreting a study, and the kind of validity each concerns.
 </figcaption>
 <div aria-describedby="tbl-validity-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -675,14 +681,14 @@ Table&nbsp;28.2: Four questions for interpreting a study, and the kind of validi
 <p>Two further questions concern how the final numbers were obtained. <strong>Who is in the analysis?</strong> If participants dropped out or skipped questions for reasons related to the outcome, the remaining sample may be optimistic (<a href="../basic-stats/missing-data.html" class="quarto-xref"><span>Chapter 24</span></a>). <strong>How many choices were made, and when?</strong> Exclusion rules, outcome measures and covariates can be chosen in many reasonable ways. When they are chosen after seeing the data, a significant result is much easier to obtain, and much less informative (<a href="../behav/research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>).</p>
 </section>
 </section>
-<section id="common-interpretation-mistakes" class="level2" data-number="28.3">
-<h2 data-number="28.3" class="anchored" data-anchor-id="common-interpretation-mistakes"><span class="header-section-number">28.3</span> Common interpretation mistakes</h2>
+<section id="common-interpretation-mistakes" class="level2" data-number="29.3">
+<h2 data-number="29.3" class="anchored" data-anchor-id="common-interpretation-mistakes"><span class="header-section-number">29.3</span> Common interpretation mistakes</h2>
 <p>The following mistakes are frequent in papers, reports and the press. Most of them follow from forgetting one of the three questions above.</p>
 <p><strong>Hidden causal claims.</strong> Causal claims are often made without the word <em>cause</em>. Verbs such as <em>leads to</em>, <em>boosts</em>, <em>elicits</em>, <em>protects</em> or <em>improves</em> all describe causal effects. With observational data, the defensible wording is at the top of the following ladder:</p>
 <div id="tbl-causal-language" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-causal-language-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;28.3: A ladder of wording, from associational to causal.
+Table&nbsp;29.3: A ladder of wording, from associational to causal.
 </figcaption>
 <div aria-describedby="tbl-causal-language-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -731,8 +737,8 @@ Table&nbsp;28.3: A ladder of wording, from associational to causal.
 <p><strong>Going beyond the data.</strong> Results apply to the people, tasks, settings and range of values that were studied. A laboratory effect in students may not hold for older adults using their own phones at home.</p>
 <p><strong>Exploratory results presented as confirmatory.</strong> A pattern found while exploring the data is a hypothesis for the next study, not a confirmed finding (see <em>Two ways of exploring</em> in <a href="../behav/research-ethics.html" class="quarto-xref"><span>Chapter 3</span></a>).</p>
 </section>
-<section id="sec-several-predictors" class="level2" data-number="28.4">
-<h2 data-number="28.4" class="anchored" data-anchor-id="sec-several-predictors"><span class="header-section-number">28.4</span> When the model has several predictors</h2>
+<section id="sec-several-predictors" class="level2" data-number="29.4">
+<h2 data-number="29.4" class="anchored" data-anchor-id="sec-several-predictors"><span class="header-section-number">29.4</span> When the model has several predictors</h2>
 <!-- 22 Nov 2026 (Claude), at the instructor's request: new section, read after the regression weeks; "We controlled for it" moved here from Common interpretation mistakes. To review. -->
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
@@ -747,23 +753,23 @@ Table&nbsp;28.3: A ladder of wording, from associational to causal.
 <p>Regression models with several predictors are the most common way to analyse observational data, and they bring their own interpretation mistakes.</p>
 <p><strong>“We controlled for it”.</strong> Adjusting for a confounder removes its influence only as far as the confounder is well measured. A covariate measured with error leaves part of the confounding in place (see <em>Measurement error and its consequences</em> in <a href="../behav/measurement.html" class="quarto-xref"><span>Chapter 1</span></a>), and confounders that were not measured are not controlled at all.</p>
 <p><strong>An adjusted coefficient is not a causal effect.</strong> A coefficient “adjusted for age and sex” is still an association: the association among people of the same age and sex. It can be read causally only if the design and the arguments of <a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a> rule out the other explanations, including the confounders that were not in the model.</p>
-<p><strong>Which variables, and why?</strong> Adjusting for a mediator removes part of the effect we want to estimate, and adjusting for a collider creates an association that was not there (<em>Adjusting is not free</em> in <a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a>). A good report says why each covariate was included, and whether the choice was made before seeing the data (<a href="credible-evidence.html" class="quarto-xref"><span>Chapter 29</span></a>).</p>
+<p><strong>Which variables, and why?</strong> Adjusting for a mediator removes part of the effect we want to estimate, and adjusting for a collider creates an association that was not there (<em>Adjusting is not free</em> in <a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a>). A good report says why each covariate was included, and whether the choice was made before seeing the data (<a href="credible-evidence.html" class="quarto-xref"><span>Chapter 30</span></a>).</p>
 <p><strong>R² is not importance.</strong> <span class="math inline">\(R^2\)</span> is the proportion of variance in the outcome that the model explains in this sample (see <em>Variance explained</em> in <a href="../linear-models/regression.html" class="quarto-xref"><span>Chapter 25</span></a>). A small <span class="math inline">\(R^2\)</span> can go with an effect that matters a great deal, for example a small average benefit of an intervention given to millions of people, and a large <span class="math inline">\(R^2\)</span> can come from predictors that are of no practical interest. Nor does a high <span class="math inline">\(R^2\)</span> mean that the model is the right one for a causal question: a model can predict well without identifying causes (<em>Explanation and prediction</em> in <a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a>).</p>
 <p><strong>Going beyond the range of the data.</strong> A regression line describes the data within the range of values that were observed. The intercept of a model, for example, is the prediction for a value of 0 of every predictor, which may not exist (a consistency index of 0, an age of 0). Predictions outside the observed range, <em>extrapolations</em>, rest on the assumption that the line continues, which the data cannot check.</p>
 <!-- 18 Nov 2026 (Claude): replaces the subsection "Why this matters: the replication crisis", moved to the next chapter -->
-<p>All these questions concern a single study. The next chapter, <a href="credible-evidence.html" class="quarto-xref"><span>Chapter 29</span></a>, asks them of a whole body of evidence: whether published results can be trusted, and why many of them could not be replicated.</p>
+<p>All these questions concern a single study. The next chapter, <a href="credible-evidence.html" class="quarto-xref"><span>Chapter 30</span></a>, asks them of a whole body of evidence: whether published results can be trusted, and why many of them could not be replicated.</p>
 </section>
-<section id="further-reading" class="level2" data-number="28.5">
-<h2 data-number="28.5" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">28.5</span> Further reading</h2>
+<section id="further-reading" class="level2" data-number="29.5">
+<h2 data-number="29.5" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">29.5</span> Further reading</h2>
 <ul>
 <li>W. R. Shadish, T. D. Cook &amp; D. T. Campbell (2002), <em>Experimental and Quasi-Experimental Designs for Generalized Causal Inference</em>. Boston: Houghton Mifflin. The classic reference on the four kinds of study validity and their threats.</li>
 <li>A. Gelman &amp; H. Stern (2006), <em>The difference between “significant” and “not significant” is not itself statistically significant</em>, The American Statistician, 60(4), 328–331.</li>
 <li>J. Henrich, S. J. Heine &amp; A. Norenzayan (2010), <em>The weirdest people in the world?</em>, Behavioral and Brain Sciences, 33(2–3), 61–83.</li>
 </ul>
 </section>
-<section id="exercises" class="level2" data-number="28.6">
-<h2 data-number="28.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">28.6</span> Exercises</h2>
-<p>1. Find a news article or a press release that reports a study on technology use and wellbeing. Which wording does it use (<a href="#tbl-causal-language" class="quarto-xref">Table&nbsp;<span>28.3</span></a>)? Is the wording supported by the design? Rewrite the headline so that it matches the design.</p>
+<section id="exercises" class="level2" data-number="29.6">
+<h2 data-number="29.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">29.6</span> Exercises</h2>
+<p>1. Find a news article or a press release that reports a study on technology use and wellbeing. Which wording does it use (<a href="#tbl-causal-language" class="quarto-xref">Table&nbsp;<span>29.3</span></a>)? Is the wording supported by the design? Rewrite the headline so that it matches the design.</p>
 <p>2. Run the <code>same-p</code> example again with 50 participants per group in the small study. How do the confidence interval and the p-value change? Which of the two studies would you rather cite to claim that the effect is important, and why?</p>
 
 
@@ -1177,7 +1183,7 @@ Table&nbsp;28.3: A ladder of wording, from associational to causal.
   </div>
   <div class="nav-page nav-page-next">
       <a href="../interpretation/credible-evidence.html" class="pagination-link" aria-label="Can We Trust the Evidence? Replication and Open Science">
-        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

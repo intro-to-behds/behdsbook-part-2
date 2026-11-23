@@ -441,6 +441,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../linear-models/reading-lm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Recommended Reading</span></a>
   </div>
@@ -459,13 +465,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../interpretation/results-to-conclusions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../interpretation/credible-evidence.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span></a>
   </div>
 </li>
       </ul>
@@ -673,8 +679,8 @@ Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(engagement <span class="sc">~</span> consistency, <span class="at">data =</span> <span class="fu">slice_sample</span>(engagement, <span class="at">n =</span> N, <span class="at">replace =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)<span class="sc">$</span>coef</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)     17.8       17.7    1.01    0.325</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; consistency     41.9       16.9    2.48    0.021</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)    69.93       19.2   3.637  0.00138</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; consistency    -2.76       16.2  -0.171  0.86608</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can see that the standard error estimates reported above are close to the standard errors from the simulation:</p>
 <div class="cell" data-layout-align="center">
@@ -687,7 +693,7 @@ Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fit, <span class="st">"consistency"</span>, <span class="at">level =</span> <span class="fl">0.95</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             2.5 % 97.5 %</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; consistency   6.9   76.9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; consistency -36.3   30.8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Hypothesis testing with regression models is commonly used in psychology, epidemiology and economics to make statements such as “the effect of A on B was statistically significant after adjusting for X, Y, and Z”. However, several assumptions have to hold for these statements to be useful. We show what adjusting means, and when it helps, at the end of this chapter (<a href="#sec-adjusting-confounder" class="quarto-xref"><span>Section 26.6</span></a>).</p>
 </section>
@@ -920,7 +926,7 @@ Y_i = \beta_0 + \beta_1 x_i + \beta_2 z_i + \varepsilon_i
 <li><strong>Only measured confounders are adjusted for.</strong> The adjusted slope still contains the effect of every confounder we did not include, such as free time or motivation. Randomisation, not adjustment, is what balances unmeasured variables (<a href="../behav/experimental-designs.html" class="quarto-xref"><span>Chapter 4</span></a>).</li>
 <li><strong>Only well-measured confounders are fully adjusted for.</strong> If a confounder is measured with error, adjusting for it removes only part of its influence, and the rest stays in the coefficient of interest (see <em>Measurement error and its consequences</em> in <a href="../behav/measurement.html" class="quarto-xref"><span>Chapter 1</span></a>). Sex is recorded with little error; a questionnaire score of stress is not.</li>
 <li><strong>Not every variable should be adjusted for.</strong> Adjusting for a confounder removes a spurious association, but adjusting for a mediator removes part of the effect we want to estimate, and adjusting for a collider creates an association that was not there (see <em>Adjusting is not free</em> in <a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a>). Which variables to include is a causal decision, not a statistical one.</li>
-<li><strong>An adjusted association is still an association.</strong> The model says how engagement and consistency go together among users of the same sex. It does not say that making users more consistent would make them more engaged: these data are observational with respect to consistency. Interpreting the adjusted coefficient causally requires the arguments of <a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a>, and the interpretation questions of <a href="../interpretation/results-to-conclusions.html" class="quarto-xref"><span>Chapter 28</span></a>.</li>
+<li><strong>An adjusted association is still an association.</strong> The model says how engagement and consistency go together among users of the same sex. It does not say that making users more consistent would make them more engaged: these data are observational with respect to consistency. Interpreting the adjusted coefficient causally requires the arguments of <a href="../behav/association-causation.html" class="quarto-xref"><span>Chapter 6</span></a>, and the interpretation questions of <a href="../interpretation/results-to-conclusions.html" class="quarto-xref"><span>Chapter 29</span></a>.</li>
 </ol>
 <p>Finally, the model assumed that the two lines are parallel: that the association between consistency and engagement is the same for women and men. When this is not true, the lines must be allowed to have different slopes, with an <em>interaction</em> term. We introduce interactions in <a href="treatment-effect-models.html" class="quarto-xref"><span>Chapter 27</span></a>, where we also use the linear model to analyse an experiment.</p>
 </section>
@@ -988,9 +994,9 @@ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \varepsilon_i,\,\, i=1,\dots,n
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(observed_distance<span class="sc">~</span>time<span class="sc">+</span>time_sq, <span class="at">data =</span> _)</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)<span class="sc">$</span>coefficients</span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)   56.106      0.692  81.024 1.26e-16</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; time          -0.931      0.989  -0.941 3.67e-01</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; time_sq       -4.571      0.294 -15.575 7.67e-09</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)   55.253      0.719   76.87 2.25e-16</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; time          -0.226      1.027   -0.22 8.30e-01</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; time_sq       -4.776      0.305  -15.68 7.16e-09</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s check if the estimated parabola fits the data. The <strong>broom</strong> function <code>augment</code> allows us to do this easily:</p>
 <div class="cell" data-layout-align="center">
@@ -1026,9 +1032,9 @@ d(t) = h_0 + v_0 t -  0.5 \times 9.8 \, t^2
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fit)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             2.5 % 97.5 %</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) 54.58  57.63</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; time        -3.11   1.25</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; time_sq     -5.22  -3.93</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) 53.67  56.83</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; time        -2.49   2.03</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; time_sq     -5.45  -4.11</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The Tower of Pisa height is within the confidence interval for <span class="math inline">\(\beta_0\)</span>, the initial velocity 0 is in the confidence interval for <span class="math inline">\(\beta_1\)</span> (note the p-value is larger than 0.05), and the acceleration constant is in a confidence interval for <span class="math inline">\(-2 \times \beta_2\)</span>.</p>
 </section>

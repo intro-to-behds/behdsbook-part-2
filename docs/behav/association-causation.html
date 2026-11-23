@@ -441,6 +441,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../linear-models/glm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../linear-models/reading-lm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Recommended Reading</span></a>
   </div>
@@ -459,13 +465,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../interpretation/results-to-conclusions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">From Results to Conclusions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../interpretation/credible-evidence.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Can We Trust the Evidence? Replication and Open Science</span></span></a>
   </div>
 </li>
       </ul>
@@ -526,7 +532,7 @@ window.Quarto = {
 </header>
 
 
-<p><em>Original chapter by Rafael A. Irizarry, from <a href="https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/association-not-causation.html"><em>Introduction to Data Science</em></a>. Adapted by Giorgio Arcara: the datasets are replaced with behavioural ones; new sections on causal claims, moved from <a href="../interpretation/results-to-conclusions.html" class="quarto-xref"><span>Chapter 28</span></a>; some passages are rewritten without linear models; the text is otherwise Irizarry’s. Details in the <a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/CHANGELOG.md">CHANGELOG</a>.</em></p>
+<p><em>Original chapter by Rafael A. Irizarry, from <a href="https://rafalab.dfci.harvard.edu/dsbook-part-2/linear-models/association-not-causation.html"><em>Introduction to Data Science</em></a>. Adapted by Giorgio Arcara: the datasets are replaced with behavioural ones; new sections on causal claims, moved from <a href="../interpretation/results-to-conclusions.html" class="quarto-xref"><span>Chapter 29</span></a>; some passages are rewritten without linear models; the text is otherwise Irizarry’s. Details in the <a href="https://github.com/intro-to-behds/behdsbook-part-2/blob/main/CHANGELOG.md">CHANGELOG</a>.</em></p>
 <div class="callout callout-style-simple callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -632,7 +638,7 @@ Draft
 </div>
 </div>
 <p>If we observe 10,000 correlations whose true value is 0 but whose standard error is about 0.2, some of them will be large by chance alone. A test on the selected group alone would give a very small p-value (try <code>cor.test()</code> on it, <a href="../basic-stats/correlation.html" class="quarto-xref"><span>Chapter 17</span></a>), and we would wrongly claim a significant association.</p>
-<p>Selecting the analysis with the most interesting result is known as <em>p-hacking</em>. An analyst might explore associations between an outcome and many variables and report only the one with a small p-value, try several ways of excluding participants or of adjusting for other variables and keep the one that gives the strongest result, or repeat a study and report only the “successful” run. Such practices are not always intentional misconduct; they often come from limited statistical understanding or wishful thinking. <a href="../basic-stats/multiple-comparisons.html" class="quarto-xref"><span>Chapter 20</span></a> shows how to correct for the number of tests, and <a href="../interpretation/credible-evidence.html" class="quarto-xref"><span>Chapter 29</span></a> how these practices contributed to the replication crisis.</p>
+<p>Selecting the analysis with the most interesting result is known as <em>p-hacking</em>. An analyst might explore associations between an outcome and many variables and report only the one with a small p-value, try several ways of excluding participants or of adjusting for other variables and keep the one that gives the strongest result, or repeat a study and report only the “successful” run. Such practices are not always intentional misconduct; they often come from limited statistical understanding or wishful thinking. <a href="../basic-stats/multiple-comparisons.html" class="quarto-xref"><span>Chapter 20</span></a> shows how to correct for the number of tests, and <a href="../interpretation/credible-evidence.html" class="quarto-xref"><span>Chapter 30</span></a> how these practices contributed to the replication crisis.</p>
 </section>
 </section>
 <section id="reverse-causation" class="level3">
@@ -829,7 +835,7 @@ Draft
 <li><strong>Plausibility</strong>: there is a credible mechanism linking cause and effect.</li>
 <li><strong>Experiment</strong>: when the exposure is changed, the outcome changes.</li>
 </ul>
-<p>To these we can add the condition this chapter has been about: the <strong>alternative explanations</strong> (chance, reverse causation, confounding, selection, measurement bias) have been considered and, as far as possible, ruled out. None of these criteria is a proof. They are a way of organising the evidence, and useful questions to ask of any causal claim based on observational data. How to weigh them when interpreting a result is the topic of <a href="../interpretation/results-to-conclusions.html" class="quarto-xref"><span>Chapter 28</span></a>.</p>
+<p>To these we can add the condition this chapter has been about: the <strong>alternative explanations</strong> (chance, reverse causation, confounding, selection, measurement bias) have been considered and, as far as possible, ruled out. None of these criteria is a proof. They are a way of organising the evidence, and useful questions to ask of any causal claim based on observational data. How to weigh them when interpreting a result is the topic of <a href="../interpretation/results-to-conclusions.html" class="quarto-xref"><span>Chapter 29</span></a>.</p>
 </section>
 <section id="further-reading" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">6.5</span> Further reading</h2>
